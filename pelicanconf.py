@@ -12,7 +12,7 @@ STARTING_YEAR = 2005
 SITEURL = ''
 DEBUG = True
 
-THEME = "themes/mickem-bootstrap"
+THEME = "themes/nsclient-pelican-theme"
 PLUGIN_PATHS = ['plugins/pelican-plugins', 'plugins/pelican_youtube', 'plugins']
 PLUGINS = [
     "pelican-bootstrapify", 
@@ -23,7 +23,7 @@ PLUGINS = [
     "pelican-page-hierarchy", 
     "pelican-page-order", 
     "assets", 
-    "autostatic", 
+    "pelican-autostatic", 
     "summary", 
     "clean_summary",
     "neighbors",

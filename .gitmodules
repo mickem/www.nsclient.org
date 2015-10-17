@@ -1,0 +1,24 @@
+[submodule "plugins/pelican-github-releases"]
+	path = plugins/pelican-github-releases
+	url = https://github.com/mickem/pelican-github-releases
+[submodule "plugins/pelican_youtube"]
+	path = plugins/pelican_youtube
+	url = https://github.com/mickem/pelican_youtube.git
+[submodule "plugins/pelican-page-hierarchy"]
+	path = plugins/pelican-page-hierarchy
+	url = https://github.com/akhayyat/pelican-page-hierarchy.git
+[submodule "plugins/pelican-advthumbnailer"]
+	path = plugins/pelican-advthumbnailer
+	url = https://github.com/mickem/pelican-advthumbnailer.git
+[submodule "plugins/pelican-plugins"]
+	path = plugins/pelican-plugins
+	url = https://github.com/getpelican/pelican-plugins.git
+[submodule "plugins/pelican-bootstrapify"]
+	path = plugins/pelican-bootstrapify
+	url = https://github.com/ingwinlu/pelican-bootstrapify.git
+[submodule "plugins/pelican-autostatic"]
+	path = plugins/pelican-autostatic
+	url = https://github.com/AlexJF/pelican-autostatic.git
+[submodule "themes/nsclient-pelican-theme"]
+	path = themes/nsclient-pelican-theme
+	url = https://github.com/mickem/nsclient-pelican-theme.git
