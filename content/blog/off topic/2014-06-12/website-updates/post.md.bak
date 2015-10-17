@@ -1,0 +1,27 @@
+Title: Website updates
+Author: mickem
+Tags: forums, website
+Status: published
+
+TO make life simpler, nicer and prettier I have moved some of the old
+trac feature over to the wordpress site as well as starting to cleanup
+the old trac site. Going forwards the trac site will be explicitly about
+development and thus tickets and source code will be the primary
+focus.<!--more-->
+
+![](/images/blog/wpid-tempfileforshare_f_improf_253x450.jpg)So
+hopefully you have noticed that i have migrated the forums from track to
+bbpress this means the forums now have a new URL and a new (hopefully)
+nicer interface.  The main drawback is that all users and notifications
+have been reset.  If you create a new user (social login) on this site
+and email me I can move your posts to your user.
+
+Please also do let me know about any issues or things that do not work
+and if login oes not work so you are unable to post comments/forums
+things feelfree to email me at michael&lt;AT&gt;medin&lt;DOT&gt;name ot
+info&lt;AT&gt;nsclient&lt;DOT&gt;org.
+
+Hopefully this solution will be better and easier to maintain but if not
+please do let me know!
+
+// Michael Medin
