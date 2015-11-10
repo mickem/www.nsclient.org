@@ -13,7 +13,7 @@ from pelicanconf import *
 PLUGINS += ["minification"]
 
 SITEURL = 'https://www.nsclient.org'
-RELATIVE_URLS = False
+RELATIVE_DEPENDENCIES = True
 
 FEED_ALL_ATOM = 'feeds/all.atom.xml'
 CATEGORY_FEED_ATOM = 'feeds/%s.atom.xml'
