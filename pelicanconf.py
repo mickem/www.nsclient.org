@@ -23,7 +23,8 @@ PLUGINS = [
     "pelican-page-hierarchy", 
     "pelican-page-order", 
     "assets", 
-    "pelican-autostatic", 
+    "autostatic", 
+    "autostatic", 
     "summary", 
     "clean_summary",
     "neighbors",
@@ -49,7 +50,7 @@ CATEGORY_FEED_ATOM = None
 TRANSLATION_FEED_ATOM = None
 
 GITHUB_RELEASE_URL = 'https://api.github.com/repos/mickem/nscp/releases'
-GITHUB_MAJOR_VERSIONS = [ '0.4.3', '0.4.4']
+GITHUB_MAJOR_VERSIONS = [ '0.4.3', '0.4.4', '0.5.0']
 GITHUB_PROMOTED_VERSION = '0.4.3.143'
 GITHUB_RELEASE_SAVE_AS = 'download/{version}/index.html'
 GITHUB_RELEASE_PROMOTED_SAVE_AS = 'download/index.html'
@@ -72,8 +73,9 @@ SUBMENUITEMS = {
 	],
     'Download':  [
 		('Latest', '/download'),
-		('0.4.3', '/download/0.4.3/')
-#		('0.4.4', '/download/0.4.4/')
+		('0.4.3', '/download/0.4.3/'),
+		('0.4.4', '/download/0.4.4/'),
+		('0.5.0', '/download/0.5.0/')
     ],
     'Support': [
         ('Support', '/support/'),
