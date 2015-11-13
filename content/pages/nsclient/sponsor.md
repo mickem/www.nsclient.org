@@ -144,12 +144,12 @@ __In cronological order.__
 
 ![OP5](/images/op5_logo_3d_150.png)
 
-Why choose network management tools from op5? Because along with high quality products we offer simplicity, flexibility, cost efficiency and accessibility. 
+Why choose a open source network and server monitoring solution from op5? Because along with high quality products we offer simplicity, openness, flexibility, cost efficiency and accessibility.
 We have even made licensing and support easy and hassle free. 
 This is what sets us apart from the competition. 
 When you know where to dig, you’ll always find the best solution.
 
-**Further information:** [http://www.op5.com/](http://www.op5.com/)
+**Further information:** [http://www.op5.com/](http://www.op5.com/) and [ http://www.op5.com/explore-op5-monitor/features/server-monitoring/windows-monitoring/](Windows Monitoring)
 
 ## Würth Phoenix ##
 
