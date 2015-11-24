@@ -126,7 +126,7 @@ FAVICON = 'images/FAVICON.PNG'
 
 ARTICLE_PATHS = ['blog']
 
-PATH_METADATA = r".*(?:/|\\)(?P<category>[^/\\]+)(?:/|\\)(?P<date>\d{4}-\d{2}-\d{2})(?:/|\\)(?P<slug>[^/\\]+)(?:/|\\).*"
+PATH_METADATA = r".*(?:/|\\)(?P<category>[^/\\]+)(?:/|\\)[^/\\]+(?:/|\\)(?P<date>\d{4}-\d{2}-\d{2})(?:/|\\)(?P<slug>[^/\\]+)(?:/|\\).*"
 USE_FOLDER_AS_CATEGORY=False
 
 PAGE_PATHS = ['pages']
