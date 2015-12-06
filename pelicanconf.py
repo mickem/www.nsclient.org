@@ -49,8 +49,8 @@ CATEGORY_FEED_ATOM = None
 TRANSLATION_FEED_ATOM = None
 
 GITHUB_RELEASE_URL = 'https://api.github.com/repos/mickem/nscp/releases'
-GITHUB_MAJOR_VERSIONS = [ '0.4.3', '0.4.4', '0.5.0']
-GITHUB_PROMOTED_VERSION = '0.4.3.143'
+GITHUB_MAJOR_VERSIONS = [ '0.3', '0.4.1', '0.4.2', '0.4.3', '0.4.4', '0.5.0']
+GITHUB_PROMOTED_VERSION = '0.4.4.15'
 GITHUB_RELEASE_SAVE_AS = 'download/{version}/index.html'
 GITHUB_RELEASE_PROMOTED_SAVE_AS = 'download/index.html'
 
@@ -74,7 +74,10 @@ SUBMENUITEMS = {
 		('Latest', '/download'),
 		('0.4.3', '/download/0.4.3/'),
 		('0.4.4', '/download/0.4.4/'),
-		('0.5.0', '/download/0.5.0/')
+		('0.5.0', '/download/0.5.0/'),
+		('0.4.2 (legacy)', '/download/0.4.2/'),
+		('0.4.1 (legacy)', '/download/0.4.1/'),
+		('0.3.x (legacy)', '/download/0.3/')
     ],
     'Support': [
         ('Support', '/support/'),
