@@ -10,8 +10,8 @@ following:
 
 Most things are similar the "new" option is:
 '''filter'''='''<where expression>''' where the <where expression> is
-similar to a SQL where clause. operators supported are: =, !=, &gt;,
-&lt;, &gt;=, &lt;=, eq, ne, gt, lt, ge, le, OR, AND, like keywords
+similar to a SQL where clause. Operators supported are: =, !=, &gt;,
+&lt;, &gt;=, &lt;=, eq, ne, gt, lt, ge, le, OR, AND, like Keywords
 supported: id, source, type, severity, message, strings, written,
 generated Types supported: string, int, severity In pother words since
 '''date''' is '''NOT''' supported you cant really use the written and
@@ -19,4 +19,8 @@ generated options since you have no way to specify "time" this will be
 fixed next week. Same thing goes for type which cant (like severity)
 parse strings into integers. But '''PLEASE''' try this out despite the
 limitations as I would like some feedback on what kind of features you
-would need and also find any bugs. // Michael Medin
+would need and also find any bugs. A few examples:
+
+     severity = 'error' OR severity = 'warning' (severity = 'error' OR severity = 'warning') AND strings like 'SQLEXPRESS' (severity = 'error' OR severity = 'warning') AND (strings like 'SQLEXPRESS' OR strings like 'SOMETHING ELSE') (severity = 'error' OR severity = 'warning') AND (strings like 'SQLEXPRESS' OR strings like 'SOMETHING ELSE') OR 1 = 1 OR 1 = 2 
+
+// Michael Medin

@@ -24,8 +24,8 @@ NULL before the I was a bit puzzled until I noticed there was no default
 assignment for the parent\_ pointer meaning in some rare cases when
 performance counters was not working properly we would not get a valid
 value which in conjunction with an problem in the counter would yield
-this error. Anyways, to make a long story short: \*Thank you Google
-breakpad and whomever sent in the crash report!\* Tomorrow I will write
+this error. Anyways, to make a long story short: '''Thank you Google
+breakpad and whomever sent in the crash report!''' Tomorrow I will write
 up a quick tutorial/info page on how to enable crash report submissions
 and how you can help out the development by submitting (manually if you
 prefer) crash reports whenever you have a problem! // Michael Medin

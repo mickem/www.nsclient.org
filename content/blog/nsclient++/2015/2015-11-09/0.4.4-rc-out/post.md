@@ -1,9 +1,9 @@
 Title: NSClient++ 0.4.4 RC out
 Author: mickem
-Tags: release,nsclient++,0.4.4
+Tags: rc,nsclient++,0.4.4
 Status: published
 
-Some great news well overdue. 
+Some great news well overdue.
 While I have been working dilligently on both 0.5.0 (which was previously called 0.4.4) I have also been working together with http://op5.se to create a brand new installer for NSClient++. This new instakller is now avalible in 0.4.4 (the reason I bumped versions was since this is potentially a big change if you have customized the installer script). You can find the the download [here](/download/0.4.4/)
 
 The main new obvious thing you will see is this new dialog:
@@ -42,7 +42,7 @@ In essence it is a semi colon seprated list of path;key;value;path;key;value.
 This would enabled CheckSystem and NRPEServer which can already be done using the existing keys CONF_NRPE as well as CONF_CHECKS.
 But while those keys are great for setting Checks and NRPE there has previously not been any way to set arbitrray keys.
 
-The last new option is CONF_INCLUDES where you can specify confioguration files to include. 
+The last new option is CONF_INCLUDES where you can specify confioguration files to include.
 This is used by the installer to setup the include for op5:s config but you can use it as well by setting an include to your own config.
 You have to manually place the config file there but that is easily achived with your package manager or install script.
 

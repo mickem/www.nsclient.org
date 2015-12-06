@@ -1,5 +1,7 @@
 Title: New release candidate for 0.4.4 is out!
 Authors: Michael Medin
+Tags: rc,nsclient++,0.4.4
+Status: published
 
 The main highlights here is a fix for incremental updates (i.e. updating from 0.4.4.x to 0.4.4.y) as well as a fix for a memory leak in check_drivesize. As always head over to the download page to get it [here](/download/0.4.4/).
 

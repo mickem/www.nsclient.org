@@ -3,11 +3,9 @@ Author: mickem
 Tags: eventlog, filter, sql, status
 Status: published
 
-Hello. A new nightly build will be out tomorrow morning (don't think I
-have time to build it before bedtime tonight). It will feature support
-for date/time in the new CheckEventLog. Dates are handled somewhat
-differently from before, but more "logical" I hope. Dates are specified
-like so:
+Hello. A new nightly build is out. It features support for date/time in
+the new CheckEventLog. Dates are handled somewhat differently from
+before, but more "logical" I hope. Dates are specified like so:
 
      generated gt -2d 
 
@@ -21,7 +19,10 @@ combined with the usual AND/OR expressions I mentioned earlier.
      generated gt -2d AND severity = 'error' 
 
 The above means all records from the last 2 days which has severity
-error. Anyways, expect this nightly build out early morning tomorrow.
+error. A sample command for instance would look like this:
+
+     CheckEventLog debug=true file=application file=system MaxWarn=1 MaxCrit=1 "filter=generated gt -2d AND severity = 'error'" truncate=800 unique descriptions "syntax=%severity%: %source%: %generated% %strings% (%count%)" 
+
 The overall scheduling for the up-coming 0.3.9 release is RC sometimes
 this week and unless something pops up a release set for next 2 weeks or
 so. // Michael Medin

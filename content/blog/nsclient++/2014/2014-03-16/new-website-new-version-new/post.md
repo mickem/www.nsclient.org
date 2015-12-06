@@ -18,16 +18,6 @@ a WordPress version and see what to do about the tickets. They might go
 to github or something along those lines. But that has yet to be
 decided.
 
-<span style="line-height: 1.5em;">0.4.2: Whats new?</span> {lang="en-US"}
-----------------------------------------------------------
-
-<span style="line-height: 1.5em;">I have already
-spoken </span>extensively<span style="line-height: 1.5em;"> about 0.4.2
-so the best way to find out whats new is to read up on the [old
-posts](http://nsclient.org/tag/0-4-2/) or if you want to download it
-head over to the [download
-page](http://nsclient.org/download/ "Download").</span>
-
 **Full changelog is here:**
 
     2014-03-10 MickeM
@@ -286,4 +276,3 @@ page](http://nsclient.org/download/ "Download").</span>
     2013-01-19 MickeM
      * Fixed Wix 3.7 and added wix to dependencies
 
-<span style="line-height: 1.5em;"> </span>

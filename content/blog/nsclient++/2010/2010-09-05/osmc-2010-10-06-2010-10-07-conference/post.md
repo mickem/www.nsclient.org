@@ -15,5 +15,5 @@ the conference has two full tracks one in German and one (almost) in
 English (this year they seem to be missing a few sessions). The full
 program was presented earlier this week and is available at
 \[http://www.netways.de/en/osmc/y2010/programm/\]
-\[image:https://www.netways.de/uploads/pics/OSMC\_Logo\_5te\_Datum.jpg\]
+\[\[Image(https://www.netways.de/uploads/pics/OSMC\_Logo\_5te\_Datum.jpg)\]\]
 // Michael Medin

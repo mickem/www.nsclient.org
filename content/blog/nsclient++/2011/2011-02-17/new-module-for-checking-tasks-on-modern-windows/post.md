@@ -1,5 +1,6 @@
 Title: New module for checking tasks on modern windows!
 Author: mickem
+Tags: nightly, tasks
 Status: published
 
 Hello, New module out with the latest nightly. It is called
