@@ -149,7 +149,11 @@ We have even made licensing and support easy and hassle free.
 This is what sets us apart from the competition. 
 When you know where to dig, you’ll always find the best solution.
 
-**Further information:** [http://www.op5.com/](http://www.op5.com/) and [ http://www.op5.com/explore-op5-monitor/features/server-monitoring/windows-monitoring/](Windows Monitoring)
+**Further information:**  and [https://www.op5.com/explore-op5-monitor/features/server-monitoring/windows-monitoring/](Windows Monitoring)
+
+**Download:** [https://www.op5.com/download/](https://www.op5.com/download/)
+
+[https://www.op5.com/](https://www.op5.com/)
 
 ## Würth Phoenix ##
 
