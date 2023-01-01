@@ -1,0 +1,146 @@
+site_name: NSClient++
+repo_url: https://github.com/mickem/nscp
+repo_name: NSClient++
+
+theme:
+  name: material
+  logo: assets/nsclient-logo.png
+  icon:
+    repo: fontawesome/brands/github-alt
+  features:
+    - navigation.tabs  
+    - toc.follow
+    - toc.integrate
+  palette:
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: green
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: green
+      toggle:
+        icon: material/brightness-7 
+        name: Switch to dark mode
+
+
+nav:
+  - Home:
+    - Welcome: index.md
+    - About NSClient++: nsclient.md
+  - News:
+    - news/index.md
+    - news/2022-12-31.md
+  - Download: https://github.com/mickem/nscp/releases
+  - Documentation:
+    - About:
+      - docs/index.md
+      - Building NSClient++: docs/about/build.md
+      - License: docs/about/license.md
+    - Whats New:
+        - docs/whatsnew/index.md
+        - 0.5.2: docs/whatsnew/0.5.2.md
+        - 0.5.1: docs/whatsnew/0.5.1.md
+        - 0.5.0: docs/whatsnew/0.5.0.md
+        - 0.4.4: docs/whatsnew/0.4.4.md
+        - 0.4.3: docs/whatsnew/0.4.3.md
+        - 0.4.2: docs/whatsnew/0.4.2.md
+        - 0.4.1: docs/whatsnew/0.4.1.md
+        - 0.4.0: docs/whatsnew/0.4.0.md
+    - Getting Started: docs/getting_started.md
+    - Theory: docs/theory.md
+    - Checking Things: docs/checks.md
+    - Installing NSClient++: docs/installing.md
+    - Configuration: docs/settings.md
+    - WEB UI: docs/web.md
+    - FAQ: docs/faq.md
+    - Tutorial: docs/tutorial/index.md
+    - Howto:
+        - Checking things: docs/howto/checks.md
+        - Performance Counters: docs/howto/counters.md
+        - External scripts: docs/howto/external_scripts.md
+        - Running commands: docs/howto/run_commands.md
+        - NRPE: docs/howto/nrpe.md
+        - NSCA: docs/howto/nsca.md
+        - Migrate from 0.3: docs/howto/03x_migration.md
+    - Reference:
+        - Reference: docs/reference/index.md
+        - Check commands:
+            - CheckDisk (Windows): docs/reference/windows/CheckDisk.md
+            - CheckExternalScripts: docs/reference/check/CheckExternalScripts.md
+            - CheckEventLog (Windows): docs/reference/windows/CheckEventLog.md
+            - CheckHelpers: docs/reference/check/CheckHelpers.md
+            - CheckLogFile: docs/reference/check/CheckLogFile.md
+            - CheckMKClient: docs/reference/check/CheckMKClient.md
+            - CheckMKServer: docs/reference/check/CheckMKServer.md
+            - CheckNet: docs/reference/misc/CheckNet.md
+            - CheckNSCP: docs/reference/check/CheckNSCP.md
+            - CheckSystemUnix (unix): docs/reference/unix/CheckSystemUnix.md
+            - CheckSystem (Windows): docs/reference/windows/CheckSystem.md
+            - CheckTaskSched (Windows): docs/reference/windows/CheckTaskSched.md
+            - CheckWMI (Windows): docs/reference/windows/CheckWMI.md
+        - Clients & Servers:
+            - WEBServer: docs/reference/generic/WEBServer.md
+            - WEBClient: docs/reference/misc/WEBClient.md
+            - NRPEServer: docs/reference/client/NRPEServer.md
+            - NRPEClient: docs/reference/client/NRPEClient.md
+            - NSClientServer: docs/reference/windows/NSClientServer.md
+            - NSCAServer: docs/reference/client/NSCAServer.md
+            - NSCAClient: docs/reference/client/NSCAClient.md
+            - NRDPClient: docs/reference/client/NRDPClient.md
+            - SMTPClient: docs/reference/client/SMTPClient.md
+            - GraphiteClient: docs/reference/client/GraphiteClient.md
+            - SyslogClient: docs/reference/client/SyslogClient.md
+            - CollectdClient: docs/reference/misc/CollectdClient.md
+            - Op5Client: docs/reference/misc/Op5Client.md
+            - ElasticClient: docs/reference/misc/ElasticClient.md
+        - Helper modules:
+            - Scheduler: docs/reference/generic/Scheduler.md
+            - SimpleFileWriter: docs/reference/generic/SimpleFileWriter.md
+            - CommandClient: docs/reference/generic/CommandClient.md
+            - SimpleCache: docs/reference/generic/SimpleCache.md
+            - PythonScript: docs/reference/generic/PythonScript.md
+            - LUAScript: docs/reference/generic/LUAScript.md
+            - DotnetPlugins: docs/reference/windows/DotnetPlugins.md
+    - Extending:
+        - Overview: docs/extending/index.md
+        - Python Scripts: docs/extending/python.md
+        - Zip Modules: docs/extending/zip-modules.md
+    - API:
+        - REST:
+            - Introduction: docs/api/rest/index.md
+            - Info: docs/api/rest/info.md
+            - Modules: docs/api/rest/modules.md
+            - Queries: docs/api/rest/queries.md
+            - Scripts: docs/api/rest/scripts.md
+            - Logs: docs/api/rest/logs.md
+            - Legacy API: docs/api/rest/legacy.md
+        - Plugin API: docs/api/plugin.md
+
+
+  - Forums: https://github.com/mickem/nscp/discussions
+
+extra:
+  consent:
+    title: Cookie consent
+    description: >- 
+      We use cookies to recognize your repeated visits and preferences, as well
+      as to measure the effectiveness of our documentation and whether users
+      find what they're searching for. With your consent, you're helping us to
+      make our documentation better.
+      
+extra_css:
+  - stylesheets/extra.css
+
+markdown_extensions:
+  - attr_list
+  - md_in_html
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - def_list
+  - pymdownx.tasklist:
+      custom_checkbox: true
