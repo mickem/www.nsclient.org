@@ -33,7 +33,7 @@ nav:
     - About NSClient++: nsclient.md
   - News:
     - news/index.md
-    - New version coming soon: news/2022-12-31.md
+    - New version coming soon: news/2023-01-01.md
   - Download: https://github.com/mickem/nscp/releases
   - Documentation:
     - About:
@@ -118,7 +118,9 @@ nav:
             - Scripts: docs/api/rest/scripts.md
             - Logs: docs/api/rest/logs.md
             - Legacy API: docs/api/rest/legacy.md
+        - Common API: docs/api/common.md
         - Plugin API: docs/api/plugin.md
+        - Metrics API: docs/api/metrics.md
 
 
   - Forums: https://github.com/mickem/nscp/discussions

@@ -6,7 +6,7 @@
 -   Much improved documentation
 -   Numerous bugfixes and minor enhancements
 
-[For more details see Whats new in 0.5.2](0.5.2)
+[For more details see Whats new in 0.5.2](0.5.2.md)
 
 ## 0.5.1
 
@@ -17,7 +17,7 @@ The main goals of the 0.5.1 was to add event subsystem and make fix bugs/issues.
 -   New installer
 -   Numerous bugfixes and minor enhancements
 
-[For more details see Whats new in 0.5.1](0.5.1)
+[For more details see Whats new in 0.5.1](0.5.1.md)
 
 ## 0.5.0
 
@@ -30,7 +30,7 @@ The main goals of the 0.5.0 is t make NSClient++ easier to use and more future p
 -   Added floating point number support to filters
 -   Numerous bugfixes and minor enhancements
 
-[For more details see Whats new in 0.5.0](0.5.0)
+[For more details see Whats new in 0.5.0](0.5.0.md)
 
 ## 0.4.4
 
@@ -38,7 +38,7 @@ The main goals of the 0.4.4 was to get the new installer out.
 
 -   New installer
 
-[For more details see Whats new in 0.4.4](0.4.4)
+[For more details see Whats new in 0.4.4](0.4.4.md)
 
 ## 0.4.3
 
@@ -51,7 +51,7 @@ The main goals of the 0.4.3 was stability and fix all outstanding issues and ann
 -   Deprecated insecure legacy `check_nrpe` SSL
 -   Linux Packages
 
-[For more details see Whats new in 0.4.3](0.4.3)
+[For more details see Whats new in 0.4.3](0.4.3.md)
 
 ## 0.4.2
 
@@ -64,7 +64,7 @@ This means all checks will get:
 -   the same or similar syntax
 -   "real-time" options in many instances
 
-[For more details see Whats new in 0.4.2](0.4.2)
+[For more details see Whats new in 0.4.2](0.4.2.md)
 
 ## 0.4.1
 
@@ -75,7 +75,7 @@ This means all checks will get:
 * Simplified command-line syntax
 * Simpler to build NSClient++
 
-[For more details see Whats new in 0.4.1](0.4.1)
+[For more details see Whats new in 0.4.1](0.4.1.md)
 
 ## 0.4.0
 
@@ -87,4 +87,4 @@ This means all checks will get:
   Brand new flexible settings sub systems which supports many new formats as well as generation and inclusion between formats.
 * Numerous bugfixes and minor enhancements
 
-[For more details see Whats new in 0.4.0](0.4.0)
+[For more details see Whats new in 0.4.0](0.4.0.md)
