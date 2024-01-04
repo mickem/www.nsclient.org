@@ -34,7 +34,7 @@ nav:
   - News:
     - news/index.md
     - New version coming soon: news/2023-01-01.md
-    - NRPE 4 support: news/2024-04-01.md
+    - NRPE 4 support: news/2024-01-04.md
   - Download: https://github.com/mickem/nscp/releases
   - Documentation:
     - About:
