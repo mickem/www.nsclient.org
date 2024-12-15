@@ -84,3 +84,23 @@ donate</a>
 
 </div>
 </div>
+
+
+<div markdown="1" class="m-container">
+<div markdown="1">
+
+## :fontawesome-solid-heart: Sponsors
+
+
+<div style="display: flex; justify-content: center; align-items: center;">
+  <!-- Nagios logo start -->
+  <div style="background-color: #2e303e; padding: 5px; max-width: 200px;">
+    <a href="https://nagios.com">
+      <img src="assets/nagios-logo.svg"/>
+    </a>
+  </div>
+  <!-- End -->
+</div>
+
+</div>
+</div>
