@@ -94,7 +94,7 @@ donate</a>
 
 <div style="display: flex; justify-content: center; align-items: center;">
   <!-- Nagios logo start -->
-  <div style="background-color: #2e303e; padding: 5px; max-width: 200px;">
+  <div style="background-color: #1f2129; padding: 5px; max-width: 200px;">
     <a href="https://nagios.com">
       <img src="assets/nagios-logo.svg"/>
     </a>
