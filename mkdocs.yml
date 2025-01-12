@@ -7,6 +7,7 @@ theme:
   logo: assets/nsclient-logo.png
   icon:
     repo: fontawesome/brands/github-alt
+
   features:
     - navigation.tabs  
     - toc.follow
@@ -31,26 +32,10 @@ nav:
   - Home:
     - Welcome: index.md
     - About NSClient++: nsclient.md
-  - News:
-    - news/index.md
-    - New version coming soon: news/2023-01-01.md
-    - NRPE 4 support: news/2024-01-04.md
+  - News: news/index.md
   - Download: https://github.com/mickem/nscp/releases
   - Documentation:
-    - About:
-      - docs/index.md
-      - Building NSClient++: docs/about/build.md
-      - License: docs/about/license.md
-    - Whats New:
-        - docs/whatsnew/index.md
-        - 0.5.2: docs/whatsnew/0.5.2.md
-        - 0.5.1: docs/whatsnew/0.5.1.md
-        - 0.5.0: docs/whatsnew/0.5.0.md
-        - 0.4.4: docs/whatsnew/0.4.4.md
-        - 0.4.3: docs/whatsnew/0.4.3.md
-        - 0.4.2: docs/whatsnew/0.4.2.md
-        - 0.4.1: docs/whatsnew/0.4.1.md
-        - 0.4.0: docs/whatsnew/0.4.0.md
+    - About: docs/index.md
     - Getting Started: docs/getting_started.md
     - Theory: docs/theory.md
     - Checking Things: docs/checks.md
@@ -147,3 +132,6 @@ markdown_extensions:
   - def_list
   - pymdownx.tasklist:
       custom_checkbox: true
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
