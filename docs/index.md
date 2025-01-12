@@ -1,3 +1,7 @@
+
+!!! tip "0.6.4 is out!"
+    [2025-01-12: New version of NSClient++ is out: 0.6.4](news/2025-01-12.md)
+
 <div markdown="1" class="m-container">
 <div markdown="1">
 

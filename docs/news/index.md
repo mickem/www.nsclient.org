@@ -1,5 +1,8 @@
 # News
 
+* [0.6.4 First release of 2025](2025-01-12.md)
+  The first release of 2024 is out. This release includes a lot of bug fixes and some new features.
+
 * [2024-01-04 NRPE 4 support](2024-01-04.md)
   Version 0.6.0.1 adds support for NRPE 4 support.
 
