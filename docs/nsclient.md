@@ -30,7 +30,7 @@ While NSClient++ was designed to work with Nagios/Naemon/Icinga it can easiily b
 
 NSClient++ should run on most operating systems.
 
-* Windows XP and above
+* All Windows OS:es since Windows
 * Most linux os:es
 
 ## Who is behind NSClient++?
