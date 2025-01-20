@@ -13,70 +13,36 @@ NSClient++ does basically three things:
 * Resolve your problems
   NSClient++ can take action either on its own monitoring or remotely from a central server and act on what happens and resolve issues.
 
-##  How does it monitor?
+##  What monitoring systems does it support?
 
-NSClient++ is designed to be open ended and allow you to customize it in any way you design thus extensibility is a core feature. NSClient++ has built-in checks for core system metrics but the real power comes from plugins and external scripts.
-
-* External Scripts
-  External scripts are scripts you write in your favorite language and are executed by NSClient++ and the results are sent back to the central monitoring server or other scripts to take action.
-  This is generally the simplest way to extend NSClient++ as you can utilize whatever infrastructure or skill set you already have.
-* Lua Scripts
-  Lua is a scripting language much like anything you could use as an external scripts. The benefit to using “internal scripts” are that they run inside NSClient++ and can become more intelligent.
-  This is the best option if you want to allow the script to run on any platform with as little infrastructure as possible yet still allow them to be extensions to NSClient++ and not just “dumb scripts”.
-* Python Scripts
-  Python is another internal scripting language much like lua.
-  Python is an easy and powerful language which has many extensions and modules to allow you to do pretty much anything.
-* .Net (dot-net)
-  Dot-net modules are similar to Native modules below but written on the dot-net platform.
-  This allows you to write components on top of the large dot-net ecosystem.
-* Modules
-  This is the most hard-core way to extend NSClient++ and will require youto compile them to work.
-  Most functionality in NSClient++ is actually built as modules when you install it.
-
-##  What does it support?
-
-Since NSClient++ was designed to work with Nagios /Naemon/Icinga it has support for the various protocols used by them but in addition to thos it also supports a series of other ptotocols.
+While NSClient++ was designed to work with Nagios/Naemon/Icinga it can easiily be adapted to be used with any monitoring or information system.
 
 * NRPE (Nagios Remote plugin Executor)
-  A Nagios centric protocol to collect remote metrics (active checks).
 * NSCA (Nagios Service Check Acceptor)
-  Another Nagios centric protocol for submitting results (passive checks).
 * NRDP
-  A Nagios replacment for NSCA.
-* check_mk
-  Is a protocol utilized by the check_mk monitoring system.
 * Syslog
-  A protocol primarily designed for submitting log records to central servers.
 * Graphite
-  Graphite is a graphing solution which allows you do real-time graphing.
 * SMTP
-  SMTP is used for sending email (this more of a toy currently).
 * CollectD
-  A protocol for collecting information
 * REST
-  Web based easily firewalled protocol.
-  
   
 ##  Where does it run?
 
-NSClient++ should run on the following operating systems:
+NSClient++ should run on most operating systems.
 
-### Windows
-* NT4 SP5 (pre 0.4.2)
-* Windows 2000 (pre 0.4.2)
-* Windows XP
-* Windows 2003
-* Windows Vista
-* Windows 2008
-* Windows 7
-* Windows 2012
-* Windows 8
-* Windows 2012 R2
-* Windows 8.1
-* Windows <NEXT> (NSclient++ tends to work on most versions of Windows)
+* Windows XP and above
+* Most linux os:es
 
-### Linux
-* Debian
-* Centos
-* Ubuntu
-* Possibly others as well
+## Who is behind NSClient++?
+
+NSClient++ is largely written and maintained by **Michael Medin**.
+He uses `My Computer Solutions NORDIC KB` as a company to handle the legal and financial aspects of the project.
+
+Contacting the project can be done via email `info@nsclient.org` or on the following address:
+```
+Michael Medin
+My Computer Solutions NORDIC KB
+Knipvägen 179
+SE-184 62 ÅKERBERGA
+SWEDEN
+```
