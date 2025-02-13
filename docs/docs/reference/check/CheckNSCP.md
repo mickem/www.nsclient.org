@@ -76,7 +76,7 @@ Check the version of NSClient++ which is used.
 
 
 | Option                                             | Default Value                                   | Description                                                                                                      |
-|----------------------------------------------------|-------------------------------------------------|------------------------------------------------------------------------------------------------------------------|
+|----------------------------------------------------|----------------------|------------------------------------------------------------------------------------------------------------------|
 | [filter](#check_nscp_version_filter)               |                                                 | Filter which marks interesting items.                                                                            |
 | [warning](#check_nscp_version_warning)             |                                                 | Filter which marks items which generates a warning state.                                                        |
 | warn                                               |                                                 | Short alias for warning                                                                                          |
@@ -95,7 +95,7 @@ Check the version of NSClient++ which is used.
 | [top-syntax](#check_nscp_version_top-syntax)       | ${status}: ${list}                              | Top level syntax.                                                                                                |
 | [ok-syntax](#check_nscp_version_ok-syntax)         |                                                 | ok syntax.                                                                                                       |
 | [empty-syntax](#check_nscp_version_empty-syntax)   |                                                 | Empty syntax.                                                                                                    |
-| [detail-syntax](#check_nscp_version_detail-syntax) | ${release}.${major}.${minor}.${build} (${date}) | Detail level syntax.                                                                                             |
+| [detail-syntax](#check_nscp_version_detail-syntax) | ${version} (${date}) | Detail level syntax.                                                                                             |
 | [perf-syntax](#check_nscp_version_perf-syntax)     | version                                         | Performance alias syntax.                                                                                        |
 
 
@@ -169,7 +169,7 @@ Used to format each resulting item in the message.
 %(list) will be replaced with all the items formated by this syntax string in the top-syntax.
 To add a keyword to the message you can use two syntaxes either ${keyword} or %(keyword) (there is no difference between them apart from ${} can be difficult to excpae on linux).
 
-*Default Value:* `${release}.${major}.${minor}.${build} (${date})`
+*Default Value:* `${version} (${date})`
 
 <h5 id="check_nscp_version_perf-syntax">perf-syntax:</h5>
 
@@ -185,7 +185,7 @@ This is the syntax for the base names of the performance data.
 
 | Option        | Description                                                                                                  |
 |---------------|--------------------------------------------------------------------------------------------------------------|
-| build         | The build (the 3 in 0.1.2.3)                                                                                 |
+| build         | The build (the 3 in 0.1.2.3) not available in release versions after 0.6.0                                   |
 | count         | Number of items matching the filter. Common option for all checks.                                           |
 | crit_count    | Number of items matched the critical criteria. Common option for all checks.                                 |
 | crit_list     | A list of all items which matched the critical criteria. Common option for all checks.                       |
