@@ -1,6 +1,6 @@
 
 !!! tip "New release out which fixes upgrade installer issue."
-        [0.6.9 Released](news/2025-02-09.md)
+    [0.6.9 Released](news/2025-02-09.md)
        
 
 <div markdown="1" class="m-container">
