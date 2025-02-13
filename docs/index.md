@@ -1,5 +1,6 @@
 
-!!! tip * [0.6.9 Released](2025-02-09.md)
+!!! tip [0.6.9 Released](news/2025-02-09.md)
+        Fixes for upgrade installer issue.
 
 <div markdown="1" class="m-container">
 <div markdown="1">
