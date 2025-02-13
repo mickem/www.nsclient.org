@@ -1,20 +1,14 @@
-
-!!! tip "New release out which fixes upgrade installer issue."
-    [0.6.9 Released](news/2025-02-09.md)
-       
-
 <div markdown="1" class="m-container">
 <div markdown="1">
 
 ## :octicons-info-16: About NSClient++
 
 NSClient is an [:material-alert-box-outline: agent](nsclient.md) designed originally to work with Nagios but has
-since evolved into a fully fledged monitoring agent which can be used with numerous monitoring tools. If you want more
-in-depth information see the [:material-head-question: documentation](https://docs.nsclient.org/)</a>
-instead.
+since evolved into a fully fledged monitoring agent which can be used with many monitoring tools. 
+If you want to know the latest news and updates see the [:material-newspaper: news section](/news).
 
 * [:material-alert-box-outline: About NSClient++](nsclient.md)
-* [:material-head-question: Documentation](/docs)
+* [:material-newspaper: Latest news](/news)
 
 </div>
 <div markdown="1">

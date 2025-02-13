@@ -9,9 +9,10 @@ theme:
     repo: fontawesome/brands/github-alt
 
   features:
-    - navigation.tabs  
+    - navigation.tabs
     - toc.follow
     - toc.integrate
+    - navigation.indexes
   palette:
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
@@ -24,7 +25,7 @@ theme:
       scheme: default
       primary: green
       toggle:
-        icon: material/brightness-7 
+        icon: material/brightness-7
         name: Switch to dark mode
 
 
@@ -119,7 +120,12 @@ extra:
       as to measure the effectiveness of our documentation and whether users
       find what they're searching for. With your consent, you're helping us to
       make our documentation better.
-      
+
+plugins:
+  - blog:
+      blog_dir: news
+      blog_toc: true
+      archive_date_format: MMMM yyyy
 extra_css:
   - stylesheets/extra.css
 
