@@ -4,6 +4,15 @@ A server that listens for incoming NRPE connection and processes incoming reques
 
 
 
+## Enable module
+
+To enable this module and and allow using the commands you need to ass `NRPEServer = enabled` to the `[/modules]` section in nsclient.ini:
+
+```
+[/modules]
+NRPEServer = enabled
+```
+
 
 
 
@@ -63,12 +72,12 @@ A comma separated list of allowed hosts. You can use netmasks (/ syntax) or * to
 
 
 
-| Key            | Description                                       |
-|----------------|---------------------------------------------------|
-| Path:          | [/settings/default](#/settings/default)           |
-| Key:           | allowed hosts                                     |
-| Default value: | `127.0.0.1`                                       |
-| Used by:       | NRPEServer, NSCAServer, NSClientServer, WEBServer |
+| Key            | Description                                                      |
+|----------------|------------------------------------------------------------------|
+| Path:          | [/settings/default](#/settings/default)                          |
+| Key:           | allowed hosts                                                    |
+| Default value: | `127.0.0.1`                                                      |
+| Used by:       | CheckMKServer, NRPEServer, NSCAServer, NSClientServer, WEBServer |
 
 
 **Sample:**
@@ -90,12 +99,12 @@ Allows you to bind server to a specific local address. This has to be a dotted i
 
 
 
-| Key            | Description                                       |
-|----------------|---------------------------------------------------|
-| Path:          | [/settings/default](#/settings/default)           |
-| Key:           | bind to                                           |
-| Default value: | _N/A_                                             |
-| Used by:       | NRPEServer, NSCAServer, NSClientServer, WEBServer |
+| Key            | Description                                                      |
+|----------------|------------------------------------------------------------------|
+| Path:          | [/settings/default](#/settings/default)                          |
+| Key:           | bind to                                                          |
+| Default value: | _N/A_                                                            |
+| Used by:       | CheckMKServer, NRPEServer, NSCAServer, NSClientServer, WEBServer |
 
 
 **Sample:**
@@ -116,12 +125,12 @@ If host names (DNS entries) should be cached, improves speed and security somewh
 
 
 
-| Key            | Description                                       |
-|----------------|---------------------------------------------------|
-| Path:          | [/settings/default](#/settings/default)           |
-| Key:           | cache allowed hosts                               |
-| Default value: | `true`                                            |
-| Used by:       | NRPEServer, NSCAServer, NSClientServer, WEBServer |
+| Key            | Description                                                      |
+|----------------|------------------------------------------------------------------|
+| Path:          | [/settings/default](#/settings/default)                          |
+| Key:           | cache allowed hosts                                              |
+| Default value: | `true`                                                           |
+| Used by:       | CheckMKServer, NRPEServer, NSCAServer, NSClientServer, WEBServer |
 
 
 **Sample:**
@@ -143,13 +152,13 @@ cache allowed hosts=true
 
 
 
-| Key            | Description                                       |
-|----------------|---------------------------------------------------|
-| Path:          | [/settings/default](#/settings/default)           |
-| Key:           | encoding                                          |
-| Advanced:      | Yes (means it is not commonly used)               |
-| Default value: | _N/A_                                             |
-| Used by:       | NRPEServer, NSCAServer, NSClientServer, WEBServer |
+| Key            | Description                                                      |
+|----------------|------------------------------------------------------------------|
+| Path:          | [/settings/default](#/settings/default)                          |
+| Key:           | encoding                                                         |
+| Advanced:      | Yes (means it is not commonly used)                              |
+| Default value: | _N/A_                                                            |
+| Used by:       | CheckMKServer, NRPEServer, NSCAServer, NSClientServer, WEBServer |
 
 
 **Sample:**
@@ -170,12 +179,12 @@ The default channel to post incoming messages on
 
 
 
-| Key            | Description                                       |
-|----------------|---------------------------------------------------|
-| Path:          | [/settings/default](#/settings/default)           |
-| Key:           | inbox                                             |
-| Default value: | `inbox`                                           |
-| Used by:       | NRPEServer, NSCAServer, NSClientServer, WEBServer |
+| Key            | Description                                                      |
+|----------------|------------------------------------------------------------------|
+| Path:          | [/settings/default](#/settings/default)                          |
+| Key:           | inbox                                                            |
+| Default value: | `inbox`                                                          |
+| Used by:       | CheckMKServer, NRPEServer, NSCAServer, NSClientServer, WEBServer |
 
 
 **Sample:**
@@ -197,12 +206,12 @@ Password used to authenticate against server
 
 
 
-| Key            | Description                                       |
-|----------------|---------------------------------------------------|
-| Path:          | [/settings/default](#/settings/default)           |
-| Key:           | password                                          |
-| Default value: | _N/A_                                             |
-| Used by:       | NRPEServer, NSCAServer, NSClientServer, WEBServer |
+| Key            | Description                                                      |
+|----------------|------------------------------------------------------------------|
+| Path:          | [/settings/default](#/settings/default)                          |
+| Key:           | password                                                         |
+| Default value: | _N/A_                                                            |
+| Used by:       | CheckMKServer, NRPEServer, NSCAServer, NSClientServer, WEBServer |
 
 
 **Sample:**
@@ -223,13 +232,13 @@ Number of sockets to queue before starting to refuse new incoming connections. T
 
 
 
-| Key            | Description                                       |
-|----------------|---------------------------------------------------|
-| Path:          | [/settings/default](#/settings/default)           |
-| Key:           | socket queue size                                 |
-| Advanced:      | Yes (means it is not commonly used)               |
-| Default value: | `0`                                               |
-| Used by:       | NRPEServer, NSCAServer, NSClientServer, WEBServer |
+| Key            | Description                                                      |
+|----------------|------------------------------------------------------------------|
+| Path:          | [/settings/default](#/settings/default)                          |
+| Key:           | socket queue size                                                |
+| Advanced:      | Yes (means it is not commonly used)                              |
+| Default value: | `0`                                                              |
+| Used by:       | CheckMKServer, NRPEServer, NSCAServer, NSClientServer, WEBServer |
 
 
 **Sample:**
@@ -250,13 +259,13 @@ socket queue size=0
 
 
 
-| Key            | Description                                       |
-|----------------|---------------------------------------------------|
-| Path:          | [/settings/default](#/settings/default)           |
-| Key:           | thread pool                                       |
-| Advanced:      | Yes (means it is not commonly used)               |
-| Default value: | `10`                                              |
-| Used by:       | NRPEServer, NSCAServer, NSClientServer, WEBServer |
+| Key            | Description                                                      |
+|----------------|------------------------------------------------------------------|
+| Path:          | [/settings/default](#/settings/default)                          |
+| Key:           | thread pool                                                      |
+| Advanced:      | Yes (means it is not commonly used)                              |
+| Default value: | `10`                                                             |
+| Used by:       | CheckMKServer, NRPEServer, NSCAServer, NSClientServer, WEBServer |
 
 
 **Sample:**
@@ -277,12 +286,12 @@ Timeout when reading packets on incoming sockets. If the data has not arrived wi
 
 
 
-| Key            | Description                                       |
-|----------------|---------------------------------------------------|
-| Path:          | [/settings/default](#/settings/default)           |
-| Key:           | timeout                                           |
-| Default value: | `30`                                              |
-| Used by:       | NRPEServer, NSCAServer, NSClientServer, WEBServer |
+| Key            | Description                                                      |
+|----------------|------------------------------------------------------------------|
+| Path:          | [/settings/default](#/settings/default)                          |
+| Key:           | timeout                                                          |
+| Default value: | `30`                                                             |
+| Used by:       | CheckMKServer, NRPEServer, NSCAServer, NSClientServer, WEBServer |
 
 
 **Sample:**
@@ -301,32 +310,32 @@ Section for NRPE (NRPEServer.dll) (check_nrpe) protocol options.
 
 
 
-| Key                                                       | Default Value                       | Description                            |
+| Key                                                       | Default Value                        | Description                            |
 |-----------------------------------------------------------|--------------------------------------|----------------------------------------|
-| [allow arguments](#command-argument-processing)           | false                               | COMMAND ARGUMENT PROCESSING            |
-| [allow nasty characters](#command-allow-nasty-meta-chars) | false                               | COMMAND ALLOW NASTY META CHARS         |
-| [allowed ciphers](#allowed-ciphers)                       | ALL:!ADH:!LOW:!EXP:!MD5:@STRENGTH   | ALLOWED CIPHERS                        |
-| [allowed hosts](#allowed-hosts)                           | 127.0.0.1                           | ALLOWED HOSTS                          |
-| [bind to](#bind-to-address)                               |                                     | BIND TO ADDRESS                        |
-| [ca](#ca)                                                 | ${certificate-path}/ca.pem          | CA                                     |
-| [cache allowed hosts](#cache-allowed-hosts)               | true                                | CACHE ALLOWED HOSTS                    |
-| [certificate](#ssl-certificate)                           | ${certificate-path}/certificate.pem | SSL CERTIFICATE                        |
-| [certificate format](#certificate-format)                 | PEM                                 | CERTIFICATE FORMAT                     |
-| [certificate key](#ssl-certificate)                       |                                     | SSL CERTIFICATE                        |
+| [allow arguments](#command-argument-processing)           | false                                | COMMAND ARGUMENT PROCESSING            |
+| [allow nasty characters](#command-allow-nasty-meta-chars) | false                                | COMMAND ALLOW NASTY META CHARS         |
+| [allowed ciphers](#allowed-ciphers)                       | ALL:!ADH:!LOW:!EXP:!MD5:@STRENGTH    | ALLOWED CIPHERS                        |
+| [allowed hosts](#allowed-hosts)                           | 127.0.0.1                            | ALLOWED HOSTS                          |
+| [bind to](#bind-to-address)                               |                                      | BIND TO ADDRESS                        |
+| [ca](#ca)                                                 | ${certificate-path}/ca.pem           | CA                                     |
+| [cache allowed hosts](#cache-allowed-hosts)               | true                                 | CACHE ALLOWED HOSTS                    |
+| [certificate](#ssl-certificate)                           | ${certificate-path}/certificate.pem  | SSL CERTIFICATE                        |
+| [certificate format](#certificate-format)                 | PEM                                  | CERTIFICATE FORMAT                     |
+| [certificate key](#ssl-certificate)                       |                                      | SSL CERTIFICATE                        |
 | [dh](#dh-key)                                             | ${certificate-path}/nrpe_dh_2048.pem | DH KEY                                 |
-| [encoding](#nrpe-payload-encoding)                        |                                     | NRPE PAYLOAD ENCODING                  |
-| [extended response](#extended-response)                   | true                                | EXTENDED RESPONSE                      |
-| [insecure](#allow-insecure-chiphers-and-encryption)       | false                               | ALLOW INSECURE CHIPHERS and ENCRYPTION |
-| [payload length](#payload-length)                         | 1024                                | PAYLOAD LENGTH                         |
-| [performance data](#performance-data)                     | true                                | PERFORMANCE DATA                       |
-| [port](#port-number)                                      | 5666                                | PORT NUMBER                            |
-| [socket queue size](#listen-queue)                        | 0                                   | LISTEN QUEUE                           |
-| [ssl options](#verify-mode)                               |                                     | VERIFY MODE                            |
-| [thread pool](#thread-pool)                               | 10                                  | THREAD POOL                            |
-| [timeout](#timeout)                                       | 30                                  | TIMEOUT                                |
+| [encoding](#nrpe-payload-encoding)                        |                                      | NRPE PAYLOAD ENCODING                  |
+| [extended response](#extended-response)                   | true                                 | EXTENDED RESPONSE                      |
+| [insecure](#allow-insecure-chiphers-and-encryption)       | false                                | ALLOW INSECURE CHIPHERS and ENCRYPTION |
+| [payload length](#payload-length)                         | 1024                                 | PAYLOAD LENGTH                         |
+| [performance data](#performance-data)                     | true                                 | PERFORMANCE DATA                       |
+| [port](#port-number)                                      | 5666                                 | PORT NUMBER                            |
+| [socket queue size](#listen-queue)                        | 0                                    | LISTEN QUEUE                           |
+| [ssl options](#verify-mode)                               |                                      | VERIFY MODE                            |
+| [thread pool](#thread-pool)                               | 10                                   | THREAD POOL                            |
+| [timeout](#timeout)                                       | 30                                   | TIMEOUT                                |
 | [tls version](#tls-version-to-use)                        | tlsv1.2+                             | TLS version to use                     |
-| [use ssl](#enable-ssl-encryption)                         | true                                | ENABLE SSL ENCRYPTION                  |
-| [verify mode](#verify-mode)                               | none                                | VERIFY MODE                            |
+| [use ssl](#enable-ssl-encryption)                         | true                                 | ENABLE SSL ENCRYPTION                  |
+| [verify mode](#verify-mode)                               | none                                 | VERIFY MODE                            |
 
 
 
@@ -963,6 +972,9 @@ Valid options are tlsv1.3, tlsv1.2, tlsv1.1, tlsv1.0, sslv3 as well as tlsv1.3+,
 # TLS version to use
 tls version=tlsv1.2+
 ```
+
+
+
 #### ENABLE SSL ENCRYPTION <a id="/settings/NRPE/server/use ssl"></a>
 
 This option controls if SSL should be enabled.

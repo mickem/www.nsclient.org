@@ -4,6 +4,15 @@ Use this to schedule check commands and jobs in conjunction with for instance pa
 
 
 
+## Enable module
+
+To enable this module and and allow using the commands you need to ass `Scheduler = enabled` to the `[/modules]` section in nsclient.ini:
+
+```
+[/modules]
+Scheduler = enabled
+```
+
 
 ## Samples
 
@@ -153,19 +162,19 @@ This is a section of objects. This means that you will create objects below this
 **Keys:**
 
 
-| Key         | Default Value | Description        |
-|-------------|---------------|--------------------|
-| alias       |               | ALIAS              |
-| channel     |               | SCHEDULE CHANNEL   |
-| command     |               | SCHEDULE COMMAND   |
-| interval    |               | SCHEDULE INTERAVAL |
-| is template | false         | IS TEMPLATE        |
-| parent      | default       | PARENT             |
-| randomness  |               | RANDOMNESS         |
-| report      |               | REPORT MODE        |
-| schedule    |               | SCHEDULE           |
-| source      |               | SOURCE             |
-| target      |               | TARGET             |
+| Key         | Default Value | Description       |
+|-------------|---------------|-------------------|
+| alias       |               | ALIAS             |
+| channel     |               | SCHEDULE CHANNEL  |
+| command     |               | SCHEDULE COMMAND  |
+| interval    |               | SCHEDULE INTERVAL |
+| is template | false         | IS TEMPLATE       |
+| parent      | default       | PARENT            |
+| randomness  |               | RANDOMNESS        |
+| report      |               | REPORT MODE       |
+| schedule    |               | SCHEDULE          |
+| source      |               | SOURCE            |
+| target      |               | TARGET            |
 
 
 **Sample:**

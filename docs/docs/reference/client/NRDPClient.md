@@ -1,8 +1,17 @@
 # NRDPClient
 
-NRDP client can be used both from command line and from queries to check remote systes via NRDP
+NRDP client can be used both from command line and from queries to check remote systems via NRDP
 
 
+
+## Enable module
+
+To enable this module and and allow using the commands you need to ass `NRDPClient = enabled` to the `[/modules]` section in nsclient.ini:
+
+```
+[/modules]
+NRDPClient = enabled
+```
 
 
 ## Queries

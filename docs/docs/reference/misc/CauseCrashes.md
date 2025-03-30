@@ -1,8 +1,17 @@
 # CauseCrashes
 
-*DO NOT USE* This module is usefull except for debugging purpouses and outright dangerous as it allows someone remotley to crash your client!
+*DO NOT USE* This module is useful except for debugging purposes and outright dangerous as it allows someone remotely to crash your client!
 
 
+
+## Enable module
+
+To enable this module and and allow using the commands you need to ass `CauseCrashes = enabled` to the `[/modules]` section in nsclient.ini:
+
+```
+[/modules]
+CauseCrashes = enabled
+```
 
 
 ## Queries

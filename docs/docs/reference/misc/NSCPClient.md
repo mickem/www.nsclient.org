@@ -1,8 +1,16 @@
 # NSCPClient
 
-NSCP client can be used both from command line and from queries to check remote systes via NSCP (REST)
+NSCP client can be used both from command line and from queries to check remote systems via NSCP (REST)
 
 
+## Enable module
+
+To enable this module and and allow using the commands you need to ass `NSCPClient = enabled` to the `[/modules]` section in nsclient.ini:
+
+```
+[/modules]
+NSCPClient = enabled
+```
 
 
 ## Queries
