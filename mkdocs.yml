@@ -91,7 +91,6 @@ nav:
             - SimpleCache: docs/reference/generic/SimpleCache.md
             - PythonScript: docs/reference/generic/PythonScript.md
             - LUAScript: docs/reference/generic/LUAScript.md
-            - DotnetPlugins: docs/reference/windows/DotnetPlugins.md
     - Extending:
         - Overview: docs/extending/index.md
         - Python Scripts: docs/extending/python.md
