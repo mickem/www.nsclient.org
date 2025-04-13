@@ -190,6 +190,8 @@ port = 5666
 ```
 
 There are a lot of other options as well but these are the most used ones for details please refer to the [reference section](../reference/NRPEServer).
+
+
 ### NRPE version 3 and 4
 
 NSClient++ supports NRPE version 2 as well as 3 and 4 (from version 0.6.x), there is no configuration required to support the newer versions.
@@ -232,6 +234,7 @@ certificate=${certificate-path}/certificate.pem
 ```
 
 ### NRPE specific settings in NSClient++
+
 
 ### Modules
 

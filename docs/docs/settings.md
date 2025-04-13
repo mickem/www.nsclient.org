@@ -132,6 +132,29 @@ Adding a script:
 scripts/myscript.bat = http://www.myserver.com/myscript.bat
 ```
 
+#### Using TLS
+
+You likely want to use TLS when using http settings.
+To use TLS you need to configure either If you are using a custom CA or want to use self signed certificates that has to be configured in the `boot.ini` file.
+This is a special file which is used to load configuration before the configuration is loaded.
+For instance, it defines which settings store to use but you can also configure TLS options.
+
+> It is advised to set `verify mode` to `peer` and use a CA certificate to verify the server certificate.
+> This will become the default in the future.
+
+```ini
+[tls]
+version=1.3
+verify mode=peer
+ca=c:\program files\NSClient++\security\ca.pem
+```
+
+| Key         | Default Value | Values          | Description                                                                |
+|-------------|---------------|-----------------|----------------------------------------------------------------------------|
+| version     | 1.3           | 1.0, 1.1, 1.3   | The TLS version to use.                                                    |
+| verify mode | none          | none, peer      | The verify mode to use (Set this to none to use self signed certificates). |
+| ca          |               | Path to CA file | The path to the CA certificate to use.                                     |
+
 ## Using settings stores
 
 NSClient++ has some feature to help work with settings stores.
@@ -164,22 +187,22 @@ You can do this for the service as well by editing the service start command.
 
 Paths can be used in various places in the settings store to locate files. To facilitate reusable paths there a number of pat variables which ca be used.
 
-Key              | Value (Windows)                 | Value (Linux)          | Comment
------------------|---------------------------------|------------------------|-----------------------------------------------------------------------
-certificate-path | ${shared-path}/security         |                        |
-module-path      | ${exe-path}/modules             | ${shared-path}/scripts |
-web-path         | ${shared-path}/web              |                        |
-scripts          | ${exe-path}/scripts             | ${shared-path}/scripts |
-cache-folder     | ${shared-path}/cache            |                        |
-crash-folder     | ${shared-path}/crash-dumps      |                        |
-log-path         | ${shared-path}/log              |                        |
-base-path        | Path of NSClient++ exe file     |                        | This will in the future change to an actual shared path.
-temp             | The temporary file path         | /tmp                   |
-shared-path      | Path of NSClient++ exe file     |                        | This will in the future change to an actual shared path.
-exe-path         | Path of NSClient++ exe file     |                        |
-common-appdata   | Application data for all users. | N/A                    | The file system directory that contains application data for all users
-appdata          | The user's profile folder.      | N/A                    |
-etc              | N/A                             | /etc                   | Linux only
+| Key              | Value (Windows)                 | Value (Linux)          | Comment                                                                |
+|------------------|---------------------------------|------------------------|------------------------------------------------------------------------|
+| certificate-path | ${shared-path}/security         |                        |                                                                        |
+| module-path      | ${exe-path}/modules             | ${shared-path}/scripts |                                                                        |
+| web-path         | ${shared-path}/web              |                        |                                                                        |
+| scripts          | ${exe-path}/scripts             | ${shared-path}/scripts |                                                                        |
+| cache-folder     | ${shared-path}/cache            |                        |                                                                        |
+| crash-folder     | ${shared-path}/crash-dumps      |                        |                                                                        |
+| log-path         | ${shared-path}/log              |                        |                                                                        |
+| base-path        | Path of NSClient++ exe file     |                        | This will in the future change to an actual shared path.               |
+| temp             | The temporary file path         | /tmp                   |                                                                        |
+| shared-path      | Path of NSClient++ exe file     |                        | This will in the future change to an actual shared path.               |
+| exe-path         | Path of NSClient++ exe file     |                        |                                                                        |
+| common-appdata   | Application data for all users. | N/A                    | The file system directory that contains application data for all users |
+| appdata          | The user's profile folder.      | N/A                    |                                                                        |
+| etc              | N/A                             | /etc                   | Linux only                                                             |
 
 All paths can also be overridden using the /paths section in the configuration file.
 Please note that that is not always possible for instance overriding shared-path and reading settings from shared path will not work.
@@ -191,3 +214,12 @@ Example of overriding a path (web root folder).
 [/paths]
 web-path=/tmp/foo
 ```
+
+## Security
+
+Storing sensitive information in the settings store is not recommended.
+You can solve this in various ways: 
+ * The simplest approach is to move the settings file to a location only readable by the user running NSClient++.
+ * Use the credential manager to store sensitive information.
+
+To learn more about the credential manager see [Securing NSClient++](securing.md).

@@ -45,6 +45,7 @@ nav:
     - WEB UI: docs/web.md
     - FAQ: docs/faq.md
     - Tutorial: docs/tutorial/index.md
+    - Securing: docs/securing.md
     - Howto:
         - Checking things: docs/howto/checks.md
         - Performance Counters: docs/howto/counters.md

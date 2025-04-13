@@ -63,7 +63,7 @@ These script run inside NSClient++ and can interact with NSClient++.
 
 ## C/C++ modules
 
-This is how al lthe built-in functionality is written.
+This is how all the built-in functionality is written.
 
 **Pros:**
 
