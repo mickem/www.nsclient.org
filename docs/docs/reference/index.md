@@ -5,9 +5,7 @@
 
 | Type    | Module                                                       | Description                                                                                                                                                                                        |
 |---------|--------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| misc    | [CauseCrashes](reference/misc/CauseCrashes)                  | *DO NOT USE* This module is useful except for debugging purposes and outright dangerous as it allows someone remotely to crash your client!                                                        |
 | windows | [CheckDisk](reference/windows/CheckDisk)                     | CheckDisk can check various file and disk related things.                                                                                                                                          |
-| misc    | [CheckDocker](reference/misc/CheckDocker)                    | Use this module to detect and monitor docker containers                                                                                                                                            |
 | windows | [CheckEventLog](reference/windows/CheckEventLog)             | Check for errors and warnings in the event log.                                                                                                                                                    |
 | check   | [CheckExternalScripts](reference/check/CheckExternalScripts) | Module used to execute external scripts                                                                                                                                                            |
 | check   | [CheckHelpers](reference/check/CheckHelpers)                 | Various helper function to extend other checks.                                                                                                                                                    |
@@ -33,7 +31,6 @@
 | misc    | [NSCPClient](reference/misc/NSCPClient)                      | NSCP client can be used both from command line and from queries to check remote systems via NSCP (REST)                                                                                            |
 | misc    | [Op5Client](reference/misc/Op5Client)                        | Client for connecting nativly to the Op5 Nortbound API                                                                                                                                             |
 | generic | [PythonScript](reference/generic/PythonScript)               | Loads and processes internal Python scripts                                                                                                                                                        |
-| misc    | [SamplePluginSimple](reference/misc/SamplePluginSimple)      | This is a sample plugin used to demonstrate how to make plugins                                                                                                                                    |
 | generic | [Scheduler](reference/generic/Scheduler)                     | Use this to schedule check commands and jobs in conjunction with for instance passive monitoring through NSCA                                                                                      |
 | generic | [SimpleCache](reference/generic/SimpleCache)                 | Stores status updates and allows for active checks to retrieve them                                                                                                                                |
 | generic | [SimpleFileWriter](reference/generic/SimpleFileWriter)       | Write status updates to a text file (A bit like the NSCA server does)                                                                                                                              |
@@ -44,141 +41,13 @@
 
 # Queries
 
-
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         
 | Module             | Command                                                                     | Description                                                                         |
 |--------------------|-----------------------------------------------------------------------------|-------------------------------------------------------------------------------------|
-| CauseCrashes       | [crash_client](reference/misc/CauseCrashes#crash_client)                    | Raise a fatal exception (zero pointer reference) and cause NSClient++ crash.        |
 | CheckDisk          | [check_drivesize](reference/windows/CheckDisk#check_drivesize)              | Check the size (free-space) of a drive or volume.                                   |
 | CheckDisk          | [check_files](reference/windows/CheckDisk#check_files)                      | Check various aspects of a file and/or folder.                                      |
 | CheckDisk          | [checkdrivesize](reference/windows/CheckDisk#checkdrivesize)                | **Deprecated** please use: :query:`check_drivesize`                                 |
 | CheckDisk          | [checkfiles](reference/windows/CheckDisk#checkfiles)                        | **Deprecated** please use: :query:`check_drivesize`                                 |
-| CheckDocker        | [check_docker](reference/misc/CheckDocker#check_docker)                     | Checks that a given docker container is running.                                    |
 | CheckEventLog      | [check_eventlog](reference/windows/CheckEventLog#check_eventlog)            | Check for errors in the event log.                                                  |
 | CheckEventLog      | [checkeventlog](reference/windows/CheckEventLog#checkeventlog)              | **Deprecated** please use: :query:`check_eventlog`                                  |
 | CheckHelpers       | [check_always_critical](reference/check/CheckHelpers#check_always_critical) | Run another check and regardless of its return code return CRITICAL.                |
@@ -231,7 +100,6 @@
 | NSCPClient         | [remote_nscp_query](reference/misc/NSCPClient#remote_nscp_query)            | Request remote information via NSCP.                                                |
 | NSCPClient         | [remote_nscpforward](reference/misc/NSCPClient#remote_nscpforward)          | Forward the request as-is to remote host via NSCP.                                  |
 | NSCPClient         | [submit_remote_nscp](reference/misc/NSCPClient#submit_remote_nscp)          | Submit information to remote host via NSCP.                                         |
-| SamplePluginSimple | [sample_raw_command](reference/misc/SamplePluginSimple#sample_raw_command)  | This is a sample hello world command.                                               |
 | SimpleCache        | [check_cache](reference/generic/SimpleCache#check_cache)                    | Fetch results from the cache.                                                       |
 | SimpleCache        | [list_cache](reference/generic/SimpleCache#list_cache)                      | List all keys in the cache.                                                         |
 | SMTPClient         | [submit_smtp](reference/client/SMTPClient#submit_smtp)                      | Submit information to the remote SMTP server.                                       |
