@@ -1,0 +1,12 @@
+.m-container {
+    display: flex
+}
+
+.m-container div:first-child {
+    padding-right: 30px;
+}
+
+.m-container div {
+    flex: 1;
+    font-size: .7rem;
+}
