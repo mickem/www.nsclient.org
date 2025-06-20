@@ -20,12 +20,13 @@ WEBServer = enabled
 
 
 
-| Path / Section                                  | Description      |
-|-------------------------------------------------|------------------|
-| [/settings/default](#default-values)            | Default values   |
-| [/settings/WEB/server](#web-server)             | Web server       |
-| [/settings/WEB/server/roles](#web-server-roles) | Web server roles |
-| [/settings/WEB/server/users](#web-server-users) | Web server users |
+| Path / Section                                  | Description       |
+|-------------------------------------------------|-------------------|
+| [/settings/default](#default-values)            | Default values    |
+| [/settings/WEB/server](#web-server)             | Web server        |
+| [/settings/WEB/server/log](#log-configuration)  | Log configuration |
+| [/settings/WEB/server/roles](#web-server-roles) | Web server roles  |
+| [/settings/WEB/server/users](#web-server-users) | Web server users  |
 
 
 
@@ -282,7 +283,7 @@ thread pool=10
 
 #### TIMEOUT <a id="/settings/default/timeout"></a>
 
-Timeout when reading packets on incoming sockets. If the data has not arrived within this time we will bail out.
+Timeout (in seconds) when reading packets on incoming sockets. If the data has not arrived within this time we will bail out.
 
 
 
@@ -341,7 +342,7 @@ threads=10
 
 #### Allowed hosts <a id="/settings/WEB/server/allowed hosts"></a>
 
-A comma separated list of allowed hosts. You can use netmasks (/ syntax) or * to create ranges. parent for this key is found under: /settings/default this is marked as advanced in favor of the parent.
+A comma separated list of allowed hosts. You can use netmasks (/ syntax) or * to create ranges.
 
 
 
@@ -351,7 +352,6 @@ A comma separated list of allowed hosts. You can use netmasks (/ syntax) or * to
 |----------------|-----------------------------------------------|
 | Path:          | [/settings/WEB/server](#/settings/WEB/server) |
 | Key:           | allowed hosts                                 |
-| Advanced:      | Yes (means it is not commonly used)           |
 | Default value: | `127.0.0.1`                                   |
 | Used by:       | WEBServer                                     |
 
@@ -368,7 +368,7 @@ allowed hosts=127.0.0.1
 
 #### Cache list of allowed hosts <a id="/settings/WEB/server/cache allowed hosts"></a>
 
-If host names (DNS entries) should be cached, improves speed and security somewhat but won't allow you to have dynamic IPs for your Nagios server. parent for this key is found under: /settings/default this is marked as advanced in favor of the parent.
+If host names (DNS entries) should be cached, improves speed and security somewhat but won't allow you to have dynamic IPs for your Nagios server.
 
 
 
@@ -378,7 +378,6 @@ If host names (DNS entries) should be cached, improves speed and security somewh
 |----------------|-----------------------------------------------|
 | Path:          | [/settings/WEB/server](#/settings/WEB/server) |
 | Key:           | cache allowed hosts                           |
-| Advanced:      | Yes (means it is not commonly used)           |
 | Default value: | `true`                                        |
 | Used by:       | WEBServer                                     |
 
@@ -448,7 +447,7 @@ ciphers=
 
 #### Password <a id="/settings/WEB/server/password"></a>
 
-Password used to authenticate against server parent for this key is found under: /settings/default this is marked as advanced in favor of the parent.
+Password used to authenticate against server
 
 
 
@@ -459,7 +458,6 @@ Password used to authenticate against server parent for this key is found under:
 |----------------|-----------------------------------------------|
 | Path:          | [/settings/WEB/server](#/settings/WEB/server) |
 | Key:           | password                                      |
-| Advanced:      | Yes (means it is not commonly used)           |
 | Default value: | _N/A_                                         |
 | Used by:       | WEBServer                                     |
 
@@ -525,6 +523,111 @@ threads=10
 ```
 
 
+### Log configuration <a id="/settings/WEB/server/log"/>
+
+Configure which messages from the web server are logged.
+
+
+
+
+| Key                  | Default Value | Description |
+|----------------------|---------------|-------------|
+| [debug](#log-debug)  | false         | Log debug   |
+| [error](#log-errors) | true          | Log errors  |
+| [info](#log-info)    | false         | Log info    |
+
+
+
+```ini
+# Configure which messages from the web server are logged.
+[/settings/WEB/server/log]
+debug=false
+error=true
+info=false
+
+```
+
+
+
+
+
+#### Log debug <a id="/settings/WEB/server/log/debug"></a>
+
+Enable logging of debug messages from the web server.
+
+
+
+
+
+| Key            | Description                                           |
+|----------------|-------------------------------------------------------|
+| Path:          | [/settings/WEB/server/log](#/settings/WEB/server/log) |
+| Key:           | debug                                                 |
+| Default value: | `false`                                               |
+| Used by:       | WEBServer                                             |
+
+
+**Sample:**
+
+```
+[/settings/WEB/server/log]
+# Log debug
+debug=false
+```
+
+
+
+#### Log errors <a id="/settings/WEB/server/log/error"></a>
+
+Enable logging of errors from the web server.
+
+
+
+
+
+| Key            | Description                                           |
+|----------------|-------------------------------------------------------|
+| Path:          | [/settings/WEB/server/log](#/settings/WEB/server/log) |
+| Key:           | error                                                 |
+| Default value: | `true`                                                |
+| Used by:       | WEBServer                                             |
+
+
+**Sample:**
+
+```
+[/settings/WEB/server/log]
+# Log errors
+error=true
+```
+
+
+
+#### Log info <a id="/settings/WEB/server/log/info"></a>
+
+Enable logging of info messages from the web server.
+
+
+
+
+
+| Key            | Description                                           |
+|----------------|-------------------------------------------------------|
+| Path:          | [/settings/WEB/server/log](#/settings/WEB/server/log) |
+| Key:           | info                                                  |
+| Default value: | `false`                                               |
+| Used by:       | WEBServer                                             |
+
+
+**Sample:**
+
+```
+[/settings/WEB/server/log]
+# Log info
+info=false
+```
+
+
 ### Web server roles <a id="/settings/WEB/server/roles"/>
 
 A list of roles and with coma separated list of access rights.
@@ -536,7 +639,7 @@ A list of roles and with coma separated list of access rights.
 |--------------------------------|--------------------------------------------------------------------------------------------------|----------------------|
 | [client](#role-for-read-only)  | public,info.get,info.get.version,queries.list,queries.get,queries.execute,login.get,modules.list | Role for read only   |
 | [full](#role-for-full-access)  | *                                                                                                | Role for Full access |
-| [legacy](#role-for-legacy-api) | legacy                                                                                           | Role for legacy API  |
+| [legacy](#role-for-legacy-api) | legacy,login.get                                                                                 | Role for legacy API  |
 | [view](#role-for-full-access)  | *                                                                                                | Role for Full access |
 
 
@@ -546,7 +649,7 @@ A list of roles and with coma separated list of access rights.
 [/settings/WEB/server/roles]
 client=public,info.get,info.get.version,queries.list,queries.get,queries.execute,login.get,modules.list
 full=*
-legacy=legacy
+legacy=legacy,login.get
 view=*
 
 ```
@@ -619,7 +722,7 @@ Default role for legacy API
 |----------------|-----------------------------------------------------------|
 | Path:          | [/settings/WEB/server/roles](#/settings/WEB/server/roles) |
 | Key:           | legacy                                                    |
-| Default value: | `legacy`                                                  |
+| Default value: | `legacy,login.get`                                        |
 | Used by:       | WEBServer                                                 |
 
 
@@ -628,7 +731,7 @@ Default role for legacy API
 ```
 [/settings/WEB/server/roles]
 # Role for legacy API
-legacy=legacy
+legacy=legacy,login.get
 ```
 
 

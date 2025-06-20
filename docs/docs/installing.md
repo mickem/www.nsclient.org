@@ -95,6 +95,7 @@ The MSI file can be customized during the installer. The following keys are avai
 | TLS_VERSION        | The TLS version to use (1.0, 1.1, 1.2, *1.3*)                                                                           |
 | TLS_VERIFY_MODE    | The TLS verify mode to use (*none*, peer, fail_if_no_peer_cert)                                                         |
 | TLS_CA             | The CA file to use for TLS connections (if not using the system default)                                                |
+| CONF_SET           | Set a configuration value in the form of <section1>;<key1>;<value1>;<section2>;<key2>;<value2>...                       |
 
 ### Features
 
@@ -112,7 +113,6 @@ NSClient++ consists of the following features most which can be disable when doi
 | NSCAPlugin          | NSCA plugin            | Plugin to submit passive results to an NSCA server                                        |
 | NSCPlugins          | check_nt support       | NSClient Server Plugin. Support for the old NSClient protocol (check_nt)                  |
 | PythonScript        | Python Scripting       | Allows running INTERNAL scripts written in Python                                         |
-| SampleConfig        | Sample config          | Sample config file (with all options)                                                     |
 | SampleScripts       | Scripts                | Scripts for checking and testing various aspects of your computer and NSClient++          |
 | Shortcuts           | Shortcuts              | Main Service shortcuts                                                                    |
 | WEBPlugins          | WEB Server             | NSClient WEB Server. Use this to administrate or check NSClient via a browser or REST API |
