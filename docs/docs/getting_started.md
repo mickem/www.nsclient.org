@@ -184,6 +184,7 @@ Then you are met with a screen which looks a bit like this:
 ![check_cpu](images/web-check_cpu.png)
 
 Here we can:
+
 * Click `Execute` to run the check.
 * Click `Get Help` to get help on how to use the check.
 * Enter `Arguments` to pass arguments to the check.
@@ -218,6 +219,7 @@ Here we can see that the module is neither loaded nor enabled.
 ![modules check_net](images/web-modules-check_net.png)
 
 A quick word about the difference between loaded and enabled.
+
 * Loaded means that the module is loaded into memory and can be used.
 * Enabled means that the module is configured to be loaded when NSClient++ starts.
 
