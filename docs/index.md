@@ -16,13 +16,12 @@ If you want to know the latest news and updates see the [:material-newspaper: ne
 ## :material-rocket-launch: Getting started
 
 I know NSClient++ can seem daunting. But is really isn't, especially not now with all
-the [:material-head-question: documentation](/docs)
-and [:fontawesome-solid-graduation-cap: tutorials](https://docs.nsclient.org/tutorial/index.html).
+the [:material-head-question: documentation](/docs).
 But it is "open-ended" so before you start be sure to read through
-the [:fontawesome-solid-graduation-cap: tutorial](https://docs.nsclient.org/tutorial/index.html) for your
-scenario, and we are sure you will be on a journey towards #MonitoringLove.
+the [:fontawesome-solid-graduation-cap: Getting-started guide](https://nsclient.org/docs/getting-started/) to get a step by step introduction
+ and we are sure you will be on a journey towards #MonitoringLove.
 
-* [:fontawesome-solid-graduation-cap: Tutorials](https://docs.nsclient.org/tutorial/index.html)
+* [:fontawesome-solid-graduation-cap: Getting-started](https://nsclient.org/docs/getting-started/)
 * [:material-head-question: Documentation](/docs)
 
 </div>
