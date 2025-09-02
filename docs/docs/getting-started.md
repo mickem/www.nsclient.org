@@ -335,6 +335,13 @@ mkcert -uninstall
 
 ## Checking with NRPE client
 
+**Sections:**
+
+* [Insecure version](#insecure-version)
+* [Using certificates (still insecure)](#using-certificates-still-insecure)
+* [Using client certificates](#using-client-certificates)
+
+
 ### Insecure version
 
 When NRPE was first released the world was a different place and security was not a big concern.
