@@ -16,9 +16,11 @@ We will start with a clean slate and work our way in small easy to follow steps 
 * [Changing settings via command line](#changing-settings-via-command-line)
 * [Adding certificates to NSClient++](#adding-certificates-to-nsclient)
 * [Checking with NRPE client](#checking-with-nrpe-client)
+
   * [Insecure version](#insecure-version)
   * [Using certificates (still insecure)](#using-certificates-still-insecure)
   * [Using client certificates](#using-client-certificates)
+
 * [TODO: Using the query language](#todo-using-the-query-language)
 * [TODO: Checking with REST client](#todo-checking-with-rest-client)
 * [TODO: Checking with NRDP](#todo-checking-with-nrdp)
