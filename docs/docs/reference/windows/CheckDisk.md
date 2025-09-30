@@ -204,7 +204,6 @@ Filter which marks items which generates an ok state.
 If anything matches this any previous state for this item will be reset to ok.
 
 
-
 <h5 id="check_drivesize_empty-state">empty-state:</h5>
 
 Return status to use when nothing matched filter.
@@ -446,7 +445,6 @@ Filter which marks items which generates an ok state.
 If anything matches this any previous state for this item will be reset to ok.
 
 
-
 <h5 id="check_files_empty-state">empty-state:</h5>
 
 Return status to use when nothing matched filter.
@@ -535,6 +533,7 @@ Include the total of either (filter) all files matching the filter or (all) all 
 | crit_count    | Number of items matched the critical criteria. Common option for all checks.                                 |
 | crit_list     | A list of all items which matched the critical criteria. Common option for all checks.                       |
 | detail_list   | A special list with critical, then warning and finally ok. Common option for all checks.                     |
+| extension     | The filename extension                                                                                       |
 | file          | The name of the file                                                                                         |
 | filename      | The name of the file                                                                                         |
 | line_count    | Number of lines in the file (text files)                                                                     |
