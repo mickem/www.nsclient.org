@@ -39,8 +39,9 @@ nav:
     - About: docs/index.md
     - Getting Started: 
       - Getting Started: docs/getting-started/index.md
-      - NRPE: docs/getting-started/nrpe.md
-      - NSCA: docs/getting-started/nsca.md
+      - NSClient++: getting-started/nsclient.md
+      - NRPE: getting-started/nrpe.md
+      - NSCA: getting-started/nsca.md
     - Theory: docs/theory.md
     - Checking Things: docs/checks.md
     - Installing NSClient++: docs/installing.md
