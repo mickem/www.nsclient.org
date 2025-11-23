@@ -1,8 +1,11 @@
 # Getting started with NSClient++
 
-This is a hands-on guide to getting started with NSClient++.
-We will start with a clean slate and work our way in small easy to follow steps towards a fully functional monitoring solution.
+The getting started guide has been split into multiple sections to allow easier reading.
 
+* [Getting-started](./index.md)
+* [Getting-started with NSClient++](./nsclient.md)
+* [Checking with NRPE client](./nrpe.md)
+* [Checking with NSCA client](./nsca.md)
 
 ## Table of contents
 
