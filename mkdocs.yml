@@ -37,7 +37,7 @@ nav:
   - Download: https://github.com/mickem/nscp/releases
   - Documentation:
     - About: docs/index.md
-    - Getting Started: docs/getting-started.md
+    - Getting Started: docs/getting-started/index.md
     - Theory: docs/theory.md
     - Checking Things: docs/checks.md
     - Installing NSClient++: docs/installing.md
