@@ -166,7 +166,7 @@ A common problem is that your windows machines is not named the same way in your
 To fix this you can set the hostname to use in the NSCA client configuration like so:
 ```ini
 [/settings/NSCA/client]
-hostname = my-host
+hostname = win_${host_lc}.${domain_lc}
 ```
 
 Here you can use parameters to automatically set the hostname.
