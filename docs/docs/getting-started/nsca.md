@@ -7,8 +7,6 @@ The getting started guide has been split into multiple sections to allow easier 
 * [Checking with NRPE client](./nrpe.md)
 * [Checking with NSCA client](./nsca.md)
 
-## Checking with NSCA client
-
 **Sections:**
 
 * [Ciphers and encryption](#ciphers-and-encryption)
