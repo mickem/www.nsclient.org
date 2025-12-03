@@ -32,10 +32,10 @@ the [:fontawesome-solid-graduation-cap: Getting-started guide](https://nsclient.
 
 ## :material-download: Download NSClient++
 
-You can [:material-download: download the latest version](/download) or you
+You can [:material-download: download the latest version](https://github.com/mickem/nscp/releases/latest) or you
 can [:material-archive: see all old releases](https://github.com/mickem/nscp/releases).
 
-* [:material-download: Download the latest version](/download)
+* [:material-download: Download the latest version](https://github.com/mickem/nscp/releases/latest)
 * [:material-archive: See all releases](https://github.com/mickem/nscp/releases)
 
 </div>
