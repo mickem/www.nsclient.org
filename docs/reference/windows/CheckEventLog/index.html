@@ -1,0 +1,4691 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../../check/CheckExternalScripts/">
+      
+      
+        <link rel="next" href="../../check/CheckHelpers/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>CheckEventLog (Windows) - NSClient++</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#checkeventlog" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="NSClient++" class="md-header__button md-logo" aria-label="NSClient++" data-md-component="logo">
+      
+  <img src="../../../../assets/nsclient-logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            NSClient++
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              CheckEventLog (Windows)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/mickem/nscp" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M202.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1M496 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2m-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3m-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1"/></svg>
+  </div>
+  <div class="md-source__repository">
+    NSClient++
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../.." class="md-tabs__link">
+          
+  
+  
+    
+  
+  Home
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../news/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  News
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://github.com/mickem/nscp/releases" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Download
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Documentation
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://github.com/mickem/nscp/discussions" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Forums
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="NSClient++" class="md-nav__button md-logo" aria-label="NSClient++" data-md-component="logo">
+      
+  <img src="../../../../assets/nsclient-logo.png" alt="logo">
+
+    </a>
+    NSClient++
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/mickem/nscp" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M202.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1M496 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2m-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3m-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1"/></svg>
+  </div>
+  <div class="md-source__repository">
+    NSClient++
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../.." class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_1" id="__nav_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Home
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../nsclient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About NSClient++
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../news/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    News
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/mickem/nscp/releases" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Download
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Documentation
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Documentation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../getting-started/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../getting-started/nsclient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSClient++
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../getting-started/nrpe/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NRPE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../getting-started/nsca/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSCA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../theory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../checks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Checking Things
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../installing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installing NSClient++
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../settings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../web/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WEB UI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../tutorial/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tutorial
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../securing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Securing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_11" id="__nav_4_11_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Howto
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Howto
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../howto/checks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Checking things
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../howto/counters/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Performance Counters
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../howto/external_scripts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    External scripts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../howto/run_commands/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Running commands
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../howto/nrpe/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NRPE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../howto/nsca/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSCA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../howto/03x_migration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Migrate from 0.3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_12" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_12" id="__nav_4_12_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_12_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_12">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_12_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4_12_2" id="__nav_4_12_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Check commands
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_12_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_12_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Check commands
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CheckDisk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckDisk (Windows)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../check/CheckExternalScripts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckExternalScripts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckEventLog (Windows)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckEventLog (Windows)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#enable-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enable module
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#samples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Samples
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Samples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#monitoring-event-log" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Monitoring event-log
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#time-and-date" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Time and date
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#checking-for-specific-messages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Checking for specific messages
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#modern-windows-channels" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Modern windows (channels)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#checking-for-non-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Checking for non errors
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#severitylevelerror" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Severity/Level/Error
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-real-time-monitoring" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using Real-time monitoring
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Using Real-time monitoring">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#enabling-real-time-filtering" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enabling real-time filtering
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enabling-cache-to-check-actively" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enabling cache to check actively
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#queries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Queries
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Queries">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#check_eventlog" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        check_eventlog
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="check_eventlog">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#command-line-arguments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Command-line Arguments
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filter-keywords" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Filter keywords
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#eventlog" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Eventlog
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Eventlog">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#default-buffer-size" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Default buffer size
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enable-debugging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enable debugging
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lookup-eventlog-names" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lookup eventlog names
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#default-syntax" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Default syntax
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#real-time-eventlog-monitoring" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Real-time eventlog monitoring
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Real-time eventlog monitoring">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#enable-debugging_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enable debugging
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enable-realtime-monitoring" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enable realtime monitoring
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logs-to-check" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Logs to check
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#read-old-records-at-startup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Read old records at startup
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#real-time-eventlog-filters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Real-time eventlog filters
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../check/CheckHelpers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckHelpers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../check/CheckLogFile/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckLogFile
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../check/CheckMKClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckMKClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../check/CheckMKServer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckMKServer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../misc/CheckNet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckNet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../check/CheckNSCP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckNSCP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unix/CheckSystemUnix/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckSystemUnix (unix)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CheckSystem/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckSystem (Windows)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CheckTaskSched/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckTaskSched (Windows)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CheckWMI/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckWMI (Windows)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_12_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_12_3" id="__nav_4_12_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Clients & Servers
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_12_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_12_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Clients & Servers
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../generic/WEBServer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WEBServer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../misc/WEBClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WEBClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/NRPEServer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NRPEServer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/NRPEClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NRPEClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../NSClientServer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSClientServer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/NSCAServer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSCAServer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/NSCAClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSCAClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/NRDPClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NRDPClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/SMTPClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SMTPClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/GraphiteClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GraphiteClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/SyslogClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SyslogClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../misc/CollectdClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CollectdClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../misc/Op5Client/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Op5Client
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../misc/ElasticClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ElasticClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_12_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_12_4" id="__nav_4_12_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Helper modules
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_12_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_12_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Helper modules
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../generic/Scheduler/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scheduler
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../generic/SimpleFileWriter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SimpleFileWriter
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../generic/CommandClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CommandClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../generic/SimpleCache/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SimpleCache
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../generic/PythonScript/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PythonScript
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../generic/LUAScript/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LUAScript
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_13" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../extending/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Extending
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_13" id="__nav_4_13_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_13">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Extending
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../extending/python/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python Scripts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../extending/zip-modules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Zip Modules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_14" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_14" id="__nav_4_14_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_14">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    API
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_14_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../api/rest/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    REST
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_14_1" id="__nav_4_14_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_14_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_14_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    REST
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/rest/info/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Info
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/rest/modules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/rest/queries/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Queries
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/rest/scripts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scripts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/rest/logs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/rest/legacy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Legacy API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/common/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Common API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/plugin/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plugin API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Metrics API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/mickem/nscp/discussions" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Forums
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="checkeventlog">CheckEventLog</h1>
+<p>Check for errors and warnings in the event log.</p>
+<h2 id="enable-module">Enable module</h2>
+<p>To enable this module and and allow using the commands you need to ass <code>CheckEventLog = enabled</code> to the <code>[/modules]</code> section in nsclient.ini:</p>
+<div class="highlight"><pre><span></span><code>[/modules]
+CheckEventLog = enabled
+</code></pre></div>
+<h2 id="samples">Samples</h2>
+<p><em>Feel free to add more samples <a href="https://github.com/mickem/nscp/blob/master/docs/samples/CheckEventLog_samples.md">on this page</a></em></p>
+<h3 id="monitoring-event-log">Monitoring event-log</h3>
+<p>Monitoring the event-log is a single command away in the form of <code>check_eventlog</code>.
+The default command will monitor the application/system/security logs which usually have the generic errors.</p>
+<div class="highlight"><pre><span></span><code>check_eventlog
+L        cli CRITICAL: CRITICAL: 5 message(s) Application Bonjour Service (Task Scheduling Error: ... e DNS-servrarna svarade.)
+L        cli  Performance data: &#39;problem_count&#39;=5;0;0
+</code></pre></div>
+<h3 id="time-and-date">Time and date</h3>
+<p>The default time frame is 24 hours. This can be configured via the scan-range which specifies the number of hours from now to look.
+This might seem a bit off at first but all date and time ranges which reflect past times are "negative" in NSClient++.
+Thus the default is: <code>check_eventlog scan-range=-24h</code></p>
+<p>If you instead wish to check the past week you would change this to: <code>check_eventlog scan-range=-1w</code></p>
+<p>The other option you can use for defining time is the filter keyword written.
+This can be used much the same but is used if you wish to use the time in the filter so you still need to specify scan-range.
+But if you for instance want to get an error if the message is 24 hours old and a warning if it is 1 week you would do:
+<div class="highlight"><pre><span></span><code>check_eventlog scan-range=-1w &quot;warn=count gt 0&quot; &quot;critical=written &gt; -24h&quot;
+</code></pre></div></p>
+<h3 id="checking-for-specific-messages">Checking for specific messages</h3>
+<p>There are many ways to find messages but the optimum solution is to filter on log, source (provider), and id.
+This is as this combination is guaranteed to be unique and still quick to look for.
+Another option it so look for messages which will obviously work as well but it will be magnitudes slower in terms of performance.</p>
+<p>To find the source and event id you can easily look at the messages property in the event viewer.
+<img alt="find event log message" src="../../../images/eventlog-find-event.png" /></p>
+<p>With this information in hand we can easily create a filter for a specific message like so:</p>
+<div class="highlight"><pre><span></span><code>check_eventlog &quot;filter=provider = &#39;Microsoft-Windows-Security-SPP&#39; and id = 903&quot;
+</code></pre></div>
+<p>Sometimes, rarely, the message is important and then it is best to add that as a last check to the above filter as it will be faster.</p>
+<div class="highlight"><pre><span></span><code>check_eventlog &quot;filter=provider = &#39;Microsoft-Windows-Security-SPP&#39; and id = 903 and message like &#39;foo&#39;&quot;
+</code></pre></div>
+<h3 id="modern-windows-channels">Modern windows (channels)</h3>
+<p>Since version 0.4.2 NSClient++ has had the ability to check all logs on modern windows machines.
+This works out of the box and you specify the path of the channel you want to look for with the file command.
+A slight snag here is that the separator for "folders" is - not \ r / as one might expect this is unfortunately a windows flaw most likely related to the fact that event logs can also be read from the file system.</p>
+<p>A simple way to find the actual name of an event log channel is to view its properties (right-click the channel and click properties):</p>
+<p><img alt="channel properties" src="../../../images/eventlog-channel-names.png" /></p>
+<div class="highlight"><pre><span></span><code>check_eventlog scan-range=-100w show-all filter=none &quot;file=Microsoft-Windows-AAD/Operational&quot;
+</code></pre></div>
+<h3 id="checking-for-non-errors">Checking for non errors</h3>
+<p>The default filters are filtering out only warnings, errors and critical messages:</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Default value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>filter</td>
+<td>level in ('warning', 'error', 'critical')</td>
+</tr>
+<tr>
+<td>warning</td>
+<td>level = 'warning' or problem_count &gt; 0</td>
+</tr>
+<tr>
+<td>critical</td>
+<td>level in ('error', 'critical')</td>
+</tr>
+</tbody>
+</table>
+<p>Thus if you want to find a message which is not warnings, errors and critical messages you need to either change or disable the default filter like so:</p>
+<div class="highlight"><pre><span></span><code>check_eventlog filter=none
+</code></pre></div>
+<h3 id="severitylevelerror">Severity/Level/Error</h3>
+<p>In the previous event-log API it was common for people to use severity to filter out errors.
+This has never worked as severity was never message severity, it remains however, a common thing.
+Regardless of version of API and version of NSClient++ the proper way to find errors is to use the level keyword like so:</p>
+<div class="highlight"><pre><span></span><code>check_eventlog &quot;filter=level = &#39;error&#39;&quot;
+</code></pre></div>
+<p>While we have never been able to find an official list of the meaning of the level this is how NSClient++ interprets the values:</p>
+<table>
+<thead>
+<tr>
+<th>Level</th>
+<th>Keyword in NSClient++</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>critical</td>
+</tr>
+<tr>
+<td>2</td>
+<td>error</td>
+</tr>
+<tr>
+<td>3</td>
+<td>warning, warn</td>
+</tr>
+<tr>
+<td>4</td>
+<td>informational, info, information, success, auditSuccess</td>
+</tr>
+<tr>
+<td>5</td>
+<td>debug, verbose</td>
+</tr>
+<tr>
+<td>#</td>
+<td>Specify any number for other values</td>
+</tr>
+</tbody>
+</table>
+<p>Thus if you run into a non standard level you can check this like so:</p>
+<div class="highlight"><pre><span></span><code>check_eventlog &quot;filter=level = 42&quot;
+</code></pre></div>
+<h3 id="using-real-time-monitoring">Using Real-time monitoring</h3>
+<p>The benefit of real-time monitoring of the event-log is that it is often significantly faster and more resources efficient.
+The drawback is that it is more complex to setup and normally requires passive monitoring (via NSCA/NRDP)</p>
+<p>The basic idea is depict in the following figure.</p>
+<p><img alt="real-time monitoring" src="../../../images/realtime-monitoring.png" /></p>
+<p>We have a filter which listens to event log entries.
+These entries are (when they matched) turned into messages and statuses which is then sent onward to various channels.
+On the other end of these channels are (hopefully) someone who is interested in the message.</p>
+<p>In most cases the first channel you are interested in is NSCA which is the default name where the NSCAClient listens.
+It will in turn forward all incoming messages on to Nagios via NSCA.</p>
+<p>So in short we need to configure three things</p>
+<ul>
+<li>Activate real time filtering</li>
+<li>Add a filter which listens for events</li>
+<li>Setup a destination</li>
+</ul>
+<h4 id="enabling-real-time-filtering">Enabling real-time filtering</h4>
+<p>To setup real time filtering we only need a single flag (as well as the eventlog module).</p>
+<p><strong>configuration:</strong>
+<div class="highlight"><pre><span></span><code>[/modules]
+CheckEventLog=enabled
+
+[/settings/eventlog/real-time]
+enabled = true
+</code></pre></div></p>
+<p>Adding this will not do much since we don't have a filter yet but adding one is pretty simple as well so lets go ahead and do that.</p>
+<p>To make life simple we set the destination in this filter to "log" which means the information only ends up in the NSClient++ log file.
+Not very useful in reality but very useful when we are debugging as it removes possible errors sources.</p>
+<p><strong>configuration:</strong>
+<div class="highlight"><pre><span></span><code>[/settings/eventlog/real-time/filters/my_alert]
+log=application
+destination=log
+filter=level=&#39;error&#39;
+maximum age=30s
+debug=true
+</code></pre></div></p>
+<p>Going through the configuration line by line we have:</p>
+<ul>
+<li><code>log=application</code> is the log we listen to.</li>
+<li><code>destination=log</code> is where the message is sent</li>
+<li><code>filter=level='error'</code> means we only want to receive error messages.</li>
+<li><code>maximum age=30s</code> sets a repeating "ok" messages every 30 seconds.</li>
+<li><code>debug=true</code> will increase the debug level for this filter</li>
+</ul>
+<p>If we were to test this (and please do go ahead) we would start getting warning on the console about no one listening to our events.</p>
+<p>To be able to test this we need to inject some messages in the eventlog.
+This we can do with the eventcreate command.</p>
+<p><strong>Add error to eventlog:</strong>
+<div class="highlight"><pre><span></span><code>eventcreate /ID 1 /L application /T ERROR /SO MYEVENTSOURCE /D &quot;My first log&quot;
+</code></pre></div></p>
+<p><strong>Add info to eventlog:</strong>
+<div class="highlight"><pre><span></span><code>eventcreate /ID 1 /L application /T INFORMATION /SO MYEVENTSOURCE /D &quot;My first log&quot;
+</code></pre></div></p>
+<p>If we check the log we should see something similar to this:</p>
+<p><img alt="eventlog output" src="../../../images/eventlog-realtime-log.png" /></p>
+<ul>
+<li>1: Always make sure there are not errors and that the parsed tree looks like you want it. If the filter has syntax issues nothing will work</li>
+<li>2: This is how it looks when we inject an error message, it is caught and we get the <code>Notification 0: Application: 1 (error: My first log)</code> in the log.</li>
+<li>3: This is the periodical "ok" message we get when there are not errors: <code>Notification 0: eventlog found no records</code></li>
+<li>4: Here we can see the output when there is a message but it does not match our filter.</li>
+</ul>
+<h4 id="enabling-cache-to-check-actively">Enabling cache to check actively</h4>
+<p><strong>TODO</strong></p>
+<h2 id="queries">Queries</h2>
+<p>A quick reference for all available queries (check commands) in the CheckEventLog module.</p>
+<p><strong>List of commands:</strong></p>
+<p>A list of all available queries (check commands)</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#check_eventlog">check_eventlog</a></td>
+<td>Check for errors in the event log.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="check_eventlog">check_eventlog</h3>
+<p>Check for errors in the event log.</p>
+<p><strong>Jump to section:</strong></p>
+<ul>
+<li><a href="#check_eventlog_options">Command-line Arguments</a></li>
+<li><a href="#check_eventlog_filter_keys">Filter keywords</a></li>
+</ul>
+<p><a id="check_eventlog_warn"></a>
+<a id="check_eventlog_crit"></a>
+<a id="check_eventlog_debug"></a>
+<a id="check_eventlog_show-all"></a>
+<a id="check_eventlog_escape-html"></a>
+<a id="check_eventlog_help"></a>
+<a id="check_eventlog_help-pb"></a>
+<a id="check_eventlog_show-default"></a>
+<a id="check_eventlog_help-short"></a>
+<a id="check_eventlog_log"></a>
+<a id="check_eventlog_truncate-message"></a>
+<a id="check_eventlog_options"></a></p>
+<h4 id="command-line-arguments">Command-line Arguments</h4>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#check_eventlog_filter">filter</a></td>
+<td>level in ('warning', 'error', 'critical')</td>
+<td>Filter which marks interesting items.</td>
+</tr>
+<tr>
+<td><a href="#check_eventlog_warning">warning</a></td>
+<td>level = 'warning', problem_count &gt; 0</td>
+<td>Filter which marks items which generates a warning state.</td>
+</tr>
+<tr>
+<td>warn</td>
+<td></td>
+<td>Short alias for warning</td>
+</tr>
+<tr>
+<td><a href="#check_eventlog_critical">critical</a></td>
+<td>level in ('error', 'critical')</td>
+<td>Filter which marks items which generates a critical state.</td>
+</tr>
+<tr>
+<td>crit</td>
+<td></td>
+<td>Short alias for critical.</td>
+</tr>
+<tr>
+<td><a href="#check_eventlog_ok">ok</a></td>
+<td></td>
+<td>Filter which marks items which generates an ok state.</td>
+</tr>
+<tr>
+<td>debug</td>
+<td>N/A</td>
+<td>Show debugging information in the log</td>
+</tr>
+<tr>
+<td>show-all</td>
+<td>N/A</td>
+<td>Show details for all matches regardless of status (normally details are only showed for warnings and criticals).</td>
+</tr>
+<tr>
+<td><a href="#check_eventlog_empty-state">empty-state</a></td>
+<td>ok</td>
+<td>Return status to use when nothing matched filter.</td>
+</tr>
+<tr>
+<td><a href="#check_eventlog_perf-config">perf-config</a></td>
+<td>level(ignored:true)</td>
+<td>Performance data generation configuration</td>
+</tr>
+<tr>
+<td>escape-html</td>
+<td>N/A</td>
+<td>Escape any &lt; and &gt; characters to prevent HTML encoding</td>
+</tr>
+<tr>
+<td>help</td>
+<td>N/A</td>
+<td>Show help screen (this screen)</td>
+</tr>
+<tr>
+<td>help-pb</td>
+<td>N/A</td>
+<td>Show help screen as a protocol buffer payload</td>
+</tr>
+<tr>
+<td>show-default</td>
+<td>N/A</td>
+<td>Show default values for a given command</td>
+</tr>
+<tr>
+<td>help-short</td>
+<td>N/A</td>
+<td>Show help screen (short format).</td>
+</tr>
+<tr>
+<td><a href="#check_eventlog_unique-index">unique-index</a></td>
+<td></td>
+<td>Unique syntax.</td>
+</tr>
+<tr>
+<td><a href="#check_eventlog_top-syntax">top-syntax</a></td>
+<td>${status}: ${count} message(s) ${problem_list}</td>
+<td>Top level syntax.</td>
+</tr>
+<tr>
+<td><a href="#check_eventlog_ok-syntax">ok-syntax</a></td>
+<td>%(status): Event log seems fine</td>
+<td>ok syntax.</td>
+</tr>
+<tr>
+<td><a href="#check_eventlog_empty-syntax">empty-syntax</a></td>
+<td>%(status): No entries found</td>
+<td>Empty syntax.</td>
+</tr>
+<tr>
+<td><a href="#check_eventlog_detail-syntax">detail-syntax</a></td>
+<td>${file} ${source} (${message})</td>
+<td>Detail level syntax.</td>
+</tr>
+<tr>
+<td><a href="#check_eventlog_perf-syntax">perf-syntax</a></td>
+<td>${file}_${source}</td>
+<td>Performance alias syntax.</td>
+</tr>
+<tr>
+<td><a href="#check_eventlog_file">file</a></td>
+<td></td>
+<td>File to read (can be specified multiple times to check multiple files.</td>
+</tr>
+<tr>
+<td>log</td>
+<td></td>
+<td>Same as file</td>
+</tr>
+<tr>
+<td><a href="#check_eventlog_scan-range">scan-range</a></td>
+<td></td>
+<td>Date range to scan.</td>
+</tr>
+<tr>
+<td>truncate-message</td>
+<td></td>
+<td>Maximum length of message for each event log message text.</td>
+</tr>
+<tr>
+<td><a href="#check_eventlog_unique">unique</a></td>
+<td>1</td>
+<td>Shorthand for setting default unique index: ${log}-${source}-${id}.</td>
+</tr>
+<tr>
+<td><a href="#check_eventlog_bookmark">bookmark</a></td>
+<td>auto</td>
+<td>Use bookmarks to only look for messages since last check (with the same bookmark name). If you set this to auto or leave it empty the bookmark name will be derived from your logs, filters, warn and crit.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="check_eventlog_filter">filter:</h5>
+
+<p>Filter which marks interesting items.
+Interesting items are items which will be included in the check.
+They do not denote warning or critical state instead it defines which items are relevant and you can remove unwanted items.</p>
+<p><em>Default Value:</em> <code>level in ('warning', 'error', 'critical')</code></p>
+<h5 id="check_eventlog_warning">warning:</h5>
+
+<p>Filter which marks items which generates a warning state.
+If anything matches this filter the return status will be escalated to warning.</p>
+<p><em>Default Value:</em> <code>level = 'warning', problem_count &gt; 0</code></p>
+<h5 id="check_eventlog_critical">critical:</h5>
+
+<p>Filter which marks items which generates a critical state.
+If anything matches this filter the return status will be escalated to critical.</p>
+<p><em>Default Value:</em> <code>level in ('error', 'critical')</code></p>
+<h5 id="check_eventlog_ok">ok:</h5>
+
+<p>Filter which marks items which generates an ok state.
+If anything matches this any previous state for this item will be reset to ok.</p>
+<h5 id="check_eventlog_empty-state">empty-state:</h5>
+
+<p>Return status to use when nothing matched filter.
+If no filter is specified this will never happen unless the file is empty.</p>
+<p><em>Default Value:</em> <code>ok</code></p>
+<h5 id="check_eventlog_perf-config">perf-config:</h5>
+
+<p>Performance data generation configuration
+TODO: obj ( key: value; key: value) obj (key:valuer;key:value)</p>
+<p><em>Default Value:</em> <code>level(ignored:true)</code></p>
+<h5 id="check_eventlog_unique-index">unique-index:</h5>
+
+<p>Unique syntax.
+Used to filter unique items (counted will still increase but messages will not repeated)</p>
+<h5 id="check_eventlog_top-syntax">top-syntax:</h5>
+
+<p>Top level syntax.
+Used to format the message to return can include text as well as special keywords which will include information from the checks.
+To add a keyword to the message you can use two syntaxes either ${keyword} or %(keyword) (there is no difference between them apart from ${} can be difficult to escape on linux).</p>
+<p><em>Default Value:</em> <code>${status}: ${count} message(s) ${problem_list}</code></p>
+<h5 id="check_eventlog_ok-syntax">ok-syntax:</h5>
+
+<p>ok syntax.
+DEPRECATED! This is the syntax for when an ok result is returned.
+This value will not be used if your syntax contains %(list) or %(count).</p>
+<p><em>Default Value:</em> <code>%(status): Event log seems fine</code></p>
+<h5 id="check_eventlog_empty-syntax">empty-syntax:</h5>
+
+<p>Empty syntax.
+DEPRECATED! This is the syntax for when nothing matches the filter.</p>
+<p><em>Default Value:</em> <code>%(status): No entries found</code></p>
+<h5 id="check_eventlog_detail-syntax">detail-syntax:</h5>
+
+<p>Detail level syntax.
+Used to format each resulting item in the message.
+%(list) will be replaced with all the items formated by this syntax string in the top-syntax.
+To add a keyword to the message you can use two syntaxes either ${keyword} or %(keyword) (there is no difference between them apart from ${} can be difficult to escape on linux).</p>
+<p><em>Default Value:</em> <code>${file} ${source} (${message})</code></p>
+<h5 id="check_eventlog_perf-syntax">perf-syntax:</h5>
+
+<p>Performance alias syntax.
+This is the syntax for the base names of the performance data.</p>
+<p><em>Default Value:</em> <code>${file}_${source}</code></p>
+<h5 id="check_eventlog_file">file:</h5>
+
+<p>File to read (can be specified multiple times to check multiple files.
+Notice that specifying multiple files will create an aggregate set you will not check each file individually.In other words if one file contains an error the entire check will result in error.</p>
+<h5 id="check_eventlog_scan-range">scan-range:</h5>
+
+<p>Date range to scan.
+A negative value scans backward (historical events) and a positive value scans forwards (future events). This is the approximate dates to search through this speeds up searching a lot but there is no guarantee messages are ordered.</p>
+<h5 id="check_eventlog_unique">unique:</h5>
+
+<p>Shorthand for setting default unique index: ${log}-${source}-${id}.</p>
+<p><em>Default Value:</em> <code>1</code></p>
+<h5 id="check_eventlog_bookmark">bookmark:</h5>
+
+<p>Use bookmarks to only look for messages since last check (with the same bookmark name). If you set this to auto or leave it empty the bookmark name will be derived from your logs, filters, warn and crit.</p>
+<p><em>Default Value:</em> <code>auto</code></p>
+<p><a id="check_eventlog_filter_keys"></a></p>
+<h4 id="filter-keywords">Filter keywords</h4>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>category</td>
+<td>TODO</td>
+</tr>
+<tr>
+<td>computer</td>
+<td>Which computer generated the message</td>
+</tr>
+<tr>
+<td>customer</td>
+<td>TODO</td>
+</tr>
+<tr>
+<td>file</td>
+<td>The logfile name</td>
+</tr>
+<tr>
+<td>guid</td>
+<td>The logfile name</td>
+</tr>
+<tr>
+<td>id</td>
+<td>Eventlog id</td>
+</tr>
+<tr>
+<td>keyword</td>
+<td>The keyword associated with this event</td>
+</tr>
+<tr>
+<td>level</td>
+<td>Severity level (error, warning, info, success, auditSuccess, auditFailure)</td>
+</tr>
+<tr>
+<td>log</td>
+<td>alias for file</td>
+</tr>
+<tr>
+<td>message</td>
+<td>The message rendered as a string.</td>
+</tr>
+<tr>
+<td>provider</td>
+<td>Source system.</td>
+</tr>
+<tr>
+<td>rawid</td>
+<td>Raw message id (contains many other fields all baked into a single number)</td>
+</tr>
+<tr>
+<td>source</td>
+<td>Source system.</td>
+</tr>
+<tr>
+<td>task</td>
+<td>The type of event (task)</td>
+</tr>
+<tr>
+<td>type</td>
+<td>alias for level (old, deprecated)</td>
+</tr>
+<tr>
+<td>written</td>
+<td>When the message was written to file</td>
+</tr>
+<tr>
+<td>written_str</td>
+<td>When the message was written to file as an absolute date string</td>
+</tr>
+<tr>
+<td>xml</td>
+<td>Get event as XML message.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Common options for all checks:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>count</td>
+<td>Number of items matching the filter.</td>
+</tr>
+<tr>
+<td>crit_count</td>
+<td>Number of items matched the critical criteria.</td>
+</tr>
+<tr>
+<td>crit_list</td>
+<td>A list of all items which matched the critical criteria.</td>
+</tr>
+<tr>
+<td>detail_list</td>
+<td>A special list with critical, then warning and finally ok.</td>
+</tr>
+<tr>
+<td>list</td>
+<td>A list of all items which matched the filter.</td>
+</tr>
+<tr>
+<td>ok_count</td>
+<td>Number of items matched the ok criteria.</td>
+</tr>
+<tr>
+<td>ok_list</td>
+<td>A list of all items which matched the ok criteria.</td>
+</tr>
+<tr>
+<td>problem_count</td>
+<td>Number of items matched either warning or critical criteria.</td>
+</tr>
+<tr>
+<td>problem_list</td>
+<td>A list of all items which matched either the critical or the warning criteria.</td>
+</tr>
+<tr>
+<td>status</td>
+<td>The returned status (OK/WARN/CRIT/UNKNOWN).</td>
+</tr>
+<tr>
+<td>total</td>
+<td>Total number of items.</td>
+</tr>
+<tr>
+<td>warn_count</td>
+<td>Number of items matched the warning criteria.</td>
+</tr>
+<tr>
+<td>warn_list</td>
+<td>A list of all items which matched the warning criteria.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="configuration">Configuration</h2>
+<table>
+<thead>
+<tr>
+<th>Path / Section</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#eventlog">/settings/eventlog</a></td>
+<td>Eventlog</td>
+</tr>
+<tr>
+<td><a href="#real-time-eventlog-monitoring">/settings/eventlog/real-time</a></td>
+<td>Real-time eventlog monitoring</td>
+</tr>
+<tr>
+<td><a href="#real-time-eventlog-filters">/settings/eventlog/real-time/filters</a></td>
+<td>Real-time eventlog filters</td>
+</tr>
+</tbody>
+</table>
+<h3 id="eventlog">Eventlog <a id="/settings/eventlog"></a></h3>
+<p>Section for the EventLog Checker (CheckEventLog.dll).</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#default-buffer-size">buffer size</a></td>
+<td>131072</td>
+<td>Default buffer size</td>
+</tr>
+<tr>
+<td><a href="#enable-debugging">debug</a></td>
+<td>false</td>
+<td>Enable debugging</td>
+</tr>
+<tr>
+<td><a href="#lookup-eventlog-names">lookup names</a></td>
+<td>true</td>
+<td>Lookup eventlog names</td>
+</tr>
+<tr>
+<td><a href="#default-syntax">syntax</a></td>
+<td></td>
+<td>Default syntax</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="c1"># Section for the EventLog Checker (CheckEventLog.dll).</span>
+<span class="k">[/settings/eventlog]</span>
+<span class="na">buffer size</span><span class="o">=</span><span class="s">131072</span>
+<span class="na">debug</span><span class="o">=</span><span class="s">false</span>
+<span class="na">lookup names</span><span class="o">=</span><span class="s">true</span>
+</code></pre></div>
+<h4 id="default-buffer-size">Default buffer size <a id="/settings/eventlog/buffer size"></a></h4>
+<p>The size of the buffer to use when getting messages this affects the speed and maximum size of messages you can receive.</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Path:</td>
+<td><a href="#/settings/eventlog">/settings/eventlog</a></td>
+</tr>
+<tr>
+<td>Key:</td>
+<td>buffer size</td>
+</tr>
+<tr>
+<td>Default value:</td>
+<td><code>131072</code></td>
+</tr>
+<tr>
+<td>Used by:</td>
+<td>CheckEventLog</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Sample:</strong></p>
+<div class="highlight"><pre><span></span><code>[/settings/eventlog]
+# Default buffer size
+buffer size=131072
+</code></pre></div>
+<h4 id="enable-debugging">Enable debugging <a id="/settings/eventlog/debug"></a></h4>
+<p>Log more information when filtering (useful to detect issues with filters) not useful in production as it is a bit of a resource hog.</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Path:</td>
+<td><a href="#/settings/eventlog">/settings/eventlog</a></td>
+</tr>
+<tr>
+<td>Key:</td>
+<td>debug</td>
+</tr>
+<tr>
+<td>Default value:</td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td>Used by:</td>
+<td>CheckEventLog</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Sample:</strong></p>
+<div class="highlight"><pre><span></span><code>[/settings/eventlog]
+# Enable debugging
+debug=false
+</code></pre></div>
+<h4 id="lookup-eventlog-names">Lookup eventlog names <a id="/settings/eventlog/lookup names"></a></h4>
+<p>Lookup the names of eventlog files</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Path:</td>
+<td><a href="#/settings/eventlog">/settings/eventlog</a></td>
+</tr>
+<tr>
+<td>Key:</td>
+<td>lookup names</td>
+</tr>
+<tr>
+<td>Default value:</td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td>Used by:</td>
+<td>CheckEventLog</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Sample:</strong></p>
+<div class="highlight"><pre><span></span><code>[/settings/eventlog]
+# Lookup eventlog names
+lookup names=true
+</code></pre></div>
+<h4 id="default-syntax">Default syntax <a id="/settings/eventlog/syntax"></a></h4>
+<p>Set this to use a specific syntax string for all commands (that don't specify one).</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Path:</td>
+<td><a href="#/settings/eventlog">/settings/eventlog</a></td>
+</tr>
+<tr>
+<td>Key:</td>
+<td>syntax</td>
+</tr>
+<tr>
+<td>Default value:</td>
+<td><em>N/A</em></td>
+</tr>
+<tr>
+<td>Used by:</td>
+<td>CheckEventLog</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Sample:</strong></p>
+<div class="highlight"><pre><span></span><code>[/settings/eventlog]
+# Default syntax
+syntax=
+</code></pre></div>
+<h3 id="real-time-eventlog-monitoring">Real-time eventlog monitoring <a id="/settings/eventlog/real-time"></a></h3>
+<p>A set of options to configure the real time checks</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#enable-debugging">debug</a></td>
+<td>false</td>
+<td>Enable debugging</td>
+</tr>
+<tr>
+<td><a href="#enable-realtime-monitoring">enabled</a></td>
+<td>false</td>
+<td>Enable realtime monitoring</td>
+</tr>
+<tr>
+<td><a href="#logs-to-check">log</a></td>
+<td>application,system</td>
+<td>Logs to check</td>
+</tr>
+<tr>
+<td><a href="#read-old-records-at-startup">startup age</a></td>
+<td>30m</td>
+<td>Read old records at startup</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="c1"># A set of options to configure the real time checks</span>
+<span class="k">[/settings/eventlog/real-time]</span>
+<span class="na">debug</span><span class="o">=</span><span class="s">false</span>
+<span class="na">enabled</span><span class="o">=</span><span class="s">false</span>
+<span class="na">log</span><span class="o">=</span><span class="s">application,system</span>
+<span class="na">startup age</span><span class="o">=</span><span class="s">30m</span>
+</code></pre></div>
+<h4 id="enable-debugging_1">Enable debugging <a id="/settings/eventlog/real-time/debug"></a></h4>
+<p>Log missed records (useful to detect issues with filters) not useful in production as it is a bit of a resource hog.</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Path:</td>
+<td><a href="#/settings/eventlog/real-time">/settings/eventlog/real-time</a></td>
+</tr>
+<tr>
+<td>Key:</td>
+<td>debug</td>
+</tr>
+<tr>
+<td>Default value:</td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td>Used by:</td>
+<td>CheckEventLog</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Sample:</strong></p>
+<div class="highlight"><pre><span></span><code>[/settings/eventlog/real-time]
+# Enable debugging
+debug=false
+</code></pre></div>
+<h4 id="enable-realtime-monitoring">Enable realtime monitoring <a id="/settings/eventlog/real-time/enabled"></a></h4>
+<p>Spawns a background thread which detects issues and reports them back instantly.</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Path:</td>
+<td><a href="#/settings/eventlog/real-time">/settings/eventlog/real-time</a></td>
+</tr>
+<tr>
+<td>Key:</td>
+<td>enabled</td>
+</tr>
+<tr>
+<td>Default value:</td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td>Used by:</td>
+<td>CheckEventLog</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Sample:</strong></p>
+<div class="highlight"><pre><span></span><code>[/settings/eventlog/real-time]
+# Enable realtime monitoring
+enabled=false
+</code></pre></div>
+<h4 id="logs-to-check">Logs to check <a id="/settings/eventlog/real-time/log"></a></h4>
+<p>Comma separated list of logs to check</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Path:</td>
+<td><a href="#/settings/eventlog/real-time">/settings/eventlog/real-time</a></td>
+</tr>
+<tr>
+<td>Key:</td>
+<td>log</td>
+</tr>
+<tr>
+<td>Default value:</td>
+<td><code>application,system</code></td>
+</tr>
+<tr>
+<td>Used by:</td>
+<td>CheckEventLog</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Sample:</strong></p>
+<div class="highlight"><pre><span></span><code>[/settings/eventlog/real-time]
+# Logs to check
+log=application,system
+</code></pre></div>
+<h4 id="read-old-records-at-startup">Read old records at startup <a id="/settings/eventlog/real-time/startup age"></a></h4>
+<p>The initial age to scan when starting NSClient++</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Path:</td>
+<td><a href="#/settings/eventlog/real-time">/settings/eventlog/real-time</a></td>
+</tr>
+<tr>
+<td>Key:</td>
+<td>startup age</td>
+</tr>
+<tr>
+<td>Default value:</td>
+<td><code>30m</code></td>
+</tr>
+<tr>
+<td>Used by:</td>
+<td>CheckEventLog</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Sample:</strong></p>
+<div class="highlight"><pre><span></span><code>[/settings/eventlog/real-time]
+# Read old records at startup
+startup age=30m
+</code></pre></div>
+<h3 id="real-time-eventlog-filters">Real-time eventlog filters <a id="/settings/eventlog/real-time/filters"></a></h3>
+<p>A set of filters to use in real-time mode</p>
+<p>This is a section of objects. This means that you will create objects below this point by adding sections which all look the same.</p>
+<p><strong>Keys:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>command</td>
+<td></td>
+<td>COMMAND NAME</td>
+</tr>
+<tr>
+<td>critical</td>
+<td></td>
+<td>CRITICAL FILTER</td>
+</tr>
+<tr>
+<td>debug</td>
+<td></td>
+<td>DEBUG</td>
+</tr>
+<tr>
+<td>destination</td>
+<td></td>
+<td>DESTINATION</td>
+</tr>
+<tr>
+<td>detail syntax</td>
+<td></td>
+<td>SYNTAX</td>
+</tr>
+<tr>
+<td>empty message</td>
+<td>eventlog found no records</td>
+<td>EMPTY MESSAGE</td>
+</tr>
+<tr>
+<td>escape html</td>
+<td></td>
+<td>ESCAPE HTML</td>
+</tr>
+<tr>
+<td>filter</td>
+<td></td>
+<td>FILTER</td>
+</tr>
+<tr>
+<td>log</td>
+<td></td>
+<td>FILE</td>
+</tr>
+<tr>
+<td>logs</td>
+<td></td>
+<td>FILES</td>
+</tr>
+<tr>
+<td>maximum age</td>
+<td>5m</td>
+<td>MAGIMUM AGE</td>
+</tr>
+<tr>
+<td>ok</td>
+<td></td>
+<td>OK FILTER</td>
+</tr>
+<tr>
+<td>ok syntax</td>
+<td></td>
+<td>SYNTAX</td>
+</tr>
+<tr>
+<td>perf config</td>
+<td></td>
+<td>PERF CONFIG</td>
+</tr>
+<tr>
+<td>severity</td>
+<td></td>
+<td>SEVERITY</td>
+</tr>
+<tr>
+<td>silent period</td>
+<td>false</td>
+<td>Silent period</td>
+</tr>
+<tr>
+<td>source id</td>
+<td></td>
+<td>SOURCE ID</td>
+</tr>
+<tr>
+<td>target</td>
+<td></td>
+<td>DESTINATION</td>
+</tr>
+<tr>
+<td>target id</td>
+<td></td>
+<td>TARGET ID</td>
+</tr>
+<tr>
+<td>top syntax</td>
+<td></td>
+<td>SYNTAX</td>
+</tr>
+<tr>
+<td>truncate</td>
+<td></td>
+<td>Truncate</td>
+</tr>
+<tr>
+<td>warning</td>
+<td></td>
+<td>WARNING FILTER</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Sample:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># An example of a Real-time eventlog filters section</span>
+<span class="k">[/settings/eventlog/real-time/filters/sample]</span>
+<span class="c1">#command=...</span>
+<span class="c1">#critical=...</span>
+<span class="c1">#debug=...</span>
+<span class="c1">#destination=...</span>
+<span class="c1">#detail syntax=...</span>
+<span class="na">empty message</span><span class="o">=</span><span class="s">eventlog found no records</span>
+<span class="c1">#escape html=...</span>
+<span class="c1">#filter=...</span>
+<span class="c1">#log=...</span>
+<span class="c1">#logs=...</span>
+<span class="na">maximum age</span><span class="o">=</span><span class="s">5m</span>
+<span class="c1">#ok=...</span>
+<span class="c1">#ok syntax=...</span>
+<span class="c1">#perf config=...</span>
+<span class="c1">#severity=...</span>
+<span class="na">silent period</span><span class="o">=</span><span class="s">false</span>
+<span class="c1">#source id=...</span>
+<span class="c1">#target=...</span>
+<span class="c1">#target id=...</span>
+<span class="c1">#top syntax=...</span>
+<span class="c1">#truncate=...</span>
+<span class="c1">#warning=...</span>
+</code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+      <div class="md-consent" data-md-component="consent" id="__consent" hidden>
+        <div class="md-consent__overlay"></div>
+        <aside class="md-consent__inner">
+          <form class="md-consent__form md-grid md-typeset" name="consent">
+            
+
+
+  
+
+
+<h4>Cookie consent</h4>
+<p>We use cookies to recognize your repeated visits and preferences, as well as to measure the effectiveness of our documentation and whether users find what they're searching for. With your consent, you're helping us to make our documentation better.</p>
+<input class="md-toggle" type="checkbox" id="__settings" >
+<div class="md-consent__settings">
+  <ul class="task-list">
+    
+    
+      
+    
+    
+      
+        
+  
+  
+    
+    
+  
+  <li class="task-list-item">
+    <label class="task-list-control">
+      <input type="checkbox" name="github" checked>
+      <span class="task-list-indicator"></span>
+      GitHub
+    </label>
+  </li>
+
+      
+    
+    
+  </ul>
+</div>
+<div class="md-consent__controls">
+  
+    
+      <button class="md-button md-button--primary">Accept</button>
+    
+    
+    
+  
+    
+    
+    
+      <label class="md-button" for="__settings">Manage settings</label>
+    
+  
+</div>
+          </form>
+        </aside>
+      </div>
+      <script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout((function(){document.querySelector("[data-md-component=consent]").hidden=!1}),250);var form=document.forms.consent;for(var action of["submit","reset"])form.addEventListener(action,(function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map((function(e){return[e,!0]})))),location.hash="",location.reload()}))</script>
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.tabs", "toc.follow", "toc.integrate", "navigation.indexes"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

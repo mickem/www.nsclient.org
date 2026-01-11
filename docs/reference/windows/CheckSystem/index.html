@@ -1,0 +1,7944 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../../unix/CheckSystemUnix/">
+      
+      
+        <link rel="next" href="../CheckTaskSched/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>CheckSystem (Windows) - NSClient++</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#checksystem" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="NSClient++" class="md-header__button md-logo" aria-label="NSClient++" data-md-component="logo">
+      
+  <img src="../../../../assets/nsclient-logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            NSClient++
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              CheckSystem (Windows)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/mickem/nscp" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M202.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1M496 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2m-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3m-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1"/></svg>
+  </div>
+  <div class="md-source__repository">
+    NSClient++
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../.." class="md-tabs__link">
+          
+  
+  
+    
+  
+  Home
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../news/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  News
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://github.com/mickem/nscp/releases" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Download
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Documentation
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://github.com/mickem/nscp/discussions" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Forums
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="NSClient++" class="md-nav__button md-logo" aria-label="NSClient++" data-md-component="logo">
+      
+  <img src="../../../../assets/nsclient-logo.png" alt="logo">
+
+    </a>
+    NSClient++
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/mickem/nscp" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M202.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1M496 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2m-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3m-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1"/></svg>
+  </div>
+  <div class="md-source__repository">
+    NSClient++
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../.." class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_1" id="__nav_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Home
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../nsclient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About NSClient++
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../news/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    News
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/mickem/nscp/releases" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Download
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Documentation
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Documentation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../getting-started/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../getting-started/nsclient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSClient++
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../getting-started/nrpe/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NRPE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../getting-started/nsca/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSCA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../theory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../checks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Checking Things
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../installing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installing NSClient++
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../settings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../web/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WEB UI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../tutorial/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tutorial
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../securing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Securing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_11" id="__nav_4_11_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Howto
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Howto
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../howto/checks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Checking things
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../howto/counters/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Performance Counters
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../howto/external_scripts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    External scripts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../howto/run_commands/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Running commands
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../howto/nrpe/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NRPE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../howto/nsca/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSCA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../howto/03x_migration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Migrate from 0.3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_12" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_12" id="__nav_4_12_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_12_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_12">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_12_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4_12_2" id="__nav_4_12_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Check commands
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_12_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_12_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Check commands
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CheckDisk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckDisk (Windows)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../check/CheckExternalScripts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckExternalScripts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CheckEventLog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckEventLog (Windows)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../check/CheckHelpers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckHelpers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../check/CheckLogFile/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckLogFile
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../check/CheckMKClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckMKClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../check/CheckMKServer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckMKServer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../misc/CheckNet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckNet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../check/CheckNSCP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckNSCP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unix/CheckSystemUnix/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckSystemUnix (unix)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckSystem (Windows)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckSystem (Windows)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#enable-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enable module
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#queries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Queries
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Queries">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#check_cpu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        check_cpu
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="check_cpu">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sample-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#command-line-arguments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Command-line Arguments
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filter-keywords" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Filter keywords
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check_memory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        check_memory
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="check_memory">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#kinds-of-memory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kinds of memory
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sample-commands_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#command-line-arguments_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Command-line Arguments
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filter-keywords_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Filter keywords
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check_network" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        check_network
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="check_network">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#command-line-arguments_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Command-line Arguments
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filter-keywords_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Filter keywords
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check_os_version" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        check_os_version
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="check_os_version">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sample-commands_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#command-line-arguments_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Command-line Arguments
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filter-keywords_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Filter keywords
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check_pagefile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        check_pagefile
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="check_pagefile">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sample-commands_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#command-line-arguments_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Command-line Arguments
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filter-keywords_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Filter keywords
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check_pdh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        check_pdh
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="check_pdh">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sample-commands_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#command-line-arguments_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Command-line Arguments
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filter-keywords_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Filter keywords
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check_process" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        check_process
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="check_process">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sample-commands_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#command-line-arguments_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Command-line Arguments
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filter-keywords_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Filter keywords
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check_service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        check_service
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="check_service">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sample-commands_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#command-line-arguments_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Command-line Arguments
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filter-keywords_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Filter keywords
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check_uptime" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        check_uptime
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="check_uptime">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sample-commands_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#command-line-arguments_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Command-line Arguments
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filter-keywords_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Filter keywords
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#windows-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Windows system
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Windows system">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#default-buffer-time" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Default buffer time
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disable-automatic-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Disable automatic checks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fetch-core-load" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fetch core load
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pdh-subsystem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PDH subsystem
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-pdh-to-fetch-cpu-load" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Use PDH to fetch CPU load
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pdh-counters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PDH Counters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#legacy-generic-filters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Legacy generic filters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#realtime-cpu-filters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Realtime cpu filters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#realtime-memory-filters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Realtime memory filters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#realtime-process-filters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Realtime process filters
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CheckTaskSched/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckTaskSched (Windows)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CheckWMI/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckWMI (Windows)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_12_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_12_3" id="__nav_4_12_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Clients & Servers
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_12_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_12_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Clients & Servers
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../generic/WEBServer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WEBServer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../misc/WEBClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WEBClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/NRPEServer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NRPEServer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/NRPEClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NRPEClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../NSClientServer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSClientServer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/NSCAServer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSCAServer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/NSCAClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSCAClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/NRDPClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NRDPClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/SMTPClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SMTPClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/GraphiteClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GraphiteClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/SyslogClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SyslogClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../misc/CollectdClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CollectdClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../misc/Op5Client/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Op5Client
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../misc/ElasticClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ElasticClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_12_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_12_4" id="__nav_4_12_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Helper modules
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_12_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_12_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Helper modules
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../generic/Scheduler/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scheduler
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../generic/SimpleFileWriter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SimpleFileWriter
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../generic/CommandClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CommandClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../generic/SimpleCache/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SimpleCache
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../generic/PythonScript/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PythonScript
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../generic/LUAScript/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LUAScript
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_13" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../extending/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Extending
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_13" id="__nav_4_13_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_13">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Extending
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../extending/python/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python Scripts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../extending/zip-modules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Zip Modules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_14" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_14" id="__nav_4_14_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_14">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    API
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_14_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../api/rest/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    REST
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_14_1" id="__nav_4_14_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_14_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_14_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    REST
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/rest/info/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Info
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/rest/modules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/rest/queries/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Queries
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/rest/scripts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scripts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/rest/logs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/rest/legacy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Legacy API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/common/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Common API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/plugin/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plugin API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Metrics API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/mickem/nscp/discussions" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Forums
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="checksystem">CheckSystem</h1>
+<p>Various system related checks, such as CPU load, process state, service state memory usage and PDH counters.</p>
+<h2 id="enable-module">Enable module</h2>
+<p>To enable this module and and allow using the commands you need to ass <code>CheckSystem = enabled</code> to the <code>[/modules]</code> section in nsclient.ini:</p>
+<div class="highlight"><pre><span></span><code>[/modules]
+CheckSystem = enabled
+</code></pre></div>
+<h2 id="queries">Queries</h2>
+<p>A quick reference for all available queries (check commands) in the CheckSystem module.</p>
+<p><strong>List of commands:</strong></p>
+<p>A list of all available queries (check commands)</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#check_cpu">check_cpu</a></td>
+<td>Check that the load of the CPU(s) are within bounds.</td>
+</tr>
+<tr>
+<td><a href="#check_memory">check_memory</a></td>
+<td>Check free/used memory on the system.</td>
+</tr>
+<tr>
+<td><a href="#check_network">check_network</a></td>
+<td>Check network interface status.</td>
+</tr>
+<tr>
+<td><a href="#check_os_version">check_os_version</a></td>
+<td>Check the version of the underlying OS.</td>
+</tr>
+<tr>
+<td><a href="#check_pagefile">check_pagefile</a></td>
+<td>Check the size of the system pagefile(s).</td>
+</tr>
+<tr>
+<td><a href="#check_pdh">check_pdh</a></td>
+<td>Check the value of a performance (PDH) counter on the local or remote system.</td>
+</tr>
+<tr>
+<td><a href="#check_process">check_process</a></td>
+<td>Check state/metrics of one or more of the processes running on the computer.</td>
+</tr>
+<tr>
+<td><a href="#check_service">check_service</a></td>
+<td>Check the state of one or more of the computer services.</td>
+</tr>
+<tr>
+<td><a href="#check_uptime">check_uptime</a></td>
+<td>Check time since last server re-boot.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>List of command aliases:</strong></p>
+<p>A list of all short hand aliases for queries (check commands)</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>check_counter</td>
+<td>Alias for: :query:<code>check_pdh</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="check_cpu">check_cpu</h3>
+<p>Check that the load of the CPU(s) are within bounds.</p>
+<p>The check_cpu command is a query based command which means it has a filter where you can use a filter expression with filter keywords to define which rows are relevant to the check.
+The filter is written using the filter query language and in it you can use various filter keywords to define the filtering logic.
+The filter keywords can also be used to create the bound expressions for the warning and critical which defines when a check returns warning or critical.</p>
+<p><strong>Jump to section:</strong></p>
+<ul>
+<li><a href="#check_cpu_samples">Sample Commands</a></li>
+<li><a href="#check_cpu_options">Command-line Arguments</a></li>
+<li><a href="#check_cpu_filter_keys">Filter keywords</a></li>
+</ul>
+<p><a id="check_cpu_samples"></a></p>
+<h4 id="sample-commands">Sample Commands</h4>
+<p><em>To edit these sample please edit <a href="https://github.com/mickem/nscp-docs/blob/master/samples/CheckSystem_check_cpu_samples.md">this page</a></em></p>
+<p><strong>Default check:</strong></p>
+<div class="highlight"><pre><span></span><code>check_cpu
+CPU Load ok
+&#39;total 5m load&#39;=0%;80;90 &#39;total 1m load&#39;=0%;80;90 &#39;total 5s load&#39;=7%;80;90
+</code></pre></div>
+<p><strong>Checking all cores by adding filter=none (disabling the default filter):</strong></p>
+<div class="highlight"><pre><span></span><code>check_cpu filter=none &quot;warn=load &gt; 80&quot; &quot;crit=load &gt; 90&quot;
+CPU Load ok
+&#39;core 0 5m kernel&#39;=1%;10;0 &#39;core 0 5m load&#39;=3%;80;90 &#39;core 1 5m kernel&#39;=0%;10;0 &#39;core 1 5m load&#39;=0%;80;90 ...  &#39;core 7 5s load&#39;=15%;80;90 &#39;total 5s kernel&#39;=3%;10;0 &#39;total 5s load&#39;=7%;80;90
+</code></pre></div>
+<p><strong>Adding kernel times to the check:</strong></p>
+<div class="highlight"><pre><span></span><code>check_cpu filter=none &quot;warn=kernel &gt; 10 or load &gt; 80&quot; &quot;crit=load &gt; 90&quot; &quot;top-syntax=${list}&quot;
+core 0 &gt; 3, core 1 &gt; 0, core 2 &gt; 0, core  ... , core 7 &gt; 15, total &gt; 7
+&#39;core 0 5m kernel&#39;=1%;10;0 &#39;core 0 5m load&#39;=3%;80;90 &#39;core 1 5m kernel&#39;=0%;10;0 &#39;core 1 5m load&#39;=0%;80;90 ...  &#39;core 7 5s load&#39;=15%;80;90 &#39;total 5s kernel&#39;=3%;10;0 &#39;total 5s load&#39;=7%;80;90
+</code></pre></div>
+<p><strong>Default check via NRPE:</strong></p>
+<div class="highlight"><pre><span></span><code>check_nscp --host 192.168.56.103 --command check_cpu
+CPU Load ok|&#39;total 5m&#39;=16%;80;90 &#39;total 1m&#39;=13%;80;90 &#39;total 5s&#39;=13%;80;90
+</code></pre></div>
+<p><strong>Customizing the output syntax to include CPU load in text:</strong></p>
+<div class="highlight"><pre><span></span><code>check_cpu &quot;top-syntax=%(status): %(list)&quot;
+L        cli OK: OK: 5m: 16%, 1m: 30%, 5s: 23%
+</code></pre></div>
+<p><strong>Customizing the output syntax to only show CPU load as text:</strong></p>
+<div class="highlight"><pre><span></span><code>check_cpu &quot;top-syntax=%(status): Cpu usage is %(list)&quot; time=5m &quot;detail-syntax=%(load) %&quot;
+L        cli OK: OK: Cpu usage is 26 %
+</code></pre></div>
+<p><a id="check_cpu_warn"></a>
+<a id="check_cpu_crit"></a>
+<a id="check_cpu_debug"></a>
+<a id="check_cpu_show-all"></a>
+<a id="check_cpu_escape-html"></a>
+<a id="check_cpu_help"></a>
+<a id="check_cpu_help-pb"></a>
+<a id="check_cpu_show-default"></a>
+<a id="check_cpu_help-short"></a>
+<a id="check_cpu_time"></a>
+<a id="check_cpu_cores"></a>
+<a id="check_cpu_options"></a></p>
+<h4 id="command-line-arguments">Command-line Arguments</h4>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#check_cpu_filter">filter</a></td>
+<td>core = 'total'</td>
+<td>Filter which marks interesting items.</td>
+</tr>
+<tr>
+<td><a href="#check_cpu_warning">warning</a></td>
+<td>load &gt; 80</td>
+<td>Filter which marks items which generates a warning state.</td>
+</tr>
+<tr>
+<td>warn</td>
+<td></td>
+<td>Short alias for warning</td>
+</tr>
+<tr>
+<td><a href="#check_cpu_critical">critical</a></td>
+<td>load &gt; 90</td>
+<td>Filter which marks items which generates a critical state.</td>
+</tr>
+<tr>
+<td>crit</td>
+<td></td>
+<td>Short alias for critical.</td>
+</tr>
+<tr>
+<td><a href="#check_cpu_ok">ok</a></td>
+<td></td>
+<td>Filter which marks items which generates an ok state.</td>
+</tr>
+<tr>
+<td>debug</td>
+<td>N/A</td>
+<td>Show debugging information in the log</td>
+</tr>
+<tr>
+<td>show-all</td>
+<td>N/A</td>
+<td>Show details for all matches regardless of status (normally details are only showed for warnings and criticals).</td>
+</tr>
+<tr>
+<td><a href="#check_cpu_empty-state">empty-state</a></td>
+<td>ignored</td>
+<td>Return status to use when nothing matched filter.</td>
+</tr>
+<tr>
+<td><a href="#check_cpu_perf-config">perf-config</a></td>
+<td></td>
+<td>Performance data generation configuration</td>
+</tr>
+<tr>
+<td>escape-html</td>
+<td>N/A</td>
+<td>Escape any &lt; and &gt; characters to prevent HTML encoding</td>
+</tr>
+<tr>
+<td>help</td>
+<td>N/A</td>
+<td>Show help screen (this screen)</td>
+</tr>
+<tr>
+<td>help-pb</td>
+<td>N/A</td>
+<td>Show help screen as a protocol buffer payload</td>
+</tr>
+<tr>
+<td>show-default</td>
+<td>N/A</td>
+<td>Show default values for a given command</td>
+</tr>
+<tr>
+<td>help-short</td>
+<td>N/A</td>
+<td>Show help screen (short format).</td>
+</tr>
+<tr>
+<td><a href="#check_cpu_top-syntax">top-syntax</a></td>
+<td>${status}: ${problem_list}</td>
+<td>Top level syntax.</td>
+</tr>
+<tr>
+<td><a href="#check_cpu_ok-syntax">ok-syntax</a></td>
+<td>%(status): CPU load is ok.</td>
+<td>ok syntax.</td>
+</tr>
+<tr>
+<td><a href="#check_cpu_empty-syntax">empty-syntax</a></td>
+<td></td>
+<td>Empty syntax.</td>
+</tr>
+<tr>
+<td><a href="#check_cpu_detail-syntax">detail-syntax</a></td>
+<td>${time}: ${load}%</td>
+<td>Detail level syntax.</td>
+</tr>
+<tr>
+<td><a href="#check_cpu_perf-syntax">perf-syntax</a></td>
+<td>${core} ${time}</td>
+<td>Performance alias syntax.</td>
+</tr>
+<tr>
+<td>time</td>
+<td></td>
+<td>The time to check</td>
+</tr>
+<tr>
+<td>cores</td>
+<td>N/A</td>
+<td>This will remove the filter to  include the cores, if you use filter dont use this as well.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="check_cpu_filter">filter:</h5>
+
+<p>Filter which marks interesting items.
+Interesting items are items which will be included in the check.
+They do not denote warning or critical state instead it defines which items are relevant and you can remove unwanted items.</p>
+<p><em>Default Value:</em> <code>core = 'total'</code></p>
+<h5 id="check_cpu_warning">warning:</h5>
+
+<p>Filter which marks items which generates a warning state.
+If anything matches this filter the return status will be escalated to warning.</p>
+<p><em>Default Value:</em> <code>load &gt; 80</code></p>
+<h5 id="check_cpu_critical">critical:</h5>
+
+<p>Filter which marks items which generates a critical state.
+If anything matches this filter the return status will be escalated to critical.</p>
+<p><em>Default Value:</em> <code>load &gt; 90</code></p>
+<h5 id="check_cpu_ok">ok:</h5>
+
+<p>Filter which marks items which generates an ok state.
+If anything matches this any previous state for this item will be reset to ok.</p>
+<h5 id="check_cpu_empty-state">empty-state:</h5>
+
+<p>Return status to use when nothing matched filter.
+If no filter is specified this will never happen unless the file is empty.</p>
+<p><em>Default Value:</em> <code>ignored</code></p>
+<h5 id="check_cpu_perf-config">perf-config:</h5>
+
+<p>Performance data generation configuration
+TODO: obj ( key: value; key: value) obj (key:valuer;key:value)</p>
+<h5 id="check_cpu_top-syntax">top-syntax:</h5>
+
+<p>Top level syntax.
+Used to format the message to return can include text as well as special keywords which will include information from the checks.
+To add a keyword to the message you can use two syntaxes either ${keyword} or %(keyword) (there is no difference between them apart from ${} can be difficult to escape on linux).</p>
+<p><em>Default Value:</em> <code>${status}: ${problem_list}</code></p>
+<h5 id="check_cpu_ok-syntax">ok-syntax:</h5>
+
+<p>ok syntax.
+DEPRECATED! This is the syntax for when an ok result is returned.
+This value will not be used if your syntax contains %(list) or %(count).</p>
+<p><em>Default Value:</em> <code>%(status): CPU load is ok.</code></p>
+<h5 id="check_cpu_empty-syntax">empty-syntax:</h5>
+
+<p>Empty syntax.
+DEPRECATED! This is the syntax for when nothing matches the filter.</p>
+<h5 id="check_cpu_detail-syntax">detail-syntax:</h5>
+
+<p>Detail level syntax.
+Used to format each resulting item in the message.
+%(list) will be replaced with all the items formated by this syntax string in the top-syntax.
+To add a keyword to the message you can use two syntaxes either ${keyword} or %(keyword) (there is no difference between them apart from ${} can be difficult to escape on linux).</p>
+<p><em>Default Value:</em> <code>${time}: ${load}%</code></p>
+<h5 id="check_cpu_perf-syntax">perf-syntax:</h5>
+
+<p>Performance alias syntax.
+This is the syntax for the base names of the performance data.</p>
+<p><em>Default Value:</em> <code>${core} ${time}</code></p>
+<p><a id="check_cpu_filter_keys"></a></p>
+<h4 id="filter-keywords">Filter keywords</h4>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>core</td>
+<td>The core to check (total or core ##)</td>
+</tr>
+<tr>
+<td>core_id</td>
+<td>The core to check (total or core_##)</td>
+</tr>
+<tr>
+<td>idle</td>
+<td>The current idle load for a given core</td>
+</tr>
+<tr>
+<td>kernel</td>
+<td>deprecated (use system instead)</td>
+</tr>
+<tr>
+<td>load</td>
+<td>deprecated (use total instead)</td>
+</tr>
+<tr>
+<td>system</td>
+<td>The current load used by the system (kernel)</td>
+</tr>
+<tr>
+<td>time</td>
+<td>The time frame to check</td>
+</tr>
+<tr>
+<td>user</td>
+<td>The current load used by user applications</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Common options for all checks:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>count</td>
+<td>Number of items matching the filter.</td>
+</tr>
+<tr>
+<td>crit_count</td>
+<td>Number of items matched the critical criteria.</td>
+</tr>
+<tr>
+<td>crit_list</td>
+<td>A list of all items which matched the critical criteria.</td>
+</tr>
+<tr>
+<td>detail_list</td>
+<td>A special list with critical, then warning and finally ok.</td>
+</tr>
+<tr>
+<td>list</td>
+<td>A list of all items which matched the filter.</td>
+</tr>
+<tr>
+<td>ok_count</td>
+<td>Number of items matched the ok criteria.</td>
+</tr>
+<tr>
+<td>ok_list</td>
+<td>A list of all items which matched the ok criteria.</td>
+</tr>
+<tr>
+<td>problem_count</td>
+<td>Number of items matched either warning or critical criteria.</td>
+</tr>
+<tr>
+<td>problem_list</td>
+<td>A list of all items which matched either the critical or the warning criteria.</td>
+</tr>
+<tr>
+<td>status</td>
+<td>The returned status (OK/WARN/CRIT/UNKNOWN).</td>
+</tr>
+<tr>
+<td>total</td>
+<td>Total number of items.</td>
+</tr>
+<tr>
+<td>warn_count</td>
+<td>Number of items matched the warning criteria.</td>
+</tr>
+<tr>
+<td>warn_list</td>
+<td>A list of all items which matched the warning criteria.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="check_memory">check_memory</h3>
+<p>Check free/used memory on the system.</p>
+<h4 id="kinds-of-memory">Kinds of memory</h4>
+<p>There are several different kinds of memory that a computer system uses to manage data and processes. 
+Here are the main types:</p>
+<ul>
+<li><code>physical</code> Memory (RAM): This is the actual, tangible memory chips installed in your computer.  It's often referred to as RAM (Random Access Memory).</li>
+<li><code>committed</code> Memory: Committed memory refers to the amount of virtual memory that has been reserved by processes. 
+  When a program requests memory from the operating system, that memory is "committed."
+  This committed memory is guaranteed to be available to the process, meaning Windows has set aside enough resources (either physical RAM or space in the page file) to back that memory.</li>
+<li><code>virtual</code> Memory: Virtual memory is an abstraction layer created by the operating system (Windows) to provide a larger, contiguous address space to each process than the physical RAM actually available.</li>
+</ul>
+<p><strong>Jump to section:</strong></p>
+<ul>
+<li><a href="#check_memory_samples">Sample Commands</a></li>
+<li><a href="#check_memory_options">Command-line Arguments</a></li>
+<li><a href="#check_memory_filter_keys">Filter keywords</a></li>
+</ul>
+<p><a id="check_memory_samples"></a></p>
+<h4 id="sample-commands_1">Sample Commands</h4>
+<p><em>To edit these sample please edit <a href="https://github.com/mickem/nscp-docs/blob/master/samples/CheckSystem_check_memory_samples.md">this page</a></em></p>
+<p><strong>Default check:</strong></p>
+<div class="highlight"><pre><span></span><code>check_memory
+OK memory within bounds.
+&#39;page used&#39;=8G;19;21 &#39;page used %&#39;=33%;79;89 &#39;physical used&#39;=7G;9;10 &#39;physical used %&#39;=65%;79;89
+</code></pre></div>
+<p>Using --show-all <strong>to show the result</strong>:</p>
+<div class="highlight"><pre><span></span><code>check_memory &quot;warn=free &lt; 20%&quot; &quot;crit=free &lt; 10G&quot; --show-all
+page = 8.05G, physical = 7.85G
+&#39;page free&#39;=15G;4;2 &#39;page free %&#39;=66%;19;9 &#39;physical free&#39;=4G;2;1 &#39;physical free %&#39;=34%;19;9
+</code></pre></div>
+<p>Changing the return syntax to include more information::</p>
+<div class="highlight"><pre><span></span><code>check_memory &quot;top-syntax=${list}&quot; &quot;detail-syntax=${type} free: ${free} used: ${used} size: ${size}&quot;
+page free: 16G used: 7.98G size: 24G, physical free: 4.18G used: 7.8G size: 12G
+</code></pre></div>
+<p>Default check <strong>via NRPE</strong>::</p>
+<p><div class="highlight"><pre><span></span><code>check_nrpe --host 192.168.56.103 --command check_memory
+OK memory within bounds.|&#39;page&#39;=531G;3;3;0;3 &#39;page %&#39;=12%;79;89;0;100 &#39;physical&#39;=530G;1;1;0;1 &#39;physical %&#39;=25%;79;89;0;100
+</code></pre></div>
+<strong>Overriding the unit:</strong></p>
+<p>Most "byte" checks such as memory have an auto scaling feature which means values will go from 800M to 1.2G between checks.
+Some graphing systems does not honor the units in performance data in which case you can get unexpected large values (such as 800G).
+To remedy this you can lock the unit by adding <code>perf-config=*(unit:G)</code></p>
+<div class="highlight"><pre><span></span><code>check_memory perf-config=*(unit:G)
+page = 8.05G, physical = 7.85G
+&#39;page free&#39;=15G;4;2 &#39;page free %&#39;=66%;19;9 &#39;physical free&#39;=4G;2;1 &#39;physical free %&#39;=34%;19;9
+</code></pre></div>
+<p><a id="check_memory_warn"></a>
+<a id="check_memory_crit"></a>
+<a id="check_memory_debug"></a>
+<a id="check_memory_show-all"></a>
+<a id="check_memory_escape-html"></a>
+<a id="check_memory_help"></a>
+<a id="check_memory_help-pb"></a>
+<a id="check_memory_show-default"></a>
+<a id="check_memory_help-short"></a>
+<a id="check_memory_type"></a>
+<a id="check_memory_options"></a></p>
+<h4 id="command-line-arguments_1">Command-line Arguments</h4>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#check_memory_filter">filter</a></td>
+<td></td>
+<td>Filter which marks interesting items.</td>
+</tr>
+<tr>
+<td><a href="#check_memory_warning">warning</a></td>
+<td>used &gt; 80%</td>
+<td>Filter which marks items which generates a warning state.</td>
+</tr>
+<tr>
+<td>warn</td>
+<td></td>
+<td>Short alias for warning</td>
+</tr>
+<tr>
+<td><a href="#check_memory_critical">critical</a></td>
+<td>used &gt; 90%</td>
+<td>Filter which marks items which generates a critical state.</td>
+</tr>
+<tr>
+<td>crit</td>
+<td></td>
+<td>Short alias for critical.</td>
+</tr>
+<tr>
+<td><a href="#check_memory_ok">ok</a></td>
+<td></td>
+<td>Filter which marks items which generates an ok state.</td>
+</tr>
+<tr>
+<td>debug</td>
+<td>N/A</td>
+<td>Show debugging information in the log</td>
+</tr>
+<tr>
+<td>show-all</td>
+<td>N/A</td>
+<td>Show details for all matches regardless of status (normally details are only showed for warnings and criticals).</td>
+</tr>
+<tr>
+<td><a href="#check_memory_empty-state">empty-state</a></td>
+<td>ignored</td>
+<td>Return status to use when nothing matched filter.</td>
+</tr>
+<tr>
+<td><a href="#check_memory_perf-config">perf-config</a></td>
+<td></td>
+<td>Performance data generation configuration</td>
+</tr>
+<tr>
+<td>escape-html</td>
+<td>N/A</td>
+<td>Escape any &lt; and &gt; characters to prevent HTML encoding</td>
+</tr>
+<tr>
+<td>help</td>
+<td>N/A</td>
+<td>Show help screen (this screen)</td>
+</tr>
+<tr>
+<td>help-pb</td>
+<td>N/A</td>
+<td>Show help screen as a protocol buffer payload</td>
+</tr>
+<tr>
+<td>show-default</td>
+<td>N/A</td>
+<td>Show default values for a given command</td>
+</tr>
+<tr>
+<td>help-short</td>
+<td>N/A</td>
+<td>Show help screen (short format).</td>
+</tr>
+<tr>
+<td><a href="#check_memory_top-syntax">top-syntax</a></td>
+<td>${status}: ${list}</td>
+<td>Top level syntax.</td>
+</tr>
+<tr>
+<td><a href="#check_memory_ok-syntax">ok-syntax</a></td>
+<td></td>
+<td>ok syntax.</td>
+</tr>
+<tr>
+<td><a href="#check_memory_empty-syntax">empty-syntax</a></td>
+<td></td>
+<td>Empty syntax.</td>
+</tr>
+<tr>
+<td><a href="#check_memory_detail-syntax">detail-syntax</a></td>
+<td>${type}: ${used}/${size}</td>
+<td>Detail level syntax.</td>
+</tr>
+<tr>
+<td><a href="#check_memory_perf-syntax">perf-syntax</a></td>
+<td>${type}</td>
+<td>Performance alias syntax.</td>
+</tr>
+<tr>
+<td>type</td>
+<td></td>
+<td>The type of memory to check (physical = Physical memory (RAM), committed = total memory (RAM+PAGE)</td>
+</tr>
+</tbody>
+</table>
+<h5 id="check_memory_filter">filter:</h5>
+
+<p>Filter which marks interesting items.
+Interesting items are items which will be included in the check.
+They do not denote warning or critical state instead it defines which items are relevant and you can remove unwanted items.</p>
+<h5 id="check_memory_warning">warning:</h5>
+
+<p>Filter which marks items which generates a warning state.
+If anything matches this filter the return status will be escalated to warning.</p>
+<p><em>Default Value:</em> <code>used &gt; 80%</code></p>
+<h5 id="check_memory_critical">critical:</h5>
+
+<p>Filter which marks items which generates a critical state.
+If anything matches this filter the return status will be escalated to critical.</p>
+<p><em>Default Value:</em> <code>used &gt; 90%</code></p>
+<h5 id="check_memory_ok">ok:</h5>
+
+<p>Filter which marks items which generates an ok state.
+If anything matches this any previous state for this item will be reset to ok.</p>
+<h5 id="check_memory_empty-state">empty-state:</h5>
+
+<p>Return status to use when nothing matched filter.
+If no filter is specified this will never happen unless the file is empty.</p>
+<p><em>Default Value:</em> <code>ignored</code></p>
+<h5 id="check_memory_perf-config">perf-config:</h5>
+
+<p>Performance data generation configuration
+TODO: obj ( key: value; key: value) obj (key:valuer;key:value)</p>
+<h5 id="check_memory_top-syntax">top-syntax:</h5>
+
+<p>Top level syntax.
+Used to format the message to return can include text as well as special keywords which will include information from the checks.
+To add a keyword to the message you can use two syntaxes either ${keyword} or %(keyword) (there is no difference between them apart from ${} can be difficult to escape on linux).</p>
+<p><em>Default Value:</em> <code>${status}: ${list}</code></p>
+<h5 id="check_memory_ok-syntax">ok-syntax:</h5>
+
+<p>ok syntax.
+DEPRECATED! This is the syntax for when an ok result is returned.
+This value will not be used if your syntax contains %(list) or %(count).</p>
+<h5 id="check_memory_empty-syntax">empty-syntax:</h5>
+
+<p>Empty syntax.
+DEPRECATED! This is the syntax for when nothing matches the filter.</p>
+<h5 id="check_memory_detail-syntax">detail-syntax:</h5>
+
+<p>Detail level syntax.
+Used to format each resulting item in the message.
+%(list) will be replaced with all the items formated by this syntax string in the top-syntax.
+To add a keyword to the message you can use two syntaxes either ${keyword} or %(keyword) (there is no difference between them apart from ${} can be difficult to escape on linux).</p>
+<p><em>Default Value:</em> <code>${type}: ${used}/${size}</code></p>
+<h5 id="check_memory_perf-syntax">perf-syntax:</h5>
+
+<p>Performance alias syntax.
+This is the syntax for the base names of the performance data.</p>
+<p><em>Default Value:</em> <code>${type}</code></p>
+<p><a id="check_memory_filter_keys"></a></p>
+<h4 id="filter-keywords_1">Filter keywords</h4>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>free</td>
+<td>Free memory in bytes (g,m,k,b) or percentages %</td>
+</tr>
+<tr>
+<td>free_pct</td>
+<td>% free memory</td>
+</tr>
+<tr>
+<td>size</td>
+<td>Total size of memory</td>
+</tr>
+<tr>
+<td>type</td>
+<td>The type of memory to check</td>
+</tr>
+<tr>
+<td>used</td>
+<td>Used memory in bytes (g,m,k,b) or percentages %</td>
+</tr>
+<tr>
+<td>used_pct</td>
+<td>% used memory</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Common options for all checks:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>count</td>
+<td>Number of items matching the filter.</td>
+</tr>
+<tr>
+<td>crit_count</td>
+<td>Number of items matched the critical criteria.</td>
+</tr>
+<tr>
+<td>crit_list</td>
+<td>A list of all items which matched the critical criteria.</td>
+</tr>
+<tr>
+<td>detail_list</td>
+<td>A special list with critical, then warning and finally ok.</td>
+</tr>
+<tr>
+<td>list</td>
+<td>A list of all items which matched the filter.</td>
+</tr>
+<tr>
+<td>ok_count</td>
+<td>Number of items matched the ok criteria.</td>
+</tr>
+<tr>
+<td>ok_list</td>
+<td>A list of all items which matched the ok criteria.</td>
+</tr>
+<tr>
+<td>problem_count</td>
+<td>Number of items matched either warning or critical criteria.</td>
+</tr>
+<tr>
+<td>problem_list</td>
+<td>A list of all items which matched either the critical or the warning criteria.</td>
+</tr>
+<tr>
+<td>status</td>
+<td>The returned status (OK/WARN/CRIT/UNKNOWN).</td>
+</tr>
+<tr>
+<td>total</td>
+<td>Total number of items.</td>
+</tr>
+<tr>
+<td>warn_count</td>
+<td>Number of items matched the warning criteria.</td>
+</tr>
+<tr>
+<td>warn_list</td>
+<td>A list of all items which matched the warning criteria.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="check_network">check_network</h3>
+<p>Check network interface status.</p>
+<p><strong>Jump to section:</strong></p>
+<ul>
+<li><a href="#check_network_options">Command-line Arguments</a></li>
+<li><a href="#check_network_filter_keys">Filter keywords</a></li>
+</ul>
+<p><a id="check_network_warn"></a>
+<a id="check_network_crit"></a>
+<a id="check_network_debug"></a>
+<a id="check_network_show-all"></a>
+<a id="check_network_escape-html"></a>
+<a id="check_network_help"></a>
+<a id="check_network_help-pb"></a>
+<a id="check_network_show-default"></a>
+<a id="check_network_help-short"></a>
+<a id="check_network_options"></a></p>
+<h4 id="command-line-arguments_2">Command-line Arguments</h4>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#check_network_filter">filter</a></td>
+<td></td>
+<td>Filter which marks interesting items.</td>
+</tr>
+<tr>
+<td><a href="#check_network_warning">warning</a></td>
+<td>total &gt; 10000</td>
+<td>Filter which marks items which generates a warning state.</td>
+</tr>
+<tr>
+<td>warn</td>
+<td></td>
+<td>Short alias for warning</td>
+</tr>
+<tr>
+<td><a href="#check_network_critical">critical</a></td>
+<td>total &gt; 100000</td>
+<td>Filter which marks items which generates a critical state.</td>
+</tr>
+<tr>
+<td>crit</td>
+<td></td>
+<td>Short alias for critical.</td>
+</tr>
+<tr>
+<td><a href="#check_network_ok">ok</a></td>
+<td></td>
+<td>Filter which marks items which generates an ok state.</td>
+</tr>
+<tr>
+<td>debug</td>
+<td>N/A</td>
+<td>Show debugging information in the log</td>
+</tr>
+<tr>
+<td>show-all</td>
+<td>N/A</td>
+<td>Show details for all matches regardless of status (normally details are only showed for warnings and criticals).</td>
+</tr>
+<tr>
+<td><a href="#check_network_empty-state">empty-state</a></td>
+<td>critical</td>
+<td>Return status to use when nothing matched filter.</td>
+</tr>
+<tr>
+<td><a href="#check_network_perf-config">perf-config</a></td>
+<td></td>
+<td>Performance data generation configuration</td>
+</tr>
+<tr>
+<td>escape-html</td>
+<td>N/A</td>
+<td>Escape any &lt; and &gt; characters to prevent HTML encoding</td>
+</tr>
+<tr>
+<td>help</td>
+<td>N/A</td>
+<td>Show help screen (this screen)</td>
+</tr>
+<tr>
+<td>help-pb</td>
+<td>N/A</td>
+<td>Show help screen as a protocol buffer payload</td>
+</tr>
+<tr>
+<td>show-default</td>
+<td>N/A</td>
+<td>Show default values for a given command</td>
+</tr>
+<tr>
+<td>help-short</td>
+<td>N/A</td>
+<td>Show help screen (short format).</td>
+</tr>
+<tr>
+<td><a href="#check_network_top-syntax">top-syntax</a></td>
+<td>${status}: ${list}</td>
+<td>Top level syntax.</td>
+</tr>
+<tr>
+<td><a href="#check_network_ok-syntax">ok-syntax</a></td>
+<td>%(status): Network interfaces seem ok.</td>
+<td>ok syntax.</td>
+</tr>
+<tr>
+<td><a href="#check_network_empty-syntax">empty-syntax</a></td>
+<td></td>
+<td>Empty syntax.</td>
+</tr>
+<tr>
+<td><a href="#check_network_detail-syntax">detail-syntax</a></td>
+<td>${name} &gt;${sent} &lt;${received} bps</td>
+<td>Detail level syntax.</td>
+</tr>
+<tr>
+<td><a href="#check_network_perf-syntax">perf-syntax</a></td>
+<td>${name}</td>
+<td>Performance alias syntax.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="check_network_filter">filter:</h5>
+
+<p>Filter which marks interesting items.
+Interesting items are items which will be included in the check.
+They do not denote warning or critical state instead it defines which items are relevant and you can remove unwanted items.</p>
+<h5 id="check_network_warning">warning:</h5>
+
+<p>Filter which marks items which generates a warning state.
+If anything matches this filter the return status will be escalated to warning.</p>
+<p><em>Default Value:</em> <code>total &gt; 10000</code></p>
+<h5 id="check_network_critical">critical:</h5>
+
+<p>Filter which marks items which generates a critical state.
+If anything matches this filter the return status will be escalated to critical.</p>
+<p><em>Default Value:</em> <code>total &gt; 100000</code></p>
+<h5 id="check_network_ok">ok:</h5>
+
+<p>Filter which marks items which generates an ok state.
+If anything matches this any previous state for this item will be reset to ok.</p>
+<h5 id="check_network_empty-state">empty-state:</h5>
+
+<p>Return status to use when nothing matched filter.
+If no filter is specified this will never happen unless the file is empty.</p>
+<p><em>Default Value:</em> <code>critical</code></p>
+<h5 id="check_network_perf-config">perf-config:</h5>
+
+<p>Performance data generation configuration
+TODO: obj ( key: value; key: value) obj (key:valuer;key:value)</p>
+<h5 id="check_network_top-syntax">top-syntax:</h5>
+
+<p>Top level syntax.
+Used to format the message to return can include text as well as special keywords which will include information from the checks.
+To add a keyword to the message you can use two syntaxes either ${keyword} or %(keyword) (there is no difference between them apart from ${} can be difficult to escape on linux).</p>
+<p><em>Default Value:</em> <code>${status}: ${list}</code></p>
+<h5 id="check_network_ok-syntax">ok-syntax:</h5>
+
+<p>ok syntax.
+DEPRECATED! This is the syntax for when an ok result is returned.
+This value will not be used if your syntax contains %(list) or %(count).</p>
+<p><em>Default Value:</em> <code>%(status): Network interfaces seem ok.</code></p>
+<h5 id="check_network_empty-syntax">empty-syntax:</h5>
+
+<p>Empty syntax.
+DEPRECATED! This is the syntax for when nothing matches the filter.</p>
+<h5 id="check_network_detail-syntax">detail-syntax:</h5>
+
+<p>Detail level syntax.
+Used to format each resulting item in the message.
+%(list) will be replaced with all the items formated by this syntax string in the top-syntax.
+To add a keyword to the message you can use two syntaxes either ${keyword} or %(keyword) (there is no difference between them apart from ${} can be difficult to escape on linux).</p>
+<p><em>Default Value:</em> <code>${name} &gt;${sent} &lt;${received} bps</code></p>
+<h5 id="check_network_perf-syntax">perf-syntax:</h5>
+
+<p>Performance alias syntax.
+This is the syntax for the base names of the performance data.</p>
+<p><em>Default Value:</em> <code>${name}</code></p>
+<p><a id="check_network_filter_keys"></a></p>
+<h4 id="filter-keywords_2">Filter keywords</h4>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MAC</td>
+<td>The MAC address</td>
+</tr>
+<tr>
+<td>enabled</td>
+<td>True if the network interface is enabled</td>
+</tr>
+<tr>
+<td>name</td>
+<td>Network interface name</td>
+</tr>
+<tr>
+<td>net_connection_id</td>
+<td>Network connection id</td>
+</tr>
+<tr>
+<td>received</td>
+<td>Bytes received per second</td>
+</tr>
+<tr>
+<td>sent</td>
+<td>Bytes sent per second</td>
+</tr>
+<tr>
+<td>speed</td>
+<td>The network interface speed</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Common options for all checks:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>count</td>
+<td>Number of items matching the filter.</td>
+</tr>
+<tr>
+<td>crit_count</td>
+<td>Number of items matched the critical criteria.</td>
+</tr>
+<tr>
+<td>crit_list</td>
+<td>A list of all items which matched the critical criteria.</td>
+</tr>
+<tr>
+<td>detail_list</td>
+<td>A special list with critical, then warning and finally ok.</td>
+</tr>
+<tr>
+<td>list</td>
+<td>A list of all items which matched the filter.</td>
+</tr>
+<tr>
+<td>ok_count</td>
+<td>Number of items matched the ok criteria.</td>
+</tr>
+<tr>
+<td>ok_list</td>
+<td>A list of all items which matched the ok criteria.</td>
+</tr>
+<tr>
+<td>problem_count</td>
+<td>Number of items matched either warning or critical criteria.</td>
+</tr>
+<tr>
+<td>problem_list</td>
+<td>A list of all items which matched either the critical or the warning criteria.</td>
+</tr>
+<tr>
+<td>status</td>
+<td>The returned status (OK/WARN/CRIT/UNKNOWN).</td>
+</tr>
+<tr>
+<td>total</td>
+<td>Total number of items.</td>
+</tr>
+<tr>
+<td>warn_count</td>
+<td>Number of items matched the warning criteria.</td>
+</tr>
+<tr>
+<td>warn_list</td>
+<td>A list of all items which matched the warning criteria.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="check_os_version">check_os_version</h3>
+<p>Check the version of the underlying OS.</p>
+<p><strong>Jump to section:</strong></p>
+<ul>
+<li><a href="#check_os_version_samples">Sample Commands</a></li>
+<li><a href="#check_os_version_options">Command-line Arguments</a></li>
+<li><a href="#check_os_version_filter_keys">Filter keywords</a></li>
+</ul>
+<p><a id="check_os_version_samples"></a></p>
+<h4 id="sample-commands_2">Sample Commands</h4>
+<p><em>To edit these sample please edit <a href="https://github.com/mickem/nscp-docs/blob/master/samples/CheckSystem_check_os_version_samples.md">this page</a></em></p>
+<p><strong>Default check:</strong></p>
+<div class="highlight"><pre><span></span><code>check_os_Version
+L     client CRITICAL: Windows 7 (6.1.7601)
+L     client  Performance data: &#39;version&#39;=61;50;50
+</code></pre></div>
+<p>Making sure the OS version is <strong>Windows 8</strong>:</p>
+<div class="highlight"><pre><span></span><code>check_os_Version &quot;warn=version &lt; 62&quot;
+L     client WARNING: Windows 7 (6.1.7601)
+L     client  Performance data: &#39;version&#39;=61;62;0
+</code></pre></div>
+<p>Default check <strong>via NRPE</strong>:</p>
+<div class="highlight"><pre><span></span><code>check_nrpe --host 192.168.56.103 --command check_os_version
+Windows 2012 (6.2.9200)|&#39;version&#39;=62;50;50
+</code></pre></div>
+<p><a id="check_os_version_warn"></a>
+<a id="check_os_version_crit"></a>
+<a id="check_os_version_debug"></a>
+<a id="check_os_version_show-all"></a>
+<a id="check_os_version_escape-html"></a>
+<a id="check_os_version_help"></a>
+<a id="check_os_version_help-pb"></a>
+<a id="check_os_version_show-default"></a>
+<a id="check_os_version_help-short"></a>
+<a id="check_os_version_options"></a></p>
+<h4 id="command-line-arguments_3">Command-line Arguments</h4>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#check_os_version_filter">filter</a></td>
+<td></td>
+<td>Filter which marks interesting items.</td>
+</tr>
+<tr>
+<td><a href="#check_os_version_warning">warning</a></td>
+<td>version &lt;= 50</td>
+<td>Filter which marks items which generates a warning state.</td>
+</tr>
+<tr>
+<td>warn</td>
+<td></td>
+<td>Short alias for warning</td>
+</tr>
+<tr>
+<td><a href="#check_os_version_critical">critical</a></td>
+<td>version &lt;= 50</td>
+<td>Filter which marks items which generates a critical state.</td>
+</tr>
+<tr>
+<td>crit</td>
+<td></td>
+<td>Short alias for critical.</td>
+</tr>
+<tr>
+<td><a href="#check_os_version_ok">ok</a></td>
+<td></td>
+<td>Filter which marks items which generates an ok state.</td>
+</tr>
+<tr>
+<td>debug</td>
+<td>N/A</td>
+<td>Show debugging information in the log</td>
+</tr>
+<tr>
+<td>show-all</td>
+<td>N/A</td>
+<td>Show details for all matches regardless of status (normally details are only showed for warnings and criticals).</td>
+</tr>
+<tr>
+<td><a href="#check_os_version_empty-state">empty-state</a></td>
+<td>ignored</td>
+<td>Return status to use when nothing matched filter.</td>
+</tr>
+<tr>
+<td><a href="#check_os_version_perf-config">perf-config</a></td>
+<td></td>
+<td>Performance data generation configuration</td>
+</tr>
+<tr>
+<td>escape-html</td>
+<td>N/A</td>
+<td>Escape any &lt; and &gt; characters to prevent HTML encoding</td>
+</tr>
+<tr>
+<td>help</td>
+<td>N/A</td>
+<td>Show help screen (this screen)</td>
+</tr>
+<tr>
+<td>help-pb</td>
+<td>N/A</td>
+<td>Show help screen as a protocol buffer payload</td>
+</tr>
+<tr>
+<td>show-default</td>
+<td>N/A</td>
+<td>Show default values for a given command</td>
+</tr>
+<tr>
+<td>help-short</td>
+<td>N/A</td>
+<td>Show help screen (short format).</td>
+</tr>
+<tr>
+<td><a href="#check_os_version_top-syntax">top-syntax</a></td>
+<td>${status}: ${list}</td>
+<td>Top level syntax.</td>
+</tr>
+<tr>
+<td><a href="#check_os_version_ok-syntax">ok-syntax</a></td>
+<td></td>
+<td>ok syntax.</td>
+</tr>
+<tr>
+<td><a href="#check_os_version_empty-syntax">empty-syntax</a></td>
+<td></td>
+<td>Empty syntax.</td>
+</tr>
+<tr>
+<td><a href="#check_os_version_detail-syntax">detail-syntax</a></td>
+<td>${version} (${major}.${minor}.${build})</td>
+<td>Detail level syntax.</td>
+</tr>
+<tr>
+<td><a href="#check_os_version_perf-syntax">perf-syntax</a></td>
+<td>version</td>
+<td>Performance alias syntax.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="check_os_version_filter">filter:</h5>
+
+<p>Filter which marks interesting items.
+Interesting items are items which will be included in the check.
+They do not denote warning or critical state instead it defines which items are relevant and you can remove unwanted items.</p>
+<h5 id="check_os_version_warning">warning:</h5>
+
+<p>Filter which marks items which generates a warning state.
+If anything matches this filter the return status will be escalated to warning.</p>
+<p><em>Default Value:</em> <code>version &lt;= 50</code></p>
+<h5 id="check_os_version_critical">critical:</h5>
+
+<p>Filter which marks items which generates a critical state.
+If anything matches this filter the return status will be escalated to critical.</p>
+<p><em>Default Value:</em> <code>version &lt;= 50</code></p>
+<h5 id="check_os_version_ok">ok:</h5>
+
+<p>Filter which marks items which generates an ok state.
+If anything matches this any previous state for this item will be reset to ok.</p>
+<h5 id="check_os_version_empty-state">empty-state:</h5>
+
+<p>Return status to use when nothing matched filter.
+If no filter is specified this will never happen unless the file is empty.</p>
+<p><em>Default Value:</em> <code>ignored</code></p>
+<h5 id="check_os_version_perf-config">perf-config:</h5>
+
+<p>Performance data generation configuration
+TODO: obj ( key: value; key: value) obj (key:valuer;key:value)</p>
+<h5 id="check_os_version_top-syntax">top-syntax:</h5>
+
+<p>Top level syntax.
+Used to format the message to return can include text as well as special keywords which will include information from the checks.
+To add a keyword to the message you can use two syntaxes either ${keyword} or %(keyword) (there is no difference between them apart from ${} can be difficult to escape on linux).</p>
+<p><em>Default Value:</em> <code>${status}: ${list}</code></p>
+<h5 id="check_os_version_ok-syntax">ok-syntax:</h5>
+
+<p>ok syntax.
+DEPRECATED! This is the syntax for when an ok result is returned.
+This value will not be used if your syntax contains %(list) or %(count).</p>
+<h5 id="check_os_version_empty-syntax">empty-syntax:</h5>
+
+<p>Empty syntax.
+DEPRECATED! This is the syntax for when nothing matches the filter.</p>
+<h5 id="check_os_version_detail-syntax">detail-syntax:</h5>
+
+<p>Detail level syntax.
+Used to format each resulting item in the message.
+%(list) will be replaced with all the items formated by this syntax string in the top-syntax.
+To add a keyword to the message you can use two syntaxes either ${keyword} or %(keyword) (there is no difference between them apart from ${} can be difficult to escape on linux).</p>
+<p><em>Default Value:</em> <code>${version} (${major}.${minor}.${build})</code></p>
+<h5 id="check_os_version_perf-syntax">perf-syntax:</h5>
+
+<p>Performance alias syntax.
+This is the syntax for the base names of the performance data.</p>
+<p><em>Default Value:</em> <code>version</code></p>
+<p><a id="check_os_version_filter_keys"></a></p>
+<h4 id="filter-keywords_3">Filter keywords</h4>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>build</td>
+<td>Build version number</td>
+</tr>
+<tr>
+<td>major</td>
+<td>Major version number</td>
+</tr>
+<tr>
+<td>minor</td>
+<td>Minor version number</td>
+</tr>
+<tr>
+<td>suite</td>
+<td>Which suites are installed on the machine (Microsoft BackOffice, Web Edition, Compute Cluster Edition, Datacenter Edition, Enterprise Edition, Embedded, Home Edition, Remote Desktop Support, Small Business Server, Storage Server, Terminal Services, Home Server)</td>
+</tr>
+<tr>
+<td>version</td>
+<td>The system version</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Common options for all checks:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>count</td>
+<td>Number of items matching the filter.</td>
+</tr>
+<tr>
+<td>crit_count</td>
+<td>Number of items matched the critical criteria.</td>
+</tr>
+<tr>
+<td>crit_list</td>
+<td>A list of all items which matched the critical criteria.</td>
+</tr>
+<tr>
+<td>detail_list</td>
+<td>A special list with critical, then warning and finally ok.</td>
+</tr>
+<tr>
+<td>list</td>
+<td>A list of all items which matched the filter.</td>
+</tr>
+<tr>
+<td>ok_count</td>
+<td>Number of items matched the ok criteria.</td>
+</tr>
+<tr>
+<td>ok_list</td>
+<td>A list of all items which matched the ok criteria.</td>
+</tr>
+<tr>
+<td>problem_count</td>
+<td>Number of items matched either warning or critical criteria.</td>
+</tr>
+<tr>
+<td>problem_list</td>
+<td>A list of all items which matched either the critical or the warning criteria.</td>
+</tr>
+<tr>
+<td>status</td>
+<td>The returned status (OK/WARN/CRIT/UNKNOWN).</td>
+</tr>
+<tr>
+<td>total</td>
+<td>Total number of items.</td>
+</tr>
+<tr>
+<td>warn_count</td>
+<td>Number of items matched the warning criteria.</td>
+</tr>
+<tr>
+<td>warn_list</td>
+<td>A list of all items which matched the warning criteria.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="check_pagefile">check_pagefile</h3>
+<p>Check the size of the system pagefile(s).</p>
+<p><strong>Jump to section:</strong></p>
+<ul>
+<li><a href="#check_pagefile_samples">Sample Commands</a></li>
+<li><a href="#check_pagefile_options">Command-line Arguments</a></li>
+<li><a href="#check_pagefile_filter_keys">Filter keywords</a></li>
+</ul>
+<p><a id="check_pagefile_samples"></a></p>
+<h4 id="sample-commands_3">Sample Commands</h4>
+<p><em>To edit these sample please edit <a href="https://github.com/mickem/nscp-docs/blob/master/samples/CheckSystem_check_pagefile_samples.md">this page</a></em></p>
+<p><strong>Default options:</strong></p>
+<div class="highlight"><pre><span></span><code>check_pagefile
+L     client WARNING: \Device\HarddiskVolume2\pagefile.sys 24.3M (32M)
+L     client  Performance data: &#39;\??\D:\pagefile.sys&#39;=1G;14;19;0;23 &#39;\??\D:\pagefile.sys %&#39;=6%;59;79;0;100 &#39;\Device\HarddiskVolume2\pagefile.sys&#39;=24M;19;25;0;32 &#39;\Device\HarddiskVolume2\pagefile.sys %&#39;=75%;59;79;0;100 &#39;total&#39;=1G;14;19;0;23 &#39;total %&#39;=6%;59;79;0;100
+</code></pre></div>
+<p>Only showing the total amount of pagefile usage::</p>
+<div class="highlight"><pre><span></span><code>check_pagefile &quot;filter=name = &#39;total&#39;&quot; &quot;top-syntax=${list}&quot;
+OK: total 1.66G (24G)
+Performance data: &#39;total&#39;=1G;14;19;0;23 &#39;total %&#39;=6%;59;79;0;100
+</code></pre></div>
+<p>Getting help on available options::</p>
+<div class="highlight"><pre><span></span><code>check_pagefile help
+...
+  filter=ARG           Filter which marks interesting items.
+                       Interesting items are items which will be included in
+                       the check.
+                       They do not denote warning or critical state but they
+                       are checked use this to filter out unwanted items.
+                           Available options:
+                       free          Free memory in bytes (g,m,k,b) or percentages %
+                       name          The name of the page file (location)
+                       size          Total size of pagefile
+                       used          Used memory in bytes (g,m,k,b) or percentages %
+                       count         Number of items matching the filter
+                       total         Total number of items
+                       ok_count      Number of items matched the ok criteria
+                       warn_count    Number of items matched the warning criteria
+                       crit_count    Number of items matched the critical criteria
+                       problem_count Number of items matched either warning or critical criteria
+...
+</code></pre></div>
+<p><a id="check_pagefile_warn"></a>
+<a id="check_pagefile_crit"></a>
+<a id="check_pagefile_debug"></a>
+<a id="check_pagefile_show-all"></a>
+<a id="check_pagefile_escape-html"></a>
+<a id="check_pagefile_help"></a>
+<a id="check_pagefile_help-pb"></a>
+<a id="check_pagefile_show-default"></a>
+<a id="check_pagefile_help-short"></a>
+<a id="check_pagefile_options"></a></p>
+<h4 id="command-line-arguments_4">Command-line Arguments</h4>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#check_pagefile_filter">filter</a></td>
+<td></td>
+<td>Filter which marks interesting items.</td>
+</tr>
+<tr>
+<td><a href="#check_pagefile_warning">warning</a></td>
+<td>used &gt; 60%</td>
+<td>Filter which marks items which generates a warning state.</td>
+</tr>
+<tr>
+<td>warn</td>
+<td></td>
+<td>Short alias for warning</td>
+</tr>
+<tr>
+<td><a href="#check_pagefile_critical">critical</a></td>
+<td>used &gt; 80%</td>
+<td>Filter which marks items which generates a critical state.</td>
+</tr>
+<tr>
+<td>crit</td>
+<td></td>
+<td>Short alias for critical.</td>
+</tr>
+<tr>
+<td><a href="#check_pagefile_ok">ok</a></td>
+<td></td>
+<td>Filter which marks items which generates an ok state.</td>
+</tr>
+<tr>
+<td>debug</td>
+<td>N/A</td>
+<td>Show debugging information in the log</td>
+</tr>
+<tr>
+<td>show-all</td>
+<td>N/A</td>
+<td>Show details for all matches regardless of status (normally details are only showed for warnings and criticals).</td>
+</tr>
+<tr>
+<td><a href="#check_pagefile_empty-state">empty-state</a></td>
+<td>ignored</td>
+<td>Return status to use when nothing matched filter.</td>
+</tr>
+<tr>
+<td><a href="#check_pagefile_perf-config">perf-config</a></td>
+<td></td>
+<td>Performance data generation configuration</td>
+</tr>
+<tr>
+<td>escape-html</td>
+<td>N/A</td>
+<td>Escape any &lt; and &gt; characters to prevent HTML encoding</td>
+</tr>
+<tr>
+<td>help</td>
+<td>N/A</td>
+<td>Show help screen (this screen)</td>
+</tr>
+<tr>
+<td>help-pb</td>
+<td>N/A</td>
+<td>Show help screen as a protocol buffer payload</td>
+</tr>
+<tr>
+<td>show-default</td>
+<td>N/A</td>
+<td>Show default values for a given command</td>
+</tr>
+<tr>
+<td>help-short</td>
+<td>N/A</td>
+<td>Show help screen (short format).</td>
+</tr>
+<tr>
+<td><a href="#check_pagefile_top-syntax">top-syntax</a></td>
+<td>${status}: ${list}</td>
+<td>Top level syntax.</td>
+</tr>
+<tr>
+<td><a href="#check_pagefile_ok-syntax">ok-syntax</a></td>
+<td></td>
+<td>ok syntax.</td>
+</tr>
+<tr>
+<td><a href="#check_pagefile_empty-syntax">empty-syntax</a></td>
+<td></td>
+<td>Empty syntax.</td>
+</tr>
+<tr>
+<td><a href="#check_pagefile_detail-syntax">detail-syntax</a></td>
+<td>${name} ${used} (${size})</td>
+<td>Detail level syntax.</td>
+</tr>
+<tr>
+<td><a href="#check_pagefile_perf-syntax">perf-syntax</a></td>
+<td>${name}</td>
+<td>Performance alias syntax.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="check_pagefile_filter">filter:</h5>
+
+<p>Filter which marks interesting items.
+Interesting items are items which will be included in the check.
+They do not denote warning or critical state instead it defines which items are relevant and you can remove unwanted items.</p>
+<h5 id="check_pagefile_warning">warning:</h5>
+
+<p>Filter which marks items which generates a warning state.
+If anything matches this filter the return status will be escalated to warning.</p>
+<p><em>Default Value:</em> <code>used &gt; 60%</code></p>
+<h5 id="check_pagefile_critical">critical:</h5>
+
+<p>Filter which marks items which generates a critical state.
+If anything matches this filter the return status will be escalated to critical.</p>
+<p><em>Default Value:</em> <code>used &gt; 80%</code></p>
+<h5 id="check_pagefile_ok">ok:</h5>
+
+<p>Filter which marks items which generates an ok state.
+If anything matches this any previous state for this item will be reset to ok.</p>
+<h5 id="check_pagefile_empty-state">empty-state:</h5>
+
+<p>Return status to use when nothing matched filter.
+If no filter is specified this will never happen unless the file is empty.</p>
+<p><em>Default Value:</em> <code>ignored</code></p>
+<h5 id="check_pagefile_perf-config">perf-config:</h5>
+
+<p>Performance data generation configuration
+TODO: obj ( key: value; key: value) obj (key:valuer;key:value)</p>
+<h5 id="check_pagefile_top-syntax">top-syntax:</h5>
+
+<p>Top level syntax.
+Used to format the message to return can include text as well as special keywords which will include information from the checks.
+To add a keyword to the message you can use two syntaxes either ${keyword} or %(keyword) (there is no difference between them apart from ${} can be difficult to escape on linux).</p>
+<p><em>Default Value:</em> <code>${status}: ${list}</code></p>
+<h5 id="check_pagefile_ok-syntax">ok-syntax:</h5>
+
+<p>ok syntax.
+DEPRECATED! This is the syntax for when an ok result is returned.
+This value will not be used if your syntax contains %(list) or %(count).</p>
+<h5 id="check_pagefile_empty-syntax">empty-syntax:</h5>
+
+<p>Empty syntax.
+DEPRECATED! This is the syntax for when nothing matches the filter.</p>
+<h5 id="check_pagefile_detail-syntax">detail-syntax:</h5>
+
+<p>Detail level syntax.
+Used to format each resulting item in the message.
+%(list) will be replaced with all the items formated by this syntax string in the top-syntax.
+To add a keyword to the message you can use two syntaxes either ${keyword} or %(keyword) (there is no difference between them apart from ${} can be difficult to escape on linux).</p>
+<p><em>Default Value:</em> <code>${name} ${used} (${size})</code></p>
+<h5 id="check_pagefile_perf-syntax">perf-syntax:</h5>
+
+<p>Performance alias syntax.
+This is the syntax for the base names of the performance data.</p>
+<p><em>Default Value:</em> <code>${name}</code></p>
+<p><a id="check_pagefile_filter_keys"></a></p>
+<h4 id="filter-keywords_4">Filter keywords</h4>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>free</td>
+<td>Free memory in bytes (g,m,k,b) or percentages %</td>
+</tr>
+<tr>
+<td>free_pct</td>
+<td>% free memory</td>
+</tr>
+<tr>
+<td>name</td>
+<td>The name of the page file (location)</td>
+</tr>
+<tr>
+<td>size</td>
+<td>Total size of pagefile</td>
+</tr>
+<tr>
+<td>used</td>
+<td>Used memory in bytes (g,m,k,b) or percentages %</td>
+</tr>
+<tr>
+<td>used_pct</td>
+<td>% used memory</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Common options for all checks:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>count</td>
+<td>Number of items matching the filter.</td>
+</tr>
+<tr>
+<td>crit_count</td>
+<td>Number of items matched the critical criteria.</td>
+</tr>
+<tr>
+<td>crit_list</td>
+<td>A list of all items which matched the critical criteria.</td>
+</tr>
+<tr>
+<td>detail_list</td>
+<td>A special list with critical, then warning and finally ok.</td>
+</tr>
+<tr>
+<td>list</td>
+<td>A list of all items which matched the filter.</td>
+</tr>
+<tr>
+<td>ok_count</td>
+<td>Number of items matched the ok criteria.</td>
+</tr>
+<tr>
+<td>ok_list</td>
+<td>A list of all items which matched the ok criteria.</td>
+</tr>
+<tr>
+<td>problem_count</td>
+<td>Number of items matched either warning or critical criteria.</td>
+</tr>
+<tr>
+<td>problem_list</td>
+<td>A list of all items which matched either the critical or the warning criteria.</td>
+</tr>
+<tr>
+<td>status</td>
+<td>The returned status (OK/WARN/CRIT/UNKNOWN).</td>
+</tr>
+<tr>
+<td>total</td>
+<td>Total number of items.</td>
+</tr>
+<tr>
+<td>warn_count</td>
+<td>Number of items matched the warning criteria.</td>
+</tr>
+<tr>
+<td>warn_list</td>
+<td>A list of all items which matched the warning criteria.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="check_pdh">check_pdh</h3>
+<p>Check the value of a performance (PDH) counter on the local or remote system.
+The counters can also be added and polled periodically to get average values. Performance Log Users group membership is required to check performance counters.</p>
+<p><strong>Jump to section:</strong></p>
+<ul>
+<li><a href="#check_pdh_samples">Sample Commands</a></li>
+<li><a href="#check_pdh_options">Command-line Arguments</a></li>
+<li><a href="#check_pdh_filter_keys">Filter keywords</a></li>
+</ul>
+<p><a id="check_pdh_samples"></a></p>
+<h4 id="sample-commands_4">Sample Commands</h4>
+<p><em>To edit these sample please edit <a href="https://github.com/mickem/nscp-docs/blob/master/samples/CheckSystem_check_pdh_samples.md">this page</a></em></p>
+<p>﻿<strong>Checking specific Counter (\System\System Up Time):</strong></p>
+<div class="highlight"><pre><span></span><code>check_pdh &quot;counter=\\System\\System Up Time&quot; &quot;warn=value &gt; 5&quot; &quot;crit=value &gt; 9999&quot;
+\System\System Up Time = 204213
+&#39;\System\System Up Time value&#39;=204213;5;9999
+</code></pre></div>
+<p>Using the <strong>expand index</strong> to check for translated counters::</p>
+<div class="highlight"><pre><span></span><code>check_pdh &quot;counter=\\4\\30&quot; &quot;warn=value &gt; 5&quot; &quot;crit=value &gt; 9999&quot; expand-index
+Everything looks good
+&#39;\Minne\Dedikationsgräns value&#39;=-2147483648;5;9999
+</code></pre></div>
+<p>Checking <strong>translated counters</strong> without expanding indexes::</p>
+<div class="highlight"><pre><span></span><code>check_pdh &quot;counter=\\4\\30&quot; &quot;warn=value &gt; 5&quot; &quot;crit=value &gt; 9999&quot;
+Everything looks good
+&#39;\4\30 value&#39;=-2147483648;5;9999
+</code></pre></div>
+<p>Checking <strong>large values</strong> using the type=large keyword::</p>
+<div class="highlight"><pre><span></span><code>check_pdh &quot;counter=\\4\\30&quot; &quot;warn=value &gt; 5&quot; &quot;crit=value &gt; 9999&quot; flags=nocap100 expand-index type=large
+\Minne\Dedikationsgräns = 25729224704
+&#39;\Minne\Dedikationsgräns value&#39;=25729224704;5;9999
+</code></pre></div>
+<p>Using real-time checks to check average values over time.</p>
+<p>Here we configure a counter to be checked at regular intervals and the value is added to a rrd buffer.
+The configuration from nsclient.ini::</p>
+<div class="highlight"><pre><span></span><code>[/settings/system/windows/counters/foo]
+collection strategy=rrd
+type=large
+counter=\Processor(_total)\% Processor Time
+</code></pre></div>
+<p>Then we can check the value (<strong>current snapshot</strong>)::</p>
+<div class="highlight"><pre><span></span><code>check_pdh &quot;counter=foo&quot; &quot;warn=value &gt; 80&quot; &quot;crit=value &gt; 90&quot;
+Everything looks good
+&#39;foo value&#39;=18;80;90
+</code></pre></div>
+<p>To check averages from the same counter we need to specify the time option::</p>
+<div class="highlight"><pre><span></span><code>check_pdh &quot;counter=foo&quot; &quot;warn=value &gt; 80&quot; &quot;crit=value &gt; 90&quot; time=30s
+Everything looks good
+&#39;foo value&#39;=3;80;90
+</code></pre></div>
+<p>Checking <strong>all instances</strong> of a given counter::</p>
+<div class="highlight"><pre><span></span><code>    check_pdh &quot;counter=\Processor(*)\% processortid&quot; instances
+L     client OK: \\MIME-LAPTOP\Processor(0)\% processortid = 100, \\MIME-LAPTOP\Processor(1)\% processortid = 100, \\MIME-LAPTOP\Processor(2)\% processortid = 100, \\MIME-LAPTOP\Processor(3)\% processortid = 100, \\MIME-LAPTOP\Processor(4)\% processortid = 100, \\MIME-LAPTOP\Processor(5)\% processortid = 100, \\MIME-LAPTOP\Processor(6)\% processortid = 100, \\MIME-LAPTOP\Processor(7)\% processortid = 100, \\MIME-LAPTOP\Processor(_Total)\% processortid = 100
+    L     client  Performance data: &#39;\Processor(*)\% processortid_0&#39;=100;0;0 &#39;\Processor(*)\% processortid_1&#39;=100;0;0 &#39;\Processor(*)\% processortid_2&#39;=100;0;0 &#39;\Processor(*)\% processortid_3&#39;=100;0;0 &#39;\Processor(*)\% processortid_4&#39;=100;0;0 &#39;\Processor(*)\% processortid_5&#39;=100;0;0 &#39;\Processor(*)\% processortid_6&#39;=100;0;0 &#39;\Processor(*)\% processortid_7&#39;=100;0;0 &#39;\Processor(*)\% processortid__Total&#39;=100;0;0
+</code></pre></div>
+<p><a id="check_pdh_warn"></a>
+<a id="check_pdh_crit"></a>
+<a id="check_pdh_debug"></a>
+<a id="check_pdh_show-all"></a>
+<a id="check_pdh_escape-html"></a>
+<a id="check_pdh_help"></a>
+<a id="check_pdh_help-pb"></a>
+<a id="check_pdh_show-default"></a>
+<a id="check_pdh_help-short"></a>
+<a id="check_pdh_counter"></a>
+<a id="check_pdh_expand-index"></a>
+<a id="check_pdh_instances"></a>
+<a id="check_pdh_reload"></a>
+<a id="check_pdh_averages"></a>
+<a id="check_pdh_time"></a>
+<a id="check_pdh_flags"></a>
+<a id="check_pdh_ignore-errors"></a>
+<a id="check_pdh_options"></a></p>
+<h4 id="command-line-arguments_5">Command-line Arguments</h4>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#check_pdh_filter">filter</a></td>
+<td></td>
+<td>Filter which marks interesting items.</td>
+</tr>
+<tr>
+<td><a href="#check_pdh_warning">warning</a></td>
+<td></td>
+<td>Filter which marks items which generates a warning state.</td>
+</tr>
+<tr>
+<td>warn</td>
+<td></td>
+<td>Short alias for warning</td>
+</tr>
+<tr>
+<td><a href="#check_pdh_critical">critical</a></td>
+<td></td>
+<td>Filter which marks items which generates a critical state.</td>
+</tr>
+<tr>
+<td>crit</td>
+<td></td>
+<td>Short alias for critical.</td>
+</tr>
+<tr>
+<td><a href="#check_pdh_ok">ok</a></td>
+<td></td>
+<td>Filter which marks items which generates an ok state.</td>
+</tr>
+<tr>
+<td>debug</td>
+<td>N/A</td>
+<td>Show debugging information in the log</td>
+</tr>
+<tr>
+<td>show-all</td>
+<td>N/A</td>
+<td>Show details for all matches regardless of status (normally details are only showed for warnings and criticals).</td>
+</tr>
+<tr>
+<td><a href="#check_pdh_empty-state">empty-state</a></td>
+<td>unknown</td>
+<td>Return status to use when nothing matched filter.</td>
+</tr>
+<tr>
+<td><a href="#check_pdh_perf-config">perf-config</a></td>
+<td></td>
+<td>Performance data generation configuration</td>
+</tr>
+<tr>
+<td>escape-html</td>
+<td>N/A</td>
+<td>Escape any &lt; and &gt; characters to prevent HTML encoding</td>
+</tr>
+<tr>
+<td>help</td>
+<td>N/A</td>
+<td>Show help screen (this screen)</td>
+</tr>
+<tr>
+<td>help-pb</td>
+<td>N/A</td>
+<td>Show help screen as a protocol buffer payload</td>
+</tr>
+<tr>
+<td>show-default</td>
+<td>N/A</td>
+<td>Show default values for a given command</td>
+</tr>
+<tr>
+<td>help-short</td>
+<td>N/A</td>
+<td>Show help screen (short format).</td>
+</tr>
+<tr>
+<td><a href="#check_pdh_top-syntax">top-syntax</a></td>
+<td>${status}: ${list}</td>
+<td>Top level syntax.</td>
+</tr>
+<tr>
+<td><a href="#check_pdh_ok-syntax">ok-syntax</a></td>
+<td></td>
+<td>ok syntax.</td>
+</tr>
+<tr>
+<td><a href="#check_pdh_empty-syntax">empty-syntax</a></td>
+<td></td>
+<td>Empty syntax.</td>
+</tr>
+<tr>
+<td><a href="#check_pdh_detail-syntax">detail-syntax</a></td>
+<td>${alias} = ${value}</td>
+<td>Detail level syntax.</td>
+</tr>
+<tr>
+<td><a href="#check_pdh_perf-syntax">perf-syntax</a></td>
+<td>${alias}</td>
+<td>Performance alias syntax.</td>
+</tr>
+<tr>
+<td>counter</td>
+<td></td>
+<td>Performance counter to check</td>
+</tr>
+<tr>
+<td>expand-index</td>
+<td>N/A</td>
+<td>Expand indexes in counter strings</td>
+</tr>
+<tr>
+<td>instances</td>
+<td>N/A</td>
+<td>Expand wildcards and fetch all instances</td>
+</tr>
+<tr>
+<td>reload</td>
+<td>N/A</td>
+<td>Reload counters on errors (useful to check counters which are not added at boot)</td>
+</tr>
+<tr>
+<td>averages</td>
+<td>N/A</td>
+<td>Check average values (ie. wait for 1 second to collecting two samples)</td>
+</tr>
+<tr>
+<td>time</td>
+<td></td>
+<td>Timeframe to use for named rrd counters</td>
+</tr>
+<tr>
+<td>flags</td>
+<td></td>
+<td>Extra flags to configure the counter (nocap100, 1000, noscale)</td>
+</tr>
+<tr>
+<td><a href="#check_pdh_type">type</a></td>
+<td>large</td>
+<td>Format of value (double, long, large)</td>
+</tr>
+<tr>
+<td>ignore-errors</td>
+<td>N/A</td>
+<td>If we should ignore errors when checking counters, for instance missing counters or invalid counters will return 0 instead of errors</td>
+</tr>
+</tbody>
+</table>
+<h5 id="check_pdh_filter">filter:</h5>
+
+<p>Filter which marks interesting items.
+Interesting items are items which will be included in the check.
+They do not denote warning or critical state instead it defines which items are relevant and you can remove unwanted items.</p>
+<h5 id="check_pdh_warning">warning:</h5>
+
+<p>Filter which marks items which generates a warning state.
+If anything matches this filter the return status will be escalated to warning.</p>
+<h5 id="check_pdh_critical">critical:</h5>
+
+<p>Filter which marks items which generates a critical state.
+If anything matches this filter the return status will be escalated to critical.</p>
+<h5 id="check_pdh_ok">ok:</h5>
+
+<p>Filter which marks items which generates an ok state.
+If anything matches this any previous state for this item will be reset to ok.</p>
+<h5 id="check_pdh_empty-state">empty-state:</h5>
+
+<p>Return status to use when nothing matched filter.
+If no filter is specified this will never happen unless the file is empty.</p>
+<p><em>Default Value:</em> <code>unknown</code></p>
+<h5 id="check_pdh_perf-config">perf-config:</h5>
+
+<p>Performance data generation configuration
+TODO: obj ( key: value; key: value) obj (key:valuer;key:value)</p>
+<h5 id="check_pdh_top-syntax">top-syntax:</h5>
+
+<p>Top level syntax.
+Used to format the message to return can include text as well as special keywords which will include information from the checks.
+To add a keyword to the message you can use two syntaxes either ${keyword} or %(keyword) (there is no difference between them apart from ${} can be difficult to escape on linux).</p>
+<p><em>Default Value:</em> <code>${status}: ${list}</code></p>
+<h5 id="check_pdh_ok-syntax">ok-syntax:</h5>
+
+<p>ok syntax.
+DEPRECATED! This is the syntax for when an ok result is returned.
+This value will not be used if your syntax contains %(list) or %(count).</p>
+<h5 id="check_pdh_empty-syntax">empty-syntax:</h5>
+
+<p>Empty syntax.
+DEPRECATED! This is the syntax for when nothing matches the filter.</p>
+<h5 id="check_pdh_detail-syntax">detail-syntax:</h5>
+
+<p>Detail level syntax.
+Used to format each resulting item in the message.
+%(list) will be replaced with all the items formated by this syntax string in the top-syntax.
+To add a keyword to the message you can use two syntaxes either ${keyword} or %(keyword) (there is no difference between them apart from ${} can be difficult to escape on linux).</p>
+<p><em>Default Value:</em> <code>${alias} = ${value}</code></p>
+<h5 id="check_pdh_perf-syntax">perf-syntax:</h5>
+
+<p>Performance alias syntax.
+This is the syntax for the base names of the performance data.</p>
+<p><em>Default Value:</em> <code>${alias}</code></p>
+<h5 id="check_pdh_type">type:</h5>
+
+<p>Format of value (double, long, large)</p>
+<p><em>Default Value:</em> <code>large</code></p>
+<p><a id="check_pdh_filter_keys"></a></p>
+<h4 id="filter-keywords_5">Filter keywords</h4>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>alias</td>
+<td>The counter alias</td>
+</tr>
+<tr>
+<td>counter</td>
+<td>The counter name</td>
+</tr>
+<tr>
+<td>time</td>
+<td>The time for rrd checks</td>
+</tr>
+<tr>
+<td>value</td>
+<td>The counter value (either float or int)</td>
+</tr>
+<tr>
+<td>value_f</td>
+<td>The counter value (force float value)</td>
+</tr>
+<tr>
+<td>value_i</td>
+<td>The counter value (force int value)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Common options for all checks:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>count</td>
+<td>Number of items matching the filter.</td>
+</tr>
+<tr>
+<td>crit_count</td>
+<td>Number of items matched the critical criteria.</td>
+</tr>
+<tr>
+<td>crit_list</td>
+<td>A list of all items which matched the critical criteria.</td>
+</tr>
+<tr>
+<td>detail_list</td>
+<td>A special list with critical, then warning and finally ok.</td>
+</tr>
+<tr>
+<td>list</td>
+<td>A list of all items which matched the filter.</td>
+</tr>
+<tr>
+<td>ok_count</td>
+<td>Number of items matched the ok criteria.</td>
+</tr>
+<tr>
+<td>ok_list</td>
+<td>A list of all items which matched the ok criteria.</td>
+</tr>
+<tr>
+<td>problem_count</td>
+<td>Number of items matched either warning or critical criteria.</td>
+</tr>
+<tr>
+<td>problem_list</td>
+<td>A list of all items which matched either the critical or the warning criteria.</td>
+</tr>
+<tr>
+<td>status</td>
+<td>The returned status (OK/WARN/CRIT/UNKNOWN).</td>
+</tr>
+<tr>
+<td>total</td>
+<td>Total number of items.</td>
+</tr>
+<tr>
+<td>warn_count</td>
+<td>Number of items matched the warning criteria.</td>
+</tr>
+<tr>
+<td>warn_list</td>
+<td>A list of all items which matched the warning criteria.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="check_process">check_process</h3>
+<p>Check state/metrics of one or more of the processes running on the computer.</p>
+<p><strong>Jump to section:</strong></p>
+<ul>
+<li><a href="#check_process_samples">Sample Commands</a></li>
+<li><a href="#check_process_options">Command-line Arguments</a></li>
+<li><a href="#check_process_filter_keys">Filter keywords</a></li>
+</ul>
+<p><a id="check_process_samples"></a></p>
+<h4 id="sample-commands_5">Sample Commands</h4>
+<p><em>To edit these sample please edit <a href="https://github.com/mickem/nscp-docs/blob/master/samples/CheckSystem_check_process_samples.md">this page</a></em></p>
+<p><strong>Default check:</strong></p>
+<div class="highlight"><pre><span></span><code>check_process
+SetPoint.exe=hung
+Performance data: &#39;taskhost.exe&#39;=1;1;0 &#39;dwm.exe&#39;=1;1;0 &#39;explorer.exe&#39;=1;1;0 ... &#39;chrome.exe&#39;=1;1;0 &#39;vcpkgsrv.exe&#39;=1;1;0 &#39;vcpkgsrv.exe&#39;=1;1;0 
+</code></pre></div>
+<p>Default check <strong>via NRPE</strong>::</p>
+<div class="highlight"><pre><span></span><code>check_nrpe --host 192.168.56.103 --command check_process
+SetPoint.exe=hung|&#39;smss.exe state&#39;=1;0;0 &#39;csrss.exe state&#39;=1;0;0...
+</code></pre></div>
+<p>Check that <strong>specific process</strong> are running::</p>
+<div class="highlight"><pre><span></span><code>check_process process=explorer.exe process=foo.exe
+foo.exe=stopped
+Performance data: &#39;explorer.exe&#39;=1;1;0 &#39;foo.exe&#39;=0;1;0
+</code></pre></div>
+<p>Check <strong>memory footprint</strong> from specific processes::</p>
+<div class="highlight"><pre><span></span><code>check_process process=explorer.exe &quot;warn=working_set &gt; 70m&quot;
+explorer.exe=started
+Performance data: &#39;explorer.exe ws_size&#39;=73M;70;0
+</code></pre></div>
+<p><strong>Extend the syntax</strong> to display the attributes we are interested in::</p>
+<div class="highlight"><pre><span></span><code>check_process process=explorer.exe &quot;warn=working_set &gt; 70m&quot; &quot;detail-syntax=${exe} ws:${working_set}, handles: ${handles}, user time:${user}s&quot;
+WARNING: Explorer.EXE ws:431.812MB, handles: 5639, user time:2535s
+Performance data: &#39;explorer.exe ws_size&#39;=73M;70;0
+</code></pre></div>
+<p>List all processes which use <strong>more then 200m virtual memory</strong> Default check <strong>via NRPE</strong>::</p>
+<div class="highlight"><pre><span></span><code>check_nrpe --host 192.168.56.103 --command check_process --arguments &quot;filter=virtual &gt; 200m&quot;
+OK all processes are ok.|&#39;csrss.exe state&#39;=1;0;0 &#39;svchost.exe state&#39;=1;0;0 &#39;AvastSvc.exe state&#39;=1;0;0 ...
+</code></pre></div>
+<p><a id="check_process_warn"></a>
+<a id="check_process_crit"></a>
+<a id="check_process_debug"></a>
+<a id="check_process_show-all"></a>
+<a id="check_process_escape-html"></a>
+<a id="check_process_help"></a>
+<a id="check_process_help-pb"></a>
+<a id="check_process_show-default"></a>
+<a id="check_process_help-short"></a>
+<a id="check_process_process"></a>
+<a id="check_process_scan-info"></a>
+<a id="check_process_scan-16bit"></a>
+<a id="check_process_scan-unreadable"></a>
+<a id="check_process_total"></a>
+<a id="check_process_options"></a></p>
+<h4 id="command-line-arguments_6">Command-line Arguments</h4>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#check_process_filter">filter</a></td>
+<td>state != 'unreadable'</td>
+<td>Filter which marks interesting items.</td>
+</tr>
+<tr>
+<td><a href="#check_process_warning">warning</a></td>
+<td>state not in ('started')</td>
+<td>Filter which marks items which generates a warning state.</td>
+</tr>
+<tr>
+<td>warn</td>
+<td></td>
+<td>Short alias for warning</td>
+</tr>
+<tr>
+<td><a href="#check_process_critical">critical</a></td>
+<td>state = 'stopped', count = 0</td>
+<td>Filter which marks items which generates a critical state.</td>
+</tr>
+<tr>
+<td>crit</td>
+<td></td>
+<td>Short alias for critical.</td>
+</tr>
+<tr>
+<td><a href="#check_process_ok">ok</a></td>
+<td></td>
+<td>Filter which marks items which generates an ok state.</td>
+</tr>
+<tr>
+<td>debug</td>
+<td>N/A</td>
+<td>Show debugging information in the log</td>
+</tr>
+<tr>
+<td>show-all</td>
+<td>N/A</td>
+<td>Show details for all matches regardless of status (normally details are only showed for warnings and criticals).</td>
+</tr>
+<tr>
+<td><a href="#check_process_empty-state">empty-state</a></td>
+<td>unknown</td>
+<td>Return status to use when nothing matched filter.</td>
+</tr>
+<tr>
+<td><a href="#check_process_perf-config">perf-config</a></td>
+<td></td>
+<td>Performance data generation configuration</td>
+</tr>
+<tr>
+<td>escape-html</td>
+<td>N/A</td>
+<td>Escape any &lt; and &gt; characters to prevent HTML encoding</td>
+</tr>
+<tr>
+<td>help</td>
+<td>N/A</td>
+<td>Show help screen (this screen)</td>
+</tr>
+<tr>
+<td>help-pb</td>
+<td>N/A</td>
+<td>Show help screen as a protocol buffer payload</td>
+</tr>
+<tr>
+<td>show-default</td>
+<td>N/A</td>
+<td>Show default values for a given command</td>
+</tr>
+<tr>
+<td>help-short</td>
+<td>N/A</td>
+<td>Show help screen (short format).</td>
+</tr>
+<tr>
+<td><a href="#check_process_top-syntax">top-syntax</a></td>
+<td>${status}: ${problem_list}</td>
+<td>Top level syntax.</td>
+</tr>
+<tr>
+<td><a href="#check_process_ok-syntax">ok-syntax</a></td>
+<td>%(status): all processes are ok.</td>
+<td>ok syntax.</td>
+</tr>
+<tr>
+<td><a href="#check_process_empty-syntax">empty-syntax</a></td>
+<td>UNKNOWN: No processes found</td>
+<td>Empty syntax.</td>
+</tr>
+<tr>
+<td><a href="#check_process_detail-syntax">detail-syntax</a></td>
+<td>${exe}=${state}</td>
+<td>Detail level syntax.</td>
+</tr>
+<tr>
+<td><a href="#check_process_perf-syntax">perf-syntax</a></td>
+<td>${exe}</td>
+<td>Performance alias syntax.</td>
+</tr>
+<tr>
+<td>process</td>
+<td></td>
+<td>The service to check, set this to * to check all services</td>
+</tr>
+<tr>
+<td>scan-info</td>
+<td></td>
+<td>If all process metrics should be fetched (otherwise only status is fetched)</td>
+</tr>
+<tr>
+<td>scan-16bit</td>
+<td></td>
+<td>If 16bit processes should be included</td>
+</tr>
+<tr>
+<td><a href="#check_process_delta">delta</a></td>
+<td></td>
+<td>Calculate delta over one elapsed second.</td>
+</tr>
+<tr>
+<td>scan-unreadable</td>
+<td></td>
+<td>If unreadable processes should be included (will not have information)</td>
+</tr>
+<tr>
+<td>total</td>
+<td>N/A</td>
+<td>Include the total of all matching files</td>
+</tr>
+</tbody>
+</table>
+<h5 id="check_process_filter">filter:</h5>
+
+<p>Filter which marks interesting items.
+Interesting items are items which will be included in the check.
+They do not denote warning or critical state instead it defines which items are relevant and you can remove unwanted items.</p>
+<p><em>Default Value:</em> <code>state != 'unreadable'</code></p>
+<h5 id="check_process_warning">warning:</h5>
+
+<p>Filter which marks items which generates a warning state.
+If anything matches this filter the return status will be escalated to warning.</p>
+<p><em>Default Value:</em> <code>state not in ('started')</code></p>
+<h5 id="check_process_critical">critical:</h5>
+
+<p>Filter which marks items which generates a critical state.
+If anything matches this filter the return status will be escalated to critical.</p>
+<p><em>Default Value:</em> <code>state = 'stopped', count = 0</code></p>
+<h5 id="check_process_ok">ok:</h5>
+
+<p>Filter which marks items which generates an ok state.
+If anything matches this any previous state for this item will be reset to ok.</p>
+<h5 id="check_process_empty-state">empty-state:</h5>
+
+<p>Return status to use when nothing matched filter.
+If no filter is specified this will never happen unless the file is empty.</p>
+<p><em>Default Value:</em> <code>unknown</code></p>
+<h5 id="check_process_perf-config">perf-config:</h5>
+
+<p>Performance data generation configuration
+TODO: obj ( key: value; key: value) obj (key:valuer;key:value)</p>
+<h5 id="check_process_top-syntax">top-syntax:</h5>
+
+<p>Top level syntax.
+Used to format the message to return can include text as well as special keywords which will include information from the checks.
+To add a keyword to the message you can use two syntaxes either ${keyword} or %(keyword) (there is no difference between them apart from ${} can be difficult to escape on linux).</p>
+<p><em>Default Value:</em> <code>${status}: ${problem_list}</code></p>
+<h5 id="check_process_ok-syntax">ok-syntax:</h5>
+
+<p>ok syntax.
+DEPRECATED! This is the syntax for when an ok result is returned.
+This value will not be used if your syntax contains %(list) or %(count).</p>
+<p><em>Default Value:</em> <code>%(status): all processes are ok.</code></p>
+<h5 id="check_process_empty-syntax">empty-syntax:</h5>
+
+<p>Empty syntax.
+DEPRECATED! This is the syntax for when nothing matches the filter.</p>
+<p><em>Default Value:</em> <code>UNKNOWN: No processes found</code></p>
+<h5 id="check_process_detail-syntax">detail-syntax:</h5>
+
+<p>Detail level syntax.
+Used to format each resulting item in the message.
+%(list) will be replaced with all the items formated by this syntax string in the top-syntax.
+To add a keyword to the message you can use two syntaxes either ${keyword} or %(keyword) (there is no difference between them apart from ${} can be difficult to escape on linux).</p>
+<p><em>Default Value:</em> <code>${exe}=${state}</code></p>
+<h5 id="check_process_perf-syntax">perf-syntax:</h5>
+
+<p>Performance alias syntax.
+This is the syntax for the base names of the performance data.</p>
+<p><em>Default Value:</em> <code>${exe}</code></p>
+<h5 id="check_process_delta">delta:</h5>
+
+<p>Calculate delta over one elapsed second.
+This call will measure values and then sleep for 2 second and then measure again calculating deltas.</p>
+<p><a id="check_process_filter_keys"></a></p>
+<h4 id="filter-keywords_6">Filter keywords</h4>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>command_line</td>
+<td>Command line of process (not always available)</td>
+</tr>
+<tr>
+<td>creation</td>
+<td>Creation time</td>
+</tr>
+<tr>
+<td>error</td>
+<td>Any error messages associated with fetching info</td>
+</tr>
+<tr>
+<td>exe</td>
+<td>The name of the executable</td>
+</tr>
+<tr>
+<td>filename</td>
+<td>Name of process (with path)</td>
+</tr>
+<tr>
+<td>gdi_handles</td>
+<td>Number of handles</td>
+</tr>
+<tr>
+<td>handles</td>
+<td>Number of handles</td>
+</tr>
+<tr>
+<td>hung</td>
+<td>Process is hung</td>
+</tr>
+<tr>
+<td>kernel</td>
+<td>Kernel time in seconds</td>
+</tr>
+<tr>
+<td>legacy_state</td>
+<td>Get process status (for legacy use via check_nt only)</td>
+</tr>
+<tr>
+<td>new</td>
+<td>Process is new (can inly be used for real-time filters)</td>
+</tr>
+<tr>
+<td>page_fault</td>
+<td>Page fault count</td>
+</tr>
+<tr>
+<td>pagefile</td>
+<td>Peak page file use in bytes (g,m,k,b)</td>
+</tr>
+<tr>
+<td>peak_pagefile</td>
+<td>Page file usage in bytes (g,m,k,b)</td>
+</tr>
+<tr>
+<td>peak_virtual</td>
+<td>Peak virtual size in bytes (g,m,k,b)</td>
+</tr>
+<tr>
+<td>peak_working_set</td>
+<td>Peak working set in bytes (g,m,k,b)</td>
+</tr>
+<tr>
+<td>pid</td>
+<td>Process id</td>
+</tr>
+<tr>
+<td>started</td>
+<td>Process is started</td>
+</tr>
+<tr>
+<td>state</td>
+<td>The current state (started, stopped hung)</td>
+</tr>
+<tr>
+<td>stopped</td>
+<td>Process is stopped</td>
+</tr>
+<tr>
+<td>time</td>
+<td>User-kernel time in seconds</td>
+</tr>
+<tr>
+<td>user</td>
+<td>User time in seconds</td>
+</tr>
+<tr>
+<td>user_handles</td>
+<td>Number of handles</td>
+</tr>
+<tr>
+<td>virtual</td>
+<td>Virtual size in bytes (g,m,k,b)</td>
+</tr>
+<tr>
+<td>working_set</td>
+<td>Working set in bytes (g,m,k,b)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Common options for all checks:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>count</td>
+<td>Number of items matching the filter.</td>
+</tr>
+<tr>
+<td>crit_count</td>
+<td>Number of items matched the critical criteria.</td>
+</tr>
+<tr>
+<td>crit_list</td>
+<td>A list of all items which matched the critical criteria.</td>
+</tr>
+<tr>
+<td>detail_list</td>
+<td>A special list with critical, then warning and finally ok.</td>
+</tr>
+<tr>
+<td>list</td>
+<td>A list of all items which matched the filter.</td>
+</tr>
+<tr>
+<td>ok_count</td>
+<td>Number of items matched the ok criteria.</td>
+</tr>
+<tr>
+<td>ok_list</td>
+<td>A list of all items which matched the ok criteria.</td>
+</tr>
+<tr>
+<td>problem_count</td>
+<td>Number of items matched either warning or critical criteria.</td>
+</tr>
+<tr>
+<td>problem_list</td>
+<td>A list of all items which matched either the critical or the warning criteria.</td>
+</tr>
+<tr>
+<td>status</td>
+<td>The returned status (OK/WARN/CRIT/UNKNOWN).</td>
+</tr>
+<tr>
+<td>total</td>
+<td>Total number of items.</td>
+</tr>
+<tr>
+<td>warn_count</td>
+<td>Number of items matched the warning criteria.</td>
+</tr>
+<tr>
+<td>warn_list</td>
+<td>A list of all items which matched the warning criteria.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="check_service">check_service</h3>
+<p>Check the state of one or more of the computer services.</p>
+<p><strong>Jump to section:</strong></p>
+<ul>
+<li><a href="#check_service_samples">Sample Commands</a></li>
+<li><a href="#check_service_options">Command-line Arguments</a></li>
+<li><a href="#check_service_filter_keys">Filter keywords</a></li>
+</ul>
+<p><a id="check_service_samples"></a></p>
+<h4 id="sample-commands_6">Sample Commands</h4>
+<p><em>To edit these sample please edit <a href="https://github.com/mickem/nscp-docs/blob/master/samples/CheckSystem_check_service_samples.md">this page</a></em></p>
+<p><strong>Default check:</strong></p>
+<div class="highlight"><pre><span></span><code>check_service
+OK all services are ok.
+</code></pre></div>
+<p><strong>Excluding services using exclude</strong>::</p>
+<div class="highlight"><pre><span></span><code>check_service &quot;exclude=clr_optimization_v4.0.30319_32&quot;  &quot;exclude=clr_optimization_v4.0.30319_64&quot;
+WARNING: gupdate=stopped (auto), Net Driver HPZ12=stopped (auto), NSClientpp=stopped (auto), nscp=stopped (auto), Pml Driver HPZ12=stopped (auto), SkypeUpdate=stopped (auto), sppsvc=stopped (auto)
+</code></pre></div>
+<p><strong>Show all service by changing the syntax</strong>::</p>
+<div class="highlight"><pre><span></span><code>check_service &quot;top-syntax=${list}&quot; &quot;detail-syntax=${name}:${state}&quot;
+AdobeActiveFileMonitor10.0:running, AdobeARMservice:running, AdobeFlashPlayerUpdateSvc:stopped, ..., WwanSvc:stopped
+</code></pre></div>
+<p><strong>Excluding services using the filter</strong>::</p>
+<div class="highlight"><pre><span></span><code>check_service &quot;filter=start_type = &#39;auto&#39; and name not in (&#39;Bonjour Service&#39;, &#39;Net Driver HPZ12&#39;)&quot;
+AdobeActiveFileMonitor10.0: running, AdobeARMservice: running, AMD External Events Utility: running,  ... wuauserv: running
+</code></pre></div>
+<p><strong>Exclude versus filter</strong>::</p>
+<p>You can use both exclude and filter to exclude services the befnefit of exclude is that it is faster with the obvious drawback that it only works on the service name.
+The upside to filters are that they are richer in terms of functionality i.e. substring matching (as below).</p>
+<p>Regular check
+<div class="highlight"><pre><span></span><code>check_service
+L        cli CRITICAL: CRITICAL: nfoo=stopped (auto), nscp=stopped (auto), nscp2=stopped (auto), ...
+</code></pre></div></p>
+<p>Excluding nfoo service with exclude:
+<div class="highlight"><pre><span></span><code>check_service exclude=nfoo
+L        cli CRITICAL: CRITICAL: nscp=stopped (auto), nscp2=stopped (auto), ...
+</code></pre></div></p>
+<p>Excluding nscp2 with substring like matching filter:
+<div class="highlight"><pre><span></span><code>check_service exclude=nfoo &quot;filter=name not like &#39;nscp&#39;&quot;
+L        cli CRITICAL: CRITICAL: ...
+</code></pre></div></p>
+<p>Default check <strong>via NRPE</strong>::</p>
+<div class="highlight"><pre><span></span><code>check_nrpe --host 192.168.56.103 --command check_service
+WARNING: DPS=stopped (auto), MSDTC=stopped (auto), sppsvc=stopped (auto), UALSVC=stopped (auto)
+</code></pre></div>
+<p><strong>Check that a service is not started</strong>::</p>
+<div class="highlight"><pre><span></span><code>check_service service=nscp &quot;crit=state = &#39;started&#39;&quot; warn=none
+</code></pre></div>
+<p><a id="check_service_warn"></a>
+<a id="check_service_crit"></a>
+<a id="check_service_debug"></a>
+<a id="check_service_show-all"></a>
+<a id="check_service_escape-html"></a>
+<a id="check_service_help"></a>
+<a id="check_service_help-pb"></a>
+<a id="check_service_show-default"></a>
+<a id="check_service_help-short"></a>
+<a id="check_service_computer"></a>
+<a id="check_service_service"></a>
+<a id="check_service_exclude"></a>
+<a id="check_service_only-essential"></a>
+<a id="check_service_only-ignored"></a>
+<a id="check_service_only-role"></a>
+<a id="check_service_only-supporting"></a>
+<a id="check_service_only-system"></a>
+<a id="check_service_only-user"></a>
+<a id="check_service_options"></a></p>
+<h4 id="command-line-arguments_7">Command-line Arguments</h4>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#check_service_filter">filter</a></td>
+<td></td>
+<td>Filter which marks interesting items.</td>
+</tr>
+<tr>
+<td><a href="#check_service_warning">warning</a></td>
+<td>not state_is_perfect()</td>
+<td>Filter which marks items which generates a warning state.</td>
+</tr>
+<tr>
+<td>warn</td>
+<td></td>
+<td>Short alias for warning</td>
+</tr>
+<tr>
+<td><a href="#check_service_critical">critical</a></td>
+<td>not state_is_ok()</td>
+<td>Filter which marks items which generates a critical state.</td>
+</tr>
+<tr>
+<td>crit</td>
+<td></td>
+<td>Short alias for critical.</td>
+</tr>
+<tr>
+<td><a href="#check_service_ok">ok</a></td>
+<td></td>
+<td>Filter which marks items which generates an ok state.</td>
+</tr>
+<tr>
+<td>debug</td>
+<td>N/A</td>
+<td>Show debugging information in the log</td>
+</tr>
+<tr>
+<td>show-all</td>
+<td>N/A</td>
+<td>Show details for all matches regardless of status (normally details are only showed for warnings and criticals).</td>
+</tr>
+<tr>
+<td><a href="#check_service_empty-state">empty-state</a></td>
+<td>unknown</td>
+<td>Return status to use when nothing matched filter.</td>
+</tr>
+<tr>
+<td><a href="#check_service_perf-config">perf-config</a></td>
+<td></td>
+<td>Performance data generation configuration</td>
+</tr>
+<tr>
+<td>escape-html</td>
+<td>N/A</td>
+<td>Escape any &lt; and &gt; characters to prevent HTML encoding</td>
+</tr>
+<tr>
+<td>help</td>
+<td>N/A</td>
+<td>Show help screen (this screen)</td>
+</tr>
+<tr>
+<td>help-pb</td>
+<td>N/A</td>
+<td>Show help screen as a protocol buffer payload</td>
+</tr>
+<tr>
+<td>show-default</td>
+<td>N/A</td>
+<td>Show default values for a given command</td>
+</tr>
+<tr>
+<td>help-short</td>
+<td>N/A</td>
+<td>Show help screen (short format).</td>
+</tr>
+<tr>
+<td><a href="#check_service_top-syntax">top-syntax</a></td>
+<td>${status}: ${crit_list}, delayed (${warn_list})</td>
+<td>Top level syntax.</td>
+</tr>
+<tr>
+<td><a href="#check_service_ok-syntax">ok-syntax</a></td>
+<td>%(status): All %(count) service(s) are ok.</td>
+<td>ok syntax.</td>
+</tr>
+<tr>
+<td><a href="#check_service_empty-syntax">empty-syntax</a></td>
+<td>%(status): No services found</td>
+<td>Empty syntax.</td>
+</tr>
+<tr>
+<td><a href="#check_service_detail-syntax">detail-syntax</a></td>
+<td>${name}=${state} (${start_type})</td>
+<td>Detail level syntax.</td>
+</tr>
+<tr>
+<td><a href="#check_service_perf-syntax">perf-syntax</a></td>
+<td>${name}</td>
+<td>Performance alias syntax.</td>
+</tr>
+<tr>
+<td>computer</td>
+<td></td>
+<td>The name of the remote computer to check</td>
+</tr>
+<tr>
+<td>service</td>
+<td></td>
+<td>The service to check, set this to * to check all services</td>
+</tr>
+<tr>
+<td>exclude</td>
+<td></td>
+<td>A list of services to ignore (mainly useful in combination with service=*)</td>
+</tr>
+<tr>
+<td><a href="#check_service_type">type</a></td>
+<td>service</td>
+<td>The types of services to enumerate available types are driver, file-system-driver, kernel-driver, service, service-own-process, service-share-process</td>
+</tr>
+<tr>
+<td><a href="#check_service_state">state</a></td>
+<td>all</td>
+<td>The types of services to enumerate available states are active, inactive or all</td>
+</tr>
+<tr>
+<td>only-essential</td>
+<td>N/A</td>
+<td>Set filter to classification = 'essential'</td>
+</tr>
+<tr>
+<td>only-ignored</td>
+<td>N/A</td>
+<td>Set filter to classification = 'ignored'</td>
+</tr>
+<tr>
+<td>only-role</td>
+<td>N/A</td>
+<td>Set filter to classification = 'role'</td>
+</tr>
+<tr>
+<td>only-supporting</td>
+<td>N/A</td>
+<td>Set filter to classification = 'supporting'</td>
+</tr>
+<tr>
+<td>only-system</td>
+<td>N/A</td>
+<td>Set filter to classification = 'system'</td>
+</tr>
+<tr>
+<td>only-user</td>
+<td>N/A</td>
+<td>Set filter to classification = 'user'</td>
+</tr>
+</tbody>
+</table>
+<h5 id="check_service_filter">filter:</h5>
+
+<p>Filter which marks interesting items.
+Interesting items are items which will be included in the check.
+They do not denote warning or critical state instead it defines which items are relevant and you can remove unwanted items.</p>
+<h5 id="check_service_warning">warning:</h5>
+
+<p>Filter which marks items which generates a warning state.
+If anything matches this filter the return status will be escalated to warning.</p>
+<p><em>Default Value:</em> <code>not state_is_perfect()</code></p>
+<h5 id="check_service_critical">critical:</h5>
+
+<p>Filter which marks items which generates a critical state.
+If anything matches this filter the return status will be escalated to critical.</p>
+<p><em>Default Value:</em> <code>not state_is_ok()</code></p>
+<h5 id="check_service_ok">ok:</h5>
+
+<p>Filter which marks items which generates an ok state.
+If anything matches this any previous state for this item will be reset to ok.</p>
+<h5 id="check_service_empty-state">empty-state:</h5>
+
+<p>Return status to use when nothing matched filter.
+If no filter is specified this will never happen unless the file is empty.</p>
+<p><em>Default Value:</em> <code>unknown</code></p>
+<h5 id="check_service_perf-config">perf-config:</h5>
+
+<p>Performance data generation configuration
+TODO: obj ( key: value; key: value) obj (key:valuer;key:value)</p>
+<h5 id="check_service_top-syntax">top-syntax:</h5>
+
+<p>Top level syntax.
+Used to format the message to return can include text as well as special keywords which will include information from the checks.
+To add a keyword to the message you can use two syntaxes either ${keyword} or %(keyword) (there is no difference between them apart from ${} can be difficult to escape on linux).</p>
+<p><em>Default Value:</em> <code>${status}: ${crit_list}, delayed (${warn_list})</code></p>
+<h5 id="check_service_ok-syntax">ok-syntax:</h5>
+
+<p>ok syntax.
+DEPRECATED! This is the syntax for when an ok result is returned.
+This value will not be used if your syntax contains %(list) or %(count).</p>
+<p><em>Default Value:</em> <code>%(status): All %(count) service(s) are ok.</code></p>
+<h5 id="check_service_empty-syntax">empty-syntax:</h5>
+
+<p>Empty syntax.
+DEPRECATED! This is the syntax for when nothing matches the filter.</p>
+<p><em>Default Value:</em> <code>%(status): No services found</code></p>
+<h5 id="check_service_detail-syntax">detail-syntax:</h5>
+
+<p>Detail level syntax.
+Used to format each resulting item in the message.
+%(list) will be replaced with all the items formated by this syntax string in the top-syntax.
+To add a keyword to the message you can use two syntaxes either ${keyword} or %(keyword) (there is no difference between them apart from ${} can be difficult to escape on linux).</p>
+<p><em>Default Value:</em> <code>${name}=${state} (${start_type})</code></p>
+<h5 id="check_service_perf-syntax">perf-syntax:</h5>
+
+<p>Performance alias syntax.
+This is the syntax for the base names of the performance data.</p>
+<p><em>Default Value:</em> <code>${name}</code></p>
+<h5 id="check_service_type">type:</h5>
+
+<p>The types of services to enumerate available types are driver, file-system-driver, kernel-driver, service, service-own-process, service-share-process</p>
+<p><em>Default Value:</em> <code>service</code></p>
+<h5 id="check_service_state">state:</h5>
+
+<p>The types of services to enumerate available states are active, inactive or all</p>
+<p><em>Default Value:</em> <code>all</code></p>
+<p><a id="check_service_filter_keys"></a></p>
+<h4 id="filter-keywords_7">Filter keywords</h4>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>classification</td>
+<td>Get classification</td>
+</tr>
+<tr>
+<td>delayed</td>
+<td>If the service is delayed</td>
+</tr>
+<tr>
+<td>desc</td>
+<td>Service description</td>
+</tr>
+<tr>
+<td>is_trigger</td>
+<td>If the service is has associated triggers</td>
+</tr>
+<tr>
+<td>legacy_state</td>
+<td>Get legacy state (deprecated and only used by check_nt)</td>
+</tr>
+<tr>
+<td>name</td>
+<td>Service name</td>
+</tr>
+<tr>
+<td>pid</td>
+<td>Process id</td>
+</tr>
+<tr>
+<td>start_type</td>
+<td>The configured start type ()</td>
+</tr>
+<tr>
+<td>state</td>
+<td>The current state ()</td>
+</tr>
+<tr>
+<td>state_is_ok()</td>
+<td>Check if the state is ok, i.e. all running services are runningelayed services are allowed to be stopped)</td>
+</tr>
+<tr>
+<td>state_is_perfect()</td>
+<td>Check if the state is ok, i.e. all running services are running</td>
+</tr>
+<tr>
+<td>triggers</td>
+<td>The number of associated triggers for this service</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Common options for all checks:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>count</td>
+<td>Number of items matching the filter.</td>
+</tr>
+<tr>
+<td>crit_count</td>
+<td>Number of items matched the critical criteria.</td>
+</tr>
+<tr>
+<td>crit_list</td>
+<td>A list of all items which matched the critical criteria.</td>
+</tr>
+<tr>
+<td>detail_list</td>
+<td>A special list with critical, then warning and finally ok.</td>
+</tr>
+<tr>
+<td>list</td>
+<td>A list of all items which matched the filter.</td>
+</tr>
+<tr>
+<td>ok_count</td>
+<td>Number of items matched the ok criteria.</td>
+</tr>
+<tr>
+<td>ok_list</td>
+<td>A list of all items which matched the ok criteria.</td>
+</tr>
+<tr>
+<td>problem_count</td>
+<td>Number of items matched either warning or critical criteria.</td>
+</tr>
+<tr>
+<td>problem_list</td>
+<td>A list of all items which matched either the critical or the warning criteria.</td>
+</tr>
+<tr>
+<td>status</td>
+<td>The returned status (OK/WARN/CRIT/UNKNOWN).</td>
+</tr>
+<tr>
+<td>total</td>
+<td>Total number of items.</td>
+</tr>
+<tr>
+<td>warn_count</td>
+<td>Number of items matched the warning criteria.</td>
+</tr>
+<tr>
+<td>warn_list</td>
+<td>A list of all items which matched the warning criteria.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="check_uptime">check_uptime</h3>
+<p>Check time since last server re-boot.</p>
+<p><strong>Jump to section:</strong></p>
+<ul>
+<li><a href="#check_uptime_samples">Sample Commands</a></li>
+<li><a href="#check_uptime_options">Command-line Arguments</a></li>
+<li><a href="#check_uptime_filter_keys">Filter keywords</a></li>
+</ul>
+<p><a id="check_uptime_samples"></a></p>
+<h4 id="sample-commands_7">Sample Commands</h4>
+<p><em>To edit these sample please edit <a href="https://github.com/mickem/nscp-docs/blob/master/samples/CheckSystem_check_uptime_samples.md">this page</a></em></p>
+<p><strong>Default check:</strong></p>
+<div class="highlight"><pre><span></span><code>check_uptime
+uptime: -9:02, boot: 2013-aug-18 08:29:13
+&#39;uptime uptime&#39;=1376814553s;1376760683;1376803883
+</code></pre></div>
+<p>Adding <strong>warning and critical thresholds</strong>::</p>
+<div class="highlight"><pre><span></span><code>check_uptime &quot;warn=uptime &lt; -2d&quot; &quot;crit=uptime &lt; -1d&quot;
+...
+</code></pre></div>
+<p>Default check <strong>via NRPE</strong>::</p>
+<div class="highlight"><pre><span></span><code>check_nrpe --host 192.168.56.103 --command check_uptime
+uptime: -0:3, boot: 2013-sep-08 18:41:06 (UCT)|&#39;uptime&#39;=1378665666;1378579481;1378622681
+</code></pre></div>
+<p><a id="check_uptime_warn"></a>
+<a id="check_uptime_crit"></a>
+<a id="check_uptime_debug"></a>
+<a id="check_uptime_show-all"></a>
+<a id="check_uptime_escape-html"></a>
+<a id="check_uptime_help"></a>
+<a id="check_uptime_help-pb"></a>
+<a id="check_uptime_show-default"></a>
+<a id="check_uptime_help-short"></a>
+<a id="check_uptime_options"></a></p>
+<h4 id="command-line-arguments_8">Command-line Arguments</h4>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#check_uptime_filter">filter</a></td>
+<td></td>
+<td>Filter which marks interesting items.</td>
+</tr>
+<tr>
+<td><a href="#check_uptime_warning">warning</a></td>
+<td>uptime &lt; 2d</td>
+<td>Filter which marks items which generates a warning state.</td>
+</tr>
+<tr>
+<td>warn</td>
+<td></td>
+<td>Short alias for warning</td>
+</tr>
+<tr>
+<td><a href="#check_uptime_critical">critical</a></td>
+<td>uptime &lt; 1d</td>
+<td>Filter which marks items which generates a critical state.</td>
+</tr>
+<tr>
+<td>crit</td>
+<td></td>
+<td>Short alias for critical.</td>
+</tr>
+<tr>
+<td><a href="#check_uptime_ok">ok</a></td>
+<td></td>
+<td>Filter which marks items which generates an ok state.</td>
+</tr>
+<tr>
+<td>debug</td>
+<td>N/A</td>
+<td>Show debugging information in the log</td>
+</tr>
+<tr>
+<td>show-all</td>
+<td>N/A</td>
+<td>Show details for all matches regardless of status (normally details are only showed for warnings and criticals).</td>
+</tr>
+<tr>
+<td><a href="#check_uptime_empty-state">empty-state</a></td>
+<td>ignored</td>
+<td>Return status to use when nothing matched filter.</td>
+</tr>
+<tr>
+<td><a href="#check_uptime_perf-config">perf-config</a></td>
+<td></td>
+<td>Performance data generation configuration</td>
+</tr>
+<tr>
+<td>escape-html</td>
+<td>N/A</td>
+<td>Escape any &lt; and &gt; characters to prevent HTML encoding</td>
+</tr>
+<tr>
+<td>help</td>
+<td>N/A</td>
+<td>Show help screen (this screen)</td>
+</tr>
+<tr>
+<td>help-pb</td>
+<td>N/A</td>
+<td>Show help screen as a protocol buffer payload</td>
+</tr>
+<tr>
+<td>show-default</td>
+<td>N/A</td>
+<td>Show default values for a given command</td>
+</tr>
+<tr>
+<td>help-short</td>
+<td>N/A</td>
+<td>Show help screen (short format).</td>
+</tr>
+<tr>
+<td><a href="#check_uptime_top-syntax">top-syntax</a></td>
+<td>${status}: ${list}</td>
+<td>Top level syntax.</td>
+</tr>
+<tr>
+<td><a href="#check_uptime_ok-syntax">ok-syntax</a></td>
+<td></td>
+<td>ok syntax.</td>
+</tr>
+<tr>
+<td><a href="#check_uptime_empty-syntax">empty-syntax</a></td>
+<td></td>
+<td>Empty syntax.</td>
+</tr>
+<tr>
+<td><a href="#check_uptime_detail-syntax">detail-syntax</a></td>
+<td>uptime: ${uptime}h, boot: ${boot} (UTC)</td>
+<td>Detail level syntax.</td>
+</tr>
+<tr>
+<td><a href="#check_uptime_perf-syntax">perf-syntax</a></td>
+<td>uptime</td>
+<td>Performance alias syntax.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="check_uptime_filter">filter:</h5>
+
+<p>Filter which marks interesting items.
+Interesting items are items which will be included in the check.
+They do not denote warning or critical state instead it defines which items are relevant and you can remove unwanted items.</p>
+<h5 id="check_uptime_warning">warning:</h5>
+
+<p>Filter which marks items which generates a warning state.
+If anything matches this filter the return status will be escalated to warning.</p>
+<p><em>Default Value:</em> <code>uptime &lt; 2d</code></p>
+<h5 id="check_uptime_critical">critical:</h5>
+
+<p>Filter which marks items which generates a critical state.
+If anything matches this filter the return status will be escalated to critical.</p>
+<p><em>Default Value:</em> <code>uptime &lt; 1d</code></p>
+<h5 id="check_uptime_ok">ok:</h5>
+
+<p>Filter which marks items which generates an ok state.
+If anything matches this any previous state for this item will be reset to ok.</p>
+<h5 id="check_uptime_empty-state">empty-state:</h5>
+
+<p>Return status to use when nothing matched filter.
+If no filter is specified this will never happen unless the file is empty.</p>
+<p><em>Default Value:</em> <code>ignored</code></p>
+<h5 id="check_uptime_perf-config">perf-config:</h5>
+
+<p>Performance data generation configuration
+TODO: obj ( key: value; key: value) obj (key:valuer;key:value)</p>
+<h5 id="check_uptime_top-syntax">top-syntax:</h5>
+
+<p>Top level syntax.
+Used to format the message to return can include text as well as special keywords which will include information from the checks.
+To add a keyword to the message you can use two syntaxes either ${keyword} or %(keyword) (there is no difference between them apart from ${} can be difficult to escape on linux).</p>
+<p><em>Default Value:</em> <code>${status}: ${list}</code></p>
+<h5 id="check_uptime_ok-syntax">ok-syntax:</h5>
+
+<p>ok syntax.
+DEPRECATED! This is the syntax for when an ok result is returned.
+This value will not be used if your syntax contains %(list) or %(count).</p>
+<h5 id="check_uptime_empty-syntax">empty-syntax:</h5>
+
+<p>Empty syntax.
+DEPRECATED! This is the syntax for when nothing matches the filter.</p>
+<h5 id="check_uptime_detail-syntax">detail-syntax:</h5>
+
+<p>Detail level syntax.
+Used to format each resulting item in the message.
+%(list) will be replaced with all the items formated by this syntax string in the top-syntax.
+To add a keyword to the message you can use two syntaxes either ${keyword} or %(keyword) (there is no difference between them apart from ${} can be difficult to escape on linux).</p>
+<p><em>Default Value:</em> <code>uptime: ${uptime}h, boot: ${boot} (UTC)</code></p>
+<h5 id="check_uptime_perf-syntax">perf-syntax:</h5>
+
+<p>Performance alias syntax.
+This is the syntax for the base names of the performance data.</p>
+<p><em>Default Value:</em> <code>uptime</code></p>
+<p><a id="check_uptime_filter_keys"></a></p>
+<h4 id="filter-keywords_8">Filter keywords</h4>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>boot</td>
+<td>System boot time</td>
+</tr>
+<tr>
+<td>uptime</td>
+<td>Time since last boot</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Common options for all checks:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>count</td>
+<td>Number of items matching the filter.</td>
+</tr>
+<tr>
+<td>crit_count</td>
+<td>Number of items matched the critical criteria.</td>
+</tr>
+<tr>
+<td>crit_list</td>
+<td>A list of all items which matched the critical criteria.</td>
+</tr>
+<tr>
+<td>detail_list</td>
+<td>A special list with critical, then warning and finally ok.</td>
+</tr>
+<tr>
+<td>list</td>
+<td>A list of all items which matched the filter.</td>
+</tr>
+<tr>
+<td>ok_count</td>
+<td>Number of items matched the ok criteria.</td>
+</tr>
+<tr>
+<td>ok_list</td>
+<td>A list of all items which matched the ok criteria.</td>
+</tr>
+<tr>
+<td>problem_count</td>
+<td>Number of items matched either warning or critical criteria.</td>
+</tr>
+<tr>
+<td>problem_list</td>
+<td>A list of all items which matched either the critical or the warning criteria.</td>
+</tr>
+<tr>
+<td>status</td>
+<td>The returned status (OK/WARN/CRIT/UNKNOWN).</td>
+</tr>
+<tr>
+<td>total</td>
+<td>Total number of items.</td>
+</tr>
+<tr>
+<td>warn_count</td>
+<td>Number of items matched the warning criteria.</td>
+</tr>
+<tr>
+<td>warn_list</td>
+<td>A list of all items which matched the warning criteria.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="configuration">Configuration</h2>
+<table>
+<thead>
+<tr>
+<th>Path / Section</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#windows-system">/settings/system/windows</a></td>
+<td>Windows system</td>
+</tr>
+<tr>
+<td><a href="#pdh-counters">/settings/system/windows/counters</a></td>
+<td>PDH Counters</td>
+</tr>
+<tr>
+<td><a href="#legacy-generic-filters">/settings/system/windows/real-time/checks</a></td>
+<td>Legacy generic filters</td>
+</tr>
+<tr>
+<td><a href="#realtime-cpu-filters">/settings/system/windows/real-time/cpu</a></td>
+<td>Realtime cpu filters</td>
+</tr>
+<tr>
+<td><a href="#realtime-memory-filters">/settings/system/windows/real-time/memory</a></td>
+<td>Realtime memory filters</td>
+</tr>
+<tr>
+<td><a href="#realtime-process-filters">/settings/system/windows/real-time/process</a></td>
+<td>Realtime process filters</td>
+</tr>
+</tbody>
+</table>
+<h3 id="windows-system">Windows system <a id="/settings/system/windows"></a></h3>
+<p>Section for system checks and system settings</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#default-buffer-time">default buffer length</a></td>
+<td>1h</td>
+<td>Default buffer time</td>
+</tr>
+<tr>
+<td><a href="#disable-automatic-checks">disable</a></td>
+<td></td>
+<td>Disable automatic checks</td>
+</tr>
+<tr>
+<td><a href="#fetch-core-load">fetch core loads</a></td>
+<td>true</td>
+<td>Fetch core load</td>
+</tr>
+<tr>
+<td><a href="#pdh-subsystem">subsystem</a></td>
+<td>default</td>
+<td>PDH subsystem</td>
+</tr>
+<tr>
+<td><a href="#use-pdh-to-fetch-cpu-load">use pdh for cpu</a></td>
+<td>false</td>
+<td>Use PDH to fetch CPU load</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="c1"># Section for system checks and system settings</span>
+<span class="k">[/settings/system/windows]</span>
+<span class="na">default buffer length</span><span class="o">=</span><span class="s">1h</span>
+<span class="na">fetch core loads</span><span class="o">=</span><span class="s">true</span>
+<span class="na">subsystem</span><span class="o">=</span><span class="s">default</span>
+<span class="na">use pdh for cpu</span><span class="o">=</span><span class="s">false</span>
+</code></pre></div>
+<h4 id="default-buffer-time">Default buffer time <a id="/settings/system/windows/default buffer length"></a></h4>
+<p>Used to define the default size of range buffer checks (ie. CPU).</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Path:</td>
+<td><a href="#/settings/system/windows">/settings/system/windows</a></td>
+</tr>
+<tr>
+<td>Key:</td>
+<td>default buffer length</td>
+</tr>
+<tr>
+<td>Default value:</td>
+<td><code>1h</code></td>
+</tr>
+<tr>
+<td>Used by:</td>
+<td>CheckSystem</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Sample:</strong></p>
+<div class="highlight"><pre><span></span><code>[/settings/system/windows]
+# Default buffer time
+default buffer length=1h
+</code></pre></div>
+<h4 id="disable-automatic-checks">Disable automatic checks <a id="/settings/system/windows/disable"></a></h4>
+<p>A comma separated list of checks to disable in the collector: cpu,handles,network,metrics,pdh. Please note disabling these will mean part of NSClient++ will no longer function as expected.</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Path:</td>
+<td><a href="#/settings/system/windows">/settings/system/windows</a></td>
+</tr>
+<tr>
+<td>Key:</td>
+<td>disable</td>
+</tr>
+<tr>
+<td>Advanced:</td>
+<td>Yes (means it is not commonly used)</td>
+</tr>
+<tr>
+<td>Default value:</td>
+<td><em>N/A</em></td>
+</tr>
+<tr>
+<td>Used by:</td>
+<td>CheckSystem</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Sample:</strong></p>
+<div class="highlight"><pre><span></span><code>[/settings/system/windows]
+# Disable automatic checks
+disable=
+</code></pre></div>
+<h4 id="fetch-core-load">Fetch core load <a id="/settings/system/windows/fetch core loads"></a></h4>
+<p>Set to false to use a different API for fetching CPU load (will not provide core load, and will not show exact same values as task manager).</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Path:</td>
+<td><a href="#/settings/system/windows">/settings/system/windows</a></td>
+</tr>
+<tr>
+<td>Key:</td>
+<td>fetch core loads</td>
+</tr>
+<tr>
+<td>Advanced:</td>
+<td>Yes (means it is not commonly used)</td>
+</tr>
+<tr>
+<td>Default value:</td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td>Used by:</td>
+<td>CheckSystem</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Sample:</strong></p>
+<div class="highlight"><pre><span></span><code>[/settings/system/windows]
+# Fetch core load
+fetch core loads=true
+</code></pre></div>
+<h4 id="pdh-subsystem">PDH subsystem <a id="/settings/system/windows/subsystem"></a></h4>
+<p>Set which pdh subsystem to use.
+Currently default and thread-safe are supported where thread-safe is slower but required if you have some problematic counters.</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Path:</td>
+<td><a href="#/settings/system/windows">/settings/system/windows</a></td>
+</tr>
+<tr>
+<td>Key:</td>
+<td>subsystem</td>
+</tr>
+<tr>
+<td>Advanced:</td>
+<td>Yes (means it is not commonly used)</td>
+</tr>
+<tr>
+<td>Default value:</td>
+<td><code>default</code></td>
+</tr>
+<tr>
+<td>Used by:</td>
+<td>CheckSystem</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Sample:</strong></p>
+<div class="highlight"><pre><span></span><code>[/settings/system/windows]
+# PDH subsystem
+subsystem=default
+</code></pre></div>
+<h4 id="use-pdh-to-fetch-cpu-load">Use PDH to fetch CPU load <a id="/settings/system/windows/use pdh for cpu"></a></h4>
+<p>When using PDH you might get better accuracy and hel alleviate invalid CPU values on multi core systems. The drawback is that PDH counters are sometimes missing and have invalid indexes so your milage may vary</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Path:</td>
+<td><a href="#/settings/system/windows">/settings/system/windows</a></td>
+</tr>
+<tr>
+<td>Key:</td>
+<td>use pdh for cpu</td>
+</tr>
+<tr>
+<td>Advanced:</td>
+<td>Yes (means it is not commonly used)</td>
+</tr>
+<tr>
+<td>Default value:</td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td>Used by:</td>
+<td>CheckSystem</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Sample:</strong></p>
+<div class="highlight"><pre><span></span><code>[/settings/system/windows]
+# Use PDH to fetch CPU load
+use pdh for cpu=false
+</code></pre></div>
+<h3 id="pdh-counters">PDH Counters <a id="/settings/system/windows/counters"></a></h3>
+<p>Add counters to check</p>
+<p>This is a section of objects. This means that you will create objects below this point by adding sections which all look the same.</p>
+<p><strong>Keys:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>alias</td>
+<td></td>
+<td>ALIAS</td>
+</tr>
+<tr>
+<td>buffer size</td>
+<td></td>
+<td>BUFFER SIZE</td>
+</tr>
+<tr>
+<td>collection strategy</td>
+<td></td>
+<td>COLLECTION STRATEGY</td>
+</tr>
+<tr>
+<td>counter</td>
+<td></td>
+<td>COUNTER</td>
+</tr>
+<tr>
+<td>flags</td>
+<td></td>
+<td>FLAGS</td>
+</tr>
+<tr>
+<td>instances</td>
+<td></td>
+<td>Interpret instances</td>
+</tr>
+<tr>
+<td>is template</td>
+<td>false</td>
+<td>IS TEMPLATE</td>
+</tr>
+<tr>
+<td>parent</td>
+<td>default</td>
+<td>PARENT</td>
+</tr>
+<tr>
+<td>type</td>
+<td></td>
+<td>COUNTER TYPE</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Sample:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># An example of a PDH Counters section</span>
+<span class="k">[/settings/system/windows/counters/sample]</span>
+<span class="c1">#alias=...</span>
+<span class="c1">#buffer size=...</span>
+<span class="c1">#collection strategy=...</span>
+<span class="c1">#counter=...</span>
+<span class="c1">#flags=...</span>
+<span class="c1">#instances=...</span>
+<span class="na">is template</span><span class="o">=</span><span class="s">false</span>
+<span class="na">parent</span><span class="o">=</span><span class="s">default</span>
+<span class="c1">#type=...</span>
+</code></pre></div>
+<p><strong>Known instances:</strong></p>
+<ul>
+<li>disk_queue_length</li>
+</ul>
+<h3 id="legacy-generic-filters">Legacy generic filters <a id="/settings/system/windows/real-time/checks"></a></h3>
+<p>A set of filters to use in real-time mode</p>
+<p>This is a section of objects. This means that you will create objects below this point by adding sections which all look the same.</p>
+<p><strong>Keys:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>check</td>
+<td>cpu</td>
+<td>TYPE OF CHECK</td>
+</tr>
+<tr>
+<td>command</td>
+<td></td>
+<td>COMMAND NAME</td>
+</tr>
+<tr>
+<td>critical</td>
+<td></td>
+<td>CRITICAL FILTER</td>
+</tr>
+<tr>
+<td>debug</td>
+<td></td>
+<td>DEBUG</td>
+</tr>
+<tr>
+<td>destination</td>
+<td></td>
+<td>DESTINATION</td>
+</tr>
+<tr>
+<td>detail syntax</td>
+<td></td>
+<td>SYNTAX</td>
+</tr>
+<tr>
+<td>empty message</td>
+<td>eventlog found no records</td>
+<td>EMPTY MESSAGE</td>
+</tr>
+<tr>
+<td>escape html</td>
+<td></td>
+<td>ESCAPE HTML</td>
+</tr>
+<tr>
+<td>filter</td>
+<td></td>
+<td>FILTER</td>
+</tr>
+<tr>
+<td>maximum age</td>
+<td>5m</td>
+<td>MAGIMUM AGE</td>
+</tr>
+<tr>
+<td>ok</td>
+<td></td>
+<td>OK FILTER</td>
+</tr>
+<tr>
+<td>ok syntax</td>
+<td></td>
+<td>SYNTAX</td>
+</tr>
+<tr>
+<td>perf config</td>
+<td></td>
+<td>PERF CONFIG</td>
+</tr>
+<tr>
+<td>severity</td>
+<td></td>
+<td>SEVERITY</td>
+</tr>
+<tr>
+<td>silent period</td>
+<td>false</td>
+<td>Silent period</td>
+</tr>
+<tr>
+<td>source id</td>
+<td></td>
+<td>SOURCE ID</td>
+</tr>
+<tr>
+<td>target</td>
+<td></td>
+<td>DESTINATION</td>
+</tr>
+<tr>
+<td>target id</td>
+<td></td>
+<td>TARGET ID</td>
+</tr>
+<tr>
+<td>time</td>
+<td></td>
+<td>TIME</td>
+</tr>
+<tr>
+<td>times</td>
+<td></td>
+<td>FILES</td>
+</tr>
+<tr>
+<td>top syntax</td>
+<td></td>
+<td>SYNTAX</td>
+</tr>
+<tr>
+<td>warning</td>
+<td></td>
+<td>WARNING FILTER</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Sample:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># An example of a Legacy generic filters section</span>
+<span class="k">[/settings/system/windows/real-time/checks/sample]</span>
+<span class="na">check</span><span class="o">=</span><span class="s">cpu</span>
+<span class="c1">#command=...</span>
+<span class="c1">#critical=...</span>
+<span class="c1">#debug=...</span>
+<span class="c1">#destination=...</span>
+<span class="c1">#detail syntax=...</span>
+<span class="na">empty message</span><span class="o">=</span><span class="s">eventlog found no records</span>
+<span class="c1">#escape html=...</span>
+<span class="c1">#filter=...</span>
+<span class="na">maximum age</span><span class="o">=</span><span class="s">5m</span>
+<span class="c1">#ok=...</span>
+<span class="c1">#ok syntax=...</span>
+<span class="c1">#perf config=...</span>
+<span class="c1">#severity=...</span>
+<span class="na">silent period</span><span class="o">=</span><span class="s">false</span>
+<span class="c1">#source id=...</span>
+<span class="c1">#target=...</span>
+<span class="c1">#target id=...</span>
+<span class="c1">#time=...</span>
+<span class="c1">#times=...</span>
+<span class="c1">#top syntax=...</span>
+<span class="c1">#warning=...</span>
+</code></pre></div>
+<h3 id="realtime-cpu-filters">Realtime cpu filters <a id="/settings/system/windows/real-time/cpu"></a></h3>
+<p>A set of filters to use in real-time mode</p>
+<p>This is a section of objects. This means that you will create objects below this point by adding sections which all look the same.</p>
+<p><strong>Keys:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>command</td>
+<td></td>
+<td>COMMAND NAME</td>
+</tr>
+<tr>
+<td>critical</td>
+<td></td>
+<td>CRITICAL FILTER</td>
+</tr>
+<tr>
+<td>debug</td>
+<td></td>
+<td>DEBUG</td>
+</tr>
+<tr>
+<td>destination</td>
+<td></td>
+<td>DESTINATION</td>
+</tr>
+<tr>
+<td>detail syntax</td>
+<td></td>
+<td>SYNTAX</td>
+</tr>
+<tr>
+<td>empty message</td>
+<td>eventlog found no records</td>
+<td>EMPTY MESSAGE</td>
+</tr>
+<tr>
+<td>escape html</td>
+<td></td>
+<td>ESCAPE HTML</td>
+</tr>
+<tr>
+<td>filter</td>
+<td></td>
+<td>FILTER</td>
+</tr>
+<tr>
+<td>maximum age</td>
+<td>5m</td>
+<td>MAGIMUM AGE</td>
+</tr>
+<tr>
+<td>ok</td>
+<td></td>
+<td>OK FILTER</td>
+</tr>
+<tr>
+<td>ok syntax</td>
+<td></td>
+<td>SYNTAX</td>
+</tr>
+<tr>
+<td>perf config</td>
+<td></td>
+<td>PERF CONFIG</td>
+</tr>
+<tr>
+<td>severity</td>
+<td></td>
+<td>SEVERITY</td>
+</tr>
+<tr>
+<td>silent period</td>
+<td>false</td>
+<td>Silent period</td>
+</tr>
+<tr>
+<td>source id</td>
+<td></td>
+<td>SOURCE ID</td>
+</tr>
+<tr>
+<td>target</td>
+<td></td>
+<td>DESTINATION</td>
+</tr>
+<tr>
+<td>target id</td>
+<td></td>
+<td>TARGET ID</td>
+</tr>
+<tr>
+<td>time</td>
+<td></td>
+<td>TIME</td>
+</tr>
+<tr>
+<td>top syntax</td>
+<td></td>
+<td>SYNTAX</td>
+</tr>
+<tr>
+<td>warning</td>
+<td></td>
+<td>WARNING FILTER</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Sample:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># An example of a Realtime cpu filters section</span>
+<span class="k">[/settings/system/windows/real-time/cpu/sample]</span>
+<span class="c1">#command=...</span>
+<span class="c1">#critical=...</span>
+<span class="c1">#debug=...</span>
+<span class="c1">#destination=...</span>
+<span class="c1">#detail syntax=...</span>
+<span class="na">empty message</span><span class="o">=</span><span class="s">eventlog found no records</span>
+<span class="c1">#escape html=...</span>
+<span class="c1">#filter=...</span>
+<span class="na">maximum age</span><span class="o">=</span><span class="s">5m</span>
+<span class="c1">#ok=...</span>
+<span class="c1">#ok syntax=...</span>
+<span class="c1">#perf config=...</span>
+<span class="c1">#severity=...</span>
+<span class="na">silent period</span><span class="o">=</span><span class="s">false</span>
+<span class="c1">#source id=...</span>
+<span class="c1">#target=...</span>
+<span class="c1">#target id=...</span>
+<span class="c1">#time=...</span>
+<span class="c1">#top syntax=...</span>
+<span class="c1">#warning=...</span>
+</code></pre></div>
+<h3 id="realtime-memory-filters">Realtime memory filters <a id="/settings/system/windows/real-time/memory"></a></h3>
+<p>A set of filters to use in real-time mode</p>
+<p>This is a section of objects. This means that you will create objects below this point by adding sections which all look the same.</p>
+<p><strong>Keys:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>command</td>
+<td></td>
+<td>COMMAND NAME</td>
+</tr>
+<tr>
+<td>critical</td>
+<td></td>
+<td>CRITICAL FILTER</td>
+</tr>
+<tr>
+<td>debug</td>
+<td></td>
+<td>DEBUG</td>
+</tr>
+<tr>
+<td>destination</td>
+<td></td>
+<td>DESTINATION</td>
+</tr>
+<tr>
+<td>detail syntax</td>
+<td></td>
+<td>SYNTAX</td>
+</tr>
+<tr>
+<td>empty message</td>
+<td>eventlog found no records</td>
+<td>EMPTY MESSAGE</td>
+</tr>
+<tr>
+<td>escape html</td>
+<td></td>
+<td>ESCAPE HTML</td>
+</tr>
+<tr>
+<td>filter</td>
+<td></td>
+<td>FILTER</td>
+</tr>
+<tr>
+<td>maximum age</td>
+<td>5m</td>
+<td>MAGIMUM AGE</td>
+</tr>
+<tr>
+<td>ok</td>
+<td></td>
+<td>OK FILTER</td>
+</tr>
+<tr>
+<td>ok syntax</td>
+<td></td>
+<td>SYNTAX</td>
+</tr>
+<tr>
+<td>perf config</td>
+<td></td>
+<td>PERF CONFIG</td>
+</tr>
+<tr>
+<td>severity</td>
+<td></td>
+<td>SEVERITY</td>
+</tr>
+<tr>
+<td>silent period</td>
+<td>false</td>
+<td>Silent period</td>
+</tr>
+<tr>
+<td>source id</td>
+<td></td>
+<td>SOURCE ID</td>
+</tr>
+<tr>
+<td>target</td>
+<td></td>
+<td>DESTINATION</td>
+</tr>
+<tr>
+<td>target id</td>
+<td></td>
+<td>TARGET ID</td>
+</tr>
+<tr>
+<td>top syntax</td>
+<td></td>
+<td>SYNTAX</td>
+</tr>
+<tr>
+<td>type</td>
+<td></td>
+<td>MEMORY TYPE</td>
+</tr>
+<tr>
+<td>warning</td>
+<td></td>
+<td>WARNING FILTER</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Sample:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># An example of a Realtime memory filters section</span>
+<span class="k">[/settings/system/windows/real-time/memory/sample]</span>
+<span class="c1">#command=...</span>
+<span class="c1">#critical=...</span>
+<span class="c1">#debug=...</span>
+<span class="c1">#destination=...</span>
+<span class="c1">#detail syntax=...</span>
+<span class="na">empty message</span><span class="o">=</span><span class="s">eventlog found no records</span>
+<span class="c1">#escape html=...</span>
+<span class="c1">#filter=...</span>
+<span class="na">maximum age</span><span class="o">=</span><span class="s">5m</span>
+<span class="c1">#ok=...</span>
+<span class="c1">#ok syntax=...</span>
+<span class="c1">#perf config=...</span>
+<span class="c1">#severity=...</span>
+<span class="na">silent period</span><span class="o">=</span><span class="s">false</span>
+<span class="c1">#source id=...</span>
+<span class="c1">#target=...</span>
+<span class="c1">#target id=...</span>
+<span class="c1">#top syntax=...</span>
+<span class="c1">#type=...</span>
+<span class="c1">#warning=...</span>
+</code></pre></div>
+<h3 id="realtime-process-filters">Realtime process filters <a id="/settings/system/windows/real-time/process"></a></h3>
+<p>A set of filters to use in real-time mode</p>
+<p>This is a section of objects. This means that you will create objects below this point by adding sections which all look the same.</p>
+<p><strong>Keys:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>command</td>
+<td></td>
+<td>COMMAND NAME</td>
+</tr>
+<tr>
+<td>critical</td>
+<td></td>
+<td>CRITICAL FILTER</td>
+</tr>
+<tr>
+<td>debug</td>
+<td></td>
+<td>DEBUG</td>
+</tr>
+<tr>
+<td>destination</td>
+<td></td>
+<td>DESTINATION</td>
+</tr>
+<tr>
+<td>detail syntax</td>
+<td></td>
+<td>SYNTAX</td>
+</tr>
+<tr>
+<td>empty message</td>
+<td>eventlog found no records</td>
+<td>EMPTY MESSAGE</td>
+</tr>
+<tr>
+<td>escape html</td>
+<td></td>
+<td>ESCAPE HTML</td>
+</tr>
+<tr>
+<td>filter</td>
+<td></td>
+<td>FILTER</td>
+</tr>
+<tr>
+<td>maximum age</td>
+<td>5m</td>
+<td>MAGIMUM AGE</td>
+</tr>
+<tr>
+<td>ok</td>
+<td></td>
+<td>OK FILTER</td>
+</tr>
+<tr>
+<td>ok syntax</td>
+<td></td>
+<td>SYNTAX</td>
+</tr>
+<tr>
+<td>perf config</td>
+<td></td>
+<td>PERF CONFIG</td>
+</tr>
+<tr>
+<td>process</td>
+<td></td>
+<td>PROCESS</td>
+</tr>
+<tr>
+<td>severity</td>
+<td></td>
+<td>SEVERITY</td>
+</tr>
+<tr>
+<td>silent period</td>
+<td>false</td>
+<td>Silent period</td>
+</tr>
+<tr>
+<td>source id</td>
+<td></td>
+<td>SOURCE ID</td>
+</tr>
+<tr>
+<td>target</td>
+<td></td>
+<td>DESTINATION</td>
+</tr>
+<tr>
+<td>target id</td>
+<td></td>
+<td>TARGET ID</td>
+</tr>
+<tr>
+<td>top syntax</td>
+<td></td>
+<td>SYNTAX</td>
+</tr>
+<tr>
+<td>warning</td>
+<td></td>
+<td>WARNING FILTER</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Sample:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># An example of a Realtime process filters section</span>
+<span class="k">[/settings/system/windows/real-time/process/sample]</span>
+<span class="c1">#command=...</span>
+<span class="c1">#critical=...</span>
+<span class="c1">#debug=...</span>
+<span class="c1">#destination=...</span>
+<span class="c1">#detail syntax=...</span>
+<span class="na">empty message</span><span class="o">=</span><span class="s">eventlog found no records</span>
+<span class="c1">#escape html=...</span>
+<span class="c1">#filter=...</span>
+<span class="na">maximum age</span><span class="o">=</span><span class="s">5m</span>
+<span class="c1">#ok=...</span>
+<span class="c1">#ok syntax=...</span>
+<span class="c1">#perf config=...</span>
+<span class="c1">#process=...</span>
+<span class="c1">#severity=...</span>
+<span class="na">silent period</span><span class="o">=</span><span class="s">false</span>
+<span class="c1">#source id=...</span>
+<span class="c1">#target=...</span>
+<span class="c1">#target id=...</span>
+<span class="c1">#top syntax=...</span>
+<span class="c1">#warning=...</span>
+</code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+      <div class="md-consent" data-md-component="consent" id="__consent" hidden>
+        <div class="md-consent__overlay"></div>
+        <aside class="md-consent__inner">
+          <form class="md-consent__form md-grid md-typeset" name="consent">
+            
+
+
+  
+
+
+<h4>Cookie consent</h4>
+<p>We use cookies to recognize your repeated visits and preferences, as well as to measure the effectiveness of our documentation and whether users find what they're searching for. With your consent, you're helping us to make our documentation better.</p>
+<input class="md-toggle" type="checkbox" id="__settings" >
+<div class="md-consent__settings">
+  <ul class="task-list">
+    
+    
+      
+    
+    
+      
+        
+  
+  
+    
+    
+  
+  <li class="task-list-item">
+    <label class="task-list-control">
+      <input type="checkbox" name="github" checked>
+      <span class="task-list-indicator"></span>
+      GitHub
+    </label>
+  </li>
+
+      
+    
+    
+  </ul>
+</div>
+<div class="md-consent__controls">
+  
+    
+      <button class="md-button md-button--primary">Accept</button>
+    
+    
+    
+  
+    
+    
+    
+      <label class="md-button" for="__settings">Manage settings</label>
+    
+  
+</div>
+          </form>
+        </aside>
+      </div>
+      <script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout((function(){document.querySelector("[data-md-component=consent]").hidden=!1}),250);var form=document.forms.consent;for(var action of["submit","reset"])form.addEventListener(action,(function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map((function(e){return[e,!0]})))),location.hash="",location.reload()}))</script>
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.tabs", "toc.follow", "toc.integrate", "navigation.indexes"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
