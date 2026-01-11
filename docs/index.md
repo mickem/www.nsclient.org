@@ -74,8 +74,7 @@ We are also interested in all contributions big or small.
 
 NSClient++ is a free (as in both beer and speech) program which is NOT backed by a big corporation. We dont belive in
 open<strong>core</strong> instead we really belive in open<strong>source</strong>. So feel free to contribute by
-buying <a href="/support"><i class="fa fa-support"></i> support</a> or <a href="/donate"><i class="fa fa-money"></i>
-donate</a>
+<a href="/donate"><i class="fa fa-money"></i>donating</a>
 
 * [:simple-paypal: Donate money via paypal](https://paypal.me/michaelmedin?country.x=SE&locale.x=en_US)
 * [:simple-githubsponsors: Sponsor development on GitHub](https://github.com/sponsors/mickem)
