@@ -43,11 +43,11 @@ can [:material-archive: see all old releases](https://github.com/mickem/nscp/rel
 
 ## :fontawesome-solid-question: Getting help
 
-You can read the [:material-head-question: documentation](https://docs.nsclient.org/). And if you can not find it there
+You can read the [:material-head-question: documentation](https://nsclient.org/docs/). And if you can not find it there
 head on over to the [:material-chat: forums](https://github.com/mickem/nscp/discussions) and ask a question there
 instead.
 
-* [:material-head-question: Documentation](https://docs.nsclient.org/)
+* [:material-head-question: Documentation](https://nsclient.org/docs/)
 * [:material-chat: Forums](https://github.com/mickem/nscp/discussions)
 
 </div>
