@@ -1,0 +1,4243 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../../check/CheckNSCP/">
+      
+      
+        <link rel="next" href="../../windows/CheckSystem/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>CheckSystemUnix (unix) - NSClient++</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#checksystemunix" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="NSClient++" class="md-header__button md-logo" aria-label="NSClient++" data-md-component="logo">
+      
+  <img src="../../../../assets/nsclient-logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            NSClient++
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              CheckSystemUnix (unix)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/mickem/nscp" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M202.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1M496 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2m-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3m-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1"/></svg>
+  </div>
+  <div class="md-source__repository">
+    NSClient++
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../.." class="md-tabs__link">
+          
+  
+  
+    
+  
+  Home
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../news/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  News
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://github.com/mickem/nscp/releases" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Download
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Documentation
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://github.com/mickem/nscp/discussions" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Forums
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="NSClient++" class="md-nav__button md-logo" aria-label="NSClient++" data-md-component="logo">
+      
+  <img src="../../../../assets/nsclient-logo.png" alt="logo">
+
+    </a>
+    NSClient++
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/mickem/nscp" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M202.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1M496 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2m-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3m-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1"/></svg>
+  </div>
+  <div class="md-source__repository">
+    NSClient++
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../.." class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_1" id="__nav_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Home
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../nsclient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About NSClient++
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../news/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    News
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/mickem/nscp/releases" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Download
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Documentation
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Documentation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../getting-started/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../getting-started/nsclient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSClient++
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../getting-started/nrpe/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NRPE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../getting-started/nsca/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSCA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../theory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../checks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Checking Things
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../installing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installing NSClient++
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../settings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../web/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WEB UI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../tutorial/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tutorial
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../securing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Securing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_11" id="__nav_4_11_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Howto
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Howto
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../howto/checks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Checking things
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../howto/counters/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Performance Counters
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../howto/external_scripts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    External scripts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../howto/run_commands/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Running commands
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../howto/nrpe/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NRPE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../howto/nsca/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSCA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../howto/03x_migration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Migrate from 0.3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_12" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_12" id="__nav_4_12_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_12_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_12">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_12_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4_12_2" id="__nav_4_12_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Check commands
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_12_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_12_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Check commands
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../windows/CheckDisk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckDisk (Windows)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../check/CheckExternalScripts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckExternalScripts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../windows/CheckEventLog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckEventLog (Windows)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../check/CheckHelpers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckHelpers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../check/CheckLogFile/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckLogFile
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../check/CheckMKClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckMKClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../check/CheckMKServer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckMKServer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../misc/CheckNet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckNet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../check/CheckNSCP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckNSCP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckSystemUnix (unix)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckSystemUnix (unix)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#queries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Queries
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Queries">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#check_memory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        check_memory
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="check_memory">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sample-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#command-line-arguments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Command-line Arguments
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filter-keywords" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Filter keywords
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check_os_version" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        check_os_version
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="check_os_version">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#command-line-arguments_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Command-line Arguments
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filter-keywords_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Filter keywords
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check_uptime" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        check_uptime
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="check_uptime">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#command-line-arguments_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Command-line Arguments
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filter-keywords_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Filter keywords
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../windows/CheckSystem/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckSystem (Windows)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../windows/CheckTaskSched/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckTaskSched (Windows)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../windows/CheckWMI/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckWMI (Windows)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_12_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_12_3" id="__nav_4_12_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Clients & Servers
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_12_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_12_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Clients & Servers
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../generic/WEBServer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WEBServer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../misc/WEBClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WEBClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/NRPEServer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NRPEServer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/NRPEClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NRPEClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../windows/NSClientServer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSClientServer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/NSCAServer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSCAServer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/NSCAClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSCAClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/NRDPClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NRDPClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/SMTPClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SMTPClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/GraphiteClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GraphiteClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/SyslogClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SyslogClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../misc/CollectdClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CollectdClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../misc/Op5Client/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Op5Client
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../misc/ElasticClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ElasticClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_12_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_12_4" id="__nav_4_12_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Helper modules
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_12_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_12_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Helper modules
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../generic/Scheduler/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scheduler
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../generic/SimpleFileWriter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SimpleFileWriter
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../generic/CommandClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CommandClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../generic/SimpleCache/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SimpleCache
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../generic/PythonScript/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PythonScript
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../generic/LUAScript/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LUAScript
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_13" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../extending/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Extending
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_13" id="__nav_4_13_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_13">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Extending
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../extending/python/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python Scripts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../extending/zip-modules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Zip Modules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_14" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_14" id="__nav_4_14_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_14">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    API
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_14_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../api/rest/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    REST
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_14_1" id="__nav_4_14_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_14_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_14_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    REST
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/rest/info/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Info
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/rest/modules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/rest/queries/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Queries
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/rest/scripts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scripts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/rest/logs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/rest/legacy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Legacy API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/common/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Common API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/plugin/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plugin API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Metrics API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/mickem/nscp/discussions" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Forums
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="checksystemunix">CheckSystemUnix</h1>
+<p>Various system related checks, such as CPU load, process state and memory.</p>
+<p><strong>List of commands:</strong></p>
+<p>A list of all available queries (check commands)</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#check_memory">check_memory</a></td>
+<td>Check free/used memory on the system.</td>
+</tr>
+<tr>
+<td><a href="#check_os_version">check_os_version</a></td>
+<td>Check the version of the underlying OS.</td>
+</tr>
+<tr>
+<td><a href="#check_uptime">check_uptime</a></td>
+<td>Check time since last server re-boot.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="queries">Queries</h2>
+<p>A quick reference for all available queries (check commands) in the CheckSystemUnix module.</p>
+<h3 id="check_memory">check_memory</h3>
+<p>Check free/used memory on the system.</p>
+<ul>
+<li>
+<p><a href="#check_memory_samples">Samples</a></p>
+</li>
+<li>
+<p><a href="#check_memory_options">Command-line Arguments</a></p>
+</li>
+<li><a href="#check_memory_filter_keys">Filter keywords</a></li>
+</ul>
+<p><a name="check_memory_samples"/></p>
+<h4 id="sample-commands">Sample Commands</h4>
+<p><em>To edit these sample please edit <a href="https://github.com/mickem/nscp-docs/blob/master/samples/CheckSystemUnix_check_memory_samples.md">this page</a></em></p>
+<p><strong>Default check:</strong></p>
+<div class="highlight"><pre><span></span><code>check_memory
+OK memory within bounds.
+&#39;page used&#39;=8G;19;21 &#39;page used %&#39;=33%;79;89 &#39;physical used&#39;=7G;9;10 &#39;physical used %&#39;=65%;79;89
+</code></pre></div>
+<p>Using --show-all <strong>to show the result</strong>:</p>
+<div class="highlight"><pre><span></span><code>check_memory &quot;warn=free &lt; 20%&quot; &quot;crit=free &lt; 10G&quot; --show-all
+page = 8.05G, physical = 7.85G
+&#39;page free&#39;=15G;4;2 &#39;page free %&#39;=66%;19;9 &#39;physical free&#39;=4G;2;1 &#39;physical free %&#39;=34%;19;9
+</code></pre></div>
+<p>Changing the return syntax to include more information::</p>
+<div class="highlight"><pre><span></span><code>check_memory &quot;top-syntax=${list}&quot; &quot;detail-syntax=${type} free: ${free} used: ${used} size: ${size}&quot;
+page free: 16G used: 7.98G size: 24G, physical free: 4.18G used: 7.8G size: 12G
+</code></pre></div>
+<p>Default check <strong>via NRPE</strong>::</p>
+<div class="highlight"><pre><span></span><code>check_nrpe --host 192.168.56.103 --command check_memory
+OK memory within bounds.|&#39;page&#39;=531G;3;3;0;3 &#39;page %&#39;=12%;79;89;0;100 &#39;physical&#39;=530G;1;1;0;1 &#39;physical %&#39;=25%;79;89;0;100
+</code></pre></div>
+<p><a name="check_memory_warn"/></p>
+<p><a name="check_memory_crit"/></p>
+<p><a name="check_memory_debug"/></p>
+<p><a name="check_memory_show-all"/></p>
+<p><a name="check_memory_escape-html"/></p>
+<p><a name="check_memory_help"/></p>
+<p><a name="check_memory_help-pb"/></p>
+<p><a name="check_memory_show-default"/></p>
+<p><a name="check_memory_help-short"/></p>
+<p><a name="check_memory_type"/></p>
+<p><a name="check_memory_options"/></p>
+<h4 id="command-line-arguments">Command-line Arguments</h4>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#check_memory_filter">filter</a></td>
+<td></td>
+<td>Filter which marks interesting items.</td>
+</tr>
+<tr>
+<td><a href="#check_memory_warning">warning</a></td>
+<td>used &gt; 80%</td>
+<td>Filter which marks items which generates a warning state.</td>
+</tr>
+<tr>
+<td>warn</td>
+<td></td>
+<td>Short alias for warning</td>
+</tr>
+<tr>
+<td><a href="#check_memory_critical">critical</a></td>
+<td>used &gt; 90%</td>
+<td>Filter which marks items which generates a critical state.</td>
+</tr>
+<tr>
+<td>crit</td>
+<td></td>
+<td>Short alias for critical.</td>
+</tr>
+<tr>
+<td><a href="#check_memory_ok">ok</a></td>
+<td></td>
+<td>Filter which marks items which generates an ok state.</td>
+</tr>
+<tr>
+<td>debug</td>
+<td>N/A</td>
+<td>Show debugging information in the log</td>
+</tr>
+<tr>
+<td>show-all</td>
+<td>N/A</td>
+<td>Show details for all matches regardless of status (normally details are only showed for warnings and criticals).</td>
+</tr>
+<tr>
+<td><a href="#check_memory_empty-state">empty-state</a></td>
+<td>ignored</td>
+<td>Return status to use when nothing matched filter.</td>
+</tr>
+<tr>
+<td><a href="#check_memory_perf-config">perf-config</a></td>
+<td></td>
+<td>Performance data generation configuration</td>
+</tr>
+<tr>
+<td>escape-html</td>
+<td>N/A</td>
+<td>Escape any &lt; and &gt; characters to prevent HTML encoding</td>
+</tr>
+<tr>
+<td>help</td>
+<td>N/A</td>
+<td>Show help screen (this screen)</td>
+</tr>
+<tr>
+<td>help-pb</td>
+<td>N/A</td>
+<td>Show help screen as a protocol buffer payload</td>
+</tr>
+<tr>
+<td>show-default</td>
+<td>N/A</td>
+<td>Show default values for a given command</td>
+</tr>
+<tr>
+<td>help-short</td>
+<td>N/A</td>
+<td>Show help screen (short format).</td>
+</tr>
+<tr>
+<td><a href="#check_memory_top-syntax">top-syntax</a></td>
+<td>${status}: ${list}</td>
+<td>Top level syntax.</td>
+</tr>
+<tr>
+<td><a href="#check_memory_ok-syntax">ok-syntax</a></td>
+<td></td>
+<td>ok syntax.</td>
+</tr>
+<tr>
+<td><a href="#check_memory_empty-syntax">empty-syntax</a></td>
+<td></td>
+<td>Empty syntax.</td>
+</tr>
+<tr>
+<td><a href="#check_memory_detail-syntax">detail-syntax</a></td>
+<td>${type} = ${used}</td>
+<td>Detail level syntax.</td>
+</tr>
+<tr>
+<td><a href="#check_memory_perf-syntax">perf-syntax</a></td>
+<td>${type}</td>
+<td>Performance alias syntax.</td>
+</tr>
+<tr>
+<td>type</td>
+<td></td>
+<td>The type of memory to check (physical = Physical memory (RAM), committed = total memory (RAM+PAGE)</td>
+</tr>
+</tbody>
+</table>
+<p><a name="check_memory_filter"/>
+<strong>filter:</strong></p>
+<p>Filter which marks interesting items.
+Interesting items are items which will be included in the check.
+They do not denote warning or critical state instead it defines which items are relevant and you can remove unwanted items.</p>
+<p><a name="check_memory_warning"/>
+<strong>warning:</strong></p>
+<p>Filter which marks items which generates a warning state.
+If anything matches this filter the return status will be escalated to warning.</p>
+<p><em>Deafult Value:</em> | <code>used &gt; 80%</code></p>
+<p><a name="check_memory_critical"/>
+<strong>critical:</strong></p>
+<p>Filter which marks items which generates a critical state.
+If anything matches this filter the return status will be escalated to critical.</p>
+<p><em>Deafult Value:</em> | <code>used &gt; 90%</code></p>
+<p><a name="check_memory_ok"/>
+<strong>ok:</strong></p>
+<p>Filter which marks items which generates an ok state.
+If anything matches this any previous state for this item will be reset to ok.</p>
+<p><a name="check_memory_empty-state"/>
+<strong>empty-state:</strong></p>
+<p>Return status to use when nothing matched filter.
+If no filter is specified this will never happen unless the file is empty.</p>
+<p><em>Deafult Value:</em> | <code>ignored</code></p>
+<p><a name="check_memory_perf-config"/>
+<strong>perf-config:</strong></p>
+<p>Performance data generation configuration
+TODO: obj ( key: value; key: value) obj (key:valuer;key:value)</p>
+<p><a name="check_memory_top-syntax"/>
+<strong>top-syntax:</strong></p>
+<p>Top level syntax.
+Used to format the message to return can include text as well as special keywords which will include information from the checks.
+To add a keyword to the message you can use two syntaxes either ${keyword} or %(keyword) (there is no difference between them apart from ${} can be difficult to escape on linux).</p>
+<p><em>Deafult Value:</em> | <code>${status}: ${list}</code></p>
+<p><a name="check_memory_ok-syntax"/>
+<strong>ok-syntax:</strong></p>
+<p>ok syntax.
+DEPRECATED! This is the syntax for when an ok result is returned.
+This value will not be used if your syntax contains %(list) or %(count).</p>
+<p><a name="check_memory_empty-syntax"/>
+<strong>empty-syntax:</strong></p>
+<p>Empty syntax.
+DEPRECATED! This is the syntax for when nothing matches the filter.</p>
+<p><a name="check_memory_detail-syntax"/>
+<strong>detail-syntax:</strong></p>
+<p>Detail level syntax.
+Used to format each resulting item in the message.
+%(list) will be replaced with all the items formated by this syntax string in the top-syntax.
+To add a keyword to the message you can use two syntaxes either ${keyword} or %(keyword) (there is no difference between them apart from ${} can be difficult to escape on linux).</p>
+<p><em>Deafult Value:</em> | <code>${type} = ${used}</code></p>
+<p><a name="check_memory_perf-syntax"/>
+<strong>perf-syntax:</strong></p>
+<p>Performance alias syntax.
+This is the syntax for the base names of the performance data.</p>
+<p><em>Deafult Value:</em> | <code>${type}</code></p>
+<p><a name="check_memory_filter_keys"/></p>
+<h4 id="filter-keywords">Filter keywords</h4>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#check_memory_count">count</a></td>
+<td>Number of items matching the filter. Common option for all checks.</td>
+</tr>
+<tr>
+<td><a href="#check_memory_crit_count">crit_count</a></td>
+<td>Number of items matched the critical criteria. Common option for all checks.</td>
+</tr>
+<tr>
+<td><a href="#check_memory_crit_list">crit_list</a></td>
+<td>A list of all items which matched the critical criteria. Common option for all checks.</td>
+</tr>
+<tr>
+<td><a href="#check_memory_detail_list">detail_list</a></td>
+<td>A special list with critical, then warning and finally ok. Common option for all checks.</td>
+</tr>
+<tr>
+<td><a href="#check_memory_free">free</a></td>
+<td>Free memory in bytes (g,m,k,b) or percentages %</td>
+</tr>
+<tr>
+<td><a href="#check_memory_list">list</a></td>
+<td>A list of all items which matched the filter. Common option for all checks.</td>
+</tr>
+<tr>
+<td><a href="#check_memory_ok_count">ok_count</a></td>
+<td>Number of items matched the ok criteria. Common option for all checks.</td>
+</tr>
+<tr>
+<td><a href="#check_memory_ok_list">ok_list</a></td>
+<td>A list of all items which matched the ok criteria. Common option for all checks.</td>
+</tr>
+<tr>
+<td><a href="#check_memory_problem_count">problem_count</a></td>
+<td>Number of items matched either warning or critical criteria. Common option for all checks.</td>
+</tr>
+<tr>
+<td><a href="#check_memory_problem_list">problem_list</a></td>
+<td>A list of all items which matched either the critical or the warning criteria. Common option for all checks.</td>
+</tr>
+<tr>
+<td><a href="#check_memory_size">size</a></td>
+<td>Total size of memory</td>
+</tr>
+<tr>
+<td><a href="#check_memory_status">status</a></td>
+<td>The returned status (OK/WARN/CRIT/UNKNOWN). Common option for all checks.</td>
+</tr>
+<tr>
+<td><a href="#check_memory_total">total</a></td>
+<td>Total number of items. Common option for all checks.</td>
+</tr>
+<tr>
+<td><a href="#check_memory_type">type</a></td>
+<td>The type of memory to check</td>
+</tr>
+<tr>
+<td><a href="#check_memory_used">used</a></td>
+<td>Used memory in bytes (g,m,k,b) or percentages %</td>
+</tr>
+<tr>
+<td><a href="#check_memory_warn_count">warn_count</a></td>
+<td>Number of items matched the warning criteria. Common option for all checks.</td>
+</tr>
+<tr>
+<td><a href="#check_memory_warn_list">warn_list</a></td>
+<td>A list of all items which matched the warning criteria. Common option for all checks.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="check_os_version">check_os_version</h3>
+<p>Check the version of the underlying OS.</p>
+<ul>
+<li><a href="#check_os_version_options">Command-line Arguments</a></li>
+<li><a href="#check_os_version_filter_keys">Filter keywords</a></li>
+</ul>
+<p><a name="check_os_version_warn"/></p>
+<p><a name="check_os_version_crit"/></p>
+<p><a name="check_os_version_debug"/></p>
+<p><a name="check_os_version_show-all"/></p>
+<p><a name="check_os_version_escape-html"/></p>
+<p><a name="check_os_version_help"/></p>
+<p><a name="check_os_version_help-pb"/></p>
+<p><a name="check_os_version_show-default"/></p>
+<p><a name="check_os_version_help-short"/></p>
+<p><a name="check_os_version_options"/></p>
+<h4 id="command-line-arguments_1">Command-line Arguments</h4>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#check_os_version_filter">filter</a></td>
+<td></td>
+<td>Filter which marks interesting items.</td>
+</tr>
+<tr>
+<td><a href="#check_os_version_warning">warning</a></td>
+<td>version &gt; 50</td>
+<td>Filter which marks items which generates a warning state.</td>
+</tr>
+<tr>
+<td>warn</td>
+<td></td>
+<td>Short alias for warning</td>
+</tr>
+<tr>
+<td><a href="#check_os_version_critical">critical</a></td>
+<td>version &gt; 50</td>
+<td>Filter which marks items which generates a critical state.</td>
+</tr>
+<tr>
+<td>crit</td>
+<td></td>
+<td>Short alias for critical.</td>
+</tr>
+<tr>
+<td><a href="#check_os_version_ok">ok</a></td>
+<td></td>
+<td>Filter which marks items which generates an ok state.</td>
+</tr>
+<tr>
+<td>debug</td>
+<td>N/A</td>
+<td>Show debugging information in the log</td>
+</tr>
+<tr>
+<td>show-all</td>
+<td>N/A</td>
+<td>Show details for all matches regardless of status (normally details are only showed for warnings and criticals).</td>
+</tr>
+<tr>
+<td><a href="#check_os_version_empty-state">empty-state</a></td>
+<td>ignored</td>
+<td>Return status to use when nothing matched filter.</td>
+</tr>
+<tr>
+<td><a href="#check_os_version_perf-config">perf-config</a></td>
+<td></td>
+<td>Performance data generation configuration</td>
+</tr>
+<tr>
+<td>escape-html</td>
+<td>N/A</td>
+<td>Escape any &lt; and &gt; characters to prevent HTML encoding</td>
+</tr>
+<tr>
+<td>help</td>
+<td>N/A</td>
+<td>Show help screen (this screen)</td>
+</tr>
+<tr>
+<td>help-pb</td>
+<td>N/A</td>
+<td>Show help screen as a protocol buffer payload</td>
+</tr>
+<tr>
+<td>show-default</td>
+<td>N/A</td>
+<td>Show default values for a given command</td>
+</tr>
+<tr>
+<td>help-short</td>
+<td>N/A</td>
+<td>Show help screen (short format).</td>
+</tr>
+<tr>
+<td><a href="#check_os_version_top-syntax">top-syntax</a></td>
+<td>${status}: ${list}</td>
+<td>Top level syntax.</td>
+</tr>
+<tr>
+<td><a href="#check_os_version_ok-syntax">ok-syntax</a></td>
+<td></td>
+<td>ok syntax.</td>
+</tr>
+<tr>
+<td><a href="#check_os_version_empty-syntax">empty-syntax</a></td>
+<td></td>
+<td>Empty syntax.</td>
+</tr>
+<tr>
+<td><a href="#check_os_version_detail-syntax">detail-syntax</a></td>
+<td>${version} (${major}.${minor}.${build})</td>
+<td>Detail level syntax.</td>
+</tr>
+<tr>
+<td><a href="#check_os_version_perf-syntax">perf-syntax</a></td>
+<td>version</td>
+<td>Performance alias syntax.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="check_os_version_filter"/>
+<strong>filter:</strong></p>
+<p>Filter which marks interesting items.
+Interesting items are items which will be included in the check.
+They do not denote warning or critical state instead it defines which items are relevant and you can remove unwanted items.</p>
+<p><a name="check_os_version_warning"/>
+<strong>warning:</strong></p>
+<p>Filter which marks items which generates a warning state.
+If anything matches this filter the return status will be escalated to warning.</p>
+<p><em>Deafult Value:</em> | <code>version &gt; 50</code></p>
+<p><a name="check_os_version_critical"/>
+<strong>critical:</strong></p>
+<p>Filter which marks items which generates a critical state.
+If anything matches this filter the return status will be escalated to critical.</p>
+<p><em>Deafult Value:</em> | <code>version &gt; 50</code></p>
+<p><a name="check_os_version_ok"/>
+<strong>ok:</strong></p>
+<p>Filter which marks items which generates an ok state.
+If anything matches this any previous state for this item will be reset to ok.</p>
+<p><a name="check_os_version_empty-state"/>
+<strong>empty-state:</strong></p>
+<p>Return status to use when nothing matched filter.
+If no filter is specified this will never happen unless the file is empty.</p>
+<p><em>Deafult Value:</em> | <code>ignored</code></p>
+<p><a name="check_os_version_perf-config"/>
+<strong>perf-config:</strong></p>
+<p>Performance data generation configuration
+TODO: obj ( key: value; key: value) obj (key:valuer;key:value)</p>
+<p><a name="check_os_version_top-syntax"/>
+<strong>top-syntax:</strong></p>
+<p>Top level syntax.
+Used to format the message to return can include text as well as special keywords which will include information from the checks.
+To add a keyword to the message you can use two syntaxes either ${keyword} or %(keyword) (there is no difference between them apart from ${} can be difficult to escape on linux).</p>
+<p><em>Deafult Value:</em> | <code>${status}: ${list}</code></p>
+<p><a name="check_os_version_ok-syntax"/>
+<strong>ok-syntax:</strong></p>
+<p>ok syntax.
+DEPRECATED! This is the syntax for when an ok result is returned.
+This value will not be used if your syntax contains %(list) or %(count).</p>
+<p><a name="check_os_version_empty-syntax"/>
+<strong>empty-syntax:</strong></p>
+<p>Empty syntax.
+DEPRECATED! This is the syntax for when nothing matches the filter.</p>
+<p><a name="check_os_version_detail-syntax"/>
+<strong>detail-syntax:</strong></p>
+<p>Detail level syntax.
+Used to format each resulting item in the message.
+%(list) will be replaced with all the items formated by this syntax string in the top-syntax.
+To add a keyword to the message you can use two syntaxes either ${keyword} or %(keyword) (there is no difference between them apart from ${} can be difficult to escape on linux).</p>
+<p><em>Deafult Value:</em> | <code>${version} (${major}.${minor}.${build})</code></p>
+<p><a name="check_os_version_perf-syntax"/>
+<strong>perf-syntax:</strong></p>
+<p>Performance alias syntax.
+This is the syntax for the base names of the performance data.</p>
+<p><em>Deafult Value:</em> | <code>version</code></p>
+<p><a name="check_os_version_filter_keys"/></p>
+<h4 id="filter-keywords_1">Filter keywords</h4>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#check_os_version_count">count</a></td>
+<td>Number of items matching the filter. Common option for all checks.</td>
+</tr>
+<tr>
+<td><a href="#check_os_version_crit_count">crit_count</a></td>
+<td>Number of items matched the critical criteria. Common option for all checks.</td>
+</tr>
+<tr>
+<td><a href="#check_os_version_crit_list">crit_list</a></td>
+<td>A list of all items which matched the critical criteria. Common option for all checks.</td>
+</tr>
+<tr>
+<td><a href="#check_os_version_detail_list">detail_list</a></td>
+<td>A special list with critical, then warning and finally ok. Common option for all checks.</td>
+</tr>
+<tr>
+<td><a href="#check_os_version_kernel_name">kernel_name</a></td>
+<td>Kernel name</td>
+</tr>
+<tr>
+<td><a href="#check_os_version_kernel_release">kernel_release</a></td>
+<td>Kernel release</td>
+</tr>
+<tr>
+<td><a href="#check_os_version_kernel_version">kernel_version</a></td>
+<td>Kernel version</td>
+</tr>
+<tr>
+<td><a href="#check_os_version_list">list</a></td>
+<td>A list of all items which matched the filter. Common option for all checks.</td>
+</tr>
+<tr>
+<td><a href="#check_os_version_machine">machine</a></td>
+<td>Machine hardware name</td>
+</tr>
+<tr>
+<td><a href="#check_os_version_nodename">nodename</a></td>
+<td>Network node hostname</td>
+</tr>
+<tr>
+<td><a href="#check_os_version_ok_count">ok_count</a></td>
+<td>Number of items matched the ok criteria. Common option for all checks.</td>
+</tr>
+<tr>
+<td><a href="#check_os_version_ok_list">ok_list</a></td>
+<td>A list of all items which matched the ok criteria. Common option for all checks.</td>
+</tr>
+<tr>
+<td><a href="#check_os_version_os">os</a></td>
+<td>Operating system</td>
+</tr>
+<tr>
+<td><a href="#check_os_version_problem_count">problem_count</a></td>
+<td>Number of items matched either warning or critical criteria. Common option for all checks.</td>
+</tr>
+<tr>
+<td><a href="#check_os_version_problem_list">problem_list</a></td>
+<td>A list of all items which matched either the critical or the warning criteria. Common option for all checks.</td>
+</tr>
+<tr>
+<td><a href="#check_os_version_processor">processor</a></td>
+<td>Processor type or unknown</td>
+</tr>
+<tr>
+<td><a href="#check_os_version_status">status</a></td>
+<td>The returned status (OK/WARN/CRIT/UNKNOWN). Common option for all checks.</td>
+</tr>
+<tr>
+<td><a href="#check_os_version_total">total</a></td>
+<td>Total number of items. Common option for all checks.</td>
+</tr>
+<tr>
+<td><a href="#check_os_version_warn_count">warn_count</a></td>
+<td>Number of items matched the warning criteria. Common option for all checks.</td>
+</tr>
+<tr>
+<td><a href="#check_os_version_warn_list">warn_list</a></td>
+<td>A list of all items which matched the warning criteria. Common option for all checks.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="check_uptime">check_uptime</h3>
+<p>Check time since last server re-boot.</p>
+<ul>
+<li><a href="#check_uptime_options">Command-line Arguments</a></li>
+<li><a href="#check_uptime_filter_keys">Filter keywords</a></li>
+</ul>
+<p><a name="check_uptime_warn"/></p>
+<p><a name="check_uptime_crit"/></p>
+<p><a name="check_uptime_debug"/></p>
+<p><a name="check_uptime_show-all"/></p>
+<p><a name="check_uptime_escape-html"/></p>
+<p><a name="check_uptime_help"/></p>
+<p><a name="check_uptime_help-pb"/></p>
+<p><a name="check_uptime_show-default"/></p>
+<p><a name="check_uptime_help-short"/></p>
+<p><a name="check_uptime_options"/></p>
+<h4 id="command-line-arguments_2">Command-line Arguments</h4>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#check_uptime_filter">filter</a></td>
+<td></td>
+<td>Filter which marks interesting items.</td>
+</tr>
+<tr>
+<td><a href="#check_uptime_warning">warning</a></td>
+<td>uptime &lt; 2d</td>
+<td>Filter which marks items which generates a warning state.</td>
+</tr>
+<tr>
+<td>warn</td>
+<td></td>
+<td>Short alias for warning</td>
+</tr>
+<tr>
+<td><a href="#check_uptime_critical">critical</a></td>
+<td>uptime &lt; 1d</td>
+<td>Filter which marks items which generates a critical state.</td>
+</tr>
+<tr>
+<td>crit</td>
+<td></td>
+<td>Short alias for critical.</td>
+</tr>
+<tr>
+<td><a href="#check_uptime_ok">ok</a></td>
+<td></td>
+<td>Filter which marks items which generates an ok state.</td>
+</tr>
+<tr>
+<td>debug</td>
+<td>N/A</td>
+<td>Show debugging information in the log</td>
+</tr>
+<tr>
+<td>show-all</td>
+<td>N/A</td>
+<td>Show details for all matches regardless of status (normally details are only showed for warnings and criticals).</td>
+</tr>
+<tr>
+<td><a href="#check_uptime_empty-state">empty-state</a></td>
+<td>ignored</td>
+<td>Return status to use when nothing matched filter.</td>
+</tr>
+<tr>
+<td><a href="#check_uptime_perf-config">perf-config</a></td>
+<td></td>
+<td>Performance data generation configuration</td>
+</tr>
+<tr>
+<td>escape-html</td>
+<td>N/A</td>
+<td>Escape any &lt; and &gt; characters to prevent HTML encoding</td>
+</tr>
+<tr>
+<td>help</td>
+<td>N/A</td>
+<td>Show help screen (this screen)</td>
+</tr>
+<tr>
+<td>help-pb</td>
+<td>N/A</td>
+<td>Show help screen as a protocol buffer payload</td>
+</tr>
+<tr>
+<td>show-default</td>
+<td>N/A</td>
+<td>Show default values for a given command</td>
+</tr>
+<tr>
+<td>help-short</td>
+<td>N/A</td>
+<td>Show help screen (short format).</td>
+</tr>
+<tr>
+<td><a href="#check_uptime_top-syntax">top-syntax</a></td>
+<td>${status}: ${list}</td>
+<td>Top level syntax.</td>
+</tr>
+<tr>
+<td><a href="#check_uptime_ok-syntax">ok-syntax</a></td>
+<td></td>
+<td>ok syntax.</td>
+</tr>
+<tr>
+<td><a href="#check_uptime_empty-syntax">empty-syntax</a></td>
+<td></td>
+<td>Empty syntax.</td>
+</tr>
+<tr>
+<td><a href="#check_uptime_detail-syntax">detail-syntax</a></td>
+<td>uptime: ${uptime}h, boot: ${boot} (UTC)</td>
+<td>Detail level syntax.</td>
+</tr>
+<tr>
+<td><a href="#check_uptime_perf-syntax">perf-syntax</a></td>
+<td>uptime</td>
+<td>Performance alias syntax.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="check_uptime_filter"/>
+<strong>filter:</strong></p>
+<p>Filter which marks interesting items.
+Interesting items are items which will be included in the check.
+They do not denote warning or critical state instead it defines which items are relevant and you can remove unwanted items.</p>
+<p><a name="check_uptime_warning"/>
+<strong>warning:</strong></p>
+<p>Filter which marks items which generates a warning state.
+If anything matches this filter the return status will be escalated to warning.</p>
+<p><em>Deafult Value:</em> | <code>uptime &lt; 2d</code></p>
+<p><a name="check_uptime_critical"/>
+<strong>critical:</strong></p>
+<p>Filter which marks items which generates a critical state.
+If anything matches this filter the return status will be escalated to critical.</p>
+<p><em>Deafult Value:</em> | <code>uptime &lt; 1d</code></p>
+<p><a name="check_uptime_ok"/>
+<strong>ok:</strong></p>
+<p>Filter which marks items which generates an ok state.
+If anything matches this any previous state for this item will be reset to ok.</p>
+<p><a name="check_uptime_empty-state"/>
+<strong>empty-state:</strong></p>
+<p>Return status to use when nothing matched filter.
+If no filter is specified this will never happen unless the file is empty.</p>
+<p><em>Deafult Value:</em> | <code>ignored</code></p>
+<p><a name="check_uptime_perf-config"/>
+<strong>perf-config:</strong></p>
+<p>Performance data generation configuration
+TODO: obj ( key: value; key: value) obj (key:valuer;key:value)</p>
+<p><a name="check_uptime_top-syntax"/>
+<strong>top-syntax:</strong></p>
+<p>Top level syntax.
+Used to format the message to return can include text as well as special keywords which will include information from the checks.
+To add a keyword to the message you can use two syntaxes either ${keyword} or %(keyword) (there is no difference between them apart from ${} can be difficult to escape on linux).</p>
+<p><em>Deafult Value:</em> | <code>${status}: ${list}</code></p>
+<p><a name="check_uptime_ok-syntax"/>
+<strong>ok-syntax:</strong></p>
+<p>ok syntax.
+DEPRECATED! This is the syntax for when an ok result is returned.
+This value will not be used if your syntax contains %(list) or %(count).</p>
+<p><a name="check_uptime_empty-syntax"/>
+<strong>empty-syntax:</strong></p>
+<p>Empty syntax.
+DEPRECATED! This is the syntax for when nothing matches the filter.</p>
+<p><a name="check_uptime_detail-syntax"/>
+<strong>detail-syntax:</strong></p>
+<p>Detail level syntax.
+Used to format each resulting item in the message.
+%(list) will be replaced with all the items formated by this syntax string in the top-syntax.
+To add a keyword to the message you can use two syntaxes either ${keyword} or %(keyword) (there is no difference between them apart from ${} can be difficult to escape on linux).</p>
+<p><em>Deafult Value:</em> | <code>uptime: ${uptime}h, boot: ${boot} (UTC)</code></p>
+<p><a name="check_uptime_perf-syntax"/>
+<strong>perf-syntax:</strong></p>
+<p>Performance alias syntax.
+This is the syntax for the base names of the performance data.</p>
+<p><em>Deafult Value:</em> | <code>uptime</code></p>
+<p><a name="check_uptime_filter_keys"/></p>
+<h4 id="filter-keywords_2">Filter keywords</h4>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#check_uptime_boot">boot</a></td>
+<td>System boot time</td>
+</tr>
+<tr>
+<td><a href="#check_uptime_count">count</a></td>
+<td>Number of items matching the filter. Common option for all checks.</td>
+</tr>
+<tr>
+<td><a href="#check_uptime_crit_count">crit_count</a></td>
+<td>Number of items matched the critical criteria. Common option for all checks.</td>
+</tr>
+<tr>
+<td><a href="#check_uptime_crit_list">crit_list</a></td>
+<td>A list of all items which matched the critical criteria. Common option for all checks.</td>
+</tr>
+<tr>
+<td><a href="#check_uptime_detail_list">detail_list</a></td>
+<td>A special list with critical, then warning and finally ok. Common option for all checks.</td>
+</tr>
+<tr>
+<td><a href="#check_uptime_list">list</a></td>
+<td>A list of all items which matched the filter. Common option for all checks.</td>
+</tr>
+<tr>
+<td><a href="#check_uptime_ok_count">ok_count</a></td>
+<td>Number of items matched the ok criteria. Common option for all checks.</td>
+</tr>
+<tr>
+<td><a href="#check_uptime_ok_list">ok_list</a></td>
+<td>A list of all items which matched the ok criteria. Common option for all checks.</td>
+</tr>
+<tr>
+<td><a href="#check_uptime_problem_count">problem_count</a></td>
+<td>Number of items matched either warning or critical criteria. Common option for all checks.</td>
+</tr>
+<tr>
+<td><a href="#check_uptime_problem_list">problem_list</a></td>
+<td>A list of all items which matched either the critical or the warning criteria. Common option for all checks.</td>
+</tr>
+<tr>
+<td><a href="#check_uptime_status">status</a></td>
+<td>The returned status (OK/WARN/CRIT/UNKNOWN). Common option for all checks.</td>
+</tr>
+<tr>
+<td><a href="#check_uptime_total">total</a></td>
+<td>Total number of items. Common option for all checks.</td>
+</tr>
+<tr>
+<td><a href="#check_uptime_uptime">uptime</a></td>
+<td>Time since last boot</td>
+</tr>
+<tr>
+<td><a href="#check_uptime_warn_count">warn_count</a></td>
+<td>Number of items matched the warning criteria. Common option for all checks.</td>
+</tr>
+<tr>
+<td><a href="#check_uptime_warn_list">warn_list</a></td>
+<td>A list of all items which matched the warning criteria. Common option for all checks.</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+      <div class="md-consent" data-md-component="consent" id="__consent" hidden>
+        <div class="md-consent__overlay"></div>
+        <aside class="md-consent__inner">
+          <form class="md-consent__form md-grid md-typeset" name="consent">
+            
+
+
+  
+
+
+<h4>Cookie consent</h4>
+<p>We use cookies to recognize your repeated visits and preferences, as well as to measure the effectiveness of our documentation and whether users find what they're searching for. With your consent, you're helping us to make our documentation better.</p>
+<input class="md-toggle" type="checkbox" id="__settings" >
+<div class="md-consent__settings">
+  <ul class="task-list">
+    
+    
+      
+    
+    
+      
+        
+  
+  
+    
+    
+  
+  <li class="task-list-item">
+    <label class="task-list-control">
+      <input type="checkbox" name="github" checked>
+      <span class="task-list-indicator"></span>
+      GitHub
+    </label>
+  </li>
+
+      
+    
+    
+  </ul>
+</div>
+<div class="md-consent__controls">
+  
+    
+      <button class="md-button md-button--primary">Accept</button>
+    
+    
+    
+  
+    
+    
+    
+      <label class="md-button" for="__settings">Manage settings</label>
+    
+  
+</div>
+          </form>
+        </aside>
+      </div>
+      <script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout((function(){document.querySelector("[data-md-component=consent]").hidden=!1}),250);var form=document.forms.consent;for(var action of["submit","reset"])form.addEventListener(action,(function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map((function(e){return[e,!0]})))),location.hash="",location.reload()}))</script>
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.tabs", "toc.follow", "toc.integrate", "navigation.indexes"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

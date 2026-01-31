@@ -1,0 +1,6521 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../common/">
+      
+      
+        <link rel="next" href="../metrics/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Plugin API - NSClient++</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#api-reference" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="NSClient++" class="md-header__button md-logo" aria-label="NSClient++" data-md-component="logo">
+      
+  <img src="../../../assets/nsclient-logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            NSClient++
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Plugin API
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/mickem/nscp" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M202.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1M496 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2m-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3m-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1"/></svg>
+  </div>
+  <div class="md-source__repository">
+    NSClient++
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../.." class="md-tabs__link">
+          
+  
+  
+    
+  
+  Home
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../news/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  News
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://github.com/mickem/nscp/releases" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Download
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Documentation
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://github.com/mickem/nscp/discussions" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Forums
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="NSClient++" class="md-nav__button md-logo" aria-label="NSClient++" data-md-component="logo">
+      
+  <img src="../../../assets/nsclient-logo.png" alt="logo">
+
+    </a>
+    NSClient++
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/mickem/nscp" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M202.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1M496 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2m-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3m-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1"/></svg>
+  </div>
+  <div class="md-source__repository">
+    NSClient++
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../.." class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_1" id="__nav_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Home
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../nsclient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About NSClient++
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../news/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    News
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/mickem/nscp/releases" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Download
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Documentation
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Documentation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../getting-started/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/nsclient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSClient++
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/nrpe/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NRPE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/nsca/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSCA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../theory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../checks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Checking Things
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installing NSClient++
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../settings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../web/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WEB UI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorial/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tutorial
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../securing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Securing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_11" id="__nav_4_11_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Howto
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Howto
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../howto/checks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Checking things
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../howto/counters/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Performance Counters
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../howto/external_scripts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    External scripts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../howto/run_commands/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Running commands
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../howto/nrpe/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NRPE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../howto/nsca/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSCA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../howto/03x_migration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Migrate from 0.3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_12" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../reference/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_12" id="__nav_4_12_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_12">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_12_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_12_2" id="__nav_4_12_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Check commands
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_12_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_12_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Check commands
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/windows/CheckDisk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckDisk (Windows)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/check/CheckExternalScripts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckExternalScripts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/windows/CheckEventLog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckEventLog (Windows)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/check/CheckHelpers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckHelpers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/check/CheckLogFile/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckLogFile
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/check/CheckMKClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckMKClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/check/CheckMKServer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckMKServer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/misc/CheckNet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckNet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/check/CheckNSCP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckNSCP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/unix/CheckSystemUnix/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckSystemUnix (unix)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/windows/CheckSystem/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckSystem (Windows)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/windows/CheckTaskSched/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckTaskSched (Windows)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/windows/CheckWMI/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckWMI (Windows)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_12_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_12_3" id="__nav_4_12_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Clients & Servers
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_12_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_12_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Clients & Servers
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/generic/WEBServer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WEBServer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/misc/WEBClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WEBClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/client/NRPEServer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NRPEServer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/client/NRPEClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NRPEClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/windows/NSClientServer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSClientServer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/client/NSCAServer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSCAServer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/client/NSCAClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSCAClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/client/NRDPClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NRDPClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/client/SMTPClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SMTPClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/client/GraphiteClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GraphiteClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/client/SyslogClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SyslogClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/misc/CollectdClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CollectdClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/misc/Op5Client/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Op5Client
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/misc/ElasticClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ElasticClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_12_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_12_4" id="__nav_4_12_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Helper modules
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_12_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_12_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Helper modules
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/generic/Scheduler/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scheduler
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/generic/SimpleFileWriter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SimpleFileWriter
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/generic/CommandClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CommandClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/generic/SimpleCache/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SimpleCache
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/generic/PythonScript/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PythonScript
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/generic/LUAScript/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LUAScript
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_13" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../extending/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Extending
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_13" id="__nav_4_13_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_13">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Extending
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../extending/python/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python Scripts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../extending/zip-modules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Zip Modules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_14" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4_14" id="__nav_4_14_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_14_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_14">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    API
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_14_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../rest/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    REST
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_14_1" id="__nav_4_14_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_14_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_14_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    REST
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rest/info/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Info
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rest/modules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rest/queries/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Queries
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rest/scripts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scripts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rest/logs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rest/legacy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Legacy API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../common/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Common API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plugin API
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plugin API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#queryrequestmessage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        QueryRequestMessage
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="QueryRequestMessage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#request" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Request
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#queryresponsemessage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        QueryResponseMessage
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="QueryResponseMessage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#response" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Response
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Response">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#line" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Line
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#executerequestmessage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ExecuteRequestMessage
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ExecuteRequestMessage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#request_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Request
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#executeresponsemessage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ExecuteResponseMessage
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ExecuteResponseMessage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#response_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Response
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#submitrequestmessage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SubmitRequestMessage
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#submitresponsemessage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SubmitResponseMessage
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SubmitResponseMessage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#response_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Response
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#eventmessage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EventMessage
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="EventMessage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#request_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Request
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#registry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Registry
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Registry">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#itemtype" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ItemType
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#command" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Command
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#query" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Query
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#information" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Information
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#keyworddescription" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        KeyWordDescription
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parameterdetail" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ParameterDetail
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fielddetail" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FieldDetail
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parameterdetails" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ParameterDetails
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#schedule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Schedule
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#registryrequestmessage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RegistryRequestMessage
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="RegistryRequestMessage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#request_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Request
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Request">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#registration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Registration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inventory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inventory
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#control" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Control
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#registryresponsemessage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RegistryResponseMessage
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="RegistryResponseMessage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#response_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Response
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Response">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#registration_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Registration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inventory_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inventory
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#control_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Control
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#schedulenotificationmessage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ScheduleNotificationMessage
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ScheduleNotificationMessage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#request_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Request
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Settings
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Settings">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#command_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Command
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#node" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Node
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#information_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Information
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#settingsrequestmessage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SettingsRequestMessage
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SettingsRequestMessage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#request_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Request
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Request">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#registration_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Registration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#query_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Query
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Update
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inventory_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inventory
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#control_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Control
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Status
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#settingsresponsemessage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SettingsResponseMessage
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SettingsResponseMessage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#response_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Response
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Response">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#registration_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Registration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#query_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Query
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Update
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inventory_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inventory
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#control_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Control
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#status_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Status
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#logentry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LogEntry
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="LogEntry">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#entry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Entry
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#level" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Level
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Storage
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Storage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#entry_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Entry
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#block" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Block
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        File
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#storagerequestmessage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        StorageRequestMessage
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="StorageRequestMessage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#request_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Request
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Request">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#put" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Put
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Get
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#storageresponsemessage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        StorageResponseMessage
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="StorageResponseMessage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#response_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Response
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Response">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#put_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Put
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Get
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Metrics API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/mickem/nscp/discussions" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Forums
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="api-reference">API Reference</h1>
+<p><a name=".Plugin.QueryRequestMessage"/></p>
+<h2 id="queryrequestmessage">QueryRequestMessage</h2>
+<p><code>Plugin.QueryRequestMessage</code> Query request
+Used for querying the client this is the "normal" check_nrpe message request.
+Associated response is <img alt="🇵🇾" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/1f1f5-1f1fe.svg" title=":py:" />class:<code>Plugin.QueryResponseMessage</code></p>
+<table>
+<thead>
+<tr>
+<th>Modifier</th>
+<th>Type</th>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>optional</td>
+<td>Header</td>
+<td>header</td>
+<td></td>
+</tr>
+<tr>
+<td>repeated</td>
+<td>Request</td>
+<td>payload</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name=".Plugin.QueryRequestMessage.Request"/></p>
+<h3 id="request">Request</h3>
+<p><code>Plugin.QueryRequestMessage.Request</code> </p>
+<table>
+<thead>
+<tr>
+<th>Modifier</th>
+<th>Type</th>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>optional</td>
+<td>int32</td>
+<td>id</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>string</td>
+<td>target</td>
+<td></td>
+</tr>
+<tr>
+<td>required</td>
+<td>string</td>
+<td>command</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>string</td>
+<td>alias</td>
+<td></td>
+</tr>
+<tr>
+<td>repeated</td>
+<td>string</td>
+<td>arguments</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name=".Plugin.QueryResponseMessage"/></p>
+<h2 id="queryresponsemessage">QueryResponseMessage</h2>
+<p><code>Plugin.QueryResponseMessage</code> Query response
+Used for querying the client this is the "normal" check_nrpe message request.
+Associated request is <code>[QueryRequestMessage](#.Plugin.QueryRequestMessage)</code></p>
+<table>
+<thead>
+<tr>
+<th>Modifier</th>
+<th>Type</th>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>optional</td>
+<td>Header</td>
+<td>header</td>
+<td></td>
+</tr>
+<tr>
+<td>repeated</td>
+<td>Response</td>
+<td>payload</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name=".Plugin.QueryResponseMessage.Response"/></p>
+<h3 id="response">Response</h3>
+<p><code>Plugin.QueryResponseMessage.Response</code> </p>
+<table>
+<thead>
+<tr>
+<th>Modifier</th>
+<th>Type</th>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>optional</td>
+<td>int32</td>
+<td>id</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>string</td>
+<td>source</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>string</td>
+<td>command</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>string</td>
+<td>alias</td>
+<td></td>
+</tr>
+<tr>
+<td>repeated</td>
+<td>string</td>
+<td>arguments</td>
+<td></td>
+</tr>
+<tr>
+<td>required</td>
+<td>ResultCode</td>
+<td>result</td>
+<td></td>
+</tr>
+<tr>
+<td>repeated</td>
+<td>Line</td>
+<td>lines</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>bytes</td>
+<td>data</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name=".Plugin.QueryResponseMessage.Response.Line"/></p>
+<h4 id="line">Line</h4>
+<p><code>Plugin.QueryResponseMessage.Response.Line</code> </p>
+<table>
+<thead>
+<tr>
+<th>Modifier</th>
+<th>Type</th>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>required</td>
+<td>string</td>
+<td>message</td>
+<td></td>
+</tr>
+<tr>
+<td>repeated</td>
+<td>PerformanceData</td>
+<td>perf</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name=".Plugin.ExecuteRequestMessage"/></p>
+<h2 id="executerequestmessage">ExecuteRequestMessage</h2>
+<p><code>Plugin.ExecuteRequestMessage</code> Execute command request and response.
+Used for executing commands on clients similar to <img alt="🇵🇾" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/1f1f5-1f1fe.svg" title=":py:" />class:<code>Plugin.QueryRequestMessage</code> but wont return Nagios check data
+Associated response is <img alt="🇵🇾" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/1f1f5-1f1fe.svg" title=":py:" />class:<code>Plugin.ExecuteResponseMessage</code></p>
+<table>
+<thead>
+<tr>
+<th>Modifier</th>
+<th>Type</th>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>optional</td>
+<td>Header</td>
+<td>header</td>
+<td></td>
+</tr>
+<tr>
+<td>repeated</td>
+<td>Request</td>
+<td>payload</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name=".Plugin.ExecuteRequestMessage.Request"/></p>
+<h3 id="request_1">Request</h3>
+<p><code>Plugin.ExecuteRequestMessage.Request</code> </p>
+<table>
+<thead>
+<tr>
+<th>Modifier</th>
+<th>Type</th>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>optional</td>
+<td>int32</td>
+<td>id</td>
+<td></td>
+</tr>
+<tr>
+<td>required</td>
+<td>string</td>
+<td>command</td>
+<td></td>
+</tr>
+<tr>
+<td>repeated</td>
+<td>string</td>
+<td>arguments</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name=".Plugin.ExecuteResponseMessage"/></p>
+<h2 id="executeresponsemessage">ExecuteResponseMessage</h2>
+<p><code>Plugin.ExecuteResponseMessage</code> </p>
+<table>
+<thead>
+<tr>
+<th>Modifier</th>
+<th>Type</th>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>optional</td>
+<td>Header</td>
+<td>header</td>
+<td></td>
+</tr>
+<tr>
+<td>repeated</td>
+<td>Response</td>
+<td>payload</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name=".Plugin.ExecuteResponseMessage.Response"/></p>
+<h3 id="response_1">Response</h3>
+<p><code>Plugin.ExecuteResponseMessage.Response</code> </p>
+<table>
+<thead>
+<tr>
+<th>Modifier</th>
+<th>Type</th>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>optional</td>
+<td>int32</td>
+<td>id</td>
+<td></td>
+</tr>
+<tr>
+<td>required</td>
+<td>string</td>
+<td>command</td>
+<td></td>
+</tr>
+<tr>
+<td>repeated</td>
+<td>string</td>
+<td>arguments</td>
+<td></td>
+</tr>
+<tr>
+<td>required</td>
+<td>ResultCode</td>
+<td>result</td>
+<td></td>
+</tr>
+<tr>
+<td>required</td>
+<td>string</td>
+<td>message</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>bytes</td>
+<td>data</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name=".Plugin.SubmitRequestMessage"/></p>
+<h2 id="submitrequestmessage">SubmitRequestMessage</h2>
+<p><code>Plugin.SubmitRequestMessage</code> Submit result request message.
+Used for submitting a passive check results.
+The actual payload (Request) is a normal <img alt="🇵🇾" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/1f1f5-1f1fe.svg" title=":py:" />class:<code>Plugin.QueryResponseMessage.Response</code>.
+Associated response is <img alt="🇵🇾" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/1f1f5-1f1fe.svg" title=":py:" />class:<code>Plugin.SubmitResponseMessage</code></p>
+<table>
+<thead>
+<tr>
+<th>Modifier</th>
+<th>Type</th>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>optional</td>
+<td>Header</td>
+<td>header</td>
+<td>The header</td>
+</tr>
+<tr>
+<td>required</td>
+<td>string</td>
+<td>channel</td>
+<td></td>
+</tr>
+<tr>
+<td>repeated</td>
+<td>Response</td>
+<td>payload</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name=".Plugin.SubmitResponseMessage"/></p>
+<h2 id="submitresponsemessage">SubmitResponseMessage</h2>
+<p><code>Plugin.SubmitResponseMessage</code> Submit result response message.
+Response from submitting a passive check results.
+Associated request is <img alt="🇵🇾" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/1f1f5-1f1fe.svg" title=":py:" />class:<code>Plugin.SubmitRequestMessage</code></p>
+<table>
+<thead>
+<tr>
+<th>Modifier</th>
+<th>Type</th>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>optional</td>
+<td>Header</td>
+<td>header</td>
+<td></td>
+</tr>
+<tr>
+<td>repeated</td>
+<td>Response</td>
+<td>payload</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name=".Plugin.SubmitResponseMessage.Response"/></p>
+<h3 id="response_2">Response</h3>
+<p><code>Plugin.SubmitResponseMessage.Response</code> </p>
+<table>
+<thead>
+<tr>
+<th>Modifier</th>
+<th>Type</th>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>optional</td>
+<td>int32</td>
+<td>id</td>
+<td></td>
+</tr>
+<tr>
+<td>required</td>
+<td>string</td>
+<td>command</td>
+<td></td>
+</tr>
+<tr>
+<td>required</td>
+<td>Result</td>
+<td>result</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name=".Plugin.EventMessage"/></p>
+<h2 id="eventmessage">EventMessage</h2>
+<p><code>Plugin.EventMessage</code> Execute command request and response.
+Used for executing commands on clients similar to <img alt="🇵🇾" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/1f1f5-1f1fe.svg" title=":py:" />class:<code>Plugin.QueryRequestMessage</code> but wont return Nagios check data
+Associated response is <img alt="🇵🇾" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/1f1f5-1f1fe.svg" title=":py:" />class:<code>Plugin.ExecuteResponseMessage</code></p>
+<table>
+<thead>
+<tr>
+<th>Modifier</th>
+<th>Type</th>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>optional</td>
+<td>Header</td>
+<td>header</td>
+<td></td>
+</tr>
+<tr>
+<td>repeated</td>
+<td>Request</td>
+<td>payload</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name=".Plugin.EventMessage.Request"/></p>
+<h3 id="request_2">Request</h3>
+<p><code>Plugin.EventMessage.Request</code> </p>
+<table>
+<thead>
+<tr>
+<th>Modifier</th>
+<th>Type</th>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>optional</td>
+<td>string</td>
+<td>event</td>
+<td></td>
+</tr>
+<tr>
+<td>repeated</td>
+<td>string</td>
+<td>arguments</td>
+<td></td>
+</tr>
+<tr>
+<td>repeated</td>
+<td>KeyValue</td>
+<td>data</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name=".Plugin.Registry"/></p>
+<h2 id="registry">Registry</h2>
+<p><code>Plugin.Registry</code> Registration is an internal message.
+It is not used to submit checks or query status instead it is used so register modules, plug-ins, command.
+As well as query for them.
+The registry is a central component inside NSClient++ and this is the way to interact with the registry.</p>
+<h3 id="itemtype">ItemType</h3>
+<table>
+<thead>
+<tr>
+<th>Possible values</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>QUERY</td>
+<td>1</td>
+<td></td>
+</tr>
+<tr>
+<td>COMMAND</td>
+<td>2</td>
+<td></td>
+</tr>
+<tr>
+<td>HANDLER</td>
+<td>3</td>
+<td></td>
+</tr>
+<tr>
+<td>PLUGIN</td>
+<td>4</td>
+<td></td>
+</tr>
+<tr>
+<td>QUERY_ALIAS</td>
+<td>5</td>
+<td></td>
+</tr>
+<tr>
+<td>ROUTER</td>
+<td>6</td>
+<td></td>
+</tr>
+<tr>
+<td>MODULE</td>
+<td>7</td>
+<td></td>
+</tr>
+<tr>
+<td>SCHEDULE</td>
+<td>8</td>
+<td></td>
+</tr>
+<tr>
+<td>EVENT</td>
+<td>9</td>
+<td></td>
+</tr>
+<tr>
+<td>ALL</td>
+<td>99</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="command">Command</h3>
+<table>
+<thead>
+<tr>
+<th>Possible values</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LOAD</td>
+<td>1</td>
+<td></td>
+</tr>
+<tr>
+<td>UNLOAD</td>
+<td>2</td>
+<td></td>
+</tr>
+<tr>
+<td>RELOAD</td>
+<td>3</td>
+<td></td>
+</tr>
+<tr>
+<td>ENABLE</td>
+<td>4</td>
+<td></td>
+</tr>
+<tr>
+<td>DISABLE</td>
+<td>5</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name=".Plugin.Registry.Query"/></p>
+<h3 id="query">Query</h3>
+<p><code>Plugin.Registry.Query</code> </p>
+<table>
+<thead>
+<tr>
+<th>Modifier</th>
+<th>Type</th>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>optional</td>
+<td>string</td>
+<td>expression</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name=".Plugin.Registry.Information"/></p>
+<h3 id="information">Information</h3>
+<p><code>Plugin.Registry.Information</code> </p>
+<table>
+<thead>
+<tr>
+<th>Modifier</th>
+<th>Type</th>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>optional</td>
+<td>string</td>
+<td>title</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>string</td>
+<td>description</td>
+<td></td>
+</tr>
+<tr>
+<td>repeated</td>
+<td>KeyValue</td>
+<td>metadata</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>string</td>
+<td>min_version</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>string</td>
+<td>max_version</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>bool</td>
+<td>advanced</td>
+<td></td>
+</tr>
+<tr>
+<td>repeated</td>
+<td>string</td>
+<td>plugin</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name=".Plugin.Registry.KeyWordDescription"/></p>
+<h3 id="keyworddescription">KeyWordDescription</h3>
+<p><code>Plugin.Registry.KeyWordDescription</code> </p>
+<table>
+<thead>
+<tr>
+<th>Modifier</th>
+<th>Type</th>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>required</td>
+<td>string</td>
+<td>parameter</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>string</td>
+<td>context</td>
+<td></td>
+</tr>
+<tr>
+<td>required</td>
+<td>string</td>
+<td>key</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>string</td>
+<td>short_description</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>string</td>
+<td>long_description</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name=".Plugin.Registry.ParameterDetail"/></p>
+<h3 id="parameterdetail">ParameterDetail</h3>
+<p><code>Plugin.Registry.ParameterDetail</code> </p>
+<table>
+<thead>
+<tr>
+<th>Modifier</th>
+<th>Type</th>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>optional</td>
+<td>string</td>
+<td>name</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>string</td>
+<td>default_value</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>bool</td>
+<td>required</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>bool</td>
+<td>repeatable</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>DataType</td>
+<td>content_type</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>string</td>
+<td>short_description</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>string</td>
+<td>long_description</td>
+<td></td>
+</tr>
+<tr>
+<td>repeated</td>
+<td>KeyWordDescription</td>
+<td>keyword</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name=".Plugin.Registry.FieldDetail"/></p>
+<h3 id="fielddetail">FieldDetail</h3>
+<p><code>Plugin.Registry.FieldDetail</code> </p>
+<table>
+<thead>
+<tr>
+<th>Modifier</th>
+<th>Type</th>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>optional</td>
+<td>string</td>
+<td>name</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>string</td>
+<td>short_description</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>string</td>
+<td>long_description</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name=".Plugin.Registry.ParameterDetails"/></p>
+<h3 id="parameterdetails">ParameterDetails</h3>
+<p><code>Plugin.Registry.ParameterDetails</code> </p>
+<table>
+<thead>
+<tr>
+<th>Modifier</th>
+<th>Type</th>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>repeated</td>
+<td>ParameterDetail</td>
+<td>parameter</td>
+<td></td>
+</tr>
+<tr>
+<td>repeated</td>
+<td>FieldDetail</td>
+<td>fields</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name=".Plugin.Registry.Schedule"/></p>
+<h3 id="schedule">Schedule</h3>
+<p><code>Plugin.Registry.Schedule</code> </p>
+<table>
+<thead>
+<tr>
+<th>Modifier</th>
+<th>Type</th>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>optional</td>
+<td>string</td>
+<td>id</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>string</td>
+<td>cron</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>string</td>
+<td>interval</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name=".Plugin.RegistryRequestMessage"/></p>
+<h2 id="registryrequestmessage">RegistryRequestMessage</h2>
+<p><code>Plugin.RegistryRequestMessage</code> </p>
+<table>
+<thead>
+<tr>
+<th>Modifier</th>
+<th>Type</th>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>optional</td>
+<td>Header</td>
+<td>header</td>
+<td></td>
+</tr>
+<tr>
+<td>repeated</td>
+<td>Request</td>
+<td>payload</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name=".Plugin.RegistryRequestMessage.Request"/></p>
+<h3 id="request_3">Request</h3>
+<p><code>Plugin.RegistryRequestMessage.Request</code> </p>
+<table>
+<thead>
+<tr>
+<th>Modifier</th>
+<th>Type</th>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>optional</td>
+<td>int64</td>
+<td>id</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>Registration</td>
+<td>registration</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>Inventory</td>
+<td>inventory</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>Control</td>
+<td>control</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name=".Plugin.RegistryRequestMessage.Request.Registration"/></p>
+<h4 id="registration">Registration</h4>
+<p><code>Plugin.RegistryRequestMessage.Request.Registration</code> </p>
+<table>
+<thead>
+<tr>
+<th>Modifier</th>
+<th>Type</th>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>optional</td>
+<td>int32</td>
+<td>plugin_id</td>
+<td></td>
+</tr>
+<tr>
+<td>required</td>
+<td>ItemType</td>
+<td>type</td>
+<td></td>
+</tr>
+<tr>
+<td>required</td>
+<td>string</td>
+<td>name</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>Information</td>
+<td>info</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>bool</td>
+<td>unregister</td>
+<td></td>
+</tr>
+<tr>
+<td>repeated</td>
+<td>string</td>
+<td>alias</td>
+<td></td>
+</tr>
+<tr>
+<td>repeated</td>
+<td>Schedule</td>
+<td>schedule</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name=".Plugin.RegistryRequestMessage.Request.Inventory"/></p>
+<h4 id="inventory">Inventory</h4>
+<p><code>Plugin.RegistryRequestMessage.Request.Inventory</code> </p>
+<table>
+<thead>
+<tr>
+<th>Modifier</th>
+<th>Type</th>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>optional</td>
+<td>string</td>
+<td>plugin</td>
+<td></td>
+</tr>
+<tr>
+<td>repeated</td>
+<td>ItemType</td>
+<td>type</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>string</td>
+<td>name</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>bool</td>
+<td>fetch_all</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>bool</td>
+<td>fetch_information</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name=".Plugin.RegistryRequestMessage.Request.Control"/></p>
+<h4 id="control">Control</h4>
+<p><code>Plugin.RegistryRequestMessage.Request.Control</code> </p>
+<table>
+<thead>
+<tr>
+<th>Modifier</th>
+<th>Type</th>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>required</td>
+<td>Command</td>
+<td>command</td>
+<td></td>
+</tr>
+<tr>
+<td>required</td>
+<td>ItemType</td>
+<td>type</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>string</td>
+<td>name</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>string</td>
+<td>alias</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name=".Plugin.RegistryResponseMessage"/></p>
+<h2 id="registryresponsemessage">RegistryResponseMessage</h2>
+<p><code>Plugin.RegistryResponseMessage</code> </p>
+<table>
+<thead>
+<tr>
+<th>Modifier</th>
+<th>Type</th>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>optional</td>
+<td>Header</td>
+<td>header</td>
+<td></td>
+</tr>
+<tr>
+<td>repeated</td>
+<td>Response</td>
+<td>payload</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name=".Plugin.RegistryResponseMessage.Response"/></p>
+<h3 id="response_3">Response</h3>
+<p><code>Plugin.RegistryResponseMessage.Response</code> </p>
+<table>
+<thead>
+<tr>
+<th>Modifier</th>
+<th>Type</th>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>optional</td>
+<td>int64</td>
+<td>id</td>
+<td></td>
+</tr>
+<tr>
+<td>required</td>
+<td>Result</td>
+<td>result</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>Registration</td>
+<td>registration</td>
+<td></td>
+</tr>
+<tr>
+<td>repeated</td>
+<td>Inventory</td>
+<td>inventory</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>Control</td>
+<td>control</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name=".Plugin.RegistryResponseMessage.Response.Registration"/></p>
+<h4 id="registration_1">Registration</h4>
+<p><code>Plugin.RegistryResponseMessage.Response.Registration</code> </p>
+<table>
+<thead>
+<tr>
+<th>Modifier</th>
+<th>Type</th>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>optional</td>
+<td>int32</td>
+<td>item_id</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name=".Plugin.RegistryResponseMessage.Response.Inventory"/></p>
+<h4 id="inventory_1">Inventory</h4>
+<p><code>Plugin.RegistryResponseMessage.Response.Inventory</code> </p>
+<table>
+<thead>
+<tr>
+<th>Modifier</th>
+<th>Type</th>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>repeated</td>
+<td>string</td>
+<td>plugin</td>
+<td></td>
+</tr>
+<tr>
+<td>required</td>
+<td>ItemType</td>
+<td>type</td>
+<td></td>
+</tr>
+<tr>
+<td>required</td>
+<td>string</td>
+<td>name</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>string</td>
+<td>id</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>Information</td>
+<td>info</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>ParameterDetails</td>
+<td>parameters</td>
+<td></td>
+</tr>
+<tr>
+<td>repeated</td>
+<td>Schedule</td>
+<td>schedule</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name=".Plugin.RegistryResponseMessage.Response.Control"/></p>
+<h4 id="control_1">Control</h4>
+<p><code>Plugin.RegistryResponseMessage.Response.Control</code> </p>
+<p><a name=".Plugin.ScheduleNotificationMessage"/></p>
+<h2 id="schedulenotificationmessage">ScheduleNotificationMessage</h2>
+<p><code>Plugin.ScheduleNotificationMessage</code> Schedule Notification commands
+Used when a schedule is executed</p>
+<table>
+<thead>
+<tr>
+<th>Modifier</th>
+<th>Type</th>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>optional</td>
+<td>Header</td>
+<td>header</td>
+<td></td>
+</tr>
+<tr>
+<td>repeated</td>
+<td>Request</td>
+<td>payload</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name=".Plugin.ScheduleNotificationMessage.Request"/></p>
+<h3 id="request_4">Request</h3>
+<p><code>Plugin.ScheduleNotificationMessage.Request</code> A request message of a schedule notification</p>
+<table>
+<thead>
+<tr>
+<th>Modifier</th>
+<th>Type</th>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>optional</td>
+<td>int64</td>
+<td>id</td>
+<td></td>
+</tr>
+<tr>
+<td>required</td>
+<td>int32</td>
+<td>plugin_id</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>Information</td>
+<td>info</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>Schedule</td>
+<td>schedule</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name=".Plugin.Settings"/></p>
+<h2 id="settings">Settings</h2>
+<p><code>Plugin.Settings</code> Settings is an internal message.
+It is not used to submit checks or query status instead it is used to interact with the settings store.
+The settings is a central component inside NSClient++ and this is the way to interact with it.</p>
+<h3 id="command_1">Command</h3>
+<table>
+<thead>
+<tr>
+<th>Possible values</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LOAD</td>
+<td>1</td>
+<td></td>
+</tr>
+<tr>
+<td>SAVE</td>
+<td>2</td>
+<td></td>
+</tr>
+<tr>
+<td>RELOAD</td>
+<td>3</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name=".Plugin.Settings.Node"/></p>
+<h3 id="node">Node</h3>
+<p><code>Plugin.Settings.Node</code> </p>
+<table>
+<thead>
+<tr>
+<th>Modifier</th>
+<th>Type</th>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>required</td>
+<td>string</td>
+<td>path</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>string</td>
+<td>key</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>string</td>
+<td>value</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name=".Plugin.Settings.Information"/></p>
+<h3 id="information_1">Information</h3>
+<p><code>Plugin.Settings.Information</code> </p>
+<table>
+<thead>
+<tr>
+<th>Modifier</th>
+<th>Type</th>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>optional</td>
+<td>string</td>
+<td>title</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>string</td>
+<td>description</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>string</td>
+<td>icon</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>string</td>
+<td>default_value</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>bool</td>
+<td>advanced</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>bool</td>
+<td>sample</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>bool</td>
+<td>is_template</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>string</td>
+<td>sample_usage</td>
+<td></td>
+</tr>
+<tr>
+<td>repeated</td>
+<td>string</td>
+<td>plugin</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>bool</td>
+<td>subkey</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name=".Plugin.SettingsRequestMessage"/></p>
+<h2 id="settingsrequestmessage">SettingsRequestMessage</h2>
+<p><code>Plugin.SettingsRequestMessage</code> </p>
+<table>
+<thead>
+<tr>
+<th>Modifier</th>
+<th>Type</th>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>optional</td>
+<td>Header</td>
+<td>header</td>
+<td></td>
+</tr>
+<tr>
+<td>repeated</td>
+<td>Request</td>
+<td>payload</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name=".Plugin.SettingsRequestMessage.Request"/></p>
+<h3 id="request_5">Request</h3>
+<p><code>Plugin.SettingsRequestMessage.Request</code> </p>
+<table>
+<thead>
+<tr>
+<th>Modifier</th>
+<th>Type</th>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>optional</td>
+<td>int64</td>
+<td>id</td>
+<td></td>
+</tr>
+<tr>
+<td>required</td>
+<td>int32</td>
+<td>plugin_id</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>Registration</td>
+<td>registration</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>Query</td>
+<td>query</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>Update</td>
+<td>update</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>Inventory</td>
+<td>inventory</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>Control</td>
+<td>control</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>Status</td>
+<td>status</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name=".Plugin.SettingsRequestMessage.Request.Registration"/></p>
+<h4 id="registration_2">Registration</h4>
+<p><code>Plugin.SettingsRequestMessage.Request.Registration</code> </p>
+<table>
+<thead>
+<tr>
+<th>Modifier</th>
+<th>Type</th>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>optional</td>
+<td>Node</td>
+<td>node</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>Information</td>
+<td>info</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>string</td>
+<td>fields</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name=".Plugin.SettingsRequestMessage.Request.Query"/></p>
+<h4 id="query_1">Query</h4>
+<p><code>Plugin.SettingsRequestMessage.Request.Query</code> </p>
+<table>
+<thead>
+<tr>
+<th>Modifier</th>
+<th>Type</th>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>optional</td>
+<td>Node</td>
+<td>node</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>bool</td>
+<td>recursive</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>bool</td>
+<td>include_keys</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>string</td>
+<td>default_value</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name=".Plugin.SettingsRequestMessage.Request.Update"/></p>
+<h4 id="update">Update</h4>
+<p><code>Plugin.SettingsRequestMessage.Request.Update</code> </p>
+<table>
+<thead>
+<tr>
+<th>Modifier</th>
+<th>Type</th>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>optional</td>
+<td>Node</td>
+<td>node</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name=".Plugin.SettingsRequestMessage.Request.Inventory"/></p>
+<h4 id="inventory_2">Inventory</h4>
+<p><code>Plugin.SettingsRequestMessage.Request.Inventory</code> </p>
+<table>
+<thead>
+<tr>
+<th>Modifier</th>
+<th>Type</th>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>optional</td>
+<td>string</td>
+<td>plugin</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>Node</td>
+<td>node</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>bool</td>
+<td>recursive_fetch</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>bool</td>
+<td>fetch_keys</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>bool</td>
+<td>fetch_paths</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>bool</td>
+<td>fetch_samples</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>bool</td>
+<td>fetch_templates</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>bool</td>
+<td>descriptions</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name=".Plugin.SettingsRequestMessage.Request.Control"/></p>
+<h4 id="control_2">Control</h4>
+<p><code>Plugin.SettingsRequestMessage.Request.Control</code> </p>
+<table>
+<thead>
+<tr>
+<th>Modifier</th>
+<th>Type</th>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>required</td>
+<td>Command</td>
+<td>command</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>string</td>
+<td>context</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name=".Plugin.SettingsRequestMessage.Request.Status"/></p>
+<h4 id="status">Status</h4>
+<p><code>Plugin.SettingsRequestMessage.Request.Status</code> </p>
+<p><a name=".Plugin.SettingsResponseMessage"/></p>
+<h2 id="settingsresponsemessage">SettingsResponseMessage</h2>
+<p><code>Plugin.SettingsResponseMessage</code> </p>
+<table>
+<thead>
+<tr>
+<th>Modifier</th>
+<th>Type</th>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>optional</td>
+<td>Header</td>
+<td>header</td>
+<td></td>
+</tr>
+<tr>
+<td>repeated</td>
+<td>Response</td>
+<td>payload</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name=".Plugin.SettingsResponseMessage.Response"/></p>
+<h3 id="response_4">Response</h3>
+<p><code>Plugin.SettingsResponseMessage.Response</code> </p>
+<table>
+<thead>
+<tr>
+<th>Modifier</th>
+<th>Type</th>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>optional</td>
+<td>int64</td>
+<td>id</td>
+<td></td>
+</tr>
+<tr>
+<td>required</td>
+<td>Result</td>
+<td>result</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>Registration</td>
+<td>registration</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>Query</td>
+<td>query</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>Update</td>
+<td>update</td>
+<td></td>
+</tr>
+<tr>
+<td>repeated</td>
+<td>Inventory</td>
+<td>inventory</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>Control</td>
+<td>control</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>Status</td>
+<td>status</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name=".Plugin.SettingsResponseMessage.Response.Registration"/></p>
+<h4 id="registration_3">Registration</h4>
+<p><code>Plugin.SettingsResponseMessage.Response.Registration</code> </p>
+<p><a name=".Plugin.SettingsResponseMessage.Response.Query"/></p>
+<h4 id="query_2">Query</h4>
+<p><code>Plugin.SettingsResponseMessage.Response.Query</code> </p>
+<table>
+<thead>
+<tr>
+<th>Modifier</th>
+<th>Type</th>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>required</td>
+<td>Node</td>
+<td>node</td>
+<td></td>
+</tr>
+<tr>
+<td>repeated</td>
+<td>Node</td>
+<td>nodes</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name=".Plugin.SettingsResponseMessage.Response.Update"/></p>
+<h4 id="update_1">Update</h4>
+<p><code>Plugin.SettingsResponseMessage.Response.Update</code> </p>
+<p><a name=".Plugin.SettingsResponseMessage.Response.Inventory"/></p>
+<h4 id="inventory_3">Inventory</h4>
+<p><code>Plugin.SettingsResponseMessage.Response.Inventory</code> </p>
+<table>
+<thead>
+<tr>
+<th>Modifier</th>
+<th>Type</th>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>required</td>
+<td>Node</td>
+<td>node</td>
+<td></td>
+</tr>
+<tr>
+<td>required</td>
+<td>Information</td>
+<td>info</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name=".Plugin.SettingsResponseMessage.Response.Control"/></p>
+<h4 id="control_3">Control</h4>
+<p><code>Plugin.SettingsResponseMessage.Response.Control</code> </p>
+<p><a name=".Plugin.SettingsResponseMessage.Response.Status"/></p>
+<h4 id="status_1">Status</h4>
+<p><code>Plugin.SettingsResponseMessage.Response.Status</code> </p>
+<table>
+<thead>
+<tr>
+<th>Modifier</th>
+<th>Type</th>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>optional</td>
+<td>string</td>
+<td>context</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>string</td>
+<td>type</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>bool</td>
+<td>has_changed</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name=".Plugin.LogEntry"/></p>
+<h2 id="logentry">LogEntry</h2>
+<p><code>Plugin.LogEntry</code> LogEntry is used to log status information.</p>
+<table>
+<thead>
+<tr>
+<th>Modifier</th>
+<th>Type</th>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>repeated</td>
+<td>Entry</td>
+<td>entry</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name=".Plugin.LogEntry.Entry"/></p>
+<h3 id="entry">Entry</h3>
+<p><code>Plugin.LogEntry.Entry</code> </p>
+<h3 id="level">Level</h3>
+<table>
+<thead>
+<tr>
+<th>Possible values</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LOG_TRACE</td>
+<td>1000</td>
+<td></td>
+</tr>
+<tr>
+<td>LOG_DEBUG</td>
+<td>500</td>
+<td></td>
+</tr>
+<tr>
+<td>LOG_INFO</td>
+<td>150</td>
+<td></td>
+</tr>
+<tr>
+<td>LOG_WARNING</td>
+<td>50</td>
+<td></td>
+</tr>
+<tr>
+<td>LOG_ERROR</td>
+<td>10</td>
+<td></td>
+</tr>
+<tr>
+<td>LOG_CRITICAL</td>
+<td>1</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Modifier</th>
+<th>Type</th>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>required</td>
+<td>Level</td>
+<td>level</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>string</td>
+<td>sender</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>string</td>
+<td>file</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>int32</td>
+<td>line</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>string</td>
+<td>message</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>int32</td>
+<td>date</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name=".Plugin.Storage"/></p>
+<h2 id="storage">Storage</h2>
+<p><code>Plugin.Storage</code> Storage Structure Disk</p>
+<p><a name=".Plugin.Storage.Entry"/></p>
+<h3 id="entry_1">Entry</h3>
+<p><code>Plugin.Storage.Entry</code> </p>
+<table>
+<thead>
+<tr>
+<th>Modifier</th>
+<th>Type</th>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>optional</td>
+<td>string</td>
+<td>context</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>string</td>
+<td>key</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>AnyDataType</td>
+<td>value</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>bool</td>
+<td>binary_data</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>bool</td>
+<td>private_data</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name=".Plugin.Storage.Block"/></p>
+<h3 id="block">Block</h3>
+<p><code>Plugin.Storage.Block</code> </p>
+<table>
+<thead>
+<tr>
+<th>Modifier</th>
+<th>Type</th>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>optional</td>
+<td>string</td>
+<td>owner</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>int64</td>
+<td>version</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>Entry</td>
+<td>entry</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name=".Plugin.Storage.File"/></p>
+<h3 id="file">File</h3>
+<p><code>Plugin.Storage.File</code> </p>
+<table>
+<thead>
+<tr>
+<th>Modifier</th>
+<th>Type</th>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>optional</td>
+<td>int64</td>
+<td>version</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>int64</td>
+<td>entries</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name=".Plugin.StorageRequestMessage"/></p>
+<h2 id="storagerequestmessage">StorageRequestMessage</h2>
+<p><code>Plugin.StorageRequestMessage</code> Storeage Request Message
+Used to save/load data in the NSClient++ local storage</p>
+<table>
+<thead>
+<tr>
+<th>Modifier</th>
+<th>Type</th>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>repeated</td>
+<td>Request</td>
+<td>payload</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name=".Plugin.StorageRequestMessage.Request"/></p>
+<h3 id="request_6">Request</h3>
+<p><code>Plugin.StorageRequestMessage.Request</code> </p>
+<table>
+<thead>
+<tr>
+<th>Modifier</th>
+<th>Type</th>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>optional</td>
+<td>int64</td>
+<td>id</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>int32</td>
+<td>plugin_id</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>Put</td>
+<td>put</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>Get</td>
+<td>get</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name=".Plugin.StorageRequestMessage.Request.Put"/></p>
+<h4 id="put">Put</h4>
+<p><code>Plugin.StorageRequestMessage.Request.Put</code> </p>
+<table>
+<thead>
+<tr>
+<th>Modifier</th>
+<th>Type</th>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>optional</td>
+<td>Entry</td>
+<td>entry</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name=".Plugin.StorageRequestMessage.Request.Get"/></p>
+<h4 id="get">Get</h4>
+<p><code>Plugin.StorageRequestMessage.Request.Get</code> </p>
+<table>
+<thead>
+<tr>
+<th>Modifier</th>
+<th>Type</th>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>optional</td>
+<td>string</td>
+<td>context</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>string</td>
+<td>key</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name=".Plugin.StorageResponseMessage"/></p>
+<h2 id="storageresponsemessage">StorageResponseMessage</h2>
+<p><code>Plugin.StorageResponseMessage</code> Storeage Response Message
+Used to save/load data in the NSClient++ local storage</p>
+<table>
+<thead>
+<tr>
+<th>Modifier</th>
+<th>Type</th>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>repeated</td>
+<td>Response</td>
+<td>payload</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name=".Plugin.StorageResponseMessage.Response"/></p>
+<h3 id="response_5">Response</h3>
+<p><code>Plugin.StorageResponseMessage.Response</code> </p>
+<table>
+<thead>
+<tr>
+<th>Modifier</th>
+<th>Type</th>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>optional</td>
+<td>int64</td>
+<td>id</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>Result</td>
+<td>result</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>Put</td>
+<td>put</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>Get</td>
+<td>get</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name=".Plugin.StorageResponseMessage.Response.Put"/></p>
+<h4 id="put_1">Put</h4>
+<p><code>Plugin.StorageResponseMessage.Response.Put</code> </p>
+<table>
+<thead>
+<tr>
+<th>Modifier</th>
+<th>Type</th>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>optional</td>
+<td>string</td>
+<td>context</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>string</td>
+<td>key</td>
+<td></td>
+</tr>
+<tr>
+<td>optional</td>
+<td>string</td>
+<td>error</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name=".Plugin.StorageResponseMessage.Response.Get"/></p>
+<h4 id="get_1">Get</h4>
+<p><code>Plugin.StorageResponseMessage.Response.Get</code> </p>
+<table>
+<thead>
+<tr>
+<th>Modifier</th>
+<th>Type</th>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>repeated</td>
+<td>Entry</td>
+<td>entry</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+      <div class="md-consent" data-md-component="consent" id="__consent" hidden>
+        <div class="md-consent__overlay"></div>
+        <aside class="md-consent__inner">
+          <form class="md-consent__form md-grid md-typeset" name="consent">
+            
+
+
+  
+
+
+<h4>Cookie consent</h4>
+<p>We use cookies to recognize your repeated visits and preferences, as well as to measure the effectiveness of our documentation and whether users find what they're searching for. With your consent, you're helping us to make our documentation better.</p>
+<input class="md-toggle" type="checkbox" id="__settings" >
+<div class="md-consent__settings">
+  <ul class="task-list">
+    
+    
+      
+    
+    
+      
+        
+  
+  
+    
+    
+  
+  <li class="task-list-item">
+    <label class="task-list-control">
+      <input type="checkbox" name="github" checked>
+      <span class="task-list-indicator"></span>
+      GitHub
+    </label>
+  </li>
+
+      
+    
+    
+  </ul>
+</div>
+<div class="md-consent__controls">
+  
+    
+      <button class="md-button md-button--primary">Accept</button>
+    
+    
+    
+  
+    
+    
+    
+      <label class="md-button" for="__settings">Manage settings</label>
+    
+  
+</div>
+          </form>
+        </aside>
+      </div>
+      <script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout((function(){document.querySelector("[data-md-component=consent]").hidden=!1}),250);var form=document.forms.consent;for(var action of["submit","reset"])form.addEventListener(action,(function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map((function(e){return[e,!0]})))),location.hash="",location.reload()}))</script>
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "toc.follow", "toc.integrate", "navigation.indexes"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

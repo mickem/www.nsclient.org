@@ -1,0 +1,4875 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../../client/NRPEClient/">
+      
+      
+        <link rel="next" href="../../client/NSCAServer/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>NSClientServer - NSClient++</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#nsclientserver" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="NSClient++" class="md-header__button md-logo" aria-label="NSClient++" data-md-component="logo">
+      
+  <img src="../../../../assets/nsclient-logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            NSClient++
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              NSClientServer
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/mickem/nscp" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M202.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1M496 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2m-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3m-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1"/></svg>
+  </div>
+  <div class="md-source__repository">
+    NSClient++
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../.." class="md-tabs__link">
+          
+  
+  
+    
+  
+  Home
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../news/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  News
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://github.com/mickem/nscp/releases" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Download
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Documentation
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://github.com/mickem/nscp/discussions" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Forums
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="NSClient++" class="md-nav__button md-logo" aria-label="NSClient++" data-md-component="logo">
+      
+  <img src="../../../../assets/nsclient-logo.png" alt="logo">
+
+    </a>
+    NSClient++
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/mickem/nscp" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M202.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1M496 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2m-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3m-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1"/></svg>
+  </div>
+  <div class="md-source__repository">
+    NSClient++
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../.." class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_1" id="__nav_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Home
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../nsclient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About NSClient++
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../news/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    News
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/mickem/nscp/releases" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Download
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Documentation
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Documentation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../getting-started/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../getting-started/nsclient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSClient++
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../getting-started/nrpe/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NRPE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../getting-started/nsca/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSCA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../theory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../checks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Checking Things
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../installing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installing NSClient++
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../settings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../web/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WEB UI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../tutorial/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tutorial
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../securing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Securing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_11" id="__nav_4_11_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Howto
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Howto
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../howto/checks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Checking things
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../howto/counters/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Performance Counters
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../howto/external_scripts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    External scripts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../howto/run_commands/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Running commands
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../howto/nrpe/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NRPE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../howto/nsca/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSCA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../howto/03x_migration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Migrate from 0.3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_12" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_12" id="__nav_4_12_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_12_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_12">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_12_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_12_2" id="__nav_4_12_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Check commands
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_12_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_12_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Check commands
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CheckDisk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckDisk (Windows)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../check/CheckExternalScripts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckExternalScripts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CheckEventLog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckEventLog (Windows)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../check/CheckHelpers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckHelpers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../check/CheckLogFile/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckLogFile
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../check/CheckMKClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckMKClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../check/CheckMKServer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckMKServer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../misc/CheckNet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckNet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../check/CheckNSCP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckNSCP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unix/CheckSystemUnix/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckSystemUnix (unix)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CheckSystem/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckSystem (Windows)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CheckTaskSched/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckTaskSched (Windows)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CheckWMI/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckWMI (Windows)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_12_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4_12_3" id="__nav_4_12_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Clients & Servers
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_12_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_12_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Clients & Servers
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../generic/WEBServer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WEBServer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../misc/WEBClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WEBClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/NRPEServer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NRPEServer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/NRPEClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NRPEClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSClientServer
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSClientServer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#enable-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enable module
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#default-values" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Default values
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Default values">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#allowed-hosts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ALLOWED HOSTS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bind-to-address" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        BIND TO ADDRESS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cache-allowed-hosts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CACHE ALLOWED HOSTS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nrpe-payload-encoding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NRPE PAYLOAD ENCODING
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inbox" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        INBOX
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#password" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Password
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#listen-queue" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LISTEN QUEUE
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#thread-pool" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        THREAD POOL
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#timeout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TIMEOUT
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nsclient-server-section" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NSCLIENT SERVER SECTION
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="NSCLIENT SERVER SECTION">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#allowed-ciphers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ALLOWED CIPHERS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#allowed-hosts_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ALLOWED HOSTS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bind-to-address_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        BIND TO ADDRESS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ca" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CA
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cache-allowed-hosts_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CACHE ALLOWED HOSTS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ssl-certificate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SSL CERTIFICATE
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#certificate-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CERTIFICATE FORMAT
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ssl-certificate_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SSL CERTIFICATE
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#debug-peer-certificate-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Debug peer certificate verification
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dh-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DH KEY
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#password_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Password
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#performance-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PERFORMANCE DATA
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#port-number" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PORT NUMBER
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#listen-queue_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LISTEN QUEUE
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verify-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VERIFY MODE
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#thread-pool_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        THREAD POOL
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#timeout_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TIMEOUT
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tls-version-to-use" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TLS version to use
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enable-ssl-encryption" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ENABLE SSL ENCRYPTION
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verify-mode_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VERIFY MODE
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/NSCAServer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSCAServer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/NSCAClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSCAClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/NRDPClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NRDPClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/SMTPClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SMTPClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/GraphiteClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GraphiteClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/SyslogClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SyslogClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../misc/CollectdClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CollectdClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../misc/Op5Client/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Op5Client
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../misc/ElasticClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ElasticClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_12_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_12_4" id="__nav_4_12_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Helper modules
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_12_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_12_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Helper modules
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../generic/Scheduler/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scheduler
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../generic/SimpleFileWriter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SimpleFileWriter
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../generic/CommandClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CommandClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../generic/SimpleCache/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SimpleCache
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../generic/PythonScript/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PythonScript
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../generic/LUAScript/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LUAScript
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_13" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../extending/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Extending
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_13" id="__nav_4_13_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_13">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Extending
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../extending/python/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python Scripts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../extending/zip-modules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Zip Modules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_14" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_14" id="__nav_4_14_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_14">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    API
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_14_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../api/rest/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    REST
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_14_1" id="__nav_4_14_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_14_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_14_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    REST
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/rest/info/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Info
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/rest/modules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/rest/queries/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Queries
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/rest/scripts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scripts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/rest/logs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/rest/legacy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Legacy API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/common/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Common API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/plugin/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plugin API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Metrics API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/mickem/nscp/discussions" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Forums
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="nsclientserver">NSClientServer</h1>
+<p>A server that listens for incoming check_nt connection and processes incoming requests.</p>
+<h2 id="enable-module">Enable module</h2>
+<p>To enable this module and and allow using the commands you need to ass <code>NSClientServer = enabled</code> to the <code>[/modules]</code> section in nsclient.ini:</p>
+<div class="highlight"><pre><span></span><code>[/modules]
+NSClientServer = enabled
+</code></pre></div>
+<h2 id="configuration">Configuration</h2>
+<table>
+<thead>
+<tr>
+<th>Path / Section</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#default-values">/settings/default</a></td>
+<td>Default values</td>
+</tr>
+<tr>
+<td><a href="#nsclient-server-section">/settings/NSClient/server</a></td>
+<td>NSCLIENT SERVER SECTION</td>
+</tr>
+</tbody>
+</table>
+<h3 id="default-values">Default values <a id="/settings/default"></a></h3>
+<p>Default values used in other config sections.</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#allowed-hosts">allowed hosts</a></td>
+<td>127.0.0.1</td>
+<td>ALLOWED HOSTS</td>
+</tr>
+<tr>
+<td><a href="#bind-to-address">bind to</a></td>
+<td></td>
+<td>BIND TO ADDRESS</td>
+</tr>
+<tr>
+<td><a href="#cache-allowed-hosts">cache allowed hosts</a></td>
+<td>true</td>
+<td>CACHE ALLOWED HOSTS</td>
+</tr>
+<tr>
+<td><a href="#nrpe-payload-encoding">encoding</a></td>
+<td></td>
+<td>NRPE PAYLOAD ENCODING</td>
+</tr>
+<tr>
+<td><a href="#inbox">inbox</a></td>
+<td>inbox</td>
+<td>INBOX</td>
+</tr>
+<tr>
+<td><a href="#password">password</a></td>
+<td></td>
+<td>Password</td>
+</tr>
+<tr>
+<td><a href="#listen-queue">socket queue size</a></td>
+<td>0</td>
+<td>LISTEN QUEUE</td>
+</tr>
+<tr>
+<td><a href="#thread-pool">thread pool</a></td>
+<td>10</td>
+<td>THREAD POOL</td>
+</tr>
+<tr>
+<td><a href="#timeout">timeout</a></td>
+<td>30</td>
+<td>TIMEOUT</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="c1"># Default values used in other config sections.</span>
+<span class="k">[/settings/default]</span>
+<span class="na">allowed hosts</span><span class="o">=</span><span class="s">127.0.0.1</span>
+<span class="na">cache allowed hosts</span><span class="o">=</span><span class="s">true</span>
+<span class="na">inbox</span><span class="o">=</span><span class="s">inbox</span>
+<span class="na">socket queue size</span><span class="o">=</span><span class="s">0</span>
+<span class="na">thread pool</span><span class="o">=</span><span class="s">10</span>
+<span class="na">timeout</span><span class="o">=</span><span class="s">30</span>
+</code></pre></div>
+<h4 id="allowed-hosts">ALLOWED HOSTS <a id="/settings/default/allowed hosts"></a></h4>
+<p>A comma separated list of allowed hosts. You can use netmasks (/ syntax) or * to create ranges.</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Path:</td>
+<td><a href="#/settings/default">/settings/default</a></td>
+</tr>
+<tr>
+<td>Key:</td>
+<td>allowed hosts</td>
+</tr>
+<tr>
+<td>Default value:</td>
+<td><code>127.0.0.1</code></td>
+</tr>
+<tr>
+<td>Used by:</td>
+<td>CheckMKServer, NRPEServer, NSCAServer, NSClientServer, WEBServer</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Sample:</strong></p>
+<div class="highlight"><pre><span></span><code>[/settings/default]
+# ALLOWED HOSTS
+allowed hosts=127.0.0.1
+</code></pre></div>
+<h4 id="bind-to-address">BIND TO ADDRESS <a id="/settings/default/bind to"></a></h4>
+<p>Allows you to bind server to a specific local address. This has to be a dotted ip address not a host name. Leaving this blank will bind to all available IP addresses.</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Path:</td>
+<td><a href="#/settings/default">/settings/default</a></td>
+</tr>
+<tr>
+<td>Key:</td>
+<td>bind to</td>
+</tr>
+<tr>
+<td>Default value:</td>
+<td><em>N/A</em></td>
+</tr>
+<tr>
+<td>Used by:</td>
+<td>CheckMKServer, NRPEServer, NSCAServer, NSClientServer, WEBServer</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Sample:</strong></p>
+<div class="highlight"><pre><span></span><code>[/settings/default]
+# BIND TO ADDRESS
+bind to=
+</code></pre></div>
+<h4 id="cache-allowed-hosts">CACHE ALLOWED HOSTS <a id="/settings/default/cache allowed hosts"></a></h4>
+<p>If host names (DNS entries) should be cached, improves speed and security somewhat but won't allow you to have dynamic IPs for your Nagios server.</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Path:</td>
+<td><a href="#/settings/default">/settings/default</a></td>
+</tr>
+<tr>
+<td>Key:</td>
+<td>cache allowed hosts</td>
+</tr>
+<tr>
+<td>Default value:</td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td>Used by:</td>
+<td>CheckMKServer, NRPEServer, NSCAServer, NSClientServer, WEBServer</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Sample:</strong></p>
+<div class="highlight"><pre><span></span><code>[/settings/default]
+# CACHE ALLOWED HOSTS
+cache allowed hosts=true
+</code></pre></div>
+<h4 id="nrpe-payload-encoding">NRPE PAYLOAD ENCODING <a id="/settings/default/encoding"></a></h4>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Path:</td>
+<td><a href="#/settings/default">/settings/default</a></td>
+</tr>
+<tr>
+<td>Key:</td>
+<td>encoding</td>
+</tr>
+<tr>
+<td>Advanced:</td>
+<td>Yes (means it is not commonly used)</td>
+</tr>
+<tr>
+<td>Default value:</td>
+<td><em>N/A</em></td>
+</tr>
+<tr>
+<td>Used by:</td>
+<td>CheckMKServer, NRPEServer, NSCAServer, NSClientServer, WEBServer</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Sample:</strong></p>
+<div class="highlight"><pre><span></span><code>[/settings/default]
+# NRPE PAYLOAD ENCODING
+encoding=
+</code></pre></div>
+<h4 id="inbox">INBOX <a id="/settings/default/inbox"></a></h4>
+<p>The default channel to post incoming messages on</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Path:</td>
+<td><a href="#/settings/default">/settings/default</a></td>
+</tr>
+<tr>
+<td>Key:</td>
+<td>inbox</td>
+</tr>
+<tr>
+<td>Default value:</td>
+<td><code>inbox</code></td>
+</tr>
+<tr>
+<td>Used by:</td>
+<td>CheckMKServer, NRPEServer, NSCAServer, NSClientServer, WEBServer</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Sample:</strong></p>
+<div class="highlight"><pre><span></span><code>[/settings/default]
+# INBOX
+inbox=inbox
+</code></pre></div>
+<h4 id="password">Password <a id="/settings/default/password"></a></h4>
+<p>Password used to authenticate against server</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Path:</td>
+<td><a href="#/settings/default">/settings/default</a></td>
+</tr>
+<tr>
+<td>Key:</td>
+<td>password</td>
+</tr>
+<tr>
+<td>Default value:</td>
+<td><em>N/A</em></td>
+</tr>
+<tr>
+<td>Used by:</td>
+<td>CheckMKServer, NRPEServer, NSCAServer, NSClientServer, WEBServer</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Sample:</strong></p>
+<div class="highlight"><pre><span></span><code>[/settings/default]
+# Password
+password=
+</code></pre></div>
+<h4 id="listen-queue">LISTEN QUEUE <a id="/settings/default/socket queue size"></a></h4>
+<p>Number of sockets to queue before starting to refuse new incoming connections. This can be used to tweak the amount of simultaneous sockets that the server accepts.</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Path:</td>
+<td><a href="#/settings/default">/settings/default</a></td>
+</tr>
+<tr>
+<td>Key:</td>
+<td>socket queue size</td>
+</tr>
+<tr>
+<td>Advanced:</td>
+<td>Yes (means it is not commonly used)</td>
+</tr>
+<tr>
+<td>Default value:</td>
+<td><code>0</code></td>
+</tr>
+<tr>
+<td>Used by:</td>
+<td>CheckMKServer, NRPEServer, NSCAServer, NSClientServer, WEBServer</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Sample:</strong></p>
+<div class="highlight"><pre><span></span><code>[/settings/default]
+# LISTEN QUEUE
+socket queue size=0
+</code></pre></div>
+<h4 id="thread-pool">THREAD POOL <a id="/settings/default/thread pool"></a></h4>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Path:</td>
+<td><a href="#/settings/default">/settings/default</a></td>
+</tr>
+<tr>
+<td>Key:</td>
+<td>thread pool</td>
+</tr>
+<tr>
+<td>Advanced:</td>
+<td>Yes (means it is not commonly used)</td>
+</tr>
+<tr>
+<td>Default value:</td>
+<td><code>10</code></td>
+</tr>
+<tr>
+<td>Used by:</td>
+<td>CheckMKServer, NRPEServer, NSCAServer, NSClientServer, WEBServer</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Sample:</strong></p>
+<div class="highlight"><pre><span></span><code>[/settings/default]
+# THREAD POOL
+thread pool=10
+</code></pre></div>
+<h4 id="timeout">TIMEOUT <a id="/settings/default/timeout"></a></h4>
+<p>Timeout (in seconds) when reading packets on incoming sockets. If the data has not arrived within this time we will bail out.</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Path:</td>
+<td><a href="#/settings/default">/settings/default</a></td>
+</tr>
+<tr>
+<td>Key:</td>
+<td>timeout</td>
+</tr>
+<tr>
+<td>Default value:</td>
+<td><code>30</code></td>
+</tr>
+<tr>
+<td>Used by:</td>
+<td>CheckMKServer, NRPEServer, NSCAServer, NSClientServer, WEBServer</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Sample:</strong></p>
+<div class="highlight"><pre><span></span><code>[/settings/default]
+# TIMEOUT
+timeout=30
+</code></pre></div>
+<h3 id="nsclient-server-section">NSCLIENT SERVER SECTION <a id="/settings/NSClient/server"></a></h3>
+<p>Section for NSClient (NSClientServer.dll) (check_nt) protocol options.</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#allowed-ciphers">allowed ciphers</a></td>
+<td>ALL:!ADH:!LOW:!EXP:!MD5:@STRENGTH</td>
+<td>ALLOWED CIPHERS</td>
+</tr>
+<tr>
+<td><a href="#allowed-hosts">allowed hosts</a></td>
+<td>127.0.0.1</td>
+<td>ALLOWED HOSTS</td>
+</tr>
+<tr>
+<td><a href="#bind-to-address">bind to</a></td>
+<td></td>
+<td>BIND TO ADDRESS</td>
+</tr>
+<tr>
+<td><a href="#ca">ca</a></td>
+<td>${certificate-path}/ca.pem</td>
+<td>CA</td>
+</tr>
+<tr>
+<td><a href="#cache-allowed-hosts">cache allowed hosts</a></td>
+<td>true</td>
+<td>CACHE ALLOWED HOSTS</td>
+</tr>
+<tr>
+<td><a href="#ssl-certificate">certificate</a></td>
+<td>${certificate-path}/certificate.pem</td>
+<td>SSL CERTIFICATE</td>
+</tr>
+<tr>
+<td><a href="#certificate-format">certificate format</a></td>
+<td>PEM</td>
+<td>CERTIFICATE FORMAT</td>
+</tr>
+<tr>
+<td><a href="#ssl-certificate">certificate key</a></td>
+<td></td>
+<td>SSL CERTIFICATE</td>
+</tr>
+<tr>
+<td><a href="#debug-peer-certificate-verification">debug verify</a></td>
+<td>false</td>
+<td>Debug peer certificate verification</td>
+</tr>
+<tr>
+<td><a href="#dh-key">dh</a></td>
+<td></td>
+<td>DH KEY</td>
+</tr>
+<tr>
+<td><a href="#password">password</a></td>
+<td></td>
+<td>Password</td>
+</tr>
+<tr>
+<td><a href="#performance-data">performance data</a></td>
+<td>true</td>
+<td>PERFORMANCE DATA</td>
+</tr>
+<tr>
+<td><a href="#port-number">port</a></td>
+<td>12489</td>
+<td>PORT NUMBER</td>
+</tr>
+<tr>
+<td><a href="#listen-queue">socket queue size</a></td>
+<td>0</td>
+<td>LISTEN QUEUE</td>
+</tr>
+<tr>
+<td><a href="#verify-mode">ssl options</a></td>
+<td></td>
+<td>VERIFY MODE</td>
+</tr>
+<tr>
+<td><a href="#thread-pool">thread pool</a></td>
+<td>10</td>
+<td>THREAD POOL</td>
+</tr>
+<tr>
+<td><a href="#timeout">timeout</a></td>
+<td>30</td>
+<td>TIMEOUT</td>
+</tr>
+<tr>
+<td><a href="#tls-version-to-use">tls version</a></td>
+<td>tlsv1.2+</td>
+<td>TLS version to use</td>
+</tr>
+<tr>
+<td><a href="#enable-ssl-encryption">use ssl</a></td>
+<td>false</td>
+<td>ENABLE SSL ENCRYPTION</td>
+</tr>
+<tr>
+<td><a href="#verify-mode">verify mode</a></td>
+<td>none</td>
+<td>VERIFY MODE</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="c1"># Section for NSClient (NSClientServer.dll) (check_nt) protocol options.</span>
+<span class="k">[/settings/NSClient/server]</span>
+<span class="na">allowed ciphers</span><span class="o">=</span><span class="s">ALL:!ADH:!LOW:!EXP:!MD5:@STRENGTH</span>
+<span class="na">allowed hosts</span><span class="o">=</span><span class="s">127.0.0.1</span>
+<span class="na">ca</span><span class="o">=</span><span class="s">${certificate-path}/ca.pem</span>
+<span class="na">cache allowed hosts</span><span class="o">=</span><span class="s">true</span>
+<span class="na">certificate</span><span class="o">=</span><span class="s">${certificate-path}/certificate.pem</span>
+<span class="na">certificate format</span><span class="o">=</span><span class="s">PEM</span>
+<span class="na">debug verify</span><span class="o">=</span><span class="s">false</span>
+<span class="na">performance data</span><span class="o">=</span><span class="s">true</span>
+<span class="na">port</span><span class="o">=</span><span class="s">12489</span>
+<span class="na">socket queue size</span><span class="o">=</span><span class="s">0</span>
+<span class="na">thread pool</span><span class="o">=</span><span class="s">10</span>
+<span class="na">timeout</span><span class="o">=</span><span class="s">30</span>
+<span class="na">tls version</span><span class="o">=</span><span class="s">tlsv1.2+</span>
+<span class="na">use ssl</span><span class="o">=</span><span class="s">false</span>
+<span class="na">verify mode</span><span class="o">=</span><span class="s">none</span>
+</code></pre></div>
+<h4 id="allowed-ciphers">ALLOWED CIPHERS <a id="/settings/NSClient/server/allowed ciphers"></a></h4>
+<p>The chipers which are allowed to be used.
+The default here will differ is used in "insecure" mode or not. check_nrpe uses a very old chipers and should preferably not be used. For details of chipers please see the OPEN ssl documentation: https://www.openssl.org/docs/apps/ciphers.html</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Path:</td>
+<td><a href="#/settings/NSClient/server">/settings/NSClient/server</a></td>
+</tr>
+<tr>
+<td>Key:</td>
+<td>allowed ciphers</td>
+</tr>
+<tr>
+<td>Advanced:</td>
+<td>Yes (means it is not commonly used)</td>
+</tr>
+<tr>
+<td>Default value:</td>
+<td><code>ALL:!ADH:!LOW:!EXP:!MD5:@STRENGTH</code></td>
+</tr>
+<tr>
+<td>Used by:</td>
+<td>NSClientServer</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Sample:</strong></p>
+<div class="highlight"><pre><span></span><code>[/settings/NSClient/server]
+# ALLOWED CIPHERS
+allowed ciphers=ALL:!ADH:!LOW:!EXP:!MD5:@STRENGTH
+</code></pre></div>
+<h4 id="allowed-hosts_1">ALLOWED HOSTS <a id="/settings/NSClient/server/allowed hosts"></a></h4>
+<p>A comma separated list of allowed hosts. You can use netmasks (/ syntax) or * to create ranges.</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Path:</td>
+<td><a href="#/settings/NSClient/server">/settings/NSClient/server</a></td>
+</tr>
+<tr>
+<td>Key:</td>
+<td>allowed hosts</td>
+</tr>
+<tr>
+<td>Default value:</td>
+<td><code>127.0.0.1</code></td>
+</tr>
+<tr>
+<td>Used by:</td>
+<td>NSClientServer</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Sample:</strong></p>
+<div class="highlight"><pre><span></span><code>[/settings/NSClient/server]
+# ALLOWED HOSTS
+allowed hosts=127.0.0.1
+</code></pre></div>
+<h4 id="bind-to-address_1">BIND TO ADDRESS <a id="/settings/NSClient/server/bind to"></a></h4>
+<p>Allows you to bind server to a specific local address. This has to be a dotted ip address not a host name. Leaving this blank will bind to all available IP addresses.</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Path:</td>
+<td><a href="#/settings/NSClient/server">/settings/NSClient/server</a></td>
+</tr>
+<tr>
+<td>Key:</td>
+<td>bind to</td>
+</tr>
+<tr>
+<td>Default value:</td>
+<td><em>N/A</em></td>
+</tr>
+<tr>
+<td>Used by:</td>
+<td>NSClientServer</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Sample:</strong></p>
+<div class="highlight"><pre><span></span><code>[/settings/NSClient/server]
+# BIND TO ADDRESS
+bind to=
+</code></pre></div>
+<h4 id="ca">CA <a id="/settings/NSClient/server/ca"></a></h4>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Path:</td>
+<td><a href="#/settings/NSClient/server">/settings/NSClient/server</a></td>
+</tr>
+<tr>
+<td>Key:</td>
+<td>ca</td>
+</tr>
+<tr>
+<td>Advanced:</td>
+<td>Yes (means it is not commonly used)</td>
+</tr>
+<tr>
+<td>Default value:</td>
+<td><code>${certificate-path}/ca.pem</code></td>
+</tr>
+<tr>
+<td>Used by:</td>
+<td>NSClientServer</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Sample:</strong></p>
+<div class="highlight"><pre><span></span><code>[/settings/NSClient/server]
+# CA
+ca=${certificate-path}/ca.pem
+</code></pre></div>
+<h4 id="cache-allowed-hosts_1">CACHE ALLOWED HOSTS <a id="/settings/NSClient/server/cache allowed hosts"></a></h4>
+<p>If host names (DNS entries) should be cached, improves speed and security somewhat but won't allow you to have dynamic IPs for your Nagios server.</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Path:</td>
+<td><a href="#/settings/NSClient/server">/settings/NSClient/server</a></td>
+</tr>
+<tr>
+<td>Key:</td>
+<td>cache allowed hosts</td>
+</tr>
+<tr>
+<td>Default value:</td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td>Used by:</td>
+<td>NSClientServer</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Sample:</strong></p>
+<div class="highlight"><pre><span></span><code>[/settings/NSClient/server]
+# CACHE ALLOWED HOSTS
+cache allowed hosts=true
+</code></pre></div>
+<h4 id="ssl-certificate">SSL CERTIFICATE <a id="/settings/NSClient/server/certificate"></a></h4>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Path:</td>
+<td><a href="#/settings/NSClient/server">/settings/NSClient/server</a></td>
+</tr>
+<tr>
+<td>Key:</td>
+<td>certificate</td>
+</tr>
+<tr>
+<td>Advanced:</td>
+<td>Yes (means it is not commonly used)</td>
+</tr>
+<tr>
+<td>Default value:</td>
+<td><code>${certificate-path}/certificate.pem</code></td>
+</tr>
+<tr>
+<td>Used by:</td>
+<td>NSClientServer</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Sample:</strong></p>
+<div class="highlight"><pre><span></span><code>[/settings/NSClient/server]
+# SSL CERTIFICATE
+certificate=${certificate-path}/certificate.pem
+</code></pre></div>
+<h4 id="certificate-format">CERTIFICATE FORMAT <a id="/settings/NSClient/server/certificate format"></a></h4>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Path:</td>
+<td><a href="#/settings/NSClient/server">/settings/NSClient/server</a></td>
+</tr>
+<tr>
+<td>Key:</td>
+<td>certificate format</td>
+</tr>
+<tr>
+<td>Advanced:</td>
+<td>Yes (means it is not commonly used)</td>
+</tr>
+<tr>
+<td>Default value:</td>
+<td><code>PEM</code></td>
+</tr>
+<tr>
+<td>Used by:</td>
+<td>NSClientServer</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Sample:</strong></p>
+<div class="highlight"><pre><span></span><code>[/settings/NSClient/server]
+# CERTIFICATE FORMAT
+certificate format=PEM
+</code></pre></div>
+<h4 id="ssl-certificate_1">SSL CERTIFICATE <a id="/settings/NSClient/server/certificate key"></a></h4>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Path:</td>
+<td><a href="#/settings/NSClient/server">/settings/NSClient/server</a></td>
+</tr>
+<tr>
+<td>Key:</td>
+<td>certificate key</td>
+</tr>
+<tr>
+<td>Advanced:</td>
+<td>Yes (means it is not commonly used)</td>
+</tr>
+<tr>
+<td>Default value:</td>
+<td><em>N/A</em></td>
+</tr>
+<tr>
+<td>Used by:</td>
+<td>NSClientServer</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Sample:</strong></p>
+<div class="highlight"><pre><span></span><code>[/settings/NSClient/server]
+# SSL CERTIFICATE
+certificate key=
+</code></pre></div>
+<h4 id="debug-peer-certificate-verification">Debug peer certificate verification <a id="/settings/NSClient/server/debug verify"></a></h4>
+<p>Set this to tru to output certificate verification errors, these are outputed to stdout (not the log).</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Path:</td>
+<td><a href="#/settings/NSClient/server">/settings/NSClient/server</a></td>
+</tr>
+<tr>
+<td>Key:</td>
+<td>debug verify</td>
+</tr>
+<tr>
+<td>Advanced:</td>
+<td>Yes (means it is not commonly used)</td>
+</tr>
+<tr>
+<td>Default value:</td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td>Used by:</td>
+<td>NSClientServer</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Sample:</strong></p>
+<div class="highlight"><pre><span></span><code>[/settings/NSClient/server]
+# Debug peer certificate verification
+debug verify=false
+</code></pre></div>
+<h4 id="dh-key">DH KEY <a id="/settings/NSClient/server/dh"></a></h4>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Path:</td>
+<td><a href="#/settings/NSClient/server">/settings/NSClient/server</a></td>
+</tr>
+<tr>
+<td>Key:</td>
+<td>dh</td>
+</tr>
+<tr>
+<td>Advanced:</td>
+<td>Yes (means it is not commonly used)</td>
+</tr>
+<tr>
+<td>Default value:</td>
+<td><em>N/A</em></td>
+</tr>
+<tr>
+<td>Used by:</td>
+<td>NSClientServer</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Sample:</strong></p>
+<div class="highlight"><pre><span></span><code>[/settings/NSClient/server]
+# DH KEY
+dh=
+</code></pre></div>
+<h4 id="password_1">Password <a id="/settings/NSClient/server/password"></a></h4>
+<p>Password used to authenticate against server</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Path:</td>
+<td><a href="#/settings/NSClient/server">/settings/NSClient/server</a></td>
+</tr>
+<tr>
+<td>Key:</td>
+<td>password</td>
+</tr>
+<tr>
+<td>Default value:</td>
+<td><em>N/A</em></td>
+</tr>
+<tr>
+<td>Used by:</td>
+<td>NSClientServer</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Sample:</strong></p>
+<div class="highlight"><pre><span></span><code>[/settings/NSClient/server]
+# Password
+password=
+</code></pre></div>
+<h4 id="performance-data">PERFORMANCE DATA <a id="/settings/NSClient/server/performance data"></a></h4>
+<p>Send performance data back to Nagios (set this to 0 to remove all performance data).</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Path:</td>
+<td><a href="#/settings/NSClient/server">/settings/NSClient/server</a></td>
+</tr>
+<tr>
+<td>Key:</td>
+<td>performance data</td>
+</tr>
+<tr>
+<td>Default value:</td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td>Used by:</td>
+<td>NSClientServer</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Sample:</strong></p>
+<div class="highlight"><pre><span></span><code>[/settings/NSClient/server]
+# PERFORMANCE DATA
+performance data=true
+</code></pre></div>
+<h4 id="port-number">PORT NUMBER <a id="/settings/NSClient/server/port"></a></h4>
+<p>Port to use for check_nt.</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Path:</td>
+<td><a href="#/settings/NSClient/server">/settings/NSClient/server</a></td>
+</tr>
+<tr>
+<td>Key:</td>
+<td>port</td>
+</tr>
+<tr>
+<td>Default value:</td>
+<td><code>12489</code></td>
+</tr>
+<tr>
+<td>Used by:</td>
+<td>NSClientServer</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Sample:</strong></p>
+<div class="highlight"><pre><span></span><code>[/settings/NSClient/server]
+# PORT NUMBER
+port=12489
+</code></pre></div>
+<h4 id="listen-queue_1">LISTEN QUEUE <a id="/settings/NSClient/server/socket queue size"></a></h4>
+<p>Number of sockets to queue before starting to refuse new incoming connections. This can be used to tweak the amount of simultaneous sockets that the server accepts.</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Path:</td>
+<td><a href="#/settings/NSClient/server">/settings/NSClient/server</a></td>
+</tr>
+<tr>
+<td>Key:</td>
+<td>socket queue size</td>
+</tr>
+<tr>
+<td>Advanced:</td>
+<td>Yes (means it is not commonly used)</td>
+</tr>
+<tr>
+<td>Default value:</td>
+<td><code>0</code></td>
+</tr>
+<tr>
+<td>Used by:</td>
+<td>NSClientServer</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Sample:</strong></p>
+<div class="highlight"><pre><span></span><code>[/settings/NSClient/server]
+# LISTEN QUEUE
+socket queue size=0
+</code></pre></div>
+<h4 id="verify-mode">VERIFY MODE <a id="/settings/NSClient/server/ssl options"></a></h4>
+<p>Comma separated list of verification flags to set on the SSL socket.</p>
+<p>default-workarounds Various workarounds for what I understand to be broken ssl implementations
+no-sslv2    Do not use the SSLv2 protocol (prefer tls version instead).
+no-sslv3    Do not use the SSLv3 protocol (prefer tls version instead).
+no-tlsv1    Do not use the TLSv1 protocol (prefer tls version instead).
+no-tlsv1_1  Do not use the TLSv1.1 protocol (prefer tls version instead).
+no-tlsv1_2  Do not use the TLSv1.2 protocol (prefer tls version instead).
+no-tlsv1_3  Do not use the TLSv1.3 protocol (prefer tls version instead).
+single-dh-use   Always create a new key when using temporary/ephemeral DH parameters. This option must be used to prevent small subgroup attacks, when the DH parameters were not generated using "strong" primes (e.g. when using DSA-parameters).</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Path:</td>
+<td><a href="#/settings/NSClient/server">/settings/NSClient/server</a></td>
+</tr>
+<tr>
+<td>Key:</td>
+<td>ssl options</td>
+</tr>
+<tr>
+<td>Advanced:</td>
+<td>Yes (means it is not commonly used)</td>
+</tr>
+<tr>
+<td>Default value:</td>
+<td><em>N/A</em></td>
+</tr>
+<tr>
+<td>Used by:</td>
+<td>NSClientServer</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Sample:</strong></p>
+<div class="highlight"><pre><span></span><code>[/settings/NSClient/server]
+# VERIFY MODE
+ssl options=
+</code></pre></div>
+<h4 id="thread-pool_1">THREAD POOL <a id="/settings/NSClient/server/thread pool"></a></h4>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Path:</td>
+<td><a href="#/settings/NSClient/server">/settings/NSClient/server</a></td>
+</tr>
+<tr>
+<td>Key:</td>
+<td>thread pool</td>
+</tr>
+<tr>
+<td>Advanced:</td>
+<td>Yes (means it is not commonly used)</td>
+</tr>
+<tr>
+<td>Default value:</td>
+<td><code>10</code></td>
+</tr>
+<tr>
+<td>Used by:</td>
+<td>NSClientServer</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Sample:</strong></p>
+<div class="highlight"><pre><span></span><code>[/settings/NSClient/server]
+# THREAD POOL
+thread pool=10
+</code></pre></div>
+<h4 id="timeout_1">TIMEOUT <a id="/settings/NSClient/server/timeout"></a></h4>
+<p>Timeout (in seconds) when reading packets on incoming sockets. If the data has not arrived within this time we will bail out.</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Path:</td>
+<td><a href="#/settings/NSClient/server">/settings/NSClient/server</a></td>
+</tr>
+<tr>
+<td>Key:</td>
+<td>timeout</td>
+</tr>
+<tr>
+<td>Default value:</td>
+<td><code>30</code></td>
+</tr>
+<tr>
+<td>Used by:</td>
+<td>NSClientServer</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Sample:</strong></p>
+<div class="highlight"><pre><span></span><code>[/settings/NSClient/server]
+# TIMEOUT
+timeout=30
+</code></pre></div>
+<h4 id="tls-version-to-use">TLS version to use <a id="/settings/NSClient/server/tls version"></a></h4>
+<p>Valid options are tlsv1.3, tlsv1.2, tlsv1.1, tlsv1.0, sslv3 as well as tlsv1.3+, tlsv1.2+, tlsv1.1+, tlsv1.0+, sslv3+ (Which uses the version mentioned and above)</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Path:</td>
+<td><a href="#/settings/NSClient/server">/settings/NSClient/server</a></td>
+</tr>
+<tr>
+<td>Key:</td>
+<td>tls version</td>
+</tr>
+<tr>
+<td>Advanced:</td>
+<td>Yes (means it is not commonly used)</td>
+</tr>
+<tr>
+<td>Default value:</td>
+<td><code>tlsv1.2+</code></td>
+</tr>
+<tr>
+<td>Used by:</td>
+<td>NSClientServer</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Sample:</strong></p>
+<div class="highlight"><pre><span></span><code>[/settings/NSClient/server]
+# TLS version to use
+tls version=tlsv1.2+
+</code></pre></div>
+<h4 id="enable-ssl-encryption">ENABLE SSL ENCRYPTION <a id="/settings/NSClient/server/use ssl"></a></h4>
+<p>This option controls if SSL should be enabled.</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Path:</td>
+<td><a href="#/settings/NSClient/server">/settings/NSClient/server</a></td>
+</tr>
+<tr>
+<td>Key:</td>
+<td>use ssl</td>
+</tr>
+<tr>
+<td>Default value:</td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td>Used by:</td>
+<td>NSClientServer</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Sample:</strong></p>
+<div class="highlight"><pre><span></span><code>[/settings/NSClient/server]
+# ENABLE SSL ENCRYPTION
+use ssl=false
+</code></pre></div>
+<h4 id="verify-mode_1">VERIFY MODE <a id="/settings/NSClient/server/verify mode"></a></h4>
+<p>Comma separated list of verification flags to set on the SSL socket.</p>
+<p>none    The server will not send a client certificate request to the client, so the client will not send a certificate.
+peer    The server sends a client certificate request to the client and the certificate returned (if any) is checked.
+fail-if-no-cert if the client did not return a certificate, the TLS/SSL handshake is immediately terminated. This flag must be used together with peer.
+peer-cert   Alias for peer and fail-if-no-cert.
+workarounds Various bug workarounds.
+single  Always create a new key when using tmp_dh parameters.
+client-once Only request a client certificate on the initial TLS/SSL handshake. This flag must be used together with verify-peer</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Path:</td>
+<td><a href="#/settings/NSClient/server">/settings/NSClient/server</a></td>
+</tr>
+<tr>
+<td>Key:</td>
+<td>verify mode</td>
+</tr>
+<tr>
+<td>Advanced:</td>
+<td>Yes (means it is not commonly used)</td>
+</tr>
+<tr>
+<td>Default value:</td>
+<td><code>none</code></td>
+</tr>
+<tr>
+<td>Used by:</td>
+<td>NSClientServer</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Sample:</strong></p>
+<div class="highlight"><pre><span></span><code>[/settings/NSClient/server]
+# VERIFY MODE
+verify mode=none
+</code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+      <div class="md-consent" data-md-component="consent" id="__consent" hidden>
+        <div class="md-consent__overlay"></div>
+        <aside class="md-consent__inner">
+          <form class="md-consent__form md-grid md-typeset" name="consent">
+            
+
+
+  
+
+
+<h4>Cookie consent</h4>
+<p>We use cookies to recognize your repeated visits and preferences, as well as to measure the effectiveness of our documentation and whether users find what they're searching for. With your consent, you're helping us to make our documentation better.</p>
+<input class="md-toggle" type="checkbox" id="__settings" >
+<div class="md-consent__settings">
+  <ul class="task-list">
+    
+    
+      
+    
+    
+      
+        
+  
+  
+    
+    
+  
+  <li class="task-list-item">
+    <label class="task-list-control">
+      <input type="checkbox" name="github" checked>
+      <span class="task-list-indicator"></span>
+      GitHub
+    </label>
+  </li>
+
+      
+    
+    
+  </ul>
+</div>
+<div class="md-consent__controls">
+  
+    
+      <button class="md-button md-button--primary">Accept</button>
+    
+    
+    
+  
+    
+    
+    
+      <label class="md-button" for="__settings">Manage settings</label>
+    
+  
+</div>
+          </form>
+        </aside>
+      </div>
+      <script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout((function(){document.querySelector("[data-md-component=consent]").hidden=!1}),250);var form=document.forms.consent;for(var action of["submit","reset"])form.addEventListener(action,(function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map((function(e){return[e,!0]})))),location.hash="",location.reload()}))</script>
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.tabs", "toc.follow", "toc.integrate", "navigation.indexes"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

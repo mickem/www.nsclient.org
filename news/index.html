@@ -1,0 +1,4001 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../nsclient/">
+      
+      
+        <link rel="next" href="../docs/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>News - NSClient++</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#news" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="NSClient++" class="md-header__button md-logo" aria-label="NSClient++" data-md-component="logo">
+      
+  <img src="../assets/nsclient-logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            NSClient++
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              News
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/mickem/nscp" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M202.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1M496 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2m-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3m-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1"/></svg>
+  </div>
+  <div class="md-source__repository">
+    NSClient++
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href=".." class="md-tabs__link">
+          
+  
+  
+    
+  
+  Home
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  News
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://github.com/mickem/nscp/releases" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Download
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../docs/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Documentation
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://github.com/mickem/nscp/discussions" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Forums
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="NSClient++" class="md-nav__button md-logo" aria-label="NSClient++" data-md-component="logo">
+      
+  <img src="../assets/nsclient-logo.png" alt="logo">
+
+    </a>
+    NSClient++
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/mickem/nscp" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M202.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1M496 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2m-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3m-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1"/></svg>
+  </div>
+  <div class="md-source__repository">
+    NSClient++
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href=".." class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_1" id="__nav_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Home
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nsclient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About NSClient++
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+    
+      
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    News
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    News
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#0116-new-interactive-client" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.11.6 New interactive client
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0914-new-release" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.9.14 New release
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#070-improved-support-for-modern-windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.7.0 Improved support for modern Windows
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#069-fix-installer-bug" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.6.9 Fix installer bug
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#064-first-release-of-2025" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.6.4 First release of 2025
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nrpe-version-4-support-added" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NRPE version 4 support added
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#new-version-coming-soon" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        New version coming soon
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/mickem/nscp/releases" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Download
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../docs/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Documentation
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Documentation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../docs/getting-started/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docs/getting-started/nsclient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSClient++
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docs/getting-started/nrpe/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NRPE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docs/getting-started/nsca/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSCA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docs/theory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docs/checks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Checking Things
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docs/installing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installing NSClient++
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docs/settings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docs/web/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WEB UI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docs/faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docs/tutorial/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tutorial
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docs/securing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Securing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_11" id="__nav_4_11_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Howto
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Howto
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docs/howto/checks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Checking things
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docs/howto/counters/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Performance Counters
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docs/howto/external_scripts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    External scripts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docs/howto/run_commands/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Running commands
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docs/howto/nrpe/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NRPE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docs/howto/nsca/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSCA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docs/howto/03x_migration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Migrate from 0.3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_12" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../docs/reference/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_12" id="__nav_4_12_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_12">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_12_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_12_2" id="__nav_4_12_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Check commands
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_12_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_12_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Check commands
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docs/reference/windows/CheckDisk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckDisk (Windows)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docs/reference/check/CheckExternalScripts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckExternalScripts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docs/reference/windows/CheckEventLog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckEventLog (Windows)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docs/reference/check/CheckHelpers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckHelpers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docs/reference/check/CheckLogFile/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckLogFile
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docs/reference/check/CheckMKClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckMKClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docs/reference/check/CheckMKServer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckMKServer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docs/reference/misc/CheckNet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckNet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docs/reference/check/CheckNSCP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckNSCP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docs/reference/unix/CheckSystemUnix/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckSystemUnix (unix)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docs/reference/windows/CheckSystem/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckSystem (Windows)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docs/reference/windows/CheckTaskSched/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckTaskSched (Windows)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docs/reference/windows/CheckWMI/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckWMI (Windows)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_12_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_12_3" id="__nav_4_12_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Clients & Servers
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_12_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_12_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Clients & Servers
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docs/reference/generic/WEBServer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WEBServer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docs/reference/misc/WEBClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WEBClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docs/reference/client/NRPEServer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NRPEServer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docs/reference/client/NRPEClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NRPEClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docs/reference/windows/NSClientServer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSClientServer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docs/reference/client/NSCAServer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSCAServer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docs/reference/client/NSCAClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSCAClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docs/reference/client/NRDPClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NRDPClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docs/reference/client/SMTPClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SMTPClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docs/reference/client/GraphiteClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GraphiteClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docs/reference/client/SyslogClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SyslogClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docs/reference/misc/CollectdClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CollectdClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docs/reference/misc/Op5Client/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Op5Client
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docs/reference/misc/ElasticClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ElasticClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_12_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_12_4" id="__nav_4_12_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Helper modules
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_12_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_12_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Helper modules
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docs/reference/generic/Scheduler/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scheduler
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docs/reference/generic/SimpleFileWriter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SimpleFileWriter
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docs/reference/generic/CommandClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CommandClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docs/reference/generic/SimpleCache/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SimpleCache
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docs/reference/generic/PythonScript/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PythonScript
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docs/reference/generic/LUAScript/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LUAScript
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_13" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../docs/extending/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Extending
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_13" id="__nav_4_13_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_13">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Extending
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docs/extending/python/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python Scripts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docs/extending/zip-modules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Zip Modules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_14" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_14" id="__nav_4_14_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_14">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    API
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_14_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../docs/api/rest/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    REST
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_14_1" id="__nav_4_14_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_14_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_14_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    REST
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docs/api/rest/info/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Info
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docs/api/rest/modules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docs/api/rest/queries/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Queries
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docs/api/rest/scripts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scripts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docs/api/rest/logs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docs/api/rest/legacy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Legacy API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docs/api/common/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Common API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docs/api/plugin/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plugin API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docs/api/metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Metrics API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/mickem/nscp/discussions" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Forums
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+  <div class="md-content" data-md-component="content">
+    <div class="md-content__inner">
+      <header class="md-typeset">
+        <h1 id="news">News</h1>
+      </header>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2026-01-12 00:00:00+00:00">January 12, 2026</time></li>
+        
+        
+          
+          <li class="md-meta__item">
+            
+              3 min read
+            
+          </li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="0116-new-interactive-client"><a class="toclink" href="2026/01/12/0116-new-interactive-client/">0.11.6 New interactive client</a></h2>
+<h3 id="new-check_nsclient-client"><a class="toclink" href="2026/01/12/0116-new-interactive-client/#new-check_nsclient-client">New check_nsclient client</a></h3>
+<p>This new release adds a new <code>check_nsclient</code> client tool. 
+This is a stand-alone application you can use to connect to and interact with NSClient.
+This new client can:</p>
+<ul>
+<li>Run queries/checks</li>
+<li>Change configuration</li>
+<li>Show logs</li>
+<li>Load/unload modules</li>
+</ul>
+<p>It also have an interactive client you can use which is aimed as a replacement for "test mode".</p>
+<p>To connect to NSClient you need to have the web server enabled and then you can login with the same username and password as you use in the web-ui:</p>
+<div class="highlight"><pre><span></span><code>$ check_nsclient nsclient auth login --password PASSWORD --ca %LOCALAPPDATA%\mkcert\rootCA.pem
+Successfully logged in
+</code></pre></div>
+<p>Credentials are securely stored in store in credential manager.</p>
+<p>The reason there is a <code>nsclient</code> command line option is that soon this will also support NRPE and other protocols as well becoming a universal monitoring tool.</p>
+<p>After this you can show logs:</p>
+<div class="highlight"><pre><span></span><code>$ check_nsclient nsclient logs list
+╭────────┬───────────────────────┬──────────────────────────────────────────────────────────────────╮
+│ level │ date                 │ message                                                         │
+├────────┼───────────────────────┼──────────────────────────────────────────────────────────────────┤
+│ debug │ 2026-Jan-11 12:36:26 │ NSClient++ 0.4.0 2026-01-11 x64 booting...                      │
+│ debug │ 2026-Jan-11 12:36:26 │ Booted settings subsystem...                                    │
+│ debug │ 2026-Jan-11 12:36:26 │ Archiving crash dumps in: C:\src\build\nscp/crash-dumps         │
+│ debug │ 2026-Jan-11 12:36:26 │ Found: CheckExternalScripts                                     │
+│ debug │ 2026-Jan-11 12:36:26 │ Found: CheckSystem                                              │
+│ debug │ 2026-Jan-11 12:36:26 │ Found: Checkhelpers                                             │
+│ debug │ 2026-Jan-11 12:36:26 │ Found: LuaScript                                                │
+│ debug │ 2026-Jan-11 12:36:26 │ Found: NRPEServer                                               │
+│ debug │ 2026-Jan-11 12:36:26 │ Found: WEBServer                                                │
+╰────────┴───────────────────────┴──────────────────────────────────────────────────────────────────╯
+</code></pre></div>
+<p>Or to load and enable a module you can:</p>
+<div class="highlight"><pre><span></span><code>$ check_nsclient nsclient modules use CheckHelpers
+Successfully loaded and enable module CheckHelpers
+</code></pre></div>
+<p>Or you can execute queries:</p>
+<div class="highlight"><pre><span></span><code>$ check_nsclient nsclient queries execute-nagios check_cpu
+OK: CPU load is ok.|&#39;total 5m&#39;=10%;80;90 &#39;total 1m&#39;=10%;80;90 &#39;total 5s&#39;=7%;80;90
+</code></pre></div>
+<p>As well as launch the new interactive client:</p>
+<div class="highlight"><pre><span></span><code>check_nsclient nsclient client
+</code></pre></div>
+<p><img width="1040" height="831" alt="image" src="https://github.com/user-attachments/assets/6e2e3896-5360-429f-9a25-4b8eb3cd061d" /></p>
+<p>The client is included in the installer or it can be downloaded separately below as <code>check_nsclient</code></p>
+<p>One benefit of this client is that it can output everything as <code>text</code>, <code>json</code>, <code>yaml</code> or <code>csv</code> making it easy too integrate in any system:</p>
+<div class="highlight"><pre><span></span><code>$ check_nsclient --output json nsclient queries execute check_cpu
+{
+  &quot;command&quot;: &quot;check_cpu&quot;,
+  &quot;lines&quot;: [
+    {
+      &quot;message&quot;: &quot;OK: CPU load is ok.&quot;,
+      &quot;perf&quot;: {
+        &quot;total 1m&quot;: {
+          &quot;value&quot;: 12.0,
+          &quot;unit&quot;: &quot;%&quot;,
+          &quot;warning&quot;: 80.0,
+          &quot;critical&quot;: 90.0,
+        },
+        &quot;total 5s&quot;: {
+          &quot;value&quot;: 21.0,
+          &quot;unit&quot;: &quot;%&quot;,
+          &quot;warning&quot;: 80.0,
+          &quot;critical&quot;: 90.0,
+        },
+        &quot;total 5m&quot;: {
+          &quot;value&quot;: 11.0,
+          &quot;unit&quot;: &quot;%&quot;,
+          &quot;warning&quot;: 80.0,
+          &quot;critical&quot;: 90.0,
+        }
+      }
+    }
+  ],
+  &quot;result&quot;: 0
+}
+</code></pre></div>
+<p>You cal also have multiple profiles (<code>foo</code>) and connect to remote systems (<code>--url</code>):</p>
+<div class="highlight"><pre><span></span><code>check_nsclient nsclient auth login foo --url https://127.0.0.1:8443 --password PASSWORD --insecure
+# ...
+check_nsclient --output json nsclient --profile foo queries execute check_cpu
+</code></pre></div>
+<p>Once your are done you can log out (and remove credentials from credential store);</p>
+<div class="highlight"><pre><span></span><code>check_nsclient nsclient auth logout
+</code></pre></div>
+<h3 id="download"><a class="toclink" href="2026/01/12/0116-new-interactive-client/#download">Download</a></h3>
+<p><a class="md-button" href="https://github.com/mickem/nscp/releases/0.11.6">You can download the new version from GitHub</a></p>
+<p>// Michael Medin</p>
+    
+    
+  </div>
+</article>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2025-08-13 00:00:00+00:00">August 13, 2025</time></li>
+        
+        
+          
+          <li class="md-meta__item">
+            
+              2 min read
+            
+          </li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="0914-new-release"><a class="toclink" href="2025/08/13/0914-new-release/">0.9.14 New release</a></h2>
+<h3 id="rest-api-updates"><a class="toclink" href="2025/08/13/0914-new-release/#rest-api-updates">REST API updates</a></h3>
+<p>Removed some old (deprecated) rest API endpoints so hence forth use the versioned apis under <code>/api</code>.
+The main goal here was to remove the outdated json library and the protobuf to json conversion.</p>
+<blockquote>
+<p>The old check endpoints have NOT been removed to retain compatibility with Icinga and similar tools.</p>
+</blockquote>
+<p>In addition to this I have also added numerous integration test to help to keep the APIs stable.</p>
+<h3 id="installer-improvments"><a class="toclink" href="2025/08/13/0914-new-release/#installer-improvments">Installer improvments</a></h3>
+<p>The installer has been updated a lot to behave more predictably and in general work better.
+I have also added numerous tests to the installer to ensure less accidental breaking changes in the future.</p>
+<p>Should not impact anything but instead of a dedicated Json library we now use boost to reduce number of dependencies.
+Removed sample config from installer (as you can easily generate the config i removed it from the installer).</p>
+<h3 id="web-ui-improvements"><a class="toclink" href="2025/08/13/0914-new-release/#web-ui-improvements">Web UI improvements</a></h3>
+<p>The web interface has gotten a medium overhaul improving settings and queries.</p>
+<ul>
+<li>You can now change setting under modules.</li>
+<li>Settings now have widgets for boolean settings</li>
+<li>Settings view now show all settings not just changed ones.</li>
+<li>You can now use " in queries when executing from the Web UI so "filter=1 &gt; 2" is now possible,</li>
+</ul>
+<h3 id="modern-tls-support-for-remote-settings"><a class="toclink" href="2025/08/13/0914-new-release/#modern-tls-support-for-remote-settings">Modern TLS Support for remote settings</a></h3>
+<p>Remote settings via https (TLS) has been improved to now support TLS 1.3 as well as certificate validation.
+This is configure in boot.ini (NOT nsclient.ini as that's the file loaded remotely).</p>
+<h3 id="sensitive-keys"><a class="toclink" href="2025/08/13/0914-new-release/#sensitive-keys">Sensitive keys</a></h3>
+<p>Added the ability to mark keys as sensitive which can then be configured to be stored in Windows credential manager.
+Meaning you now have a way to keep secrets and passwords out of the config file.</p>
+<h3 id="restored-linux-builds"><a class="toclink" href="2025/08/13/0914-new-release/#restored-linux-builds">Restored Linux builds</a></h3>
+<p>While Linux support is a work in progress it is now possible to build on windows and piplines for building on windows.
+"Soon(TM)" I will add some packages and config files and such to make it more usable.</p>
+<h4 id="bug-fixes"><a class="toclink" href="2025/08/13/0914-new-release/#bug-fixes">Bug-fixes</a></h4>
+<p>Numerous bug fixes and minor enhancments.</p>
+<h3 id="download"><a class="toclink" href="2025/08/13/0914-new-release/#download">Download</a></h3>
+<p><a class="md-button" href="https://github.com/mickem/nscp/releases/0.9.14">You can download the new version from GitHub</a></p>
+<p>// Michael Medin</p>
+    
+    
+  </div>
+</article>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2025-04-01 00:00:00+00:00">April 1, 2025</time></li>
+        
+        
+          
+          <li class="md-meta__item">
+            
+              5 min read
+            
+          </li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="070-improved-support-for-modern-windows"><a class="toclink" href="2025/04/01/070-improved-support-for-modern-windows/">0.7.0 Improved support for modern Windows</a></h2>
+<p>Changes since 0.6.9 (last official release).</p>
+<h4 id="modern-windows-detection-for-check_os_version"><a class="toclink" href="2025/04/01/070-improved-support-for-modern-windows/#modern-windows-detection-for-check_os_version">Modern Windows detection for <code>check_os_version</code></a></h4>
+<p>We now use the build number to detect OS versions above Windows 10.
+This means if you want to actually check that a version is above Windows 10 you need to include build number in your check.</p>
+<div class="highlight"><pre><span></span><code>check_os_version warn=&quot;version lt 10 or build lt 26100&quot;
+L        cli OK: OK: Windows 11 24H2 (10.0.26100)
+</code></pre></div>
+<h4 id="enhancements-and-experimental-support-for-pdh-based-check_cpu"><a class="toclink" href="2025/04/01/070-improved-support-for-modern-windows/#enhancements-and-experimental-support-for-pdh-based-check_cpu">Enhancements and experimental support for Pdh based <code>check_cpu</code>.</a></h4>
+<p>This version has some PDH (Performance data Helpers) fixes and improved error handling and introduces an experimental new option to switch <code>check_cpu</code> to use PDH instead of APIs.
+This is experimental and intended to solve the issue with incorrect, negative or zero values on some machines with more than 12 cores.
+The main issue is that PDH is messy. It is localized and has historically been prone to strange issues and errors such as counter index getting corrupted and similar issues so lets ee how this works before making it the default.</p>
+<p>To switch change the following configuration:
+<div class="highlight"><pre><span></span><code><span class="k">[/settings/system/windows]</span>
+<span class="na">use pdh for cpu</span><span class="o">=</span><span class="s">true</span>
+</code></pre></div></p>
+<p>Check CPU load values now uses more standard keywords:
+* idle
+* user
+* system</p>
+<p>Old keywords are still retained for compatibility, so this is a non-breaking change.</p>
+<p>We also added a short-hand option <code>cores</code> for expanding all cores:
+<div class="highlight"><pre><span></span><code>check_cpu cores
+L        cli OK: OK: CPU load is ok.
+L        cli  Performance data: &#39;0 5m&#39;=58%;80;90 &#39;1 5m&#39;=47%;80;90 &#39;10 5m&#39;=56%;80;90 &#39;11 5m&#39;=42%;80;90 &#39;2 5m&#39;=59%;80;90 &#39;3 5m&#39;=49%;80;90 &#39;4 5m&#39;=56%;80;90 &#39;5 5m&#39;=45%;80;90 &#39;6 5m&#39;=57%;80;90 &#39;7 5m&#39;=43%;80;90 &#39;8 5m&#39;=57%;80;90 &#39;9 5m&#39;=39%;80;90 &#39;total 5m&#39;=51%;80;90 &#39;0 1m&#39;=65%;80;90 &#39;1 1m&#39;=52%;80;90 &#39;10 1m&#39;=65%;80;90 &#39;11 1m&#39;=48%;80;90 &#39;2 1m&#39;=64%;80;90 &#39;3 1m&#39;=52%;80;90 &#39;4 1m&#39;=62%;80;90 &#39;5 1m&#39;=65%;80;90 &#39;6 1m&#39;=70%;80;90 &#39;7 1m&#39;=51%;80;90 &#39;8 1m&#39;=61%;80;90 &#39;9 1m&#39;=46%;80;90 &#39;total 1m&#39;=58%;80;90 &#39;0 5s&#39;=65%;80;90 &#39;1 5s&#39;=46%;80;90 &#39;10 5s&#39;=56%;80;90 &#39;11 5s&#39;=42%;80;90 &#39;2 5s&#39;=70%;80;90 &#39;3 5s&#39;=57%;80;90 &#39;4 5s&#39;=52%;80;90 &#39;5 5s&#39;=45%;80;90 &#39;6 5s&#39;=70%;80;90 &#39;7 5s&#39;=40%;80;90 &#39;8 5s&#39;=48%;80;90 &#39;9 5s&#39;=41%;80;90 &#39;total 5s&#39;=53%;80;90
+</code></pre></div></p>
+<h4 id="lua"><a class="toclink" href="2025/04/01/070-improved-support-for-modern-windows/#lua">Lua</a></h4>
+<p>The biggest new change here is the re-added Lua support.
+The Lua support has been changed a bit so it might not be 100% compatible with old scripts.
+As there is not much documentation for Lua scripting, I plan to add that soon.
+And doing that I will highlight the main differences.</p>
+<blockquote>
+<p>One thing still missing in Lua is protocol buffer support
+This means you can only create "simple function" is returning code, string and performance data. But given the nature of Lua I think this is acceptable for the time being.</p>
+</blockquote>
+<p>But in general "optional parameters" to functions are no longer optional.
+So for instance:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">local</span><span class="w"> </span><span class="nv">reg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">Registry</span><span class="p">()</span>
+<span class="nv">reg</span><span class="p">:</span><span class="nf">simple_function</span><span class="p">(</span><span class="s1">&#39;lua_test&#39;</span><span class="p">,</span><span class="w"> </span><span class="nv">test_func_query</span><span class="p">)</span>
+
+<span class="kd">local</span><span class="w"> </span><span class="nv">settings</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">Settings</span><span class="p">()</span>
+<span class="nv">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">settings</span><span class="p">:</span><span class="nf">get_string</span><span class="p">(</span><span class="s1">&#39;/settings/lua/scripts&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;testar&#39;</span><span class="p">)</span>
+
+<span class="kd">local</span><span class="w"> </span><span class="nv">core</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">Core</span><span class="p">()</span>
+<span class="nv">code</span><span class="p">,</span><span class="w"> </span><span class="nv">msg</span><span class="p">,</span><span class="w"> </span><span class="nv">perf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">core</span><span class="p">:</span><span class="nf">simple_query</span><span class="p">(</span><span class="s1">&#39;lua_test&#39;</span><span class="p">)</span>
+</code></pre></div>
+<p>Will now require to be written as:
+<div class="highlight"><pre><span></span><code><span class="kd">local</span><span class="w"> </span><span class="nv">reg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">Registry</span><span class="p">()</span>
+<span class="nv">reg</span><span class="p">:</span><span class="nf">simple_function</span><span class="p">(</span><span class="s1">&#39;lua_test&#39;</span><span class="p">,</span><span class="w"> </span><span class="nv">test_func_query</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+
+<span class="kd">local</span><span class="w"> </span><span class="nv">settings</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">Settings</span><span class="p">()</span>
+<span class="nv">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">settings</span><span class="p">:</span><span class="nf">get_string</span><span class="p">(</span><span class="s1">&#39;/settings/lua/scripts&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;testar&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+
+<span class="kd">local</span><span class="w"> </span><span class="nv">core</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">Core</span><span class="p">()</span>
+<span class="nv">code</span><span class="p">,</span><span class="w"> </span><span class="nv">msg</span><span class="p">,</span><span class="w"> </span><span class="nv">perf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">core</span><span class="p">:</span><span class="nf">simple_query</span><span class="p">(</span><span class="s1">&#39;lua_test&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{})</span>
+</code></pre></div></p>
+<p>The other change is that construction object is now generally done with <code>new</code> where before it was done with various functions like <code>Core()</code> here however I have retained backwards compatibility so both should be possible.</p>
+<p>But in general the quality of error handling and such is much better and I will as I said expand the documentation and add some more examples and such.</p>
+<h4 id="check_mk"><a class="toclink" href="2025/04/01/070-improved-support-for-modern-windows/#check_mk"><code>check_mk</code></a></h4>
+<p>As a side note experimental <code>check_mk</code> support was also added back.
+This is experimental in so far as I have only verified it with NSClient++ not actual <code>check_mk</code> so will need to look into that next.
+Also note that <code>check_mk</code> is experimental currently it only provides the version and agent name.
+If there is genuin interest, this could easily be extended so please do let me know...</p>
+<p>The way <code>check_mk</code> works is that the module only provides the communication layer and the data provided is provided by a Lua script (hence requiring Lua support).
+So the current script looks like so:
+<div class="highlight"><pre><span></span><code><span class="kr">function</span><span class="w"> </span><span class="nf">server_process</span><span class="p">(</span><span class="nv">packet</span><span class="p">)</span>
+<span class="w">    </span><span class="nv">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">section</span><span class="p">.</span><span class="nf">new</span><span class="p">()</span>
+<span class="w">    </span><span class="nv">s</span><span class="p">:</span><span class="nf">set_title</span><span class="p">(</span><span class="s2">&quot;check_mk&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="nv">s</span><span class="p">:</span><span class="nf">add_line</span><span class="p">(</span><span class="s2">&quot;Version: 0.0.1&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="nv">s</span><span class="p">:</span><span class="nf">add_line</span><span class="p">(</span><span class="s2">&quot;Agent: nsclient++&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="nv">s</span><span class="p">:</span><span class="nf">add_line</span><span class="p">(</span><span class="s2">&quot;AgentOS: Windows&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="nv">packet</span><span class="p">:</span><span class="nf">add_section</span><span class="p">(</span><span class="nv">s</span><span class="p">)</span>
+<span class="kr">end</span>
+
+<span class="nv">reg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">mk</span><span class="p">.</span><span class="nf">new</span><span class="p">()</span>
+<span class="nv">reg</span><span class="p">:</span><span class="nf">server_callback</span><span class="p">(</span><span class="nv">server_process</span><span class="p">)</span>
+</code></pre></div></p>
+<p>So here we need to extend the packet to include more data and other sections for proper <code>check_mk</code> support.</p>
+<h4 id="installer"><a class="toclink" href="2025/04/01/070-improved-support-for-modern-windows/#installer">Installer:</a></h4>
+<ul>
+<li>Removed padded version numbers from installer (this caused issues with upgrade)</li>
+<li>Installer is now built with openssl presumably fixing remote config via https (have not verified this yet)</li>
+<li>Enabled WebUI by default in installer (open can still be used to disable)</li>
+<li>Added option to disable installing the service in installer</li>
+</ul>
+<h4 id="security"><a class="toclink" href="2025/04/01/070-improved-support-for-modern-windows/#security">Security:</a></h4>
+<ul>
+<li>Added option to configure ciphers in the web server (default is TLS 1.2 but now you can set 1.3 if you prefer)</li>
+<li>Default TLS (NRPE et al.) is now 1.2+ instead of only 1.2</li>
+<li>Improved some options and added docs for using NRPE with certificates and Nagios…</li>
+<li>Installer now installs the NRPE 2048 bit DH key</li>
+</ul>
+<h4 id="other-changes"><a class="toclink" href="2025/04/01/070-improved-support-for-modern-windows/#other-changes">Other changes</a></h4>
+<ul>
+<li>Fixed <code>check_nscp_verison</code> parsing new semantic version</li>
+<li>Added error messages for login failure via web browser</li>
+<li>Updated build instructions</li>
+<li>Fixed integer overflow in check_files.vbs script</li>
+<li>Fixed status in summary text not matching actual summary when no results were found in filters (see <code>UNKNOWN: OK</code> in this example)
+<div class="highlight"><pre><span></span><code>check_drivesize &quot;filter=drive=&#39;foobar&#39;&quot;
+L        cli UNKNOWN: OK: No drives found
+L        cli  Performance data:
+</code></pre></div></li>
+<li>Fixed numerous spelling and grammar issue in the documentation.</li>
+<li>Removed breakpad (replaced by restart watchdog and log files, but wont create and submit crash dumps (instead windows creates dumps which can be used))</li>
+<li>Bumped dependencies</li>
+</ul>
+<h4 id="dependencies"><a class="toclink" href="2025/04/01/070-improved-support-for-modern-windows/#dependencies">Dependencies</a></h4>
+<table>
+<thead>
+<tr>
+<th>Library</th>
+<th>Version</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Boost</td>
+<td>1.82.0</td>
+</tr>
+<tr>
+<td>Cryptopp</td>
+<td>8.9.0</td>
+</tr>
+<tr>
+<td>Lua</td>
+<td>5.4.7</td>
+</tr>
+<tr>
+<td>OpenSSL</td>
+<td>1.1.1w</td>
+</tr>
+<tr>
+<td>Protobuf</td>
+<td>21.12</td>
+</tr>
+<tr>
+<td>TinyXml2</td>
+<td>10.1.0</td>
+</tr>
+</tbody>
+</table>
+<h3 id="download"><a class="toclink" href="2025/04/01/070-improved-support-for-modern-windows/#download">Download</a></h3>
+<p><a class="md-button" href="https://github.com/mickem/nscp/releases/0.7.0">You can download the new version from GitHub</a></p>
+<p>// Michael Medin</p>
+    
+    
+  </div>
+</article>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2025-02-09 00:00:00+00:00">February 9, 2025</time></li>
+        
+        
+          
+          <li class="md-meta__item">
+            
+              2 min read
+            
+          </li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="069-fix-installer-bug"><a class="toclink" href="2025/02/09/069-fix-installer-bug/">0.6.9 Fix installer bug</a></h2>
+<h3 id="new-versions-out"><a class="toclink" href="2025/02/09/069-fix-installer-bug/#new-versions-out">New versions out</a></h3>
+<p>As you probably notice, I do not always update the news section when new versions are released.
+If you want to know about new versions, you can always check the <a href="https://github.com/mickem/nscp/releases">GitHub releases page</a>
+Instead here I post when there are new and important updates.</p>
+<p>And the latest release fixes an important installer issue where upgrading from 0.4.x or 0.5.x would wipe the existing configuration.
+So be sure you do not upgrade to any of the older versions unless you want to reconfigure.
+Other changes include some more installer issues and WEB server issues as well as new signature for the MSI files.</p>
+<h3 id="changes"><a class="toclink" href="2025/02/09/069-fix-installer-bug/#changes">Changes</a></h3>
+<ul>
+<li>Fixes config is overwritten by installer when upgrading from 0.4.x or 0.5.x</li>
+<li>Makes TLS default for web server (so enabled web server will now be exposed on <code>https://localhost:8443</code>)</li>
+<li>Fixed broken TLS support in the WEBServer</li>
+<li>Added signatures to MSI (currently using a "personal signature" as I haven't managed to get Microsoft to cooperate)</li>
+<li>Metrics added to the WebUI and new welcome screen</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Dependency</th>
+<th>Version</th>
+<th>Date</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Boost</td>
+<td>1.82.0</td>
+<td>2023-04-15</td>
+</tr>
+<tr>
+<td>OpenSSL</td>
+<td>1.1.1w</td>
+<td>2023-09-11</td>
+</tr>
+<tr>
+<td>Python</td>
+<td>3.11.0</td>
+<td>2022-10-24</td>
+</tr>
+<tr>
+<td>Crypto++</td>
+<td>8.8.0</td>
+<td>2023-05-25</td>
+</tr>
+<tr>
+<td>Protocol Buffers</td>
+<td>21.12</td>
+<td>2022-12-22</td>
+</tr>
+</tbody>
+</table>
+<p>There are some other dependencies as well that will be isolated and versioned soon.</p>
+<p><a href="https://github.com/mickem/nscp/discussions/891">There is a forum thread for this release here</a></p>
+<h3 id="download"><a class="toclink" href="2025/02/09/069-fix-installer-bug/#download">Download</a></h3>
+<p><a class="md-button" href="https://github.com/mickem/nscp/releases/0.6.9">You can download the new version from GitHub</a></p>
+<h3 id="next-version"><a class="toclink" href="2025/02/09/069-fix-installer-bug/#next-version">Next version</a></h3>
+<p>There is also a pre-release of the next version available on the <a href="https://github.com/mickem/nscp/releases/">GitHub releases page</a>.
+This includes:
+* Some security improvements
+* Some installer improvements
+* documentation about using certificate-based authentication with NRPE and Nagios
+* Along with the usual minor bug fixes and improvements.</p>
+<p>// Michael Medin</p>
+    
+    
+  </div>
+</article>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2025-01-12 00:00:00+00:00">January 12, 2025</time></li>
+        
+        
+          
+          <li class="md-meta__item">
+            
+              3 min read
+            
+          </li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="064-first-release-of-2025"><a class="toclink" href="2025/01/12/064-first-release-of-2025/">0.6.4 First release of 2025</a></h2>
+<h3 id="new-versions-out"><a class="toclink" href="2025/01/12/064-first-release-of-2025/#new-versions-out">New versions out</a></h3>
+<p>For the early adopters there are not a lot of changes in this version (from version 0.6.3).
+As this is the first official release in a very long time, this post is focused on more changes since earlier version 0.4.x and 0.5.x.</p>
+<h3 id="breaking-changes"><a class="toclink" href="2025/01/12/064-first-release-of-2025/#breaking-changes">Breaking changes</a></h3>
+<ul>
+<li>Versioning is now semantic this means 3 digits (0.6.4) instead of 4 (0.4.3.2).</li>
+<li>dot-net support removed.</li>
+<li>lua support removed (I am not sure if anyone used it, so let me know if so and I can probably add it back).</li>
+<li>CheckPowerShell is removed (You can still use powershell scripts with the external scripts module).</li>
+<li>The Web UI is a bit more limited than it was before, but all basic functionality like updating config and checking status is still there. This is something that will be restored soon.</li>
+<li>Secondary installer has been removed (as we now have GitHub build pipelines you can easily build your own installer if you need it).</li>
+<li>Automatic crash reporting has been removed, instead we build and publish symbols to GitHub so you can debug crashes yourself or send me the crash dump files.</li>
+</ul>
+<h3 id="dependency-updates"><a class="toclink" href="2025/01/12/064-first-release-of-2025/#dependency-updates">Dependency updates</a></h3>
+<p>All dependencies have been updated to recent versions, I say recent here as this is a project that has been ongoing for over a year, so some dependencies are not the latest versions.
+This has been very time consuming, and I think the versions we have now are recent enough to be useful for most people.
+There are still some dependencies where we have not updated to the latest version, but I think we are in a good place now.
+And the focus will be on making some architectural changes to allow removing some dependencies, and then in a little months time we will update the dependencies again.</p>
+<p>Going forward here, we need to be realistic. 
+NSClient++ works on All versions of Windows since Windows XP, and not many dependencies support such as an old version of Windows.
+So likely at some, we will have to create two versions;
+1. one with limited support for old Windows and more modern dependencies.
+2. one with limited feature support b ut support for old Windows.</p>
+<p>Likely this will be done with specific module early on and then later on we will have two separate versions.</p>
+<table>
+<thead>
+<tr>
+<th>Dependency</th>
+<th>Version</th>
+<th>Date</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Boost</td>
+<td>1.82.0</td>
+<td>2023-04-15</td>
+</tr>
+<tr>
+<td>OpenSSL</td>
+<td>1.1.1q</td>
+<td>2022-09-15</td>
+</tr>
+<tr>
+<td>Python</td>
+<td>3.11.0</td>
+<td>2022-10-24</td>
+</tr>
+<tr>
+<td>Crypto++</td>
+<td>8.8.0</td>
+<td>2023-05-25</td>
+</tr>
+<tr>
+<td>Protocol Buffers</td>
+<td>21.6</td>
+<td>2022-09-14</td>
+</tr>
+</tbody>
+</table>
+<p>There are some other dependencies as well, but most of them are "copied" and as such hard to version...
+This will also be resolved going forward. </p>
+<h3 id="new-features"><a class="toclink" href="2025/01/12/064-first-release-of-2025/#new-features">New features</a></h3>
+<ul>
+<li>NRPE 3 and 4 is now supported</li>
+<li>TLS 1.3 is now supported</li>
+</ul>
+<h3 id="future-plans"><a class="toclink" href="2025/01/12/064-first-release-of-2025/#future-plans">Future plans</a></h3>
+<p>(This list is not ordered)</p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Improve the new Web UI (add wizards to simplify configuration).</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Upgrade checks to for modern Windows.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Code cleanups and modernizations.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Automatic updates (or possibly a check to check for new versions)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> More Unit tests</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Overhaul and deprecating/removal of outdated features</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Rewrite some modules and libraries in RUST</li>
+</ul>
+<p>Please do let me know any specific things you would like to see!</p>
+<p>There is a forum thread for this release here: <a href="https://github.com/mickem/nscp/discussions/858">0.6.4 First release of 2025</a></p>
+<h3 id="download"><a class="toclink" href="2025/01/12/064-first-release-of-2025/#download">Download</a></h3>
+<p><a class="md-button" href="https://github.com/mickem/nscp/releases/0.6.4">You can download the new version over on GitHub: 0.6.4</a></p>
+<p>// Michael Medin</p>
+    
+    
+  </div>
+</article>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2024-01-04 00:00:00+00:00">January 4, 2024</time></li>
+        
+        
+          
+          <li class="md-meta__item">
+            
+              2 min read
+            
+          </li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="nrpe-version-4-support-added"><a class="toclink" href="2024/01/04/nrpe-version-4-support-added/">NRPE version 4 support added</a></h2>
+<p>Hello,</p>
+<p>Sorry for lack of updates but as always, things took longer than expected...</p>
+<h3 id="new-versions-out"><a class="toclink" href="2024/01/04/nrpe-version-4-support-added/#new-versions-out">New versions out</a></h3>
+<p>Last year I spent a lot of time updating all dependencies and created automated pipelines for building NSClient++.
+This is a massive benefit as it means that anyone can (more) easily build NSClient++ without a lot of effort and configuration (just clone the repo, and your done).</p>
+<p>The culmination of this work was 0.6.0.0 that was released a few months ago over on <a href="https://github.com/mickem/nscp/releases">GitHub</a>.
+Which was essentially just "the same version" as before but with a lot of dependency updates.</p>
+<p>There is still some feature missing (which is why I still say "Pre release") but as I have now added the first new feature, I thought iot was time to let more people know about these versions.</p>
+<p><a href="https://github.com/mickem/nscp/releases/tag/0.6.0.1">The new version 0.6.0.1 can be downloaded from GitHub</a></p>
+<h3 id="use-nrpe-34-to-check-nsclient"><a class="toclink" href="2024/01/04/nrpe-version-4-support-added/#use-nrpe-34-to-check-nsclient">Use NRPE 3/4 to check NSClient++</a></h3>
+<p>So to use NRPE 3/4 (not 100% sure if anyone uses NRPE 3 as it seems like NRPE 4 is a bug fix for a protocol alignment issue) you just need to upgrade to the new version.
+It will automatically detect new versions of the protocol so everything should just work as before.</p>
+<p>As we now use a modern version of openssl, it is now also possible to configure which version of TLS to support.
+This is a bit awkward currently as I am just using the same options as before, so you have to disable each version manually (likely I will add a tlsv1.2+ option in the future)</p>
+<div class="highlight"><pre><span></span><code><span class="k">[/settings/NRPE/server]</span>
+<span class="na">ssl options</span><span class="o">=</span><span class="s">no-sslv2,no-sslv3,no-tlsv1,no-tlsv1_1</span>
+</code></pre></div>
+<p>But at least it is possible to configure this.</p>
+<h3 id="check-remote-nrpe-servers-with-version-4"><a class="toclink" href="2024/01/04/nrpe-version-4-support-added/#check-remote-nrpe-servers-with-version-4">Check remote NRPE servers with version 4</a></h3>
+<p>Lastly you can also check remote servers with NRPE then you have two new options:</p>
+<ul>
+<li><code>version</code> which can be set to either 2 or 4 to specify which NRPE version to use.</li>
+<li><code>tls version</code> which can be set to tlsv1.3, tlsv1.2, tlsv1.1, tlsv1.0 as well as tlsv1.3+, tlsv1.2+, tlsv1.1+, tlsv1.0+</li>
+</ul>
+<h3 id="future-plans"><a class="toclink" href="2024/01/04/nrpe-version-4-support-added/#future-plans">Future plans</a></h3>
+<p>(This list is not ordered)</p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Reenable missing features (i.e. upgrade some more things and ensure we have pipeline builds)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Build a new Web UI (web frameworks change so much it does not make sense to try to upgrade the old).</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Upgrade checks to for modern Windows.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Investigate "old Windows" support (I expect the new builds will not run on Windows XP)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> More Unit tests</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Overhaul and deprecating/removal of outdated features</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Code cleanups</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Rewrite some modules and libraries in RUST</li>
+</ul>
+<p>Please do let me know any specific things you would like to see!</p>
+<p>// Michael Medin</p>
+    
+    
+  </div>
+</article>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2023-01-01 00:00:00+00:00">January 1, 2023</time></li>
+        
+        
+          
+          <li class="md-meta__item">
+            
+              2 min read
+            
+          </li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="new-version-coming-soon"><a class="toclink" href="2023/01/01/new-version-coming-soon/">New version coming soon</a></h2>
+<p>Great news is that I have finally managed to resolved the issues I had with Python 3 and thus we have take a massive
+leap towards the new version.
+I had hoped for it to be released during the x-mas holiday this year but the Python issue took way longer then I had
+anticipated.
+I will now start on getting GitHub Action pipelines in place which when done will drastically reduce thr amount of
+effort to build and maintain NSClient++.
+After this I expect to either fix dot net pretty quickly or I will release the first version without it.
+There are some issues with NRPE as modern version of OpenSSL will not accept the "old Nagios hardcoded keys".
+So most likely you will initially have to rely on either custom keys (with stronger ciphers) or use REST.</p>
+<p>I have plans to run a fundraiser to raise funds to add NRPE 3 support in the next few weeks.</p>
+<p>So the overall current status is that I have now a working version built with modern libraries and most "integration
+tests" have passed with flying colors, so hopefully new builds will start arriving in the next week or so.</p>
+<p>I have also updated the web-site to be a bit more modern and easier to maintain.</p>
+<h3 id="core-functionality"><a class="toclink" href="2023/01/01/new-version-coming-soon/#core-functionality">Core functionality</a></h3>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Boost libraries upgraded</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Google Protocol Buffers library upgraded</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> OpenSSL upgraded</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Python upgraded</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> NSClient++ core functionality</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Basic Check Plugins work</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> NRPE works (Though default NRPE ciphers are no longer supported)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> WEB Server works</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Automated GitHub builds</strong></li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> dot-net support</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> dot-net modules work</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Lua upgraded</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> NSCA Works</li>
+</ul>
+<h3 id="additional-things"><a class="toclink" href="2023/01/01/new-version-coming-soon/#additional-things">Additional things</a></h3>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Crash Pad library (Might remove this as it was not used much)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> New WEB UI (Might remove this and instead only support REST API)</li>
+</ul>
+<h3 id="donations-needed"><a class="toclink" href="2023/01/01/new-version-coming-soon/#donations-needed">Donations needed</a></h3>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> NRPE 3 support (Please donate)</li>
+</ul>
+<h3 id="other-plans"><a class="toclink" href="2023/01/01/new-version-coming-soon/#other-plans">Other plans</a></h3>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Upgrade checks to for modern Windows.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Investigate "old Windows" support (I expect the new builds will not run on Windows XP)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> More Unit tests</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Overhaul and deprecating/removal of outdated features</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Code cleanups</li>
+</ul>
+    
+    
+  </div>
+</article>
+      
+      
+        
+          
+
+
+
+<nav class="md-pagination">
+  
+</nav>
+        
+      
+    </div>
+  </div>
+
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+      <div class="md-consent" data-md-component="consent" id="__consent" hidden>
+        <div class="md-consent__overlay"></div>
+        <aside class="md-consent__inner">
+          <form class="md-consent__form md-grid md-typeset" name="consent">
+            
+
+
+  
+
+
+<h4>Cookie consent</h4>
+<p>We use cookies to recognize your repeated visits and preferences, as well as to measure the effectiveness of our documentation and whether users find what they're searching for. With your consent, you're helping us to make our documentation better.</p>
+<input class="md-toggle" type="checkbox" id="__settings" >
+<div class="md-consent__settings">
+  <ul class="task-list">
+    
+    
+      
+    
+    
+      
+        
+  
+  
+    
+    
+  
+  <li class="task-list-item">
+    <label class="task-list-control">
+      <input type="checkbox" name="github" checked>
+      <span class="task-list-indicator"></span>
+      GitHub
+    </label>
+  </li>
+
+      
+    
+    
+  </ul>
+</div>
+<div class="md-consent__controls">
+  
+    
+      <button class="md-button md-button--primary">Accept</button>
+    
+    
+    
+  
+    
+    
+    
+      <label class="md-button" for="__settings">Manage settings</label>
+    
+  
+</div>
+          </form>
+        </aside>
+      </div>
+      <script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout((function(){document.querySelector("[data-md-component=consent]").hidden=!1}),250);var form=document.forms.consent;for(var action of["submit","reset"])form.addEventListener(action,(function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map((function(e){return[e,!0]})))),location.hash="",location.reload()}))</script>
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "toc.follow", "toc.integrate", "navigation.indexes"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
