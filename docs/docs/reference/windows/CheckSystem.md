@@ -22,17 +22,23 @@ A quick reference for all available queries (check commands) in the CheckSystem 
 
 A list of all available queries (check commands)
 
-| Command                               | Description                                                                   |
-|---------------------------------------|-------------------------------------------------------------------------------|
-| [check_cpu](#check_cpu)               | Check that the load of the CPU(s) are within bounds.                          |
-| [check_memory](#check_memory)         | Check free/used memory on the system.                                         |
-| [check_network](#check_network)       | Check network interface status.                                               |
-| [check_os_version](#check_os_version) | Check the version of the underlying OS.                                       |
-| [check_pagefile](#check_pagefile)     | Check the size of the system pagefile(s).                                     |
-| [check_pdh](#check_pdh)               | Check the value of a performance (PDH) counter on the local or remote system. |
-| [check_process](#check_process)       | Check state/metrics of one or more of the processes running on the computer.  |
-| [check_service](#check_service)       | Check the state of one or more of the computer services.                      |
-| [check_uptime](#check_uptime)         | Check time since last server re-boot.                                         |
+| Command                                                 | Description                                                                                                                                      |
+|---------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------|
+| [check_battery](#check_battery)                         | Check battery status including charge level, power source, and battery health.                                                                   |
+| [check_cpu](#check_cpu)                                 | Check that the load of the CPU(s) are within bounds.                                                                                             |
+| [check_cpu_frequency](#check_cpu_frequency)             | Check CPU clock frequency (current vs max) per processor.                                                                                        |
+| [check_memory](#check_memory)                           | Check free/used memory on the system.                                                                                                            |
+| [check_network](#check_network)                         | Check network interface status.                                                                                                                  |
+| [check_os_updates](#check_os_updates)                   | Check for available Windows updates via the Windows Update Agent (WUA) API.                                                                      |
+| [check_os_version](#check_os_version)                   | Check the version of the underlying OS.                                                                                                          |
+| [check_pagefile](#check_pagefile)                       | Check the size of the system pagefile(s).                                                                                                        |
+| [check_pdh](#check_pdh)                                 | Check the value of a performance (PDH) counter on the local or remote system.                                                                    |
+| [check_process](#check_process)                         | Check state/metrics of one or more of the processes running on the computer.                                                                     |
+| [check_process_history](#check_process_history)         | Check the history of processes that have been running since NSClient++ started. Useful for verifying if certain applications have been executed. |
+| [check_process_history_new](#check_process_history_new) | Check for new processes that appeared within a specified time window. Useful for detecting unexpected or unauthorized applications.              |
+| [check_service](#check_service)                         | Check the state of one or more of the computer services.                                                                                         |
+| [check_temperature](#check_temperature)                 | Check ACPI thermal zone temperatures.                                                                                                            |
+| [check_uptime](#check_uptime)                           | Check time since last server re-boot.                                                                                                            |
 
 
 **List of command aliases:**
@@ -45,6 +51,177 @@ A list of all short hand aliases for queries (check commands)
 | check_counter | Alias for: :query:`check_pdh` |
 
 
+### check_battery
+
+Check battery status including charge level, power source, and battery health.
+
+
+**Jump to section:**
+
+* [Command-line Arguments](#check_battery_options)
+* [Filter keywords](#check_battery_filter_keys)
+
+
+
+
+
+<a id="check_battery_warn"></a>
+<a id="check_battery_crit"></a>
+<a id="check_battery_debug"></a>
+<a id="check_battery_show-all"></a>
+<a id="check_battery_escape-html"></a>
+<a id="check_battery_help"></a>
+<a id="check_battery_help-pb"></a>
+<a id="check_battery_show-default"></a>
+<a id="check_battery_help-short"></a>
+<a id="check_battery_options"></a>
+#### Command-line Arguments
+
+
+| Option                                        | Default Value                                    | Description                                                                                                      |
+|-----------------------------------------------|--------------------------------------------------|------------------------------------------------------------------------------------------------------------------|
+| [filter](#check_battery_filter)               | battery_present = 'true'                         | Filter which marks interesting items.                                                                            |
+| [warning](#check_battery_warning)             | charge < 20                                      | Filter which marks items which generates a warning state.                                                        |
+| warn                                          |                                                  | Short alias for warning                                                                                          |
+| [critical](#check_battery_critical)           | charge < 10                                      | Filter which marks items which generates a critical state.                                                       |
+| crit                                          |                                                  | Short alias for critical.                                                                                        |
+| [ok](#check_battery_ok)                       |                                                  | Filter which marks items which generates an ok state.                                                            |
+| debug                                         | N/A                                              | Show debugging information in the log                                                                            |
+| show-all                                      | N/A                                              | Show details for all matches regardless of status (normally details are only showed for warnings and criticals). |
+| [empty-state](#check_battery_empty-state)     | warning                                          | Return status to use when nothing matched filter.                                                                |
+| [perf-config](#check_battery_perf-config)     |                                                  | Performance data generation configuration                                                                        |
+| escape-html                                   | N/A                                              | Escape any < and > characters to prevent HTML encoding                                                           |
+| help                                          | N/A                                              | Show help screen (this screen)                                                                                   |
+| help-pb                                       | N/A                                              | Show help screen as a protocol buffer payload                                                                    |
+| show-default                                  | N/A                                              | Show default values for a given command                                                                          |
+| help-short                                    | N/A                                              | Show help screen (short format).                                                                                 |
+| [top-syntax](#check_battery_top-syntax)       | ${status}: ${list}                               | Top level syntax.                                                                                                |
+| [ok-syntax](#check_battery_ok-syntax)         | %(status): No battery found or all batteries ok. | ok syntax.                                                                                                       |
+| [empty-syntax](#check_battery_empty-syntax)   |                                                  | Empty syntax.                                                                                                    |
+| [detail-syntax](#check_battery_detail-syntax) | ${name}: ${charge}% (${power_source}, ${status}) | Detail level syntax.                                                                                             |
+| [perf-syntax](#check_battery_perf-syntax)     | ${name}                                          | Performance alias syntax.                                                                                        |
+
+
+
+<h5 id="check_battery_filter">filter:</h5>
+
+Filter which marks interesting items.
+Interesting items are items which will be included in the check.
+They do not denote warning or critical state instead it defines which items are relevant and you can remove unwanted items.
+
+*Default Value:* `battery_present = 'true'`
+
+<h5 id="check_battery_warning">warning:</h5>
+
+Filter which marks items which generates a warning state.
+If anything matches this filter the return status will be escalated to warning.
+
+
+*Default Value:* `charge < 20`
+
+<h5 id="check_battery_critical">critical:</h5>
+
+Filter which marks items which generates a critical state.
+If anything matches this filter the return status will be escalated to critical.
+
+
+*Default Value:* `charge < 10`
+
+<h5 id="check_battery_ok">ok:</h5>
+
+Filter which marks items which generates an ok state.
+If anything matches this any previous state for this item will be reset to ok.
+
+
+<h5 id="check_battery_empty-state">empty-state:</h5>
+
+Return status to use when nothing matched filter.
+If no filter is specified this will never happen unless the file is empty.
+
+*Default Value:* `warning`
+
+<h5 id="check_battery_perf-config">perf-config:</h5>
+
+Performance data generation configuration
+TODO: obj ( key: value; key: value) obj (key:valuer;key:value)
+
+
+<h5 id="check_battery_top-syntax">top-syntax:</h5>
+
+Top level syntax.
+Used to format the message to return can include text as well as special keywords which will include information from the checks.
+To add a keyword to the message you can use two syntaxes either ${keyword} or %(keyword) (there is no difference between them apart from ${} can be difficult to escape on linux).
+
+*Default Value:* `${status}: ${list}`
+
+<h5 id="check_battery_ok-syntax">ok-syntax:</h5>
+
+ok syntax.
+DEPRECATED! This is the syntax for when an ok result is returned.
+This value will not be used if your syntax contains %(list) or %(count).
+
+*Default Value:* `%(status): No battery found or all batteries ok.`
+
+<h5 id="check_battery_empty-syntax">empty-syntax:</h5>
+
+Empty syntax.
+DEPRECATED! This is the syntax for when nothing matches the filter.
+
+
+<h5 id="check_battery_detail-syntax">detail-syntax:</h5>
+
+Detail level syntax.
+Used to format each resulting item in the message.
+%(list) will be replaced with all the items formated by this syntax string in the top-syntax.
+To add a keyword to the message you can use two syntaxes either ${keyword} or %(keyword) (there is no difference between them apart from ${} can be difficult to escape on linux).
+
+*Default Value:* `${name}: ${charge}% (${power_source}, ${status})`
+
+<h5 id="check_battery_perf-syntax">perf-syntax:</h5>
+
+Performance alias syntax.
+This is the syntax for the base names of the performance data.
+
+*Default Value:* `${name}`
+
+
+<a id="check_battery_filter_keys"></a>
+#### Filter keywords
+
+
+| Option             | Description                                                       |
+|--------------------|-------------------------------------------------------------------|
+| battery_present    | Whether a battery is present: 'true' or 'false'                   |
+| charge             | Battery charge level in percent (0-100)                           |
+| charge_rate        | Current charge rate in mW (when charging)                         |
+| design_capacity    | Design capacity in mWh                                            |
+| discharge_rate     | Current discharge rate in mW (when discharging)                   |
+| full_capacity      | Current full charge capacity in mWh                               |
+| health             | Battery health in percent (full_capacity / design_capacity * 100) |
+| name               | Battery name/identifier                                           |
+| power_source       | Power source: 'ac', 'battery', or 'unknown'                       |
+| remaining_capacity | Current remaining capacity in mWh                                 |
+| time_remaining     | Estimated time remaining in seconds (-1 if unknown or on AC)      |
+
+**Common options for all checks:**
+
+| Option        | Description                                                                    |
+|---------------|--------------------------------------------------------------------------------|
+| count         | Number of items matching the filter.                                           |
+| crit_count    | Number of items matched the critical criteria.                                 |
+| crit_list     | A list of all items which matched the critical criteria.                       |
+| detail_list   | A special list with critical, then warning and finally ok.                     |
+| list          | A list of all items which matched the filter.                                  |
+| ok_count      | Number of items matched the ok criteria.                                       |
+| ok_list       | A list of all items which matched the ok criteria.                             |
+| problem_count | Number of items matched either warning or critical criteria.                   |
+| problem_list  | A list of all items which matched either the critical or the warning criteria. |
+| status        | The returned status (OK/WARN/CRIT/UNKNOWN).                                    |
+| total         | Total number of items.                                                         |
+| warn_count    | Number of items matched the warning criteria.                                  |
+| warn_list     | A list of all items which matched the warning criteria.                        |
+
+
 ### check_cpu
 
 Check that the load of the CPU(s) are within bounds.
@@ -52,6 +229,58 @@ Check that the load of the CPU(s) are within bounds.
 The check_cpu command is a query based command which means it has a filter where you can use a filter expression with filter keywords to define which rows are relevant to the check.
 The filter is written using the filter query language and in it you can use various filter keywords to define the filtering logic.
 The filter keywords can also be used to create the bound expressions for the warning and critical which defines when a check returns warning or critical.
+
+#### How CPU load is measured (historical buffer)
+
+`check_cpu` does not measure the CPU load at the moment the check is executed. Instead, NSClient++
+runs a background collector thread that samples the CPU load roughly **once per second** and pushes
+each sample into an in-memory ring buffer. Whenever you run `check_cpu` the values reported are
+**averages computed from this buffer** for one or more time windows.
+
+The time windows are controlled by the `time=` option. The default is to compute three averages:
+`5m`, `1m` and `5s` (which is why the default output contains rows like `total 5m load`,
+`total 1m load` and `total 5s load`). You can override this with one or more `time=` arguments,
+for example `time=10m` or `time=30s time=2m`.
+
+**Buffer size and configuration**
+
+The size of the historical buffer is controlled by the `default buffer length` setting on the
+CheckSystem section. The default is `1h`, meaning the last hour of samples is retained. The buffer
+size puts an upper bound on the time windows you can use:
+
+* If you ask for a window that is **shorter than or equal to** the buffer length, the result is the
+  average of all samples collected during that window.
+* If you ask for a window that is **longer than** the buffer length, the result will only cover the
+  samples that are actually present in the buffer (effectively capped to the buffer length).
+* If NSClient++ was started **less time ago than the requested window**, the result will only
+  reflect the samples collected since startup. Right after start-up `5m` and `1m` averages will
+  therefore be based on fewer samples than they normally would be.
+
+If you need to check on longer windows (for example `2h` or `6h`) you must increase
+`default buffer length` accordingly. Note that a larger buffer uses more memory, so only increase
+it as far as you actually need.
+
+**Impact on measurements**
+
+Because every value reported by `check_cpu` is an average over a time window, the choice of `time=`
+has a direct impact on what the check sees:
+
+* **Short windows** (e.g. `5s`, `10s`) are very reactive and will show short spikes in CPU load,
+  but they also produce a lot of noise. They are useful for catching transient bursts but can also
+  generate flapping alerts.
+* **Medium windows** (e.g. `1m`, `5m`) are a good compromise for most monitoring use cases. They
+  smooth out short spikes while still reacting to sustained load within a few minutes.
+* **Long windows** (e.g. `15m`, `1h`) smooth out almost all transients and only fire when the CPU
+  has been busy for an extended period of time. They are well suited to detecting sustained load
+  but will be slow to react and slow to recover.
+
+A common pattern is to combine windows, for example warning on a long window and critical on a
+short one (or vice versa), so that the check both catches sustained problems and ignores brief
+spikes. The default check (`5m`, `1m`, `5s`) is an example of this approach.
+
+Because the values are averages, they will not match the instantaneous CPU load shown by tools such
+as `top` at the moment the check is executed, and very short spikes that fall between collection
+ticks may be missed entirely.
 
 
 **Jump to section:**
@@ -252,6 +481,171 @@ This is the syntax for the base names of the performance data.
 | system  | The current load used by the system (kernel) |
 | time    | The time frame to check                      |
 | user    | The current load used by user applications   |
+
+**Common options for all checks:**
+
+| Option        | Description                                                                    |
+|---------------|--------------------------------------------------------------------------------|
+| count         | Number of items matching the filter.                                           |
+| crit_count    | Number of items matched the critical criteria.                                 |
+| crit_list     | A list of all items which matched the critical criteria.                       |
+| detail_list   | A special list with critical, then warning and finally ok.                     |
+| list          | A list of all items which matched the filter.                                  |
+| ok_count      | Number of items matched the ok criteria.                                       |
+| ok_list       | A list of all items which matched the ok criteria.                             |
+| problem_count | Number of items matched either warning or critical criteria.                   |
+| problem_list  | A list of all items which matched either the critical or the warning criteria. |
+| status        | The returned status (OK/WARN/CRIT/UNKNOWN).                                    |
+| total         | Total number of items.                                                         |
+| warn_count    | Number of items matched the warning criteria.                                  |
+| warn_list     | A list of all items which matched the warning criteria.                        |
+
+
+### check_cpu_frequency
+
+Check CPU clock frequency (current vs max) per processor.
+
+
+**Jump to section:**
+
+* [Command-line Arguments](#check_cpu_frequency_options)
+* [Filter keywords](#check_cpu_frequency_filter_keys)
+
+
+
+
+
+<a id="check_cpu_frequency_warn"></a>
+<a id="check_cpu_frequency_crit"></a>
+<a id="check_cpu_frequency_debug"></a>
+<a id="check_cpu_frequency_show-all"></a>
+<a id="check_cpu_frequency_escape-html"></a>
+<a id="check_cpu_frequency_help"></a>
+<a id="check_cpu_frequency_help-pb"></a>
+<a id="check_cpu_frequency_show-default"></a>
+<a id="check_cpu_frequency_help-short"></a>
+<a id="check_cpu_frequency_options"></a>
+#### Command-line Arguments
+
+
+| Option                                              | Default Value                                              | Description                                                                                                      |
+|-----------------------------------------------------|------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------|
+| [filter](#check_cpu_frequency_filter)               |                                                            | Filter which marks interesting items.                                                                            |
+| [warning](#check_cpu_frequency_warning)             | frequency_pct < 50                                         | Filter which marks items which generates a warning state.                                                        |
+| warn                                                |                                                            | Short alias for warning                                                                                          |
+| [critical](#check_cpu_frequency_critical)           | frequency_pct < 30                                         | Filter which marks items which generates a critical state.                                                       |
+| crit                                                |                                                            | Short alias for critical.                                                                                        |
+| [ok](#check_cpu_frequency_ok)                       |                                                            | Filter which marks items which generates an ok state.                                                            |
+| debug                                               | N/A                                                        | Show debugging information in the log                                                                            |
+| show-all                                            | N/A                                                        | Show details for all matches regardless of status (normally details are only showed for warnings and criticals). |
+| [empty-state](#check_cpu_frequency_empty-state)     | warning                                                    | Return status to use when nothing matched filter.                                                                |
+| [perf-config](#check_cpu_frequency_perf-config)     |                                                            | Performance data generation configuration                                                                        |
+| escape-html                                         | N/A                                                        | Escape any < and > characters to prevent HTML encoding                                                           |
+| help                                                | N/A                                                        | Show help screen (this screen)                                                                                   |
+| help-pb                                             | N/A                                                        | Show help screen as a protocol buffer payload                                                                    |
+| show-default                                        | N/A                                                        | Show default values for a given command                                                                          |
+| help-short                                          | N/A                                                        | Show help screen (short format).                                                                                 |
+| [top-syntax](#check_cpu_frequency_top-syntax)       | ${status}: ${list}                                         | Top level syntax.                                                                                                |
+| [ok-syntax](#check_cpu_frequency_ok-syntax)         | %(status): All CPU frequencies seem ok.                    | ok syntax.                                                                                                       |
+| [empty-syntax](#check_cpu_frequency_empty-syntax)   |                                                            | Empty syntax.                                                                                                    |
+| [detail-syntax](#check_cpu_frequency_detail-syntax) | ${name}: ${current_mhz}/${max_mhz} MHz (${frequency_pct}%) | Detail level syntax.                                                                                             |
+| [perf-syntax](#check_cpu_frequency_perf-syntax)     | ${name}                                                    | Performance alias syntax.                                                                                        |
+
+
+
+<h5 id="check_cpu_frequency_filter">filter:</h5>
+
+Filter which marks interesting items.
+Interesting items are items which will be included in the check.
+They do not denote warning or critical state instead it defines which items are relevant and you can remove unwanted items.
+
+
+<h5 id="check_cpu_frequency_warning">warning:</h5>
+
+Filter which marks items which generates a warning state.
+If anything matches this filter the return status will be escalated to warning.
+
+
+*Default Value:* `frequency_pct < 50`
+
+<h5 id="check_cpu_frequency_critical">critical:</h5>
+
+Filter which marks items which generates a critical state.
+If anything matches this filter the return status will be escalated to critical.
+
+
+*Default Value:* `frequency_pct < 30`
+
+<h5 id="check_cpu_frequency_ok">ok:</h5>
+
+Filter which marks items which generates an ok state.
+If anything matches this any previous state for this item will be reset to ok.
+
+
+<h5 id="check_cpu_frequency_empty-state">empty-state:</h5>
+
+Return status to use when nothing matched filter.
+If no filter is specified this will never happen unless the file is empty.
+
+*Default Value:* `warning`
+
+<h5 id="check_cpu_frequency_perf-config">perf-config:</h5>
+
+Performance data generation configuration
+TODO: obj ( key: value; key: value) obj (key:valuer;key:value)
+
+
+<h5 id="check_cpu_frequency_top-syntax">top-syntax:</h5>
+
+Top level syntax.
+Used to format the message to return can include text as well as special keywords which will include information from the checks.
+To add a keyword to the message you can use two syntaxes either ${keyword} or %(keyword) (there is no difference between them apart from ${} can be difficult to escape on linux).
+
+*Default Value:* `${status}: ${list}`
+
+<h5 id="check_cpu_frequency_ok-syntax">ok-syntax:</h5>
+
+ok syntax.
+DEPRECATED! This is the syntax for when an ok result is returned.
+This value will not be used if your syntax contains %(list) or %(count).
+
+*Default Value:* `%(status): All CPU frequencies seem ok.`
+
+<h5 id="check_cpu_frequency_empty-syntax">empty-syntax:</h5>
+
+Empty syntax.
+DEPRECATED! This is the syntax for when nothing matches the filter.
+
+
+<h5 id="check_cpu_frequency_detail-syntax">detail-syntax:</h5>
+
+Detail level syntax.
+Used to format each resulting item in the message.
+%(list) will be replaced with all the items formated by this syntax string in the top-syntax.
+To add a keyword to the message you can use two syntaxes either ${keyword} or %(keyword) (there is no difference between them apart from ${} can be difficult to escape on linux).
+
+*Default Value:* `${name}: ${current_mhz}/${max_mhz} MHz (${frequency_pct}%)`
+
+<h5 id="check_cpu_frequency_perf-syntax">perf-syntax:</h5>
+
+Performance alias syntax.
+This is the syntax for the base names of the performance data.
+
+*Default Value:* `${name}`
+
+
+<a id="check_cpu_frequency_filter_keys"></a>
+#### Filter keywords
+
+
+| Option             | Description                                |
+|--------------------|--------------------------------------------|
+| cores              | Number of physical cores                   |
+| current_mhz        | Current clock speed in MHz                 |
+| frequency_pct      | Current frequency as percentage of maximum |
+| logical_processors | Number of logical processors (threads)     |
+| max_mhz            | Maximum clock speed in MHz                 |
+| name               | CPU name / model string                    |
 
 **Common options for all checks:**
 
@@ -642,6 +1036,171 @@ This is the syntax for the base names of the performance data.
 | received          | Bytes received per second                |
 | sent              | Bytes sent per second                    |
 | speed             | The network interface speed              |
+
+**Common options for all checks:**
+
+| Option        | Description                                                                    |
+|---------------|--------------------------------------------------------------------------------|
+| count         | Number of items matching the filter.                                           |
+| crit_count    | Number of items matched the critical criteria.                                 |
+| crit_list     | A list of all items which matched the critical criteria.                       |
+| detail_list   | A special list with critical, then warning and finally ok.                     |
+| list          | A list of all items which matched the filter.                                  |
+| ok_count      | Number of items matched the ok criteria.                                       |
+| ok_list       | A list of all items which matched the ok criteria.                             |
+| problem_count | Number of items matched either warning or critical criteria.                   |
+| problem_list  | A list of all items which matched either the critical or the warning criteria. |
+| status        | The returned status (OK/WARN/CRIT/UNKNOWN).                                    |
+| total         | Total number of items.                                                         |
+| warn_count    | Number of items matched the warning criteria.                                  |
+| warn_list     | A list of all items which matched the warning criteria.                        |
+
+
+### check_os_updates
+
+Check for available Windows updates via the Windows Update Agent (WUA) API.
+
+
+**Jump to section:**
+
+* [Command-line Arguments](#check_os_updates_options)
+* [Filter keywords](#check_os_updates_filter_keys)
+
+
+
+
+
+<a id="check_os_updates_warn"></a>
+<a id="check_os_updates_crit"></a>
+<a id="check_os_updates_debug"></a>
+<a id="check_os_updates_show-all"></a>
+<a id="check_os_updates_escape-html"></a>
+<a id="check_os_updates_help"></a>
+<a id="check_os_updates_help-pb"></a>
+<a id="check_os_updates_show-default"></a>
+<a id="check_os_updates_help-short"></a>
+<a id="check_os_updates_options"></a>
+#### Command-line Arguments
+
+
+| Option                                           | Default Value                                                                      | Description                                                                                                      |
+|--------------------------------------------------|------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------|
+| [filter](#check_os_updates_filter)               |                                                                                    | Filter which marks interesting items.                                                                            |
+| [warning](#check_os_updates_warning)             | count > 0                                                                          | Filter which marks items which generates a warning state.                                                        |
+| warn                                             |                                                                                    | Short alias for warning                                                                                          |
+| [critical](#check_os_updates_critical)           | security > 0 or critical > 0                                                       | Filter which marks items which generates a critical state.                                                       |
+| crit                                             |                                                                                    | Short alias for critical.                                                                                        |
+| [ok](#check_os_updates_ok)                       |                                                                                    | Filter which marks items which generates an ok state.                                                            |
+| debug                                            | N/A                                                                                | Show debugging information in the log                                                                            |
+| show-all                                         | N/A                                                                                | Show details for all matches regardless of status (normally details are only showed for warnings and criticals). |
+| [empty-state](#check_os_updates_empty-state)     | ok                                                                                 | Return status to use when nothing matched filter.                                                                |
+| [perf-config](#check_os_updates_perf-config)     |                                                                                    | Performance data generation configuration                                                                        |
+| escape-html                                      | N/A                                                                                | Escape any < and > characters to prevent HTML encoding                                                           |
+| help                                             | N/A                                                                                | Show help screen (this screen)                                                                                   |
+| help-pb                                          | N/A                                                                                | Show help screen as a protocol buffer payload                                                                    |
+| show-default                                     | N/A                                                                                | Show default values for a given command                                                                          |
+| help-short                                       | N/A                                                                                | Show help screen (short format).                                                                                 |
+| [top-syntax](#check_os_updates_top-syntax)       | ${status}: ${count} updates available (${security} security, ${critical} critical) | Top level syntax.                                                                                                |
+| [ok-syntax](#check_os_updates_ok-syntax)         | %(status): No updates available.                                                   | ok syntax.                                                                                                       |
+| [empty-syntax](#check_os_updates_empty-syntax)   |                                                                                    | Empty syntax.                                                                                                    |
+| [detail-syntax](#check_os_updates_detail-syntax) | ${count} updates (${security} security, ${critical} critical)                      | Detail level syntax.                                                                                             |
+| [perf-syntax](#check_os_updates_perf-syntax)     | updates                                                                            | Performance alias syntax.                                                                                        |
+
+
+
+<h5 id="check_os_updates_filter">filter:</h5>
+
+Filter which marks interesting items.
+Interesting items are items which will be included in the check.
+They do not denote warning or critical state instead it defines which items are relevant and you can remove unwanted items.
+
+
+<h5 id="check_os_updates_warning">warning:</h5>
+
+Filter which marks items which generates a warning state.
+If anything matches this filter the return status will be escalated to warning.
+
+
+*Default Value:* `count > 0`
+
+<h5 id="check_os_updates_critical">critical:</h5>
+
+Filter which marks items which generates a critical state.
+If anything matches this filter the return status will be escalated to critical.
+
+
+*Default Value:* `security > 0 or critical > 0`
+
+<h5 id="check_os_updates_ok">ok:</h5>
+
+Filter which marks items which generates an ok state.
+If anything matches this any previous state for this item will be reset to ok.
+
+
+<h5 id="check_os_updates_empty-state">empty-state:</h5>
+
+Return status to use when nothing matched filter.
+If no filter is specified this will never happen unless the file is empty.
+
+*Default Value:* `ok`
+
+<h5 id="check_os_updates_perf-config">perf-config:</h5>
+
+Performance data generation configuration
+TODO: obj ( key: value; key: value) obj (key:valuer;key:value)
+
+
+<h5 id="check_os_updates_top-syntax">top-syntax:</h5>
+
+Top level syntax.
+Used to format the message to return can include text as well as special keywords which will include information from the checks.
+To add a keyword to the message you can use two syntaxes either ${keyword} or %(keyword) (there is no difference between them apart from ${} can be difficult to escape on linux).
+
+*Default Value:* `${status}: ${count} updates available (${security} security, ${critical} critical)`
+
+<h5 id="check_os_updates_ok-syntax">ok-syntax:</h5>
+
+ok syntax.
+DEPRECATED! This is the syntax for when an ok result is returned.
+This value will not be used if your syntax contains %(list) or %(count).
+
+*Default Value:* `%(status): No updates available.`
+
+<h5 id="check_os_updates_empty-syntax">empty-syntax:</h5>
+
+Empty syntax.
+DEPRECATED! This is the syntax for when nothing matches the filter.
+
+
+<h5 id="check_os_updates_detail-syntax">detail-syntax:</h5>
+
+Detail level syntax.
+Used to format each resulting item in the message.
+%(list) will be replaced with all the items formated by this syntax string in the top-syntax.
+To add a keyword to the message you can use two syntaxes either ${keyword} or %(keyword) (there is no difference between them apart from ${} can be difficult to escape on linux).
+
+*Default Value:* `${count} updates (${security} security, ${critical} critical)`
+
+<h5 id="check_os_updates_perf-syntax">perf-syntax:</h5>
+
+Performance alias syntax.
+This is the syntax for the base names of the performance data.
+
+*Default Value:* `updates`
+
+
+<a id="check_os_updates_filter_keys"></a>
+#### Filter keywords
+
+
+| Option          | Description                                         |
+|-----------------|-----------------------------------------------------|
+| critical        | Number of critical updates                          |
+| error           | Last error message from the WUA search (if any)     |
+| important       | Number of updates with MSRC severity 'Important'    |
+| reboot_required | Number of updates requiring a reboot                |
+| security        | Number of security updates                          |
+| titles          | Semicolon separated list of available update titles |
 
 **Common options for all checks:**
 
@@ -1578,9 +2137,371 @@ This call will measure values and then sleep for 2 second and then measure again
 | warn_list     | A list of all items which matched the warning criteria.                        |
 
 
+### check_process_history
+
+Check the history of processes that have been running since NSClient++ started. Useful for verifying if certain applications have been executed.
+
+
+**Jump to section:**
+
+* [Command-line Arguments](#check_process_history_options)
+* [Filter keywords](#check_process_history_filter_keys)
+
+
+
+
+
+<a id="check_process_history_warn"></a>
+<a id="check_process_history_crit"></a>
+<a id="check_process_history_debug"></a>
+<a id="check_process_history_show-all"></a>
+<a id="check_process_history_escape-html"></a>
+<a id="check_process_history_help"></a>
+<a id="check_process_history_help-pb"></a>
+<a id="check_process_history_show-default"></a>
+<a id="check_process_history_help-short"></a>
+<a id="check_process_history_process"></a>
+<a id="check_process_history_options"></a>
+#### Command-line Arguments
+
+
+| Option                                                | Default Value                             | Description                                                                                                              |
+|-------------------------------------------------------|-------------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
+| [filter](#check_process_history_filter)               |                                           | Filter which marks interesting items.                                                                                    |
+| [warning](#check_process_history_warning)             |                                           | Filter which marks items which generates a warning state.                                                                |
+| warn                                                  |                                           | Short alias for warning                                                                                                  |
+| [critical](#check_process_history_critical)           |                                           | Filter which marks items which generates a critical state.                                                               |
+| crit                                                  |                                           | Short alias for critical.                                                                                                |
+| [ok](#check_process_history_ok)                       |                                           | Filter which marks items which generates an ok state.                                                                    |
+| debug                                                 | N/A                                       | Show debugging information in the log                                                                                    |
+| show-all                                              | N/A                                       | Show details for all matches regardless of status (normally details are only showed for warnings and criticals).         |
+| [empty-state](#check_process_history_empty-state)     | ok                                        | Return status to use when nothing matched filter.                                                                        |
+| [perf-config](#check_process_history_perf-config)     |                                           | Performance data generation configuration                                                                                |
+| escape-html                                           | N/A                                       | Escape any < and > characters to prevent HTML encoding                                                                   |
+| help                                                  | N/A                                       | Show help screen (this screen)                                                                                           |
+| help-pb                                               | N/A                                       | Show help screen as a protocol buffer payload                                                                            |
+| show-default                                          | N/A                                       | Show default values for a given command                                                                                  |
+| help-short                                            | N/A                                       | Show help screen (short format).                                                                                         |
+| [top-syntax](#check_process_history_top-syntax)       | ${status}: ${problem_list}                | Top level syntax.                                                                                                        |
+| [ok-syntax](#check_process_history_ok-syntax)         | %(status): ${count} processes in history. | ok syntax.                                                                                                               |
+| [empty-syntax](#check_process_history_empty-syntax)   |                                           | Empty syntax.                                                                                                            |
+| [detail-syntax](#check_process_history_detail-syntax) | ${exe} (${running})                       | Detail level syntax.                                                                                                     |
+| [perf-syntax](#check_process_history_perf-syntax)     | ${exe}                                    | Performance alias syntax.                                                                                                |
+| process                                               |                                           | Filter to specific process names. Can be specified multiple times. If not specified, all processes in history are shown. |
+
+
+
+<h5 id="check_process_history_filter">filter:</h5>
+
+Filter which marks interesting items.
+Interesting items are items which will be included in the check.
+They do not denote warning or critical state instead it defines which items are relevant and you can remove unwanted items.
+
+
+<h5 id="check_process_history_warning">warning:</h5>
+
+Filter which marks items which generates a warning state.
+If anything matches this filter the return status will be escalated to warning.
+
+
+
+<h5 id="check_process_history_critical">critical:</h5>
+
+Filter which marks items which generates a critical state.
+If anything matches this filter the return status will be escalated to critical.
+
+
+
+<h5 id="check_process_history_ok">ok:</h5>
+
+Filter which marks items which generates an ok state.
+If anything matches this any previous state for this item will be reset to ok.
+
+
+<h5 id="check_process_history_empty-state">empty-state:</h5>
+
+Return status to use when nothing matched filter.
+If no filter is specified this will never happen unless the file is empty.
+
+*Default Value:* `ok`
+
+<h5 id="check_process_history_perf-config">perf-config:</h5>
+
+Performance data generation configuration
+TODO: obj ( key: value; key: value) obj (key:valuer;key:value)
+
+
+<h5 id="check_process_history_top-syntax">top-syntax:</h5>
+
+Top level syntax.
+Used to format the message to return can include text as well as special keywords which will include information from the checks.
+To add a keyword to the message you can use two syntaxes either ${keyword} or %(keyword) (there is no difference between them apart from ${} can be difficult to escape on linux).
+
+*Default Value:* `${status}: ${problem_list}`
+
+<h5 id="check_process_history_ok-syntax">ok-syntax:</h5>
+
+ok syntax.
+DEPRECATED! This is the syntax for when an ok result is returned.
+This value will not be used if your syntax contains %(list) or %(count).
+
+*Default Value:* `%(status): ${count} processes in history.`
+
+<h5 id="check_process_history_empty-syntax">empty-syntax:</h5>
+
+Empty syntax.
+DEPRECATED! This is the syntax for when nothing matches the filter.
+
+
+<h5 id="check_process_history_detail-syntax">detail-syntax:</h5>
+
+Detail level syntax.
+Used to format each resulting item in the message.
+%(list) will be replaced with all the items formated by this syntax string in the top-syntax.
+To add a keyword to the message you can use two syntaxes either ${keyword} or %(keyword) (there is no difference between them apart from ${} can be difficult to escape on linux).
+
+*Default Value:* `${exe} (${running})`
+
+<h5 id="check_process_history_perf-syntax">perf-syntax:</h5>
+
+Performance alias syntax.
+This is the syntax for the base names of the performance data.
+
+*Default Value:* `${exe}`
+
+
+<a id="check_process_history_filter_keys"></a>
+#### Filter keywords
+
+
+| Option            | Description                                                 |
+|-------------------|-------------------------------------------------------------|
+| currently_running | Whether the process is currently running (1/0)              |
+| exe               | The name of the executable                                  |
+| first_seen        | Unix timestamp when process was first seen                  |
+| last_seen         | Unix timestamp when process was last seen                   |
+| running           | Whether the process is currently running: 'true' or 'false' |
+| times_seen        | Number of times the process has been observed running       |
+
+**Common options for all checks:**
+
+| Option        | Description                                                                    |
+|---------------|--------------------------------------------------------------------------------|
+| count         | Number of items matching the filter.                                           |
+| crit_count    | Number of items matched the critical criteria.                                 |
+| crit_list     | A list of all items which matched the critical criteria.                       |
+| detail_list   | A special list with critical, then warning and finally ok.                     |
+| list          | A list of all items which matched the filter.                                  |
+| ok_count      | Number of items matched the ok criteria.                                       |
+| ok_list       | A list of all items which matched the ok criteria.                             |
+| problem_count | Number of items matched either warning or critical criteria.                   |
+| problem_list  | A list of all items which matched either the critical or the warning criteria. |
+| status        | The returned status (OK/WARN/CRIT/UNKNOWN).                                    |
+| total         | Total number of items.                                                         |
+| warn_count    | Number of items matched the warning criteria.                                  |
+| warn_list     | A list of all items which matched the warning criteria.                        |
+
+
+### check_process_history_new
+
+Check for new processes that appeared within a specified time window. Useful for detecting unexpected or unauthorized applications.
+
+
+**Jump to section:**
+
+* [Command-line Arguments](#check_process_history_new_options)
+* [Filter keywords](#check_process_history_new_filter_keys)
+
+
+
+
+
+<a id="check_process_history_new_warn"></a>
+<a id="check_process_history_new_crit"></a>
+<a id="check_process_history_new_debug"></a>
+<a id="check_process_history_new_show-all"></a>
+<a id="check_process_history_new_escape-html"></a>
+<a id="check_process_history_new_help"></a>
+<a id="check_process_history_new_help-pb"></a>
+<a id="check_process_history_new_show-default"></a>
+<a id="check_process_history_new_help-short"></a>
+<a id="check_process_history_new_options"></a>
+#### Command-line Arguments
+
+
+| Option                                                    | Default Value                      | Description                                                                                                             |
+|-----------------------------------------------------------|------------------------------------|-------------------------------------------------------------------------------------------------------------------------|
+| [filter](#check_process_history_new_filter)               |                                    | Filter which marks interesting items.                                                                                   |
+| [warning](#check_process_history_new_warning)             |                                    | Filter which marks items which generates a warning state.                                                               |
+| warn                                                      |                                    | Short alias for warning                                                                                                 |
+| [critical](#check_process_history_new_critical)           |                                    | Filter which marks items which generates a critical state.                                                              |
+| crit                                                      |                                    | Short alias for critical.                                                                                               |
+| [ok](#check_process_history_new_ok)                       |                                    | Filter which marks items which generates an ok state.                                                                   |
+| debug                                                     | N/A                                | Show debugging information in the log                                                                                   |
+| show-all                                                  | N/A                                | Show details for all matches regardless of status (normally details are only showed for warnings and criticals).        |
+| [empty-state](#check_process_history_new_empty-state)     | ok                                 | Return status to use when nothing matched filter.                                                                       |
+| [perf-config](#check_process_history_new_perf-config)     |                                    | Performance data generation configuration                                                                               |
+| escape-html                                               | N/A                                | Escape any < and > characters to prevent HTML encoding                                                                  |
+| help                                                      | N/A                                | Show help screen (this screen)                                                                                          |
+| help-pb                                                   | N/A                                | Show help screen as a protocol buffer payload                                                                           |
+| show-default                                              | N/A                                | Show default values for a given command                                                                                 |
+| help-short                                                | N/A                                | Show help screen (short format).                                                                                        |
+| [top-syntax](#check_process_history_new_top-syntax)       | ${status}: ${list}                 | Top level syntax.                                                                                                       |
+| [ok-syntax](#check_process_history_new_ok-syntax)         | %(status): No new processes found. | ok syntax.                                                                                                              |
+| [empty-syntax](#check_process_history_new_empty-syntax)   |                                    | Empty syntax.                                                                                                           |
+| [detail-syntax](#check_process_history_new_detail-syntax) | ${exe} (first seen: ${first_seen}) | Detail level syntax.                                                                                                    |
+| [perf-syntax](#check_process_history_new_perf-syntax)     | ${exe}                             | Performance alias syntax.                                                                                               |
+| [time](#check_process_history_new_time)                   | 5m                                 | Time window to check for new processes (e.g., 5m, 1h, 30s). Processes first seen within this window are considered new. |
+
+
+
+<h5 id="check_process_history_new_filter">filter:</h5>
+
+Filter which marks interesting items.
+Interesting items are items which will be included in the check.
+They do not denote warning or critical state instead it defines which items are relevant and you can remove unwanted items.
+
+
+<h5 id="check_process_history_new_warning">warning:</h5>
+
+Filter which marks items which generates a warning state.
+If anything matches this filter the return status will be escalated to warning.
+
+
+
+<h5 id="check_process_history_new_critical">critical:</h5>
+
+Filter which marks items which generates a critical state.
+If anything matches this filter the return status will be escalated to critical.
+
+
+
+<h5 id="check_process_history_new_ok">ok:</h5>
+
+Filter which marks items which generates an ok state.
+If anything matches this any previous state for this item will be reset to ok.
+
+
+<h5 id="check_process_history_new_empty-state">empty-state:</h5>
+
+Return status to use when nothing matched filter.
+If no filter is specified this will never happen unless the file is empty.
+
+*Default Value:* `ok`
+
+<h5 id="check_process_history_new_perf-config">perf-config:</h5>
+
+Performance data generation configuration
+TODO: obj ( key: value; key: value) obj (key:valuer;key:value)
+
+
+<h5 id="check_process_history_new_top-syntax">top-syntax:</h5>
+
+Top level syntax.
+Used to format the message to return can include text as well as special keywords which will include information from the checks.
+To add a keyword to the message you can use two syntaxes either ${keyword} or %(keyword) (there is no difference between them apart from ${} can be difficult to escape on linux).
+
+*Default Value:* `${status}: ${list}`
+
+<h5 id="check_process_history_new_ok-syntax">ok-syntax:</h5>
+
+ok syntax.
+DEPRECATED! This is the syntax for when an ok result is returned.
+This value will not be used if your syntax contains %(list) or %(count).
+
+*Default Value:* `%(status): No new processes found.`
+
+<h5 id="check_process_history_new_empty-syntax">empty-syntax:</h5>
+
+Empty syntax.
+DEPRECATED! This is the syntax for when nothing matches the filter.
+
+
+<h5 id="check_process_history_new_detail-syntax">detail-syntax:</h5>
+
+Detail level syntax.
+Used to format each resulting item in the message.
+%(list) will be replaced with all the items formated by this syntax string in the top-syntax.
+To add a keyword to the message you can use two syntaxes either ${keyword} or %(keyword) (there is no difference between them apart from ${} can be difficult to escape on linux).
+
+*Default Value:* `${exe} (first seen: ${first_seen})`
+
+<h5 id="check_process_history_new_perf-syntax">perf-syntax:</h5>
+
+Performance alias syntax.
+This is the syntax for the base names of the performance data.
+
+*Default Value:* `${exe}`
+
+<h5 id="check_process_history_new_time">time:</h5>
+
+Time window to check for new processes (e.g., 5m, 1h, 30s). Processes first seen within this window are considered new.
+
+*Default Value:* `5m`
+
+
+<a id="check_process_history_new_filter_keys"></a>
+#### Filter keywords
+
+
+| Option            | Description                                                 |
+|-------------------|-------------------------------------------------------------|
+| currently_running | Whether the process is currently running (1/0)              |
+| exe               | The name of the executable                                  |
+| first_seen        | Unix timestamp when process was first seen                  |
+| last_seen         | Unix timestamp when process was last seen                   |
+| running           | Whether the process is currently running: 'true' or 'false' |
+| times_seen        | Number of times the process has been observed running       |
+
+**Common options for all checks:**
+
+| Option        | Description                                                                    |
+|---------------|--------------------------------------------------------------------------------|
+| count         | Number of items matching the filter.                                           |
+| crit_count    | Number of items matched the critical criteria.                                 |
+| crit_list     | A list of all items which matched the critical criteria.                       |
+| detail_list   | A special list with critical, then warning and finally ok.                     |
+| list          | A list of all items which matched the filter.                                  |
+| ok_count      | Number of items matched the ok criteria.                                       |
+| ok_list       | A list of all items which matched the ok criteria.                             |
+| problem_count | Number of items matched either warning or critical criteria.                   |
+| problem_list  | A list of all items which matched either the critical or the warning criteria. |
+| status        | The returned status (OK/WARN/CRIT/UNKNOWN).                                    |
+| total         | Total number of items.                                                         |
+| warn_count    | Number of items matched the warning criteria.                                  |
+| warn_list     | A list of all items which matched the warning criteria.                        |
+
+
 ### check_service
 
 Check the state of one or more of the computer services.
+
+#### `state_is_ok`
+
+Helper function that checks if the state of a service is "OK". It returns `True` if the state is "OK" and `False` otherwise.
+This can be used in filter expressions to warn about services that are not running properly.
+
+| Configured            | State     | exit_code | Result of `state_is_ok` |
+|-----------------------|-----------|-----------|-------------------------|
+| auto-start            | running   | any       | ✅ ok                    |
+| delayed auto-start    | stopped   | any       | ✅ ok                    |
+| auto-start + triggers | stopped   | any       | ✅ ok                    |
+| auto-start            | stopped   | 0         | ✅ ok                    |
+| auto-start            | stopped   | non zero  | ❌ not ok                |
+| demand-start          | any state | any       | ✅ ok                    |
+
+#### `state_is_perfect`
+
+Helper function that checks if the state of a service is "perfect". It returns `True` if the state is "perfect" and `False` otherwise.
+This can be used in filter expressions to warn about services that are not running perfectly.
+
+| Configured            | State     | Result of `state_is_perfect` |
+|-----------------------|-----------|------------------------------|
+| auto-start            | running   | ✅ perfect                    |
+| auto-start            | stopped   | ❌ not perfect                |
+| auto-start + triggers | stopped   | ✅ perfect                    |
+| demand-start          | any state | ✅ perfect                    |
+| disabled              | stopped   | ✅ perfect                    |
 
 
 **Jump to section:**
@@ -1684,39 +2605,39 @@ check_service service=nscp "crit=state = 'started'" warn=none
 #### Command-line Arguments
 
 
-| Option                                        | Default Value                                   | Description                                                                                                                                           |
-|-----------------------------------------------|-------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------|
-| [filter](#check_service_filter)               |                                                 | Filter which marks interesting items.                                                                                                                 |
-| [warning](#check_service_warning)             | not state_is_perfect()                          | Filter which marks items which generates a warning state.                                                                                             |
-| warn                                          |                                                 | Short alias for warning                                                                                                                               |
-| [critical](#check_service_critical)           | not state_is_ok()                               | Filter which marks items which generates a critical state.                                                                                            |
-| crit                                          |                                                 | Short alias for critical.                                                                                                                             |
-| [ok](#check_service_ok)                       |                                                 | Filter which marks items which generates an ok state.                                                                                                 |
-| debug                                         | N/A                                             | Show debugging information in the log                                                                                                                 |
-| show-all                                      | N/A                                             | Show details for all matches regardless of status (normally details are only showed for warnings and criticals).                                      |
-| [empty-state](#check_service_empty-state)     | unknown                                         | Return status to use when nothing matched filter.                                                                                                     |
-| [perf-config](#check_service_perf-config)     |                                                 | Performance data generation configuration                                                                                                             |
-| escape-html                                   | N/A                                             | Escape any < and > characters to prevent HTML encoding                                                                                                |
-| help                                          | N/A                                             | Show help screen (this screen)                                                                                                                        |
-| help-pb                                       | N/A                                             | Show help screen as a protocol buffer payload                                                                                                         |
-| show-default                                  | N/A                                             | Show default values for a given command                                                                                                               |
-| help-short                                    | N/A                                             | Show help screen (short format).                                                                                                                      |
-| [top-syntax](#check_service_top-syntax)       | ${status}: ${crit_list}, delayed (${warn_list}) | Top level syntax.                                                                                                                                     |
-| [ok-syntax](#check_service_ok-syntax)         | %(status): All %(count) service(s) are ok.      | ok syntax.                                                                                                                                            |
-| [empty-syntax](#check_service_empty-syntax)   | %(status): No services found                    | Empty syntax.                                                                                                                                         |
-| [detail-syntax](#check_service_detail-syntax) | ${name}=${state} (${start_type})                | Detail level syntax.                                                                                                                                  |
-| [perf-syntax](#check_service_perf-syntax)     | ${name}                                         | Performance alias syntax.                                                                                                                             |
-| computer                                      |                                                 | The name of the remote computer to check                                                                                                              |
-| service                                       |                                                 | The service to check, set this to * to check all services                                                                                             |
-| exclude                                       |                                                 | A list of services to ignore (mainly useful in combination with service=*)                                                                            |
-| [type](#check_service_type)                   | service                                         | The types of services to enumerate available types are driver, file-system-driver, kernel-driver, service, service-own-process, service-share-process |
-| [state](#check_service_state)                 | all                                             | The types of services to enumerate available states are active, inactive or all                                                                       |
-| only-essential                                | N/A                                             | Set filter to classification = 'essential'                                                                                                            |
-| only-ignored                                  | N/A                                             | Set filter to classification = 'ignored'                                                                                                              |
-| only-role                                     | N/A                                             | Set filter to classification = 'role'                                                                                                                 |
-| only-supporting                               | N/A                                             | Set filter to classification = 'supporting'                                                                                                           |
-| only-system                                   | N/A                                             | Set filter to classification = 'system'                                                                                                               |
-| only-user                                     | N/A                                             | Set filter to classification = 'user'                                                                                                                 |
+| Option                                        | Default Value                                           | Description                                                                                                                                           |
+|-----------------------------------------------|---------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [filter](#check_service_filter)               |                                                         | Filter which marks interesting items.                                                                                                                 |
+| [warning](#check_service_warning)             | not state_is_perfect()                                  | Filter which marks items which generates a warning state.                                                                                             |
+| warn                                          |                                                         | Short alias for warning                                                                                                                               |
+| [critical](#check_service_critical)           | not state_is_ok()                                       | Filter which marks items which generates a critical state.                                                                                            |
+| crit                                          |                                                         | Short alias for critical.                                                                                                                             |
+| [ok](#check_service_ok)                       |                                                         | Filter which marks items which generates an ok state.                                                                                                 |
+| debug                                         | N/A                                                     | Show debugging information in the log                                                                                                                 |
+| show-all                                      | N/A                                                     | Show details for all matches regardless of status (normally details are only showed for warnings and criticals).                                      |
+| [empty-state](#check_service_empty-state)     | unknown                                                 | Return status to use when nothing matched filter.                                                                                                     |
+| [perf-config](#check_service_perf-config)     |                                                         | Performance data generation configuration                                                                                                             |
+| escape-html                                   | N/A                                                     | Escape any < and > characters to prevent HTML encoding                                                                                                |
+| help                                          | N/A                                                     | Show help screen (this screen)                                                                                                                        |
+| help-pb                                       | N/A                                                     | Show help screen as a protocol buffer payload                                                                                                         |
+| show-default                                  | N/A                                                     | Show default values for a given command                                                                                                               |
+| help-short                                    | N/A                                                     | Show help screen (short format).                                                                                                                      |
+| [top-syntax](#check_service_top-syntax)       | ${status}: ${crit_list}, delayed (${warn_list})         | Top level syntax.                                                                                                                                     |
+| [ok-syntax](#check_service_ok-syntax)         | %(status): All %(count) service(s) are ok.              | ok syntax.                                                                                                                                            |
+| [empty-syntax](#check_service_empty-syntax)   | %(status): No services found                            | Empty syntax.                                                                                                                                         |
+| [detail-syntax](#check_service_detail-syntax) | ${name}=${state}, exit=%(exit_code), type=%(start_type) | Detail level syntax.                                                                                                                                  |
+| [perf-syntax](#check_service_perf-syntax)     | ${name}                                                 | Performance alias syntax.                                                                                                                             |
+| computer                                      |                                                         | The name of the remote computer to check                                                                                                              |
+| service                                       |                                                         | The service to check, set this to * to check all services                                                                                             |
+| exclude                                       |                                                         | A list of services to ignore (mainly useful in combination with service=*)                                                                            |
+| [type](#check_service_type)                   | service                                                 | The types of services to enumerate available types are driver, file-system-driver, kernel-driver, service, service-own-process, service-share-process |
+| [state](#check_service_state)                 | all                                                     | The types of services to enumerate available states are active, inactive or all                                                                       |
+| only-essential                                | N/A                                                     | Set filter to classification = 'essential'                                                                                                            |
+| only-ignored                                  | N/A                                                     | Set filter to classification = 'ignored'                                                                                                              |
+| only-role                                     | N/A                                                     | Set filter to classification = 'role'                                                                                                                 |
+| only-supporting                               | N/A                                                     | Set filter to classification = 'supporting'                                                                                                           |
+| only-system                                   | N/A                                                     | Set filter to classification = 'system'                                                                                                               |
+| only-user                                     | N/A                                                     | Set filter to classification = 'user'                                                                                                                 |
 
 
 
@@ -1792,7 +2713,7 @@ Used to format each resulting item in the message.
 %(list) will be replaced with all the items formated by this syntax string in the top-syntax.
 To add a keyword to the message you can use two syntaxes either ${keyword} or %(keyword) (there is no difference between them apart from ${} can be difficult to escape on linux).
 
-*Default Value:* `${name}=${state} (${start_type})`
+*Default Value:* `${name}=${state}, exit=%(exit_code), type=%(start_type)`
 
 <h5 id="check_service_perf-syntax">perf-syntax:</h5>
 
@@ -1818,20 +2739,184 @@ The types of services to enumerate available states are active, inactive or all
 #### Filter keywords
 
 
-| Option             | Description                                                                                               |
-|--------------------|-----------------------------------------------------------------------------------------------------------|
-| classification     | Get classification                                                                                        |
-| delayed            | If the service is delayed                                                                                 |
-| desc               | Service description                                                                                       |
-| is_trigger         | If the service is has associated triggers                                                                 |
-| legacy_state       | Get legacy state (deprecated and only used by check_nt)                                                   |
-| name               | Service name                                                                                              |
-| pid                | Process id                                                                                                |
-| start_type         | The configured start type ()                                                                              |
-| state              | The current state ()                                                                                      |
-| state_is_ok()      | Check if the state is ok, i.e. all running services are runningelayed services are allowed to be stopped) |
-| state_is_perfect() | Check if the state is ok, i.e. all running services are running                                           |
-| triggers           | The number of associated triggers for this service                                                        |
+| Option             | Description                                                                                                  |
+|--------------------|--------------------------------------------------------------------------------------------------------------|
+| classification     | Get classification                                                                                           |
+| delayed            | If the service is delayed                                                                                    |
+| desc               | Service description                                                                                          |
+| exit_code          | The Win32 exit code of the service                                                                           |
+| is_trigger         | If the service is has associated triggers                                                                    |
+| legacy_state       | Get legacy state (deprecated and only used by check_nt)                                                      |
+| name               | Service name                                                                                                 |
+| pid                | Process id                                                                                                   |
+| start_type         | The configured start type ()                                                                                 |
+| state              | The current state ()                                                                                         |
+| state_is_ok()      | Check if the state is ok, i.e. all running services are running (delayed services are allowed to be stopped) |
+| state_is_perfect() | Check if the state is ok, i.e. all running services are running                                              |
+| triggers           | The number of associated triggers for this service                                                           |
+
+**Common options for all checks:**
+
+| Option        | Description                                                                    |
+|---------------|--------------------------------------------------------------------------------|
+| count         | Number of items matching the filter.                                           |
+| crit_count    | Number of items matched the critical criteria.                                 |
+| crit_list     | A list of all items which matched the critical criteria.                       |
+| detail_list   | A special list with critical, then warning and finally ok.                     |
+| list          | A list of all items which matched the filter.                                  |
+| ok_count      | Number of items matched the ok criteria.                                       |
+| ok_list       | A list of all items which matched the ok criteria.                             |
+| problem_count | Number of items matched either warning or critical criteria.                   |
+| problem_list  | A list of all items which matched either the critical or the warning criteria. |
+| status        | The returned status (OK/WARN/CRIT/UNKNOWN).                                    |
+| total         | Total number of items.                                                         |
+| warn_count    | Number of items matched the warning criteria.                                  |
+| warn_list     | A list of all items which matched the warning criteria.                        |
+
+
+### check_temperature
+
+Check ACPI thermal zone temperatures.
+
+
+**Jump to section:**
+
+* [Command-line Arguments](#check_temperature_options)
+* [Filter keywords](#check_temperature_filter_keys)
+
+
+
+
+
+<a id="check_temperature_warn"></a>
+<a id="check_temperature_crit"></a>
+<a id="check_temperature_debug"></a>
+<a id="check_temperature_show-all"></a>
+<a id="check_temperature_escape-html"></a>
+<a id="check_temperature_help"></a>
+<a id="check_temperature_help-pb"></a>
+<a id="check_temperature_show-default"></a>
+<a id="check_temperature_help-short"></a>
+<a id="check_temperature_options"></a>
+#### Command-line Arguments
+
+
+| Option                                            | Default Value                         | Description                                                                                                      |
+|---------------------------------------------------|---------------------------------------|------------------------------------------------------------------------------------------------------------------|
+| [filter](#check_temperature_filter)               |                                       | Filter which marks interesting items.                                                                            |
+| [warning](#check_temperature_warning)             | temperature > 70                      | Filter which marks items which generates a warning state.                                                        |
+| warn                                              |                                       | Short alias for warning                                                                                          |
+| [critical](#check_temperature_critical)           | temperature > 90                      | Filter which marks items which generates a critical state.                                                       |
+| crit                                              |                                       | Short alias for critical.                                                                                        |
+| [ok](#check_temperature_ok)                       |                                       | Filter which marks items which generates an ok state.                                                            |
+| debug                                             | N/A                                   | Show debugging information in the log                                                                            |
+| show-all                                          | N/A                                   | Show details for all matches regardless of status (normally details are only showed for warnings and criticals). |
+| [empty-state](#check_temperature_empty-state)     | critical                              | Return status to use when nothing matched filter.                                                                |
+| [perf-config](#check_temperature_perf-config)     |                                       | Performance data generation configuration                                                                        |
+| escape-html                                       | N/A                                   | Escape any < and > characters to prevent HTML encoding                                                           |
+| help                                              | N/A                                   | Show help screen (this screen)                                                                                   |
+| help-pb                                           | N/A                                   | Show help screen as a protocol buffer payload                                                                    |
+| show-default                                      | N/A                                   | Show default values for a given command                                                                          |
+| help-short                                        | N/A                                   | Show help screen (short format).                                                                                 |
+| [top-syntax](#check_temperature_top-syntax)       | ${status}: ${list}                    | Top level syntax.                                                                                                |
+| [ok-syntax](#check_temperature_ok-syntax)         | %(status): All thermal zones seem ok. | ok syntax.                                                                                                       |
+| [empty-syntax](#check_temperature_empty-syntax)   |                                       | Empty syntax.                                                                                                    |
+| [detail-syntax](#check_temperature_detail-syntax) | ${name}: ${temperature} C             | Detail level syntax.                                                                                             |
+| [perf-syntax](#check_temperature_perf-syntax)     | ${name}                               | Performance alias syntax.                                                                                        |
+
+
+
+<h5 id="check_temperature_filter">filter:</h5>
+
+Filter which marks interesting items.
+Interesting items are items which will be included in the check.
+They do not denote warning or critical state instead it defines which items are relevant and you can remove unwanted items.
+
+
+<h5 id="check_temperature_warning">warning:</h5>
+
+Filter which marks items which generates a warning state.
+If anything matches this filter the return status will be escalated to warning.
+
+
+*Default Value:* `temperature > 70`
+
+<h5 id="check_temperature_critical">critical:</h5>
+
+Filter which marks items which generates a critical state.
+If anything matches this filter the return status will be escalated to critical.
+
+
+*Default Value:* `temperature > 90`
+
+<h5 id="check_temperature_ok">ok:</h5>
+
+Filter which marks items which generates an ok state.
+If anything matches this any previous state for this item will be reset to ok.
+
+
+<h5 id="check_temperature_empty-state">empty-state:</h5>
+
+Return status to use when nothing matched filter.
+If no filter is specified this will never happen unless the file is empty.
+
+*Default Value:* `critical`
+
+<h5 id="check_temperature_perf-config">perf-config:</h5>
+
+Performance data generation configuration
+TODO: obj ( key: value; key: value) obj (key:valuer;key:value)
+
+
+<h5 id="check_temperature_top-syntax">top-syntax:</h5>
+
+Top level syntax.
+Used to format the message to return can include text as well as special keywords which will include information from the checks.
+To add a keyword to the message you can use two syntaxes either ${keyword} or %(keyword) (there is no difference between them apart from ${} can be difficult to escape on linux).
+
+*Default Value:* `${status}: ${list}`
+
+<h5 id="check_temperature_ok-syntax">ok-syntax:</h5>
+
+ok syntax.
+DEPRECATED! This is the syntax for when an ok result is returned.
+This value will not be used if your syntax contains %(list) or %(count).
+
+*Default Value:* `%(status): All thermal zones seem ok.`
+
+<h5 id="check_temperature_empty-syntax">empty-syntax:</h5>
+
+Empty syntax.
+DEPRECATED! This is the syntax for when nothing matches the filter.
+
+
+<h5 id="check_temperature_detail-syntax">detail-syntax:</h5>
+
+Detail level syntax.
+Used to format each resulting item in the message.
+%(list) will be replaced with all the items formated by this syntax string in the top-syntax.
+To add a keyword to the message you can use two syntaxes either ${keyword} or %(keyword) (there is no difference between them apart from ${} can be difficult to escape on linux).
+
+*Default Value:* `${name}: ${temperature} C`
+
+<h5 id="check_temperature_perf-syntax">perf-syntax:</h5>
+
+Performance alias syntax.
+This is the syntax for the base names of the performance data.
+
+*Default Value:* `${name}`
+
+
+<a id="check_temperature_filter_keys"></a>
+#### Filter keywords
+
+
+| Option           | Description                        |
+|------------------|------------------------------------|
+| active           | True if the thermal zone is active |
+| name             | Thermal zone name                  |
+| temperature      | Temperature in degrees Celsius     |
+| throttle_reasons | Throttle reasons bitmask           |
 
 **Common options for all checks:**
 
@@ -2069,6 +3154,7 @@ Section for system checks and system settings
 | [default buffer length](#default-buffer-time) | 1h            | Default buffer time       |
 | [disable](#disable-automatic-checks)          |               | Disable automatic checks  |
 | [fetch core loads](#fetch-core-load)          | true          | Fetch core load           |
+| [process history](#track-process-history)     | false         | Track process history     |
 | [subsystem](#pdh-subsystem)                   | default       | PDH subsystem             |
 | [use pdh for cpu](#use-pdh-to-fetch-cpu-load) | false         | Use PDH to fetch CPU load |
 
@@ -2079,6 +3165,7 @@ Section for system checks and system settings
 [/settings/system/windows]
 default buffer length=1h
 fetch core loads=true
+process history=false
 subsystem=default
 use pdh for cpu=false
 
@@ -2116,7 +3203,7 @@ default buffer length=1h
 
 #### Disable automatic checks <a id="/settings/system/windows/disable"></a>
 
-A comma separated list of checks to disable in the collector: cpu,handles,network,metrics,pdh. Please note disabling these will mean part of NSClient++ will no longer function as expected.
+A comma separated list of checks to disable in the collector: battery,cpu,handles,network,temperature,cpu_frequency,os_updates,metrics,pdh. Please note disabling these will mean part of NSClient++ will no longer function as expected.
 
 
 
@@ -2165,6 +3252,32 @@ Set to false to use a different API for fetching CPU load (will not provide core
 [/settings/system/windows]
 # Fetch core load
 fetch core loads=true
+```
+
+
+
+#### Track process history <a id="/settings/system/windows/process history"></a>
+
+Enable tracking of process history for use with check_process_history and check_process_history_new commands.
+
+
+
+
+
+| Key            | Description                                           |
+|----------------|-------------------------------------------------------|
+| Path:          | [/settings/system/windows](#/settings/system/windows) |
+| Key:           | process history                                       |
+| Default value: | `false`                                               |
+| Used by:       | CheckSystem                                           |
+
+
+**Sample:**
+
+```
+[/settings/system/windows]
+# Track process history
+process history=false
 ```
 
 
@@ -2298,7 +3411,7 @@ This is a section of objects. This means that you will create objects below this
 | empty message | eventlog found no records | EMPTY MESSAGE   |
 | escape html   |                           | ESCAPE HTML     |
 | filter        |                           | FILTER          |
-| maximum age   | 5m                        | MAGIMUM AGE     |
+| maximum age   | 5m                        | MAXIMUM AGE     |
 | ok            |                           | OK FILTER       |
 | ok syntax     |                           | SYNTAX          |
 | perf config   |                           | PERF CONFIG     |
@@ -2369,7 +3482,7 @@ This is a section of objects. This means that you will create objects below this
 | empty message | eventlog found no records | EMPTY MESSAGE   |
 | escape html   |                           | ESCAPE HTML     |
 | filter        |                           | FILTER          |
-| maximum age   | 5m                        | MAGIMUM AGE     |
+| maximum age   | 5m                        | MAXIMUM AGE     |
 | ok            |                           | OK FILTER       |
 | ok syntax     |                           | SYNTAX          |
 | perf config   |                           | PERF CONFIG     |
@@ -2437,7 +3550,7 @@ This is a section of objects. This means that you will create objects below this
 | empty message | eventlog found no records | EMPTY MESSAGE   |
 | escape html   |                           | ESCAPE HTML     |
 | filter        |                           | FILTER          |
-| maximum age   | 5m                        | MAGIMUM AGE     |
+| maximum age   | 5m                        | MAXIMUM AGE     |
 | ok            |                           | OK FILTER       |
 | ok syntax     |                           | SYNTAX          |
 | perf config   |                           | PERF CONFIG     |
@@ -2505,7 +3618,7 @@ This is a section of objects. This means that you will create objects below this
 | empty message | eventlog found no records | EMPTY MESSAGE   |
 | escape html   |                           | ESCAPE HTML     |
 | filter        |                           | FILTER          |
-| maximum age   | 5m                        | MAGIMUM AGE     |
+| maximum age   | 5m                        | MAXIMUM AGE     |
 | ok            |                           | OK FILTER       |
 | ok syntax     |                           | SYNTAX          |
 | perf config   |                           | PERF CONFIG     |
