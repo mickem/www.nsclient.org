@@ -1,103 +1,96 @@
-<div markdown="1" class="m-container">
-<div markdown="1">
+---
+hide:
+  - navigation
+  - toc
+---
 
-## :octicons-info-16: About NSClient++
+<div class="hero" markdown="1">
 
-NSClient is an [:material-alert-box-outline: agent](nsclient.md) designed originally to work with Nagios but has
-since evolved into a fully fledged monitoring agent which can be used with many monitoring tools. 
-If you want to know the latest news and updates see the [:material-newspaper: news section](/news).
+# NSClient++
 
-* [:material-alert-box-outline: About NSClient++](nsclient.md)
-* [:material-newspaper: Latest news](/news)
+A simple, powerful, and secure monitoring agent for **Windows** and **Linux**.
+Works with Nagios, Icinga, Op5, Prometheus, check_mk — and anything that speaks NRPE, NSCA, NRDP, or REST.
 
-</div>
-<div markdown="1">
+<p class="hero-actions" markdown>
+[:material-download: Download <span data-release="version">latest</span>](https://github.com/mickem/nscp/releases/latest){ .md-button .md-button--primary data-release="download-link" }
+[:fontawesome-solid-graduation-cap: Quick Start](docs/quick-start/){ .md-button }
+</p>
 
-## :material-rocket-launch: Getting started
-
-I know NSClient++ can seem daunting. But is really isn't, especially not now with all
-the [:material-head-question: documentation](/docs).
-But it is "open-ended" so before you start be sure to read through
-the [:fontawesome-solid-graduation-cap: Getting-started guide](https://nsclient.org/docs/getting-started/) to get a step by step introduction
- and we are sure you will be on a journey towards #MonitoringLove.
-
-* [:fontawesome-solid-graduation-cap: Getting-started](https://nsclient.org/docs/getting-started/)
-* [:material-head-question: Documentation](/docs)
+<p class="hero-meta">
+Released <span data-release="date">recently</span> &middot; <a href="https://github.com/mickem/nscp/releases" data-release="notes-link">release notes</a>
+</p>
 
 </div>
-</div>
 
-<div markdown="1" class="m-container">
+<div class="features" markdown="1">
 <div markdown="1">
 
-## :material-download: Download NSClient++
+## :material-checkbox-marked-circle-outline: Why NSClient++
 
-You can [:material-download: download the latest version](https://github.com/mickem/nscp/releases/latest) or you
-can [:material-archive: see all old releases](https://github.com/mickem/nscp/releases).
-
-* [:material-download: Download the latest version](https://github.com/mickem/nscp/releases/latest)
-* [:material-archive: See all releases](https://github.com/mickem/nscp/releases)
+- :material-laptop: **Cross-platform** — Windows 2008+ and major Linux distros
+- :material-connection: **Many protocols** — NRPE, NSCA, NRDP, REST, Prometheus, check_mk, Graphite
+- :material-view-dashboard: **Web UI** with live dashboards and check explorer
+- :material-language-python: **Scriptable** in Python and Lua, plus external scripts
+- :material-shield-check: **Secure by default** — TLS, client certs, allowed-hosts
 
 </div>
 <div markdown="1">
 
-## :fontawesome-solid-question: Getting help
-
-You can read the [:material-head-question: documentation](https://nsclient.org/docs/). And if you can not find it there
-head on over to the [:material-chat: forums](https://github.com/mickem/nscp/discussions) and ask a question there
-instead.
-
-* [:material-head-question: Documentation](https://nsclient.org/docs/)
-* [:material-chat: Forums](https://github.com/mickem/nscp/discussions)
+![NSClient++ web UI dashboard](images/nsclient-web-ui-2026.png)
 
 </div>
 </div>
 
-<div markdown="1" class="m-container">
-<div markdown="1">
+## :material-newspaper: Latest releases
 
-## :fontawesome-solid-user: Getting involved
-
-Getting involved is easy!
-If you have questions or want to connect with the community head over to
-the [:material-chat: Forums](https://github.com/mickem/nscp/discussions). Or if you have issues, feature requests you
-can use our [:octicons-issue-opened-16: issue tracker](https://github.com/mickem/nscp/issues) on GitHub.
-We are also interested in all contributions big or small.
-
-* [:material-chat: Forums](https://github.com/mickem/nscp/discussions)
-* [:octicons-issue-opened-16: Issues](https://github.com/mickem/nscp/issues)
-
-</div>
-<div markdown="1">
-
-## :moneybag: Giving back
-
-NSClient++ is a free (as in both beer and speech) program which is NOT backed by a big corporation. We dont belive in
-open<strong>core</strong> instead we really belive in open<strong>source</strong>. So feel free to contribute by
-<a href="/donate"><i class="fa fa-money"></i>donating</a>
-
-* [:simple-paypal: Donate money via paypal](https://paypal.me/michaelmedin?country.x=SE&locale.x=en_US)
-* [:simple-githubsponsors: Sponsor development on GitHub](https://github.com/sponsors/mickem)
-
-</div>
+<div id="latest-releases" class="release-list">
+<p class="release-loading">Loading latest releases…</p>
 </div>
 
+[All news :material-arrow-right:](news/){ .md-button }
+[All releases on GitHub :material-arrow-right:](https://github.com/mickem/nscp/releases){ .md-button }
 
-<div markdown="1" class="m-container">
-<div markdown="1">
+<div class="cards" markdown="1">
+<div class="card" markdown="1">
+
+## :material-rocket-launch: Get started
+
+- [:fontawesome-solid-graduation-cap: Quick Start](docs/quick-start/) — 10-minute walkthrough
+- [:material-download: Installation guide](docs/setup/installing/) — MSI options & silent install
+- [:material-shield-key: Securing the agent](docs/setup/securing/) — TLS & client certs
+- [:material-monitor-dashboard: Web Interface](docs/setup/web-interface/)
+
+</div>
+<div class="card" markdown="1">
+
+## :material-head-question: Documentation
+
+- [:material-format-list-bulleted: Monitoring scenarios](docs/scenarios/) — common real-world setups
+- [:material-bookshelf: Reference](docs/reference/) — every module & command
+- [:material-school: Concepts](docs/concepts/) — how it works under the hood
+- [:material-frequently-asked-questions: FAQ](docs/faq/)
+
+</div>
+<div class="card" markdown="1">
+
+## :material-account-group: Community
+
+- [:material-chat: Forums](https://github.com/mickem/nscp/discussions)
+- [:octicons-issue-opened-16: Issues](https://github.com/mickem/nscp/issues)
+- [:simple-paypal: Donate via PayPal](https://paypal.me/michaelmedin?country.x=SE&locale.x=en_US)
+- [:simple-githubsponsors: Sponsor on GitHub](https://github.com/sponsors/mickem)
+
+</div>
+</div>
+
+---
 
 ## :fontawesome-solid-heart: Sponsors
 
-
-<div style="display: flex; justify-content: center; align-items: center;">
-  <!-- Nagios logo start -->
-  <div style="background-color: #1f2129; padding: 5px; max-width: 200px;">
+<div class="sponsors">
+  <div class="sponsor-card">
     <a href="https://nagios.com">
-      <img src="assets/nagios-logo.svg"/>
+      <img src="assets/nagios-logo.svg" alt="Nagios" />
     </a>
   </div>
-  <!-- End -->
-</div>
-
-</div>
 </div>

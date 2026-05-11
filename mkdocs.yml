@@ -13,6 +13,9 @@ theme:
     - toc.follow
     - toc.integrate
     - navigation.indexes
+    - search.suggest
+    - search.highlight
+    - search.share
   palette:
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
@@ -129,12 +132,16 @@ extra:
       make our documentation better.
 
 plugins:
+  - search
   - blog:
       blog_dir: news
       blog_toc: true
       archive_date_format: MMMM yyyy
 extra_css:
   - stylesheets/extra.css
+
+extra_javascript:
+  - assets/js/latest-release.js
 
 markdown_extensions:
   - attr_list
