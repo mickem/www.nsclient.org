@@ -36,28 +36,31 @@ nav:
   - News: news/index.md
   - Download: https://github.com/mickem/nscp/releases
   - Documentation:
-    - About: docs/index.md
-    - Getting Started: 
-      - Getting Started: docs/getting-started/index.md
-      - NSClient++: docs/getting-started/nsclient.md
-      - NRPE: docs/getting-started/nrpe.md
-      - NSCA: docs/getting-started/nsca.md
-    - Theory: docs/theory.md
-    - Checking Things: docs/checks.md
-    - Installing NSClient++: docs/installing.md
-    - Configuration: docs/settings.md
-    - WEB UI: docs/web.md
-    - FAQ: docs/faq.md
-    - Tutorial: docs/tutorial/index.md
-    - Securing: docs/securing.md
-    - Howto:
-        - Checking things: docs/howto/checks.md
-        - Performance Counters: docs/howto/counters.md
-        - External scripts: docs/howto/external_scripts.md
-        - Running commands: docs/howto/run_commands.md
-        - NRPE: docs/howto/nrpe.md
-        - NSCA: docs/howto/nsca.md
-        - Migrate from 0.3: docs/howto/03x_migration.md
+    - Home: docs/index.md
+    - Quick Start: docs/quick-start.md
+    - Concepts:
+        - How NSClient++ Works: docs/concepts/index.md
+        - Checks In Depth: docs/concepts/checks.md
+        - Settings: docs/concepts/settings.md
+    - Setup:
+        - Installation: docs/setup/installing.md
+        - Securing NSClient++: docs/setup/securing.md
+        - Web Interface: docs/setup/web-interface.md
+    - Monitoring Scenarios:
+        - Overview: docs/scenarios/index.md
+        - Windows Server Health: docs/scenarios/windows-server-health.md
+        - Disk Space Alerting: docs/scenarios/disk-space.md
+        - Service & Process Monitoring: docs/scenarios/service-monitoring.md
+        - Event Log Monitoring: docs/scenarios/event-log.md
+        - Performance Counters (PDH): docs/scenarios/counters.md
+        - Network Checks: docs/scenarios/network-checks.md
+        - Active Monitoring with NRPE: docs/scenarios/nrpe.md
+        - Passive Monitoring (NSCA/NRDP): docs/scenarios/passive-monitoring-nsca.md
+        - Passive Monitoring (NSCA-NG): docs/scenarios/passive-monitoring-nsca-ng.md
+        - Passive Monitoring (Icinga 2): docs/scenarios/passive-monitoring-icinga.md
+        - Checkmk Agent Integration: docs/scenarios/check-mk.md
+        - Prometheus Scraping: docs/scenarios/prometheus.md
+        - External Scripts: docs/scenarios/external-scripts.md
     - Reference:
         - Reference: docs/reference/index.md
         - Check commands:
@@ -83,6 +86,7 @@ nav:
             - NSCAServer: docs/reference/client/NSCAServer.md
             - NSCAClient: docs/reference/client/NSCAClient.md
             - NRDPClient: docs/reference/client/NRDPClient.md
+            - IcingaClient: docs/reference/client/IcingaClient.md
             - SMTPClient: docs/reference/client/SMTPClient.md
             - GraphiteClient: docs/reference/client/GraphiteClient.md
             - SyslogClient: docs/reference/client/SyslogClient.md
@@ -100,6 +104,7 @@ nav:
         - Overview: docs/extending/index.md
         - Python Scripts: docs/extending/python.md
         - Zip Modules: docs/extending/zip-modules.md
+        - Plugin API Reference: docs/extending/plugin-api.md
     - API:
         - REST:
             - Introduction: docs/api/rest/index.md
@@ -109,9 +114,7 @@ nav:
             - Scripts: docs/api/rest/scripts.md
             - Logs: docs/api/rest/logs.md
             - Legacy API: docs/api/rest/legacy.md
-        - Common API: docs/api/common.md
-        - Plugin API: docs/api/plugin.md
-        - Metrics API: docs/api/metrics.md
+    - FAQ: docs/faq.md
 
 
   - Forums: https://github.com/mickem/nscp/discussions

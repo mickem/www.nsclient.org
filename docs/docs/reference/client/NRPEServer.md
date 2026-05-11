@@ -47,6 +47,7 @@ Default values used in other config sections.
 | [socket queue size](#listen-queue)                  | 0             | LISTEN QUEUE                |
 | [thread pool](#thread-pool)                         | 10            | THREAD POOL                 |
 | [timeout](#timeout)                                 | 30            | TIMEOUT                     |
+| [timezone](#timezone)                               | local         | Timezone                    |
 
 
 
@@ -59,6 +60,7 @@ inbox=inbox
 socket queue size=0
 thread pool=10
 timeout=30
+timezone=local
 
 ```
 
@@ -74,12 +76,11 @@ A comma separated list of allowed hosts. You can use netmasks (/ syntax) or * to
 
 
 
-| Key            | Description                                      |
-|----------------|--------------------------------------------------|
-| Path:          | [/settings/default](#/settings/default)          |
-| Key:           | allowed hosts                                    |
-| Default value: | `127.0.0.1`                                      |
-| Used by:       | CheckMKServer, NRPEServer, NSCAServer, WEBServer |
+| Key            | Description                             |
+|----------------|-----------------------------------------|
+| Path:          | [/settings/default](#/settings/default) |
+| Key:           | allowed hosts                           |
+| Default value: | `127.0.0.1`                             |
 
 
 **Sample:**
@@ -101,12 +102,11 @@ Allows you to bind server to a specific local address. This has to be a dotted i
 
 
 
-| Key            | Description                                      |
-|----------------|--------------------------------------------------|
-| Path:          | [/settings/default](#/settings/default)          |
-| Key:           | bind to                                          |
-| Default value: | _N/A_                                            |
-| Used by:       | CheckMKServer, NRPEServer, NSCAServer, WEBServer |
+| Key            | Description                             |
+|----------------|-----------------------------------------|
+| Path:          | [/settings/default](#/settings/default) |
+| Key:           | bind to                                 |
+| Default value: | _N/A_                                   |
 
 
 **Sample:**
@@ -127,12 +127,11 @@ If host names (DNS entries) should be cached, improves speed and security somewh
 
 
 
-| Key            | Description                                      |
-|----------------|--------------------------------------------------|
-| Path:          | [/settings/default](#/settings/default)          |
-| Key:           | cache allowed hosts                              |
-| Default value: | `true`                                           |
-| Used by:       | CheckMKServer, NRPEServer, NSCAServer, WEBServer |
+| Key            | Description                             |
+|----------------|-----------------------------------------|
+| Path:          | [/settings/default](#/settings/default) |
+| Key:           | cache allowed hosts                     |
+| Default value: | `true`                                  |
 
 
 **Sample:**
@@ -154,13 +153,12 @@ cache allowed hosts=true
 
 
 
-| Key            | Description                                      |
-|----------------|--------------------------------------------------|
-| Path:          | [/settings/default](#/settings/default)          |
-| Key:           | encoding                                         |
-| Advanced:      | Yes (means it is not commonly used)              |
-| Default value: | _N/A_                                            |
-| Used by:       | CheckMKServer, NRPEServer, NSCAServer, WEBServer |
+| Key            | Description                             |
+|----------------|-----------------------------------------|
+| Path:          | [/settings/default](#/settings/default) |
+| Key:           | encoding                                |
+| Advanced:      | Yes (means it is not commonly used)     |
+| Default value: | _N/A_                                   |
 
 
 **Sample:**
@@ -181,12 +179,11 @@ The default channel to post incoming messages on
 
 
 
-| Key            | Description                                      |
-|----------------|--------------------------------------------------|
-| Path:          | [/settings/default](#/settings/default)          |
-| Key:           | inbox                                            |
-| Default value: | `inbox`                                          |
-| Used by:       | CheckMKServer, NRPEServer, NSCAServer, WEBServer |
+| Key            | Description                             |
+|----------------|-----------------------------------------|
+| Path:          | [/settings/default](#/settings/default) |
+| Key:           | inbox                                   |
+| Default value: | `inbox`                                 |
 
 
 **Sample:**
@@ -208,12 +205,11 @@ Password used to authenticate against server
 
 
 
-| Key            | Description                                      |
-|----------------|--------------------------------------------------|
-| Path:          | [/settings/default](#/settings/default)          |
-| Key:           | password                                         |
-| Default value: | _N/A_                                            |
-| Used by:       | CheckMKServer, NRPEServer, NSCAServer, WEBServer |
+| Key            | Description                             |
+|----------------|-----------------------------------------|
+| Path:          | [/settings/default](#/settings/default) |
+| Key:           | password                                |
+| Default value: | _N/A_                                   |
 
 
 **Sample:**
@@ -234,13 +230,12 @@ Number of sockets to queue before starting to refuse new incoming connections. T
 
 
 
-| Key            | Description                                      |
-|----------------|--------------------------------------------------|
-| Path:          | [/settings/default](#/settings/default)          |
-| Key:           | socket queue size                                |
-| Advanced:      | Yes (means it is not commonly used)              |
-| Default value: | `0`                                              |
-| Used by:       | CheckMKServer, NRPEServer, NSCAServer, WEBServer |
+| Key            | Description                             |
+|----------------|-----------------------------------------|
+| Path:          | [/settings/default](#/settings/default) |
+| Key:           | socket queue size                       |
+| Advanced:      | Yes (means it is not commonly used)     |
+| Default value: | `0`                                     |
 
 
 **Sample:**
@@ -261,13 +256,12 @@ socket queue size=0
 
 
 
-| Key            | Description                                      |
-|----------------|--------------------------------------------------|
-| Path:          | [/settings/default](#/settings/default)          |
-| Key:           | thread pool                                      |
-| Advanced:      | Yes (means it is not commonly used)              |
-| Default value: | `10`                                             |
-| Used by:       | CheckMKServer, NRPEServer, NSCAServer, WEBServer |
+| Key            | Description                             |
+|----------------|-----------------------------------------|
+| Path:          | [/settings/default](#/settings/default) |
+| Key:           | thread pool                             |
+| Advanced:      | Yes (means it is not commonly used)     |
+| Default value: | `10`                                    |
 
 
 **Sample:**
@@ -288,12 +282,11 @@ Timeout (in seconds) when reading packets on incoming sockets. If the data has n
 
 
 
-| Key            | Description                                      |
-|----------------|--------------------------------------------------|
-| Path:          | [/settings/default](#/settings/default)          |
-| Key:           | timeout                                          |
-| Default value: | `30`                                             |
-| Used by:       | CheckMKServer, NRPEServer, NSCAServer, WEBServer |
+| Key            | Description                             |
+|----------------|-----------------------------------------|
+| Path:          | [/settings/default](#/settings/default) |
+| Key:           | timeout                                 |
+| Default value: | `30`                                    |
 
 
 **Sample:**
@@ -302,6 +295,32 @@ Timeout (in seconds) when reading packets on incoming sockets. If the data has n
 [/settings/default]
 # TIMEOUT
 timeout=30
+```
+
+
+
+#### Timezone <a id="/settings/default/timezone"></a>
+
+Timezone used to render dates such as boot time. Accepts 'local' (default), 'utc', or any POSIX TZ string parseable by Boost.Date_time (e.g. 'MST-07' or 'EST-05EDT,M3.2.0,M11.1.0').
+
+
+
+
+
+| Key            | Description                             |
+|----------------|-----------------------------------------|
+| Path:          | [/settings/default](#/settings/default) |
+| Key:           | timezone                                |
+| Advanced:      | Yes (means it is not commonly used)     |
+| Default value: | `local`                                 |
+
+
+**Sample:**
+
+```
+[/settings/default]
+# Timezone
+timezone=local
 ```
 
 
@@ -386,7 +405,6 @@ This option determines whether or not the we will allow clients to specify argum
 | Path:          | [/settings/NRPE/server](#/settings/NRPE/server) |
 | Key:           | allow arguments                                 |
 | Default value: | `false`                                         |
-| Used by:       | NRPEServer                                      |
 
 
 **Sample:**
@@ -412,7 +430,6 @@ This option determines whether or not the we will allow clients to specify nasty
 | Path:          | [/settings/NRPE/server](#/settings/NRPE/server) |
 | Key:           | allow nasty characters                          |
 | Default value: | `false`                                         |
-| Used by:       | NRPEServer                                      |
 
 
 **Sample:**
@@ -440,7 +457,6 @@ The default here will differ is used in "insecure" mode or not. check_nrpe uses 
 | Key:           | allowed ciphers                                 |
 | Advanced:      | Yes (means it is not commonly used)             |
 | Default value: | `ALL:!ADH:!LOW:!EXP:!MD5:@STRENGTH`             |
-| Used by:       | NRPEServer                                      |
 
 
 **Sample:**
@@ -466,7 +482,6 @@ A comma separated list of allowed hosts. You can use netmasks (/ syntax) or * to
 | Path:          | [/settings/NRPE/server](#/settings/NRPE/server) |
 | Key:           | allowed hosts                                   |
 | Default value: | `127.0.0.1`                                     |
-| Used by:       | NRPEServer                                      |
 
 
 **Sample:**
@@ -493,7 +508,6 @@ Allows you to bind server to a specific local address. This has to be a dotted i
 | Path:          | [/settings/NRPE/server](#/settings/NRPE/server) |
 | Key:           | bind to                                         |
 | Default value: | _N/A_                                           |
-| Used by:       | NRPEServer                                      |
 
 
 **Sample:**
@@ -520,7 +534,6 @@ bind to=
 | Key:           | ca                                              |
 | Advanced:      | Yes (means it is not commonly used)             |
 | Default value: | `${certificate-path}/ca.pem`                    |
-| Used by:       | NRPEServer                                      |
 
 
 **Sample:**
@@ -546,7 +559,6 @@ If host names (DNS entries) should be cached, improves speed and security somewh
 | Path:          | [/settings/NRPE/server](#/settings/NRPE/server) |
 | Key:           | cache allowed hosts                             |
 | Default value: | `true`                                          |
-| Used by:       | NRPEServer                                      |
 
 
 **Sample:**
@@ -573,7 +585,6 @@ cache allowed hosts=true
 | Key:           | certificate                                     |
 | Advanced:      | Yes (means it is not commonly used)             |
 | Default value: | `${certificate-path}/certificate.pem`           |
-| Used by:       | NRPEServer                                      |
 
 
 **Sample:**
@@ -600,7 +611,6 @@ certificate=${certificate-path}/certificate.pem
 | Key:           | certificate format                              |
 | Advanced:      | Yes (means it is not commonly used)             |
 | Default value: | `PEM`                                           |
-| Used by:       | NRPEServer                                      |
 
 
 **Sample:**
@@ -628,7 +638,6 @@ certificate format=PEM
 | Key:           | certificate key                                 |
 | Advanced:      | Yes (means it is not commonly used)             |
 | Default value: | _N/A_                                           |
-| Used by:       | NRPEServer                                      |
 
 
 **Sample:**
@@ -655,7 +664,6 @@ Set this to tru to output certificate verification errors, these are outputed to
 | Key:           | debug verify                                    |
 | Advanced:      | Yes (means it is not commonly used)             |
 | Default value: | `false`                                         |
-| Used by:       | NRPEServer                                      |
 
 
 **Sample:**
@@ -682,7 +690,6 @@ debug verify=false
 | Key:           | dh                                              |
 | Advanced:      | Yes (means it is not commonly used)             |
 | Default value: | `${certificate-path}/nrpe_dh_2048.pem`          |
-| Used by:       | NRPEServer                                      |
 
 
 **Sample:**
@@ -710,7 +717,6 @@ dh=${certificate-path}/nrpe_dh_2048.pem
 | Key:           | encoding                                        |
 | Advanced:      | Yes (means it is not commonly used)             |
 | Default value: | _N/A_                                           |
-| Used by:       | NRPEServer                                      |
 
 
 **Sample:**
@@ -736,7 +742,6 @@ Send more then 1 return packet to allow response to go beyond payload size (requ
 | Path:          | [/settings/NRPE/server](#/settings/NRPE/server) |
 | Key:           | extended response                               |
 | Default value: | `true`                                          |
-| Used by:       | NRPEServer                                      |
 
 
 **Sample:**
@@ -762,7 +767,6 @@ Only enable this if you are using legacy check_nrpe client.
 | Path:          | [/settings/NRPE/server](#/settings/NRPE/server) |
 | Key:           | insecure                                        |
 | Default value: | `false`                                         |
-| Used by:       | NRPEServer                                      |
 
 
 **Sample:**
@@ -789,7 +793,6 @@ Length of payload to/from the NRPE agent. This is a hard specific value so you h
 | Key:           | payload length                                  |
 | Advanced:      | Yes (means it is not commonly used)             |
 | Default value: | `1024`                                          |
-| Used by:       | NRPEServer                                      |
 
 
 **Sample:**
@@ -816,7 +819,6 @@ Send performance data back to nagios (set this to 0 to remove all performance da
 | Key:           | performance data                                |
 | Advanced:      | Yes (means it is not commonly used)             |
 | Default value: | `true`                                          |
-| Used by:       | NRPEServer                                      |
 
 
 **Sample:**
@@ -842,7 +844,6 @@ Port to use for NRPE.
 | Path:          | [/settings/NRPE/server](#/settings/NRPE/server) |
 | Key:           | port                                            |
 | Default value: | `5666`                                          |
-| Used by:       | NRPEServer                                      |
 
 
 **Sample:**
@@ -869,7 +870,6 @@ Number of sockets to queue before starting to refuse new incoming connections. T
 | Key:           | socket queue size                               |
 | Advanced:      | Yes (means it is not commonly used)             |
 | Default value: | `0`                                             |
-| Used by:       | NRPEServer                                      |
 
 
 **Sample:**
@@ -909,7 +909,6 @@ single-dh-use	Always create a new key when using temporary/ephemeral DH paramete
 | Key:           | ssl options                                     |
 | Advanced:      | Yes (means it is not commonly used)             |
 | Default value: | _N/A_                                           |
-| Used by:       | NRPEServer                                      |
 
 
 **Sample:**
@@ -936,7 +935,6 @@ ssl options=
 | Key:           | thread pool                                     |
 | Advanced:      | Yes (means it is not commonly used)             |
 | Default value: | `10`                                            |
-| Used by:       | NRPEServer                                      |
 
 
 **Sample:**
@@ -962,7 +960,6 @@ Timeout (in seconds) when reading packets on incoming sockets. If the data has n
 | Path:          | [/settings/NRPE/server](#/settings/NRPE/server) |
 | Key:           | timeout                                         |
 | Default value: | `30`                                            |
-| Used by:       | NRPEServer                                      |
 
 
 **Sample:**
@@ -989,7 +986,6 @@ Valid options are tlsv1.3, tlsv1.2, tlsv1.1, tlsv1.0, sslv3 as well as tlsv1.3+,
 | Key:           | tls version                                     |
 | Advanced:      | Yes (means it is not commonly used)             |
 | Default value: | `tlsv1.2+`                                      |
-| Used by:       | NRPEServer                                      |
 
 
 **Sample:**
@@ -1015,7 +1011,6 @@ This option controls if SSL should be enabled.
 | Path:          | [/settings/NRPE/server](#/settings/NRPE/server) |
 | Key:           | use ssl                                         |
 | Default value: | `true`                                          |
-| Used by:       | NRPEServer                                      |
 
 
 **Sample:**
@@ -1053,7 +1048,6 @@ client-once	Only request a client certificate on the initial TLS/SSL handshake. 
 | Key:           | verify mode                                     |
 | Advanced:      | Yes (means it is not commonly used)             |
 | Default value: | `none`                                          |
-| Used by:       | NRPEServer                                      |
 
 
 **Sample:**

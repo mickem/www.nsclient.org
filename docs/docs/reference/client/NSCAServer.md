@@ -45,6 +45,7 @@ Default values used in other config sections.
 | [socket queue size](#listen-queue)                  | 0             | LISTEN QUEUE                |
 | [thread pool](#thread-pool)                         | 10            | THREAD POOL                 |
 | [timeout](#timeout)                                 | 30            | TIMEOUT                     |
+| [timezone](#timezone)                               | local         | Timezone                    |
 
 
 
@@ -57,6 +58,7 @@ inbox=inbox
 socket queue size=0
 thread pool=10
 timeout=30
+timezone=local
 
 ```
 
@@ -72,12 +74,11 @@ A comma separated list of allowed hosts. You can use netmasks (/ syntax) or * to
 
 
 
-| Key            | Description                                      |
-|----------------|--------------------------------------------------|
-| Path:          | [/settings/default](#/settings/default)          |
-| Key:           | allowed hosts                                    |
-| Default value: | `127.0.0.1`                                      |
-| Used by:       | CheckMKServer, NRPEServer, NSCAServer, WEBServer |
+| Key            | Description                             |
+|----------------|-----------------------------------------|
+| Path:          | [/settings/default](#/settings/default) |
+| Key:           | allowed hosts                           |
+| Default value: | `127.0.0.1`                             |
 
 
 **Sample:**
@@ -99,12 +100,11 @@ Allows you to bind server to a specific local address. This has to be a dotted i
 
 
 
-| Key            | Description                                      |
-|----------------|--------------------------------------------------|
-| Path:          | [/settings/default](#/settings/default)          |
-| Key:           | bind to                                          |
-| Default value: | _N/A_                                            |
-| Used by:       | CheckMKServer, NRPEServer, NSCAServer, WEBServer |
+| Key            | Description                             |
+|----------------|-----------------------------------------|
+| Path:          | [/settings/default](#/settings/default) |
+| Key:           | bind to                                 |
+| Default value: | _N/A_                                   |
 
 
 **Sample:**
@@ -125,12 +125,11 @@ If host names (DNS entries) should be cached, improves speed and security somewh
 
 
 
-| Key            | Description                                      |
-|----------------|--------------------------------------------------|
-| Path:          | [/settings/default](#/settings/default)          |
-| Key:           | cache allowed hosts                              |
-| Default value: | `true`                                           |
-| Used by:       | CheckMKServer, NRPEServer, NSCAServer, WEBServer |
+| Key            | Description                             |
+|----------------|-----------------------------------------|
+| Path:          | [/settings/default](#/settings/default) |
+| Key:           | cache allowed hosts                     |
+| Default value: | `true`                                  |
 
 
 **Sample:**
@@ -152,13 +151,12 @@ cache allowed hosts=true
 
 
 
-| Key            | Description                                      |
-|----------------|--------------------------------------------------|
-| Path:          | [/settings/default](#/settings/default)          |
-| Key:           | encoding                                         |
-| Advanced:      | Yes (means it is not commonly used)              |
-| Default value: | _N/A_                                            |
-| Used by:       | CheckMKServer, NRPEServer, NSCAServer, WEBServer |
+| Key            | Description                             |
+|----------------|-----------------------------------------|
+| Path:          | [/settings/default](#/settings/default) |
+| Key:           | encoding                                |
+| Advanced:      | Yes (means it is not commonly used)     |
+| Default value: | _N/A_                                   |
 
 
 **Sample:**
@@ -179,12 +177,11 @@ The default channel to post incoming messages on
 
 
 
-| Key            | Description                                      |
-|----------------|--------------------------------------------------|
-| Path:          | [/settings/default](#/settings/default)          |
-| Key:           | inbox                                            |
-| Default value: | `inbox`                                          |
-| Used by:       | CheckMKServer, NRPEServer, NSCAServer, WEBServer |
+| Key            | Description                             |
+|----------------|-----------------------------------------|
+| Path:          | [/settings/default](#/settings/default) |
+| Key:           | inbox                                   |
+| Default value: | `inbox`                                 |
 
 
 **Sample:**
@@ -206,12 +203,11 @@ Password used to authenticate against server
 
 
 
-| Key            | Description                                      |
-|----------------|--------------------------------------------------|
-| Path:          | [/settings/default](#/settings/default)          |
-| Key:           | password                                         |
-| Default value: | _N/A_                                            |
-| Used by:       | CheckMKServer, NRPEServer, NSCAServer, WEBServer |
+| Key            | Description                             |
+|----------------|-----------------------------------------|
+| Path:          | [/settings/default](#/settings/default) |
+| Key:           | password                                |
+| Default value: | _N/A_                                   |
 
 
 **Sample:**
@@ -232,13 +228,12 @@ Number of sockets to queue before starting to refuse new incoming connections. T
 
 
 
-| Key            | Description                                      |
-|----------------|--------------------------------------------------|
-| Path:          | [/settings/default](#/settings/default)          |
-| Key:           | socket queue size                                |
-| Advanced:      | Yes (means it is not commonly used)              |
-| Default value: | `0`                                              |
-| Used by:       | CheckMKServer, NRPEServer, NSCAServer, WEBServer |
+| Key            | Description                             |
+|----------------|-----------------------------------------|
+| Path:          | [/settings/default](#/settings/default) |
+| Key:           | socket queue size                       |
+| Advanced:      | Yes (means it is not commonly used)     |
+| Default value: | `0`                                     |
 
 
 **Sample:**
@@ -259,13 +254,12 @@ socket queue size=0
 
 
 
-| Key            | Description                                      |
-|----------------|--------------------------------------------------|
-| Path:          | [/settings/default](#/settings/default)          |
-| Key:           | thread pool                                      |
-| Advanced:      | Yes (means it is not commonly used)              |
-| Default value: | `10`                                             |
-| Used by:       | CheckMKServer, NRPEServer, NSCAServer, WEBServer |
+| Key            | Description                             |
+|----------------|-----------------------------------------|
+| Path:          | [/settings/default](#/settings/default) |
+| Key:           | thread pool                             |
+| Advanced:      | Yes (means it is not commonly used)     |
+| Default value: | `10`                                    |
 
 
 **Sample:**
@@ -286,12 +280,11 @@ Timeout (in seconds) when reading packets on incoming sockets. If the data has n
 
 
 
-| Key            | Description                                      |
-|----------------|--------------------------------------------------|
-| Path:          | [/settings/default](#/settings/default)          |
-| Key:           | timeout                                          |
-| Default value: | `30`                                             |
-| Used by:       | CheckMKServer, NRPEServer, NSCAServer, WEBServer |
+| Key            | Description                             |
+|----------------|-----------------------------------------|
+| Path:          | [/settings/default](#/settings/default) |
+| Key:           | timeout                                 |
+| Default value: | `30`                                    |
 
 
 **Sample:**
@@ -300,6 +293,32 @@ Timeout (in seconds) when reading packets on incoming sockets. If the data has n
 [/settings/default]
 # TIMEOUT
 timeout=30
+```
+
+
+
+#### Timezone <a id="/settings/default/timezone"></a>
+
+Timezone used to render dates such as boot time. Accepts 'local' (default), 'utc', or any POSIX TZ string parseable by Boost.Date_time (e.g. 'MST-07' or 'EST-05EDT,M3.2.0,M11.1.0').
+
+
+
+
+
+| Key            | Description                             |
+|----------------|-----------------------------------------|
+| Path:          | [/settings/default](#/settings/default) |
+| Key:           | timezone                                |
+| Advanced:      | Yes (means it is not commonly used)     |
+| Default value: | `local`                                 |
+
+
+**Sample:**
+
+```
+[/settings/default]
+# Timezone
+timezone=local
 ```
 
 
@@ -332,6 +351,7 @@ Section for NSCA (NSCAServer) (check_nsca) protocol options.
 | [ssl options](#verify-mode)                          |                                     | VERIFY MODE                         |
 | [thread pool](#thread-pool)                          | 10                                  | THREAD POOL                         |
 | [timeout](#timeout)                                  | 30                                  | TIMEOUT                             |
+| [timezone](#timezone)                                | utc                                 | TIMEZONE                            |
 | [tls version](#tls-version-to-use)                   | tlsv1.2+                            | TLS version to use                  |
 | [use ssl](#enable-ssl-encryption)                    | false                               | ENABLE SSL ENCRYPTION               |
 | [verify mode](#verify-mode)                          | none                                | VERIFY MODE                         |
@@ -356,6 +376,7 @@ port=5667
 socket queue size=0
 thread pool=10
 timeout=30
+timezone=utc
 tls version=tlsv1.2+
 use ssl=false
 verify mode=none
@@ -381,7 +402,6 @@ The default here will differ is used in "insecure" mode or not. check_nrpe uses 
 | Key:           | allowed ciphers                                 |
 | Advanced:      | Yes (means it is not commonly used)             |
 | Default value: | `ALL:!ADH:!LOW:!EXP:!MD5:@STRENGTH`             |
-| Used by:       | NSCAServer                                      |
 
 
 **Sample:**
@@ -407,7 +427,6 @@ A comma separated list of allowed hosts. You can use netmasks (/ syntax) or * to
 | Path:          | [/settings/NSCA/server](#/settings/NSCA/server) |
 | Key:           | allowed hosts                                   |
 | Default value: | `127.0.0.1`                                     |
-| Used by:       | NSCAServer                                      |
 
 
 **Sample:**
@@ -434,7 +453,6 @@ Allows you to bind server to a specific local address. This has to be a dotted i
 | Path:          | [/settings/NSCA/server](#/settings/NSCA/server) |
 | Key:           | bind to                                         |
 | Default value: | _N/A_                                           |
-| Used by:       | NSCAServer                                      |
 
 
 **Sample:**
@@ -461,7 +479,6 @@ bind to=
 | Key:           | ca                                              |
 | Advanced:      | Yes (means it is not commonly used)             |
 | Default value: | `${certificate-path}/ca.pem`                    |
-| Used by:       | NSCAServer                                      |
 
 
 **Sample:**
@@ -487,7 +504,6 @@ If host names (DNS entries) should be cached, improves speed and security somewh
 | Path:          | [/settings/NSCA/server](#/settings/NSCA/server) |
 | Key:           | cache allowed hosts                             |
 | Default value: | `true`                                          |
-| Used by:       | NSCAServer                                      |
 
 
 **Sample:**
@@ -514,7 +530,6 @@ cache allowed hosts=true
 | Key:           | certificate                                     |
 | Advanced:      | Yes (means it is not commonly used)             |
 | Default value: | `${certificate-path}/certificate.pem`           |
-| Used by:       | NSCAServer                                      |
 
 
 **Sample:**
@@ -541,7 +556,6 @@ certificate=${certificate-path}/certificate.pem
 | Key:           | certificate format                              |
 | Advanced:      | Yes (means it is not commonly used)             |
 | Default value: | `PEM`                                           |
-| Used by:       | NSCAServer                                      |
 
 
 **Sample:**
@@ -569,7 +583,6 @@ certificate format=PEM
 | Key:           | certificate key                                 |
 | Advanced:      | Yes (means it is not commonly used)             |
 | Default value: | _N/A_                                           |
-| Used by:       | NSCAServer                                      |
 
 
 **Sample:**
@@ -596,7 +609,6 @@ Set this to tru to output certificate verification errors, these are outputed to
 | Key:           | debug verify                                    |
 | Advanced:      | Yes (means it is not commonly used)             |
 | Default value: | `false`                                         |
-| Used by:       | NSCAServer                                      |
 
 
 **Sample:**
@@ -624,7 +636,6 @@ debug verify=false
 | Key:           | dh                                              |
 | Advanced:      | Yes (means it is not commonly used)             |
 | Default value: | _N/A_                                           |
-| Used by:       | NSCAServer                                      |
 
 
 **Sample:**
@@ -666,7 +677,6 @@ gost = GOST
 | Path:          | [/settings/NSCA/server](#/settings/NSCA/server) |
 | Key:           | encryption                                      |
 | Default value: | `aes256`                                        |
-| Used by:       | NSCAServer                                      |
 
 
 **Sample:**
@@ -692,7 +702,6 @@ The default channel to post incoming messages on
 | Path:          | [/settings/NSCA/server](#/settings/NSCA/server) |
 | Key:           | inbox                                           |
 | Default value: | `inbox`                                         |
-| Used by:       | NSCAServer                                      |
 
 
 **Sample:**
@@ -719,7 +728,6 @@ Password used to authenticate against server
 | Path:          | [/settings/NSCA/server](#/settings/NSCA/server) |
 | Key:           | password                                        |
 | Default value: | _N/A_                                           |
-| Used by:       | NSCAServer                                      |
 
 
 **Sample:**
@@ -745,7 +753,6 @@ Length of payload to/from the NSCA agent. This is a hard specific value so you h
 | Path:          | [/settings/NSCA/server](#/settings/NSCA/server) |
 | Key:           | payload length                                  |
 | Default value: | `512`                                           |
-| Used by:       | NSCAServer                                      |
 
 
 **Sample:**
@@ -771,7 +778,6 @@ Send performance data back to nagios (set this to false to remove all performanc
 | Path:          | [/settings/NSCA/server](#/settings/NSCA/server) |
 | Key:           | performance data                                |
 | Default value: | `true`                                          |
-| Used by:       | NSCAServer                                      |
 
 
 **Sample:**
@@ -797,7 +803,6 @@ Port to use for NSCA.
 | Path:          | [/settings/NSCA/server](#/settings/NSCA/server) |
 | Key:           | port                                            |
 | Default value: | `5667`                                          |
-| Used by:       | NSCAServer                                      |
 
 
 **Sample:**
@@ -824,7 +829,6 @@ Number of sockets to queue before starting to refuse new incoming connections. T
 | Key:           | socket queue size                               |
 | Advanced:      | Yes (means it is not commonly used)             |
 | Default value: | `0`                                             |
-| Used by:       | NSCAServer                                      |
 
 
 **Sample:**
@@ -864,7 +868,6 @@ single-dh-use	Always create a new key when using temporary/ephemeral DH paramete
 | Key:           | ssl options                                     |
 | Advanced:      | Yes (means it is not commonly used)             |
 | Default value: | _N/A_                                           |
-| Used by:       | NSCAServer                                      |
 
 
 **Sample:**
@@ -891,7 +894,6 @@ ssl options=
 | Key:           | thread pool                                     |
 | Advanced:      | Yes (means it is not commonly used)             |
 | Default value: | `10`                                            |
-| Used by:       | NSCAServer                                      |
 
 
 **Sample:**
@@ -917,7 +919,6 @@ Timeout (in seconds) when reading packets on incoming sockets. If the data has n
 | Path:          | [/settings/NSCA/server](#/settings/NSCA/server) |
 | Key:           | timeout                                         |
 | Default value: | `30`                                            |
-| Used by:       | NSCAServer                                      |
 
 
 **Sample:**
@@ -926,6 +927,31 @@ Timeout (in seconds) when reading packets on incoming sockets. If the data has n
 [/settings/NSCA/server]
 # TIMEOUT
 timeout=30
+```
+
+
+
+#### TIMEZONE <a id="/settings/NSCA/server/timezone"></a>
+
+Reference timezone for the wire timestamp emitted in the IV packet and used by the replay-window check. The protocol specification calls for UTC (default). Set to 'local' (or any POSIX TZ string) only when interoperating with a legacy agent that wrote local-clock-as-Unix-time into the wire field. Both ends must agree on the value.
+
+
+
+
+
+| Key            | Description                                     |
+|----------------|-------------------------------------------------|
+| Path:          | [/settings/NSCA/server](#/settings/NSCA/server) |
+| Key:           | timezone                                        |
+| Default value: | `utc`                                           |
+
+
+**Sample:**
+
+```
+[/settings/NSCA/server]
+# TIMEZONE
+timezone=utc
 ```
 
 
@@ -944,7 +970,6 @@ Valid options are tlsv1.3, tlsv1.2, tlsv1.1, tlsv1.0, sslv3 as well as tlsv1.3+,
 | Key:           | tls version                                     |
 | Advanced:      | Yes (means it is not commonly used)             |
 | Default value: | `tlsv1.2+`                                      |
-| Used by:       | NSCAServer                                      |
 
 
 **Sample:**
@@ -970,7 +995,6 @@ This option controls if SSL should be enabled.
 | Path:          | [/settings/NSCA/server](#/settings/NSCA/server) |
 | Key:           | use ssl                                         |
 | Default value: | `false`                                         |
-| Used by:       | NSCAServer                                      |
 
 
 **Sample:**
@@ -1008,7 +1032,6 @@ client-once	Only request a client certificate on the initial TLS/SSL handshake. 
 | Key:           | verify mode                                     |
 | Advanced:      | Yes (means it is not commonly used)             |
 | Default value: | `none`                                          |
-| Used by:       | NSCAServer                                      |
 
 
 **Sample:**

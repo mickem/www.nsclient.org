@@ -72,6 +72,8 @@ Submit information to the remote NRDP Server.
 <a id="submit_nrdp_verify-mode"></a>
 <a id="submit_nrdp_verify mode"></a>
 <a id="submit_nrdp_ca"></a>
+<a id="submit_nrdp_proxy"></a>
+<a id="submit_nrdp_no-proxy"></a>
 <a id="submit_nrdp_options"></a>
 #### Command-line Arguments
 
@@ -108,6 +110,8 @@ Submit information to the remote NRDP Server.
 | verify-mode  |               | Alias for --verify.                                                                                                                                                    |
 | verify mode  |               | Legacy alias for --verify (kept for backwards compatibility).                                                                                                          |
 | ca           |               | Certificate authority to use when verifying certificates.                                                                                                              |
+| proxy        |               | HTTP proxy URL to route requests through (e.g. http://user:pass@proxy:3128/).                                                                                          |
+| no-proxy     |               | Comma-separated list of hostnames that bypass the proxy.                                                                                                               |
 
 
 
@@ -165,7 +169,6 @@ The channel to listen to.
 | Path:          | [/settings/NRDP/client](#/settings/NRDP/client) |
 | Key:           | channel                                         |
 | Default value: | `NRDP`                                          |
-| Used by:       | NRDPClient                                      |
 
 
 **Sample:**
@@ -202,7 +205,6 @@ ${domain_uc}	Domainname in uppercase
 | Path:          | [/settings/NRDP/client](#/settings/NRDP/client) |
 | Key:           | hostname                                        |
 | Default value: | `auto`                                          |
-| Used by:       | NRDPClient                                      |
 
 
 **Sample:**
@@ -240,16 +242,18 @@ This is a section of objects. This means that you will create objects below this
 | Key         | Default Value | Description           |
 |-------------|---------------|-----------------------|
 | address     |               | TARGET ADDRESS        |
-| ca          |               | Certificate Authority |
+| ca          | ${ca-path}    | Certificate Authority |
 | host        |               | TARGET HOST           |
 | key         |               | SECURITY TOKEN        |
+| no proxy    |               | No-proxy list         |
 | password    |               | SECURITY TOKEN        |
 | port        |               | TARGET PORT           |
+| proxy       |               | HTTP proxy URL        |
 | retries     | 3             | RETRIES               |
 | timeout     | 30            | TIMEOUT               |
-| tls version |               | Tls version           |
+| tls version | 1.3           | Tls version           |
 | token       |               | SECURITY TOKEN        |
-| verify mode |               | TLS peer verify mode  |
+| verify mode | peer          | TLS peer verify mode  |
 
 
 **Sample:**
@@ -258,16 +262,18 @@ This is a section of objects. This means that you will create objects below this
 # An example of a REMOTE TARGET DEFINITIONS section
 [/settings/NRDP/client/targets/sample]
 #address=...
-#ca=...
+ca=${ca-path}
 #host=...
 #key=...
+#no proxy=...
 #password=...
 #port=...
+#proxy=...
 retries=3
 timeout=30
-#tls version=...
+tls version=1.3
 #token=...
-#verify mode=...
+verify mode=peer
 
 ```
 

@@ -36,6 +36,8 @@ A list of all available queries (check commands)
 | [check_process](#check_process)                         | Check state/metrics of one or more of the processes running on the computer.                                                                     |
 | [check_process_history](#check_process_history)         | Check the history of processes that have been running since NSClient++ started. Useful for verifying if certain applications have been executed. |
 | [check_process_history_new](#check_process_history_new) | Check for new processes that appeared within a specified time window. Useful for detecting unexpected or unauthorized applications.              |
+| [check_registry_key](#check_registry_key)               | Check existence, last-write time, and child counts of one or more Windows registry keys.                                                         |
+| [check_registry_value](#check_registry_value)           | Check the type, content, and size of one or more Windows registry values.                                                                        |
 | [check_service](#check_service)                         | Check the state of one or more of the computer services.                                                                                         |
 | [check_temperature](#check_temperature)                 | Check ACPI thermal zone temperatures.                                                                                                            |
 | [check_uptime](#check_uptime)                           | Check time since last server re-boot.                                                                                                            |
@@ -1059,6 +1061,46 @@ This is the syntax for the base names of the performance data.
 ### check_os_updates
 
 Check for available Windows updates via the Windows Update Agent (WUA) API.
+
+#### Checking for Windows Updates
+
+The `check_os_updates` command allows you to monitor for missing Windows updates via the Windows Update Agent (WUA) API. You can filter the results based on severity, reboot requirements, and other attributes. 
+
+**Basic usage**
+
+To simply check if there are any pending updates:
+
+```
+check_os_updates
+```
+
+If there are any pending updates, this will return a warning state by default (because the default `warning` filter is `count > 0`).
+
+**Checking for critical updates**
+
+Often, you only want to be alerted if there are *security* or *critical* updates missing. You can configure this using the `warning` and `critical` filters:
+
+```
+check_os_updates "warning=important > 0" "critical=security > 0 or critical > 0"
+```
+
+This will return `WARNING` if there are updates with the 'Important' severity, and `CRITICAL` if there are any security updates or updates explicitly marked 'Critical'.
+
+**Checking if a reboot is required**
+
+If you want to know if the system needs a reboot after installing updates:
+
+```
+check_os_updates "warning=reboot_required > 0"
+```
+
+**Customizing the output**
+
+You can use the syntax options to format the output string:
+
+```
+check_os_updates "top-syntax=${status}: Found ${count} missing updates. Security: ${security}, Critical: ${critical}" "detail-syntax=${titles}" show-all
+```
 
 
 **Jump to section:**
@@ -2472,6 +2514,558 @@ Time window to check for new processes (e.g., 5m, 1h, 30s). Processes first seen
 | warn_list     | A list of all items which matched the warning criteria.                        |
 
 
+### check_registry_key
+
+Check existence, last-write time, and child counts of one or more Windows registry keys.
+
+
+**Jump to section:**
+
+* [Sample Commands](#check_registry_key_samples)
+* [Command-line Arguments](#check_registry_key_options)
+* [Filter keywords](#check_registry_key_filter_keys)
+
+
+<a id="check_registry_key_samples"></a>
+#### Sample Commands
+
+_To edit these sample please edit [this page](https://github.com/mickem/nscp-docs/blob/master/samples/CheckSystem_check_registry_key_samples.md)_
+
+**Default check (single key, just verifies it exists):**
+
+```
+check_registry_key "key=HKLM\Software\Microsoft\Windows NT\CurrentVersion"
+OK: All 1 registry key(s) are ok.
+```
+
+**Key that does not exist (default `crit=not exists`):**
+
+```
+check_registry_key "key=HKLM\Software\DoesNotExist"
+CRITICAL: HKLM\Software\DoesNotExist: exists=false, subkeys=0, values=0
+```
+
+**Check several keys in one call:**
+
+```
+check_registry_key "key=HKLM\Software\Microsoft\Windows NT\CurrentVersion" "key=HKLM\Software\NSClient"
+OK: All 2 registry key(s) are ok.
+```
+
+**Wildcard / recursive enumeration of immediate sub-keys:**
+
+```
+check_registry_key "key=HKLM\Software\Microsoft\Windows NT\CurrentVersion" recursive max-depth=1 "top-syntax=%(status): %(list)" "detail-syntax=%(name) (subkeys=%(subkey_count), values=%(value_count))"
+OK: AeDebug (subkeys=1, values=2), Compatibility32 (subkeys=0, values=0), Console (subkeys=4, values=18), ...
+```
+
+**Force a 32-bit or 64-bit registry view (WoW64):**
+
+```
+check_registry_key "key=HKLM\Software\NSClient" view=64
+OK: All 1 registry key(s) are ok.
+
+check_registry_key "key=HKLM\Software\NSClient" view=32
+CRITICAL: HKLM\Software\NSClient: exists=false, subkeys=0, values=0
+```
+
+**Exclude noisy sub-keys when recursing:**
+
+```
+check_registry_key "key=HKLM\Software\Microsoft\Windows\CurrentVersion\Uninstall" recursive max-depth=1 exclude=KB5005463 exclude=KB5005539
+OK: All 248 registry key(s) are ok.
+```
+
+**Alert when a key is unexpectedly empty:**
+
+```
+check_registry_key "key=HKLM\Software\NSClient" "warn=value_count < 5" "crit=value_count = 0 or not exists"
+OK: HKLM\Software\NSClient: exists=true, subkeys=2, values=12
+```
+
+**Alert when a key has not been written for over 30 days (configuration drift watchdog):**
+
+```
+check_registry_key "key=HKLM\Software\NSClient" "warn=age > 7d" "crit=age > 30d or not exists"
+OK: HKLM\Software\NSClient: exists=true, subkeys=2, values=12
+```
+
+**Custom output text:**
+
+```
+check_registry_key "key=HKLM\Software\NSClient" "top-syntax=%(status): %(list)" "detail-syntax=%(path) last-written %(written_s)"
+OK: HKLM\Software\NSClient last-written 2026-04-15 09:12:33
+```
+
+**Remote computer / 32-bit view via NRPE:**
+
+```
+check_nscp_client --host 192.168.56.103 --command check_registry_key --argument "key=HKLM\Software\NSClient" --argument "view=64"
+OK: All 1 registry key(s) are ok.
+```
+
+
+
+<a id="check_registry_key_warn"></a>
+<a id="check_registry_key_crit"></a>
+<a id="check_registry_key_debug"></a>
+<a id="check_registry_key_show-all"></a>
+<a id="check_registry_key_escape-html"></a>
+<a id="check_registry_key_help"></a>
+<a id="check_registry_key_help-pb"></a>
+<a id="check_registry_key_show-default"></a>
+<a id="check_registry_key_help-short"></a>
+<a id="check_registry_key_key"></a>
+<a id="check_registry_key_exclude"></a>
+<a id="check_registry_key_computer"></a>
+<a id="check_registry_key_recursive"></a>
+<a id="check_registry_key_max-depth"></a>
+<a id="check_registry_key_options"></a>
+#### Command-line Arguments
+
+
+| Option                                             | Default Value                                                             | Description                                                                                                      |
+|----------------------------------------------------|---------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------|
+| [filter](#check_registry_key_filter)               |                                                                           | Filter which marks interesting items.                                                                            |
+| [warning](#check_registry_key_warning)             |                                                                           | Filter which marks items which generates a warning state.                                                        |
+| warn                                               |                                                                           | Short alias for warning                                                                                          |
+| [critical](#check_registry_key_critical)           | not exists                                                                | Filter which marks items which generates a critical state.                                                       |
+| crit                                               |                                                                           | Short alias for critical.                                                                                        |
+| [ok](#check_registry_key_ok)                       |                                                                           | Filter which marks items which generates an ok state.                                                            |
+| debug                                              | N/A                                                                       | Show debugging information in the log                                                                            |
+| show-all                                           | N/A                                                                       | Show details for all matches regardless of status (normally details are only showed for warnings and criticals). |
+| [empty-state](#check_registry_key_empty-state)     | unknown                                                                   | Return status to use when nothing matched filter.                                                                |
+| [perf-config](#check_registry_key_perf-config)     |                                                                           | Performance data generation configuration                                                                        |
+| escape-html                                        | N/A                                                                       | Escape any < and > characters to prevent HTML encoding                                                           |
+| help                                               | N/A                                                                       | Show help screen (this screen)                                                                                   |
+| help-pb                                            | N/A                                                                       | Show help screen as a protocol buffer payload                                                                    |
+| show-default                                       | N/A                                                                       | Show default values for a given command                                                                          |
+| help-short                                         | N/A                                                                       | Show help screen (short format).                                                                                 |
+| [top-syntax](#check_registry_key_top-syntax)       | ${status}: ${problem_list}                                                | Top level syntax.                                                                                                |
+| [ok-syntax](#check_registry_key_ok-syntax)         | ${status}: All %(count) registry key(s) are ok.                           | ok syntax.                                                                                                       |
+| [empty-syntax](#check_registry_key_empty-syntax)   | ${status}: No registry keys found                                         | Empty syntax.                                                                                                    |
+| [detail-syntax](#check_registry_key_detail-syntax) | ${path}: exists=${exists}, subkeys=${subkey_count}, values=${value_count} | Detail level syntax.                                                                                             |
+| [perf-syntax](#check_registry_key_perf-syntax)     | ${path}                                                                   | Performance alias syntax.                                                                                        |
+| key                                                |                                                                           | One or more registry key paths to check (e.g. HKLM\Software\MyApp).                                              |
+| exclude                                            |                                                                           | Registry key names to exclude from enumeration                                                                   |
+| computer                                           |                                                                           | Remote computer to connect to (empty = local)                                                                    |
+| [view](#check_registry_key_view)                   | default                                                                   | Registry view: 'default', '32' (KEY_WOW64_32KEY), or '64' (KEY_WOW64_64KEY)                                      |
+| recursive                                          | N/A                                                                       | Recursively enumerate all sub-keys below each starting key                                                       |
+| max-depth                                          |                                                                           | Maximum recursion depth (requires --recursive; -1 = unlimited)                                                   |
+
+
+
+<h5 id="check_registry_key_filter">filter:</h5>
+
+Filter which marks interesting items.
+Interesting items are items which will be included in the check.
+They do not denote warning or critical state instead it defines which items are relevant and you can remove unwanted items.
+
+
+<h5 id="check_registry_key_warning">warning:</h5>
+
+Filter which marks items which generates a warning state.
+If anything matches this filter the return status will be escalated to warning.
+
+
+
+<h5 id="check_registry_key_critical">critical:</h5>
+
+Filter which marks items which generates a critical state.
+If anything matches this filter the return status will be escalated to critical.
+
+
+*Default Value:* `not exists`
+
+<h5 id="check_registry_key_ok">ok:</h5>
+
+Filter which marks items which generates an ok state.
+If anything matches this any previous state for this item will be reset to ok.
+
+
+<h5 id="check_registry_key_empty-state">empty-state:</h5>
+
+Return status to use when nothing matched filter.
+If no filter is specified this will never happen unless the file is empty.
+
+*Default Value:* `unknown`
+
+<h5 id="check_registry_key_perf-config">perf-config:</h5>
+
+Performance data generation configuration
+TODO: obj ( key: value; key: value) obj (key:valuer;key:value)
+
+
+<h5 id="check_registry_key_top-syntax">top-syntax:</h5>
+
+Top level syntax.
+Used to format the message to return can include text as well as special keywords which will include information from the checks.
+To add a keyword to the message you can use two syntaxes either ${keyword} or %(keyword) (there is no difference between them apart from ${} can be difficult to escape on linux).
+
+*Default Value:* `${status}: ${problem_list}`
+
+<h5 id="check_registry_key_ok-syntax">ok-syntax:</h5>
+
+ok syntax.
+DEPRECATED! This is the syntax for when an ok result is returned.
+This value will not be used if your syntax contains %(list) or %(count).
+
+*Default Value:* `${status}: All %(count) registry key(s) are ok.`
+
+<h5 id="check_registry_key_empty-syntax">empty-syntax:</h5>
+
+Empty syntax.
+DEPRECATED! This is the syntax for when nothing matches the filter.
+
+*Default Value:* `${status}: No registry keys found`
+
+<h5 id="check_registry_key_detail-syntax">detail-syntax:</h5>
+
+Detail level syntax.
+Used to format each resulting item in the message.
+%(list) will be replaced with all the items formated by this syntax string in the top-syntax.
+To add a keyword to the message you can use two syntaxes either ${keyword} or %(keyword) (there is no difference between them apart from ${} can be difficult to escape on linux).
+
+*Default Value:* `${path}: exists=${exists}, subkeys=${subkey_count}, values=${value_count}`
+
+<h5 id="check_registry_key_perf-syntax">perf-syntax:</h5>
+
+Performance alias syntax.
+This is the syntax for the base names of the performance data.
+
+*Default Value:* `${path}`
+
+<h5 id="check_registry_key_view">view:</h5>
+
+Registry view: 'default', '32' (KEY_WOW64_32KEY), or '64' (KEY_WOW64_64KEY)
+
+*Default Value:* `default`
+
+
+<a id="check_registry_key_filter_keys"></a>
+#### Filter keywords
+
+
+| Option       | Description                                                      |
+|--------------|------------------------------------------------------------------|
+| age          | Seconds since the key was last written                           |
+| class        | Key class string (rarely set)                                    |
+| depth        | Depth below the starting key (0 = the key itself)                |
+| exists       | Whether the key exists (true/false)                              |
+| hive         | Hive abbreviation (HKLM, HKCU, HKCR, HKU, HKCC)                  |
+| name         | Leaf key name                                                    |
+| parent       | Parent key path (full, including hive)                           |
+| path         | Full registry key path including hive (e.g. HKLM\Software\MyApp) |
+| subkey_count | Number of immediate sub-keys                                     |
+| value_count  | Number of values in this key                                     |
+| written      | Last-write time (epoch seconds; supports date comparisons)       |
+| written_s    | Last-write time as a human-readable string                       |
+
+**Common options for all checks:**
+
+| Option        | Description                                                                    |
+|---------------|--------------------------------------------------------------------------------|
+| count         | Number of items matching the filter.                                           |
+| crit_count    | Number of items matched the critical criteria.                                 |
+| crit_list     | A list of all items which matched the critical criteria.                       |
+| detail_list   | A special list with critical, then warning and finally ok.                     |
+| list          | A list of all items which matched the filter.                                  |
+| ok_count      | Number of items matched the ok criteria.                                       |
+| ok_list       | A list of all items which matched the ok criteria.                             |
+| problem_count | Number of items matched either warning or critical criteria.                   |
+| problem_list  | A list of all items which matched either the critical or the warning criteria. |
+| status        | The returned status (OK/WARN/CRIT/UNKNOWN).                                    |
+| total         | Total number of items.                                                         |
+| warn_count    | Number of items matched the warning criteria.                                  |
+| warn_list     | A list of all items which matched the warning criteria.                        |
+
+
+### check_registry_value
+
+Check the type, content, and size of one or more Windows registry values.
+
+
+**Jump to section:**
+
+* [Sample Commands](#check_registry_value_samples)
+* [Command-line Arguments](#check_registry_value_options)
+* [Filter keywords](#check_registry_value_filter_keys)
+
+
+<a id="check_registry_value_samples"></a>
+#### Sample Commands
+
+_To edit these sample please edit [this page](https://github.com/mickem/nscp-docs/blob/master/samples/CheckSystem_check_registry_value_samples.md)_
+
+**Read a single value (default: enumerates all values in the key):**
+
+```
+check_registry_value "key=HKLM\Software\Microsoft\Windows NT\CurrentVersion" value=ProductName
+OK: HKLM\Software\Microsoft\Windows NT\CurrentVersion\ProductName: Windows 10 Pro (type=REG_SZ)
+```
+
+**Read multiple specific values from the same key:**
+
+```
+check_registry_value "key=HKLM\Software\Microsoft\Windows NT\CurrentVersion" value=ProductName value=CurrentBuild value=ReleaseId
+OK: All 3 registry value(s) are ok.
+```
+
+**Enumerate every value in a key:**
+
+```
+check_registry_value "key=HKLM\Software\NSClient" "top-syntax=%(status): %(list)" "detail-syntax=%(name)=%(string_value)"
+OK: ConfigFile=C:\Program Files\NSClient++\nsclient.ini, InstallVersion=0.6.0, ...
+```
+
+**Value that does not exist (default `crit=not exists`):**
+
+```
+check_registry_value "key=HKLM\Software\NSClient" value=NoSuchValue
+CRITICAL: HKLM\Software\NSClient\NoSuchValue: (type=REG_NONE)
+```
+
+**Type assertion (alert if a value isn't the expected type):**
+
+```
+check_registry_value "key=HKLM\Software\NSClient" value=InstallVersion "crit=type != 'REG_SZ' or not exists"
+OK: HKLM\Software\NSClient\InstallVersion: 0.6.0 (type=REG_SZ)
+```
+
+**Numeric DWORD / QWORD comparison:**
+
+```
+check_registry_value "key=HKLM\System\CurrentControlSet\Services\W32Time\Config" value=MaxPollInterval "warn=int_value > 14" "crit=int_value > 17"
+OK: HKLM\System\CurrentControlSet\Services\W32Time\Config\MaxPollInterval: 10 (type=REG_DWORD)
+```
+
+**String / content match:**
+
+```
+check_registry_value "key=HKLM\Software\NSClient" value=ConfigFile "crit=string_value not like 'C:\\Program Files\\NSClient++\\nsclient.ini'"
+OK: HKLM\Software\NSClient\ConfigFile: C:\Program Files\NSClient++\nsclient.ini (type=REG_SZ)
+```
+
+**Size watchdog (alert if a binary blob grows unexpectedly):**
+
+```
+check_registry_value "key=HKLM\Software\NSClient" value=Cache "warn=size > 4096" "crit=size > 16384"
+OK: HKLM\Software\NSClient\Cache: 0xDEADBEEF... (type=REG_BINARY)
+```
+
+**Force the 32-bit registry view (WoW64):**
+
+```
+check_registry_value "key=HKLM\Software\NSClient" value=InstallDir view=32
+OK: HKLM\Software\NSClient\InstallDir: C:\Program Files (x86)\NSClient++\ (type=REG_SZ)
+```
+
+**Recursive enumeration of values across an entire sub-tree:**
+
+```
+check_registry_value "key=HKLM\Software\NSClient" recursive max-depth=2 "top-syntax=%(status): %(list)" "detail-syntax=%(path)=%(string_value)"
+OK: HKLM\Software\NSClient\ConfigFile=..., HKLM\Software\NSClient\modules\enabled=1, ...
+```
+
+**Exclude noisy values during enumeration:**
+
+```
+check_registry_value "key=HKCU\Software\NSClient" exclude=LastRun exclude=Cache
+OK: All 5 registry value(s) are ok.
+```
+
+**Custom output text including type / size:**
+
+```
+check_registry_value "key=HKLM\Software\NSClient" value=InstallVersion "top-syntax=%(status): %(list)" "detail-syntax=%(name) [%(type)] = %(string_value) (%(size)B)"
+OK: InstallVersion [REG_SZ] = 0.6.0 (12B)
+```
+
+**Default check via NRPE:**
+
+```
+check_nscp_client --host 192.168.56.103 --command check_registry_value --argument "key=HKLM\Software\NSClient" --argument "value=InstallVersion"
+OK: HKLM\Software\NSClient\InstallVersion: 0.6.0 (type=REG_SZ)
+```
+
+
+
+<a id="check_registry_value_warn"></a>
+<a id="check_registry_value_crit"></a>
+<a id="check_registry_value_debug"></a>
+<a id="check_registry_value_show-all"></a>
+<a id="check_registry_value_escape-html"></a>
+<a id="check_registry_value_help"></a>
+<a id="check_registry_value_help-pb"></a>
+<a id="check_registry_value_show-default"></a>
+<a id="check_registry_value_help-short"></a>
+<a id="check_registry_value_key"></a>
+<a id="check_registry_value_value"></a>
+<a id="check_registry_value_exclude"></a>
+<a id="check_registry_value_computer"></a>
+<a id="check_registry_value_recursive"></a>
+<a id="check_registry_value_max-depth"></a>
+<a id="check_registry_value_options"></a>
+#### Command-line Arguments
+
+
+| Option                                               | Default Value                           | Description                                                                                                      |
+|------------------------------------------------------|-----------------------------------------|------------------------------------------------------------------------------------------------------------------|
+| [filter](#check_registry_value_filter)               |                                         | Filter which marks interesting items.                                                                            |
+| [warning](#check_registry_value_warning)             |                                         | Filter which marks items which generates a warning state.                                                        |
+| warn                                                 |                                         | Short alias for warning                                                                                          |
+| [critical](#check_registry_value_critical)           | not exists                              | Filter which marks items which generates a critical state.                                                       |
+| crit                                                 |                                         | Short alias for critical.                                                                                        |
+| [ok](#check_registry_value_ok)                       |                                         | Filter which marks items which generates an ok state.                                                            |
+| debug                                                | N/A                                     | Show debugging information in the log                                                                            |
+| show-all                                             | N/A                                     | Show details for all matches regardless of status (normally details are only showed for warnings and criticals). |
+| [empty-state](#check_registry_value_empty-state)     | unknown                                 | Return status to use when nothing matched filter.                                                                |
+| [perf-config](#check_registry_value_perf-config)     |                                         | Performance data generation configuration                                                                        |
+| escape-html                                          | N/A                                     | Escape any < and > characters to prevent HTML encoding                                                           |
+| help                                                 | N/A                                     | Show help screen (this screen)                                                                                   |
+| help-pb                                              | N/A                                     | Show help screen as a protocol buffer payload                                                                    |
+| show-default                                         | N/A                                     | Show default values for a given command                                                                          |
+| help-short                                           | N/A                                     | Show help screen (short format).                                                                                 |
+| [top-syntax](#check_registry_value_top-syntax)       | ${status}: ${problem_list}              | Top level syntax.                                                                                                |
+| [ok-syntax](#check_registry_value_ok-syntax)         | ${status}: %(list).                     | ok syntax.                                                                                                       |
+| [empty-syntax](#check_registry_value_empty-syntax)   | ${status}: No registry values found     | Empty syntax.                                                                                                    |
+| [detail-syntax](#check_registry_value_detail-syntax) | ${path}: ${string_value} (type=${type}) | Detail level syntax.                                                                                             |
+| [perf-syntax](#check_registry_value_perf-syntax)     | ${path}                                 | Performance alias syntax.                                                                                        |
+| key                                                  |                                         | One or more registry key paths whose values to check (e.g. HKLM\Software\MyApp)                                  |
+| value                                                |                                         | Restrict to specific value names (default: all values). Supports '*' to enumerate all.                           |
+| exclude                                              |                                         | Value names to exclude from enumeration                                                                          |
+| computer                                             |                                         | Remote computer to connect to (empty = local)                                                                    |
+| [view](#check_registry_value_view)                   | default                                 | Registry view: 'default', '32' (KEY_WOW64_32KEY), or '64' (KEY_WOW64_64KEY)                                      |
+| recursive                                            | N/A                                     | Recursively enumerate values in all sub-keys                                                                     |
+| max-depth                                            |                                         | Maximum recursion depth for --recursive (-1 = unlimited)                                                         |
+
+
+
+<h5 id="check_registry_value_filter">filter:</h5>
+
+Filter which marks interesting items.
+Interesting items are items which will be included in the check.
+They do not denote warning or critical state instead it defines which items are relevant and you can remove unwanted items.
+
+
+<h5 id="check_registry_value_warning">warning:</h5>
+
+Filter which marks items which generates a warning state.
+If anything matches this filter the return status will be escalated to warning.
+
+
+
+<h5 id="check_registry_value_critical">critical:</h5>
+
+Filter which marks items which generates a critical state.
+If anything matches this filter the return status will be escalated to critical.
+
+
+*Default Value:* `not exists`
+
+<h5 id="check_registry_value_ok">ok:</h5>
+
+Filter which marks items which generates an ok state.
+If anything matches this any previous state for this item will be reset to ok.
+
+
+<h5 id="check_registry_value_empty-state">empty-state:</h5>
+
+Return status to use when nothing matched filter.
+If no filter is specified this will never happen unless the file is empty.
+
+*Default Value:* `unknown`
+
+<h5 id="check_registry_value_perf-config">perf-config:</h5>
+
+Performance data generation configuration
+TODO: obj ( key: value; key: value) obj (key:valuer;key:value)
+
+
+<h5 id="check_registry_value_top-syntax">top-syntax:</h5>
+
+Top level syntax.
+Used to format the message to return can include text as well as special keywords which will include information from the checks.
+To add a keyword to the message you can use two syntaxes either ${keyword} or %(keyword) (there is no difference between them apart from ${} can be difficult to escape on linux).
+
+*Default Value:* `${status}: ${problem_list}`
+
+<h5 id="check_registry_value_ok-syntax">ok-syntax:</h5>
+
+ok syntax.
+DEPRECATED! This is the syntax for when an ok result is returned.
+This value will not be used if your syntax contains %(list) or %(count).
+
+*Default Value:* `${status}: %(list).`
+
+<h5 id="check_registry_value_empty-syntax">empty-syntax:</h5>
+
+Empty syntax.
+DEPRECATED! This is the syntax for when nothing matches the filter.
+
+*Default Value:* `${status}: No registry values found`
+
+<h5 id="check_registry_value_detail-syntax">detail-syntax:</h5>
+
+Detail level syntax.
+Used to format each resulting item in the message.
+%(list) will be replaced with all the items formated by this syntax string in the top-syntax.
+To add a keyword to the message you can use two syntaxes either ${keyword} or %(keyword) (there is no difference between them apart from ${} can be difficult to escape on linux).
+
+*Default Value:* `${path}: ${string_value} (type=${type})`
+
+<h5 id="check_registry_value_perf-syntax">perf-syntax:</h5>
+
+Performance alias syntax.
+This is the syntax for the base names of the performance data.
+
+*Default Value:* `${path}`
+
+<h5 id="check_registry_value_view">view:</h5>
+
+Registry view: 'default', '32' (KEY_WOW64_32KEY), or '64' (KEY_WOW64_64KEY)
+
+*Default Value:* `default`
+
+
+<a id="check_registry_value_filter_keys"></a>
+#### Filter keywords
+
+
+| Option       | Description                                                                                 |
+|--------------|---------------------------------------------------------------------------------------------|
+| age          | Seconds since parent key was last written                                                   |
+| exists       | Whether the value exists (true/false)                                                       |
+| hive         | Hive abbreviation (HKLM, HKCU, HKCR, HKU, HKCC)                                             |
+| int_value    | Numeric value (REG_DWORD / REG_QWORD); 0 for non-numeric types                              |
+| key          | Parent key path (full, including hive)                                                      |
+| name         | Value name ('(default)' for the unnamed default value)                                      |
+| path         | Full path: key\name                                                                         |
+| size         | Raw byte size of the value data                                                             |
+| string_value | Value rendered as a string (REG_SZ expanded, REG_DWORD as decimal, REG_BINARY as hex, etc.) |
+| type         | Value type (REG_SZ, REG_DWORD, etc.)                                                        |
+| written      | Parent key last-write time (epoch seconds; supports date comparisons)                       |
+| written_s    | Parent key last-write time as a human-readable string                                       |
+
+**Common options for all checks:**
+
+| Option        | Description                                                                    |
+|---------------|--------------------------------------------------------------------------------|
+| count         | Number of items matching the filter.                                           |
+| crit_count    | Number of items matched the critical criteria.                                 |
+| crit_list     | A list of all items which matched the critical criteria.                       |
+| detail_list   | A special list with critical, then warning and finally ok.                     |
+| list          | A list of all items which matched the filter.                                  |
+| ok_count      | Number of items matched the ok criteria.                                       |
+| ok_list       | A list of all items which matched the ok criteria.                             |
+| problem_count | Number of items matched either warning or critical criteria.                   |
+| problem_list  | A list of all items which matched either the critical or the warning criteria. |
+| status        | The returned status (OK/WARN/CRIT/UNKNOWN).                                    |
+| total         | Total number of items.                                                         |
+| warn_count    | Number of items matched the warning criteria.                                  |
+| warn_list     | A list of all items which matched the warning criteria.                        |
+
+
 ### check_service
 
 Check the state of one or more of the computer services.
@@ -2958,7 +3552,7 @@ _To edit these sample please edit [this page](https://github.com/mickem/nscp-doc
 
 ```
 check_uptime
-uptime: -9:02, boot: 2013-aug-18 08:29:13
+uptime: -9:02, boot: 2013-aug-18 08:29:13 (local)
 'uptime uptime'=1376814553s;1376760683;1376803883
 ```
 
@@ -2973,7 +3567,25 @@ Default check **via NRPE**::
 
 ```
 check_nrpe --host 192.168.56.103 --command check_uptime
-uptime: -0:3, boot: 2013-sep-08 18:41:06 (UCT)|'uptime'=1378665666;1378579481;1378622681
+uptime: -0:3, boot: 2013-sep-08 18:41:06 (local)|'uptime'=1378665666;1378579481;1378622681
+```
+
+**Configuring the timezone** (added in 0.6.x). The default syntax renders
+the boot timestamp in the configured zone and surfaces a short label via
+the `${tz}` placeholder. The value is cached by each plugin in its
+`loadModuleEx` and is read from the global `/settings/default/timezone`
+setting. Accepted values: `local` (default), `utc`, or any POSIX TZ string
+parseable by Boost.Date_time (for example `MST-07` or
+`EST-05EDT,M3.2.0,M11.1.0`).
+
+**Choosing the display granularity for `${uptime}`** (issue #590). The
+`max-unit` argument selects the largest unit allowed when rendering
+`${uptime}`. Accepted values: `s|m|h|d|w` (default `w`). For example, on
+a host that has been up six weeks, `max-unit=w` renders `6w 0d 00:00`,
+`max-unit=d` renders `42d 00:00`, and `max-unit=h` renders `1008:00`:
+
+```
+check_uptime max-unit=d "detail-syntax=uptime: ${uptime}, boot: ${boot} (${tz})"
 ```
 
 
@@ -2992,28 +3604,29 @@ uptime: -0:3, boot: 2013-sep-08 18:41:06 (UCT)|'uptime'=1378665666;1378579481;13
 #### Command-line Arguments
 
 
-| Option                                       | Default Value                           | Description                                                                                                      |
-|----------------------------------------------|-----------------------------------------|------------------------------------------------------------------------------------------------------------------|
-| [filter](#check_uptime_filter)               |                                         | Filter which marks interesting items.                                                                            |
-| [warning](#check_uptime_warning)             | uptime < 2d                             | Filter which marks items which generates a warning state.                                                        |
-| warn                                         |                                         | Short alias for warning                                                                                          |
-| [critical](#check_uptime_critical)           | uptime < 1d                             | Filter which marks items which generates a critical state.                                                       |
-| crit                                         |                                         | Short alias for critical.                                                                                        |
-| [ok](#check_uptime_ok)                       |                                         | Filter which marks items which generates an ok state.                                                            |
-| debug                                        | N/A                                     | Show debugging information in the log                                                                            |
-| show-all                                     | N/A                                     | Show details for all matches regardless of status (normally details are only showed for warnings and criticals). |
-| [empty-state](#check_uptime_empty-state)     | ignored                                 | Return status to use when nothing matched filter.                                                                |
-| [perf-config](#check_uptime_perf-config)     |                                         | Performance data generation configuration                                                                        |
-| escape-html                                  | N/A                                     | Escape any < and > characters to prevent HTML encoding                                                           |
-| help                                         | N/A                                     | Show help screen (this screen)                                                                                   |
-| help-pb                                      | N/A                                     | Show help screen as a protocol buffer payload                                                                    |
-| show-default                                 | N/A                                     | Show default values for a given command                                                                          |
-| help-short                                   | N/A                                     | Show help screen (short format).                                                                                 |
-| [top-syntax](#check_uptime_top-syntax)       | ${status}: ${list}                      | Top level syntax.                                                                                                |
-| [ok-syntax](#check_uptime_ok-syntax)         |                                         | ok syntax.                                                                                                       |
-| [empty-syntax](#check_uptime_empty-syntax)   |                                         | Empty syntax.                                                                                                    |
-| [detail-syntax](#check_uptime_detail-syntax) | uptime: ${uptime}h, boot: ${boot} (UTC) | Detail level syntax.                                                                                             |
-| [perf-syntax](#check_uptime_perf-syntax)     | uptime                                  | Performance alias syntax.                                                                                        |
+| Option                                       | Default Value                             | Description                                                                                                                              |
+|----------------------------------------------|-------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------|
+| [filter](#check_uptime_filter)               |                                           | Filter which marks interesting items.                                                                                                    |
+| [warning](#check_uptime_warning)             | uptime < 2d                               | Filter which marks items which generates a warning state.                                                                                |
+| warn                                         |                                           | Short alias for warning                                                                                                                  |
+| [critical](#check_uptime_critical)           | uptime < 1d                               | Filter which marks items which generates a critical state.                                                                               |
+| crit                                         |                                           | Short alias for critical.                                                                                                                |
+| [ok](#check_uptime_ok)                       |                                           | Filter which marks items which generates an ok state.                                                                                    |
+| debug                                        | N/A                                       | Show debugging information in the log                                                                                                    |
+| show-all                                     | N/A                                       | Show details for all matches regardless of status (normally details are only showed for warnings and criticals).                         |
+| [empty-state](#check_uptime_empty-state)     | ignored                                   | Return status to use when nothing matched filter.                                                                                        |
+| [perf-config](#check_uptime_perf-config)     |                                           | Performance data generation configuration                                                                                                |
+| escape-html                                  | N/A                                       | Escape any < and > characters to prevent HTML encoding                                                                                   |
+| help                                         | N/A                                       | Show help screen (this screen)                                                                                                           |
+| help-pb                                      | N/A                                       | Show help screen as a protocol buffer payload                                                                                            |
+| show-default                                 | N/A                                       | Show default values for a given command                                                                                                  |
+| help-short                                   | N/A                                       | Show help screen (short format).                                                                                                         |
+| [top-syntax](#check_uptime_top-syntax)       | ${status}: ${list}                        | Top level syntax.                                                                                                                        |
+| [ok-syntax](#check_uptime_ok-syntax)         |                                           | ok syntax.                                                                                                                               |
+| [empty-syntax](#check_uptime_empty-syntax)   |                                           | Empty syntax.                                                                                                                            |
+| [detail-syntax](#check_uptime_detail-syntax) | uptime: ${uptime}h, boot: ${boot} (${tz}) | Detail level syntax.                                                                                                                     |
+| [perf-syntax](#check_uptime_perf-syntax)     | uptime                                    | Performance alias syntax.                                                                                                                |
+| [max-unit](#check_uptime_max-unit)           | w                                         | Largest time unit used to render ${uptime}: s|m|h|d|w (default: w). For a 6-week uptime, w=>'6w 0d 00:00', d=>'42d 00:00', h=>'1008:00'. |
 
 
 
@@ -3087,7 +3700,7 @@ Used to format each resulting item in the message.
 %(list) will be replaced with all the items formated by this syntax string in the top-syntax.
 To add a keyword to the message you can use two syntaxes either ${keyword} or %(keyword) (there is no difference between them apart from ${} can be difficult to escape on linux).
 
-*Default Value:* `uptime: ${uptime}h, boot: ${boot} (UTC)`
+*Default Value:* `uptime: ${uptime}h, boot: ${boot} (${tz})`
 
 <h5 id="check_uptime_perf-syntax">perf-syntax:</h5>
 
@@ -3095,6 +3708,12 @@ Performance alias syntax.
 This is the syntax for the base names of the performance data.
 
 *Default Value:* `uptime`
+
+<h5 id="check_uptime_max-unit">max-unit:</h5>
+
+Largest time unit used to render ${uptime}: s|m|h|d|w (default: w). For a 6-week uptime, w=>'6w 0d 00:00', d=>'42d 00:00', h=>'1008:00'.
+
+*Default Value:* `w`
 
 
 <a id="check_uptime_filter_keys"></a>
@@ -3133,6 +3752,7 @@ This is the syntax for the base names of the performance data.
 
 | Path / Section                                                          | Description              |
 |-------------------------------------------------------------------------|--------------------------|
+| [/settings/default](#default-values)                                    | Default values           |
 | [/settings/system/windows](#windows-system)                             | Windows system           |
 | [/settings/system/windows/counters](#pdh-counters)                      | PDH Counters             |
 | [/settings/system/windows/real-time/checks](#legacy-generic-filters)    | Legacy generic filters   |
@@ -3140,6 +3760,301 @@ This is the syntax for the base names of the performance data.
 | [/settings/system/windows/real-time/memory](#realtime-memory-filters)   | Realtime memory filters  |
 | [/settings/system/windows/real-time/process](#realtime-process-filters) | Realtime process filters |
 
+
+
+### Default values <a id="/settings/default"></a>
+
+Default values used in other config sections.
+
+
+
+
+| Key                                                 | Default Value | Description                 |
+|-----------------------------------------------------|---------------|-----------------------------|
+| [allowed hosts](#allowed-hosts)                     | 127.0.0.1     | Allowed hosts               |
+| [bind to](#bind-to-address)                         |               | BIND TO ADDRESS             |
+| [cache allowed hosts](#cache-list-of-allowed-hosts) | true          | Cache list of allowed hosts |
+| [encoding](#nrpe-payload-encoding)                  |               | NRPE PAYLOAD ENCODING       |
+| [inbox](#inbox)                                     | inbox         | INBOX                       |
+| [password](#password)                               |               | Password                    |
+| [socket queue size](#listen-queue)                  | 0             | LISTEN QUEUE                |
+| [thread pool](#thread-pool)                         | 10            | THREAD POOL                 |
+| [timeout](#timeout)                                 | 30            | TIMEOUT                     |
+| [timezone](#timezone)                               | local         | Timezone                    |
+
+
+
+```ini
+# Default values used in other config sections.
+[/settings/default]
+allowed hosts=127.0.0.1
+cache allowed hosts=true
+inbox=inbox
+socket queue size=0
+thread pool=10
+timeout=30
+timezone=local
+
+```
+
+
+
+
+
+#### Allowed hosts <a id="/settings/default/allowed hosts"></a>
+
+A comma separated list of allowed hosts. You can use netmasks (/ syntax) or * to create ranges.
+
+
+
+
+
+| Key            | Description                             |
+|----------------|-----------------------------------------|
+| Path:          | [/settings/default](#/settings/default) |
+| Key:           | allowed hosts                           |
+| Default value: | `127.0.0.1`                             |
+
+
+**Sample:**
+
+```
+[/settings/default]
+# Allowed hosts
+allowed hosts=127.0.0.1
+```
+
+
+
+#### BIND TO ADDRESS <a id="/settings/default/bind to"></a>
+
+Allows you to bind server to a specific local address. This has to be a dotted ip address not a host name. Leaving this blank will bind to all available IP addresses.
+
+
+
+
+
+
+| Key            | Description                             |
+|----------------|-----------------------------------------|
+| Path:          | [/settings/default](#/settings/default) |
+| Key:           | bind to                                 |
+| Default value: | _N/A_                                   |
+
+
+**Sample:**
+
+```
+[/settings/default]
+# BIND TO ADDRESS
+bind to=
+```
+
+
+
+#### Cache list of allowed hosts <a id="/settings/default/cache allowed hosts"></a>
+
+If host names (DNS entries) should be cached, improves speed and security somewhat but won't allow you to have dynamic IPs for your Nagios server.
+
+
+
+
+
+| Key            | Description                             |
+|----------------|-----------------------------------------|
+| Path:          | [/settings/default](#/settings/default) |
+| Key:           | cache allowed hosts                     |
+| Default value: | `true`                                  |
+
+
+**Sample:**
+
+```
+[/settings/default]
+# Cache list of allowed hosts
+cache allowed hosts=true
+```
+
+
+
+#### NRPE PAYLOAD ENCODING <a id="/settings/default/encoding"></a>
+
+
+
+
+
+
+
+
+| Key            | Description                             |
+|----------------|-----------------------------------------|
+| Path:          | [/settings/default](#/settings/default) |
+| Key:           | encoding                                |
+| Advanced:      | Yes (means it is not commonly used)     |
+| Default value: | _N/A_                                   |
+
+
+**Sample:**
+
+```
+[/settings/default]
+# NRPE PAYLOAD ENCODING
+encoding=
+```
+
+
+
+#### INBOX <a id="/settings/default/inbox"></a>
+
+The default channel to post incoming messages on
+
+
+
+
+
+| Key            | Description                             |
+|----------------|-----------------------------------------|
+| Path:          | [/settings/default](#/settings/default) |
+| Key:           | inbox                                   |
+| Default value: | `inbox`                                 |
+
+
+**Sample:**
+
+```
+[/settings/default]
+# INBOX
+inbox=inbox
+```
+
+
+
+#### Password <a id="/settings/default/password"></a>
+
+Password used to authenticate against server
+
+
+
+
+
+
+| Key            | Description                             |
+|----------------|-----------------------------------------|
+| Path:          | [/settings/default](#/settings/default) |
+| Key:           | password                                |
+| Default value: | _N/A_                                   |
+
+
+**Sample:**
+
+```
+[/settings/default]
+# Password
+password=
+```
+
+
+
+#### LISTEN QUEUE <a id="/settings/default/socket queue size"></a>
+
+Number of sockets to queue before starting to refuse new incoming connections. This can be used to tweak the amount of simultaneous sockets that the server accepts.
+
+
+
+
+
+| Key            | Description                             |
+|----------------|-----------------------------------------|
+| Path:          | [/settings/default](#/settings/default) |
+| Key:           | socket queue size                       |
+| Advanced:      | Yes (means it is not commonly used)     |
+| Default value: | `0`                                     |
+
+
+**Sample:**
+
+```
+[/settings/default]
+# LISTEN QUEUE
+socket queue size=0
+```
+
+
+
+#### THREAD POOL <a id="/settings/default/thread pool"></a>
+
+
+
+
+
+
+
+| Key            | Description                             |
+|----------------|-----------------------------------------|
+| Path:          | [/settings/default](#/settings/default) |
+| Key:           | thread pool                             |
+| Advanced:      | Yes (means it is not commonly used)     |
+| Default value: | `10`                                    |
+
+
+**Sample:**
+
+```
+[/settings/default]
+# THREAD POOL
+thread pool=10
+```
+
+
+
+#### TIMEOUT <a id="/settings/default/timeout"></a>
+
+Timeout (in seconds) when reading packets on incoming sockets. If the data has not arrived within this time we will bail out.
+
+
+
+
+
+| Key            | Description                             |
+|----------------|-----------------------------------------|
+| Path:          | [/settings/default](#/settings/default) |
+| Key:           | timeout                                 |
+| Default value: | `30`                                    |
+
+
+**Sample:**
+
+```
+[/settings/default]
+# TIMEOUT
+timeout=30
+```
+
+
+
+#### Timezone <a id="/settings/default/timezone"></a>
+
+Timezone used to render dates such as boot time. Accepts 'local' (default), 'utc', or any POSIX TZ string parseable by Boost.Date_time (e.g. 'MST-07' or 'EST-05EDT,M3.2.0,M11.1.0').
+
+
+
+
+
+| Key            | Description                             |
+|----------------|-----------------------------------------|
+| Path:          | [/settings/default](#/settings/default) |
+| Key:           | timezone                                |
+| Advanced:      | Yes (means it is not commonly used)     |
+| Default value: | `local`                                 |
+
+
+**Sample:**
+
+```
+[/settings/default]
+# Timezone
+timezone=local
+```
 
 
 ### Windows system <a id="/settings/system/windows"></a>
@@ -3156,6 +4071,7 @@ Section for system checks and system settings
 | [fetch core loads](#fetch-core-load)          | true          | Fetch core load           |
 | [process history](#track-process-history)     | false         | Track process history     |
 | [subsystem](#pdh-subsystem)                   | default       | PDH subsystem             |
+| [timezone](#timezone)                         | local         | Timezone                  |
 | [use pdh for cpu](#use-pdh-to-fetch-cpu-load) | false         | Use PDH to fetch CPU load |
 
 
@@ -3167,6 +4083,7 @@ default buffer length=1h
 fetch core loads=true
 process history=false
 subsystem=default
+timezone=local
 use pdh for cpu=false
 
 ```
@@ -3188,7 +4105,6 @@ Used to define the default size of range buffer checks (ie. CPU).
 | Path:          | [/settings/system/windows](#/settings/system/windows) |
 | Key:           | default buffer length                                 |
 | Default value: | `1h`                                                  |
-| Used by:       | CheckSystem                                           |
 
 
 **Sample:**
@@ -3216,7 +4132,6 @@ A comma separated list of checks to disable in the collector: battery,cpu,handle
 | Key:           | disable                                               |
 | Advanced:      | Yes (means it is not commonly used)                   |
 | Default value: | _N/A_                                                 |
-| Used by:       | CheckSystem                                           |
 
 
 **Sample:**
@@ -3243,7 +4158,6 @@ Set to false to use a different API for fetching CPU load (will not provide core
 | Key:           | fetch core loads                                      |
 | Advanced:      | Yes (means it is not commonly used)                   |
 | Default value: | `true`                                                |
-| Used by:       | CheckSystem                                           |
 
 
 **Sample:**
@@ -3269,7 +4183,6 @@ Enable tracking of process history for use with check_process_history and check_
 | Path:          | [/settings/system/windows](#/settings/system/windows) |
 | Key:           | process history                                       |
 | Default value: | `false`                                               |
-| Used by:       | CheckSystem                                           |
 
 
 **Sample:**
@@ -3297,7 +4210,6 @@ Currently default and thread-safe are supported where thread-safe is slower but 
 | Key:           | subsystem                                             |
 | Advanced:      | Yes (means it is not commonly used)                   |
 | Default value: | `default`                                             |
-| Used by:       | CheckSystem                                           |
 
 
 **Sample:**
@@ -3306,6 +4218,32 @@ Currently default and thread-safe are supported where thread-safe is slower but 
 [/settings/system/windows]
 # PDH subsystem
 subsystem=default
+```
+
+
+
+#### Timezone <a id="/settings/system/windows/timezone"></a>
+
+Timezone used to render dates such as boot time. Accepts 'local' (default), 'utc', or any POSIX TZ string parseable by Boost.Date_time (e.g. 'MST-07' or 'EST-05EDT,M3.2.0,M11.1.0').
+
+
+
+
+
+| Key            | Description                                           |
+|----------------|-------------------------------------------------------|
+| Path:          | [/settings/system/windows](#/settings/system/windows) |
+| Key:           | timezone                                              |
+| Advanced:      | Yes (means it is not commonly used)                   |
+| Default value: | `local`                                               |
+
+
+**Sample:**
+
+```
+[/settings/system/windows]
+# Timezone
+timezone=local
 ```
 
 
@@ -3324,7 +4262,6 @@ When using PDH you might get better accuracy and hel alleviate invalid CPU value
 | Key:           | use pdh for cpu                                       |
 | Advanced:      | Yes (means it is not commonly used)                   |
 | Default value: | `false`                                               |
-| Used by:       | CheckSystem                                           |
 
 
 **Sample:**
