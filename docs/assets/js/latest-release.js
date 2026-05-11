@@ -49,7 +49,7 @@
   }
 
   function renderReleases(releases) {
-    var container = document.getElementById('latest-releases');
+    var container = document.getElementById('nscp-releases');
     if (!container) return;
     if (!releases || !releases.length) return;
     container.replaceChildren();
@@ -109,7 +109,7 @@
   }
 
   function showFallback(message) {
-    var container = document.getElementById('latest-releases');
+    var container = document.getElementById('nscp-releases');
     if (!container) return;
     if (container.querySelector('.release-item')) return;
     container.replaceChildren();
@@ -127,7 +127,7 @@
     var cached = loadCache();
     if (cached) paint(cached);
 
-    fetch('https://api.github.com/repos/' + REPO + '/releases?per_page=5', {
+    fetch('https://api.github.com/repos/' + REPO + '/releases?per_page=15', {
       headers: { 'Accept': 'application/vnd.github+json' }
     })
       .then(function (r) {
@@ -140,8 +140,11 @@
         if (!releases || !releases.length) {
           throw new Error('No releases returned');
         }
-        var latest = releases.find(function (r) { return !r.prerelease && !r.draft; }) || releases[0];
-        var data = { latest: latest, releases: releases };
+        var stable = releases.filter(function (r) { return !r.prerelease && !r.draft; });
+        if (!stable.length) {
+          throw new Error('No stable releases found');
+        }
+        var data = { latest: stable[0], releases: stable };
         paint(data);
         saveCache(data);
       })

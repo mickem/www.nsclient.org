@@ -27,10 +27,10 @@ Released <span data-release="date">recently</span> &middot; <a href="https://git
 
 ## :material-checkbox-marked-circle-outline: Why NSClient++
 
-- :material-laptop: **Cross-platform** — Windows 2008+ and major Linux distros
+- :material-laptop: **Cross-platform** — Windows 2008+ (as well as XP) and major Linux distros
 - :material-connection: **Many protocols** — NRPE, NSCA, NRDP, REST, Prometheus, check_mk, Graphite
 - :material-view-dashboard: **Web UI** with live dashboards and check explorer
-- :material-language-python: **Scriptable** in Python and Lua, plus external scripts
+- :material-language-python: **Scriptable** in Python and Lua, or any scripting language via external scripts
 - :material-shield-check: **Secure by default** — TLS, client certs, allowed-hosts
 
 </div>
@@ -43,7 +43,7 @@ Released <span data-release="date">recently</span> &middot; <a href="https://git
 
 ## :material-newspaper: Latest releases
 
-<div id="latest-releases" class="release-list">
+<div id="nscp-releases" class="release-list">
 <p class="release-loading">Loading latest releases…</p>
 </div>
 
