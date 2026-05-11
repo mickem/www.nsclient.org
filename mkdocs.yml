@@ -137,6 +137,9 @@ plugins:
       blog_dir: news
       blog_toc: true
       archive_date_format: MMMM yyyy
+
+hooks:
+  - hooks/fetch_releases.py
 extra_css:
   - stylesheets/extra.css
 

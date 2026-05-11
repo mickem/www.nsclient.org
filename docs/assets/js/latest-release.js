@@ -123,34 +123,47 @@
     container.appendChild(p);
   }
 
+  function fetchLocal() {
+    return fetch('data/releases.json', { cache: 'no-cache' })
+      .then(function (r) {
+        if (!r.ok) throw new Error('local releases.json: ' + r.status);
+        return r.json();
+      });
+  }
+
+  function fetchGithub() {
+    return fetch('https://api.github.com/repos/' + REPO + '/releases?per_page=15', {
+      headers: { 'Accept': 'application/vnd.github+json' }
+    }).then(function (r) {
+      if (!r.ok) throw new Error('GitHub API: ' + r.status);
+      return r.json();
+    }).then(function (releases) {
+      return releases.filter(function (r) { return !r.prerelease && !r.draft; });
+    });
+  }
+
   function init() {
     var cached = loadCache();
     if (cached) paint(cached);
 
-    fetch('https://api.github.com/repos/' + REPO + '/releases?per_page=15', {
-      headers: { 'Accept': 'application/vnd.github+json' }
-    })
-      .then(function (r) {
-        if (!r.ok) {
-          throw new Error('GitHub API responded with ' + r.status);
+    fetchLocal()
+      .catch(function (localErr) {
+        if (window.console && console.info) {
+          console.info('latest-release: no build-time data (' + localErr.message + '), falling back to GitHub API');
         }
-        return r.json();
+        return fetchGithub();
       })
       .then(function (releases) {
         if (!releases || !releases.length) {
-          throw new Error('No releases returned');
+          throw new Error('No releases available');
         }
-        var stable = releases.filter(function (r) { return !r.prerelease && !r.draft; });
-        if (!stable.length) {
-          throw new Error('No stable releases found');
-        }
-        var data = { latest: stable[0], releases: stable };
+        var data = { latest: releases[0], releases: releases };
         paint(data);
         saveCache(data);
       })
       .catch(function (err) {
         if (window.console && console.warn) {
-          console.warn('latest-release: failed to load from GitHub —', err.message);
+          console.warn('latest-release: failed to load releases —', err.message);
         }
         showFallback('Could not load latest releases.');
       });
