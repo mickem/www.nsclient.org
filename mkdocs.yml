@@ -45,6 +45,7 @@ nav:
         - How NSClient++ Works: docs/concepts/index.md
         - Checks In Depth: docs/concepts/checks.md
         - Settings: docs/concepts/settings.md
+        - Permissions: concepts/permissions.md
     - Setup:
         - Installation: docs/setup/installing.md
         - Securing NSClient++: docs/setup/securing.md
