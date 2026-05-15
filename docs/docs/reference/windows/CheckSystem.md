@@ -896,6 +896,116 @@ This is the syntax for the base names of the performance data.
 
 Check network interface status.
 
+#### Choosing a mode
+
+`check_network` collects throughput counters from one of two WMI classes.
+Which one to use is controlled by the `mode=` argument:
+
+* `interface` (default) — Counters are read from `Win32_PerfRawData_Tcpip_NetworkInterface`.
+  This is the historical behaviour and reports one row per *physical* network
+  interface. NIC team aggregates (the virtual adapter that represents the team
+  as a whole) are **not** visible here, only the underlying physical adapters.
+  Use this mode unless you specifically need team statistics — it preserves the
+  output that existing dashboards and thresholds were built against.
+
+* `adapter` — Counters are read from `Win32_PerfRawData_Tcpip_NetworkAdapter`.
+  This superset also reports the aggregated team adapter (e.g. a row called
+  "Production Network" alongside the physical team members), which is what you
+  want when monitoring traffic across an LBFO/Switch-Embedded team rather than
+  individual ports. Note that the friendly Windows adapter name is used here,
+  so interface names may differ slightly from `interface` mode for the same
+  physical NIC.
+
+* `both` — Every adapter is reported twice, once from each source. The `source`
+  filter keyword (`source = 'interface'` or `source = 'adapter'`) can then be
+  used inside warning/critical/filter expressions to distinguish them. This
+  mode is mainly useful when you want to alert on the team aggregate *and* the
+  individual members from one check.
+
+A `source` filter keyword is available in every mode (its value is the literal
+string `interface` or `adapter`), so you can write expressions such as
+`source = 'adapter' and total > 100000000` to scope thresholds to a particular
+source.
+
+##### Identifying teamed adapters
+
+Team aggregates only have perfraw data; they have no matching
+`Win32_NetworkAdapter` row, so `MAC`, `speed`, `enabled` and
+`net_connection_id` are empty for them. You can identify them with
+`MAC = ''` in a filter expression when running in `adapter` or `both` mode.
+
+#### Link speed and percent-usage values are best-effort
+
+The `speed`, `speed_bps`, `usage_in`, `usage_out` and `usage_total`
+variables all derive from the Windows `Win32_NetworkAdapter.Speed`
+property. That property is the **negotiated link speed**, which is not
+always the same thing as the actual usable throughput. The check reports
+what Windows tells it; it does not measure the link.
+
+**When the reported speed is unreliable or missing:**
+
+* **Virtual adapters** (VPN tunnels, loopback, Hyper-V vNICs, some VMware
+  paravirtual NICs) frequently report `Speed` as "Unknown" or empty. The
+  check stores `speed_bps = 0` for those.
+* **NIC team aggregates** (visible in `mode=adapter` or `mode=both`) may
+  report `0`, `~0ULL`, or an arithmetically inconsistent value depending
+  on the driver and team mode (LACP vs switch-independent vs static).
+  Sometimes the team aggregate's Speed is the *sum* of member-link speeds;
+  sometimes it is a *single* member-link's speed.
+* **Wireless adapters** typically report the negotiated PHY rate (for
+  example 866 Mbps for 802.11ac). Real-world throughput is usually
+  40-60% of that because of MAC overhead, retransmits and rate adaptation,
+  so a saturated wireless link may read as ~50% in `usage_*` rather than
+  the 100% you'd expect.
+* **Drivers that report a stale value** during link renegotiation can
+  briefly show the wrong rate immediately after a cable change or
+  speed switch.
+
+**Variables affected by this:**
+
+| Variable      | Best-effort behaviour when Speed is unknown                 |
+|---------------|-------------------------------------------------------------|
+| `speed`       | Raw string from WMI - may be `"Unknown"` or empty           |
+| `speed_bps`   | Reads as `0` (the "unknown" sentinel)                       |
+| `usage_in`    | Reads as `0` - indistinguishable from a genuinely idle link |
+| `usage_out`   | Reads as `0` - indistinguishable from a genuinely idle link |
+| `usage_total` | Reads as `0` - indistinguishable from a genuinely idle link |
+
+The byte-rate variables (`received`, `sent`, `total`) and their
+`*_human` companions are **not** derived from `Speed` and are unaffected
+by these caveats. They come straight from
+`Win32_PerfRawData_Tcpip_NetworkInterface` / `NetworkAdapter` cumulative
+counters.
+
+**Writing reliable percent-based alerts:**
+
+The `0`-when-unknown sentinel was chosen so dashboards and `<`-style
+alert rules behave naturally without special-casing. The trade-off is
+that an unknown-speed link looks identical to a genuinely idle one. If
+you need to distinguish them, filter on `speed_bps > 0` *before*
+applying the percent threshold:
+
+```
+check_network "filter=speed_bps > 0" \
+              "warning=usage_total > 80" \
+              "critical=usage_total > 95"
+```
+
+For environments where percent thresholds are not viable (mixed wireless,
+heavy NIC-team use, lots of virtual adapters), prefer absolute byte-rate
+thresholds against `received`/`sent`/`total`, scoped to specific
+interfaces by name:
+
+```
+check_network "filter=name = 'Ethernet 1'" \
+              "warning=total > 800000000" \
+              "critical=total > 950000000"
+```
+
+Both styles can be combined in a single check by using `filter` to scope
+which interfaces participate, then `warning`/`critical` to set the
+threshold.
+
 
 **Jump to section:**
 
@@ -919,28 +1029,29 @@ Check network interface status.
 #### Command-line Arguments
 
 
-| Option                                        | Default Value                          | Description                                                                                                      |
-|-----------------------------------------------|----------------------------------------|------------------------------------------------------------------------------------------------------------------|
-| [filter](#check_network_filter)               |                                        | Filter which marks interesting items.                                                                            |
-| [warning](#check_network_warning)             | total > 10000                          | Filter which marks items which generates a warning state.                                                        |
-| warn                                          |                                        | Short alias for warning                                                                                          |
-| [critical](#check_network_critical)           | total > 100000                         | Filter which marks items which generates a critical state.                                                       |
-| crit                                          |                                        | Short alias for critical.                                                                                        |
-| [ok](#check_network_ok)                       |                                        | Filter which marks items which generates an ok state.                                                            |
-| debug                                         | N/A                                    | Show debugging information in the log                                                                            |
-| show-all                                      | N/A                                    | Show details for all matches regardless of status (normally details are only showed for warnings and criticals). |
-| [empty-state](#check_network_empty-state)     | critical                               | Return status to use when nothing matched filter.                                                                |
-| [perf-config](#check_network_perf-config)     |                                        | Performance data generation configuration                                                                        |
-| escape-html                                   | N/A                                    | Escape any < and > characters to prevent HTML encoding                                                           |
-| help                                          | N/A                                    | Show help screen (this screen)                                                                                   |
-| help-pb                                       | N/A                                    | Show help screen as a protocol buffer payload                                                                    |
-| show-default                                  | N/A                                    | Show default values for a given command                                                                          |
-| help-short                                    | N/A                                    | Show help screen (short format).                                                                                 |
-| [top-syntax](#check_network_top-syntax)       | ${status}: ${list}                     | Top level syntax.                                                                                                |
-| [ok-syntax](#check_network_ok-syntax)         | %(status): Network interfaces seem ok. | ok syntax.                                                                                                       |
-| [empty-syntax](#check_network_empty-syntax)   |                                        | Empty syntax.                                                                                                    |
-| [detail-syntax](#check_network_detail-syntax) | ${name} >${sent} <${received} bps      | Detail level syntax.                                                                                             |
-| [perf-syntax](#check_network_perf-syntax)     | ${name}                                | Performance alias syntax.                                                                                        |
+| Option                                        | Default Value                                 | Description                                                                                                                                                                                                                                                         |
+|-----------------------------------------------|-----------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [filter](#check_network_filter)               |                                               | Filter which marks interesting items.                                                                                                                                                                                                                               |
+| [warning](#check_network_warning)             | total > 10000                                 | Filter which marks items which generates a warning state.                                                                                                                                                                                                           |
+| warn                                          |                                               | Short alias for warning                                                                                                                                                                                                                                             |
+| [critical](#check_network_critical)           | total > 100000                                | Filter which marks items which generates a critical state.                                                                                                                                                                                                          |
+| crit                                          |                                               | Short alias for critical.                                                                                                                                                                                                                                           |
+| [ok](#check_network_ok)                       |                                               | Filter which marks items which generates an ok state.                                                                                                                                                                                                               |
+| debug                                         | N/A                                           | Show debugging information in the log                                                                                                                                                                                                                               |
+| show-all                                      | N/A                                           | Show details for all matches regardless of status (normally details are only showed for warnings and criticals).                                                                                                                                                    |
+| [empty-state](#check_network_empty-state)     | critical                                      | Return status to use when nothing matched filter.                                                                                                                                                                                                                   |
+| [perf-config](#check_network_perf-config)     |                                               | Performance data generation configuration                                                                                                                                                                                                                           |
+| escape-html                                   | N/A                                           | Escape any < and > characters to prevent HTML encoding                                                                                                                                                                                                              |
+| help                                          | N/A                                           | Show help screen (this screen)                                                                                                                                                                                                                                      |
+| help-pb                                       | N/A                                           | Show help screen as a protocol buffer payload                                                                                                                                                                                                                       |
+| show-default                                  | N/A                                           | Show default values for a given command                                                                                                                                                                                                                             |
+| help-short                                    | N/A                                           | Show help screen (short format).                                                                                                                                                                                                                                    |
+| [top-syntax](#check_network_top-syntax)       | ${status}: ${list}                            | Top level syntax.                                                                                                                                                                                                                                                   |
+| [ok-syntax](#check_network_ok-syntax)         | %(status): Network interfaces seem ok.        | ok syntax.                                                                                                                                                                                                                                                          |
+| [empty-syntax](#check_network_empty-syntax)   |                                               | Empty syntax.                                                                                                                                                                                                                                                       |
+| [detail-syntax](#check_network_detail-syntax) | ${name} >${sent_human}/s <${received_human}/s | Detail level syntax.                                                                                                                                                                                                                                                |
+| [perf-syntax](#check_network_perf-syntax)     | ${name}                                       | Performance alias syntax.                                                                                                                                                                                                                                           |
+| [mode](#check_network_mode)                   | interface                                     | Which WMI source to report from: 'interface' (default; Win32_PerfRawData_Tcpip_NetworkInterface, physical adapters only), 'adapter' (Win32_PerfRawData_Tcpip_NetworkAdapter, includes NIC team aggregates), or 'both' (every interface reported under both sources) |
 
 
 
@@ -1015,7 +1126,7 @@ Used to format each resulting item in the message.
 %(list) will be replaced with all the items formated by this syntax string in the top-syntax.
 To add a keyword to the message you can use two syntaxes either ${keyword} or %(keyword) (there is no difference between them apart from ${} can be difficult to escape on linux).
 
-*Default Value:* `${name} >${sent} <${received} bps`
+*Default Value:* `${name} >${sent_human}/s <${received_human}/s`
 
 <h5 id="check_network_perf-syntax">perf-syntax:</h5>
 
@@ -1024,20 +1135,34 @@ This is the syntax for the base names of the performance data.
 
 *Default Value:* `${name}`
 
+<h5 id="check_network_mode">mode:</h5>
+
+Which WMI source to report from: 'interface' (default; Win32_PerfRawData_Tcpip_NetworkInterface, physical adapters only), 'adapter' (Win32_PerfRawData_Tcpip_NetworkAdapter, includes NIC team aggregates), or 'both' (every interface reported under both sources)
+
+*Default Value:* `interface`
+
 
 <a id="check_network_filter_keys"></a>
 #### Filter keywords
 
 
-| Option            | Description                              |
-|-------------------|------------------------------------------|
-| MAC               | The MAC address                          |
-| enabled           | True if the network interface is enabled |
-| name              | Network interface name                   |
-| net_connection_id | Network connection id                    |
-| received          | Bytes received per second                |
-| sent              | Bytes sent per second                    |
-| speed             | The network interface speed              |
+| Option            | Description                                                                                                                                                                                                         |
+|-------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| MAC               | The MAC address                                                                                                                                                                                                     |
+| enabled           | True if the network interface is enabled                                                                                                                                                                            |
+| name              | Network interface name                                                                                                                                                                                              |
+| net_connection_id | Network connection id                                                                                                                                                                                               |
+| received          | Bytes received per second                                                                                                                                                                                           |
+| received_human    | Bytes received per second, formatted as a human-readable string (auto-scaled).                                                                                                                                      |
+| sent              | Bytes sent per second                                                                                                                                                                                               |
+| sent_human        | Bytes sent per second, formatted as a human-readable string (auto-scaled).                                                                                                                                          |
+| source            | WMI source: 'interface' or 'adapter'                                                                                                                                                                                |
+| speed             | The network interface speed (raw WMI value, e.g. "1000000000" or "Unknown")                                                                                                                                         |
+| speed_bps         | Negotiated link speed in bits/sec, parsed from the WMI Speed property. BEST-EFFORT: 0 when the speed is Unknown/empty (virtual adapters, some teams). Filter on speed_bps > 0 before relying on usage_in/out/total. |
+| total_human       | Bytes total per second, formatted as a human-readable string (auto-scaled).                                                                                                                                         |
+| usage_in          | Percent of negotiated link speed used by received traffic. BEST-EFFORT: reads as 0 when speed is unknown - filter on speed_bps > 0 to distinguish idle from unknown.                                                |
+| usage_out         | Percent of negotiated link speed used by sent traffic. BEST-EFFORT: reads as 0 when speed is unknown - filter on speed_bps > 0 to distinguish idle from unknown.                                                    |
+| usage_total       | Percent of negotiated link speed used by total traffic. BEST-EFFORT: reads as 0 when speed is unknown - filter on speed_bps > 0 to distinguish idle from unknown.                                                   |
 
 **Common options for all checks:**
 
@@ -1235,14 +1360,15 @@ This is the syntax for the base names of the performance data.
 #### Filter keywords
 
 
-| Option          | Description                                         |
-|-----------------|-----------------------------------------------------|
-| critical        | Number of critical updates                          |
-| error           | Last error message from the WUA search (if any)     |
-| important       | Number of updates with MSRC severity 'Important'    |
-| reboot_required | Number of updates requiring a reboot                |
-| security        | Number of security updates                          |
-| titles          | Semicolon separated list of available update titles |
+| Option          | Description                                              |
+|-----------------|----------------------------------------------------------|
+| critical        | Number of critical updates                               |
+| error           | Last error message from the WUA search (if any)          |
+| important       | Number of updates with MSRC severity 'Important'         |
+| reboot_required | Number of updates requiring a reboot                     |
+| security        | Number of security updates                               |
+| titles          | Semicolon separated list of available update titles      |
+| update_status   | Aggregated status: ok, warning, critical, pending, error |
 
 **Common options for all checks:**
 
@@ -1896,14 +2022,21 @@ Format of value (double, long, large)
 #### Filter keywords
 
 
-| Option  | Description                             |
-|---------|-----------------------------------------|
-| alias   | The counter alias                       |
-| counter | The counter name                        |
-| time    | The time for rrd checks                 |
-| value   | The counter value (either float or int) |
-| value_f | The counter value (force float value)   |
-| value_i | The counter value (force int value)     |
+| Option          | Description                                                                                                        |
+|-----------------|--------------------------------------------------------------------------------------------------------------------|
+| alias           | The counter alias                                                                                                  |
+| convert_bytes() | Convert a byte count to a specific unit and return the numeric value (1024-based). Useful in thresholds.           |
+| counter         | The counter name                                                                                                   |
+| format_bytes()  | Format a number as a human-readable byte string.                                                                   |
+| scale()         | Divide a value by a divisor. Useful for arbitrary unit conversions (e.g. decimal Mbps with scale(value, 1000000)). |
+| time            | The time for rrd checks                                                                                            |
+| value           | The counter value (either float or int)                                                                            |
+| value_f         | The counter value (force float value)                                                                              |
+| value_gb        | Counter value in GB (1024-based).                                                                                  |
+| value_human     | Counter value formatted as a human-readable byte string, auto-scaled to B/KB/MB/GB/...                             |
+| value_i         | The counter value (force int value)                                                                                |
+| value_kb        | Counter value in KB (1024-based).                                                                                  |
+| value_mb        | Counter value in MB (1024-based).                                                                                  |
 
 **Common options for all checks:**
 

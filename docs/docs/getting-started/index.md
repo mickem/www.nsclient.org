@@ -1,11 +1,10 @@
-# Getting started with NSClient++
+---
+title: This page has moved
+---
 
-This is a hands-on guide to getting started with NSClient++.
-We will start with a clean slate and work our way in small easy to follow steps towards a fully functional monitoring solution.
+# This page has moved
 
-As this guide was getting long I have split it into multiple sections.
+This page has been removed or reorganized. Please visit the [Documentation Home](../index.md) for the current documentation.
 
-* [Getting Started with NSClient](./nsclient.md)
-* [Checking with NRPE client](./nrpe.md)
-* [Checking with NSCA](./nsca.md)
-
+<script>window.location.replace("../");</script>
+<noscript><meta http-equiv="refresh" content="0; url=../"></noscript>
