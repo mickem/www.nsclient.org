@@ -1,0 +1,4632 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>May 2026 - NSClient++</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#may-2026" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="NSClient++" class="md-header__button md-logo" aria-label="NSClient++" data-md-component="logo">
+      
+  <img src="../../../assets/nsclient-logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            NSClient++
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              May 2026
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/mickem/nscp" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M202.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1M496 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2m-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3m-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1"/></svg>
+  </div>
+  <div class="md-source__repository">
+    NSClient++
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../.." class="md-tabs__link">
+          
+  
+  
+    
+  
+  Home
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../" class="md-tabs__link">
+        
+  
+  
+    
+  
+  News
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://github.com/mickem/nscp/releases" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Download
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../docs/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Documentation
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://github.com/mickem/nscp/discussions" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Forums
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="NSClient++" class="md-nav__button md-logo" aria-label="NSClient++" data-md-component="logo">
+      
+  <img src="../../../assets/nsclient-logo.png" alt="logo">
+
+    </a>
+    NSClient++
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/mickem/nscp" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M202.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1M496 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2m-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3m-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1"/></svg>
+  </div>
+  <div class="md-source__repository">
+    NSClient++
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../.." class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_1" id="__nav_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Home
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../nsclient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About NSClient++
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    News
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/mickem/nscp/releases" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Download
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../docs/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Documentation
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Documentation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../docs/quick-start/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../docs/concepts/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Concepts
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../docs/concepts/checks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Checks In Depth
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../docs/concepts/settings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Settings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../docs/concepts/permissions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Permissions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Setup
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../docs/setup/installing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../docs/setup/securing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Securing NSClient++
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../docs/setup/web-interface/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Web Interface
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../docs/scenarios/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Monitoring Scenarios
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_5" id="__nav_4_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Monitoring Scenarios
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../docs/scenarios/windows-server-health/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Windows Server Health
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../docs/scenarios/disk-space/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Disk Space Alerting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../docs/scenarios/service-monitoring/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Service & Process Monitoring
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../docs/scenarios/event-log/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Event Log Monitoring
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../docs/scenarios/counters/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Performance Counters (PDH)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../docs/scenarios/network-checks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Network Checks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../docs/scenarios/nrpe/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Active Monitoring with NRPE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../docs/scenarios/passive-monitoring-nsca/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Passive Monitoring (NSCA/NRDP)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../docs/scenarios/passive-monitoring-nsca-ng/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Passive Monitoring (NSCA-NG)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../docs/scenarios/passive-monitoring-icinga/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Passive Monitoring (Icinga 2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../docs/scenarios/check-mk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Checkmk Agent Integration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../docs/scenarios/prometheus/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prometheus Scraping
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../docs/scenarios/external-scripts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    External Scripts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../docs/reference/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_6" id="__nav_4_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_6_2" id="__nav_4_6_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Check commands
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_6_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_6_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Check commands
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../docs/reference/windows/CheckDisk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckDisk (Windows)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../docs/reference/check/CheckExternalScripts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckExternalScripts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../docs/reference/windows/CheckEventLog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckEventLog (Windows)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../docs/reference/check/CheckHelpers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckHelpers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../docs/reference/check/CheckLogFile/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckLogFile
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../docs/reference/check/CheckMKClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckMKClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../docs/reference/check/CheckMKServer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckMKServer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../docs/reference/misc/CheckNet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckNet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../docs/reference/check/CheckNSCP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckNSCP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../docs/reference/unix/CheckSystemUnix/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckSystemUnix (unix)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../docs/reference/windows/CheckSystem/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckSystem (Windows)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../docs/reference/windows/CheckTaskSched/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckTaskSched (Windows)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../docs/reference/windows/CheckWMI/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckWMI (Windows)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_6_3" id="__nav_4_6_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Clients & Servers
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_6_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_6_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Clients & Servers
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../docs/reference/generic/WEBServer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WEBServer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../docs/reference/misc/WEBClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WEBClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../docs/reference/client/NRPEServer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NRPEServer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../docs/reference/client/NRPEClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NRPEClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../docs/reference/windows/NSClientServer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSClientServer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../docs/reference/client/NSCAServer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSCAServer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../docs/reference/client/NSCAClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSCAClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../docs/reference/client/NRDPClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NRDPClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../docs/reference/client/IcingaClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IcingaClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../docs/reference/client/SMTPClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SMTPClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../docs/reference/client/GraphiteClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GraphiteClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../docs/reference/client/SyslogClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SyslogClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../docs/reference/misc/CollectdClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CollectdClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../docs/reference/misc/Op5Client/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Op5Client
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../docs/reference/misc/ElasticClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ElasticClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_6_4" id="__nav_4_6_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Helper modules
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_6_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_6_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Helper modules
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../docs/reference/generic/Scheduler/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scheduler
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../docs/reference/generic/SimpleFileWriter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SimpleFileWriter
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../docs/reference/generic/CommandClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CommandClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../docs/reference/generic/SimpleCache/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SimpleCache
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../docs/reference/generic/PythonScript/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PythonScript
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../docs/reference/generic/LUAScript/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LUAScript
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../docs/extending/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Extending
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_7" id="__nav_4_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Extending
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../docs/extending/python/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python Scripts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../docs/extending/zip-modules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Zip Modules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../docs/extending/plugin-api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plugin API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_8" id="__nav_4_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    API
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_8_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../docs/api/rest/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    REST
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_8_1" id="__nav_4_8_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_8_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_8_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    REST
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../docs/api/rest/info/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Info
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../docs/api/rest/modules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../docs/api/rest/queries/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Queries
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../docs/api/rest/scripts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scripts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../docs/api/rest/logs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../docs/api/rest/legacy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Legacy API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../docs/faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/mickem/nscp/discussions" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Forums
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+  <div class="md-content" data-md-component="content">
+    <div class="md-content__inner">
+      <header class="md-typeset">
+        <h1 id="may-2026">May 2026</h1>
+      </header>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2026-05-15 00:00:00+00:00">May 15, 2026</time></li>
+        
+        
+          
+          <li class="md-meta__item">
+            
+              9 min read
+            
+          </li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="new-permission-system"><a class="toclink" href="../../2026/05/15/new-permission-system/">New permission system</a></h2>
+<p>The release has three big stories — a new <strong>core permission system</strong> with optional client-cert principals on NRPE, a
+<strong>PDH overhaul</strong> that fixes long-standing counter-collection crashes and adds counter functions, and a <strong>WEB hardening
+option</strong> that lets monitoring-only deployments expose the WEB UI without seeding a privileged admin account. Everything
+else is bug fixes, small features, and follow-ups around those three threads.</p>
+<hr />
+<h3 id="highlights"><a class="toclink" href="../../2026/05/15/new-permission-system/#highlights">Highlights</a></h3>
+<ul>
+<li><strong>Core permission system</strong> — opt-in policy layer that gates which caller can run which command. Configured under
+  <code>/settings/permissions</code>. Disabled by default; existing installs keep working.
+  See https://nsclient.org/docs/concepts/permissions/ for the model, identity table, and rollout recipe.</li>
+<li><strong>NRPE client identity from cert CN</strong> — when <code>client identity source = cn</code> is set on <code>NRPEServer</code> and the listener
+  verifies the client cert, the CN is stamped as the policy principal so rules can be written per-cert (
+  <code>NRPEServer:icinga-master = ...</code>). Hard guardrail at module start refuses to load the module if the TLS verify mode
+  would let the CN be attacker-supplied.</li>
+<li><strong>Global <code>allow exec</code> toggle</strong> — exec is now gated by a single on/off switch under <code>/settings/permissions</code>. The
+  per-command rule table applies to queries only. Default <code>true</code> so enabling the policy system does
+  not break exec callers.</li>
+<li><strong>PDH (performance counter) overhaul</strong> — fixes for service crashes when PDH misbehaves (#592, #547), counter retry
+  when temporarily unavailable (#634), reliable English counter lookup (#652, #906), a resource leak in the
+  counter-lookup path, and a refactor to smart-buffer-based PDH enumeration. Most users running CheckSystem on Windows
+  should see meaningfully better reliability.</li>
+<li><strong>check_pdh counter scaling and functions</strong> (#281) — <code>details-syntax</code> and related rendering paths can now apply
+  scaling and other functions, e.g. <code>'${counter}'=${value:scale(/1024)}MB</code>.</li>
+<li><strong>check_network</strong> — human-readable strings, scaling, speed, and percentages (#329); team-network statistics (#625).
+  See https://nsclient.org/docs/reference/check/CheckNet.</li>
+<li><strong>Nagios range syntax in performance data</strong> (#748) — <code>1:10</code>, <code>~:5</code>, <code>@10:20</code> etc. work in perfdata thresholds,
+  matching the Nagios plugin spec.</li>
+<li><strong><code>disable admin user</code> on WEBServer</strong> — monitoring-only deployments can expose the WEB UI without ever seeding the
+  built-in admin (and previously seeded admin entries are ignored). Pairs naturally with the new permission system to
+  lock down reconfiguration surfaces.</li>
+<li><strong>Path overrides moved to <code>boot.ini</code> + new <code>--path-override</code> CLI flag</strong> — path tokens (<code>module-path</code>,
+  <code>certificate-path</code>, etc.) are now declared early in <code>boot.ini</code> so they take effect before the main config is loaded.
+  Per-invocation overrides via <code>--path-override KEY=VALUE</code>. See https://nsclient.org/docs/concepts/settings.</li>
+<li><strong>NRPE startup is no longer fatal on listener failure</strong> — bad bind address / port already in use logs a clear error
+  and leaves the module loaded so settings and commands stay usable for diagnostics.</li>
+<li><strong>Dual-stack listening fixed</strong> (#312) — v4 and v6 acceptors no longer trample each other's pending connection slot.</li>
+<li><strong><code>disable admin user</code>, <code>client identity source</code>, <code>allow exec</code>, and the policy table</strong> are all documented in
+  https://nsclient.org/docs/concepts/permissions/ and https://nsclient.org/docs/setup/securing. Treat those two as the
+  starting point for any new
+  install.</li>
+</ul>
+<hr />
+<h3 id="detailed-changes"><a class="toclink" href="../../2026/05/15/new-permission-system/#detailed-changes">Detailed changes</a></h3>
+<h4 id="security-and-permissions"><a class="toclink" href="../../2026/05/15/new-permission-system/#security-and-permissions">Security and permissions</a></h4>
+<p><strong>Core permission system</strong>
+A policy layer in the core decides whether a given caller may run a given command. Disabled by default; when enabled,
+rules form a strict allow-list.</p>
+<div class="highlight"><pre><span></span><code>[/settings/permissions]
+enabled = true
+log denials = true
+log allows = false      ; noisy, only flip on while rolling out
+allow exec = true       ; queries-only rule table; exec is a global toggle
+
+[/settings/permissions/policies]
+NRPEServer = CheckHelpers.*, CheckSystem.check_cpu
+WEBServer:admin   = *
+WEBServer:viewer  = CheckSystem.check_cpu, CheckSystem.check_drivesize
+Scheduler = CheckHelpers.*, CheckSystem.*
+</code></pre></div>
+<p>Subject is <code>module[:principal]</code>; object is <code>module.command</code>. Wildcards (<code>*</code>, <code>?</code>) supported. Rules combine additively.
+See https://nsclient.org/docs/concepts/permissions/ for the full identity model, the
+<code>CheckHelpers</code> identity-forwarding behaviour, and a step-by-step rollout recipe.</p>
+<p><strong>NRPE client cert CN as principal</strong>
+When two-way TLS is configured and verifying client certs against your CA, the Common Name is stamped as the policy
+principal:</p>
+<div class="highlight"><pre><span></span><code><span class="k">[/settings/NRPE/server]</span>
+<span class="na">client identity source</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">cn</span><span class="w">        </span><span class="c1">; default: none</span>
+<span class="na">verify mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">peer-cert</span>
+<span class="na">ca</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">/etc/nsclient/ca.pem</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>[/settings/permissions/policies]
+NRPEServer:icinga-master   = CheckHelpers.*, CheckSystem.*
+NRPEServer:metrics-shipper = CheckSystem.check_cpu, CheckSystem.check_drivesize
+</code></pre></div>
+<p>Guardrails: the module refuses to start if <code>client identity source = cn</code> is configured without SSL, without
+<code>verify_mode</code> containing <code>peer</code> and <code>fail-if-no-peer-cert</code> (or the <code>peer-cert</code> alias), or without a non-empty
+<code>ca path</code>. The CN is logged at debug level on every accepted handshake for diagnostics. CN-only (not full DN) because
+INI key syntax uses <code>=</code> as the key/value separator and would corrupt DN-shaped policy keys; see the "Why CN-only"
+section of the permissions doc. See https://nsclient.org/docs/reference/client/NRPEServer.</p>
+<p><strong>Global <code>allow exec</code> toggle</strong>
+Per-command rules apply to <strong>queries only</strong>. The exec surface (WEB scripts UI, lua/python <code>core:simple_exec(...)</code>, CLI
+exec) is gated by a single boolean:</p>
+<div class="highlight"><pre><span></span><code><span class="k">[/settings/permissions]</span>
+<span class="na">allow exec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">false</span><span class="w">   </span><span class="c1">; hard lockdown; default is true</span>
+</code></pre></div>
+<p>When <code>false</code> and <code>enabled = true</code>, every exec call returns
+<code>Permission denied: exec is globally disabled (/settings/permissions/allow exec = false)</code>.
+See "Why exec is a single toggle" in https://nsclient.org/docs/concepts/permissions/.</p>
+<p><strong><code>disable admin user</code> on WEBServer</strong>
+For installations that expose the WEB UI for status/visualisation only and never want a remote-reconfiguration surface:</p>
+<div class="highlight"><pre><span></span><code><span class="k">[/settings/WEB/server]</span>
+<span class="na">disable admin user</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
+</code></pre></div>
+<p>With this set, the built-in admin is not seeded on first boot, and any existing admin entry in the user settings is
+ignored at load time.</p>
+<p><strong>Security guide updates</strong>
+https://nsclient.org/docs/setup/securing was rewritten with concrete configurations for NRPE (with
+and without mTLS) and the WEB server. Read it before exposing either to a network you don't fully control.</p>
+<hr />
+<h4 id="performance-counters-pdh"><a class="toclink" href="../../2026/05/15/new-permission-system/#performance-counters-pdh">Performance counters / PDH</a></h4>
+<p>The PDH subsystem (the Windows performance-counter collection backbone behind <code>CheckSystem</code>, <code>check_cpu</code>, <code>check_pdh</code>,
+<code>check_network</code>, etc.) got a substantial reliability pass. Most users running NSClient++ as a long-running service on
+Windows should see fewer crashes and more consistent results.</p>
+<ul>
+<li><strong>Service crashes when PDH misbehaves on a particular machine</strong> (#592, #547) — root-caused and fixed. Misbehaving
+  counter registrations no longer take the service down.</li>
+<li><strong>Counter not retried if unavailable</strong> (#634) — counters that fail to bind at first sight now get retried on
+  subsequent collection cycles, instead of being permanently unhealthy for the lifetime of the process.</li>
+<li><strong>English counter lookup improved</strong> (#652, #906) — addresses reading of localised counters by their canonical English
+  names on non- English Windows installs.</li>
+<li><strong>Resource leak in PDH counter lookup fixed</strong>.</li>
+<li><strong>PDH enumeration refactored to smart buffers</strong> — clearer memory ownership across the enumeration path, fewer footguns
+  for future changes.</li>
+<li><strong>check_pdh counter scaling and functions</strong> (#281) — all the details-syntax / rendering paths can now apply functions.
+  Examples:
+  <div class="highlight"><pre><span></span><code>check_pdh &quot;counter=\Processor(_Total)\% Processor Time&quot; \
+          &quot;details-syntax=${counter} = ${value:round(2)}%&quot;
+</code></pre></div>
+  See https://nsclient.org/docs/reference/check/CheckSystem for the function reference.</li>
+</ul>
+<hr />
+<h4 id="check_network"><a class="toclink" href="../../2026/05/15/new-permission-system/#check_network">check_network</a></h4>
+<ul>
+<li><strong>Human-readable strings, scaling, speed, and percentages</strong> (#329) — perfdata and message output now render numbers in
+  a way operators actually want to read:
+  <div class="highlight"><pre><span></span><code>check_network &#39;filter=interface=Ethernet&#39; \
+              &#39;top-syntax=${list}&#39; \
+              &#39;detail-syntax=${interface}: ${total_rx_human}/s in, ${total_tx_human}/s out&#39;
+</code></pre></div></li>
+<li><strong>Team network statistics</strong> (#625) — aggregate stats across Windows NIC teams.</li>
+</ul>
+<p>See https://nsclient.org/docs/check/CheckNet.</p>
+<hr />
+<h4 id="performance-data-formatting"><a class="toclink" href="../../2026/05/15/new-permission-system/#performance-data-formatting">Performance data formatting</a></h4>
+<ul>
+<li><strong>Nagios range syntax in performance data</strong> (#748) — the perfdata threshold fields now accept the standard Nagios
+  range syntax: <code>5:10</code>, <code>~:5</code>, <code>@10:20</code>, etc. Brings NSClient++ into line with what Nagios consumers already expect.</li>
+</ul>
+<hr />
+<h4 id="settings-paths-and-cli"><a class="toclink" href="../../2026/05/15/new-permission-system/#settings-paths-and-cli">Settings, paths, and CLI</a></h4>
+<ul>
+<li><strong>Path overrides moved to <code>boot.ini</code></strong> — path tokens (<code>module-path</code>, <code>certificate-path</code>, <code>data-path</code>, <code>log-path</code>, …)
+  now live under <code>[paths]</code> in <code>boot.ini</code> (next to <code>nscp.exe</code>), not in <code>nsclient.ini</code>. Overrides take effect <em>before</em> the
+  main config is loaded — including the bootstrap step that decides where the main config itself lives.
+  <div class="highlight"><pre><span></span><code><span class="c1">; boot.ini</span>
+<span class="k">[paths]</span>
+<span class="na">module-path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">D:\monitoring\modules</span>
+<span class="na">certificate-path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">D:\monitoring\certs</span>
+</code></pre></div></li>
+<li><strong><code>--path-override</code> CLI flag</strong> — per-invocation override, repeatable. (Renamed from <code>--path</code> to avoid colliding with
+  the <code>nscp settings --path</code> subcommand option.)
+  <div class="highlight"><pre><span></span><code>nscp client --path-override module-path=/build/modules --path-override log-path=. ...
+</code></pre></div></li>
+<li>See https://nsclient.org/docs/concepts/settings for the precedence rules and the migration note for installs that had
+  a <code>[/paths]</code> section in <code>nsclient.ini</code>.</li>
+</ul>
+<hr />
+<h4 id="aliases-and-command-registration"><a class="toclink" href="../../2026/05/15/new-permission-system/#aliases-and-command-registration">Aliases and command registration</a></h4>
+<ul>
+<li><strong>CheckHelpers alias</strong> — aliases can now be defined under <code>[/settings/check helpers/alias]</code> and are registered by
+  <code>CheckHelpers</code> directly, without requiring <code>CheckExternalScripts</code> to be loaded. This is the preferred place going
+  forward; the legacy <code>[/settings/external scripts/alias]</code> is still honoured for backward compatibility.</li>
+<li><strong>API to list registered query aliases</strong> (#506) — programmatic introspection of the alias table, useful for tooling.</li>
+<li><strong><code>simple_command</code> / <code>simple_command_map</code></strong>  — internal refactor that streamlines how modules register aliases. No
+  user-visible behaviour change, but module authors may want to look at the new pattern.</li>
+<li><strong>Icinga client alias</strong> (<code>7c49a3d3</code>) — minor module-specific addition.</li>
+</ul>
+<hr />
+<h4 id="nrpeserver"><a class="toclink" href="../../2026/05/15/new-permission-system/#nrpeserver">NRPEServer</a></h4>
+<ul>
+<li><strong>Listener failure no longer kills the module</strong> — a bad <code>bind to</code> address that the resolver can't look up, or a port
+  already in use, used to make the whole module fail to load. Now the failure is logged clearly, the listener stays
+  down, and the module's settings and commands remain accessible for diagnostics and reconfiguration. Fix the config and
+  reload — no service restart needed.</li>
+<li><strong>Dual-stack fixed</strong> (#312) — the v4 and v6 acceptors used to share a single pending-connection slot, which caused
+  intermittent <code>Already open</code> errors on v6 once v4 accepted a client. Each family now owns its own slot.</li>
+<li><strong>Insecure mode produces an error-level log line</strong> — flipping <code>insecure = true</code> (for legacy <code>check_nrpe</code> interop) now
+  surfaces as an ERROR so it shows up in monitoring dashboards, instead of silently disabling cert-based peer auth.</li>
+</ul>
+<hr />
+<h4 id="plugin-lifecycle"><a class="toclink" href="../../2026/05/15/new-permission-system/#plugin-lifecycle">Plugin lifecycle</a></h4>
+<ul>
+<li><strong><code>prepare_shutdown</code> hook</strong>  — modules can opt in to a first-phase shutdown pass before any plugin is unloaded. Used
+  by the Scheduler and similar long-running submitters to finish in-flight work cleanly. Operators see fewer "submission
+  failed during shutdown" lines during service stop.</li>
+</ul>
+<hr />
+<h4 id="settings-store"><a class="toclink" href="../../2026/05/15/new-permission-system/#settings-store">Settings store</a></h4>
+<ul>
+<li><strong><code>simpleini</code> buffer NUL-termination fix</strong> — fixes a buffer allocation issue in the INI parser that could
+  affect non-UTF-8 data paths.</li>
+<li><strong><code>cache allowed host</code> is now a real boolean</strong> — previously parsed as a string with surprising truthiness; matches
+  what the docs always claimed.</li>
+</ul>
+<hr />
+<h4 id="modules-and-clean-ups"><a class="toclink" href="../../2026/05/15/new-permission-system/#modules-and-clean-ups">Modules and clean-ups</a></h4>
+<ul>
+<li><strong>WMI module refactor</strong> — target handling and settings management cleaned up.</li>
+<li><strong>IcingaClient cleanup</strong> — removed unused command-handling code paths.</li>
+<li><strong>CheckLogFile config and descriptions</strong> — fixed misleading defaults and improved the help text.</li>
+<li><strong>Web UI improvements</strong> — more settings elements exposed under modules, simpler module configuration. Web dependencies
+  refreshed.</li>
+<li><strong>Installer: <code>UninstallString</code> is now correct</strong> (#495) — removal via Windows "Apps &amp; Features" works again.</li>
+<li><strong>Rust dependencies bumped</strong>.</li>
+</ul>
+<hr />
+<h3 id="upgrade-notes"><a class="toclink" href="../../2026/05/15/new-permission-system/#upgrade-notes">Upgrade notes</a></h3>
+<p>Most installs can upgrade in place — defaults are preserved. Read the specific items below if any of them apply.</p>
+<h4 id="permission-system"><a class="toclink" href="../../2026/05/15/new-permission-system/#permission-system">Permission system</a></h4>
+<p>The new policy layer is <strong>disabled by default</strong>. Existing installs continue to behave exactly as before until an
+operator opts in via <code>/settings/permissions/enabled = true</code>.</p>
+<p>If you do opt in:</p>
+<ul>
+<li>Per-command rules under <code>/settings/permissions/policies</code> apply to <strong>queries only</strong>. Any rules you might have written
+  for exec command patterns will be <strong>silently ignored</strong> for the exec dispatch path — exec is gated by the single global
+  <code>allow exec</code> boolean.</li>
+<li>The default for <code>allow exec</code> is <code>true</code>, so enabling the policy will not silently break the WEB scripts UI, lua/python
+  <code>core:simple_exec(...)</code>, or CLI exec. Flip to <code>false</code> only if you want a hard exec lockdown.</li>
+<li>Roll out with <code>log allows = true</code> first so you can inventory what your actual traffic looks like before tightening to
+  a real allow-list. See the step-by-step recipe in https://nsclient.org/docs/concepts/permissions/.</li>
+</ul>
+<h4 id="nrpeserver_1"><a class="toclink" href="../../2026/05/15/new-permission-system/#nrpeserver_1">NRPEServer</a></h4>
+<ul>
+<li>The new <code>client identity source</code> setting defaults to <code>none</code>, which matches the previous behaviour (subject is bare
+  <code>NRPEServer</code>). Set to <code>cn</code> only when you want per-cert principals — and only after you've configured
+  <code>verify_mode = peer-cert</code> and a <code>ca path</code>. The module will refuse to start with a clear error if you set <code>cn</code> without
+  those.</li>
+<li>Pin the <code>ca path</code> to your <strong>private monitoring CA</strong>. The system trust store (Windows root store / Linux distro bundle)
+  accepts certs from every public CA on the planet and would let an attacker with a public cert choose their own CN.
+  See "Pin to a private CA" in the permissions doc.</li>
+</ul>
+<h4 id="path-overrides"><a class="toclink" href="../../2026/05/15/new-permission-system/#path-overrides">Path overrides</a></h4>
+<ul>
+<li>If you had a <code>[/paths]</code> section in <code>nsclient.ini</code> from an older NSClient++ install, those overrides moved to <code>[paths]</code>
+  in <code>boot.ini</code> (note: same section name, different file). There is no automatic migration. Copy each <code>key = value</code> to a
+  <code>[paths]</code> section in <code>boot.ini</code> (next to <code>nscp.exe</code>) and delete the old section from <code>nsclient.ini</code>.</li>
+</ul>
+<h4 id="web-server"><a class="toclink" href="../../2026/05/15/new-permission-system/#web-server">WEB server</a></h4>
+<ul>
+<li>The new <code>disable admin user = true</code> setting is <strong>opt-in</strong>. Existing installs keep their admin and continue to work
+  unchanged. Use this when you want to expose the WEB UI for status-only viewing and have no need to reconfigure the
+  agent through the web.</li>
+</ul>
+<h4 id="nrpeserver-startup-robustness"><a class="toclink" href="../../2026/05/15/new-permission-system/#nrpeserver-startup-robustness">NRPEServer startup robustness</a></h4>
+<ul>
+<li>A failed listener (bad bind address, port in use) used to make the whole <code>NRPEServer</code> module fail to load. It now logs
+  an ERROR and leaves the module loaded with no active listener — so you can reconfigure via
+  <code>nscp settings --path /settings/NRPE/server --key ... --set ...</code> and reload, without restarting the service. If you
+  had monitoring on "module load failed" specifically, you may want to add "NRPE listener failed" as a separate signal.</li>
+</ul>
+<h4 id="insecure-true-on-nrpeserver"><a class="toclink" href="../../2026/05/15/new-permission-system/#insecure-true-on-nrpeserver"><code>insecure = true</code> on NRPEServer</a></h4>
+<ul>
+<li>This option (for legacy <code>check_nrpe</code> interop) now logs at ERROR rather than DEBUG/INFO. Behaviour is unchanged; the
+  message is louder so it shows up in dashboards. If your monitoring filters by severity, you may want to whitelist this
+  specific message on agents that intentionally run in insecure mode.</li>
+</ul>
+<h4 id="cache-allowed-host"><a class="toclink" href="../../2026/05/15/new-permission-system/#cache-allowed-host"><code>cache allowed host</code></a></h4>
+<ul>
+<li>Previously parsed as a string with surprising truthiness; now a real boolean. If you had <code>cache allowed host = yes</code> or
+  <code>= on</code>, switch to <code>true</code>. Numeric <code>1</code> / <code>0</code> still work.</li>
+</ul>
+<h4 id="nagios-range-syntax-in-performance-data"><a class="toclink" href="../../2026/05/15/new-permission-system/#nagios-range-syntax-in-performance-data">Nagios range syntax in performance data</a></h4>
+<ul>
+<li>This is additive — existing perfdata that doesn't use range syntax continues to work. Plain numbers still parse as
+  before. Only consumers that previously had to special-case NSClient++'s output may need adjusting, but most
+  Nagios-ecosystem tools handle both forms.</li>
+</ul>
+<h3 id="download"><a class="toclink" href="../../2026/05/15/new-permission-system/#download">Download</a></h3>
+<p><a class="md-button" href="https://github.com/mickem/nscp/releases/0.12.6">You can download the new version from GitHub</a></p>
+<p>// Michael Medin</p>
+    
+    
+  </div>
+</article>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2026-05-11 00:00:00+00:00">May 11, 2026</time></li>
+        
+        
+          
+          <li class="md-meta__item">
+            
+              16 min read
+            
+          </li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="0123-fixed-almost-all-bugs"><a class="toclink" href="../../2026/05/11/0123-fixed-almost-all-bugs-/">0.12.3 Fixed almost all bugs :)</a></h2>
+<blockquote>
+<p>0.12.4 Fixes a few important regression issues, so please use that version.</p>
+</blockquote>
+<h3 id="whats-changed"><a class="toclink" href="../../2026/05/11/0123-fixed-almost-all-bugs-/#whats-changed">What's Changed</a></h3>
+<p>This release rolls up everything since the last stable: five pre-releases (<code>0.11.31</code>, <code>0.11.32</code>, <code>0.11.33</code>, <code>0.12.1</code>,
+<code>0.12.2</code>) plus the latest in-development changes. </p>
+<p><strong>The headline themes are:</strong></p>
+<ol>
+<li><strong>New monitoring scenarios</strong> — first-class Checkmk and Icinga 2 integration, plus a real <code>check_net</code> family.</li>
+<li><strong>A modern Web UI and REST API</strong> — events, metadata, settings DELETE, filterable lists, dedicated widgets for PDH
+   counters and real-time filters.</li>
+<li><strong>Hardened by default</strong> — <code>0.12.2</code> is a security release that closes listener defaults that used to be silently
+   permissive (empty <code>allowed hosts</code>, plaintext <code>check_nt</code>, query-string tokens, etc.).</li>
+<li><strong>Many long-standing check fixes</strong> — <code>check_service</code>, <code>check_process</code>, <code>check_files</code>, <code>check_drivesize</code>,
+   <code>check_uptime</code>, <code>CheckLogFile</code>, and the shared filter/threshold engine all behave correctly now.</li>
+</ol>
+<blockquote>
+<p><strong>Read the <a href="../../2026/05/11/0123-fixed-almost-all-bugs-/#breaking-changes">Breaking changes</a> section before upgrading</strong> — several long-standing-but-incorrect
+behaviours have been corrected and a number of listener defaults are now fail-closed. If you have an existing
+configuration, plan to review it.</p>
+</blockquote>
+<hr />
+<h3 id="tldr-for-end-users"><a class="toclink" href="../../2026/05/11/0123-fixed-almost-all-bugs-/#tldr-for-end-users">TL;DR for end users</a></h3>
+<ul>
+<li><strong>New scenario: Checkmk agent integration.</strong> Point a Checkmk site at port 6556 and you get a native-looking agent
+  dump. See <a href="docs/docs/scenarios/check-mk.md">scenarios/check-mk.md</a>.</li>
+<li><strong>New scenario: Icinga 2 passive submission.</strong> A new <code>IcingaClient</code> module submits passive results to Icinga 2's REST
+  API as an alternative to NSCA / NRDP.</li>
+<li><strong>New scenario: NSCA-ng.</strong> A new hardened <code>NSCAngClient</code> with PSK and AEAD-first cipher selection.</li>
+<li><strong>Native cross-platform network checks</strong>: <code>check_tcp</code>, <code>check_dns</code>, <code>check_http</code>, <code>check_ntp_offset</code>,
+  <code>check_connections</code>.</li>
+<li><strong>Native Windows registry checks</strong>: <code>check_registry_key</code>, <code>check_registry_value</code>.</li>
+<li><strong>HTTP proxy support</strong> for every HTTP-based client (NRDP, Elastic, Op5, Icinga, the configuration loader, ...).</li>
+<li><strong>Windows ROOT trust store auto-export</strong> — HTTPS-bound checks validate certificates against the system trust store
+  automatically.</li>
+<li><strong>A modern Web UI</strong> with filterable lists, settings diff, dashboard, and dedicated CheckSystem widgets.</li>
+<li><strong>New REST endpoints</strong>: <code>GET/DELETE /api/v2/events</code>, <code>GET /api/v2/metadata</code>, <code>DELETE /api/v2/settings/...</code>. Covered
+  in <a href="docs/docs/api/rest/">api/rest/</a>.</li>
+<li><strong>Linux real-time metrics</strong> — the same background CPU/memory/disk/ network/load sampling that Windows has had for
+  years.</li>
+<li><strong>Many bug fixes in <code>check_service</code>, <code>check_process</code>, <code>check_files</code>, <code>CheckLogFile</code>, the filter/threshold engine and
+  the HTTP stack.</strong></li>
+</ul>
+<hr />
+<h3 id="major-new-features"><a class="toclink" href="../../2026/05/11/0123-fixed-almost-all-bugs-/#major-new-features">Major new features</a></h3>
+<h4 id="checkmk-agent-integration"><a class="toclink" href="../../2026/05/11/0123-fixed-almost-all-bugs-/#checkmk-agent-integration">Checkmk agent integration</a></h4>
+<p>NSClient++ can now serve a Checkmk-compatible agent dump on TCP port 6556. A real Checkmk site can register the host
+with <code>tag_agent = cmk-agent</code>, discover services, and run checks — no proxy, no NSCA gateway.</p>
+<p><strong>Enable it:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="k">[/modules]</span>
+<span class="na">CheckMKServer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">enabled</span>
+<span class="na">LUAScript</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">enabled</span>
+<span class="na">CheckSystem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">enabled</span>
+<span class="na">CheckDisk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">enabled</span>
+<span class="na">CheckHelpers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">enabled</span>
+
+<span class="k">[/settings/check_mk/server]</span>
+<span class="na">port</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">6556</span>
+<span class="na">allowed hosts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">127.0.0.1, &lt;checkmk-site-ip&gt;</span>
+<span class="na">submission ttl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">60</span><span class="w">          </span><span class="c1">; seconds, default 60</span>
+<span class="na">mrpe channel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">check_mk-mrpe</span>
+<span class="na">local channel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">check_mk-local</span>
+</code></pre></div>
+<p><strong>Out-of-the-box sections</strong> (no extra config):</p>
+<table>
+<thead>
+<tr>
+<th>Section</th>
+<th>Contents</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&lt;&lt;&lt;check_mk&gt;&gt;&gt;</code></td>
+<td>Version, OS, hostname</td>
+</tr>
+<tr>
+<td><code>&lt;&lt;&lt;systemtime&gt;&gt;&gt;</code></td>
+<td>Unix epoch (Windows clock-skew check)</td>
+</tr>
+<tr>
+<td><code>&lt;&lt;&lt;uptime&gt;&gt;&gt;</code></td>
+<td>Seconds since boot (read from internal metrics store)</td>
+</tr>
+<tr>
+<td><code>&lt;&lt;&lt;mem&gt;&gt;&gt;</code></td>
+<td><code>MemTotal:</code>/<code>MemFree:</code>/<code>SwapTotal:</code>/<code>SwapFree:</code> (from metrics store)</td>
+</tr>
+<tr>
+<td><code>&lt;&lt;&lt;df&gt;&gt;&gt;</code></td>
+<td>Per-volume size/used/free/mountpoint (Windows)</td>
+</tr>
+<tr>
+<td><code>&lt;&lt;&lt;services&gt;&gt;&gt;</code></td>
+<td><code>name state/start_type display_name</code> per Windows service</td>
+</tr>
+<tr>
+<td><code>&lt;&lt;&lt;ps&gt;&gt;&gt;</code></td>
+<td><code>(user,vsz_kb,rss_kb,cputime,pid) cmdline</code> per process</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Expose any nscp check as a Checkmk service</strong> under <code>&lt;&lt;&lt;local&gt;&gt;&gt;</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="k">[/settings/check_mk/server/local]</span>
+<span class="na">CPU Load</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">command=check_cpu warn=load&gt;80 crit=load&gt;95</span>
+<span class="na">Disk C = command=check_drivesize drive=C</span><span class="o">:</span><span class="w"> </span><span class="s">&quot;warn=free&lt;20%&quot;</span><span class="w"> </span><span class="na">&quot;crit</span><span class="o">=</span><span class="s">free&lt;10%&quot;</span>
+</code></pre></div>
+<p><strong>MRPE relay</strong> under <code>&lt;&lt;&lt;mrpe&gt;&gt;&gt;</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="k">[/settings/check_mk/server/mrpe]</span>
+<span class="na">Uptime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">command=check_uptime warn=uptime&lt;2d</span>
+<span class="na">Memory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">command=check_memory type=committed warn=used&gt;80% crit=used&gt;90%</span>
+</code></pre></div>
+<p>Documentation: https://nsclient.org/docs/scenarios/check-mk.md`.</p>
+<h4 id="icingaclient-icinga-2-rest-api-submission"><a class="toclink" href="../../2026/05/11/0123-fixed-almost-all-bugs-/#icingaclient-icinga-2-rest-api-submission">IcingaClient — Icinga 2 REST API submission</a></h4>
+<p>A new client module submits passive check results directly to an Icinga 2 master/satellite via the
+<code>/v1/actions/process-check-result</code> REST endpoint, as an alternative to NSCA or NRDP.</p>
+<div class="highlight"><pre><span></span><code><span class="k">[/modules]</span>
+<span class="na">IcingaClient</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">enabled</span>
+
+<span class="k">[/settings/IcingaClient/targets/default]</span>
+<span class="na">address</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">https://icinga2.example.com:5665</span>
+<span class="na">username</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">nscp</span>
+<span class="na">password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">secret</span>
+<span class="na">hostname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">${hostname}</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>nscp<span class="w"> </span>client<span class="w"> </span>--module<span class="w"> </span>IcingaClient<span class="w"> </span><span class="se">\</span>
+<span class="w">            </span>--command<span class="w"> </span>submit_icinga<span class="w"> </span><span class="se">\</span>
+<span class="w">            </span>--address<span class="w"> </span>https://icinga2.example.com:5665<span class="w"> </span><span class="se">\</span>
+<span class="w">            </span>--username<span class="w"> </span>nscp<span class="w"> </span>--password<span class="w"> </span>secret<span class="w"> </span><span class="se">\</span>
+<span class="w">            </span>--command<span class="w"> </span>heartbeat<span class="w"> </span><span class="se">\</span>
+<span class="w">            </span>--result<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="se">\</span>
+<span class="w">            </span>--message<span class="w"> </span><span class="s2">&quot;Hello from NSClient++&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">            </span>--ensure-objects
+</code></pre></div>
+<h4 id="nsca-ng-client"><a class="toclink" href="../../2026/05/11/0123-fixed-almost-all-bugs-/#nsca-ng-client">NSCA-ng client</a></h4>
+<p>A new <code>NSCAngClient</code> module ships a hardened NSCA-ng submission client with PSK support, AEAD-first cipher selection,
+and connection retry logic.</p>
+<h4 id="native-support-for-windows-ca-store"><a class="toclink" href="../../2026/05/11/0123-fixed-almost-all-bugs-/#native-support-for-windows-ca-store">Native support for Windows CA-store</a></h4>
+<p>On startup NSClient++ now exports the machine's <code>ROOT</code> certificate store as a single PEM bundle, so any check that does
+TLS (<code>check_http</code>, <code>IcingaClient</code>, NRDP, ...) can validate certificates against the trust store the rest of Windows
+already uses.</p>
+<div class="highlight"><pre><span></span><code>check_http<span class="w"> </span><span class="nv">url</span><span class="o">=</span>https://www.ibm.com
+OK:<span class="w"> </span>https://www.ibm.com<span class="w"> </span>-&gt;<span class="w"> </span><span class="m">303</span><span class="w"> </span>ok<span class="w"> </span><span class="o">(</span>0B<span class="w"> </span><span class="k">in</span><span class="w"> </span>33ms<span class="o">)</span>
+
+check_http<span class="w"> </span><span class="nv">url</span><span class="o">=</span>https://self-signed.badssl.com/
+CRITICAL:<span class="w"> </span>https://self-signed.badssl.com/<span class="w"> </span>-&gt;<span class="w"> </span><span class="m">0</span><span class="w"> </span>error:<span class="w"> </span>Failed<span class="w"> </span>to<span class="w"> </span>connect<span class="w"> </span>...<span class="w"> </span>certificate<span class="w"> </span>verify<span class="w"> </span>failed
+</code></pre></div>
+<h4 id="checknet-five-new-cross-platform-checks"><a class="toclink" href="../../2026/05/11/0123-fixed-almost-all-bugs-/#checknet-five-new-cross-platform-checks">CheckNet — five new (cross-platform) checks</a></h4>
+<p><code>CheckNet</code> graduated from a placeholder into a full network-check module. All five commands work over NRPE as well as
+locally:</p>
+<ul>
+<li><strong><code>check_tcp</code></strong> — open a TCP socket to one or more host/port pairs, optionally send a payload and require an expected
+  substring.</li>
+<li><strong><code>check_dns</code></strong> — resolve a hostname and optionally assert which addresses come back.</li>
+<li><strong><code>check_http</code></strong> — fetch one or more URLs, check status code, response time and body content; supports custom headers
+  and user-agent.</li>
+<li><strong><code>check_ntp_offset</code></strong> — query one or more NTP servers and alert on offset / stratum.</li>
+<li><strong><code>check_connections</code></strong> — Windows TCP/UDP connection table inspection (counts per protocol/family/state).</li>
+</ul>
+<div class="highlight"><pre><span></span><code>check_tcp host=smtp.gmail.com port=25 send=&quot;EHLO nsclient.org&quot; expect=&quot;250&quot;
+check_dns host=google.com expected-address=172.217.20.174
+check_http url=https://nsclient.org/ expected-body=&quot;NSClient&quot; \
+    &quot;warn=time &gt; 500 or code &gt;= 400&quot; \
+    &quot;crit=time &gt; 2000 or code &gt;= 500 or result != &#39;ok&#39;&quot;
+check_ntp_offset &quot;servers=0.pool.ntp.org,1.pool.ntp.org&quot; timeout=2000
+check_connections &quot;filter=protocol = &#39;tcp&#39; and state = &#39;TIME_WAIT&#39;&quot; \
+    &quot;warn=count &gt; 200&quot; &quot;crit=count &gt; 1000&quot;
+</code></pre></div>
+<h4 id="checksystem-windows-registry-checks"><a class="toclink" href="../../2026/05/11/0123-fixed-almost-all-bugs-/#checksystem-windows-registry-checks">CheckSystem (Windows) — registry checks</a></h4>
+<p>Two new commands let you monitor the Windows registry directly from NSClient++ instead of relying on external scripts.
+They support recursion, exclude lists, 32/64-bit (WoW64) views, custom filters and the usual <code>warn=</code>/<code>crit=</code> expression
+syntax.</p>
+<ul>
+<li><strong><code>check_registry_key</code></strong> — verify that a key exists, count sub-keys/values, watch its last-write time.</li>
+<li><strong><code>check_registry_value</code></strong> — read a single value assert its type, size or content.</li>
+</ul>
+<div class="highlight"><pre><span></span><code>check_registry_key &quot;key=HKLM\Software\NSClient&quot; \
+    &quot;warn=age &gt; 7d&quot; &quot;crit=age &gt; 30d or not exists&quot;
+
+check_registry_key &quot;key=HKLM\Software\Microsoft\Windows\CurrentVersion\Uninstall&quot; \
+    recursive max-depth=1 exclude=KB5005463 exclude=KB5005539
+
+check_registry_value &quot;key=HKLM\System\CurrentControlSet\Services\W32Time\Config&quot; \
+    value=MaxPollInterval &quot;warn=int_value &gt; 14&quot; &quot;crit=int_value &gt; 17&quot;
+</code></pre></div>
+<h4 id="checksystem-check_os_updates-windows"><a class="toclink" href="../../2026/05/11/0123-fixed-almost-all-bugs-/#checksystem-check_os_updates-windows">CheckSystem — <code>check_os_updates</code> (Windows)</a></h4>
+<p>A new check using the Windows Update Agent (WUA) reports pending OS updates. By default any pending update returns
+warning; thresholds let you alert only on security/critical:</p>
+<div class="highlight"><pre><span></span><code>check_os_updates &quot;warning=important &gt; 0&quot; &quot;critical=security &gt; 0 or critical &gt; 0&quot;
+</code></pre></div>
+<h4 id="checksystem-linux-real-time-metrics"><a class="toclink" href="../../2026/05/11/0123-fixed-almost-all-bugs-/#checksystem-linux-real-time-metrics">CheckSystem (Linux) — real-time metrics</a></h4>
+<p>The Linux build of CheckSystem now ships with the same real-time metric collection that has been available on Windows
+for a long time: CPU, memory, disk, network and load are sampled in the background and exposed both to
+dashboards/metrics and to real-time filters (<code>filter=...</code> rules that fire when a threshold is crossed). Existing
+real-time filter configuration just works on Linux now.</p>
+<h4 id="real-time-filter-metrics"><a class="toclink" href="../../2026/05/11/0123-fixed-almost-all-bugs-/#real-time-filter-metrics">Real-time filter metrics</a></h4>
+<p><code>CheckSystem</code>'s real-time filters now publish per-filter match and error counts under
+<code>system.realtime.&lt;filter_name&gt;.fired</code> / <code>system.realtime.&lt;filter_name&gt;.errors</code>. Visible via:</p>
+<ul>
+<li>The metrics REST endpoint (<code>/api/v2/metrics</code> + filter)</li>
+<li>Prometheus scrape</li>
+<li>The new <code>Metrics()</code> Lua API in <code>default_check_mk.lua</code></li>
+</ul>
+<p>Useful for spotting filters that <em>never</em> fire (typo in the where-clause) or filters that <em>always</em> error (broken
+expression).</p>
+<h4 id="checkdisk-check_single_file"><a class="toclink" href="../../2026/05/11/0123-fixed-almost-all-bugs-/#checkdisk-check_single_file">CheckDisk — <code>check_single_file</code></a></h4>
+<p>A focused variant of <code>check_files</code> for inspecting a single, known path. Compared to using <code>check_files</code> for the same
+job:</p>
+<ul>
+<li>Only one required argument (<code>file=&lt;path&gt;</code>).</li>
+<li>A clear error when the input is empty.</li>
+<li><code>UNKNOWN: File not found: &lt;path&gt;</code> when the file is missing — instead of the empty-set / "No files found" workflow.</li>
+<li>A useful default <code>detail-syntax</code> so a no-threshold run is informative on its own.</li>
+</ul>
+<div class="highlight"><pre><span></span><code>check_single_file file=C:/windows/WindowsUpdate.log &quot;warn=age &gt; 5m&quot; &quot;crit=age &gt; 1h&quot;
+CRITICAL: WindowsUpdate.log (size=276, age=917)
+</code></pre></div>
+<h4 id="checkdisk-filesystem-filtering-for-check_drivesize"><a class="toclink" href="../../2026/05/11/0123-fixed-almost-all-bugs-/#checkdisk-filesystem-filtering-for-check_drivesize">CheckDisk — filesystem filtering for <code>check_drivesize</code></a></h4>
+<p><code>check_drivesize</code> can now filter drives by filesystem type — useful for excluding <code>tmpfs</code>, <code>nfs</code>, etc.</p>
+<div class="highlight"><pre><span></span><code>check_drivesize drive=* &quot;filter=fs = &#39;NTFS&#39;&quot;
+</code></pre></div>
+<h4 id="check_nscp_update"><a class="toclink" href="../../2026/05/11/0123-fixed-almost-all-bugs-/#check_nscp_update"><code>check_nscp_update</code></a></h4>
+<p>A new check command queries the GitHub releases API (with caching) and reports whether the running NSClient++ is up to
+date.</p>
+<h4 id="http-proxy-support-across-every-http-client"><a class="toclink" href="../../2026/05/11/0123-fixed-almost-all-bugs-/#http-proxy-support-across-every-http-client">HTTP proxy support across every HTTP client</a></h4>
+<p>NSClient++ can now route HTTP and HTTPS traffic through a corporate proxy. The same surface is used by every component
+built on the internal <code>http::simple_client</code> (NRDPClient, ElasticClient, Op5Client, IcingaClient, the remote <code>boot.ini</code>
+loader, ...).</p>
+<p>For HTTPS targets the client opens a CONNECT tunnel to the proxy, validates the proxy's response, and only then performs
+the TLS handshake — so a single setting covers both <code>http://</code> and <code>https://</code> URLs.</p>
+<p>Two new options on every HTTP client command and target:</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>proxy</code></td>
+<td>Proxy URL — <code>scheme://[user:pass@]host[:port]/</code>. Empty value disables the proxy.</td>
+</tr>
+<tr>
+<td><code>no-proxy</code></td>
+<td>Comma-separated list of hosts that bypass the proxy. A leading <code>.</code> is a suffix match.</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="k">[/settings/NRDP/client/targets/nagios]</span>
+<span class="na">address</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">https://nagios.example.com/nrdp/</span>
+<span class="na">token</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">mytoken</span>
+<span class="na">proxy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">http://proxy.corp.example:3128/</span>
+<span class="na">no proxy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">localhost,127.0.0.1,.internal</span>
+</code></pre></div>
+<p>Configuration loader (<code>boot.ini</code>):</p>
+<div class="highlight"><pre><span></span><code><span class="k">[proxy]</span>
+<span class="na">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">http://proxy.corp.example:3128/</span>
+<span class="na">no_proxy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">localhost,127.0.0.1,.internal</span>
+</code></pre></div>
+<p>Notes / limits:</p>
+<ul>
+<li>Only the <code>http://</code> proxy scheme is supported. <code>socks5://</code> / <code>https://</code> proxies are not.</li>
+<li>No automatic detection of system proxy settings (<code>HTTP_PROXY</code> env vars, WinINET / WPAD). The proxy must be configured
+  explicitly.</li>
+<li>On <code>407 Proxy Authentication Required</code> the proxy's response body is captured in the error message.</li>
+</ul>
+<h4 id="web-ui-rest-api-expansion"><a class="toclink" href="../../2026/05/11/0123-fixed-almost-all-bugs-/#web-ui-rest-api-expansion">Web UI / REST API expansion</a></h4>
+<p><strong>New web routes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Route</th>
+<th>Method</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/api/v2/events</code></td>
+<td><code>GET</code></td>
+<td>List buffered real-time events</td>
+</tr>
+<tr>
+<td><code>/api/v2/events</code></td>
+<td><code>DELETE</code></td>
+<td>Drain (returns + clears) the event buffer in one call</td>
+</tr>
+<tr>
+<td><code>/api/v2/metadata</code></td>
+<td><code>GET</code></td>
+<td>Module/setting metadata index</td>
+</tr>
+<tr>
+<td><code>/api/v2/metadata/counters</code></td>
+<td><code>GET</code></td>
+<td>List of available PDH counters</td>
+</tr>
+<tr>
+<td><code>/api/v2/metadata/channels</code></td>
+<td><code>GET</code></td>
+<td>List of registered submission channels</td>
+</tr>
+<tr>
+<td><code>/api/v2/settings/&lt;path&gt;</code></td>
+<td><code>DELETE</code></td>
+<td>Remove a settings key or path (staged delete; survives restart)</td>
+</tr>
+</tbody>
+</table>
+<p>The settings store gained <strong>staged deletion</strong>: a <code>DELETE</code> is recorded so that subsequent reads of the deleted key/path
+return "not present" until the change is saved. Stops a deleted-but-not-yet-saved key from being re-resurrected by a
+concurrent read.</p>
+<h4 id="web-ui-refresh"><a class="toclink" href="../../2026/05/11/0123-fixed-almost-all-bugs-/#web-ui-refresh">Web UI refresh</a></h4>
+<p>The bundled web interface has been heavily reworked:</p>
+<ul>
+<li><strong>Modern theme</strong> with active-navigation highlighting and a redesigned login page.</li>
+<li><strong>Filterable lists</strong> for Modules, Queries and Settings.</li>
+<li><strong>Settings diff dialog</strong> — the "settings changed" widget can now show exactly which keys changed.</li>
+<li><strong>CheckSystem settings UI</strong> got dedicated widgets for PDH counters and real-time filters: a counter picker that hits
+  <code>/api/v2/metadata/counters</code>, "Add filter" / "Add counter" dialogs, and a live preview of metric values pulled from the
+  metrics endpoint.</li>
+</ul>
+<p>If you've been editing real-time filters in <code>nsclient.ini</code> by hand, the web UI is now a much faster way to do it.</p>
+<h4 id="smtpclient-rewrite"><a class="toclink" href="../../2026/05/11/0123-fixed-almost-all-bugs-/#smtpclient-rewrite">SMTPClient rewrite</a></h4>
+<p>The SMTPClient module has been substantially rewritten with proper SMTP handling, integration tests, and a Python-based
+test harness.</p>
+<h4 id="smaller-features"><a class="toclink" href="../../2026/05/11/0123-fixed-almost-all-bugs-/#smaller-features">Smaller features</a></h4>
+<ul>
+<li><strong><code>nscp settings --sort</code></strong> — produce stable, sorted output, useful for diffing exported settings between hosts.</li>
+<li><strong>Performance threshold min/max bounds</strong> — perfdata threshold expressions can declare minimum and maximum bounds,
+  propagated into emitted perfdata:
+  <div class="highlight"><pre><span></span><code>check_pdh &quot;counter=\\Processor(_Total)\\% Processor Time&quot; \
+          &quot;perf-config=*(minimum:0;maximum:100)&quot;
+</code></pre></div></li>
+<li><strong>Timezone-aware <code>check_uptime</code> and <code>Schduler</code></strong> — applies a timezone cache on both Windows and Unix, so absolute
+  boot-time output and cron expressions agree with the host's local time.</li>
+<li><strong>WEBServer cookie attribute support</strong> — <code>Secure</code>, <code>HttpOnly</code>, <code>SameSite</code>, <code>Path</code>, <code>Domain</code>, <code>Expires</code>, <code>Max-Age</code>.</li>
+<li><strong>WEBServer password hashing</strong> with constant-time verification — removes the timing oracle on the previous plaintext
+  equality check.</li>
+<li><strong>WEBServer authentication rate limiter</strong> — per-source throttling of failed authentication attempts:
+  <div class="highlight"><pre><span></span><code><span class="k">[/settings/WEB/server]</span>
+<span class="na">auth rate limit max failures</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="s">10</span><span class="w">   </span><span class="c1">; 0 disables the limiter</span>
+<span class="na">auth rate limit block seconds</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s">60</span>
+</code></pre></div></li>
+</ul>
+<hr />
+<h3 id="filter-engine-stable-summary-thresholds"><a class="toclink" href="../../2026/05/11/0123-fixed-almost-all-bugs-/#filter-engine-stable-summary-thresholds">Filter engine — stable summary thresholds</a></h3>
+<p>These changes touch the shared filter / threshold engine and therefore affect <strong>every</strong> modular check (<code>check_files</code>,
+<code>check_service</code>, <code>check_process</code>, <code>check_eventlog</code>, ...).</p>
+<h4 id="stable-count-total-_count-in-warn-crit"><a class="toclink" href="../../2026/05/11/0123-fixed-almost-all-bugs-/#stable-count-total-_count-in-warn-crit">Stable <code>count</code> / <code>total</code> / <code>*_count</code> in <code>warn=</code> / <code>crit=</code></a></h4>
+<p><code>warn=</code> / <code>crit=</code> were evaluated <em>during</em> iteration. Summary variables such as <code>count</code> therefore exposed their <em>running</em>
+value instead of the final post-iteration value, so a mixed expression like</p>
+<div class="highlight"><pre><span></span><code>crit = state = &#39;hung&#39; OR count &lt; 5
+</code></pre></div>
+<p>mis-fired on the very first row (<code>count == 1 &lt; 5</code>) regardless of how many rows ultimately matched. Per-row evaluation is
+now deferred: matched rows are recorded during iteration, and the warn/crit/ok engines run once the summary state is
+final.</p>
+<h4 id="mixed-warn-crit-evaluated-when-no-rows-match"><a class="toclink" href="../../2026/05/11/0123-fixed-almost-all-bugs-/#mixed-warn-crit-evaluated-when-no-rows-match">Mixed <code>warn=</code> / <code>crit=</code> evaluated when <em>no</em> rows match</a></h4>
+<p>If a filter excluded every row, mixed expressions like <code>crit = state = 'stopped' OR count = 0</code> were skipped entirely —
+leaving the check <code>OK</code> in the empty case. They are now evaluated with object-bound variables defaulting to <code>false</code> and
+summary variables at their final values, so the check correctly returns CRITICAL when the service is missing.</p>
+<h4 id="quieter-more-predictable-expression-evaluation"><a class="toclink" href="../../2026/05/11/0123-fixed-almost-all-bugs-/#quieter-more-predictable-expression-evaluation">Quieter, more predictable expression evaluation</a></h4>
+<ul>
+<li>Operators audited so <code>is_unsure</code> propagates consistently; invalid-type comparisons resolve to <code>unsure-false</code> instead
+  of erroring.</li>
+<li>String variables on no-object cases now return an empty string with <code>is_unsure=true</code> and produce a <em>warning</em> in the
+  log instead of an error per row — log volume on complex queries drops dramatically.</li>
+<li>Removed the misleading "most likely mutating" warnings.</li>
+<li>Substantial new test coverage.</li>
+</ul>
+<hr />
+<h3 id="check_service-and-check_process-fixes-windows"><a class="toclink" href="../../2026/05/11/0123-fixed-almost-all-bugs-/#check_service-and-check_process-fixes-windows"><code>check_service</code> and <code>check_process</code> fixes (Windows)</a></h3>
+<ul>
+<li><strong>"Failed to enumerate service: 6f7" on busy hosts</strong> — enumeration is now properly looped until the SCM signals
+  end-of-data.</li>
+<li><strong><code>perf-syntax=none</code> actually suppresses perfdata</strong> — <code>check_service</code> used to emit empty perfdata aliases (
+  <code>''=4;0;1 ''=4;0;1 ...</code>), blowing past NRPE size limits.</li>
+<li><strong>No more <code>TODO</code> leaking into <code>${desc}</code></strong> — <code>check_service service=Spooler</code> used to render as <code>OK: Spooler: TODO</code>.
+  Now: <code>OK: Spooler: Print Spooler</code>.</li>
+<li><strong><code>delayed</code> only reported for <code>SERVICE_AUTO_START</code></strong> — manual / boot / system / disabled services no longer randomly
+  show up as <code>delayed</code>.</li>
+<li><strong><code>check_process</code> sees protected / cross-user processes as <code>NETWORK SERVICE</code></strong> — a <code>PROCESS_QUERY_LIMITED_INFORMATION</code>
+  fallback is now attempted, so <code>winlogon.exe</code>, <code>csrss.exe</code> etc. no longer report <code>CRITICAL: &lt;name&gt;=stopped</code> when the
+  agent runs unprivileged.</li>
+<li><strong>Realtime <code>check_process</code> is now case-insensitive</strong>, matching the active path and Windows itself.</li>
+</ul>
+<hr />
+<h3 id="check_files-fixes"><a class="toclink" href="../../2026/05/11/0123-fixed-almost-all-bugs-/#check_files-fixes"><code>check_files</code> fixes</a></h3>
+<ul>
+<li><strong>#730</strong> — <code>max-depth=0</code> now scans the top directory only (was: bail out before scanning anything, returning "no files
+  found").</li>
+<li><strong>#598</strong> — Non-ASCII paths (accented letters, CJK, ...) are no longer silently mangled by mismatched codepage
+  conversions.</li>
+<li><strong>#613</strong> — Top-level paths that cannot be opened now produce <code>UNKNOWN: Path was not found: &lt;path&gt;</code> instead of being
+  hidden behind the configured <code>empty-state</code>.</li>
+<li><strong>#605</strong> — NTFS junctions / symlinks / mount points are now skipped during recursion, preventing double-counts on
+  self-referential trees.</li>
+<li><strong>#717</strong> — The legacy <code>CheckFiles</code> shim now sets <code>empty-state=ok</code> when translating, restoring 0.4-era behaviour for
+  legacy calls that find zero files.</li>
+</ul>
+<hr />
+<h3 id="other-check-module-fixes"><a class="toclink" href="../../2026/05/11/0123-fixed-almost-all-bugs-/#other-check-module-fixes">Other check / module fixes</a></h3>
+<ul>
+<li><strong>CheckDisk resilience</strong> — an error on a single unavailable volume no longer aborts the entire <code>check_drivesize</code> run.</li>
+<li><strong>#581</strong> — <code>CheckLogFile</code> honours the <code>line-split</code> argument (previously hard-coded to <code>\n</code>); multi-character
+  delimiters such as <code>\r\n</code> are handled correctly. Real-time seek behaviour fixed; CRLF handling harmonised.</li>
+<li><strong>#589</strong> — Time/duration arguments such as <code>time=3000foobar</code> or <code>time=3000mfoobar</code> are no longer silently accepted;
+  malformed inputs are rejected with a clear error.</li>
+<li><strong>#669</strong> — The literal <code>U</code> (Nagios "undefined") in performance data is preserved end-to-end instead of being coerced
+  to <code>0</code>. Only an exact <code>U</code>, <code>u</code>, <code>U%</code> or <code>u%</code> token matches.</li>
+<li><strong>NSCA wire timestamps</strong> are now correctly built in UTC. Both server (IV packet) and client (data packet) used to
+  derive seconds-since-epoch from <code>second_clock::local_time()</code>, which drifted by the host's TZ offset. A <code>timezone</code>
+  setting on both ends allows legacy interop with agents that emit local-clock-as-Unix-time stamps.</li>
+<li><strong>Metrics collection regression</strong> fixed (some metrics were silently dropped).</li>
+<li>Op5Client / ElasticClient unified on the new HTTP client; 401 path fixed; <code>reponse → response</code> typos corrected.</li>
+<li>Gracefully handle non-numeric NSClient command codes.</li>
+<li>TLS support fixes; better randomness for encryption; race condition fixes; boundary checks for various network
+  payloads and reading certificates.</li>
+<li>NRDP integration tests added; new <code>nrdp</code> client alias.</li>
+</ul>
+<hr />
+<h3 id="http-refactor"><a class="toclink" href="../../2026/05/11/0123-fixed-almost-all-bugs-/#http-refactor">HTTP refactor</a></h3>
+<ul>
+<li>HTTP request and response are now distinct types instead of one shared bag.</li>
+<li><strong>Chunked transfer-encoding is decoded properly.</strong> <code>check_http</code> against servers using <code>Transfer-Encoding: chunked</code> (
+  most modern reverse proxies, Icinga 2, Kubernetes ingress, ...) now returns the full body instead of a
+  truncated/garbled one. The IcingaClient module relies on this.</li>
+<li>Header storage is normalised — case-insensitive lookup, no more duplicate-header surprises.</li>
+</ul>
+<hr />
+<h3 id="security-hardening"><a class="toclink" href="../../2026/05/11/0123-fixed-almost-all-bugs-/#security-hardening">Security hardening</a></h3>
+<p>The <code>0.12.2</code> release is a security-focused pass. These do not change documented behaviour for well-formed traffic but
+close down attacker-controlled edge cases.</p>
+<h4 id="dos-resource-exhaustion-limits"><a class="toclink" href="../../2026/05/11/0123-fixed-almost-all-bugs-/#dos-resource-exhaustion-limits">DoS / resource-exhaustion limits</a></h4>
+<ul>
+<li>Authorization header capped at <strong>8 KiB</strong> to mitigate amplification.</li>
+<li>Per-connection parser buffer cap to prevent memory pinning from oversized or never-completed requests.</li>
+<li>Session token cap with eviction to prevent unbounded memory growth.</li>
+<li>Payload lengths below the protocol minimum are rejected before allocation.</li>
+<li>Path expansion now detects cycles and refuses to recurse, preventing stack overflow on pathological configurations.</li>
+</ul>
+<h4 id="nsca-hardening"><a class="toclink" href="../../2026/05/11/0123-fixed-almost-all-bugs-/#nsca-hardening">NSCA hardening</a></h4>
+<ul>
+<li>Packet version is checked.</li>
+<li>Timestamp validation tightened to mitigate replay attacks.</li>
+</ul>
+<h4 id="logoutput-injection-prevention"><a class="toclink" href="../../2026/05/11/0123-fixed-almost-all-bugs-/#logoutput-injection-prevention">Log/output injection prevention</a></h4>
+<p>Control characters are stripped from values before they are written to external sinks, removing log/protocol-injection
+vectors:</p>
+<ul>
+<li>Log file entries (file names and messages)</li>
+<li>syslog messages (CR/LF/NUL stripped)</li>
+<li>Graphite metric paths and values</li>
+<li>HTTP response headers (header keys and values)</li>
+<li><code>log_status</code> is now JSON-serialised so attacker-controlled fields cannot inject extra structured fields.</li>
+</ul>
+<h4 id="filesystem-process-safety"><a class="toclink" href="../../2026/05/11/0123-fixed-almost-all-bugs-/#filesystem-process-safety">Filesystem / process safety</a></h4>
+<ul>
+<li>PID file creation hardened against symlink attacks; exclusive access enforced.</li>
+<li>Archive extraction has a <strong>zip-slip guard</strong> that validates entry paths and refuses traversal sequences.</li>
+<li>Module and script names are validated to prevent path traversal at load time.</li>
+<li>Argument substitution in external scripts is isolated to prevent command injection through user-controlled tokens.</li>
+</ul>
+<h4 id="cryptography-tls"><a class="toclink" href="../../2026/05/11/0123-fixed-almost-all-bugs-/#cryptography-tls">Cryptography / TLS</a></h4>
+<ul>
+<li>HTTPS now logs explicitly when no certificate is present and warns on HTTP fallback in production.</li>
+<li>SSL connections enable hostname verification by default.</li>
+<li>Auto-generated passwords use OpenSSL <code>RAND_bytes</code> (cryptographically secure) instead of the previous predictable
+  generator.</li>
+<li>Sensitive values are no longer logged at debug level.</li>
+<li><code>check_nt</code> password compare is constant-time.</li>
+</ul>
+<hr />
+<h3 id="breaking-changes"><a class="toclink" href="../../2026/05/11/0123-fixed-almost-all-bugs-/#breaking-changes">Breaking changes</a></h3>
+<blockquote>
+<p>Read this section carefully. Some changes are listener defaults that are now fail-closed; some are corrections to
+long-standing buggy behaviour; some are internal API changes for out-of-tree modules.</p>
+</blockquote>
+<h4 id="listeners-default-to-safer-behaviour"><a class="toclink" href="../../2026/05/11/0123-fixed-almost-all-bugs-/#listeners-default-to-safer-behaviour">Listeners default to safer behaviour</a></h4>
+<ol>
+<li><strong>Empty <code>allowed hosts</code> now rejects all connections.</strong> Previously treated as "allow any source". To genuinely expose
+   the agent to any source, set it explicitly:
+   <div class="highlight"><pre><span></span><code>allowed hosts = 0.0.0.0/0,::/0
+</code></pre></div></li>
+<li><strong><code>check_nt</code> (NSClientServer) defaults to <code>ssl = true</code>.</strong> The legacy <code>check_nt</code> protocol carries the password in
+   every request. The listener will not refuse to start if TLS is off, but it will log a warning. To keep the old
+   plaintext behaviour for legacy clients, set <code>ssl = false</code> explicitly in <code>[/settings/NSClient/server]</code>.</li>
+<li><strong><code>check_nt</code>: the literal password <code>None</code> no longer authenticates.</strong> Empty server passwords now reject all requests.
+   Errors are also genericised (<code>ERROR: Bad request.</code>) to remove the online password-guessing oracle.</li>
+<li><strong>WEBServer: <code>/auth/token</code> and <code>/auth/logout</code> are removed (HTTP 410).</strong> They accepted the password and session token
+   as URL query parameters, leaking credentials into browser history and proxy logs. Migrate to:<ul>
+<li><code>POST /api/v2/login</code> with <code>Authorization: Basic</code> to obtain a token</li>
+<li><code>DELETE /api/v2/login</code> with <code>Authorization: Bearer</code> to log out</li>
+</ul>
+</li>
+<li><strong>WEBServer: <code>?TOKEN=</code> / <code>?__TOKEN=</code> query-string token auth removed.</strong> Send the token in a header instead:
+   <code>Authorization: Bearer &lt;token&gt;</code>, <code>TOKEN: &lt;token&gt;</code>, or <code>X-Auth-Token: &lt;token&gt;</code>.</li>
+<li><strong>WEBServer: anonymous access is now opt-in.</strong> A role named <code>anonymous</code> registered in settings is silently ignored
+   unless the new <code>allow_anonymous</code> flag is enabled.</li>
+<li><strong>WEBServer: existing <code>admin</code> user is no longer overwritten on restart.</strong> Deployments that relied on the password
+   being reset to the default at boot must adapt.</li>
+</ol>
+<h4 id="scheduler-cron-expressions-evaluate-in-local-time-by-default-570"><a class="toclink" href="../../2026/05/11/0123-fixed-almost-all-bugs-/#scheduler-cron-expressions-evaluate-in-local-time-by-default-570">Scheduler — cron expressions evaluate in <strong>local time</strong> by default (#570)</a></h4>
+<p>The <code>Scheduler</code> module previously used UTC, so <code>40 15 * * *</code> fired at 15:40 UTC regardless of host TZ. The default has
+changed to local time, matching standard cron semantics. Hour and minute fields will shift accordingly on non-UTC hosts.</p>
+<p>A new <code>timezone</code> setting under <code>[/settings/scheduler]</code> controls the reference clock:</p>
+<div class="highlight"><pre><span></span><code>[/settings/scheduler]
+timezone = local                          ; default — standard cron semantics
+; timezone = utc                          ; restore the pre-0.12 behaviour
+; timezone = EST-05EDT,M3.2.0,M11.1.0     ; any POSIX TZ string is honoured
+</code></pre></div>
+<p>IANA names such as <code>Europe/Stockholm</code> are <strong>not</strong> supported — use the POSIX form. Unparseable values fall back to UTC
+and surface as <code>UTC?</code> in any timezone label.</p>
+<h4 id="filter-threshold-engine"><a class="toclink" href="../../2026/05/11/0123-fixed-almost-all-bugs-/#filter-threshold-engine">Filter / threshold engine</a></h4>
+<ol>
+<li><strong><code>warn=</code> / <code>crit=</code> no longer fire mid-iteration on running counts.</strong>
+   Configurations "tuned" against the buggy early-fire will produce different results.
+   <div class="highlight"><pre><span></span><code>crit = state = &#39;hung&#39; OR count &lt; 5
+# Old: CRITICAL on the very first row (count == 1).
+# New: CRITICAL only if any row is &#39;hung&#39; OR final count &lt; 5.
+</code></pre></div></li>
+<li><strong>Mixed <code>warn=</code> / <code>crit=</code> now evaluate when no rows match.</strong>
+   <div class="highlight"><pre><span></span><code>crit = state = &#39;stopped&#39; OR count = 0
+# Old: OK when nothing matched (count = 0).
+# New: CRITICAL when nothing matched (count = 0).
+</code></pre></div>
+   If your old config implicitly treated "empty" as OK, add a
+   <code>count &gt; 0 AND ...</code> guard or move the empty-case logic into a
+   dedicated check.</li>
+</ol>
+<h4 id="check-specific-corrections"><a class="toclink" href="../../2026/05/11/0123-fixed-almost-all-bugs-/#check-specific-corrections">Check-specific corrections</a></h4>
+<ol>
+<li><strong><code>check_service</code>: <code>delayed</code> is no longer reported for non-auto services.</strong> Filters that matched
+    <code>start_type = 'delayed'</code> on Manual / Boot / System / Disabled services will stop matching. To alert on "any
+    non-running service that isn't disabled":
+    <div class="highlight"><pre><span></span><code><span class="na">filter = start_type IN (&#39;auto&#39;,&#39;delayed&#39;,&#39;boot&#39;,&#39;system&#39;) AND state !</span><span class="o">=</span><span class="w"> </span><span class="s">&#39;running&#39;</span>
+</code></pre></div></li>
+<li><strong>Realtime <code>check_process</code> is now case-insensitive.</strong> A rule that intentionally matched only an exact casing will
+    now match all variants (almost certainly the desired behaviour).</li>
+<li><strong><code>check_service</code>: <code>${desc}</code> no longer returns the literal <code>TODO</code>.</strong> Use the real display name.</li>
+<li><strong><code>check_service</code>: <code>perf-syntax=none</code> actually suppresses perfdata.</strong> Backends that consumed the empty-aliased
+    entries (highly unlikely) will see them disappear.</li>
+</ol>
+<h4 id="check_files-corner-cases-changed"><a class="toclink" href="../../2026/05/11/0123-fixed-almost-all-bugs-/#check_files-corner-cases-changed"><code>check_files</code> — corner cases changed</a></h4>
+<ol>
+<li><strong><code>max-depth=0</code></strong> now scans the top directory instead of returning empty (#730).</li>
+<li><strong>Missing paths</strong> now return UNKNOWN instead of OK / empty (#613).</li>
+<li><strong>NTFS junction loops</strong> are no longer double-counted (#605).</li>
+<li><strong>Legacy <code>CheckFiles</code></strong> calls that previously returned UNKNOWN on empty results will now return OK (#717).</li>
+</ol>
+<h4 id="configuration-startup"><a class="toclink" href="../../2026/05/11/0123-fixed-almost-all-bugs-/#configuration-startup">Configuration / startup</a></h4>
+<ol>
+<li><strong>CheckExternalScripts: malformed alias commands are refused at startup.</strong> The fallback "split-on-space" parser has
+    been removed.
+    Aliases whose command line does not parse cleanly are refused with an error in the log instead of being silently
+    registered with surprising tokenisation. Review your logs after upgrading.</li>
+</ol>
+<h4 id="internal-api-out-of-tree-module-authors"><a class="toclink" href="../../2026/05/11/0123-fixed-almost-all-bugs-/#internal-api-out-of-tree-module-authors">Internal API (out-of-tree module authors)</a></h4>
+<ol>
+<li><strong>HTTP request/response API changed.</strong> Internal C++ types <code>http::request</code> / <code>http::response</code> are now distinct,
+    headers are case-insensitive, and chunked decoding happens transparently.
+    Out-of-tree modules linked against the old shared bag type need a small adjustment:
+    <div class="highlight"><pre><span></span><code><span class="c1">// before</span>
+<span class="n">http</span><span class="o">::</span><span class="n">packet</span><span class="w"> </span><span class="n">pkt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">client</span><span class="p">.</span><span class="n">send</span><span class="p">(...);</span>
+<span class="k">auto</span><span class="w"> </span><span class="n">body</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pkt</span><span class="p">.</span><span class="n">body</span><span class="p">;</span>
+
+<span class="c1">// after</span>
+<span class="n">http</span><span class="o">::</span><span class="n">response</span><span class="w"> </span><span class="n">resp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">client</span><span class="p">.</span><span class="n">send</span><span class="p">(</span><span class="n">http</span><span class="o">::</span><span class="n">request</span><span class="p">{...});</span>
+<span class="k">auto</span><span class="w"> </span><span class="n">body</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">resp</span><span class="p">.</span><span class="n">body</span><span class="p">();</span><span class="w">   </span><span class="c1">// chunked decoding already applied</span>
+</code></pre></div></li>
+</ol>
+<h4 id="documentation-reorganisation"><a class="toclink" href="../../2026/05/11/0123-fixed-almost-all-bugs-/#documentation-reorganisation">Documentation reorganisation</a></h4>
+<ol>
+<li>The documentation tree was restructured (<code>concepts/</code>, <code>checks-in-depth/</code>, <code>scenarios/</code>, <code>tutorial/</code>, <code>reference/</code>
+    are now clearly separated). Bookmarks and external links may need updating.</li>
+</ol>
+<hr />
+<h3 id="upgrade-checklist"><a class="toclink" href="../../2026/05/11/0123-fixed-almost-all-bugs-/#upgrade-checklist">Upgrade checklist</a></h3>
+<ol>
+<li><strong>Audit <code>allowed hosts</code></strong> on every node — empty values now reject everything.</li>
+<li><strong><code>check_nt</code> (NSClientServer)</strong> now defaults to <code>ssl = true</code>. If your clients don't speak TLS, set <code>ssl = false</code>
+   explicitly. Either way the listener will log a warning at startup if TLS is off or a password is configured,
+   recommending a switch to REST or NRPE.</li>
+<li><strong>Replace any client</strong> that calls <code>/auth/token</code> or <code>/auth/logout</code> with the <code>/api/v2/login</code> flow.</li>
+<li><strong>Replace any client</strong> that passes <code>?TOKEN=</code> / <code>?__TOKEN=</code> in the query string with a header-based token.</li>
+<li><strong>Scheduler cron expressions</strong> on non-UTC hosts will shift to local time. Either update them or set
+   <code>[/settings/scheduler] timezone = utc</code> to restore the previous behaviour.</li>
+<li><strong>Review <code>check_service</code> / <code>check_process</code> / <code>check_files</code> filters</strong> that may have relied on the corrected behaviours
+   listed above.</li>
+<li><strong>Restart the service and review the log</strong> for new "refused alias" or "rejected connection" warnings — these flag
+   configurations that were previously silently accepted.</li>
+</ol>
+<p>No configuration migration is required for the new HTTP proxy keys, the Checkmk server, the Icinga client, the NSCA-ng
+client, or the new checks — they are all opt-in.</p>
+<h3 id="download"><a class="toclink" href="../../2026/05/11/0123-fixed-almost-all-bugs-/#download">Download</a></h3>
+<p><a class="md-button" href="https://github.com/mickem/nscp/releases/0.12.4">You can download the new version from GitHub</a></p>
+<p>// Michael Medin</p>
+    
+    
+  </div>
+</article>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2026-04-07 00:00:00+00:00">April 7, 2026</time></li>
+        
+        
+          
+          <li class="md-meta__item">
+            
+              5 min read
+            
+          </li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="01129-new-checks-and-web-ui-enhancements"><a class="toclink" href="../../2026/04/07/01129-new-checks-and-web-ui-enhancements/">0.11.29 New checks and web ui enhancements</a></h2>
+<h3 id="check_battery"><a class="toclink" href="../../2026/04/07/01129-new-checks-and-web-ui-enhancements/#check_battery">check_battery</a></h3>
+<p>Monitor battery status on Windows laptops and mobile devices. This command provides comprehensive battery health and status information using both the Windows Power API and WMI.</p>
+<ul>
+<li><strong>Charge Level Monitoring</strong>: Track battery charge percentage with warning/critical thresholds</li>
+<li><strong>Power Source Detection</strong>: Determine if system is running on AC or battery power</li>
+<li><strong>Battery Health</strong>: Calculate battery health as a percentage of design capacity</li>
+<li><strong>Status Tracking</strong>: Monitor charging, discharging, critical, low, and high states</li>
+<li><strong>Time Remaining</strong>: Estimate remaining battery life when on battery power</li>
+<li><strong>Detailed Metrics</strong>: Access charge/discharge rates and capacity information via WMI</li>
+</ul>
+<p><strong>Basic battery check with default thresholds (warn &lt; 20%, crit &lt; 10%):</strong>
+<div class="highlight"><pre><span></span><code>check_battery
+OK: system: 85% (ac, charging)
+</code></pre></div></p>
+<p><strong>Check if battery charge is above 50%:</strong>
+<div class="highlight"><pre><span></span><code>check_battery &quot;warn=charge &lt; 50&quot; &quot;crit=charge &lt; 25&quot;
+OK: system: 85% (ac, charging)
+</code></pre></div></p>
+<p><strong>Alert if running on battery power:</strong>
+<div class="highlight"><pre><span></span><code>check_battery &quot;warn=power_source = &#39;battery&#39;&quot;
+WARNING: system: 72% (battery, discharging)
+</code></pre></div></p>
+<p><strong>Show detailed battery information:</strong>
+<div class="highlight"><pre><span></span><code>check_battery &quot;detail-syntax=${name}: ${charge}% (${power_source}, ${status}, health: ${health}%, time: ${time_remaining}s)&quot;
+OK: system: 85% (ac, charging, health: 95%, time: -1s)
+</code></pre></div></p>
+<h3 id="check_process_history"><a class="toclink" href="../../2026/04/07/01129-new-checks-and-web-ui-enhancements/#check_process_history">check_process_history</a></h3>
+<p>Track all processes that have been seen running since NSClient++ started. This command maintains a history of process executions, allowing you to verify that certain processes have (or haven't) run.</p>
+<ul>
+<li><strong>Process Tracking</strong>: Records every unique process seen since service start</li>
+<li><strong>Execution Counting</strong>: Tracks how many times each process has started</li>
+<li><strong>Timestamp Recording</strong>: Records first and last seen timestamps</li>
+<li><strong>Current State</strong>: Shows whether each process is currently running</li>
+<li><strong>Selective Filtering</strong>: Check specific processes by name</li>
+</ul>
+<p><strong>Use Cases</strong>
+- <strong>Compliance Monitoring</strong>: Verify that backup software, antivirus scanners, or other required applications have run
+- <strong>Security Auditing</strong>: Detect if unauthorized applications have been executed
+- <strong>SLA Verification</strong>: Confirm that scheduled maintenance tasks have executed</p>
+<blockquote>
+<p>As checking processes is expensive it is disabled by default. 
+You need to enable it by setting:
+<div class="highlight"><pre><span></span><code>[/settings/system/windows] 
+process history=true
+</code></pre></div></p>
+</blockquote>
+<p><strong>List all processes in history:</strong>
+<strong>Check if a specific backup application has run:</strong>
+<div class="highlight"><pre><span></span><code>check_process_history --process backup.exe &quot;warn=times_seen = 0&quot; &quot;crit=times_seen = 0&quot;
+CRITICAL: backup.exe (false) - never seen running
+</code></pre></div></p>
+<p><strong>Check if a process is currently running:</strong>
+<div class="highlight"><pre><span></span><code>check_process_history --process important-service.exe &quot;crit=running = &#39;false&#39;&quot;
+CRITICAL: important-service.exe (false) - not currently running
+</code></pre></div></p>
+<p><strong>Alert if a forbidden application has ever run:</strong>
+<div class="highlight"><pre><span></span><code>check_process_history --process forbidden-game.exe &quot;warn=times_seen &gt; 0&quot;
+WARNING: forbidden-game.exe (seen 3 times, not running)
+</code></pre></div></p>
+<p><strong>Show detailed history for a process:</strong>
+<div class="highlight"><pre><span></span><code>check_process_history --process notepad.exe &quot;detail-syntax=${exe}: first=${first_seen}, last=${last_seen}, count=${times_seen}, running=${running}&quot;
+OK: notepad.exe: first=2026-04-06 08:15:32, last=2026-04-06 14:22:45, count=5, running=false
+</code></pre></div></p>
+<h3 id="check_process_history_new"><a class="toclink" href="../../2026/04/07/01129-new-checks-and-web-ui-enhancements/#check_process_history_new">check_process_history_new</a></h3>
+<p>Detect processes that have been started recently within a configurable time window. This is useful for security monitoring to detect unexpected process launches.</p>
+<ul>
+<li><strong>Time-Based Detection</strong>: Find processes first seen within a configurable window</li>
+<li><strong>Flexible Time Windows</strong>: Support for seconds (s), minutes (m), hours (h)</li>
+<li><strong>Security Focused</strong>: Ideal for detecting new/unexpected process launches</li>
+</ul>
+<p><strong>Use Cases</strong>
+- <strong>Security Monitoring</strong>: Detect newly launched processes that might indicate compromise
+- <strong>Change Detection</strong>: Monitor for new software installations or unauthorized programs
+- <strong>Incident Response</strong>: Identify what processes started around the time of an incident</p>
+<blockquote>
+<p>As checking processes is expensive it is disabled by default. 
+You need to enable it by setting:
+<div class="highlight"><pre><span></span><code>[/settings/system/windows] 
+process history=true
+</code></pre></div></p>
+</blockquote>
+<p><strong>Check for any new processes in the last 5 minutes (default):</strong>
+<div class="highlight"><pre><span></span><code>check_process_history_new
+OK: No new processes found.
+</code></pre></div></p>
+<p><strong>Check for new processes in the last hour:</strong>
+<div class="highlight"><pre><span></span><code>check_process_history_new --time 1h
+WARNING: suspicious.exe (first seen: 2026-04-06 14:15:32)
+</code></pre></div></p>
+<p><strong>Check for new processes with detailed output:</strong>
+<div class="highlight"><pre><span></span><code>check_process_history_new --time 30m &quot;detail-syntax=${exe} started at ${first_seen} (running: ${running})&quot;
+OK: updater.exe started at 2026-04-06 14:10:00 (running: false)
+</code></pre></div></p>
+<blockquote>
+<p>Beware that depending on if you are looking for wanted or unwanted processes you likely want to change <code>empty-state</code> to <code>ok</code>, or <code>critical</code>.</p>
+</blockquote>
+<h3 id="check_service-overhaul"><a class="toclink" href="../../2026/04/07/01129-new-checks-and-web-ui-enhancements/#check_service-overhaul"><code>check_service</code> overhaul</a></h3>
+<p>Fixed a reported bug as well as overhauled the check with some new features and modernized the checks.</p>
+<blockquote>
+<p>This is technically a breaking change, in that it will classify some services as "ok" which was not before.
+But I doubt that anyone relied on the default checking of all services</p>
+</blockquote>
+<ul>
+<li><code>state_is_perfect()</code> now treats auto-start services with triggers as OK when stopped (trigger-start services legitimately remain stopped until their trigger fires)</li>
+<li><code>state_is_ok()</code> now treats auto-start services with triggers as OK when stopped (same as delayed services were already treated)</li>
+<li><code>state_is_ok()</code> now treats auto-start services that stopped with exit code 0 as OK (services like WslInstaller that start, complete their task, and stop cleanly no longer trigger CRITICAL)</li>
+<li>Added new filter keyword 'exit_code' exposing the Win32 exit code of a service. Allows users to write custom filters like 'exit_code != 0' to detect failed services</li>
+<li>Improved error logging in trigger detection. <code>fetch_triggers()</code> previously swallowed all errors silently; now logs unexpected failures</li>
+<li>check_service: Updated service classification list for Windows 11 24H2 / Server 2025</li>
+<li>Added modern services: WslInstaller, WaaSMedicSvc, UsoSvc, DoSvc, CoreMessagingRegistrar,
+     SecurityHealthService, SystemEventsBroker, vmcompute, HNS, sshd, LxssManager, and others</li>
+<li>Removed obsolete services no longer present in modern Windows: Browser, NtFrs, IISADMIN,
+     TlntSvr, napagent, IEEtwCollectorService, UI0Detect, SMTPSVC, aspnet_state, and others</li>
+<li>Reclassified: COMSysApp (essential → ignored), SystemEventsBroker (supporting → system),
+     WerSvc/wercplsupport (role → ignored)</li>
+<li>Fixed casing: Eventsystem → EventSystem, systemEventsBroker → SystemEventsBroker</li>
+<li>Changed default detail-syntax to include <code>exit_code</code>. From <code>${name}=${state} (${start_type})</code>into <code>${name}=${state}, exit=%(exit_code), type=%(start_type)</code></li>
+<li>Removed warning messages for excluded services.  If a service is excluded we will not try to enumerate it.</li>
+</ul>
+<h3 id="improvements-to-web-ui"><a class="toclink" href="../../2026/04/07/01129-new-checks-and-web-ui-enhancements/#improvements-to-web-ui">Improvements to web-ui</a></h3>
+<p>web-disk-widgets</p>
+<p>This version adds some new dashboard widgets that showcases system statistics as well as a network graph and disk stats.
+I also fixes and issue relating to calculating network measurements.</p>
+<p><img alt="test-client" src="/images/blog/web-system-widgets.png" />
+<img alt="test-client" src="/images/blog/web-disk-widgets.png" /></p>
+<p>It also changes the tools bar slightly to make them a bit less intense:</p>
+<p><img alt="test-client" src="/images/blog/web-new-toolbar.png" /></p>
+<p><strong>Other changes:</strong></p>
+<ul>
+<li>three new metrics which contains the refresh times of metrics, system metrics and network metrics so you can see this in the web UI.</li>
+<li>Removes unnecessary scientific notations for number in the metrics api so now you will get <code>1</code> instead of <code>1E1</code>. Both are valid json so this should not impact anyone as long as your not using grep or some such to parse the json.</li>
+</ul>
+<h3 id="download"><a class="toclink" href="../../2026/04/07/01129-new-checks-and-web-ui-enhancements/#download">Download</a></h3>
+<p><a class="md-button" href="https://github.com/mickem/nscp/releases/0.11.29">You can download the new version from GitHub</a></p>
+<p>// Michael Medin</p>
+    
+    
+  </div>
+</article>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2026-03-24 00:00:00+00:00">March 24, 2026</time></li>
+        
+        
+          
+          <li class="md-meta__item">
+            
+              2 min read
+            
+          </li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="01125-new-linux-support-and-installer-fixes"><a class="toclink" href="../../2026/03/24/01125-new-linux-support-and-installer-fixes/">0.11.25 New Linux support and installer fixes</a></h2>
+<p>This release includes significant, but experimental, Linux support.
+While it has always been possible to use and build NSClient on Linux we now build official packages which are ready to
+be installed.
+In addition to this there are a lot of fixes and enhancements to make running on Linux much more viable.</p>
+<h3 id="experimental-linux-support"><a class="toclink" href="../../2026/03/24/01125-new-linux-support-and-installer-fixes/#experimental-linux-support">🐧 Experimental Linux Support</a></h3>
+<p>The Linux version is now complete and mirrors the Windows experience more closely than ever before.</p>
+<ul>
+<li><strong>Unified Commands</strong>: <code>CheckSystemUnix</code> has been renamed to <code>CheckSystem</code>. Linux users can now use the same
+  configuration as Windows users.</li>
+<li><strong>Distribution-Specific Binaries</strong>: We now provide optimized builds for Debian, and Rocky Linux (redhat).</li>
+<li><strong>Scripting Parity</strong>: Full support for Python and Lua scripts is now available on Linux, including proper
+  script-folder routing.</li>
+<li><strong>Permission Improvements</strong>: Default logging on Linux is now directed to the console, allowing the agent to run
+  without sudo when testing. Also now certificates are generated when you run <code>nscp web install</code> to prevent sudo
+  requirements when running as a service.</li>
+</ul>
+<h3 id="installer-core-stability"><a class="toclink" href="../../2026/03/24/01125-new-linux-support-and-installer-fixes/#installer-core-stability">🛠️ Installer &amp; Core Stability</a></h3>
+<p>After a series of regression tests in the 0.11.x branch, the installer has been hardened.</p>
+<ul>
+<li><strong>Fixed Upgrade Logic:</strong> Resolved a critical issue where a DLL name change caused the WiX installer to fail or leave
+  files missing during upgrades in some instances.</li>
+<li><strong>Configuration Protection</strong>: Added safeguards to prevent the installer from overwriting or wiping existing .ini
+  configurations during an upgrade.</li>
+<li><strong>Silent Install Flags</strong>: Reintroduced and documented ALLOW_CONFIGURATION=0 for msiexec, allowing admins to deploy the
+  MSI without touching existing config files.</li>
+</ul>
+<h3 id="architectural-refactoring"><a class="toclink" href="../../2026/03/24/01125-new-linux-support-and-installer-fixes/#architectural-refactoring">🏗️ Architectural Refactoring</a></h3>
+<ul>
+<li><strong>Modular Codebase</strong>: Significant internal refactoring of nscapi and protobuf functions to improve long-term
+  maintainability.</li>
+<li><strong>Windows Core Cleanup</strong>: Reorganized Windows-specific code into a dedicated internal directory structure to separate
+  it from cross-platform logic.</li>
+<li><strong>Enhanced Testing</strong>: Many unit tests as well as a new Azure-based automated integration test.</li>
+</ul>
+<h3 id="upgrade-note-for-allow_configuration0"><a class="toclink" href="../../2026/03/24/01125-new-linux-support-and-installer-fixes/#upgrade-note-for-allow_configuration0">⚠️ Upgrade Note for <code>ALLOW_CONFIGURATION=0</code></a></h3>
+<p>If you use ALLOW_CONFIGURATION when upgrading from an old version the configuration might be deleted. This is an issue
+which is in the old installer and thus not possible to fix. This has however been fixed in future upgrades.</p>
+<h3 id="download"><a class="toclink" href="../../2026/03/24/01125-new-linux-support-and-installer-fixes/#download">Download</a></h3>
+<p><a class="md-button" href="https://github.com/mickem/nscp/releases/0.11.25">You can download the new version from GitHub</a></p>
+<p>// Michael Medin</p>
+    
+    
+  </div>
+</article>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2026-01-12 00:00:00+00:00">January 12, 2026</time></li>
+        
+        
+          
+          <li class="md-meta__item">
+            
+              3 min read
+            
+          </li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="0116-new-interactive-client"><a class="toclink" href="../../2026/01/12/0116-new-interactive-client/">0.11.6 New interactive client</a></h2>
+<h3 id="new-check_nsclient-client"><a class="toclink" href="../../2026/01/12/0116-new-interactive-client/#new-check_nsclient-client">New check_nsclient client</a></h3>
+<p>This new release adds a new <code>check_nsclient</code> client tool. 
+This is a stand-alone application you can use to connect to and interact with NSClient.
+This new client can:</p>
+<ul>
+<li>Run queries/checks</li>
+<li>Change configuration</li>
+<li>Show logs</li>
+<li>Load/unload modules</li>
+</ul>
+<p>It also have an interactive client you can use which is aimed as a replacement for "test mode".</p>
+<p>To connect to NSClient you need to have the web server enabled and then you can login with the same username and password as you use in the web-ui:</p>
+<div class="highlight"><pre><span></span><code>$ check_nsclient nsclient auth login --password PASSWORD --ca %LOCALAPPDATA%\mkcert\rootCA.pem
+Successfully logged in
+</code></pre></div>
+<p>Credentials are securely stored in store in credential manager.</p>
+<p>The reason there is a <code>nsclient</code> command line option is that soon this will also support NRPE and other protocols as well becoming a universal monitoring tool.</p>
+<p>After this you can show logs:</p>
+<div class="highlight"><pre><span></span><code>$ check_nsclient nsclient logs list
+╭────────┬───────────────────────┬──────────────────────────────────────────────────────────────────╮
+│ level │ date                 │ message                                                         │
+├────────┼───────────────────────┼──────────────────────────────────────────────────────────────────┤
+│ debug │ 2026-Jan-11 12:36:26 │ NSClient++ 0.4.0 2026-01-11 x64 booting...                      │
+│ debug │ 2026-Jan-11 12:36:26 │ Booted settings subsystem...                                    │
+│ debug │ 2026-Jan-11 12:36:26 │ Archiving crash dumps in: C:\src\build\nscp/crash-dumps         │
+│ debug │ 2026-Jan-11 12:36:26 │ Found: CheckExternalScripts                                     │
+│ debug │ 2026-Jan-11 12:36:26 │ Found: CheckSystem                                              │
+│ debug │ 2026-Jan-11 12:36:26 │ Found: Checkhelpers                                             │
+│ debug │ 2026-Jan-11 12:36:26 │ Found: LuaScript                                                │
+│ debug │ 2026-Jan-11 12:36:26 │ Found: NRPEServer                                               │
+│ debug │ 2026-Jan-11 12:36:26 │ Found: WEBServer                                                │
+╰────────┴───────────────────────┴──────────────────────────────────────────────────────────────────╯
+</code></pre></div>
+<p>Or to load and enable a module you can:</p>
+<div class="highlight"><pre><span></span><code>$ check_nsclient nsclient modules use CheckHelpers
+Successfully loaded and enable module CheckHelpers
+</code></pre></div>
+<p>Or you can execute queries:</p>
+<div class="highlight"><pre><span></span><code>$ check_nsclient nsclient queries execute-nagios check_cpu
+OK: CPU load is ok.|&#39;total 5m&#39;=10%;80;90 &#39;total 1m&#39;=10%;80;90 &#39;total 5s&#39;=7%;80;90
+</code></pre></div>
+<p>As well as launch the new interactive client:</p>
+<div class="highlight"><pre><span></span><code>check_nsclient nsclient client
+</code></pre></div>
+<p><img width="1040" height="831" alt="image" src="https://github.com/user-attachments/assets/6e2e3896-5360-429f-9a25-4b8eb3cd061d" /></p>
+<p>The client is included in the installer or it can be downloaded separately below as <code>check_nsclient</code></p>
+<p>One benefit of this client is that it can output everything as <code>text</code>, <code>json</code>, <code>yaml</code> or <code>csv</code> making it easy too integrate in any system:</p>
+<div class="highlight"><pre><span></span><code>$ check_nsclient --output json nsclient queries execute check_cpu
+{
+  &quot;command&quot;: &quot;check_cpu&quot;,
+  &quot;lines&quot;: [
+    {
+      &quot;message&quot;: &quot;OK: CPU load is ok.&quot;,
+      &quot;perf&quot;: {
+        &quot;total 1m&quot;: {
+          &quot;value&quot;: 12.0,
+          &quot;unit&quot;: &quot;%&quot;,
+          &quot;warning&quot;: 80.0,
+          &quot;critical&quot;: 90.0,
+        },
+        &quot;total 5s&quot;: {
+          &quot;value&quot;: 21.0,
+          &quot;unit&quot;: &quot;%&quot;,
+          &quot;warning&quot;: 80.0,
+          &quot;critical&quot;: 90.0,
+        },
+        &quot;total 5m&quot;: {
+          &quot;value&quot;: 11.0,
+          &quot;unit&quot;: &quot;%&quot;,
+          &quot;warning&quot;: 80.0,
+          &quot;critical&quot;: 90.0,
+        }
+      }
+    }
+  ],
+  &quot;result&quot;: 0
+}
+</code></pre></div>
+<p>You cal also have multiple profiles (<code>foo</code>) and connect to remote systems (<code>--url</code>):</p>
+<div class="highlight"><pre><span></span><code>check_nsclient nsclient auth login foo --url https://127.0.0.1:8443 --password PASSWORD --insecure
+# ...
+check_nsclient --output json nsclient --profile foo queries execute check_cpu
+</code></pre></div>
+<p>Once your are done you can log out (and remove credentials from credential store);</p>
+<div class="highlight"><pre><span></span><code>check_nsclient nsclient auth logout
+</code></pre></div>
+<h3 id="download"><a class="toclink" href="../../2026/01/12/0116-new-interactive-client/#download">Download</a></h3>
+<p><a class="md-button" href="https://github.com/mickem/nscp/releases/0.11.6">You can download the new version from GitHub</a></p>
+<p>// Michael Medin</p>
+    
+    
+  </div>
+</article>
+      
+      
+        
+          
+
+
+
+<nav class="md-pagination">
+  
+</nav>
+        
+      
+    </div>
+  </div>
+
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+      <div class="md-consent" data-md-component="consent" id="__consent" hidden>
+        <div class="md-consent__overlay"></div>
+        <aside class="md-consent__inner">
+          <form class="md-consent__form md-grid md-typeset" name="consent">
+            
+
+
+  
+
+
+<h4>Cookie consent</h4>
+<p>We use cookies to recognize your repeated visits and preferences, as well as to measure the effectiveness of our documentation and whether users find what they're searching for. With your consent, you're helping us to make our documentation better.</p>
+<input class="md-toggle" type="checkbox" id="__settings" >
+<div class="md-consent__settings">
+  <ul class="task-list">
+    
+    
+      
+    
+    
+      
+        
+  
+  
+    
+    
+  
+  <li class="task-list-item">
+    <label class="task-list-control">
+      <input type="checkbox" name="github" checked>
+      <span class="task-list-indicator"></span>
+      GitHub
+    </label>
+  </li>
+
+      
+    
+    
+  </ul>
+</div>
+<div class="md-consent__controls">
+  
+    
+      <button class="md-button md-button--primary">Accept</button>
+    
+    
+    
+  
+    
+    
+    
+      <label class="md-button" for="__settings">Manage settings</label>
+    
+  
+</div>
+          </form>
+        </aside>
+      </div>
+      <script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout((function(){document.querySelector("[data-md-component=consent]").hidden=!1}),250);var form=document.forms.consent;for(var action of["submit","reset"])form.addEventListener(action,(function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map((function(e){return[e,!0]})))),location.hash="",location.reload()}))</script>
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "toc.follow", "toc.integrate", "navigation.indexes", "search.suggest", "search.highlight", "search.share"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../assets/js/latest-release.js"></script>
+      
+    
+  </body>
+</html>

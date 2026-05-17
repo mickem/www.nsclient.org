@@ -1,0 +1,4168 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../settings/">
+      
+      
+        <link rel="next" href="../../setup/installing/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Permissions - NSClient++</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#permissions" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="NSClient++" class="md-header__button md-logo" aria-label="NSClient++" data-md-component="logo">
+      
+  <img src="../../../assets/nsclient-logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            NSClient++
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Permissions
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/mickem/nscp" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M202.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1M496 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2m-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3m-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1"/></svg>
+  </div>
+  <div class="md-source__repository">
+    NSClient++
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../.." class="md-tabs__link">
+          
+  
+  
+    
+  
+  Home
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../news/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  News
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://github.com/mickem/nscp/releases" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Download
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Documentation
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://github.com/mickem/nscp/discussions" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Forums
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="NSClient++" class="md-nav__button md-logo" aria-label="NSClient++" data-md-component="logo">
+      
+  <img src="../../../assets/nsclient-logo.png" alt="logo">
+
+    </a>
+    NSClient++
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/mickem/nscp" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M202.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1M496 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2m-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3m-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1"/></svg>
+  </div>
+  <div class="md-source__repository">
+    NSClient++
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../.." class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_1" id="__nav_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Home
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../nsclient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About NSClient++
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../news/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    News
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/mickem/nscp/releases" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Download
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Documentation
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Documentation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quick-start/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Concepts
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../checks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Checks In Depth
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../settings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Settings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Permissions
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Permissions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-big-idea" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The big idea
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#identity-model-who-stamps-what" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Identity model: who stamps what
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Identity model: who stamps what">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-about-modules-that-dont-issue-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What about modules that don't issue commands?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scripting-modules-pythonscript-luascript-treat-as-unsafe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scripting modules (PythonScript, LUAScript) — treat as unsafe
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nrpeserver-client-cert-cn-as-principal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NRPEServer: client cert CN as principal
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="NRPEServer: client cert CN as principal">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why-cn-only-and-not-full-dn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why CN-only and not full DN?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#special-case-checkhelpers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Special case: CheckHelpers
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Special case: CheckHelpers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#worked-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Worked example
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#which-checkhelpers-commands-forward-identity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Which CheckHelpers commands forward identity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-forwarding-falls-back" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When forwarding falls back
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#global-switches" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Global switches
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-rule-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The rule table
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pattern-syntax" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pattern syntax
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-by-step-turning-it-on-securely" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step-by-step: turning it on securely
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step-by-step: turning it on securely">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-inventory-the-traffic-first" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Inventory the traffic first
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-write-the-real-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Write the real rules
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-switch-from-observe-to-enforce" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Switch from observe to enforce
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-verify-the-proxy-hops" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Verify the proxy hops
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-keep-the-policy-file-under-version-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Keep the policy file under version control
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-exec-is-a-single-toggle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why exec is a single toggle
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#logging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Logging
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#threat-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Threat model
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#frequently-asked" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Frequently asked
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Setup
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/installing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/securing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Securing NSClient++
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/web-interface/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Web Interface
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../scenarios/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Monitoring Scenarios
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_5" id="__nav_4_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Monitoring Scenarios
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scenarios/windows-server-health/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Windows Server Health
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scenarios/disk-space/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Disk Space Alerting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scenarios/service-monitoring/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Service & Process Monitoring
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scenarios/event-log/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Event Log Monitoring
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scenarios/counters/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Performance Counters (PDH)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scenarios/network-checks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Network Checks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scenarios/nrpe/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Active Monitoring with NRPE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scenarios/passive-monitoring-nsca/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Passive Monitoring (NSCA/NRDP)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scenarios/passive-monitoring-nsca-ng/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Passive Monitoring (NSCA-NG)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scenarios/passive-monitoring-icinga/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Passive Monitoring (Icinga 2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scenarios/check-mk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Checkmk Agent Integration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scenarios/prometheus/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prometheus Scraping
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scenarios/external-scripts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    External Scripts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../reference/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_6" id="__nav_4_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_6_2" id="__nav_4_6_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Check commands
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_6_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_6_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Check commands
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/windows/CheckDisk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckDisk (Windows)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/check/CheckExternalScripts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckExternalScripts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/windows/CheckEventLog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckEventLog (Windows)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/check/CheckHelpers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckHelpers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/check/CheckLogFile/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckLogFile
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/check/CheckMKClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckMKClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/check/CheckMKServer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckMKServer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/misc/CheckNet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckNet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/check/CheckNSCP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckNSCP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/unix/CheckSystemUnix/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckSystemUnix (unix)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/windows/CheckSystem/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckSystem (Windows)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/windows/CheckTaskSched/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckTaskSched (Windows)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/windows/CheckWMI/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckWMI (Windows)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_6_3" id="__nav_4_6_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Clients & Servers
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_6_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_6_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Clients & Servers
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/generic/WEBServer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WEBServer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/misc/WEBClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WEBClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/client/NRPEServer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NRPEServer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/client/NRPEClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NRPEClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/windows/NSClientServer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSClientServer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/client/NSCAServer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSCAServer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/client/NSCAClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSCAClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/client/NRDPClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NRDPClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/client/IcingaClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IcingaClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/client/SMTPClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SMTPClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/client/GraphiteClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GraphiteClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/client/SyslogClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SyslogClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/misc/CollectdClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CollectdClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/misc/Op5Client/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Op5Client
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/misc/ElasticClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ElasticClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_6_4" id="__nav_4_6_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Helper modules
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_6_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_6_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Helper modules
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/generic/Scheduler/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scheduler
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/generic/SimpleFileWriter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SimpleFileWriter
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/generic/CommandClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CommandClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/generic/SimpleCache/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SimpleCache
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/generic/PythonScript/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PythonScript
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/generic/LUAScript/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LUAScript
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../extending/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Extending
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_7" id="__nav_4_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Extending
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../extending/python/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python Scripts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../extending/zip-modules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Zip Modules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../extending/plugin-api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plugin API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_8" id="__nav_4_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    API
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_8_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../api/rest/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    REST
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_8_1" id="__nav_4_8_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_8_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_8_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    REST
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/rest/info/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Info
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/rest/modules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/rest/queries/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Queries
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/rest/scripts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scripts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/rest/logs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/rest/legacy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Legacy API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/mickem/nscp/discussions" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Forums
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="permissions">Permissions</h1>
+<p>NSClient++ has a policy layer in the core that decides whether a given caller may run a given command. It is <strong>disabled
+by default</strong> — every existing install continues to work without changes until an operator opts in.</p>
+<p>When enabled, the policy is a <strong>strict allow-list</strong>: a call is permitted only if some rule grants it. Calls that don't
+match any rule are denied.</p>
+<p>This document covers what the system does, which modules participate in it, how <code>CheckHelpers</code> forwards identity, and a
+step-by-step recipe for turning it on safely.</p>
+<hr />
+<h2 id="the-big-idea">The big idea</h2>
+<p>Every command call into the core carries two pieces of identity:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>What it means</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>module</code></td>
+<td>The <strong>calling module</strong> — <code>WEBServer</code>, <code>NRPEServer</code>, <code>Scheduler</code>, etc. Resolved server-side from the trusted plugin registry.</td>
+</tr>
+<tr>
+<td><code>principal</code></td>
+<td>An optional <strong>sub-identity</strong> within the module: the authenticated web user, an NRPE client tag, an NSCA sender, the OS CLI user.</td>
+</tr>
+</tbody>
+</table>
+<p>Together these form the <strong>subject</strong> of a permission decision, rendered as
+<code>module[:principal]</code>:</p>
+<div class="highlight"><pre><span></span><code>WEBServer
+WEBServer:operator
+NRPEServer:icinga
+Scheduler
+CLI:admin
+*
+</code></pre></div>
+<p>The <strong>object</strong> is the command being called, rendered as
+<code>module.command</code>:</p>
+<div class="highlight"><pre><span></span><code>CheckSystem.check_cpu
+CheckHelpers.check_ok
+*
+</code></pre></div>
+<p>A <strong>rule</strong> says "this subject may run these objects." Rules combine additively — if any rule grants the call, it is
+allowed.</p>
+<div class="highlight"><pre><span></span><code><span class="k">[/settings/permissions/policies]</span>
+<span class="na">NRPEServer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">CheckHelpers.*, CheckSystem.check_cpu, CheckSystem.check_drivesize</span>
+<span class="na">WEBServer</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s">admin  = *</span>
+<span class="na">WEBServer</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s">viewer = CheckSystem.check_cpu, CheckSystem.check_drivesize</span>
+<span class="na">Scheduler</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">CheckHelpers.*, CheckSystem.*</span>
+</code></pre></div>
+<hr />
+<h2 id="identity-model-who-stamps-what">Identity model: who stamps what</h2>
+<p>When you enable the policy, the core needs to know who is calling. The calling module's identity is stamped onto the
+request automatically by the <code>nscapi::core_helper</code> library that every in-tree module uses. The <em>principal</em> is optional —
+modules that have one supply it; modules that don't leave it empty.</p>
+<table>
+<thead>
+<tr>
+<th>Module</th>
+<th><code>module</code> (always)</th>
+<th><code>principal</code> (when known)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>WEBServer</strong></td>
+<td><code>WEBServer</code></td>
+<td>The authenticated web user from the session cookie (<code>uid</code>)</td>
+</tr>
+<tr>
+<td><strong>NRPEServer</strong></td>
+<td><code>NRPEServer</code></td>
+<td>Verified client cert CN value when <code>client identity source = cn</code></td>
+</tr>
+<tr>
+<td><strong>NSClientServer</strong> (legacy check_nt)</td>
+<td><code>NSClientServer</code></td>
+<td>None today</td>
+</tr>
+<tr>
+<td><strong>NSCAServer</strong></td>
+<td><code>NSCAServer</code></td>
+<td>None today — sender id from the NSCA header is a natural future fit</td>
+</tr>
+<tr>
+<td><strong>Scheduler</strong></td>
+<td><code>Scheduler</code></td>
+<td>None today — schedule alias is a natural future fit</td>
+</tr>
+<tr>
+<td><strong>PythonScript</strong></td>
+<td><code>PythonScript</code></td>
+<td>None — see "Scripting modules" warning below</td>
+</tr>
+<tr>
+<td><strong>LUAScript</strong></td>
+<td><code>LUAScript</code></td>
+<td>None — see "Scripting modules" warning below</td>
+</tr>
+<tr>
+<td><strong>CheckHelpers</strong></td>
+<td>(varies — see below)</td>
+<td>(varies — see below)</td>
+</tr>
+<tr>
+<td><strong>CheckExternalScripts</strong></td>
+<td><code>CheckExternalScripts</code></td>
+<td>None today</td>
+</tr>
+</tbody>
+</table>
+<p>The module name is <strong>not</strong> something the calling DLL can fake: the library always stamps the real plugin id, and the
+core resolves it to the module name using its own trusted registry.</p>
+<h3 id="what-about-modules-that-dont-issue-commands">What about modules that don't issue commands?</h3>
+<p>Modules that only emit metrics or receive submissions (<code>CheckMKServer</code>, <code>GraphiteClient</code>, <code>IcingaClient</code>,
+<code>NSCAClient</code>, …) do not appear as subjects at all. They never call into other modules — they only consume results.</p>
+<h3 id="scripting-modules-pythonscript-luascript-treat-as-unsafe">Scripting modules (PythonScript, LUAScript) — treat as unsafe</h3>
+<div class="admonition danger">
+<p class="admonition-title">Scripts run with full plugin privileges</p>
+<p><code>PythonScript</code> and <code>LUAScript</code> execute arbitrary user-supplied code inside the agent process. The permission
+system <strong>cannot meaningfully gate what a script does</strong> — it only gates which commands the script's plugin id
+is allowed to <em>call</em>. A script with the right rule can do anything a plugin can do.</p>
+</div>
+<p>Specifically, a loaded script can:</p>
+<ul>
+<li><strong>Impersonate any principal.</strong> A script holding a plugin id can call <code>simple_query_as("WEBServer:admin", ...)</code> and
+  the policy will see the call coming from <code>WEBServer:admin</code>. There is no runtime check that the script "really is"
+  that principal — <code>core_helper</code> will stamp whatever the script asks it to.</li>
+<li><strong>Bypass the exec gate by wrapping it in a query.</strong> Register a query that internally calls <code>core:simple_exec(...)</code>
+  or <code>os.execute(...)</code> / Python <code>subprocess</code>. The inbound call looks like a query (allowed by the query policy);
+  the actual side effect is an exec or a raw shell command, which the <code>allow exec</code> toggle never sees.</li>
+<li><strong>Talk to the network directly.</strong> Lua and Python both have HTTP / socket libraries available in their standard
+  runtimes. A script can exfiltrate data, fetch remote payloads, or open inbound channels independent of any
+  NSClient++ listener config.</li>
+<li><strong>Modify or read the agent's own state.</strong> Read the settings store, write to disk, change the process's
+  environment, load shared libraries.</li>
+<li><strong>Send raw protobuf requests.</strong> The script bridges expose <code>simple_query</code>, <code>simple_exec</code>, <code>simple_submit</code>, and
+  storage APIs directly — there is no input-validation layer between the script and the core.</li>
+</ul>
+<p>The trust boundary for scripting modules is therefore <strong>the script files themselves</strong>, not the policy table.
+Loading a script is equivalent to loading a DLL: whoever can write to the script directory has the same privileges
+as the agent process. Practical mitigations:</p>
+<ul>
+<li>Lock down the scripts directory with filesystem ACLs (Windows: deny write to all but <code>SYSTEM</code> /
+  <code>Administrators</code>; Linux: root-owned, mode <code>0755</code>).</li>
+<li>Treat the script directory like source code — version control, code review, signed deployments.</li>
+<li>On agents that don't need scripting, don't load <code>PythonScript</code> / <code>LUAScript</code> at all. They are not required for
+  any built-in monitoring functionality.</li>
+<li>If you must allow operator-supplied scripts on a sensitive agent, audit them the same way you would audit a
+  pull request that adds C++ code.</li>
+</ul>
+<p>This warning is not a bug — it's the inevitable consequence of "host an extension language inside a privileged
+process." Sandboxing a script bridge to where the policy could enforce identity claims is a research-grade
+problem; the agent's stance is that operators who load scripts have decided they trust those scripts.</p>
+<hr />
+<h2 id="nrpeserver-client-cert-cn-as-principal">NRPEServer: client cert CN as principal</h2>
+<p>By default NRPEServer stamps no principal — every NRPE call enters the policy as the bare subject <code>NRPEServer</code>. When
+you run two-way TLS (<code>verify_mode = peer,fail-if-no-peer-cert</code> or the <code>peer-cert</code> alias, with a <code>ca path</code> pointing at
+your monitoring CA), you can opt in to using the verified client certificate's Common Name as the principal:</p>
+<div class="highlight"><pre><span></span><code><span class="k">[/settings/NRPE/server]</span>
+<span class="na">client identity source</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">cn</span><span class="w">   </span><span class="c1">; default: none</span>
+</code></pre></div>
+<p>With this on, every accepted NRPE connection is tagged with the CN value of its client cert (e.g. <code>icinga-master</code>).
+Policies can then be written per-cert:</p>
+<div class="highlight"><pre><span></span><code><span class="k">[/settings/permissions/policies]</span>
+<span class="na">NRPEServer</span><span class="o">:</span><span class="s">icinga-master   = CheckHelpers.*, CheckSystem.*</span>
+<span class="na">NRPEServer</span><span class="o">:</span><span class="s">metrics-shipper = CheckSystem.check_cpu, CheckSystem.check_drivesize</span>
+</code></pre></div>
+<p>Required guardrails (the module refuses to start otherwise):</p>
+<ul>
+<li>SSL must be enabled.</li>
+<li><code>verify_mode</code> must include both <code>peer</code> and <code>fail-if-no-peer-cert</code> (or use the <code>peer-cert</code> alias which sets both) —
+  otherwise an attacker could present any self-signed cert and choose their own CN.</li>
+<li><code>ca path</code> must be non-empty and point at the issuer you trust.</li>
+</ul>
+<p>Pin to a <strong>private CA</strong> that only issues certs to your monitoring fleet. A public CA or the system trust store
+defeats the gate — anyone with a certificate from that CA could pick a CN of their choosing.</p>
+<p>If the knob is left at <code>none</code>, the CN is still extracted (and logged at debug level for diagnostics) but is <strong>not</strong>
+used as the principal — subjects stay bare <code>NRPEServer</code> and existing rules keep working unchanged.</p>
+<h3 id="why-cn-only-and-not-full-dn">Why CN-only and not full DN?</h3>
+<p>The natural question is "why not use the full RFC 2253 Subject DN like <code>CN=icinga-master,O=Acme</code>?" The answer is
+INI syntax: simpleini splits each line on the <em>first</em> <code>=</code> to separate key from value, so a policy key like</p>
+<div class="highlight"><pre><span></span><code>NRPEServer:CN=icinga-master = CheckSystem.*
+</code></pre></div>
+<p>would be parsed as the key <code>NRPEServer:CN</code> with the value <code>icinga-master = CheckSystem.*</code> — silently corrupting the
+rule. Using just the CN value (<code>NRPEServer:icinga-master</code>) avoids the <code>=</code> entirely and round-trips through the
+settings store unchanged.</p>
+<p>If you need DN-granularity (e.g. to distinguish two certs with the same CN issued under different <code>O</code>s), the
+forward path is an <em>identity-map</em> indirection — operators define handles like <code>master = CN=icinga-master,O=Acme</code> in
+a dedicated section and reference the handle in policies. That's not implemented today; file an issue if you need it.</p>
+<hr />
+<h2 id="special-case-checkhelpers">Special case: <code>CheckHelpers</code></h2>
+<p><code>CheckHelpers</code> is a <strong>proxy module</strong>: it wraps another command and returns the wrapped result.
+<code>check_always_ok check_critical message=fire</code> is a single inbound call that internally runs <code>check_critical</code> and
+rewrites the return code.</p>
+<p>If <code>CheckHelpers</code> stamped its own identity on the wrapped call, the policy decision on <code>check_critical</code> would lose the
+original caller — every call would look like <code>CheckHelpers</code> no matter who triggered it.
+That defeats the purpose of having per-user policies.</p>
+<p>So <code>CheckHelpers</code> reads the <strong>inbound</strong> caller identity from the request header and forwards it on the wrapped command.
+The policy on the wrapped command sees the <strong>original</strong> caller, not the proxy.</p>
+<h3 id="worked-example">Worked example</h3>
+<p><code>operator</code> is a WEBServer user. They call:</p>
+<div class="highlight"><pre><span></span><code>check_always_ok check_critical message=fire
+</code></pre></div>
+<p>Two policy decisions happen:</p>
+<ol>
+<li>
+<p><strong>First hop</strong> — the inbound call to <code>CheckHelpers.check_always_ok</code>. Subject <code>WEBServer:operator</code>, object
+   <code>CheckHelpers.check_always_ok</code>. A rule like <code>WEBServer:operator = CheckHelpers.*</code> grants this.</p>
+</li>
+<li>
+<p><strong>Wrapped hop</strong> — <code>CheckHelpers</code> internally dispatches <code>check_critical</code>. Without identity forwarding, this would be
+   <code>CheckHelpers → CheckHelpers.check_critical</code>. <strong>With forwarding</strong> (the current behaviour), it is
+   <code>WEBServer:operator → CheckHelpers.check_critical</code>. The same rule still grants it.</p>
+</li>
+</ol>
+<p>What this means in practice: write rules for <em>who is calling NSClient++</em> (WEBServer:operator, NRPEServer, Scheduler),
+not for <em>which proxy module handles the call</em>. The operator's allow-list applies through the proxy chain.</p>
+<h3 id="which-checkhelpers-commands-forward-identity">Which <code>CheckHelpers</code> commands forward identity</h3>
+<p>Every command that wraps another check forwards identity:</p>
+<ul>
+<li><code>check_always_ok</code>, <code>check_always_warning</code>, <code>check_always_critical</code></li>
+<li><code>check_multi</code></li>
+<li><code>check_negate</code></li>
+<li><code>check_timeout</code></li>
+<li><code>check_and_forward</code></li>
+<li><code>filter_perf</code>, <code>render_perf</code>, <code>xform_perf</code></li>
+<li>aliases (anything defined under <code>[/settings/check helpers/alias]</code>)</li>
+</ul>
+<p>The trivial leaf commands (<code>check_ok</code>, <code>check_warning</code>, <code>check_critical</code>, <code>check_version</code>) don't dispatch and so don't
+forward anything.</p>
+<h3 id="when-forwarding-falls-back">When forwarding falls back</h3>
+<p>If <code>CheckHelpers</code> is called by a path that doesn't stamp identity (an out-of-tree module, or a very old caller that
+hasn't been updated), it falls back to stamping its own plugin id. The wrapped call then arrives at the policy as
+<code>CheckHelpers → &lt;object&gt;</code> — the legacy behaviour. Any rule that mentions <code>CheckHelpers</code> as a subject still applies.</p>
+<hr />
+<h2 id="configuration">Configuration</h2>
+<p>All policy configuration lives under <code>/settings/permissions</code>. Two sub-trees:</p>
+<h3 id="global-switches">Global switches</h3>
+<div class="highlight"><pre><span></span><code><span class="k">[/settings/permissions]</span>
+<span class="c1">; Master switch. When false (default), all calls are allowed.</span>
+<span class="c1">; When true, the rules below form a strict allow-list - calls that</span>
+<span class="c1">; don&#39;t match any rule are denied.</span>
+<span class="c1">;</span>
+<span class="c1">; NOTE: the rule table applies to QUERIES only (NRPE/NSCA inbound</span>
+<span class="c1">; checks, scheduled checks, WEB query endpoints). The exec surface</span>
+<span class="c1">; (WEB scripts UI, lua/python core:simple_exec, CLI exec) is gated</span>
+<span class="c1">; by the separate `allow exec` toggle below, not by per-command</span>
+<span class="c1">; rules - see &quot;Why exec is a single toggle&quot; later in this document.</span>
+<span class="na">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
+
+<span class="c1">; Global exec gate. When true (default), all exec calls are allowed</span>
+<span class="c1">; even with the policy system enabled. When false, the entire exec</span>
+<span class="c1">; surface is shut off and exec calls return &quot;Permission denied&quot;.</span>
+<span class="na">allow exec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
+
+<span class="c1">; Log every denial at warning level (default true).</span>
+<span class="na">log denials</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
+
+<span class="c1">; Log every allowed call at info level (default false - noisy).</span>
+<span class="na">log allows</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">false</span>
+</code></pre></div>
+<p>There is no configurable "default for unmatched calls" — when the policy is enabled, the only meaningful stance is "no
+match → deny."</p>
+<h3 id="the-rule-table">The rule table</h3>
+<div class="highlight"><pre><span></span><code>[/settings/permissions/policies]
+; NRPE may run anything in CheckHelpers and a few specific system checks.
+NRPEServer = CheckHelpers.*, CheckSystem.check_cpu, CheckSystem.check_drivesize, CheckDisk.check_drivesize
+
+; A web user with read-only rights.
+WEBServer:viewer = CheckSystem.check_cpu, CheckSystem.check_drivesize, CheckHelpers.check_ok
+
+; Web admins get everything.
+WEBServer:admin = *
+
+; The scheduler needs to run whatever you&#39;ve scheduled it to run.
+Scheduler = CheckHelpers.*, CheckSystem.*, CheckDisk.*
+</code></pre></div>
+<h3 id="pattern-syntax">Pattern syntax</h3>
+<ul>
+<li><code>*</code> matches any number of characters; <code>?</code> matches one.</li>
+<li>Subject <code>WEBServer</code> matches both <code>WEBServer</code> (no principal) and <code>WEBServer:&lt;anything&gt;</code>.</li>
+<li>Subject <code>WEBServer:</code> (trailing colon) matches only the no-principal form.</li>
+<li>Subject <code>WEBServer:*</code> matches any non-empty principal.</li>
+<li>Object <code>check_cpu</code> (bare command, no dot) matches the command across any owning module. Use <code>CheckSystem.check_cpu</code> to
+  be explicit.</li>
+<li>Matching is case-insensitive.</li>
+</ul>
+<hr />
+<h2 id="step-by-step-turning-it-on-securely">Step-by-step: turning it on securely</h2>
+<p>The safest way to roll out a permission policy is incremental: turn on audit-style logging first, write rules for what
+you observe, then flip to enforcement once the rules cover the actual traffic.</p>
+<h3 id="1-inventory-the-traffic-first">1. Inventory the traffic first</h3>
+<p>Before writing any rules, find out who actually calls your agent and what they call. The easiest way is to turn the
+policy <em>on</em> with a permissive rule and <code>log allows = true</code>, then watch the log:</p>
+<div class="highlight"><pre><span></span><code><span class="k">[/settings/permissions]</span>
+<span class="na">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
+<span class="na">log denials</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
+<span class="na">log allows</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
+
+<span class="k">[/settings/permissions/policies]</span>
+<span class="c1">; Permissive bootstrap: lets everything through so production is not</span>
+<span class="c1">; broken while we observe. We tighten this in step 3.</span>
+<span class="na">*</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">*</span>
+</code></pre></div>
+<p>Restart service:</p>
+<div class="highlight"><pre><span></span><code>nscp service --restart
+</code></pre></div>
+<p>In <code>nsclient.log</code> you'll see entries like:</p>
+<div class="highlight"><pre><span></span><code>INFO  permissions: allowed WEBServer:admin -&gt; CheckSystem.check_cpu
+INFO  permissions: allowed NRPEServer -&gt; CheckHelpers.check_drivesize
+INFO  permissions: allowed Scheduler -&gt; CheckSystem.check_uptime
+</code></pre></div>
+<p>Run for at least a full check cycle from your monitoring system. The collected subject/object pairs are the basis for
+your real allow-list.</p>
+<h3 id="2-write-the-real-rules">2. Write the real rules</h3>
+<p>From the log inventory, write one rule per subject. Be specific where you can:</p>
+<div class="highlight"><pre><span></span><code>[/settings/permissions/policies]
+; Replace the wildcard rule with real ones.
+NRPEServer = CheckHelpers.*, CheckSystem.check_cpu, CheckSystem.check_drivesize, CheckDisk.check_drivesize
+Scheduler = CheckHelpers.*, CheckSystem.*, CheckDisk.*
+WEBServer:admin  = *
+WEBServer:viewer = CheckSystem.check_cpu, CheckSystem.check_drivesize
+</code></pre></div>
+<p>A few practical tips:</p>
+<ul>
+<li>Group your monitoring server's calls under a single subject
+  (<code>NRPEServer</code>) unless you intend to set up principal-aware rules.</li>
+<li>Don't use <code>*</code> as a subject unless you really mean "anyone who can
+  reach me." Specific subjects are easier to audit.</li>
+<li>For wrapper commands (<code>check_multi</code>, <code>check_always_ok</code>, aliases),
+  remember the rule applies to the <strong>caller</strong> — see the CheckHelpers
+  section above. You generally don't need a separate rule for
+  CheckHelpers as a subject.</li>
+</ul>
+<h3 id="3-switch-from-observe-to-enforce">3. Switch from observe to enforce</h3>
+<p>Remove the catch-all <code>* = *</code> rule, leave <code>log denials = true</code> (default), and restart:</p>
+<div class="highlight"><pre><span></span><code>nscp service --restart
+</code></pre></div>
+<p>Watch the log for <code>permissions: denied ...</code> entries during the next check cycle. Each denial tells you a rule that's
+missing — adjust and reload until the log is clean.</p>
+<p>Optional: while iterating, leave <code>log allows = true</code> so you can confirm each check is hitting the rule you expect. Turn
+it off once the rules are stable — allows fire on every call and can flood the log on busy agents.</p>
+<h3 id="4-verify-the-proxy-hops">4. Verify the proxy hops</h3>
+<p>If you use <code>CheckHelpers</code> wrappers (<code>check_multi</code>, <code>check_always_*</code>, aliases), confirm the wrapped calls are attributed
+to the original caller and not to <code>CheckHelpers</code>. From an external caller, run a wrapper:</p>
+<div class="highlight"><pre><span></span><code>check_nrpe -H agent -c check_multi -a &#39;command=check_cpu&#39; &#39;command=check_drivesize&#39;
+</code></pre></div>
+<p>The log should show two <code>allowed</code> lines under the same subject (e.g. <code>NRPEServer</code>), one for the inbound <code>check_multi</code>
+and one for the wrapped <code>check_cpu</code> / <code>check_drivesize</code>. If you instead see a second hop attributed to <code>CheckHelpers</code>,
+something is wrong: either the caller isn't stamping identity (out-of-tree module) or you're running an older NSClient++
+that pre-dates the forwarding behaviour.</p>
+<h3 id="5-keep-the-policy-file-under-version-control">5. Keep the policy file under version control</h3>
+<p>The policy file (<code>/settings/permissions/policies</code>) describes who can do what on the agent. Treat it the same way you'd
+treat a firewall rule set — review changes, keep a history, deploy via your normal config management. A drop-in
+<code>permissions.ini</code> referenced from the main <code>nsclient.ini</code> via <code>[/includes]</code> is convenient:</p>
+<div class="highlight"><pre><span></span><code><span class="k">[/includes]</span>
+<span class="na">permissions</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">/etc/nsclient/permissions.ini</span>
+</code></pre></div>
+<hr />
+<h2 id="why-exec-is-a-single-toggle">Why exec is a single toggle</h2>
+<p>The per-command rule table (<code>/settings/permissions/policies</code>) gates <strong>queries</strong> — the dispatch path that NRPE, NSCA,
+the scheduler, and WEB query endpoints all funnel through. The <strong>exec</strong> surface is different:</p>
+<ul>
+<li>It's reached from the WEB scripts UI, from <code>core:simple_exec(...)</code> in Lua/Python, and from the CLI.</li>
+<li>The internal exec chain does not currently propagate caller identity — <code>core_helper::exec_simple_command</code> builds an
+  exec request without stamping <code>nscp.caller_plugin_id</code>, so a per-command exec policy decision would degenerate to
+  subject <code>*</code> and the rule writer would have no reliable way to grant exec to "the WEB user" vs "any caller."</li>
+<li>Per-command rules give an illusion of granularity that the runtime cannot honour for exec.</li>
+</ul>
+<p>So exec gets a coarse on/off:</p>
+<div class="highlight"><pre><span></span><code><span class="k">[/settings/permissions]</span>
+<span class="na">allow exec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span><span class="w">   </span><span class="c1">; default; flip to false for a hard exec lockdown</span>
+</code></pre></div>
+<p>When <code>allow exec = false</code> is combined with <code>enabled = true</code>, every exec call returns:</p>
+<div class="highlight"><pre><span></span><code>Permission denied: exec is globally disabled (/settings/permissions/allow exec = false)
+</code></pre></div>
+<p>The WEB scripts UI, Lua/Python script bridges, and CLI exec all go through the same gate.</p>
+<p>If your operational need is "viewer-vs-admin distinction inside the WEB UI for exec," that's a WEB-layer
+authentication concern (web roles), not a core-policy concern. The core toggle is the back-stop for "I never want
+exec to be possible at all on this agent."</p>
+<hr />
+<h2 id="logging">Logging</h2>
+<table>
+<thead>
+<tr>
+<th>When</th>
+<th>Level</th>
+<th>Example line</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Call denied (default on)</td>
+<td>ERROR</td>
+<td><code>permissions: denied WEBServer:viewer -&gt; CheckSystem.check_eventlog</code></td>
+</tr>
+<tr>
+<td>Call allowed (off by default; opt-in)</td>
+<td>INFO</td>
+<td><code>permissions: allowed NRPEServer -&gt; CheckSystem.check_cpu</code></td>
+</tr>
+<tr>
+<td>Policy reloaded</td>
+<td>DEBUG</td>
+<td><code>permissions: loaded 4 rule(s), enabled=true</code></td>
+</tr>
+<tr>
+<td>Misconfiguration (e.g. settings missing)</td>
+<td>ERROR</td>
+<td><code>permissions: failed to load: ...</code></td>
+</tr>
+</tbody>
+</table>
+<p>Restart the service:</p>
+<div class="highlight"><pre><span></span><code>nscp service --restart
+</code></pre></div>
+<p>That picks up changes to <code>/settings/permissions</code> and re-reads the <code>policies</code> table. Rules removed from the file are
+dropped from the active table.</p>
+<hr />
+<h2 id="threat-model">Threat model</h2>
+<p>The policy layer defends against:</p>
+<ul>
+<li>A misconfigured remote server (e.g. NRPE exposing a check the operator didn't intend to expose).</li>
+<li>An accidentally-broad WEB role gaining access to a new check shipped in an update.</li>
+<li>A scheduled task drifting beyond what it was originally permitted to call.</li>
+</ul>
+<p>It does <strong>not</strong> defend against a malicious in-process module — that adversary already has the same privileges as the
+agent itself. The calling module's identity is stamped by the trusted <code>nscapi::core_helper</code> library, but a module that
+bypasses <code>core_helper</code> entirely (by talking to the NSAPI C ABI directly) can stamp anything it wants. The model trusts
+loaded DLLs; it gates which <em>commands</em> a given trusted caller may run.</p>
+<hr />
+<h2 id="frequently-asked">Frequently asked</h2>
+<p><strong>Q: Can I write deny rules?</strong>
+Not today. The current syntax is allow-only ("if any rule grants, allow; otherwise deny"). Deny prefixes (
+<code>!CheckSystem.check_*</code>) are a natural future extension if a real use case arises.</p>
+<p><strong>Q: Can I have per-argument policies (e.g. <code>check_drivesize</code> for <code>C:</code> but not <code>D:</code>)?</strong>
+No. Use a command alias under <code>[/settings/check helpers/alias]</code> to pre-bind the argument, then write a rule that grants
+the alias name.</p>
+<p><strong>Q: Why don't I see a denial in the log?</strong>
+Either <code>log denials = false</code>, or the call was <em>allowed</em> by a rule you didn't expect (run with <code>log allows = true</code> to
+see). Check the inbound subject — a missing <code>nscp.caller_plugin_id</code> resolves to <code>*</code>, which matches any <code>*</code> subject rule.</p>
+<p><strong>Q: My out-of-tree module can't be reached now that I've enabled policy. Why?</strong>
+If the module bypasses <code>nscapi::core_helper</code> and talks to NSAPI directly, it won't stamp identity, so its calls arrive
+as subject <code>*</code>. Either update the module to use <code>core_helper</code>, or add a rule with subject <code>*</code> scoped to the specific
+commands it needs.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+      <div class="md-consent" data-md-component="consent" id="__consent" hidden>
+        <div class="md-consent__overlay"></div>
+        <aside class="md-consent__inner">
+          <form class="md-consent__form md-grid md-typeset" name="consent">
+            
+
+
+  
+
+
+<h4>Cookie consent</h4>
+<p>We use cookies to recognize your repeated visits and preferences, as well as to measure the effectiveness of our documentation and whether users find what they're searching for. With your consent, you're helping us to make our documentation better.</p>
+<input class="md-toggle" type="checkbox" id="__settings" >
+<div class="md-consent__settings">
+  <ul class="task-list">
+    
+    
+      
+    
+    
+      
+        
+  
+  
+    
+    
+  
+  <li class="task-list-item">
+    <label class="task-list-control">
+      <input type="checkbox" name="github" checked>
+      <span class="task-list-indicator"></span>
+      GitHub
+    </label>
+  </li>
+
+      
+    
+    
+  </ul>
+</div>
+<div class="md-consent__controls">
+  
+    
+      <button class="md-button md-button--primary">Accept</button>
+    
+    
+    
+  
+    
+    
+    
+      <label class="md-button" for="__settings">Manage settings</label>
+    
+  
+</div>
+          </form>
+        </aside>
+      </div>
+      <script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout((function(){document.querySelector("[data-md-component=consent]").hidden=!1}),250);var form=document.forms.consent;for(var action of["submit","reset"])form.addEventListener(action,(function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map((function(e){return[e,!0]})))),location.hash="",location.reload()}))</script>
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "toc.follow", "toc.integrate", "navigation.indexes", "search.suggest", "search.highlight", "search.share"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../assets/js/latest-release.js"></script>
+      
+    
+  </body>
+</html>
