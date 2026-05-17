@@ -141,6 +141,7 @@ plugins:
 
 hooks:
   - hooks/fetch_releases.py
+  - hooks/extra_files.py
 extra_css:
   - stylesheets/extra.css
 
