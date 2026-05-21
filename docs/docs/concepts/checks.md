@@ -121,7 +121,7 @@ Use this to learn what a check does by default and to copy a single option to tw
 !!! note
     You'll see `${name}` in the defaults output. That's the older placeholder syntax, still supported
     for compatibility. When you write your own configuration, prefer `%(name)` — see
-    [section 7](#7-output-syntax--choosing-the-message-text).
+    [section 7](#7-output-syntax-choosing-the-message-text).
 
 !!! warning
     Don't paste *all* defaults into your config. Defaults can change in newer versions; pinning them removes that benefit.
@@ -362,7 +362,7 @@ NSClient++ has two placeholder forms. **Use `%(name)`** — it's the modern, mor
 Differences in practice:
 
 - **Plain variable references** — both forms work and produce identical output.
-- **Function calls** (see [section 8](#8-functions--transforming-values)) — only `%(...)` works. The
+- **Function calls** (see [section 8](#8-functions-transforming-values)) — only `%(...)` works. The
   `${...}` form stops at the first `}` and can't capture nested parentheses.
 - **Shells and NRPE** — `${...}` is often eaten by Bash and similar shells before it reaches
   NSClient++. `%(...)` passes through untouched.
@@ -432,7 +432,7 @@ filter        = "scale(rate, 1000000) > 100"
 !!! warning "Function calls require `%(...)`"
     The legacy `${...}` placeholder stops at the first `}` and can't capture nested parentheses, so
     `${format_bytes(used)}` won't parse. Use `%(...)` for function calls (and prefer it everywhere
-    else — see [section 7](#7-output-syntax--choosing-the-message-text)).
+    else — see [section 7](#7-output-syntax-choosing-the-message-text)).
 <!-- @formatter:on -->
 
 ### Built-in functions

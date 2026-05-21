@@ -13,7 +13,7 @@ Works with Nagios, Icinga, Op5, Prometheus, check_mk — and anything that speak
 
 <p class="hero-actions" markdown>
 [:material-download: Download <span data-release="version">latest</span>](https://github.com/mickem/nscp/releases/latest){ .md-button .md-button--primary data-release="download-link" }
-[:fontawesome-solid-graduation-cap: Quick Start](docs/quick-start/){ .md-button }
+[:fontawesome-solid-graduation-cap: Quick Start](docs/quick-start.md){ .md-button }
 </p>
 
 <p class="hero-meta">
@@ -47,7 +47,7 @@ Released <span data-release="date">recently</span> &middot; <a href="https://git
 <p class="release-loading">Loading latest releases…</p>
 </div>
 
-[All news :material-arrow-right:](news/){ .md-button }
+[All news :material-arrow-right:](news/index.md){ .md-button }
 [All releases on GitHub :material-arrow-right:](https://github.com/mickem/nscp/releases){ .md-button }
 
 <div class="cards" markdown="1">
@@ -55,20 +55,20 @@ Released <span data-release="date">recently</span> &middot; <a href="https://git
 
 ## :material-rocket-launch: Get started
 
-- [:fontawesome-solid-graduation-cap: Quick Start](docs/quick-start/) — 10-minute walkthrough
-- [:material-download: Installation guide](docs/setup/installing/) — MSI options & silent install
-- [:material-shield-key: Securing the agent](docs/setup/securing/) — TLS & client certs
-- [:material-monitor-dashboard: Web Interface](docs/setup/web-interface/)
+- [:fontawesome-solid-graduation-cap: Quick Start](docs/quick-start.md) — 10-minute walkthrough
+- [:material-download: Installation guide](docs/setup/installing.md) — MSI options & silent install
+- [:material-shield-key: Securing the agent](docs/setup/securing.md) — TLS & client certs
+- [:material-monitor-dashboard: Web Interface](docs/setup/web-interface.md)
 
 </div>
 <div class="card" markdown="1">
 
 ## :material-head-question: Documentation
 
-- [:material-format-list-bulleted: Monitoring scenarios](docs/scenarios/) — common real-world setups
-- [:material-bookshelf: Reference](docs/reference/) — every module & command
-- [:material-school: Concepts](docs/concepts/) — how it works under the hood
-- [:material-frequently-asked-questions: FAQ](docs/faq/)
+- [:material-format-list-bulleted: Monitoring scenarios](docs/scenarios/index.md) — common real-world setups
+- [:material-bookshelf: Reference](docs/reference/index.md) — every module & command
+- [:material-school: Concepts](docs/concepts/index.md) — how it works under the hood
+- [:material-frequently-asked-questions: FAQ](docs/faq.md)
 
 </div>
 <div class="card" markdown="1">

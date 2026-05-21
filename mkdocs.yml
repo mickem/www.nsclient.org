@@ -90,6 +90,8 @@ nav:
             - NSCAServer: docs/reference/client/NSCAServer.md
             - NSCAClient: docs/reference/client/NSCAClient.md
             - NRDPClient: docs/reference/client/NRDPClient.md
+            - NSCANgClient: docs/reference/client/NSCANgClient.md
+            - NSCPClient: docs/reference/misc/NSCPClient.md
             - IcingaClient: docs/reference/client/IcingaClient.md
             - SMTPClient: docs/reference/client/SMTPClient.md
             - GraphiteClient: docs/reference/client/GraphiteClient.md
@@ -113,9 +115,14 @@ nav:
         - REST:
             - Introduction: docs/api/rest/index.md
             - Info: docs/api/rest/info.md
+            - Login: docs/api/rest/login.md
             - Modules: docs/api/rest/modules.md
             - Queries: docs/api/rest/queries.md
+            - Aliases: docs/api/rest/aliases.md
             - Scripts: docs/api/rest/scripts.md
+            - Settings: docs/api/rest/settings.md
+            - Metadata: docs/api/rest/metadata.md
+            - Metrics: docs/api/rest/metrics.md
             - Logs: docs/api/rest/logs.md
             - Legacy API: docs/api/rest/legacy.md
     - FAQ: docs/faq.md
