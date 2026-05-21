@@ -108,8 +108,10 @@ To also match on message content:
 check_eventlog "filter=provider = 'Microsoft-Windows-Security-SPP' and id = 903 and message like 'expired'"
 ```
 
+<!-- @formatter:off -->
 !!! tip
     To find the provider name and event ID, open **Event Viewer**, click on the event, and look in the **Details** tab or the **General** description header.
+<!-- @formatter:on -->
 
 ### Check a specific event log channel
 
@@ -119,8 +121,10 @@ Since NSClient++ 0.4.2, you can read any channel on modern Windows:
 check_eventlog "file=Microsoft-Windows-AAD/Operational" scan-range=-100w show-all filter=none
 ```
 
+<!-- @formatter:off -->
 !!! note
     Channel names use `-` as a folder separator rather than `\` or `/`. Find the full channel name by right-clicking the channel in Event Viewer and selecting **Properties**.
+<!-- @formatter:on -->
 
 ### Find non-error messages
 

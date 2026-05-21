@@ -213,8 +213,10 @@ check_http url=https://myapp.example.com/api header="Authorization: Bearer mytok
 check_nrpe -H <agent-ip> -c check_http --argument "url=https://myapp.example.com/health"
 ```
 
+<!-- @formatter:off -->
 !!! warning
     Passing arguments via NRPE requires `allow arguments = true` in the NRPE server configuration. See [NRPE security](nrpe.md).
+<!-- @formatter:on -->
 
 ---
 

@@ -277,11 +277,13 @@ check_network "detail-syntax=${name}: tx=${sent}/s rx=${received}/s"
 | `adapter`   | `Win32_PerfRawData_Tcpip_NetworkAdapter`        | Yes                      | NIC-teamed servers where you want the team aggregate, not just the team members.  |
 | `both`      | Both classes, every row tagged with `source=`   | Yes                      | When you need a single check to alert on both the team aggregate and its members. |
 
+<!-- @formatter:off -->
 !!! note
     Switching from `interface` to `adapter` changes the **names** of the
     reported interfaces (NetworkAdapter uses the friendly Windows name,
     NetworkInterface uses the MIB-style name). Dashboards or thresholds that
     reference a specific adapter by name may need to be updated.
+<!-- @formatter:on -->
 
 **Via NRPE:**
 
@@ -350,8 +352,10 @@ check_nrpe -H <agent-ip> -c check_drivesize
 check_nrpe -H <agent-ip> -c check_uptime
 ```
 
+<!-- @formatter:off -->
 !!! tip
     To run these checks on a schedule and push the results passively (without polling), see the [Passive Monitoring scenario](passive-monitoring-nsca.md).
+<!-- @formatter:on -->
 
 ---
 

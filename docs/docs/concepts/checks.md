@@ -6,9 +6,11 @@ common engine**. Once you understand it, you can configure any check.
 This page walks through that engine from the ground up. Read it top-to-bottom the first time; later, jump to the section
 you need.
 
+<!-- @formatter:off -->
 !!! tip "New to NSClient++?"
-Try the [Quick Start](../quick-start.md) or a [Monitoring Scenario](../scenarios/index.md) first to get a feel for what
-checks look like in practice.
+    Try the [Quick Start](../quick-start.md) or a [Monitoring Scenario](../scenarios/index.md) first to get a feel for what
+    checks look like in practice.
+<!-- @formatter:on -->
 
 ---
 
@@ -115,13 +117,15 @@ check_cpu show-default
 
 Use this to learn what a check does by default and to copy a single option to tweak.
 
+<!-- @formatter:off -->
 !!! note
-You'll see `${name}` in the defaults output. That's the older placeholder syntax, still supported
-for compatibility. When you write your own configuration, prefer `%(name)` — see
-[section 7](#7-output-syntax--choosing-the-message-text).
+    You'll see `${name}` in the defaults output. That's the older placeholder syntax, still supported
+    for compatibility. When you write your own configuration, prefer `%(name)` — see
+    [section 7](#7-output-syntax--choosing-the-message-text).
 
 !!! warning
-Don't paste *all* defaults into your config. Defaults can change in newer versions; pinning them removes that benefit.
+    Don't paste *all* defaults into your config. Defaults can change in newer versions; pinning them removes that benefit.
+<!-- @formatter:on -->
 
 ### Show help
 
@@ -196,10 +200,12 @@ check_cpu filter=none                       # include everything
 | `and` `or` `not`  | —                   | Logical              |
 | `'...'`           | `str(...)`          | String literal       |
 
+<!-- @formatter:off -->
 !!! note
-Use the **safe aliases** (`gt`, `lt`, …) when passing arguments through NRPE or shells — they avoid `<`/`>` redirection
-problems. The same expression language powers `filter`, `warn`, `crit`, and the `%(...)` placeholders
-in `top-syntax` / `detail-syntax`, so anything you learn here applies everywhere.
+    Use the **safe aliases** (`gt`, `lt`, …) when passing arguments through NRPE or shells — they avoid `<`/`>` redirection
+    problems. The same expression language powers `filter`, `warn`, `crit`, and the `%(...)` placeholders
+    in `top-syntax` / `detail-syntax`, so anything you learn here applies everywhere.
+<!-- @formatter:on -->
 
 ### Common keywords
 
@@ -422,10 +428,12 @@ warning       = "convert_bytes(used, 'MB') > 500"
 filter        = "scale(rate, 1000000) > 100"
 ```
 
+<!-- @formatter:off -->
 !!! warning "Function calls require `%(...)`"
-The legacy `${...}` placeholder stops at the first `}` and can't capture nested parentheses, so
-`${format_bytes(used)}` won't parse. Use `%(...)` for function calls (and prefer it everywhere
-else — see [section 7](#7-output-syntax--choosing-the-message-text)).
+    The legacy `${...}` placeholder stops at the first `}` and can't capture nested parentheses, so
+    `${format_bytes(used)}` won't parse. Use `%(...)` for function calls (and prefer it everywhere
+    else — see [section 7](#7-output-syntax--choosing-the-message-text)).
+<!-- @formatter:on -->
 
 ### Built-in functions
 

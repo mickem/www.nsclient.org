@@ -69,8 +69,10 @@ Or with a filter for substring matching (more flexible):
 check_service "filter=start_type = 'auto' and name not like 'clr_optimization'"
 ```
 
+<!-- @formatter:off -->
 !!! note
     `exclude=` is faster but only matches the exact service name. `filter=` is more flexible and supports expressions, substring matching, and logical operators.
+<!-- @formatter:on -->
 
 ### Show all services and their states
 
@@ -149,8 +151,10 @@ check_process "filter=virtual > 200m" "top-syntax=${list}" "detail-syntax=${exe}
 check_nrpe -H <agent-ip> -c check_process --argument "process=myapp.exe"
 ```
 
+<!-- @formatter:off -->
 !!! warning
     Passing arguments via NRPE requires `allow arguments = true` in the NRPE server config. See [NRPE security](nrpe.md) for the security implications.
+<!-- @formatter:on -->
 
 ---
 

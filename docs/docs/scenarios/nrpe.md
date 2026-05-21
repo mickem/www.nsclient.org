@@ -2,11 +2,13 @@
 
 **Goal:** Configure NSClient++ as an NRPE agent so a Nagios-style monitoring server can poll it for check results, with TLS encryption and (optionally) client-certificate authentication.
 
+<!-- @formatter:off -->
 !!! tip
     NRPE is the right choice when the monitoring server can reach the agent
     directly. If the agent sits behind a firewall or NAT, look at
     [Passive Monitoring (NSCA/NRDP)](passive-monitoring-nsca.md) or
     [Passive Monitoring (Icinga 2)](passive-monitoring-icinga.md) instead.
+<!-- @formatter:on -->
 
 ---
 
@@ -236,6 +238,7 @@ allowed hosts          = 192.168.0.0/24
 port                   = 5666
 ```
 
+<!-- @formatter:off -->
 !!! danger
     Combine `allow arguments = true` with a tight `allowed hosts` list (and
     a firewall) so only your monitoring server can reach the NRPE port. Any
@@ -254,6 +257,7 @@ port                   = 5666
     `|`, `` ` ``, `&`, `>`, `<`, `'`, `"`, `\`, `[`, `]`, `{`, `}` at the
     NRPE ingress, which catches the most obvious abuse patterns and trips
     misconfigured monitoring early.
+<!-- @formatter:on -->
 
 ---
 

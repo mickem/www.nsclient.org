@@ -270,12 +270,14 @@ takes precedence over anything in `boot.ini` for the keys it specifies:
 nscp client --path-override module-path=/build/modules --path-override log-path=. ...
 ```
 
+<!-- @formatter:off -->
 !!! note "Moved in 0.12.5"
     Before 0.12.5 path overrides lived in the main configuration file under a `[/paths]` section. They were moved to
     `boot.ini`'s `[paths]` section so that overrides take effect for *all* path lookups - including the bootstrap-time
     lookup that decides where the main configuration file itself lives. If you had a `[/paths]` section in your
     `nsclient.ini`, copy each `key = value` to a `[paths]` section in `boot.ini` (next to `nscp.exe`) and delete the old
     section from `nsclient.ini`; there is no automatic migration.
+<!-- @formatter:on -->
 
 ## Security
 

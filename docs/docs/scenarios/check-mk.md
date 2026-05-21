@@ -2,8 +2,10 @@
 
 **Goal:** Have a Checkmk site monitor a Windows host through NSClient++ — pulling an agent dump that looks and behaves like the official Checkmk agent, complete with system sections, local checks, MRPE entries, and scheduler-driven cached results.
 
+<!-- @formatter:off -->
 !!! tip
     This scenario is for connecting NSClient++ to an existing Checkmk site (open-source or commercial). If you already have nscp deployed for NRPE or NSCA, you can layer Checkmk on top without removing those — they're separate listeners.
+<!-- @formatter:on -->
 
 ---
 
@@ -138,12 +140,14 @@ Mail Queue      = command=check_files path="C:\Mail\Queue" maxage=5m
 
 On every agent fetch, NSClient++ runs each command, formats the result as a Checkmk local-check line (`state "name" perfdata text`), and emits it inside `<<<local>>>`. Checkmk discovers each entry as a service named after the key.
 
+<!-- @formatter:off -->
 !!! note "Perfdata label gotcha"
     nscp emits Nagios-style single-quoted labels like `'load 5m'=10%;80;90`.
     Checkmk's local-check parser doesn't accept those, so the script
     automatically rewrites them to `load_5m=10%;80;90`. You don't need to do
     anything special — just be aware that metric names with spaces become
     underscored in the Checkmk view.
+<!-- @formatter:on -->
 
 ---
 

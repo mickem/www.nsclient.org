@@ -4,6 +4,7 @@
 **NSCA-NG** server using TLS-PSK authentication — the modern, encrypted
 replacement for the legacy NSCA daemon.
 
+<!-- @formatter:off -->
 !!! tip "NSCA vs. NSCA-NG vs. NRDP"
     All three solve the same problem (push results from agent → server). Pick
     by what your monitoring server supports:
@@ -15,6 +16,7 @@ replacement for the legacy NSCA daemon.
     - **NRDP** — HTTP/JSON-based, easiest to traverse proxies and load
       balancers.
       [Scenario](passive-monitoring-nsca.md#using-nrdp-instead-of-nsca).
+<!-- @formatter:on -->
 
 ---
 
@@ -134,6 +136,7 @@ verify mode     = peer-cert
 When `use psk = false` the connection uses TLS 1.2 or 1.3 with the standard
 verify chain — no PSK ciphersuite restriction.
 
+<!-- @formatter:off -->
 !!! warning "Cert mode now fails closed without peer verification"
     `verify mode` (combined with a valid `ca`) **must** authenticate the server
     when running in cert mode. If the resolved verify mode does not include
@@ -149,6 +152,7 @@ verify chain — no PSK ciphersuite restriction.
     The hostname in `address` must also match the server certificate's CN /
     SAN; if you connect to an IP literal, the cert needs that IP listed as a
     SAN.
+<!-- @formatter:on -->
 
 ---
 
