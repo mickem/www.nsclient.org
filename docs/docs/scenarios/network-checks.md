@@ -257,5 +257,5 @@ allow arguments = true   ; needed to pass host/url as arguments
 
 - [Windows Server Health](windows-server-health.md) — combine network checks with system health checks
 - [External Scripts](external-scripts.md) — run custom network checks via scripts
-- [Checks In Depth: Filters](../concepts/checks.md#5-filters-choosing-what-to-check) — understand filter and threshold expressions
+- [Checks In Depth: Filters](../concepts/checks.md#3-filters-choosing-what-to-check) — understand filter and threshold expressions
 - [Reference: CheckNet](../reference/check/CheckNet.md) — full command reference

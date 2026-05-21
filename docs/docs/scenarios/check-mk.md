@@ -13,15 +13,20 @@
 
 Checkmk's agent protocol is **active and pull-style**: the site opens a TCP connection to the agent on port 6556, the agent pushes a single text "agent dump", and the connection closes.
 
+```mermaid
+flowchart LR
+    M[Checkmk site] -->|TCP/6556| A[NSClient++<br/>CheckMKServer]
+    A -->|text dump, then closes| D[(Agent dump)]
 ```
-Checkmk site ──TCP/6556──► NSClient++ (CheckMKServer)
-                                │
-                                └─► dumps text payload, then closes:
-                                    <<<check_mk>>>
-                                    Version: ...
-                                    <<<mem>>>
-                                    MemTotal: 16382336 kB
-                                    ...
+
+A typical agent dump looks like:
+
+```text
+<<<check_mk>>>
+Version: ...
+<<<mem>>>
+MemTotal: 16382336 kB
+...
 ```
 
 The dump is plain UTF-8 text divided into `<<<section_name>>>` blocks. Checkmk's parser routes each section to the appropriate "check plugin" on the server side (`mem`, `df`, `services`, `local`, `mrpe`, etc.).

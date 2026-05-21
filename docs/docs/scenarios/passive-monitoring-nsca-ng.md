@@ -22,20 +22,34 @@ replacement for the legacy NSCA daemon.
 
 ## How NSCA-NG Works
 
+NSClient++ runs checks on a schedule and pushes the results to the NSCA-NG
+server over a TLS-PSK connection:
+
+```mermaid
+flowchart LR
+    S[Scheduler] -->|runs check| C[NSCANgClient]
+    C -->|TLS-PSK<br/>port 5668| N[NSCA-NG server]
+    N --> P[external_command_pipe]
+    P --> M[Nagios / Icinga core]
+```
+
 The agent opens a TLS connection to the server (default port `5668`),
 authenticates with a Pre-Shared Key (PSK), then exchanges a small text
 protocol:
 
-```
-Client ──TLS handshake (PSK)──► Server
-Client → MOIN 1 <session-id>
-Server → OKAY
-Client → PUSH <length>
-Server → OKAY
-Client → [<ts>] PROCESS_SERVICE_CHECK_RESULT;<host>;<svc>;<code>;<output>\n
-Server → OKAY
-Client → QUIT
-Server → OKAY
+```mermaid
+sequenceDiagram
+    participant C as Client
+    participant S as Server
+    C->>S: TLS handshake (PSK)
+    C->>S: MOIN 1 session-id
+    S-->>C: OKAY
+    C->>S: PUSH length
+    S-->>C: OKAY
+    C->>S: PROCESS_SERVICE_CHECK_RESULT#59;host#59;svc#59;code#59;output
+    S-->>C: OKAY
+    C->>S: QUIT
+    S-->>C: OKAY
 ```
 
 Each PUSH carries one Nagios external command. The server appends it to its

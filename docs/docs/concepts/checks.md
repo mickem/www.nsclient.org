@@ -59,53 +59,39 @@ L     client Enter command to inject or exit to terminate...
 
 `--settings dummy` skips your real configuration so nothing on disk surprises you. Type `exit` to leave.
 
-### Load a module
-
-Out of the box the shell has no checks loaded. Each check lives in a module — load it once per
-session:
-
-```
-load CheckSystem
-```
-
-Now `check_cpu`, `check_memory`, `check_uptime`, etc. are available:
-
-```
-check_cpu
-L     client OK: CPU Load ok
-L     client  Performance data: 'total 5m'=0%;80;90 'total 1m'=1%;80;90 'total 5s'=11%;80;90
-```
-
-### See what's going on (debug logs)
-
-Trace and debug log lines are hidden by default. Two ways to turn them on:
+Trace and debug log lines are hidden by default. Add `--log debug` (or `--log trace` for maximum
+verbosity, including incoming requests and child-process spawn/exit) when you need to see them:
 
 ```
 nscp test --settings dummy --log debug
 ```
 
-Use `level = trace` for maximum verbosity (incoming requests, child-process spawn/exit, response
-metadata).
+### Load a module and run a check
 
-### Argument syntax
+Out of the box the shell has no checks loaded. Each check lives in a module — load it once per
+session, then run the check:
+
+```
+load CheckSystem
+check_cpu
+L     client OK: CPU Load ok
+L     client  Performance data: 'total 5m'=0%;80;90 'total 1m'=1%;80;90 'total 5s'=11%;80;90
+```
 
 Options are passed as `keyword=value`, with quotes when the value contains spaces or shell-meta
-characters:
+characters. Some keywords are flags with no value (e.g. `help`, `show-all`, `show-default`):
 
 ```
 check_cpu filter=none
 check_cpu "filter=core = 'total'" "warn=load > 80"
 ```
 
-Some keywords are flags with no value (e.g. `help`, `show-all`, `show-default`).
+### Two essential helpers: `show-default` and `help`
 
----
+Before changing anything, learn these two — they work for **every** check.
 
-## 3. Two Indispensable Built-in Helpers
-
-Before changing anything, learn these two commands. They work for **every** check.
-
-### Show defaults
+`show-default` prints the check's built-in options so you can learn what it does by default and copy
+a single line to tweak:
 
 ```
 check_cpu show-default
@@ -115,29 +101,23 @@ check_cpu show-default
 "perf-syntax=${core} ${time}"
 ```
 
-Use this to learn what a check does by default and to copy a single option to tweak.
-
-<!-- @formatter:off -->
-!!! note
-    You'll see `${name}` in the defaults output. That's the older placeholder syntax, still supported
-    for compatibility. When you write your own configuration, prefer `%(name)` — see
-    [section 7](#7-output-syntax-choosing-the-message-text).
-
-!!! warning
-    Don't paste *all* defaults into your config. Defaults can change in newer versions; pinning them removes that benefit.
-<!-- @formatter:on -->
-
-### Show help
+`help` gives the full list of options, filter keywords, and per-check examples:
 
 ```
 check_cpu help
 ```
 
-Gives the full list of options, filter keywords, and example usage for that specific check.
+<!-- @formatter:off -->
+!!! note
+    You'll see `${name}` in the defaults output. That's the older placeholder syntax, still supported
+    for compatibility. When you write your own configuration, prefer `%(name)` — see
+    [section 5](#5-output-syntax-choosing-the-message-text).
 
----
+!!! warning
+    Don't paste *all* defaults into your config. Defaults can change in newer versions; pinning them removes that benefit.
+<!-- @formatter:on -->
 
-## 4. A Quick End-to-End Example
+### A worked example
 
 The same `check_cpu`, with progressively more customisation:
 
@@ -165,7 +145,7 @@ The rest of this page explains exactly what each of those options does.
 
 ---
 
-## 5. Filters — Choosing What to Check
+## 3. Filters — Choosing What to Check
 
 A **filter** is an expression evaluated for each item. Items where it is `true` are included; items where it is `false`
 are dropped.
@@ -194,9 +174,9 @@ check_cpu filter=none                       # include everything
 | `=`               | `eq`                | Equals               |
 | `!=`              | `ne`                | Not equals           |
 | `>` `<` `>=` `<=` | `gt` `lt` `ge` `le` | Numeric comparison   |
-| `like`            | `like`              | Substring match      |
-| `regexp`          | `regexp`            | Regular expression   |
-| `in`              | `in`                | Membership in a list |
+| `like`            | —                   | Substring match      |
+| `regexp`          | —                   | Regular expression   |
+| `in`              | —                   | Membership in a list |
 | `and` `or` `not`  | —                   | Logical              |
 | `'...'`           | `str(...)`          | String literal       |
 
@@ -224,7 +204,7 @@ Each check adds its own keywords. For `check_cpu`: `core`, `core_id`, `load`, `i
 
 ### Practical filter recipes
 
-```
+```shell
 # CPU: only the aggregate total
 check_cpu "filter=core = 'total'"
 
@@ -261,7 +241,7 @@ check_eventlog scan-range=-24h "crit=written > -1h"
 
 ---
 
-## 6. Thresholds — Choosing What's a Problem
+## 4. Thresholds — Choosing What's a Problem
 
 `warn` and `crit` use the **same expression language as filters** — same operators, same keywords,
 same `and`/`or`/`not`. The difference is what the expression *decides*:
@@ -286,14 +266,14 @@ check_drivesize "warn=free < 15%" "crit=free < 5%"
 
 ### Disabling a threshold
 
-```
+```shell
 check_cpu warning=none
 check_cpu critical=none
 ```
 
 ### Composite thresholds
 
-```
+```shell
 # Warn on high kernel time OR high load
 check_cpu filter=none "warn=kernel > 10 or load > 80" "crit=load > 90"
 
@@ -305,7 +285,7 @@ check_memory "warn=free < 4g and size > 16g"
 
 The `count` family of keywords lets you alert on totals rather than individual items:
 
-```
+```shell
 # Alert if more than 3 services are stopped
 check_service "crit=problem_count > 3"
 
@@ -324,13 +304,13 @@ What status to return when the filter selects no items:
 | `critical` | Return CRITICAL                     |
 | `ignored`  | Suppress the result                 |
 
-```
+```shell
 check_service "filter=name = 'NonExistentService'" empty-state=ok
 ```
 
 ---
 
-## 7. Output Syntax — Choosing the Message Text
+## 5. Output Syntax — Choosing the Message Text
 
 Three options shape the message. They affect *only* the human-readable text — never the status or perfdata.
 
@@ -345,9 +325,9 @@ the recommended way they'd be `top-syntax=%(status): %(problem_list)` and
 `detail-syntax=%(time): %(load)%`):
 
 ```
-top-syntax=${status}: ${problem_list}
-ok-syntax=%(status): CPU load is ok.
-detail-syntax=${time}: ${load}%
+"top-syntax=${status}: ${problem_list}"
+"ok-syntax=%(status): CPU load is ok."
+"detail-syntax=${time}: ${load}%"
 ```
 
 ### Template variables
@@ -362,7 +342,7 @@ NSClient++ has two placeholder forms. **Use `%(name)`** — it's the modern, mor
 Differences in practice:
 
 - **Plain variable references** — both forms work and produce identical output.
-- **Function calls** (see [section 8](#8-functions-transforming-values)) — only `%(...)` works. The
+- **Function calls** (see [section 6](#6-functions-transforming-values)) — only `%(...)` works. The
   `${...}` form stops at the first `}` and can't capture nested parentheses.
 - **Shells and NRPE** — `${...}` is often eaten by Bash and similar shells before it reaches
   NSClient++. `%(...)` passes through untouched.
@@ -384,7 +364,7 @@ Per-item variables (in `detail-syntax`) depend on the check — `<check> help` l
 
 ### Recipes
 
-```
+```shell
 # Show all values, not just problems
 check_cpu show-all
 # equivalent to:
@@ -406,7 +386,7 @@ check_service "top-syntax=%(list)" "detail-syntax=%(name): %(state)"
 
 ---
 
-## 8. Functions — Transforming Values
+## 6. Functions — Transforming Values
 
 Sometimes a raw value isn't what you want to look at. A counter that returns bytes per second is
 unfriendly to read as `4194304`, and a threshold expressed in MB is easier to maintain than one
@@ -432,7 +412,7 @@ filter        = "scale(rate, 1000000) > 100"
 !!! warning "Function calls require `%(...)`"
     The legacy `${...}` placeholder stops at the first `}` and can't capture nested parentheses, so
     `${format_bytes(used)}` won't parse. Use `%(...)` for function calls (and prefer it everywhere
-    else — see [section 7](#7-output-syntax-choosing-the-message-text)).
+    else — see [section 5](#5-output-syntax-choosing-the-message-text)).
 <!-- @formatter:on -->
 
 ### Built-in functions
@@ -507,7 +487,7 @@ unit, a custom divisor, or composition with other expressions.
 
 ---
 
-## 9. Performance Data
+## 7. Performance Data
 
 Performance data is the machine-readable metrics used for graphing, in the standard Nagios format:
 
@@ -603,7 +583,7 @@ Useful when your graphing system is picky about names.
 
 ---
 
-## 10. Putting It Together
+## 8. Putting It Together
 
 Pick a check, run `show-default`, identify the option you want to change, change just that one. Repeat.
 
@@ -618,7 +598,7 @@ check_drivesize "filter=type = 'fixed'"
 check_drivesize "filter=type = 'fixed'" \
   "warn=free_pct < 15" "crit=free_pct < 5"
 
-# Step 3 — clean message with human-readable sizes (functions from section 8)
+# Step 3 — clean message with human-readable sizes (functions from section 6)
 check_drivesize "filter=type = 'fixed'" \
   "warn=free_pct < 15" "crit=free_pct < 5" \
   "top-syntax=%(status): %(list)" \

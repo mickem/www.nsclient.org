@@ -12,6 +12,27 @@
 
 ---
 
+## How NRPE Works
+
+NRPE is **active, pull-style**: the monitoring server opens a TCP connection to
+the agent (default port `5666`), names a check to run, and the agent runs it
+locally and returns the result on the same connection.
+
+```mermaid
+flowchart LR
+    M[Monitoring Server] -->|check_nrpe<br/>TCP/5666, TLS| A[NSClient++<br/>NRPEServer]
+    A -->|runs check| R[Result]
+    R --> M
+```
+
+Modern NRPE uses TLS for the transport. Authentication can be one of:
+
+- **Anonymous TLS** — encryption only, no peer identity. Combine with `allowed hosts` to restrict who can connect.
+- **Client certificate** — the server presents a cert signed by a CA the agent trusts. Strongest option; this scenario walks through both.
+- **Insecure (no TLS)** — supported for legacy clients but not recommended.
+
+---
+
 ## Prerequisites
 
 Enable the `NRPEServer` module in `nsclient.ini`:

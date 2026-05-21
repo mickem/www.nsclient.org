@@ -109,6 +109,7 @@ nav:
     - Extending:
         - Overview: docs/extending/index.md
         - Python Scripts: docs/extending/python.md
+        - Lua Scripts: docs/extending/lua.md
         - Zip Modules: docs/extending/zip-modules.md
         - Plugin API Reference: docs/extending/plugin-api.md
     - API:

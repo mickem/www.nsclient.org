@@ -16,15 +16,20 @@ through its REST API — without Icinga 2 needing to poll each Windows host dire
 
 In **active (NRPE / agent) monitoring**, the monitoring server initiates contact and polls the agent:
 
-```
-Icinga 2 Server ──check_nrpe──► NSClient++ → runs check → returns result
+```mermaid
+flowchart LR
+    S[Icinga 2 Server] -->|check_nrpe| A[NSClient++]
+    A -->|runs check| R[Result]
+    R --> S
 ```
 
 In **passive monitoring with the Icinga 2 REST API**, the agent runs checks on its own schedule and submits the results
 over HTTPS:
 
-```
-NSClient++ (Scheduler) → runs check → IcingaClient ──HTTPS──► Icinga 2 (/v1/actions/process-check-result)
+```mermaid
+flowchart LR
+    S[Scheduler] -->|runs check| C[IcingaClient]
+    C -->|HTTPS| I[Icinga 2<br/>/v1/actions/process-check-result]
 ```
 
 The Icinga 2 server simply waits for results. If no result arrives within the expected time window, Icinga 2 raises a

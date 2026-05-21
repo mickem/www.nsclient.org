@@ -12,14 +12,19 @@
 
 In **active (NRPE) monitoring**, the monitoring server initiates contact and polls the agent:
 
-```
-Monitoring Server ──check_nrpe──► NSClient++ → runs check → returns result
+```mermaid
+flowchart LR
+    S[Monitoring Server] -->|check_nrpe| A[NSClient++]
+    A -->|runs check| R[Result]
+    R --> S
 ```
 
 In **passive monitoring**, the agent runs checks on its own schedule and pushes results to the server:
 
-```
-NSClient++ (Scheduler) → runs check → NSCAClient ──────► Monitoring Server (NSCA daemon)
+```mermaid
+flowchart LR
+    S[Scheduler] -->|runs check| C[NSCAClient]
+    C -->|NSCA| M[Monitoring Server<br/>NSCA daemon]
 ```
 
 The monitoring server simply waits for results. If no result arrives within the expected time window, the monitoring server raises a "freshness" alert.
