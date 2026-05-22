@@ -27,10 +27,10 @@ Released <span data-release="date">recently</span> &middot; <a href="https://git
 
 ## :material-checkbox-marked-circle-outline: Why NSClient++
 
-- :material-laptop: **Cross-platform** — Windows XP(ish) and major Linux distros
-- :material-connection: **Many protocols** — NRPE, NSCA, NRDP, Prometheus, check_mk, Graphite
+- :material-laptop: **Cross-platform** — Windows and major Linux distros ([details](docs/setup/supported-platforms.md))
+- :material-connection: **Many protocols** — NRPE, NSCA, NSCA-NG, NRDP, check_mk, Icinga 2, Op5, Graphite, Syslog, SMTP, REST, Prometheus/OpenMetrics
 - :material-view-dashboard: **Web UI** with live dashboards and check explorer
-- :material-language-python: **Scriptable** in Python and Lua or external scripts
+- :material-language-python: **Scriptable** in Python, Lua, or any external script
 - :material-shield-check: **Secure by default** — TLS, client certs, allowed-hosts
 
 </div>

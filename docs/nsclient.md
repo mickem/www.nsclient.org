@@ -1,37 +1,48 @@
 # About NSClient++
 
-NSClient++ (nscp) aims to be a simple yet powerful and flexible monitoring daemon. It was built for Nagios/Icinga/Naemon, but nothing in the daemon is Nagios/Icinga specific and it can and is used in many other scenarios where you want to receive/distribute check metrics. It is entirely possible to use it stand alone as well as the core monitoring system though that is not recommended as it is rather limited.
+NSClient++ (nscp) aims to be a simple yet powerful and flexible monitoring daemon. It was built for Nagios/Icinga/Naemon, but nothing in the daemon is specific to those systems, and it is used in many other scenarios where check metrics need to be collected, forwarded or acted upon. NSClient++ can also run standalone as the central monitoring system, though that is not recommended — the built-in scheduling and alerting are intentionally minimal compared to a dedicated monitoring server.
 
-##  What does it do?
+## What does it do?
 
-NSClient++ does basically three things:
+NSClient++ does three things:
 
-* Allow remote checks
-  Allow a remote machine (monitoring server) to request commands to be run on this machine (the monitored machine) which return the status of the machine.
-* Monitor system in realtime
-  Monitor your systems and submit the findings and results a remote (monitoring server).
-* Resolve your problems
-  NSClient++ can take action either on its own monitoring or remotely from a central server and act on what happens and resolve issues.
+* **Allow remote checks** — let a monitoring server request commands on the monitored machine and return the result.
+* **Monitor systems in real time** — collect metrics locally and submit them to a remote monitoring server.
+* **Resolve problems** — act on its own findings or on instructions from a central server (for example restarting a service when a check fails).
 
-##  What monitoring systems does it support?
+In addition it offers a built-in [Web UI](docs/setup/web-interface.md), a [REST API](docs/api/rest/metrics.md), and is scriptable in [Lua](docs/extending/lua.md) and Python or via any external script.
 
-While NSClient++ was designed to work with Nagios/Naemon/Icinga it can easiily be adapted to be used with any monitoring or information system.
+## What monitoring systems does it support?
 
-* NRPE (Nagios Remote plugin Executor)
-* NSCA (Nagios Service Check Acceptor)
-* NRDP
-* Syslog
+NSClient++ was designed to work with Nagios/Naemon/Icinga but can easily be adapted to any monitoring or information system. The full module list lives in the [reference](docs/reference/index.md); the protocols it speaks are:
+
+**Active checks (server side)**
+
+* NRPE — Nagios Remote Plugin Executor
+* check_nt — legacy NSClient protocol
+* check_mk — Check_MK live status
+* REST / HTTP — NSClient++ native API
+
+**Passive submission (client side)**
+
+* NSCA — Nagios Service Check Acceptor
+* NSCA-NG — TLS-based next-generation NSCA
+* NRDP — Nagios Remote Data Processor
+* Icinga 2 — passive results via the Icinga 2 REST API
+* Op5 — Op5 Monitor northbound API
+
+**Metrics and log forwarding**
+
 * Graphite
+* Syslog
 * SMTP
 * CollectD
-* REST
-  
-##  Where does it run?
+* Elastic
+* Prometheus / OpenMetrics (scraped from the REST API)
 
-NSClient++ should run on most operating systems.
+## Where does it run?
 
-* All Windows OS:es since Windows
-* Most linux os:es
+NSClient++ runs on Windows and most Linux distributions. There are two Windows editions — a standard build for Windows Server 2008 R2 / Windows 7 and later, and a legacy build that still runs on Windows XP. See [Supported platforms](docs/setup/supported-platforms.md) for the full matrix.
 
 ## Who is behind NSClient++?
 
@@ -43,6 +54,6 @@ Contacting the project can be done via email `info@nsclient.org` or on the follo
 Michael Medin
 My Computer Solutions NORDIC KB
 Knipvägen 179
-SE-184 62 ÅKERBERGA
+SE-184 62 ÅKERSBERGA
 SWEDEN
 ```

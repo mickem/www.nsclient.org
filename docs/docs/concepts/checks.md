@@ -49,7 +49,7 @@ The fastest way to learn the engine is to drive a check yourself. NSClient++ shi
 **test shell** that runs the same modules the service does, but interactively, with all log output
 visible.
 
-### Start the shell
+**2.1. Start the shell**
 
 ```
 nscp test --settings dummy
@@ -66,13 +66,20 @@ verbosity, including incoming requests and child-process spawn/exit) when you ne
 nscp test --settings dummy --log debug
 ```
 
-### Load a module and run a check
+**2.2. Load a module**
 
 Out of the box the shell has no checks loaded. Each check lives in a module — load it once per
 session, then run the check:
 
 ```
 load CheckSystem
+```
+
+**2.3. Run a check**
+
+Now we can run the check:
+
+```
 check_cpu
 L     client OK: CPU Load ok
 L     client  Performance data: 'total 5m'=0%;80;90 'total 1m'=1%;80;90 'total 5s'=11%;80;90
@@ -86,7 +93,7 @@ check_cpu filter=none
 check_cpu "filter=core = 'total'" "warn=load > 80"
 ```
 
-### Two essential helpers: `show-default` and `help`
+**2.4. Two essential helpers: `show-default` and `help`**
 
 Before changing anything, learn these two — they work for **every** check.
 
@@ -117,7 +124,7 @@ check_cpu help
     Don't paste *all* defaults into your config. Defaults can change in newer versions; pinning them removes that benefit.
 <!-- @formatter:on -->
 
-### A worked example
+**2.5. A worked example**
 
 The same `check_cpu`, with progressively more customisation:
 

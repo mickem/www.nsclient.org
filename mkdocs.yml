@@ -47,6 +47,7 @@ nav:
         - Settings: docs/concepts/settings.md
         - Permissions: docs/concepts/permissions.md
     - Setup:
+        - Supported platforms: docs/setup/supported-platforms.md
         - Installation: docs/setup/installing.md
         - Securing NSClient++: docs/setup/securing.md
         - Web Interface: docs/setup/web-interface.md
