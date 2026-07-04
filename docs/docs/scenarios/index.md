@@ -27,8 +27,10 @@ Each scenario follows the same structure:
 | Scenario                                              | Description                                                               |
 |-------------------------------------------------------|---------------------------------------------------------------------------|
 | [Windows Server Health](windows-server-health.md)     | Monitor CPU, memory, disk, and uptime together as a baseline health check |
-| [Disk Space Alerting](disk-space.md)                  | Alert when drives are running low on free space                           |
-| [Service & Process Monitoring](service-monitoring.md) | Ensure critical Windows services and processes are running                |
+| [Linux Server Health](linux-server-health.md)         | Load, CPU, memory/swap, kernel activity, disk and systemd services on Linux |
+| [Disk Space Alerting](disk-space.md)                  | Alert when drives are running low on free space (Windows & Linux)         |
+| [Service & Process Monitoring](service-monitoring.md) | Ensure critical services (Windows services / Linux systemd units) and processes are running |
+| [Real-Time System Monitoring](realtime-monitoring.md) | Push CPU/memory/process alerts the second they happen (Windows & Linux)   |
 | [Event Log Monitoring](event-log.md)                  | Alert on errors and warnings in the Windows Event Log                     |
 | [Performance Counter (PDH) Monitoring](counters.md)   | Read Windows performance counters, average them over time, and alert      |
 
@@ -36,7 +38,7 @@ Each scenario follows the same structure:
 
 | Scenario                            | Description                                                                     |
 |-------------------------------------|---------------------------------------------------------------------------------|
-| [Network Checks](network-checks.md) | Check host reachability (ping), TCP port availability, and HTTP endpoint health |
+| [Network Checks](network-checks.md) | Ping, TCP/SSH port checks (incl. TLS), HTTP/HTTPS health, DNS, and remote-agent availability |
 
 ### Monitoring Server Integration
 
@@ -49,6 +51,7 @@ direction (active vs. passive) and protocol that matches your setup.
 | [Passive Monitoring (NSCA/NRDP)](passive-monitoring-nsca.md)  | Have NSClient++ push results to your monitoring server on a schedule             |
 | [Passive Monitoring (NSCA-NG)](passive-monitoring-nsca-ng.md) | TLS-PSK successor to NSCA — modern crypto, same passive-push pattern             |
 | [Passive Monitoring (Icinga 2)](passive-monitoring-icinga.md) | Submit scheduled check results to the Icinga 2 REST API                          |
+| [Passive Monitoring (Graphite)](passive-monitoring-graphite.md) | Push perfdata and system metrics to a Graphite/carbon backend for graphing     |
 | [Checkmk Agent Integration](check-mk.md)                      | Serve a Checkmk-compatible agent dump from NSClient++ on TCP/6556                |
 | [Prometheus Scraping](prometheus.md)                          | Expose metrics on `/api/v2/openmetrics` for Prometheus to scrape                 |
 
