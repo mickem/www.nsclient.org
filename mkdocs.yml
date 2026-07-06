@@ -73,7 +73,7 @@ nav:
     - Reference:
         - Reference: docs/reference/index.md
         - Check commands:
-            - CheckDisk (Windows): docs/reference/check/CheckDisk.md
+            - CheckDisk: docs/reference/check/CheckDisk.md
             - CheckExternalScripts: docs/reference/check/CheckExternalScripts.md
             - CheckEventLog (Windows): docs/reference/windows/CheckEventLog.md
             - CheckHelpers: docs/reference/check/CheckHelpers.md
