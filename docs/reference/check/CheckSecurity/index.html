@@ -1,0 +1,7059 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../CheckNSCP/">
+      
+      
+        <link rel="next" href="../CheckSystem/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>CheckSecurity - NSClient++</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#checksecurity" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="NSClient++" class="md-header__button md-logo" aria-label="NSClient++" data-md-component="logo">
+      
+  <img src="../../../../assets/nsclient-logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            NSClient++
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              CheckSecurity
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/mickem/nscp" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M202.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1M496 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2m-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3m-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1"/></svg>
+  </div>
+  <div class="md-source__repository">
+    NSClient++
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../.." class="md-tabs__link">
+          
+  
+  
+    
+  
+  Home
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../news/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  News
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://github.com/mickem/nscp/releases" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Download
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Documentation
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://github.com/mickem/nscp/discussions" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Forums
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="NSClient++" class="md-nav__button md-logo" aria-label="NSClient++" data-md-component="logo">
+      
+  <img src="../../../../assets/nsclient-logo.png" alt="logo">
+
+    </a>
+    NSClient++
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/mickem/nscp" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M202.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1M496 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2m-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3m-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1"/></svg>
+  </div>
+  <div class="md-source__repository">
+    NSClient++
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../.." class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_1" id="__nav_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Home
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../nsclient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About NSClient++
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../news/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    News
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/mickem/nscp/releases" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Download
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Documentation
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Documentation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../quick-start/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../concepts/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Concepts
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../concepts/checks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Checks In Depth
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../concepts/settings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Settings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../concepts/permissions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Permissions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Setup
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../setup/supported-platforms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Supported platforms
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../setup/installing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../setup/securing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Securing NSClient++
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../setup/web-interface/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Web Interface
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../scenarios/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Monitoring Scenarios
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_5" id="__nav_4_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Monitoring Scenarios
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/windows-server-health/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Windows Server Health
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/linux-server-health/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux Server Health
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/disk-space/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Disk Space Alerting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/service-monitoring/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Service & Process Monitoring
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/realtime-monitoring/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Real-Time System Monitoring
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/event-log/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Event Log Monitoring
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/counters/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Performance Counters (PDH)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/network-checks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Network Checks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/security-posture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Host Security Posture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/nrpe/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Active Monitoring with NRPE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/passive-monitoring-nsca/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Passive Monitoring (NSCA/NRDP)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/passive-monitoring-nsca-ng/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Passive Monitoring (NSCA-NG)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/passive-monitoring-icinga/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Passive Monitoring (Icinga 2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/passive-monitoring-graphite/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Passive Monitoring (Graphite)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/check-mk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Checkmk Agent Integration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/prometheus/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prometheus Scraping
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/external-scripts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    External Scripts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_6" id="__nav_4_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4_6_2" id="__nav_4_6_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Check commands
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_6_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_6_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Check commands
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CheckDisk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckDisk
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CheckExternalScripts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckExternalScripts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../windows/CheckEventLog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckEventLog (Windows)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CheckHelpers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckHelpers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CheckLogFile/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckLogFile
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CheckMKClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckMKClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CheckMKServer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckMKServer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CheckNet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckNet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CheckNSCP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckNSCP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckSecurity
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckSecurity
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#enable-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enable module
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#queries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Queries
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Queries">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#check_antivirus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        check_antivirus
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="check_antivirus">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#about-check_antivirus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        About check_antivirus
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sample-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#command-line-arguments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Command-line Arguments
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filter-keywords" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Filter keywords
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check_bitlocker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        check_bitlocker
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="check_bitlocker">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#about-check_bitlocker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        About check_bitlocker
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sample-commands_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#command-line-arguments_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Command-line Arguments
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filter-keywords_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Filter keywords
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check_certificate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        check_certificate
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="check_certificate">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#about-check_certificate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        About check_certificate
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sample-commands_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#command-line-arguments_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Command-line Arguments
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filter-keywords_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Filter keywords
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check_firewall" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        check_firewall
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="check_firewall">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#about-check_firewall" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        About check_firewall
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sample-commands_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#command-line-arguments_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Command-line Arguments
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filter-keywords_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Filter keywords
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check_nla" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        check_nla
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="check_nla">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#about-check_nla" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        About check_nla
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sample-commands_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#command-line-arguments_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Command-line Arguments
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filter-keywords_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Filter keywords
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check_secureboot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        check_secureboot
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="check_secureboot">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#about-check_secureboot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        About check_secureboot
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sample-commands_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#command-line-arguments_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Command-line Arguments
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filter-keywords_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Filter keywords
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check_users" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        check_users
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="check_users">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#about-check_users" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        About check_users
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sample-commands_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#command-line-arguments_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Command-line Arguments
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filter-keywords_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Filter keywords
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CheckSystem/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckSystem
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../windows/CheckTaskSched/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckTaskSched (Windows)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../windows/CheckWMI/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckWMI (Windows)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_6_3" id="__nav_4_6_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Clients & Servers
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_6_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_6_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Clients & Servers
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../generic/WEBServer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WEBServer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../misc/WEBClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WEBClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/NRPEServer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NRPEServer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/NRPEClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NRPEClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../windows/NSClientServer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSClientServer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/NSCAServer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSCAServer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/NSCAClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSCAClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/NRDPClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NRDPClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/NSCANgClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSCANgClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../misc/NSCPClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSCPClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/IcingaClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IcingaClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/SMTPClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SMTPClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/GraphiteClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GraphiteClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/SyslogClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SyslogClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../misc/CollectdClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CollectdClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../misc/Op5Client/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Op5Client
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../misc/ElasticClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ElasticClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_6_4" id="__nav_4_6_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Helper modules
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_6_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_6_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Helper modules
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../generic/Scheduler/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scheduler
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../generic/SimpleFileWriter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SimpleFileWriter
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../generic/CommandClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CommandClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../generic/SimpleCache/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SimpleCache
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../generic/PythonScript/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PythonScript
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../generic/LUAScript/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LUAScript
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../extending/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Extending
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_7" id="__nav_4_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Extending
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../extending/python/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python Scripts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../extending/lua/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lua Scripts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../extending/zip-modules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Zip Modules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../extending/plugin-api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plugin API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_8" id="__nav_4_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    API
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_8_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../api/rest/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    REST
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_8_1" id="__nav_4_8_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_8_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_8_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    REST
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/rest/info/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Info
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/rest/login/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Login
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/rest/modules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/rest/queries/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Queries
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/rest/aliases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Aliases
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/rest/scripts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scripts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/rest/settings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Settings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/rest/metadata/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Metadata
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/rest/metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Metrics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/rest/logs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/rest/legacy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Legacy API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/mickem/nscp/discussions" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Forums
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="checksecurity">CheckSecurity</h1>
+<p>CheckSecurity checks host security posture: certificate expiry and (on Windows) the firewall profile state.</p>
+<h2 id="enable-module">Enable module</h2>
+<p>To enable this module and and allow using the commands you need to ass <code>CheckSecurity = enabled</code> to the <code>[/modules]</code> section in nsclient.ini:</p>
+<div class="highlight"><pre><span></span><code>[/modules]
+CheckSecurity = enabled
+</code></pre></div>
+<h2 id="queries">Queries</h2>
+<p>A quick reference for all available queries (check commands) in the CheckSecurity module.</p>
+<p><strong>List of commands:</strong></p>
+<p>A list of all available queries (check commands)</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#check_antivirus">check_antivirus</a></td>
+<td>Check registered antivirus products' enabled/up-to-date state (Windows Security Center). Windows only.</td>
+</tr>
+<tr>
+<td><a href="#check_bitlocker">check_bitlocker</a></td>
+<td>Check BitLocker drive-encryption protection status per volume. Windows only.</td>
+</tr>
+<tr>
+<td><a href="#check_certificate">check_certificate</a></td>
+<td>Check X.509 certificate expiry/validity/hygiene from files (all platforms) or the Windows certificate store.</td>
+</tr>
+<tr>
+<td><a href="#check_firewall">check_firewall</a></td>
+<td>Check the Windows firewall profile (Domain/Private/Public) enabled state. Windows only.</td>
+</tr>
+<tr>
+<td><a href="#check_nla">check_nla</a></td>
+<td>Check the Network Location Awareness profile (public/private/domain) per network. Windows only.</td>
+</tr>
+<tr>
+<td><a href="#check_secureboot">check_secureboot</a></td>
+<td>Check whether UEFI Secure Boot is enabled. Windows only.</td>
+</tr>
+<tr>
+<td><a href="#check_users">check_users</a></td>
+<td>Check the count and detail of logged-on / RDP sessions (Windows and Linux).</td>
+</tr>
+</tbody>
+</table>
+<h3 id="check_antivirus">check_antivirus</h3>
+<p>Check registered antivirus products' enabled/up-to-date state (Windows Security Center). Windows only.</p>
+<h4 id="about-check_antivirus">About <code>check_antivirus</code></h4>
+<p><code>check_antivirus</code> reports the antivirus products registered with the <strong>Windows
+Security Center</strong> (WMI <code>root\SecurityCenter2</code> <code>AntiVirusProduct</code>), including
+third-party AV and Windows Defender. This is distinct from <code>check_os_updates</code>
+(which counts pending OS/Defender updates) — this check answers "is AV actually
+running and current."</p>
+<p>Keywords:</p>
+<table>
+<thead>
+<tr>
+<th>Keyword</th>
+<th>Type</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td>string</td>
+<td>Product display name.</td>
+</tr>
+<tr>
+<td><code>enabled</code></td>
+<td>bool</td>
+<td>Real-time protection is on.</td>
+</tr>
+<tr>
+<td><code>up_to_date</code></td>
+<td>bool</td>
+<td>Virus definitions are current.</td>
+</tr>
+<tr>
+<td><code>product_state</code></td>
+<td>int</td>
+<td>Raw Security Center <code>productState</code> bitfield.</td>
+</tr>
+</tbody>
+</table>
+<p><code>enabled</code>/<code>up_to_date</code> are decoded from <code>productState</code> using the well-known
+heuristic (the <code>0x1000</code> bit = real-time protection on, the <code>0x10</code> bit = stale
+definitions); the raw value is exposed as <code>product_state</code> for auditing. Default
+threshold: <strong>critical</strong> if any product has <code>enabled = 0</code> or <code>up_to_date = 0</code>.
+<strong>Windows only.</strong></p>
+<p><strong>Jump to section:</strong></p>
+<ul>
+<li><a href="#check_antivirus_samples">Sample Commands</a></li>
+<li><a href="#check_antivirus_options">Command-line Arguments</a></li>
+<li><a href="#check_antivirus_filter_keys">Filter keywords</a></li>
+</ul>
+<p><a id="check_antivirus_samples"></a></p>
+<h4 id="sample-commands">Sample Commands</h4>
+<p><strong>Check that antivirus is enabled and up to date (Windows)</strong></p>
+<p>The default is critical if any registered product has real-time protection off
+or stale definitions.</p>
+<div class="highlight"><pre><span></span><code>check_antivirus
+L        cli OK: 1 antivirus product(s) healthy
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>check_antivirus
+L        cli CRITICAL: Windows Defender (enabled=1 up_to_date=0)
+</code></pre></div>
+<p><strong>Only require definitions to be current</strong></p>
+<div class="highlight"><pre><span></span><code>check_antivirus &quot;crit=up_to_date = 0&quot;
+L        cli OK: 1 antivirus product(s) healthy
+</code></pre></div>
+<p><strong>Show each product's state</strong></p>
+<div class="highlight"><pre><span></span><code>check_antivirus &quot;top-syntax=${list}&quot; &quot;detail-syntax=${name}: enabled=${enabled} current=${up_to_date} state=${product_state}&quot;
+L        cli OK: Windows Defender: enabled=1 current=1 state=397568
+</code></pre></div>
+<p><strong>On non-Windows platforms</strong></p>
+<div class="highlight"><pre><span></span><code>check_antivirus
+L        cli UNKNOWN: check_antivirus is not supported on this platform (Windows Security Center only)
+</code></pre></div>
+<p><a id="check_antivirus_options"></a></p>
+<h4 id="command-line-arguments">Command-line Arguments</h4>
+<p><a id="check_antivirus_warn"></a>
+<a id="check_antivirus_crit"></a>
+<a id="check_antivirus_debug"></a>
+<a id="check_antivirus_show-all"></a>
+<a id="check_antivirus_escape-html"></a>
+<a id="check_antivirus_help"></a>
+<a id="check_antivirus_help-pb"></a>
+<a id="check_antivirus_show-default"></a>
+<a id="check_antivirus_help-short"></a></p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#check_antivirus_filter">filter</a></td>
+<td></td>
+<td>Filter which marks interesting items.</td>
+</tr>
+<tr>
+<td><a href="#check_antivirus_warning">warning</a></td>
+<td></td>
+<td>Filter which marks items which generates a warning state.</td>
+</tr>
+<tr>
+<td>warn</td>
+<td></td>
+<td>Short alias for warning</td>
+</tr>
+<tr>
+<td><a href="#check_antivirus_critical">critical</a></td>
+<td>enabled = 0 or up_to_date = 0</td>
+<td>Filter which marks items which generates a critical state.</td>
+</tr>
+<tr>
+<td>crit</td>
+<td></td>
+<td>Short alias for critical.</td>
+</tr>
+<tr>
+<td><a href="#check_antivirus_ok">ok</a></td>
+<td></td>
+<td>Filter which marks items which generates an ok state.</td>
+</tr>
+<tr>
+<td>debug</td>
+<td>N/A</td>
+<td>Show debugging information in the log</td>
+</tr>
+<tr>
+<td>show-all</td>
+<td>N/A</td>
+<td>Show details for all matches regardless of status (normally details are only showed for warnings and criticals).</td>
+</tr>
+<tr>
+<td><a href="#check_antivirus_empty-state">empty-state</a></td>
+<td>unknown</td>
+<td>Return status to use when nothing matched filter.</td>
+</tr>
+<tr>
+<td><a href="#check_antivirus_perf-config">perf-config</a></td>
+<td></td>
+<td>Performance data generation configuration</td>
+</tr>
+<tr>
+<td>escape-html</td>
+<td>N/A</td>
+<td>Escape any &lt; and &gt; characters to prevent HTML encoding</td>
+</tr>
+<tr>
+<td>help</td>
+<td>N/A</td>
+<td>Show help screen (this screen)</td>
+</tr>
+<tr>
+<td>help-pb</td>
+<td>N/A</td>
+<td>Show help screen as a protocol buffer payload</td>
+</tr>
+<tr>
+<td>show-default</td>
+<td>N/A</td>
+<td>Show default values for a given command</td>
+</tr>
+<tr>
+<td>help-short</td>
+<td>N/A</td>
+<td>Show help screen (short format).</td>
+</tr>
+<tr>
+<td><a href="#check_antivirus_top-syntax">top-syntax</a></td>
+<td>${status}: ${list}</td>
+<td>Top level syntax.</td>
+</tr>
+<tr>
+<td><a href="#check_antivirus_ok-syntax">ok-syntax</a></td>
+<td>${status}: ${count} antivirus product(s) healthy</td>
+<td>ok syntax.</td>
+</tr>
+<tr>
+<td><a href="#check_antivirus_empty-syntax">empty-syntax</a></td>
+<td>No antivirus product registered</td>
+<td>Empty syntax.</td>
+</tr>
+<tr>
+<td><a href="#check_antivirus_detail-syntax">detail-syntax</a></td>
+<td>${name} (enabled=${enabled} up_to_date=${up_to_date})</td>
+<td>Detail level syntax.</td>
+</tr>
+<tr>
+<td><a href="#check_antivirus_perf-syntax">perf-syntax</a></td>
+<td>${name}</td>
+<td>Performance alias syntax.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="check_antivirus_filter">filter:</h5>
+
+<p>Filter which marks interesting items.
+Interesting items are items which will be included in the check.
+They do not denote warning or critical state instead it defines which items are relevant and you can remove unwanted items.</p>
+<h5 id="check_antivirus_warning">warning:</h5>
+
+<p>Filter which marks items which generates a warning state.
+If anything matches this filter the return status will be escalated to warning.</p>
+<h5 id="check_antivirus_critical">critical:</h5>
+
+<p>Filter which marks items which generates a critical state.
+If anything matches this filter the return status will be escalated to critical.</p>
+<p><em>Default Value:</em> <code>enabled = 0 or up_to_date = 0</code></p>
+<h5 id="check_antivirus_ok">ok:</h5>
+
+<p>Filter which marks items which generates an ok state.
+If anything matches this any previous state for this item will be reset to ok.</p>
+<h5 id="check_antivirus_empty-state">empty-state:</h5>
+
+<p>Return status to use when nothing matched filter.
+If no filter is specified this will never happen unless the file is empty.</p>
+<p><em>Default Value:</em> <code>unknown</code></p>
+<h5 id="check_antivirus_perf-config">perf-config:</h5>
+
+<p>Performance data generation configuration
+TODO: obj ( key: value; key: value) obj (key:valuer;key:value)</p>
+<h5 id="check_antivirus_top-syntax">top-syntax:</h5>
+
+<p>Top level syntax.
+Used to format the message to return can include text as well as special keywords which will include information from the checks.
+To add a keyword to the message you can use two syntaxes either ${keyword} or %(keyword) (there is no difference between them apart from ${} can be difficult to escape on linux).</p>
+<p><em>Default Value:</em> <code>${status}: ${list}</code></p>
+<h5 id="check_antivirus_ok-syntax">ok-syntax:</h5>
+
+<p>ok syntax.
+DEPRECATED! This is the syntax for when an ok result is returned.
+This value will not be used if your syntax contains %(list) or %(count).</p>
+<p><em>Default Value:</em> <code>${status}: ${count} antivirus product(s) healthy</code></p>
+<h5 id="check_antivirus_empty-syntax">empty-syntax:</h5>
+
+<p>Empty syntax.
+DEPRECATED! This is the syntax for when nothing matches the filter.</p>
+<p><em>Default Value:</em> <code>No antivirus product registered</code></p>
+<h5 id="check_antivirus_detail-syntax">detail-syntax:</h5>
+
+<p>Detail level syntax.
+Used to format each resulting item in the message.
+%(list) will be replaced with all the items formated by this syntax string in the top-syntax.
+To add a keyword to the message you can use two syntaxes either ${keyword} or %(keyword) (there is no difference between them apart from ${} can be difficult to escape on linux).</p>
+<p><em>Default Value:</em> <code>${name} (enabled=${enabled} up_to_date=${up_to_date})</code></p>
+<h5 id="check_antivirus_perf-syntax">perf-syntax:</h5>
+
+<p>Performance alias syntax.
+This is the syntax for the base names of the performance data.</p>
+<p><em>Default Value:</em> <code>${name}</code></p>
+<p><a id="check_antivirus_filter_keys"></a></p>
+<h4 id="filter-keywords">Filter keywords</h4>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>enabled</td>
+<td>True if real-time protection is enabled</td>
+</tr>
+<tr>
+<td>name</td>
+<td>Antivirus product display name</td>
+</tr>
+<tr>
+<td>product_state</td>
+<td>Raw Security Center productState bitfield</td>
+</tr>
+<tr>
+<td>up_to_date</td>
+<td>True if virus definitions are current</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Common options for all checks:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>count</td>
+<td>Number of items matching the filter.</td>
+</tr>
+<tr>
+<td>crit_count</td>
+<td>Number of items matched the critical criteria.</td>
+</tr>
+<tr>
+<td>crit_list</td>
+<td>A list of all items which matched the critical criteria.</td>
+</tr>
+<tr>
+<td>detail_list</td>
+<td>A special list with critical, then warning and finally ok.</td>
+</tr>
+<tr>
+<td>list</td>
+<td>A list of all items which matched the filter.</td>
+</tr>
+<tr>
+<td>ok_count</td>
+<td>Number of items matched the ok criteria.</td>
+</tr>
+<tr>
+<td>ok_list</td>
+<td>A list of all items which matched the ok criteria.</td>
+</tr>
+<tr>
+<td>problem_count</td>
+<td>Number of items matched either warning or critical criteria.</td>
+</tr>
+<tr>
+<td>problem_list</td>
+<td>A list of all items which matched either the critical or the warning criteria.</td>
+</tr>
+<tr>
+<td>status</td>
+<td>The returned status (OK/WARN/CRIT/UNKNOWN).</td>
+</tr>
+<tr>
+<td>total</td>
+<td>Total number of items.</td>
+</tr>
+<tr>
+<td>warn_count</td>
+<td>Number of items matched the warning criteria.</td>
+</tr>
+<tr>
+<td>warn_list</td>
+<td>A list of all items which matched the warning criteria.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="check_bitlocker">check_bitlocker</h3>
+<p>Check BitLocker drive-encryption protection status per volume. Windows only.</p>
+<h4 id="about-check_bitlocker">About <code>check_bitlocker</code></h4>
+<p><code>check_bitlocker</code> reports the BitLocker protection state of each encryptable
+volume (WMI <code>Win32_EncryptableVolume</code> in
+<code>root\CIMV2\Security\MicrosoftVolumeEncryption</code>). Use it to confirm disk
+encryption is actually on where policy requires it.</p>
+<p>Keywords:</p>
+<table>
+<thead>
+<tr>
+<th>Keyword</th>
+<th>Type</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>drive</code></td>
+<td>string</td>
+<td>Drive letter (may be empty for non-lettered volumes).</td>
+</tr>
+<tr>
+<td><code>protected</code></td>
+<td>bool</td>
+<td>True when <code>protection_status == 1</code> (BitLocker on).</td>
+</tr>
+<tr>
+<td><code>protection_status</code></td>
+<td>int</td>
+<td>Raw status: 0 off, 1 on, 2 unknown.</td>
+</tr>
+<tr>
+<td><code>conversion_status</code></td>
+<td>int</td>
+<td>Raw conversion status (0 decrypted, 1 encrypted, …).</td>
+</tr>
+</tbody>
+</table>
+<p>Default threshold: <strong>critical</strong> if any volume has <code>protected = 0</code>. Filter to the
+volumes you care about (e.g. <code>filter=drive = 'C:'</code>) to avoid alerting on
+recovery/utility partitions. <strong>Windows only.</strong> Reading this class requires
+elevation, so the agent service must run with sufficient privilege.</p>
+<p><strong>Jump to section:</strong></p>
+<ul>
+<li><a href="#check_bitlocker_samples">Sample Commands</a></li>
+<li><a href="#check_bitlocker_options">Command-line Arguments</a></li>
+<li><a href="#check_bitlocker_filter_keys">Filter keywords</a></li>
+</ul>
+<p><a id="check_bitlocker_samples"></a></p>
+<h4 id="sample-commands_1">Sample Commands</h4>
+<p><strong>Check that all volumes are BitLocker-protected (Windows)</strong></p>
+<p>The default is critical if any encryptable volume is not protected.</p>
+<div class="highlight"><pre><span></span><code>check_bitlocker
+L        cli OK: all 2 volume(s) protected
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>check_bitlocker
+L        cli CRITICAL: D: protected=0
+</code></pre></div>
+<p><strong>Only require the system drive to be protected</strong></p>
+<div class="highlight"><pre><span></span><code>check_bitlocker &quot;filter=drive = &#39;C:&#39;&quot; &quot;crit=protected = 0&quot;
+L        cli OK: all 1 volume(s) protected
+</code></pre></div>
+<p><strong>Show each volume's protection state</strong></p>
+<div class="highlight"><pre><span></span><code>check_bitlocker &quot;top-syntax=${list}&quot; &quot;detail-syntax=${drive} protected=${protected} status=${protection_status}&quot;
+L        cli OK: C: protected=1 status=1, D: protected=1 status=1
+</code></pre></div>
+<p><strong>On non-Windows platforms</strong></p>
+<div class="highlight"><pre><span></span><code>check_bitlocker
+L        cli UNKNOWN: check_bitlocker is not supported on this platform (Windows BitLocker only)
+</code></pre></div>
+<p><a id="check_bitlocker_options"></a></p>
+<h4 id="command-line-arguments_1">Command-line Arguments</h4>
+<p><a id="check_bitlocker_warn"></a>
+<a id="check_bitlocker_crit"></a>
+<a id="check_bitlocker_debug"></a>
+<a id="check_bitlocker_show-all"></a>
+<a id="check_bitlocker_escape-html"></a>
+<a id="check_bitlocker_help"></a>
+<a id="check_bitlocker_help-pb"></a>
+<a id="check_bitlocker_show-default"></a>
+<a id="check_bitlocker_help-short"></a></p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#check_bitlocker_filter">filter</a></td>
+<td></td>
+<td>Filter which marks interesting items.</td>
+</tr>
+<tr>
+<td><a href="#check_bitlocker_warning">warning</a></td>
+<td></td>
+<td>Filter which marks items which generates a warning state.</td>
+</tr>
+<tr>
+<td>warn</td>
+<td></td>
+<td>Short alias for warning</td>
+</tr>
+<tr>
+<td><a href="#check_bitlocker_critical">critical</a></td>
+<td>protected = 0</td>
+<td>Filter which marks items which generates a critical state.</td>
+</tr>
+<tr>
+<td>crit</td>
+<td></td>
+<td>Short alias for critical.</td>
+</tr>
+<tr>
+<td><a href="#check_bitlocker_ok">ok</a></td>
+<td></td>
+<td>Filter which marks items which generates an ok state.</td>
+</tr>
+<tr>
+<td>debug</td>
+<td>N/A</td>
+<td>Show debugging information in the log</td>
+</tr>
+<tr>
+<td>show-all</td>
+<td>N/A</td>
+<td>Show details for all matches regardless of status (normally details are only showed for warnings and criticals).</td>
+</tr>
+<tr>
+<td><a href="#check_bitlocker_empty-state">empty-state</a></td>
+<td>unknown</td>
+<td>Return status to use when nothing matched filter.</td>
+</tr>
+<tr>
+<td><a href="#check_bitlocker_perf-config">perf-config</a></td>
+<td></td>
+<td>Performance data generation configuration</td>
+</tr>
+<tr>
+<td>escape-html</td>
+<td>N/A</td>
+<td>Escape any &lt; and &gt; characters to prevent HTML encoding</td>
+</tr>
+<tr>
+<td>help</td>
+<td>N/A</td>
+<td>Show help screen (this screen)</td>
+</tr>
+<tr>
+<td>help-pb</td>
+<td>N/A</td>
+<td>Show help screen as a protocol buffer payload</td>
+</tr>
+<tr>
+<td>show-default</td>
+<td>N/A</td>
+<td>Show default values for a given command</td>
+</tr>
+<tr>
+<td>help-short</td>
+<td>N/A</td>
+<td>Show help screen (short format).</td>
+</tr>
+<tr>
+<td><a href="#check_bitlocker_top-syntax">top-syntax</a></td>
+<td>${status}: ${list}</td>
+<td>Top level syntax.</td>
+</tr>
+<tr>
+<td><a href="#check_bitlocker_ok-syntax">ok-syntax</a></td>
+<td>${status}: all ${count} volume(s) protected</td>
+<td>ok syntax.</td>
+</tr>
+<tr>
+<td><a href="#check_bitlocker_empty-syntax">empty-syntax</a></td>
+<td>No encryptable volumes found</td>
+<td>Empty syntax.</td>
+</tr>
+<tr>
+<td><a href="#check_bitlocker_detail-syntax">detail-syntax</a></td>
+<td>${drive} protected=${protected}</td>
+<td>Detail level syntax.</td>
+</tr>
+<tr>
+<td><a href="#check_bitlocker_perf-syntax">perf-syntax</a></td>
+<td>${drive}</td>
+<td>Performance alias syntax.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="check_bitlocker_filter">filter:</h5>
+
+<p>Filter which marks interesting items.
+Interesting items are items which will be included in the check.
+They do not denote warning or critical state instead it defines which items are relevant and you can remove unwanted items.</p>
+<h5 id="check_bitlocker_warning">warning:</h5>
+
+<p>Filter which marks items which generates a warning state.
+If anything matches this filter the return status will be escalated to warning.</p>
+<h5 id="check_bitlocker_critical">critical:</h5>
+
+<p>Filter which marks items which generates a critical state.
+If anything matches this filter the return status will be escalated to critical.</p>
+<p><em>Default Value:</em> <code>protected = 0</code></p>
+<h5 id="check_bitlocker_ok">ok:</h5>
+
+<p>Filter which marks items which generates an ok state.
+If anything matches this any previous state for this item will be reset to ok.</p>
+<h5 id="check_bitlocker_empty-state">empty-state:</h5>
+
+<p>Return status to use when nothing matched filter.
+If no filter is specified this will never happen unless the file is empty.</p>
+<p><em>Default Value:</em> <code>unknown</code></p>
+<h5 id="check_bitlocker_perf-config">perf-config:</h5>
+
+<p>Performance data generation configuration
+TODO: obj ( key: value; key: value) obj (key:valuer;key:value)</p>
+<h5 id="check_bitlocker_top-syntax">top-syntax:</h5>
+
+<p>Top level syntax.
+Used to format the message to return can include text as well as special keywords which will include information from the checks.
+To add a keyword to the message you can use two syntaxes either ${keyword} or %(keyword) (there is no difference between them apart from ${} can be difficult to escape on linux).</p>
+<p><em>Default Value:</em> <code>${status}: ${list}</code></p>
+<h5 id="check_bitlocker_ok-syntax">ok-syntax:</h5>
+
+<p>ok syntax.
+DEPRECATED! This is the syntax for when an ok result is returned.
+This value will not be used if your syntax contains %(list) or %(count).</p>
+<p><em>Default Value:</em> <code>${status}: all ${count} volume(s) protected</code></p>
+<h5 id="check_bitlocker_empty-syntax">empty-syntax:</h5>
+
+<p>Empty syntax.
+DEPRECATED! This is the syntax for when nothing matches the filter.</p>
+<p><em>Default Value:</em> <code>No encryptable volumes found</code></p>
+<h5 id="check_bitlocker_detail-syntax">detail-syntax:</h5>
+
+<p>Detail level syntax.
+Used to format each resulting item in the message.
+%(list) will be replaced with all the items formated by this syntax string in the top-syntax.
+To add a keyword to the message you can use two syntaxes either ${keyword} or %(keyword) (there is no difference between them apart from ${} can be difficult to escape on linux).</p>
+<p><em>Default Value:</em> <code>${drive} protected=${protected}</code></p>
+<h5 id="check_bitlocker_perf-syntax">perf-syntax:</h5>
+
+<p>Performance alias syntax.
+This is the syntax for the base names of the performance data.</p>
+<p><em>Default Value:</em> <code>${drive}</code></p>
+<p><a id="check_bitlocker_filter_keys"></a></p>
+<h4 id="filter-keywords_1">Filter keywords</h4>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>conversion_status</td>
+<td>Raw conversion status (0 decrypted, 1 encrypted, ...)</td>
+</tr>
+<tr>
+<td>drive</td>
+<td>Drive letter of the volume</td>
+</tr>
+<tr>
+<td>protected</td>
+<td>True if BitLocker protection is on</td>
+</tr>
+<tr>
+<td>protection_status</td>
+<td>Raw protection status (0 off, 1 on, 2 unknown)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Common options for all checks:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>count</td>
+<td>Number of items matching the filter.</td>
+</tr>
+<tr>
+<td>crit_count</td>
+<td>Number of items matched the critical criteria.</td>
+</tr>
+<tr>
+<td>crit_list</td>
+<td>A list of all items which matched the critical criteria.</td>
+</tr>
+<tr>
+<td>detail_list</td>
+<td>A special list with critical, then warning and finally ok.</td>
+</tr>
+<tr>
+<td>list</td>
+<td>A list of all items which matched the filter.</td>
+</tr>
+<tr>
+<td>ok_count</td>
+<td>Number of items matched the ok criteria.</td>
+</tr>
+<tr>
+<td>ok_list</td>
+<td>A list of all items which matched the ok criteria.</td>
+</tr>
+<tr>
+<td>problem_count</td>
+<td>Number of items matched either warning or critical criteria.</td>
+</tr>
+<tr>
+<td>problem_list</td>
+<td>A list of all items which matched either the critical or the warning criteria.</td>
+</tr>
+<tr>
+<td>status</td>
+<td>The returned status (OK/WARN/CRIT/UNKNOWN).</td>
+</tr>
+<tr>
+<td>total</td>
+<td>Total number of items.</td>
+</tr>
+<tr>
+<td>warn_count</td>
+<td>Number of items matched the warning criteria.</td>
+</tr>
+<tr>
+<td>warn_list</td>
+<td>A list of all items which matched the warning criteria.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="check_certificate">check_certificate</h3>
+<p>Check X.509 certificate expiry/validity/hygiene from files (all platforms) or the Windows certificate store.</p>
+<h4 id="about-check_certificate">About <code>check_certificate</code></h4>
+<p><code>check_certificate</code> inspects X.509 certificates <strong>at rest</strong> and alerts on
+expiry, validity and TLS hygiene (weak keys/signatures, trust). It reads
+certificates from:</p>
+<ul>
+<li><strong>Files on disk</strong> (<code>file=</code>/<code>path=</code>) — PEM (including multi-certificate
+  bundles), DER, and PKCS#12 (<code>.pfx</code>/<code>.p12</code>, with <code>password=</code>). A directory is
+  scanned (add <code>recursive=true</code> to descend). This works on <strong>all platforms</strong>
+  (parsing is OpenSSL-based).</li>
+<li><strong>The Windows certificate store</strong> (<code>store=</code>, e.g. <code>My</code>, <code>Root</code>, <code>CA</code>) at a
+  <code>location=</code> of <code>LocalMachine</code> (default) or <code>CurrentUser</code>. <strong>Windows only</strong> —
+  on other platforms <code>store=</code> returns a clear "not supported" message.</li>
+</ul>
+<p>This is distinct from <code>check_http</code>'s <code>ssl_expiry_days</code>, which checks the
+certificate a live TLS endpoint <em>serves</em>. Use <code>check_http</code> for "is my website's
+cert expiring"; use <code>check_certificate</code> for certificates in the store or on
+disk that are not served over HTTP (code-signing, RDP, client-auth, service
+certs, CA certs, or files a service loads at start-up).</p>
+<p>Default thresholds: <strong>warn</strong> when <code>expires_in &lt; 30</code> days, <strong>critical</strong> when
+<code>expires_in &lt; 10</code> days.</p>
+<p>Filter/threshold keywords:</p>
+<table>
+<thead>
+<tr>
+<th>Keyword</th>
+<th>Type</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>expires_in</code> / <code>expires_in_days</code></td>
+<td>int</td>
+<td>Whole days until expiry (negative if expired). Emitted as perfdata (unit <code>d</code>).</td>
+</tr>
+<tr>
+<td><code>expires_in_sec</code></td>
+<td>int</td>
+<td>Seconds until expiry.</td>
+</tr>
+<tr>
+<td><code>expired</code></td>
+<td>bool</td>
+<td>True if already past the not-after date.</td>
+</tr>
+<tr>
+<td><code>not_yet_valid</code></td>
+<td>bool</td>
+<td>True if the not-before date is in the future.</td>
+</tr>
+<tr>
+<td><code>not_after</code> / <code>not_before</code></td>
+<td>date</td>
+<td>The validity window boundaries.</td>
+</tr>
+<tr>
+<td><code>subject</code> / <code>issuer</code></td>
+<td>string</td>
+<td>Distinguished names.</td>
+</tr>
+<tr>
+<td><code>thumbprint</code></td>
+<td>string</td>
+<td>SHA-1 fingerprint (lower-case hex).</td>
+</tr>
+<tr>
+<td><code>serial</code></td>
+<td>string</td>
+<td>Serial number (hex).</td>
+</tr>
+<tr>
+<td><code>source</code></td>
+<td>string</td>
+<td>File path or store descriptor the cert came from.</td>
+</tr>
+<tr>
+<td><code>store</code></td>
+<td>string</td>
+<td><code>file</code> or the Windows store descriptor.</td>
+</tr>
+<tr>
+<td><code>trusted</code></td>
+<td>bool</td>
+<td>True if the cert chains to a trusted CA (<code>ca=</code> bundle, else the system store). Time validity is <strong>ignored</strong> here — use <code>expired</code>/<code>not_yet_valid</code> for that.</td>
+</tr>
+<tr>
+<td><code>self_signed</code></td>
+<td>bool</td>
+<td>True if the certificate is self-signed.</td>
+</tr>
+<tr>
+<td><code>signature_algorithm</code></td>
+<td>string</td>
+<td>e.g. <code>sha256WithRSAEncryption</code>.</td>
+</tr>
+<tr>
+<td><code>weak_signature</code></td>
+<td>bool</td>
+<td>True if signed with MD5 or SHA-1.</td>
+</tr>
+<tr>
+<td><code>key_type</code></td>
+<td>string</td>
+<td>Public key type (<code>RSA</code>, <code>EC</code>, <code>DSA</code>, …).</td>
+</tr>
+<tr>
+<td><code>key_size</code></td>
+<td>int</td>
+<td>Public key size in bits.</td>
+</tr>
+<tr>
+<td><code>weak_key</code></td>
+<td>bool</td>
+<td>True if RSA/DSA &lt; 2048 bits, or EC &lt; 256 bits.</td>
+</tr>
+</tbody>
+</table>
+<p>Options: <code>ca=</code> supplies a CA bundle for the <code>trusted</code> check (defaults to the
+system trust store); <code>password=</code> unlocks a PKCS#12 file. When neither <code>file=</code>
+nor <code>store=</code> is given, or nothing matches, the check returns UNKNOWN rather than
+a silent OK.</p>
+<blockquote>
+<p><strong>Trust caveat:</strong> <code>trusted</code> requires the issuing chain to be resolvable —
+either present in the same file/batch (e.g. a full-chain PEM or a <code>.pfx</code> that
+bundles its CA) or reachable from the <code>ca=</code>/system store. A lone leaf whose
+intermediates are absent will read as <code>trusted=0</code>. Chain time validity is not
+checked here by design; combine with <code>expired</code>.</p>
+</blockquote>
+<p><strong>Jump to section:</strong></p>
+<ul>
+<li><a href="#check_certificate_samples">Sample Commands</a></li>
+<li><a href="#check_certificate_options">Command-line Arguments</a></li>
+<li><a href="#check_certificate_filter_keys">Filter keywords</a></li>
+</ul>
+<p><a id="check_certificate_samples"></a></p>
+<h4 id="sample-commands_2">Sample Commands</h4>
+<p><strong>Check a certificate file's expiry (default thresholds)</strong></p>
+<p>The default thresholds warn when a certificate expires within 30 days and go
+critical within 10 days (matching common practice).</p>
+<div class="highlight"><pre><span></span><code>check_certificate file=/etc/ssl/certs/mysite.pem
+L        cli OK: all 1 certificate(s) are ok
+</code></pre></div>
+<p><strong>A certificate close to expiry trips the default critical</strong></p>
+<div class="highlight"><pre><span></span><code>check_certificate file=/etc/ssl/certs/soon.pem
+L        cli CRITICAL: /CN=soon.example.com expires in 5d (2026-07-09 19:16:12)
+</code></pre></div>
+<p><strong>Custom thresholds and perfdata</strong></p>
+<p><code>expires_in</code> is the number of whole days until expiry (negative once expired)
+and is emitted as perfdata (unit <code>d</code>).</p>
+<div class="highlight"><pre><span></span><code>check_certificate file=/etc/ssl/certs/mysite.pem warning=expires_in&lt;900
+L        cli  Performance data: &#39;/CN=valid.example.com&#39;=825d;900;10
+</code></pre></div>
+<p><strong>Scan a directory of certificates</strong></p>
+<div class="highlight"><pre><span></span><code>check_certificate file=/etc/ssl/certs recursive=true &quot;detail-syntax=${subject}: ${expires_in}d&quot;
+L        cli OK: all 137 certificate(s) are ok
+</code></pre></div>
+<p><strong>Alert only on already-expired certificates</strong></p>
+<div class="highlight"><pre><span></span><code>check_certificate file=/etc/pki/tls/certs critical=expired=1
+L        cli OK: all 4 certificate(s) are ok
+</code></pre></div>
+<p><strong>Flag weak keys or signatures (TLS hygiene)</strong></p>
+<div class="highlight"><pre><span></span><code>check_certificate file=/etc/ssl/certs/mysite.pem &quot;crit=weak_signature = 1 or weak_key = 1&quot;
+L        cli CRITICAL: /CN=legacy.example.com expires in 40d (2026-08-14 00:00:00)
+</code></pre></div>
+<p>Show the crypto detail for an audit:</p>
+<div class="highlight"><pre><span></span><code>check_certificate file=/etc/ssl/certs/mysite.pem &quot;top-syntax=${list}&quot; &quot;detail-syntax=${subject}: ${signature_algorithm}, ${key_type}/${key_size}&quot;
+L        cli OK: /CN=mysite.example.com: sha256WithRSAEncryption, RSA/2048
+</code></pre></div>
+<p><strong>Verify the certificate is trusted</strong></p>
+<p><code>trusted</code> checks that the chain resolves to a trusted CA (time validity is
+ignored — combine with <code>expired</code>). Point <code>ca=</code> at a bundle, or omit it to use the
+system trust store:</p>
+<div class="highlight"><pre><span></span><code>check_certificate file=/etc/nginx/fullchain.pem &quot;crit=not trusted or expired = 1&quot;
+check_certificate file=/etc/ssl/leaf.pem ca=/etc/ssl/corp-ca.pem &quot;crit=not trusted&quot;
+</code></pre></div>
+<p><strong>Read a PKCS#12 (.pfx) file</strong></p>
+<div class="highlight"><pre><span></span><code>check_certificate file=/opt/app/keystore.pfx password=changeit &quot;crit=expires_in &lt; 14&quot;
+L        cli OK: all 1 certificate(s) are ok
+</code></pre></div>
+<p><strong>Windows certificate store (Windows only)</strong></p>
+<p>On Windows, <code>store=</code> enumerates a system certificate store; <code>location=</code> selects
+<code>LocalMachine</code> (default) or <code>CurrentUser</code>.</p>
+<div class="highlight"><pre><span></span><code>check_certificate store=My location=LocalMachine
+L        cli OK: all 6 certificate(s) are ok
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>check_certificate store=My &quot;filter=subject like &#39;CN=*.example.com&#39;&quot; &quot;crit=expires_in &lt; 14&quot;
+L        cli WARNING: CN=web.example.com expires in 9d (2026-07-13 00:00:00)
+</code></pre></div>
+<p>On non-Windows platforms <code>store=</code> is rejected with a clear message:</p>
+<div class="highlight"><pre><span></span><code>check_certificate store=My
+L        cli UNKNOWN: store= (certificate store) is only supported on Windows; use file= on this platform
+</code></pre></div>
+<p><a id="check_certificate_options"></a></p>
+<h4 id="command-line-arguments_2">Command-line Arguments</h4>
+<p><a id="check_certificate_warn"></a>
+<a id="check_certificate_crit"></a>
+<a id="check_certificate_debug"></a>
+<a id="check_certificate_show-all"></a>
+<a id="check_certificate_escape-html"></a>
+<a id="check_certificate_help"></a>
+<a id="check_certificate_help-pb"></a>
+<a id="check_certificate_show-default"></a>
+<a id="check_certificate_help-short"></a>
+<a id="check_certificate_file"></a>
+<a id="check_certificate_path"></a>
+<a id="check_certificate_password"></a>
+<a id="check_certificate_ca"></a>
+<a id="check_certificate_store"></a></p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#check_certificate_filter">filter</a></td>
+<td></td>
+<td>Filter which marks interesting items.</td>
+</tr>
+<tr>
+<td><a href="#check_certificate_warning">warning</a></td>
+<td>expires_in &lt; 30</td>
+<td>Filter which marks items which generates a warning state.</td>
+</tr>
+<tr>
+<td>warn</td>
+<td></td>
+<td>Short alias for warning</td>
+</tr>
+<tr>
+<td><a href="#check_certificate_critical">critical</a></td>
+<td>expires_in &lt; 10</td>
+<td>Filter which marks items which generates a critical state.</td>
+</tr>
+<tr>
+<td>crit</td>
+<td></td>
+<td>Short alias for critical.</td>
+</tr>
+<tr>
+<td><a href="#check_certificate_ok">ok</a></td>
+<td></td>
+<td>Filter which marks items which generates an ok state.</td>
+</tr>
+<tr>
+<td>debug</td>
+<td>N/A</td>
+<td>Show debugging information in the log</td>
+</tr>
+<tr>
+<td>show-all</td>
+<td>N/A</td>
+<td>Show details for all matches regardless of status (normally details are only showed for warnings and criticals).</td>
+</tr>
+<tr>
+<td><a href="#check_certificate_empty-state">empty-state</a></td>
+<td>unknown</td>
+<td>Return status to use when nothing matched filter.</td>
+</tr>
+<tr>
+<td><a href="#check_certificate_perf-config">perf-config</a></td>
+<td></td>
+<td>Performance data generation configuration</td>
+</tr>
+<tr>
+<td>escape-html</td>
+<td>N/A</td>
+<td>Escape any &lt; and &gt; characters to prevent HTML encoding</td>
+</tr>
+<tr>
+<td>help</td>
+<td>N/A</td>
+<td>Show help screen (this screen)</td>
+</tr>
+<tr>
+<td>help-pb</td>
+<td>N/A</td>
+<td>Show help screen as a protocol buffer payload</td>
+</tr>
+<tr>
+<td>show-default</td>
+<td>N/A</td>
+<td>Show default values for a given command</td>
+</tr>
+<tr>
+<td>help-short</td>
+<td>N/A</td>
+<td>Show help screen (short format).</td>
+</tr>
+<tr>
+<td><a href="#check_certificate_top-syntax">top-syntax</a></td>
+<td>${status}: ${problem_list}</td>
+<td>Top level syntax.</td>
+</tr>
+<tr>
+<td><a href="#check_certificate_ok-syntax">ok-syntax</a></td>
+<td>%(status): all %(count) certificate(s) are ok</td>
+<td>ok syntax.</td>
+</tr>
+<tr>
+<td><a href="#check_certificate_empty-syntax">empty-syntax</a></td>
+<td>No certificates found</td>
+<td>Empty syntax.</td>
+</tr>
+<tr>
+<td><a href="#check_certificate_detail-syntax">detail-syntax</a></td>
+<td>${subject} expires in ${expires_in}d (${valid_to})</td>
+<td>Detail level syntax.</td>
+</tr>
+<tr>
+<td><a href="#check_certificate_perf-syntax">perf-syntax</a></td>
+<td>${subject}</td>
+<td>Performance alias syntax.</td>
+</tr>
+<tr>
+<td>file</td>
+<td></td>
+<td>A certificate file (PEM or DER) or a directory of them. Can be given multiple times.</td>
+</tr>
+<tr>
+<td>path</td>
+<td></td>
+<td>Alias for file.</td>
+</tr>
+<tr>
+<td><a href="#check_certificate_recursive">recursive</a></td>
+<td>1)] (=0</td>
+<td>Recurse into directories given via file=/path=.</td>
+</tr>
+<tr>
+<td>password</td>
+<td></td>
+<td>Password for PKCS#12 (.pfx/.p12) files.</td>
+</tr>
+<tr>
+<td>ca</td>
+<td></td>
+<td>CA bundle to evaluate the 'trusted' keyword against (defaults to the system trust store).</td>
+</tr>
+<tr>
+<td>store</td>
+<td></td>
+<td>Windows certificate store to enumerate (e.g. My, Root, CA). Windows only.</td>
+</tr>
+<tr>
+<td><a href="#check_certificate_location">location</a></td>
+<td>LocalMachine</td>
+<td>Windows store location: LocalMachine or CurrentUser. Windows only.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="check_certificate_filter">filter:</h5>
+
+<p>Filter which marks interesting items.
+Interesting items are items which will be included in the check.
+They do not denote warning or critical state instead it defines which items are relevant and you can remove unwanted items.</p>
+<h5 id="check_certificate_warning">warning:</h5>
+
+<p>Filter which marks items which generates a warning state.
+If anything matches this filter the return status will be escalated to warning.</p>
+<p><em>Default Value:</em> <code>expires_in &lt; 30</code></p>
+<h5 id="check_certificate_critical">critical:</h5>
+
+<p>Filter which marks items which generates a critical state.
+If anything matches this filter the return status will be escalated to critical.</p>
+<p><em>Default Value:</em> <code>expires_in &lt; 10</code></p>
+<h5 id="check_certificate_ok">ok:</h5>
+
+<p>Filter which marks items which generates an ok state.
+If anything matches this any previous state for this item will be reset to ok.</p>
+<h5 id="check_certificate_empty-state">empty-state:</h5>
+
+<p>Return status to use when nothing matched filter.
+If no filter is specified this will never happen unless the file is empty.</p>
+<p><em>Default Value:</em> <code>unknown</code></p>
+<h5 id="check_certificate_perf-config">perf-config:</h5>
+
+<p>Performance data generation configuration
+TODO: obj ( key: value; key: value) obj (key:valuer;key:value)</p>
+<h5 id="check_certificate_top-syntax">top-syntax:</h5>
+
+<p>Top level syntax.
+Used to format the message to return can include text as well as special keywords which will include information from the checks.
+To add a keyword to the message you can use two syntaxes either ${keyword} or %(keyword) (there is no difference between them apart from ${} can be difficult to escape on linux).</p>
+<p><em>Default Value:</em> <code>${status}: ${problem_list}</code></p>
+<h5 id="check_certificate_ok-syntax">ok-syntax:</h5>
+
+<p>ok syntax.
+DEPRECATED! This is the syntax for when an ok result is returned.
+This value will not be used if your syntax contains %(list) or %(count).</p>
+<p><em>Default Value:</em> <code>%(status): all %(count) certificate(s) are ok</code></p>
+<h5 id="check_certificate_empty-syntax">empty-syntax:</h5>
+
+<p>Empty syntax.
+DEPRECATED! This is the syntax for when nothing matches the filter.</p>
+<p><em>Default Value:</em> <code>No certificates found</code></p>
+<h5 id="check_certificate_detail-syntax">detail-syntax:</h5>
+
+<p>Detail level syntax.
+Used to format each resulting item in the message.
+%(list) will be replaced with all the items formated by this syntax string in the top-syntax.
+To add a keyword to the message you can use two syntaxes either ${keyword} or %(keyword) (there is no difference between them apart from ${} can be difficult to escape on linux).</p>
+<p><em>Default Value:</em> <code>${subject} expires in ${expires_in}d (${valid_to})</code></p>
+<h5 id="check_certificate_perf-syntax">perf-syntax:</h5>
+
+<p>Performance alias syntax.
+This is the syntax for the base names of the performance data.</p>
+<p><em>Default Value:</em> <code>${subject}</code></p>
+<h5 id="check_certificate_recursive">recursive:</h5>
+
+<p>Recurse into directories given via file=/path=.</p>
+<p><em>Default Value:</em> <code>1)] (=0</code></p>
+<h5 id="check_certificate_location">location:</h5>
+
+<p>Windows store location: LocalMachine or CurrentUser. Windows only.</p>
+<p><em>Default Value:</em> <code>LocalMachine</code></p>
+<p><a id="check_certificate_filter_keys"></a></p>
+<h4 id="filter-keywords_2">Filter keywords</h4>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>expired</td>
+<td>True if the certificate has already expired</td>
+</tr>
+<tr>
+<td>expires_in</td>
+<td>Whole days until the certificate expires (negative if already expired)</td>
+</tr>
+<tr>
+<td>expires_in_days</td>
+<td>Alias for expires_in</td>
+</tr>
+<tr>
+<td>expires_in_sec</td>
+<td>Seconds until the certificate expires (negative if already expired)</td>
+</tr>
+<tr>
+<td>issuer</td>
+<td>Certificate issuer distinguished name</td>
+</tr>
+<tr>
+<td>key_size</td>
+<td>Public key size in bits</td>
+</tr>
+<tr>
+<td>key_type</td>
+<td>Public key type (RSA, EC, DSA, ...)</td>
+</tr>
+<tr>
+<td>not_after</td>
+<td>The not-after / expiry date</td>
+</tr>
+<tr>
+<td>not_before</td>
+<td>The not-before date</td>
+</tr>
+<tr>
+<td>not_yet_valid</td>
+<td>True if the certificate is not yet valid (not-before is in the future)</td>
+</tr>
+<tr>
+<td>self_signed</td>
+<td>True if the certificate is self-signed</td>
+</tr>
+<tr>
+<td>serial</td>
+<td>Certificate serial number (hex)</td>
+</tr>
+<tr>
+<td>signature_algorithm</td>
+<td>Signature algorithm (e.g. sha256WithRSAEncryption)</td>
+</tr>
+<tr>
+<td>source</td>
+<td>Where the certificate was read from (file path or store)</td>
+</tr>
+<tr>
+<td>store</td>
+<td>The store/source type (file or a Windows store name)</td>
+</tr>
+<tr>
+<td>subject</td>
+<td>Certificate subject (e.g. /CN=host.example.com)</td>
+</tr>
+<tr>
+<td>thumbprint</td>
+<td>SHA-1 fingerprint (lower-case hex)</td>
+</tr>
+<tr>
+<td>trusted</td>
+<td>True if the certificate chains to a trusted CA (system store or ca=; time validity is ignored — use expired/not_yet_valid for that)</td>
+</tr>
+<tr>
+<td>valid_from</td>
+<td>Not-before date (UTC)</td>
+</tr>
+<tr>
+<td>valid_to</td>
+<td>Not-after / expiry date (UTC)</td>
+</tr>
+<tr>
+<td>weak_key</td>
+<td>True if the key is weak (RSA/DSA &lt; 2048 bits, or EC &lt; 256 bits)</td>
+</tr>
+<tr>
+<td>weak_signature</td>
+<td>True if signed with a weak algorithm (MD5 or SHA-1)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Common options for all checks:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>count</td>
+<td>Number of items matching the filter.</td>
+</tr>
+<tr>
+<td>crit_count</td>
+<td>Number of items matched the critical criteria.</td>
+</tr>
+<tr>
+<td>crit_list</td>
+<td>A list of all items which matched the critical criteria.</td>
+</tr>
+<tr>
+<td>detail_list</td>
+<td>A special list with critical, then warning and finally ok.</td>
+</tr>
+<tr>
+<td>list</td>
+<td>A list of all items which matched the filter.</td>
+</tr>
+<tr>
+<td>ok_count</td>
+<td>Number of items matched the ok criteria.</td>
+</tr>
+<tr>
+<td>ok_list</td>
+<td>A list of all items which matched the ok criteria.</td>
+</tr>
+<tr>
+<td>problem_count</td>
+<td>Number of items matched either warning or critical criteria.</td>
+</tr>
+<tr>
+<td>problem_list</td>
+<td>A list of all items which matched either the critical or the warning criteria.</td>
+</tr>
+<tr>
+<td>status</td>
+<td>The returned status (OK/WARN/CRIT/UNKNOWN).</td>
+</tr>
+<tr>
+<td>total</td>
+<td>Total number of items.</td>
+</tr>
+<tr>
+<td>warn_count</td>
+<td>Number of items matched the warning criteria.</td>
+</tr>
+<tr>
+<td>warn_list</td>
+<td>A list of all items which matched the warning criteria.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="check_firewall">check_firewall</h3>
+<p>Check the Windows firewall profile (Domain/Private/Public) enabled state. Windows only.</p>
+<h4 id="about-check_firewall">About <code>check_firewall</code></h4>
+<p><code>check_firewall</code> reports the state of the <strong>Windows firewall profiles</strong>
+(Domain, Private, Public), the same data <code>Get-NetFirewallProfile</code> exposes. It
+reads them through the <code>INetFwPolicy2</code> COM interface, so it needs no WMI.</p>
+<p>Each profile is one row with these keywords:</p>
+<table>
+<thead>
+<tr>
+<th>Keyword</th>
+<th>Type</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>profile</code></td>
+<td>string</td>
+<td>Profile name: <code>Domain</code>, <code>Private</code> or <code>Public</code>.</td>
+</tr>
+<tr>
+<td><code>enabled</code></td>
+<td>bool</td>
+<td>True if the firewall is enabled for that profile. Emitted as perfdata.</td>
+</tr>
+<tr>
+<td><code>active</code></td>
+<td>bool</td>
+<td>True if the profile is currently applied to a connected network. Emitted as perfdata (<code>&lt;profile&gt; active</code>).</td>
+</tr>
+<tr>
+<td><code>inbound</code></td>
+<td>string</td>
+<td>Default inbound action (<code>allow</code>/<code>block</code>).</td>
+</tr>
+<tr>
+<td><code>outbound</code></td>
+<td>string</td>
+<td>Default outbound action (<code>allow</code>/<code>block</code>).</td>
+</tr>
+</tbody>
+</table>
+<p>Default threshold: <strong>critical</strong> if any profile has <code>enabled = 0</code>.</p>
+<p><code>active</code> reflects which profile(s) Network Location Awareness currently
+applies (<code>INetFwPolicy2::CurrentProfileTypes</code>). More than one profile can be
+active when several networks are connected; with <strong>no</strong> connected network
+Windows reports the Public profile as active. Its main use is catching a
+machine silently dropping from <code>Domain</code>/<code>Private</code> to <code>Public</code> after a
+router/adapter change — firewall rules scoped to the domain or private
+profile stop applying and services start getting blocked. This is opt-in via
+a <code>warn</code>/<code>crit</code> expression (see the samples) since being on the public
+profile is perfectly normal for e.g. laptops.</p>
+<p>This check is <strong>Windows only</strong>. It models Windows' fixed three-profile firewall,
+which does not map onto Linux firewalls (firewalld zones, ufw, nftables/iptables
+default policies); on non-Windows platforms it returns UNKNOWN with a clear
+message rather than pretending to check something equivalent.</p>
+<p><strong>Jump to section:</strong></p>
+<ul>
+<li><a href="#check_firewall_samples">Sample Commands</a></li>
+<li><a href="#check_firewall_options">Command-line Arguments</a></li>
+<li><a href="#check_firewall_filter_keys">Filter keywords</a></li>
+</ul>
+<p><a id="check_firewall_samples"></a></p>
+<h4 id="sample-commands_3">Sample Commands</h4>
+<p><strong>Check that all Windows firewall profiles are enabled (Windows only)</strong></p>
+<p>By default the check is critical if any of the three profiles (Domain, Private,
+Public) has its firewall disabled.</p>
+<div class="highlight"><pre><span></span><code>check_firewall
+L        cli OK: all 3 firewall profile(s) enabled
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>check_firewall
+L        cli CRITICAL: Public=0
+</code></pre></div>
+<p><strong>Only require a specific profile to be enabled</strong></p>
+<div class="highlight"><pre><span></span><code>check_firewall &quot;filter=profile = &#39;Domain&#39;&quot; crit=enabled=0
+L        cli OK: all 1 firewall profile(s) enabled
+</code></pre></div>
+<p><strong>Warn when the machine is on the Public profile</strong></p>
+<p>Network Location Awareness can silently re-categorise a network to <em>public</em>
+after a router or connection change; rules scoped to the domain/private
+profiles then stop applying and services get blocked. Warn on that (opt-in —
+on e.g. laptops the public profile is normal):</p>
+<div class="highlight"><pre><span></span><code>check_firewall &quot;warn=active = 1 and profile = &#39;Public&#39;&quot; &quot;detail-syntax=${profile} profile is active&quot;
+L        cli WARNING: Public profile is active
+</code></pre></div>
+<p>The <code>active</code> flags are also available for display and perfdata:</p>
+<div class="highlight"><pre><span></span><code>check_firewall &quot;detail-syntax=${profile}: enabled=${enabled} active=${active}&quot; top-syntax=${list}
+L        cli OK: Domain: enabled=1 active=0, Private: enabled=1 active=0, Public: enabled=1 active=1
+</code></pre></div>
+<p><strong>Show the default inbound/outbound actions</strong></p>
+<div class="highlight"><pre><span></span><code>check_firewall &quot;detail-syntax=${profile}: enabled=${enabled} in=${inbound} out=${outbound}&quot; top-syntax=${list}
+L        cli OK: Domain: enabled=1 in=block out=allow, Private: enabled=1 in=block out=allow, Public: enabled=1 in=block out=allow
+</code></pre></div>
+<p><strong>On non-Windows platforms</strong></p>
+<p><code>check_firewall</code> models the Windows three-profile firewall and is not
+implemented on Linux (whose firewalld/ufw/nftables model differs):</p>
+<div class="highlight"><pre><span></span><code>check_firewall
+L        cli UNKNOWN: check_firewall is not supported on this platform (Windows-only; the Linux firewall model differs)
+</code></pre></div>
+<p><a id="check_firewall_options"></a></p>
+<h4 id="command-line-arguments_3">Command-line Arguments</h4>
+<p><a id="check_firewall_warn"></a>
+<a id="check_firewall_crit"></a>
+<a id="check_firewall_debug"></a>
+<a id="check_firewall_show-all"></a>
+<a id="check_firewall_escape-html"></a>
+<a id="check_firewall_help"></a>
+<a id="check_firewall_help-pb"></a>
+<a id="check_firewall_show-default"></a>
+<a id="check_firewall_help-short"></a></p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#check_firewall_filter">filter</a></td>
+<td></td>
+<td>Filter which marks interesting items.</td>
+</tr>
+<tr>
+<td><a href="#check_firewall_warning">warning</a></td>
+<td></td>
+<td>Filter which marks items which generates a warning state.</td>
+</tr>
+<tr>
+<td>warn</td>
+<td></td>
+<td>Short alias for warning</td>
+</tr>
+<tr>
+<td><a href="#check_firewall_critical">critical</a></td>
+<td>enabled = 0</td>
+<td>Filter which marks items which generates a critical state.</td>
+</tr>
+<tr>
+<td>crit</td>
+<td></td>
+<td>Short alias for critical.</td>
+</tr>
+<tr>
+<td><a href="#check_firewall_ok">ok</a></td>
+<td></td>
+<td>Filter which marks items which generates an ok state.</td>
+</tr>
+<tr>
+<td>debug</td>
+<td>N/A</td>
+<td>Show debugging information in the log</td>
+</tr>
+<tr>
+<td>show-all</td>
+<td>N/A</td>
+<td>Show details for all matches regardless of status (normally details are only showed for warnings and criticals).</td>
+</tr>
+<tr>
+<td><a href="#check_firewall_empty-state">empty-state</a></td>
+<td>unknown</td>
+<td>Return status to use when nothing matched filter.</td>
+</tr>
+<tr>
+<td><a href="#check_firewall_perf-config">perf-config</a></td>
+<td></td>
+<td>Performance data generation configuration</td>
+</tr>
+<tr>
+<td>escape-html</td>
+<td>N/A</td>
+<td>Escape any &lt; and &gt; characters to prevent HTML encoding</td>
+</tr>
+<tr>
+<td>help</td>
+<td>N/A</td>
+<td>Show help screen (this screen)</td>
+</tr>
+<tr>
+<td>help-pb</td>
+<td>N/A</td>
+<td>Show help screen as a protocol buffer payload</td>
+</tr>
+<tr>
+<td>show-default</td>
+<td>N/A</td>
+<td>Show default values for a given command</td>
+</tr>
+<tr>
+<td>help-short</td>
+<td>N/A</td>
+<td>Show help screen (short format).</td>
+</tr>
+<tr>
+<td><a href="#check_firewall_top-syntax">top-syntax</a></td>
+<td>${status}: ${problem_list}</td>
+<td>Top level syntax.</td>
+</tr>
+<tr>
+<td><a href="#check_firewall_ok-syntax">ok-syntax</a></td>
+<td>%(status): all %(count) firewall profile(s) enabled</td>
+<td>ok syntax.</td>
+</tr>
+<tr>
+<td><a href="#check_firewall_empty-syntax">empty-syntax</a></td>
+<td>No firewall profiles found</td>
+<td>Empty syntax.</td>
+</tr>
+<tr>
+<td><a href="#check_firewall_detail-syntax">detail-syntax</a></td>
+<td>${profile}=${enabled}</td>
+<td>Detail level syntax.</td>
+</tr>
+<tr>
+<td><a href="#check_firewall_perf-syntax">perf-syntax</a></td>
+<td>${profile}</td>
+<td>Performance alias syntax.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="check_firewall_filter">filter:</h5>
+
+<p>Filter which marks interesting items.
+Interesting items are items which will be included in the check.
+They do not denote warning or critical state instead it defines which items are relevant and you can remove unwanted items.</p>
+<h5 id="check_firewall_warning">warning:</h5>
+
+<p>Filter which marks items which generates a warning state.
+If anything matches this filter the return status will be escalated to warning.</p>
+<h5 id="check_firewall_critical">critical:</h5>
+
+<p>Filter which marks items which generates a critical state.
+If anything matches this filter the return status will be escalated to critical.</p>
+<p><em>Default Value:</em> <code>enabled = 0</code></p>
+<h5 id="check_firewall_ok">ok:</h5>
+
+<p>Filter which marks items which generates an ok state.
+If anything matches this any previous state for this item will be reset to ok.</p>
+<h5 id="check_firewall_empty-state">empty-state:</h5>
+
+<p>Return status to use when nothing matched filter.
+If no filter is specified this will never happen unless the file is empty.</p>
+<p><em>Default Value:</em> <code>unknown</code></p>
+<h5 id="check_firewall_perf-config">perf-config:</h5>
+
+<p>Performance data generation configuration
+TODO: obj ( key: value; key: value) obj (key:valuer;key:value)</p>
+<h5 id="check_firewall_top-syntax">top-syntax:</h5>
+
+<p>Top level syntax.
+Used to format the message to return can include text as well as special keywords which will include information from the checks.
+To add a keyword to the message you can use two syntaxes either ${keyword} or %(keyword) (there is no difference between them apart from ${} can be difficult to escape on linux).</p>
+<p><em>Default Value:</em> <code>${status}: ${problem_list}</code></p>
+<h5 id="check_firewall_ok-syntax">ok-syntax:</h5>
+
+<p>ok syntax.
+DEPRECATED! This is the syntax for when an ok result is returned.
+This value will not be used if your syntax contains %(list) or %(count).</p>
+<p><em>Default Value:</em> <code>%(status): all %(count) firewall profile(s) enabled</code></p>
+<h5 id="check_firewall_empty-syntax">empty-syntax:</h5>
+
+<p>Empty syntax.
+DEPRECATED! This is the syntax for when nothing matches the filter.</p>
+<p><em>Default Value:</em> <code>No firewall profiles found</code></p>
+<h5 id="check_firewall_detail-syntax">detail-syntax:</h5>
+
+<p>Detail level syntax.
+Used to format each resulting item in the message.
+%(list) will be replaced with all the items formated by this syntax string in the top-syntax.
+To add a keyword to the message you can use two syntaxes either ${keyword} or %(keyword) (there is no difference between them apart from ${} can be difficult to escape on linux).</p>
+<p><em>Default Value:</em> <code>${profile}=${enabled}</code></p>
+<h5 id="check_firewall_perf-syntax">perf-syntax:</h5>
+
+<p>Performance alias syntax.
+This is the syntax for the base names of the performance data.</p>
+<p><em>Default Value:</em> <code>${profile}</code></p>
+<p><a id="check_firewall_filter_keys"></a></p>
+<h4 id="filter-keywords_3">Filter keywords</h4>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Windows</label><label for="__tabbed_1_2">Linux</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>active</td>
+<td>True if the profile is currently applied to a connected network (e.g. NLA re-categorising a network to public makes the Public profile active)</td>
+</tr>
+<tr>
+<td>enabled</td>
+<td>True if the profile's firewall is enabled</td>
+</tr>
+<tr>
+<td>inbound</td>
+<td>Default inbound action (allow/block)</td>
+</tr>
+<tr>
+<td>outbound</td>
+<td>Default outbound action (allow/block)</td>
+</tr>
+<tr>
+<td>profile</td>
+<td>Firewall profile name (Domain, Private or Public)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Common options for all checks:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>count</td>
+<td>Number of items matching the filter.</td>
+</tr>
+<tr>
+<td>crit_count</td>
+<td>Number of items matched the critical criteria.</td>
+</tr>
+<tr>
+<td>crit_list</td>
+<td>A list of all items which matched the critical criteria.</td>
+</tr>
+<tr>
+<td>detail_list</td>
+<td>A special list with critical, then warning and finally ok.</td>
+</tr>
+<tr>
+<td>list</td>
+<td>A list of all items which matched the filter.</td>
+</tr>
+<tr>
+<td>ok_count</td>
+<td>Number of items matched the ok criteria.</td>
+</tr>
+<tr>
+<td>ok_list</td>
+<td>A list of all items which matched the ok criteria.</td>
+</tr>
+<tr>
+<td>problem_count</td>
+<td>Number of items matched either warning or critical criteria.</td>
+</tr>
+<tr>
+<td>problem_list</td>
+<td>A list of all items which matched either the critical or the warning criteria.</td>
+</tr>
+<tr>
+<td>status</td>
+<td>The returned status (OK/WARN/CRIT/UNKNOWN).</td>
+</tr>
+<tr>
+<td>total</td>
+<td>Total number of items.</td>
+</tr>
+<tr>
+<td>warn_count</td>
+<td>Number of items matched the warning criteria.</td>
+</tr>
+<tr>
+<td>warn_list</td>
+<td>A list of all items which matched the warning criteria.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tabbed-block">
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>enabled</td>
+<td>True if the profile's firewall is enabled</td>
+</tr>
+<tr>
+<td>inbound</td>
+<td>Default inbound action (allow/block)</td>
+</tr>
+<tr>
+<td>outbound</td>
+<td>Default outbound action (allow/block)</td>
+</tr>
+<tr>
+<td>profile</td>
+<td>Firewall profile name (Domain, Private or Public)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Common options for all checks:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>count</td>
+<td>Number of items matching the filter.</td>
+</tr>
+<tr>
+<td>crit_count</td>
+<td>Number of items matched the critical criteria.</td>
+</tr>
+<tr>
+<td>crit_list</td>
+<td>A list of all items which matched the critical criteria.</td>
+</tr>
+<tr>
+<td>detail_list</td>
+<td>A special list with critical, then warning and finally ok.</td>
+</tr>
+<tr>
+<td>list</td>
+<td>A list of all items which matched the filter.</td>
+</tr>
+<tr>
+<td>ok_count</td>
+<td>Number of items matched the ok criteria.</td>
+</tr>
+<tr>
+<td>ok_list</td>
+<td>A list of all items which matched the ok criteria.</td>
+</tr>
+<tr>
+<td>problem_count</td>
+<td>Number of items matched either warning or critical criteria.</td>
+</tr>
+<tr>
+<td>problem_list</td>
+<td>A list of all items which matched either the critical or the warning criteria.</td>
+</tr>
+<tr>
+<td>status</td>
+<td>The returned status (OK/WARN/CRIT/UNKNOWN).</td>
+</tr>
+<tr>
+<td>total</td>
+<td>Total number of items.</td>
+</tr>
+<tr>
+<td>warn_count</td>
+<td>Number of items matched the warning criteria.</td>
+</tr>
+<tr>
+<td>warn_list</td>
+<td>A list of all items which matched the warning criteria.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<h3 id="check_nla">check_nla</h3>
+<p>Check the Network Location Awareness profile (public/private/domain) per network. Windows only.</p>
+<h4 id="about-check_nla">About <code>check_nla</code></h4>
+<p><code>check_nla</code> reports the <strong>Network Location Awareness</strong> profile of each network
+the machine knows about (the same classification Windows uses to pick a firewall
+profile), via the COM <code>INetworkListManager</code> interface. It is a security-posture
+check: confirm a domain-joined machine is on the <code>domain</code> category and not
+accidentally treating a network as <code>private</code>/<code>public</code>.</p>
+<p>Keywords:</p>
+<table>
+<thead>
+<tr>
+<th>Keyword</th>
+<th>Type</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>network</code></td>
+<td>string</td>
+<td>Network name.</td>
+</tr>
+<tr>
+<td><code>category</code></td>
+<td>string</td>
+<td><code>public</code>, <code>private</code> or <code>domain</code>.</td>
+</tr>
+<tr>
+<td><code>connected</code></td>
+<td>bool</td>
+<td>True if the network is currently connected.</td>
+</tr>
+</tbody>
+</table>
+<p>There is no default threshold — assert the expected posture, e.g.
+<code>crit=connected = 1 and category != 'domain'</code>. <strong>Windows only</strong>; on other
+platforms it returns UNKNOWN with a clear message (Linux has no equivalent
+network-profile concept).</p>
+<p><strong>Jump to section:</strong></p>
+<ul>
+<li><a href="#check_nla_samples">Sample Commands</a></li>
+<li><a href="#check_nla_options">Command-line Arguments</a></li>
+<li><a href="#check_nla_filter_keys">Filter keywords</a></li>
+</ul>
+<p><a id="check_nla_samples"></a></p>
+<h4 id="sample-commands_4">Sample Commands</h4>
+<p><strong>Assert the active network is the domain profile (Windows)</strong></p>
+<p><code>check_nla</code> reports each network's Location Awareness category. There is no
+default threshold — assert the posture you expect:</p>
+<div class="highlight"><pre><span></span><code>check_nla &quot;crit=connected = 1 and category != &#39;domain&#39;&quot; &quot;detail-syntax=${network}=${category}&quot;
+L        cli OK: all networks ok
+</code></pre></div>
+<p><strong>Alert if any connected network is classified Public</strong></p>
+<div class="highlight"><pre><span></span><code>check_nla &quot;crit=connected = 1 and category = &#39;public&#39;&quot;
+L        cli CRITICAL: Wi-Fi=public
+</code></pre></div>
+<p><strong>List every known network and its category</strong></p>
+<div class="highlight"><pre><span></span><code>check_nla &quot;top-syntax=${list}&quot; &quot;detail-syntax=${network}: ${category} (connected=${connected})&quot;
+L        cli OK: Corp.example.com: domain (connected=1), Café-WiFi: public (connected=0)
+</code></pre></div>
+<p><strong>On non-Windows platforms</strong></p>
+<div class="highlight"><pre><span></span><code>check_nla
+L        cli UNKNOWN: check_nla is not supported on this platform (Windows Network Location Awareness only)
+</code></pre></div>
+<p><a id="check_nla_options"></a></p>
+<h4 id="command-line-arguments_4">Command-line Arguments</h4>
+<p><a id="check_nla_warn"></a>
+<a id="check_nla_crit"></a>
+<a id="check_nla_debug"></a>
+<a id="check_nla_show-all"></a>
+<a id="check_nla_escape-html"></a>
+<a id="check_nla_help"></a>
+<a id="check_nla_help-pb"></a>
+<a id="check_nla_show-default"></a>
+<a id="check_nla_help-short"></a></p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#check_nla_filter">filter</a></td>
+<td></td>
+<td>Filter which marks interesting items.</td>
+</tr>
+<tr>
+<td><a href="#check_nla_warning">warning</a></td>
+<td></td>
+<td>Filter which marks items which generates a warning state.</td>
+</tr>
+<tr>
+<td>warn</td>
+<td></td>
+<td>Short alias for warning</td>
+</tr>
+<tr>
+<td><a href="#check_nla_critical">critical</a></td>
+<td></td>
+<td>Filter which marks items which generates a critical state.</td>
+</tr>
+<tr>
+<td>crit</td>
+<td></td>
+<td>Short alias for critical.</td>
+</tr>
+<tr>
+<td><a href="#check_nla_ok">ok</a></td>
+<td></td>
+<td>Filter which marks items which generates an ok state.</td>
+</tr>
+<tr>
+<td>debug</td>
+<td>N/A</td>
+<td>Show debugging information in the log</td>
+</tr>
+<tr>
+<td>show-all</td>
+<td>N/A</td>
+<td>Show details for all matches regardless of status (normally details are only showed for warnings and criticals).</td>
+</tr>
+<tr>
+<td><a href="#check_nla_empty-state">empty-state</a></td>
+<td>ok</td>
+<td>Return status to use when nothing matched filter.</td>
+</tr>
+<tr>
+<td><a href="#check_nla_perf-config">perf-config</a></td>
+<td></td>
+<td>Performance data generation configuration</td>
+</tr>
+<tr>
+<td>escape-html</td>
+<td>N/A</td>
+<td>Escape any &lt; and &gt; characters to prevent HTML encoding</td>
+</tr>
+<tr>
+<td>help</td>
+<td>N/A</td>
+<td>Show help screen (this screen)</td>
+</tr>
+<tr>
+<td>help-pb</td>
+<td>N/A</td>
+<td>Show help screen as a protocol buffer payload</td>
+</tr>
+<tr>
+<td>show-default</td>
+<td>N/A</td>
+<td>Show default values for a given command</td>
+</tr>
+<tr>
+<td>help-short</td>
+<td>N/A</td>
+<td>Show help screen (short format).</td>
+</tr>
+<tr>
+<td><a href="#check_nla_top-syntax">top-syntax</a></td>
+<td>${status}: ${list}</td>
+<td>Top level syntax.</td>
+</tr>
+<tr>
+<td><a href="#check_nla_ok-syntax">ok-syntax</a></td>
+<td>${status}: all networks ok</td>
+<td>ok syntax.</td>
+</tr>
+<tr>
+<td><a href="#check_nla_empty-syntax">empty-syntax</a></td>
+<td>No networks found</td>
+<td>Empty syntax.</td>
+</tr>
+<tr>
+<td><a href="#check_nla_detail-syntax">detail-syntax</a></td>
+<td>${network}=${category}</td>
+<td>Detail level syntax.</td>
+</tr>
+<tr>
+<td><a href="#check_nla_perf-syntax">perf-syntax</a></td>
+<td>${network}</td>
+<td>Performance alias syntax.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="check_nla_filter">filter:</h5>
+
+<p>Filter which marks interesting items.
+Interesting items are items which will be included in the check.
+They do not denote warning or critical state instead it defines which items are relevant and you can remove unwanted items.</p>
+<h5 id="check_nla_warning">warning:</h5>
+
+<p>Filter which marks items which generates a warning state.
+If anything matches this filter the return status will be escalated to warning.</p>
+<h5 id="check_nla_critical">critical:</h5>
+
+<p>Filter which marks items which generates a critical state.
+If anything matches this filter the return status will be escalated to critical.</p>
+<h5 id="check_nla_ok">ok:</h5>
+
+<p>Filter which marks items which generates an ok state.
+If anything matches this any previous state for this item will be reset to ok.</p>
+<h5 id="check_nla_empty-state">empty-state:</h5>
+
+<p>Return status to use when nothing matched filter.
+If no filter is specified this will never happen unless the file is empty.</p>
+<p><em>Default Value:</em> <code>ok</code></p>
+<h5 id="check_nla_perf-config">perf-config:</h5>
+
+<p>Performance data generation configuration
+TODO: obj ( key: value; key: value) obj (key:valuer;key:value)</p>
+<h5 id="check_nla_top-syntax">top-syntax:</h5>
+
+<p>Top level syntax.
+Used to format the message to return can include text as well as special keywords which will include information from the checks.
+To add a keyword to the message you can use two syntaxes either ${keyword} or %(keyword) (there is no difference between them apart from ${} can be difficult to escape on linux).</p>
+<p><em>Default Value:</em> <code>${status}: ${list}</code></p>
+<h5 id="check_nla_ok-syntax">ok-syntax:</h5>
+
+<p>ok syntax.
+DEPRECATED! This is the syntax for when an ok result is returned.
+This value will not be used if your syntax contains %(list) or %(count).</p>
+<p><em>Default Value:</em> <code>${status}: all networks ok</code></p>
+<h5 id="check_nla_empty-syntax">empty-syntax:</h5>
+
+<p>Empty syntax.
+DEPRECATED! This is the syntax for when nothing matches the filter.</p>
+<p><em>Default Value:</em> <code>No networks found</code></p>
+<h5 id="check_nla_detail-syntax">detail-syntax:</h5>
+
+<p>Detail level syntax.
+Used to format each resulting item in the message.
+%(list) will be replaced with all the items formated by this syntax string in the top-syntax.
+To add a keyword to the message you can use two syntaxes either ${keyword} or %(keyword) (there is no difference between them apart from ${} can be difficult to escape on linux).</p>
+<p><em>Default Value:</em> <code>${network}=${category}</code></p>
+<h5 id="check_nla_perf-syntax">perf-syntax:</h5>
+
+<p>Performance alias syntax.
+This is the syntax for the base names of the performance data.</p>
+<p><em>Default Value:</em> <code>${network}</code></p>
+<p><a id="check_nla_filter_keys"></a></p>
+<h4 id="filter-keywords_4">Filter keywords</h4>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>category</td>
+<td>Network category: public, private or domain</td>
+</tr>
+<tr>
+<td>connected</td>
+<td>True if the network is currently connected</td>
+</tr>
+<tr>
+<td>network</td>
+<td>Network name</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Common options for all checks:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>count</td>
+<td>Number of items matching the filter.</td>
+</tr>
+<tr>
+<td>crit_count</td>
+<td>Number of items matched the critical criteria.</td>
+</tr>
+<tr>
+<td>crit_list</td>
+<td>A list of all items which matched the critical criteria.</td>
+</tr>
+<tr>
+<td>detail_list</td>
+<td>A special list with critical, then warning and finally ok.</td>
+</tr>
+<tr>
+<td>list</td>
+<td>A list of all items which matched the filter.</td>
+</tr>
+<tr>
+<td>ok_count</td>
+<td>Number of items matched the ok criteria.</td>
+</tr>
+<tr>
+<td>ok_list</td>
+<td>A list of all items which matched the ok criteria.</td>
+</tr>
+<tr>
+<td>problem_count</td>
+<td>Number of items matched either warning or critical criteria.</td>
+</tr>
+<tr>
+<td>problem_list</td>
+<td>A list of all items which matched either the critical or the warning criteria.</td>
+</tr>
+<tr>
+<td>status</td>
+<td>The returned status (OK/WARN/CRIT/UNKNOWN).</td>
+</tr>
+<tr>
+<td>total</td>
+<td>Total number of items.</td>
+</tr>
+<tr>
+<td>warn_count</td>
+<td>Number of items matched the warning criteria.</td>
+</tr>
+<tr>
+<td>warn_list</td>
+<td>A list of all items which matched the warning criteria.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="check_secureboot">check_secureboot</h3>
+<p>Check whether UEFI Secure Boot is enabled. Windows only.</p>
+<h4 id="about-check_secureboot">About <code>check_secureboot</code></h4>
+<p><code>check_secureboot</code> reports whether <strong>UEFI Secure Boot</strong> is enabled, read from the
+registry value
+<code>HKLM\SYSTEM\CurrentControlSet\Control\SecureBoot\State\UEFISecureBootEnabled</code>
+(the same source <code>Confirm-SecureBootUEFI</code> uses). It returns a single result.</p>
+<p>Keywords:</p>
+<table>
+<thead>
+<tr>
+<th>Keyword</th>
+<th>Type</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>enabled</code></td>
+<td>bool</td>
+<td>True if UEFI Secure Boot is enabled.</td>
+</tr>
+<tr>
+<td><code>supported</code></td>
+<td>bool</td>
+<td>True if the platform exposes a Secure Boot state (UEFI); false on legacy BIOS boots.</td>
+</tr>
+</tbody>
+</table>
+<p>Default threshold: <strong>critical</strong> if <code>enabled = 0</code>. On legacy-BIOS machines the
+value is absent, so both <code>enabled</code> and <code>supported</code> are 0 — use <code>supported</code> to
+tell "off" apart from "not applicable" on mixed fleets. <strong>Windows only.</strong></p>
+<p><strong>Jump to section:</strong></p>
+<ul>
+<li><a href="#check_secureboot_samples">Sample Commands</a></li>
+<li><a href="#check_secureboot_options">Command-line Arguments</a></li>
+<li><a href="#check_secureboot_filter_keys">Filter keywords</a></li>
+</ul>
+<p><a id="check_secureboot_samples"></a></p>
+<h4 id="sample-commands_5">Sample Commands</h4>
+<p><strong>Check that UEFI Secure Boot is enabled (Windows)</strong></p>
+<p>The default is critical if Secure Boot is not enabled.</p>
+<div class="highlight"><pre><span></span><code>check_secureboot
+L        cli OK: secure boot is enabled
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>check_secureboot
+L        cli CRITICAL: secure boot enabled=0 supported=1
+</code></pre></div>
+<p><strong>Distinguish "disabled" from "not supported" (legacy BIOS)</strong></p>
+<p><code>supported</code> is 0 when the platform does not expose a Secure Boot state (legacy
+BIOS boot). Treat that as WARNING rather than CRITICAL if you monitor mixed
+fleets:</p>
+<div class="highlight"><pre><span></span><code>check_secureboot &quot;warn=supported = 0&quot; &quot;crit=supported = 1 and enabled = 0&quot;
+L        cli WARNING: secure boot enabled=0 supported=0
+</code></pre></div>
+<p><strong>On non-Windows platforms</strong></p>
+<div class="highlight"><pre><span></span><code>check_secureboot
+L        cli UNKNOWN: check_secureboot is not supported on this platform (Windows/UEFI only)
+</code></pre></div>
+<p><a id="check_secureboot_options"></a></p>
+<h4 id="command-line-arguments_5">Command-line Arguments</h4>
+<p><a id="check_secureboot_warn"></a>
+<a id="check_secureboot_crit"></a>
+<a id="check_secureboot_debug"></a>
+<a id="check_secureboot_show-all"></a>
+<a id="check_secureboot_escape-html"></a>
+<a id="check_secureboot_help"></a>
+<a id="check_secureboot_help-pb"></a>
+<a id="check_secureboot_show-default"></a>
+<a id="check_secureboot_help-short"></a></p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#check_secureboot_filter">filter</a></td>
+<td></td>
+<td>Filter which marks interesting items.</td>
+</tr>
+<tr>
+<td><a href="#check_secureboot_warning">warning</a></td>
+<td></td>
+<td>Filter which marks items which generates a warning state.</td>
+</tr>
+<tr>
+<td>warn</td>
+<td></td>
+<td>Short alias for warning</td>
+</tr>
+<tr>
+<td><a href="#check_secureboot_critical">critical</a></td>
+<td>enabled = 0</td>
+<td>Filter which marks items which generates a critical state.</td>
+</tr>
+<tr>
+<td>crit</td>
+<td></td>
+<td>Short alias for critical.</td>
+</tr>
+<tr>
+<td><a href="#check_secureboot_ok">ok</a></td>
+<td></td>
+<td>Filter which marks items which generates an ok state.</td>
+</tr>
+<tr>
+<td>debug</td>
+<td>N/A</td>
+<td>Show debugging information in the log</td>
+</tr>
+<tr>
+<td>show-all</td>
+<td>N/A</td>
+<td>Show details for all matches regardless of status (normally details are only showed for warnings and criticals).</td>
+</tr>
+<tr>
+<td><a href="#check_secureboot_empty-state">empty-state</a></td>
+<td>unknown</td>
+<td>Return status to use when nothing matched filter.</td>
+</tr>
+<tr>
+<td><a href="#check_secureboot_perf-config">perf-config</a></td>
+<td></td>
+<td>Performance data generation configuration</td>
+</tr>
+<tr>
+<td>escape-html</td>
+<td>N/A</td>
+<td>Escape any &lt; and &gt; characters to prevent HTML encoding</td>
+</tr>
+<tr>
+<td>help</td>
+<td>N/A</td>
+<td>Show help screen (this screen)</td>
+</tr>
+<tr>
+<td>help-pb</td>
+<td>N/A</td>
+<td>Show help screen as a protocol buffer payload</td>
+</tr>
+<tr>
+<td>show-default</td>
+<td>N/A</td>
+<td>Show default values for a given command</td>
+</tr>
+<tr>
+<td>help-short</td>
+<td>N/A</td>
+<td>Show help screen (short format).</td>
+</tr>
+<tr>
+<td><a href="#check_secureboot_top-syntax">top-syntax</a></td>
+<td>${status}: ${list}</td>
+<td>Top level syntax.</td>
+</tr>
+<tr>
+<td><a href="#check_secureboot_ok-syntax">ok-syntax</a></td>
+<td>${status}: secure boot is enabled</td>
+<td>ok syntax.</td>
+</tr>
+<tr>
+<td><a href="#check_secureboot_empty-syntax">empty-syntax</a></td>
+<td>No Secure Boot state</td>
+<td>Empty syntax.</td>
+</tr>
+<tr>
+<td><a href="#check_secureboot_detail-syntax">detail-syntax</a></td>
+<td>secure boot enabled=${enabled} supported=${supported}</td>
+<td>Detail level syntax.</td>
+</tr>
+<tr>
+<td><a href="#check_secureboot_perf-syntax">perf-syntax</a></td>
+<td>secureboot</td>
+<td>Performance alias syntax.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="check_secureboot_filter">filter:</h5>
+
+<p>Filter which marks interesting items.
+Interesting items are items which will be included in the check.
+They do not denote warning or critical state instead it defines which items are relevant and you can remove unwanted items.</p>
+<h5 id="check_secureboot_warning">warning:</h5>
+
+<p>Filter which marks items which generates a warning state.
+If anything matches this filter the return status will be escalated to warning.</p>
+<h5 id="check_secureboot_critical">critical:</h5>
+
+<p>Filter which marks items which generates a critical state.
+If anything matches this filter the return status will be escalated to critical.</p>
+<p><em>Default Value:</em> <code>enabled = 0</code></p>
+<h5 id="check_secureboot_ok">ok:</h5>
+
+<p>Filter which marks items which generates an ok state.
+If anything matches this any previous state for this item will be reset to ok.</p>
+<h5 id="check_secureboot_empty-state">empty-state:</h5>
+
+<p>Return status to use when nothing matched filter.
+If no filter is specified this will never happen unless the file is empty.</p>
+<p><em>Default Value:</em> <code>unknown</code></p>
+<h5 id="check_secureboot_perf-config">perf-config:</h5>
+
+<p>Performance data generation configuration
+TODO: obj ( key: value; key: value) obj (key:valuer;key:value)</p>
+<h5 id="check_secureboot_top-syntax">top-syntax:</h5>
+
+<p>Top level syntax.
+Used to format the message to return can include text as well as special keywords which will include information from the checks.
+To add a keyword to the message you can use two syntaxes either ${keyword} or %(keyword) (there is no difference between them apart from ${} can be difficult to escape on linux).</p>
+<p><em>Default Value:</em> <code>${status}: ${list}</code></p>
+<h5 id="check_secureboot_ok-syntax">ok-syntax:</h5>
+
+<p>ok syntax.
+DEPRECATED! This is the syntax for when an ok result is returned.
+This value will not be used if your syntax contains %(list) or %(count).</p>
+<p><em>Default Value:</em> <code>${status}: secure boot is enabled</code></p>
+<h5 id="check_secureboot_empty-syntax">empty-syntax:</h5>
+
+<p>Empty syntax.
+DEPRECATED! This is the syntax for when nothing matches the filter.</p>
+<p><em>Default Value:</em> <code>No Secure Boot state</code></p>
+<h5 id="check_secureboot_detail-syntax">detail-syntax:</h5>
+
+<p>Detail level syntax.
+Used to format each resulting item in the message.
+%(list) will be replaced with all the items formated by this syntax string in the top-syntax.
+To add a keyword to the message you can use two syntaxes either ${keyword} or %(keyword) (there is no difference between them apart from ${} can be difficult to escape on linux).</p>
+<p><em>Default Value:</em> <code>secure boot enabled=${enabled} supported=${supported}</code></p>
+<h5 id="check_secureboot_perf-syntax">perf-syntax:</h5>
+
+<p>Performance alias syntax.
+This is the syntax for the base names of the performance data.</p>
+<p><em>Default Value:</em> <code>secureboot</code></p>
+<p><a id="check_secureboot_filter_keys"></a></p>
+<h4 id="filter-keywords_5">Filter keywords</h4>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>enabled</td>
+<td>True if UEFI Secure Boot is enabled</td>
+</tr>
+<tr>
+<td>supported</td>
+<td>True if the platform reports a Secure Boot state (UEFI)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Common options for all checks:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>count</td>
+<td>Number of items matching the filter.</td>
+</tr>
+<tr>
+<td>crit_count</td>
+<td>Number of items matched the critical criteria.</td>
+</tr>
+<tr>
+<td>crit_list</td>
+<td>A list of all items which matched the critical criteria.</td>
+</tr>
+<tr>
+<td>detail_list</td>
+<td>A special list with critical, then warning and finally ok.</td>
+</tr>
+<tr>
+<td>list</td>
+<td>A list of all items which matched the filter.</td>
+</tr>
+<tr>
+<td>ok_count</td>
+<td>Number of items matched the ok criteria.</td>
+</tr>
+<tr>
+<td>ok_list</td>
+<td>A list of all items which matched the ok criteria.</td>
+</tr>
+<tr>
+<td>problem_count</td>
+<td>Number of items matched either warning or critical criteria.</td>
+</tr>
+<tr>
+<td>problem_list</td>
+<td>A list of all items which matched either the critical or the warning criteria.</td>
+</tr>
+<tr>
+<td>status</td>
+<td>The returned status (OK/WARN/CRIT/UNKNOWN).</td>
+</tr>
+<tr>
+<td>total</td>
+<td>Total number of items.</td>
+</tr>
+<tr>
+<td>warn_count</td>
+<td>Number of items matched the warning criteria.</td>
+</tr>
+<tr>
+<td>warn_list</td>
+<td>A list of all items which matched the warning criteria.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="check_users">check_users</h3>
+<p>Check the count and detail of logged-on / RDP sessions (Windows and Linux).</p>
+<h4 id="about-check_users">About <code>check_users</code></h4>
+<p><code>check_users</code> reports the interactive logon sessions on the host — count and
+per-session detail. It works on <strong>both platforms</strong>:</p>
+<ul>
+<li><strong>Windows</strong> — via the Remote Desktop Services (WTS) API, so it distinguishes
+  console from RDP and active from disconnected sessions (no WMI needed).</li>
+<li><strong>Linux</strong> — via the utmp database (the same source as <code>who</code>); network logins
+  (ssh) carry the remote host in <code>client</code>.</li>
+</ul>
+<p>Filter/threshold keywords (plus the built-in <code>count</code> summary variable):</p>
+<table>
+<thead>
+<tr>
+<th>Keyword</th>
+<th>Type</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>count</code></td>
+<td>int</td>
+<td>Number of matching sessions (built-in summary variable).</td>
+</tr>
+<tr>
+<td><code>user</code></td>
+<td>string</td>
+<td>Account name.</td>
+</tr>
+<tr>
+<td><code>session_state</code></td>
+<td>string</td>
+<td><code>active</code>, <code>disconnected</code>, <code>connected</code>, … (Windows). Linux logins are always <code>active</code>.</td>
+</tr>
+<tr>
+<td><code>session_type</code></td>
+<td>string</td>
+<td><code>console</code>, <code>rdp</code>, <code>remote</code>, <code>ica</code>, …</td>
+</tr>
+<tr>
+<td><code>client</code></td>
+<td>string</td>
+<td>Client name (Windows) or remote host (Linux); empty for local console.</td>
+</tr>
+</tbody>
+</table>
+<p>There is <strong>no default threshold</strong> — this is a count/inventory check, so supply
+your own, e.g. <code>crit=count &gt; 10</code> or <code>crit=session_state = 'disconnected'</code>.
+Sessions with no user (services, the RDP listener) are not counted.</p>
+<p><strong>Jump to section:</strong></p>
+<ul>
+<li><a href="#check_users_samples">Sample Commands</a></li>
+<li><a href="#check_users_options">Command-line Arguments</a></li>
+<li><a href="#check_users_filter_keys">Filter keywords</a></li>
+</ul>
+<p><a id="check_users_samples"></a></p>
+<h4 id="sample-commands_6">Sample Commands</h4>
+<p><strong>Count the logged-on users</strong></p>
+<div class="highlight"><pre><span></span><code>check_users
+L        cli OK: 2 user(s) logged on: mickem, root
+</code></pre></div>
+<p><strong>Alert when too many sessions are open</strong></p>
+<p><code>count</code> is a built-in summary variable.</p>
+<div class="highlight"><pre><span></span><code>check_users &quot;warn=count &gt; 5&quot; &quot;crit=count &gt; 10&quot;
+L        cli OK: 2 user(s) logged on: mickem, root
+</code></pre></div>
+<p><strong>Alert on any interactive session (e.g. a locked-down server)</strong></p>
+<div class="highlight"><pre><span></span><code>check_users &quot;crit=count &gt; 0&quot;
+L        cli CRITICAL: 2 user(s) logged on: mickem, root
+</code></pre></div>
+<p><strong>Only count RDP / remote sessions</strong></p>
+<div class="highlight"><pre><span></span><code>check_users &quot;filter=session_type = &#39;rdp&#39;&quot; &quot;crit=count &gt; 0&quot;
+</code></pre></div>
+<p>On Linux, network logins (ssh) have <code>session_type = 'remote'</code>:</p>
+<div class="highlight"><pre><span></span><code>check_users &quot;filter=session_type = &#39;remote&#39;&quot; &quot;detail-syntax=${user}@${client}&quot; &quot;top-syntax=${list}&quot;
+L        cli OK: mickem@10.0.0.5
+</code></pre></div>
+<p><strong>Alert on a disconnected-but-open RDP session (Windows)</strong></p>
+<div class="highlight"><pre><span></span><code>check_users &quot;crit=session_state = &#39;disconnected&#39;&quot; &quot;detail-syntax=${user} (${session_state})&quot;
+</code></pre></div>
+<p><a id="check_users_options"></a></p>
+<h4 id="command-line-arguments_6">Command-line Arguments</h4>
+<p><a id="check_users_warn"></a>
+<a id="check_users_crit"></a>
+<a id="check_users_debug"></a>
+<a id="check_users_show-all"></a>
+<a id="check_users_escape-html"></a>
+<a id="check_users_help"></a>
+<a id="check_users_help-pb"></a>
+<a id="check_users_show-default"></a>
+<a id="check_users_help-short"></a></p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#check_users_filter">filter</a></td>
+<td></td>
+<td>Filter which marks interesting items.</td>
+</tr>
+<tr>
+<td><a href="#check_users_warning">warning</a></td>
+<td></td>
+<td>Filter which marks items which generates a warning state.</td>
+</tr>
+<tr>
+<td>warn</td>
+<td></td>
+<td>Short alias for warning</td>
+</tr>
+<tr>
+<td><a href="#check_users_critical">critical</a></td>
+<td></td>
+<td>Filter which marks items which generates a critical state.</td>
+</tr>
+<tr>
+<td>crit</td>
+<td></td>
+<td>Short alias for critical.</td>
+</tr>
+<tr>
+<td><a href="#check_users_ok">ok</a></td>
+<td></td>
+<td>Filter which marks items which generates an ok state.</td>
+</tr>
+<tr>
+<td>debug</td>
+<td>N/A</td>
+<td>Show debugging information in the log</td>
+</tr>
+<tr>
+<td>show-all</td>
+<td>N/A</td>
+<td>Show details for all matches regardless of status (normally details are only showed for warnings and criticals).</td>
+</tr>
+<tr>
+<td><a href="#check_users_empty-state">empty-state</a></td>
+<td>ok</td>
+<td>Return status to use when nothing matched filter.</td>
+</tr>
+<tr>
+<td><a href="#check_users_perf-config">perf-config</a></td>
+<td></td>
+<td>Performance data generation configuration</td>
+</tr>
+<tr>
+<td>escape-html</td>
+<td>N/A</td>
+<td>Escape any &lt; and &gt; characters to prevent HTML encoding</td>
+</tr>
+<tr>
+<td>help</td>
+<td>N/A</td>
+<td>Show help screen (this screen)</td>
+</tr>
+<tr>
+<td>help-pb</td>
+<td>N/A</td>
+<td>Show help screen as a protocol buffer payload</td>
+</tr>
+<tr>
+<td>show-default</td>
+<td>N/A</td>
+<td>Show default values for a given command</td>
+</tr>
+<tr>
+<td>help-short</td>
+<td>N/A</td>
+<td>Show help screen (short format).</td>
+</tr>
+<tr>
+<td><a href="#check_users_top-syntax">top-syntax</a></td>
+<td>${status}: ${count} user(s) logged on: ${list}</td>
+<td>Top level syntax.</td>
+</tr>
+<tr>
+<td><a href="#check_users_ok-syntax">ok-syntax</a></td>
+<td>${status}: ${count} user(s) logged on</td>
+<td>ok syntax.</td>
+</tr>
+<tr>
+<td><a href="#check_users_empty-syntax">empty-syntax</a></td>
+<td>No users logged on</td>
+<td>Empty syntax.</td>
+</tr>
+<tr>
+<td><a href="#check_users_detail-syntax">detail-syntax</a></td>
+<td>${user}</td>
+<td>Detail level syntax.</td>
+</tr>
+<tr>
+<td><a href="#check_users_perf-syntax">perf-syntax</a></td>
+<td>${user}</td>
+<td>Performance alias syntax.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="check_users_filter">filter:</h5>
+
+<p>Filter which marks interesting items.
+Interesting items are items which will be included in the check.
+They do not denote warning or critical state instead it defines which items are relevant and you can remove unwanted items.</p>
+<h5 id="check_users_warning">warning:</h5>
+
+<p>Filter which marks items which generates a warning state.
+If anything matches this filter the return status will be escalated to warning.</p>
+<h5 id="check_users_critical">critical:</h5>
+
+<p>Filter which marks items which generates a critical state.
+If anything matches this filter the return status will be escalated to critical.</p>
+<h5 id="check_users_ok">ok:</h5>
+
+<p>Filter which marks items which generates an ok state.
+If anything matches this any previous state for this item will be reset to ok.</p>
+<h5 id="check_users_empty-state">empty-state:</h5>
+
+<p>Return status to use when nothing matched filter.
+If no filter is specified this will never happen unless the file is empty.</p>
+<p><em>Default Value:</em> <code>ok</code></p>
+<h5 id="check_users_perf-config">perf-config:</h5>
+
+<p>Performance data generation configuration
+TODO: obj ( key: value; key: value) obj (key:valuer;key:value)</p>
+<h5 id="check_users_top-syntax">top-syntax:</h5>
+
+<p>Top level syntax.
+Used to format the message to return can include text as well as special keywords which will include information from the checks.
+To add a keyword to the message you can use two syntaxes either ${keyword} or %(keyword) (there is no difference between them apart from ${} can be difficult to escape on linux).</p>
+<p><em>Default Value:</em> <code>${status}: ${count} user(s) logged on: ${list}</code></p>
+<h5 id="check_users_ok-syntax">ok-syntax:</h5>
+
+<p>ok syntax.
+DEPRECATED! This is the syntax for when an ok result is returned.
+This value will not be used if your syntax contains %(list) or %(count).</p>
+<p><em>Default Value:</em> <code>${status}: ${count} user(s) logged on</code></p>
+<h5 id="check_users_empty-syntax">empty-syntax:</h5>
+
+<p>Empty syntax.
+DEPRECATED! This is the syntax for when nothing matches the filter.</p>
+<p><em>Default Value:</em> <code>No users logged on</code></p>
+<h5 id="check_users_detail-syntax">detail-syntax:</h5>
+
+<p>Detail level syntax.
+Used to format each resulting item in the message.
+%(list) will be replaced with all the items formated by this syntax string in the top-syntax.
+To add a keyword to the message you can use two syntaxes either ${keyword} or %(keyword) (there is no difference between them apart from ${} can be difficult to escape on linux).</p>
+<p><em>Default Value:</em> <code>${user}</code></p>
+<h5 id="check_users_perf-syntax">perf-syntax:</h5>
+
+<p>Performance alias syntax.
+This is the syntax for the base names of the performance data.</p>
+<p><em>Default Value:</em> <code>${user}</code></p>
+<p><a id="check_users_filter_keys"></a></p>
+<h4 id="filter-keywords_6">Filter keywords</h4>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>client</td>
+<td>Client name or remote host (may be empty)</td>
+</tr>
+<tr>
+<td>session_state</td>
+<td>Session state (active, disconnected, ...)</td>
+</tr>
+<tr>
+<td>session_type</td>
+<td>Session type (console, rdp, remote, ...)</td>
+</tr>
+<tr>
+<td>user</td>
+<td>The account name of the logged-on user</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Common options for all checks:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>count</td>
+<td>Number of items matching the filter.</td>
+</tr>
+<tr>
+<td>crit_count</td>
+<td>Number of items matched the critical criteria.</td>
+</tr>
+<tr>
+<td>crit_list</td>
+<td>A list of all items which matched the critical criteria.</td>
+</tr>
+<tr>
+<td>detail_list</td>
+<td>A special list with critical, then warning and finally ok.</td>
+</tr>
+<tr>
+<td>list</td>
+<td>A list of all items which matched the filter.</td>
+</tr>
+<tr>
+<td>ok_count</td>
+<td>Number of items matched the ok criteria.</td>
+</tr>
+<tr>
+<td>ok_list</td>
+<td>A list of all items which matched the ok criteria.</td>
+</tr>
+<tr>
+<td>problem_count</td>
+<td>Number of items matched either warning or critical criteria.</td>
+</tr>
+<tr>
+<td>problem_list</td>
+<td>A list of all items which matched either the critical or the warning criteria.</td>
+</tr>
+<tr>
+<td>status</td>
+<td>The returned status (OK/WARN/CRIT/UNKNOWN).</td>
+</tr>
+<tr>
+<td>total</td>
+<td>Total number of items.</td>
+</tr>
+<tr>
+<td>warn_count</td>
+<td>Number of items matched the warning criteria.</td>
+</tr>
+<tr>
+<td>warn_list</td>
+<td>A list of all items which matched the warning criteria.</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+      <div class="md-consent" data-md-component="consent" id="__consent" hidden>
+        <div class="md-consent__overlay"></div>
+        <aside class="md-consent__inner">
+          <form class="md-consent__form md-grid md-typeset" name="consent">
+            
+
+
+  
+
+
+<h4>Cookie consent</h4>
+<p>We use cookies to recognize your repeated visits and preferences, as well as to measure the effectiveness of our documentation and whether users find what they're searching for. With your consent, you're helping us to make our documentation better.</p>
+<input class="md-toggle" type="checkbox" id="__settings" >
+<div class="md-consent__settings">
+  <ul class="task-list">
+    
+    
+      
+    
+    
+      
+        
+  
+  
+    
+    
+  
+  <li class="task-list-item">
+    <label class="task-list-control">
+      <input type="checkbox" name="github" checked>
+      <span class="task-list-indicator"></span>
+      GitHub
+    </label>
+  </li>
+
+      
+    
+    
+  </ul>
+</div>
+<div class="md-consent__controls">
+  
+    
+      <button class="md-button md-button--primary">Accept</button>
+    
+    
+    
+  
+    
+    
+    
+      <label class="md-button" for="__settings">Manage settings</label>
+    
+  
+</div>
+          </form>
+        </aside>
+      </div>
+      <script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout((function(){document.querySelector("[data-md-component=consent]").hidden=!1}),250);var form=document.forms.consent;for(var action of["submit","reset"])form.addEventListener(action,(function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map((function(e){return[e,!0]})))),location.hash="",location.reload()}))</script>
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.tabs", "toc.follow", "toc.integrate", "navigation.indexes", "search.suggest", "search.highlight", "search.share"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../assets/js/latest-release.js"></script>
+      
+    
+  </body>
+</html>

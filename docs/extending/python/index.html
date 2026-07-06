@@ -1,0 +1,5117 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../">
+      
+      
+        <link rel="next" href="../lua/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Python Scripts - NSClient++</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#python-scripts" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="NSClient++" class="md-header__button md-logo" aria-label="NSClient++" data-md-component="logo">
+      
+  <img src="../../../assets/nsclient-logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            NSClient++
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Python Scripts
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/mickem/nscp" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M202.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1M496 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2m-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3m-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1"/></svg>
+  </div>
+  <div class="md-source__repository">
+    NSClient++
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../.." class="md-tabs__link">
+          
+  
+  
+    
+  
+  Home
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../news/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  News
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://github.com/mickem/nscp/releases" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Download
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Documentation
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://github.com/mickem/nscp/discussions" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Forums
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="NSClient++" class="md-nav__button md-logo" aria-label="NSClient++" data-md-component="logo">
+      
+  <img src="../../../assets/nsclient-logo.png" alt="logo">
+
+    </a>
+    NSClient++
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/mickem/nscp" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M202.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1M496 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2m-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3m-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1"/></svg>
+  </div>
+  <div class="md-source__repository">
+    NSClient++
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../.." class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_1" id="__nav_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Home
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../nsclient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About NSClient++
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../news/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    News
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/mickem/nscp/releases" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Download
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Documentation
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Documentation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quick-start/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../concepts/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Concepts
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/checks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Checks In Depth
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/settings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Settings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/permissions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Permissions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Setup
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/supported-platforms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Supported platforms
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/installing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/securing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Securing NSClient++
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/web-interface/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Web Interface
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../scenarios/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Monitoring Scenarios
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_5" id="__nav_4_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Monitoring Scenarios
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scenarios/windows-server-health/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Windows Server Health
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scenarios/linux-server-health/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux Server Health
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scenarios/disk-space/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Disk Space Alerting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scenarios/service-monitoring/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Service & Process Monitoring
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scenarios/realtime-monitoring/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Real-Time System Monitoring
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scenarios/event-log/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Event Log Monitoring
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scenarios/counters/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Performance Counters (PDH)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scenarios/network-checks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Network Checks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scenarios/security-posture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Host Security Posture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scenarios/nrpe/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Active Monitoring with NRPE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scenarios/passive-monitoring-nsca/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Passive Monitoring (NSCA/NRDP)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scenarios/passive-monitoring-nsca-ng/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Passive Monitoring (NSCA-NG)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scenarios/passive-monitoring-icinga/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Passive Monitoring (Icinga 2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scenarios/passive-monitoring-graphite/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Passive Monitoring (Graphite)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scenarios/check-mk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Checkmk Agent Integration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scenarios/prometheus/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prometheus Scraping
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scenarios/external-scripts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    External Scripts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../reference/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_6" id="__nav_4_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_6_2" id="__nav_4_6_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Check commands
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_6_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_6_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Check commands
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/check/CheckDisk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckDisk
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/check/CheckExternalScripts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckExternalScripts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/windows/CheckEventLog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckEventLog (Windows)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/check/CheckHelpers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckHelpers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/check/CheckLogFile/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckLogFile
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/check/CheckMKClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckMKClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/check/CheckMKServer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckMKServer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/check/CheckNet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckNet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/check/CheckNSCP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckNSCP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/check/CheckSecurity/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckSecurity
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/check/CheckSystem/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckSystem
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/windows/CheckTaskSched/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckTaskSched (Windows)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/windows/CheckWMI/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckWMI (Windows)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_6_3" id="__nav_4_6_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Clients & Servers
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_6_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_6_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Clients & Servers
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/generic/WEBServer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WEBServer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/misc/WEBClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WEBClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/client/NRPEServer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NRPEServer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/client/NRPEClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NRPEClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/windows/NSClientServer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSClientServer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/client/NSCAServer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSCAServer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/client/NSCAClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSCAClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/client/NRDPClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NRDPClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/client/NSCANgClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSCANgClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/misc/NSCPClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSCPClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/client/IcingaClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IcingaClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/client/SMTPClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SMTPClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/client/GraphiteClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GraphiteClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/client/SyslogClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SyslogClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/misc/CollectdClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CollectdClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/misc/Op5Client/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Op5Client
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/misc/ElasticClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ElasticClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_6_4" id="__nav_4_6_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Helper modules
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_6_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_6_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Helper modules
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/generic/Scheduler/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scheduler
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/generic/SimpleFileWriter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SimpleFileWriter
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/generic/CommandClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CommandClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/generic/SimpleCache/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SimpleCache
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/generic/PythonScript/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PythonScript
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/generic/LUAScript/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LUAScript
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_7" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Extending
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_7" id="__nav_4_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_7_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Extending
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python Scripts
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python Scripts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#lifecycle-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lifecycle functions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Lifecycle functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#__main__" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        __main__
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#init" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        init
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="init">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#plugin_alias-versus-script_alias" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        plugin_alias versus script_alias
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shutdown" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        shutdown
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        API
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="API">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#free-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Free functions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Free functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#log-log_error-log_debug" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        log / log_error / log_debug
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sleep" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        sleep
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#status-enum" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        status enum
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#registry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Registry
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Registry">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#registryget" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Registry.get
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#registryfunction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Registry.function
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#registrysimple_function" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Registry.simple_function
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#registrycmdline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Registry.cmdline
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#registrysimple_cmdline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Registry.simple_cmdline
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#registrysubscription" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Registry.subscription
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#registrysimple_subscription" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Registry.simple_subscription
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#registryevent-registryevent_pb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Registry.event / Registry.event_pb
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#registrysubmit_metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Registry.submit_metrics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#registryfetch_metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Registry.fetch_metrics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#registryquery" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Registry.query
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#core" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Core">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#coreget" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core.get
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#coresimple_query" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core.simple_query
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#corequery" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core.query
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#coresimple_exec" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core.simple_exec
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#coreexec" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core.exec
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#coresimple_submit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core.simple_submit
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#coresubmit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core.submit
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#corereload" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core.reload
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#coreload_module" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core.load_module
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#coreunload_module" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core.unload_module
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#coreexpand_path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core.expand_path
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Settings
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Settings">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#settingsget" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Settings.get
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#settingsget_section" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Settings.get_section
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#settingsget_string-settingsset_string" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Settings.get_string / Settings.set_string
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#settingsget_bool-settingsset_bool" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Settings.get_bool / Settings.set_bool
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#settingsget_int-settingsset_int" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Settings.get_int / Settings.set_int
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#settingssave" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Settings.save
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#settingsregister_path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Settings.register_path
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#settingsregister_key" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Settings.register_key
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#settingsquery" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Settings.query
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lua/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lua Scripts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../zip-modules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Zip Modules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plugin-api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plugin API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_8" id="__nav_4_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    API
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_8_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../api/rest/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    REST
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_8_1" id="__nav_4_8_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_8_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_8_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    REST
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/rest/info/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Info
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/rest/login/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Login
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/rest/modules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/rest/queries/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Queries
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/rest/aliases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Aliases
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/rest/scripts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scripts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/rest/settings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Settings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/rest/metadata/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Metadata
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/rest/metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Metrics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/rest/logs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/rest/legacy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Legacy API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/mickem/nscp/discussions" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Forums
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="python-scripts">Python Scripts</h1>
+<p>In addition to executing Python scripts as regular external scripts, NSClient++ can also execute them
+in-process via the <strong>PythonScript</strong> module. The benefit is that scripts can call NSClient++'s APIs
+directly (run checks, listen on channels, register handlers, read/write settings) and keep state
+between invocations.</p>
+<p>To add a Python script as an internal script you need to load the PythonScript module and register
+the script:</p>
+<div class="highlight"><pre><span></span><code>nscp py add --script my_script.py
+</code></pre></div>
+<p>This produces:</p>
+<div class="highlight"><pre><span></span><code><span class="k">[/modules]</span>
+<span class="na">PythonScript</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">enabled</span>
+
+<span class="k">[/settings/python/scripts]</span>
+<span class="na">my_script</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">my_script.py</span>
+</code></pre></div>
+<h2 id="lifecycle-functions">Lifecycle functions</h2>
+<p>A script may define any of three lifecycle functions:</p>
+<ul>
+<li><code>__main__</code> — invoked when the script is run from the command line</li>
+<li><code>init</code> — invoked when the script is loaded by the module</li>
+<li><code>shutdown</code> — invoked when the module unloads or NSClient++ stops</li>
+</ul>
+<p>All three are optional. If a function is missing it is simply skipped.</p>
+<h3 id="__main__"><code>__main__</code></h3>
+<p><code>__main__</code> is invoked when the script is run from the command line. Use it for installation,
+configuration helpers, or anything else an administrator might want to run interactively:</p>
+<div class="highlight"><pre><span></span><code>nscp py execute --script my_script.py install --root /tmp
+</code></pre></div>
+<p>The function receives the command-line arguments as a list of strings:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">NSCP</span><span class="w"> </span><span class="kn">import</span> <span class="n">log</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">__main__</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
+    <span class="n">log</span><span class="p">(</span><span class="s2">&quot;My arguments are: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">args</span><span class="p">)</span>
+</code></pre></div>
+<p>Output:</p>
+<div class="highlight"><pre><span></span><code>nscp py execute --script my_script.py install --root /tmp
+L     python My arguments are: [&#39;install&#39;, &#39;--root&#39;, &#39;/tmp&#39;]
+</code></pre></div>
+<h3 id="init"><code>init</code></h3>
+<p><code>init</code> is invoked when the script is loaded and is where you obtain the values needed to talk back
+to NSClient++. It receives three arguments:</p>
+<ul>
+<li><code>plugin_id</code> — internal identifier of the plugin instance; required by <code>Registry.get()</code>,
+  <code>Core.get()</code>, and <code>Settings.get()</code></li>
+<li><code>plugin_alias</code> — the alias the PythonScript module is loaded under</li>
+<li><code>script_alias</code> — the key the script is registered under in <code>[/settings/&lt;alias&gt;/scripts]</code></li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">NSCP</span><span class="w"> </span><span class="kn">import</span> <span class="n">log</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">init</span><span class="p">(</span><span class="n">plugin_id</span><span class="p">,</span> <span class="n">plugin_alias</span><span class="p">,</span> <span class="n">script_alias</span><span class="p">):</span>
+    <span class="n">log</span><span class="p">(</span><span class="s2">&quot;*** plugin_id: </span><span class="si">%d</span><span class="s2">, plugin_alias: </span><span class="si">%s</span><span class="s2">, script_alias: </span><span class="si">%s</span><span class="s2">&quot;</span>
+        <span class="o">%</span> <span class="p">(</span><span class="n">plugin_id</span><span class="p">,</span> <span class="n">plugin_alias</span><span class="p">,</span> <span class="n">script_alias</span><span class="p">))</span>
+</code></pre></div>
+<p>A typical startup log looks like:</p>
+<div class="highlight"><pre><span></span><code>D     python boot python
+D     python Prepare python
+D     python init python
+D     python Adding script: osmc (c:\source\build\x64\dev\scripts\python\osmc.py)
+D     python Loading python script: c:\source\build\x64\dev\scripts\python\osmc.py
+D     python Lib path: c:\source\build\x64\dev\scripts\python\lib
+L     python *** plugin_id: 0, plugin_alias: python, script_alias: my_script
+</code></pre></div>
+<h4 id="plugin_alias-versus-script_alias"><code>plugin_alias</code> versus <code>script_alias</code></h4>
+<p>Consider:</p>
+<div class="highlight"><pre><span></span><code><span class="k">[/modules]</span>
+<span class="na">ps1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">PythonScript</span>
+<span class="na">ps2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">PythonScript</span>
+
+<span class="k">[/settings/ps1/scripts]</span>
+<span class="na">ms1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">my_script.py</span>
+<span class="na">ms2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">my_script.py</span>
+
+<span class="k">[/settings/ps2/scripts]</span>
+<span class="na">ms1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">my_script.py</span>
+<span class="na">ms2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">my_script.py</span>
+</code></pre></div>
+<p>This loads the same script four times with the following arguments:</p>
+<table>
+<thead>
+<tr>
+<th>plugin_id</th>
+<th>plugin_alias</th>
+<th>script_alias</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>ps1</td>
+<td>ms1</td>
+</tr>
+<tr>
+<td>1</td>
+<td>ps1</td>
+<td>ms2</td>
+</tr>
+<tr>
+<td>2</td>
+<td>ps2</td>
+<td>ms1</td>
+</tr>
+<tr>
+<td>2</td>
+<td>ps2</td>
+<td>ms2</td>
+</tr>
+</tbody>
+</table>
+<p>If a script may legitimately be loaded multiple times, store its configuration under a path that
+includes both aliases, e.g. <code>/settings/&lt;script_name&gt;/&lt;plugin_alias&gt;/&lt;script_alias&gt;/</code>.</p>
+<!-- @formatter:off -->
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Loading the same script multiple times is discouraged — the CLI does not provide shortcuts for it —
+but it is supported for complex scenarios.</p>
+</div>
+<!-- @formatter:on -->
+
+<h3 id="shutdown"><code>shutdown</code></h3>
+<p><code>shutdown</code> is invoked when NSClient++ stops or when the PythonScript module is unloaded. It takes
+<strong>no arguments</strong>:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">NSCP</span><span class="w"> </span><span class="kn">import</span> <span class="n">log</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">shutdown</span><span class="p">():</span>
+    <span class="n">log</span><span class="p">(</span><span class="s2">&quot;Good bye&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="api">API</h2>
+<p>The module is imported as <code>NSCP</code> and exposes:</p>
+<ul>
+<li>Three wrapper classes: <strong><code>Settings</code></strong>, <strong><code>Registry</code></strong>, <strong><code>Core</code></strong> — each obtained via <code>.get(plugin_id)</code></li>
+<li>An enum: <strong><code>status</code></strong> — Nagios-style return codes</li>
+<li>Free functions: <strong><code>log</code></strong>, <strong><code>log_error</code></strong>, <strong><code>log_debug</code></strong>, <strong><code>sleep</code></strong></li>
+</ul>
+<p>Most operations have a "simple" variant that uses plain Python types, and a "raw" variant that takes
+serialized protobuf messages for full access to the underlying API. Use the simple form unless you
+need fields the simple form doesn't expose.</p>
+<h3 id="free-functions">Free functions</h3>
+<h4 id="log-log_error-log_debug"><code>log</code> / <code>log_error</code> / <code>log_debug</code></h4>
+<div class="highlight"><pre><span></span><code><span class="n">log</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+<span class="n">log_error</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+<span class="n">log_debug</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+</code></pre></div>
+<p>Write a message to the NSClient++ log at the corresponding level (<code>info</code>, <code>error</code>, <code>debug</code>).
+Messages appear on the command line and in any configured log file.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">NSCP</span><span class="w"> </span><span class="kn">import</span> <span class="n">log</span><span class="p">,</span> <span class="n">log_error</span><span class="p">,</span> <span class="n">log_debug</span>
+
+<span class="n">log</span><span class="p">(</span><span class="s2">&quot;Informational message&quot;</span><span class="p">)</span>
+<span class="n">log_error</span><span class="p">(</span><span class="s2">&quot;Something went wrong&quot;</span><span class="p">)</span>
+<span class="n">log_debug</span><span class="p">(</span><span class="s2">&quot;Internal state: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">state</span><span class="p">)</span>
+</code></pre></div>
+<h4 id="sleep"><code>sleep</code></h4>
+<div class="highlight"><pre><span></span><code><span class="n">sleep</span><span class="p">(</span><span class="n">milliseconds</span><span class="p">)</span>
+</code></pre></div>
+<p>Sleep for the given number of milliseconds. Use this instead of <code>time.sleep()</code>: Python is
+single-threaded with respect to the GIL, so a blocking <code>time.sleep()</code> inside an NSClient++ script
+prevents every other Python callback from running. <code>sleep()</code> releases the GIL while it waits.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">NSCP</span><span class="w"> </span><span class="kn">import</span> <span class="n">sleep</span><span class="p">,</span> <span class="n">log_debug</span>
+
+<span class="n">log_debug</span><span class="p">(</span><span class="s2">&quot;Waiting for 1 second&quot;</span><span class="p">)</span>
+<span class="n">sleep</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span> <span class="c1"># Other taska can no execute while we wait</span>
+<span class="n">log_debug</span><span class="p">(</span><span class="s2">&quot;It is now one second later&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="status-enum"><code>status</code> enum</h3>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OK</td>
+<td>0</td>
+<td>Nagios OK</td>
+</tr>
+<tr>
+<td>WARNING</td>
+<td>1</td>
+<td>Nagios warning</td>
+</tr>
+<tr>
+<td>CRITICAL</td>
+<td>2</td>
+<td>Nagios critical</td>
+</tr>
+<tr>
+<td>UNKNOWN</td>
+<td>3</td>
+<td>Nagios unknown</td>
+</tr>
+</tbody>
+</table>
+<h3 id="registry">Registry</h3>
+<p><code>Registry</code> lets a script publish itself into NSClient++ — registering check commands, command-line
+commands, channel subscriptions, event handlers, and metrics providers.</p>
+<h4 id="registryget"><code>Registry.get</code></h4>
+<div class="highlight"><pre><span></span><code><span class="n">Registry</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">plugin_id</span><span class="p">)</span>
+</code></pre></div>
+<p>Obtain an instance of <code>Registry</code> bound to the calling plugin. Pass the <code>plugin_id</code> you received in
+<code>init</code>.</p>
+<h4 id="registryfunction"><code>Registry.function</code></h4>
+<div class="highlight"><pre><span></span><code><span class="n">Registry</span><span class="o">.</span><span class="n">function</span><span class="p">(</span><span class="n">query_name</span><span class="p">,</span> <span class="n">query_function</span><span class="p">,</span> <span class="n">description</span><span class="p">)</span>
+</code></pre></div>
+<p>Register a <strong>check query</strong> with a raw, protobuf-based callback. Use <code>simple_function</code> instead unless
+you need fields it doesn't expose.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>query_name</code></td>
+<td>The check command name (e.g. <code>check_py_test</code>)</td>
+</tr>
+<tr>
+<td><code>query_function</code></td>
+<td>Callback invoked when the query runs</td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td>Help text shown by <code>&lt;command&gt; help</code> and in the WEB UI</td>
+</tr>
+</tbody>
+</table>
+<p>The callback receives the command name and a serialized <code>QueryRequestMessage</code>, and must return a
+2-tuple <code>(return_code, response_bytes)</code> where <code>response_bytes</code> is a serialized
+<code>QueryResponseMessage</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">my_function</span><span class="p">(</span><span class="n">command</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+    <span class="n">request_message</span> <span class="o">=</span> <span class="n">plugin_pb2</span><span class="o">.</span><span class="n">QueryRequestMessage</span><span class="p">()</span>
+    <span class="n">request_message</span><span class="o">.</span><span class="n">ParseFromString</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+    <span class="c1"># ... build response ...</span>
+    <span class="n">response_message</span> <span class="o">=</span> <span class="n">plugin_pb2</span><span class="o">.</span><span class="n">QueryResponseMessage</span><span class="p">()</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">status</span><span class="o">.</span><span class="n">OK</span><span class="p">,</span> <span class="n">response_message</span><span class="o">.</span><span class="n">SerializeToString</span><span class="p">())</span>
+</code></pre></div>
+<p><strong>Example:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">NSCP</span><span class="w"> </span><span class="kn">import</span> <span class="n">log</span><span class="p">,</span> <span class="n">Registry</span><span class="p">,</span> <span class="n">status</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">plugin_pb2</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">my_function</span><span class="p">(</span><span class="n">command</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+    <span class="n">request_message</span> <span class="o">=</span> <span class="n">plugin_pb2</span><span class="o">.</span><span class="n">QueryRequestMessage</span><span class="p">()</span>
+    <span class="n">request_message</span><span class="o">.</span><span class="n">ParseFromString</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+    <span class="n">log</span><span class="p">(</span><span class="s1">&#39;Got command: </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">request_message</span><span class="o">.</span><span class="n">payload</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">command</span><span class="p">)</span>
+    <span class="n">response_message</span> <span class="o">=</span> <span class="n">plugin_pb2</span><span class="o">.</span><span class="n">QueryResponseMessage</span><span class="p">()</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">status</span><span class="o">.</span><span class="n">OK</span><span class="p">,</span> <span class="n">response_message</span><span class="o">.</span><span class="n">SerializeToString</span><span class="p">())</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">init</span><span class="p">(</span><span class="n">plugin_id</span><span class="p">,</span> <span class="n">plugin_alias</span><span class="p">,</span> <span class="n">script_alias</span><span class="p">):</span>
+    <span class="n">reg</span> <span class="o">=</span> <span class="n">Registry</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">plugin_id</span><span class="p">)</span>
+    <span class="n">reg</span><span class="o">.</span><span class="n">function</span><span class="p">(</span><span class="s1">&#39;check_py_test&#39;</span><span class="p">,</span> <span class="n">my_function</span><span class="p">,</span> <span class="s1">&#39;This is a sample python function&#39;</span><span class="p">)</span>
+</code></pre></div>
+<h4 id="registrysimple_function"><code>Registry.simple_function</code></h4>
+<div class="highlight"><pre><span></span><code><span class="n">Registry</span><span class="o">.</span><span class="n">simple_function</span><span class="p">(</span><span class="n">query_name</span><span class="p">,</span> <span class="n">query_function</span><span class="p">,</span> <span class="n">description</span><span class="p">)</span>
+</code></pre></div>
+<p>Register a check query with a simple Python callback — no protobuf required.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>query_name</code></td>
+<td>The check command name</td>
+</tr>
+<tr>
+<td><code>query_function</code></td>
+<td>Callback invoked when the query runs</td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td>Help text shown by <code>&lt;command&gt; help</code></td>
+</tr>
+</tbody>
+</table>
+<p>The callback receives the arguments as a list of strings and must return a 3-tuple
+<code>(status, message, perfdata)</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">my_function</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">status</span><span class="o">.</span><span class="n">OK</span><span class="p">,</span> <span class="s2">&quot;This is the message&quot;</span><span class="p">,</span> <span class="s2">&quot;&#39;count&#39;=123;200;600&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p><strong>Example:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">NSCP</span><span class="w"> </span><span class="kn">import</span> <span class="n">log</span><span class="p">,</span> <span class="n">Registry</span><span class="p">,</span> <span class="n">status</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">my_function</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
+    <span class="n">log</span><span class="p">(</span><span class="s1">&#39;Got arguments: </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">args</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">status</span><span class="o">.</span><span class="n">OK</span><span class="p">,</span> <span class="s2">&quot;This is the message&quot;</span><span class="p">,</span> <span class="s2">&quot;&#39;count&#39;=123;200;600&quot;</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">init</span><span class="p">(</span><span class="n">plugin_id</span><span class="p">,</span> <span class="n">plugin_alias</span><span class="p">,</span> <span class="n">script_alias</span><span class="p">):</span>
+    <span class="n">reg</span> <span class="o">=</span> <span class="n">Registry</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">plugin_id</span><span class="p">)</span>
+    <span class="n">reg</span><span class="o">.</span><span class="n">simple_function</span><span class="p">(</span><span class="s1">&#39;check_py_test&#39;</span><span class="p">,</span> <span class="n">my_function</span><span class="p">,</span> <span class="s1">&#39;This is a sample python function&#39;</span><span class="p">)</span>
+</code></pre></div>
+<h4 id="registrycmdline"><code>Registry.cmdline</code></h4>
+<div class="highlight"><pre><span></span><code><span class="n">Registry</span><span class="o">.</span><span class="n">cmdline</span><span class="p">(</span><span class="n">command_name</span><span class="p">,</span> <span class="n">function</span><span class="p">)</span>
+</code></pre></div>
+<p>Register a <strong>command-line command</strong> (invoked via <code>nscp client --command ...</code> or
+<code>nscp ext --command ...</code>) with a protobuf-based callback. Use <code>simple_cmdline</code> unless you need raw
+access.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>command_name</code></td>
+<td>The command name to expose</td>
+</tr>
+<tr>
+<td><code>function</code></td>
+<td>Callback invoked when the command runs</td>
+</tr>
+</tbody>
+</table>
+<p>Callback signature: <code>(command, request) -&gt; (return_code, response_bytes)</code>, where <code>request</code> is a
+serialized <code>ExecuteRequestMessage</code> and <code>response_bytes</code> is a serialized <code>ExecuteResponseMessage</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">NSCP</span><span class="w"> </span><span class="kn">import</span> <span class="n">log</span><span class="p">,</span> <span class="n">Registry</span><span class="p">,</span> <span class="n">status</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">plugin_pb2</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">my_function</span><span class="p">(</span><span class="n">command</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+    <span class="n">request_message</span> <span class="o">=</span> <span class="n">plugin_pb2</span><span class="o">.</span><span class="n">ExecuteRequestMessage</span><span class="p">()</span>
+    <span class="n">request_message</span><span class="o">.</span><span class="n">ParseFromString</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+    <span class="n">log</span><span class="p">(</span><span class="s1">&#39;Got command: </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">request_message</span><span class="o">.</span><span class="n">payload</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">command</span><span class="p">)</span>
+    <span class="n">response_message</span> <span class="o">=</span> <span class="n">plugin_pb2</span><span class="o">.</span><span class="n">ExecuteResponseMessage</span><span class="p">()</span>
+    <span class="k">return</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">response_message</span><span class="o">.</span><span class="n">SerializeToString</span><span class="p">())</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">init</span><span class="p">(</span><span class="n">plugin_id</span><span class="p">,</span> <span class="n">plugin_alias</span><span class="p">,</span> <span class="n">script_alias</span><span class="p">):</span>
+    <span class="n">reg</span> <span class="o">=</span> <span class="n">Registry</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">plugin_id</span><span class="p">)</span>
+    <span class="n">reg</span><span class="o">.</span><span class="n">cmdline</span><span class="p">(</span><span class="s1">&#39;do_foo&#39;</span><span class="p">,</span> <span class="n">my_function</span><span class="p">)</span>
+</code></pre></div>
+<h4 id="registrysimple_cmdline"><code>Registry.simple_cmdline</code></h4>
+<div class="highlight"><pre><span></span><code><span class="n">Registry</span><span class="o">.</span><span class="n">simple_cmdline</span><span class="p">(</span><span class="n">command_name</span><span class="p">,</span> <span class="n">function</span><span class="p">)</span>
+</code></pre></div>
+<p>Register a command-line command with a simple callback. The callback receives the arguments as a
+list of strings and returns a 2-tuple <code>(exit_code, message)</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">my_function</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;This is the message&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p><strong>Example:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">NSCP</span><span class="w"> </span><span class="kn">import</span> <span class="n">log</span><span class="p">,</span> <span class="n">Registry</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">my_function</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
+    <span class="n">log</span><span class="p">(</span><span class="s1">&#39;Got arguments: </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">args</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;Everything is awesome&quot;</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">init</span><span class="p">(</span><span class="n">plugin_id</span><span class="p">,</span> <span class="n">plugin_alias</span><span class="p">,</span> <span class="n">script_alias</span><span class="p">):</span>
+    <span class="n">reg</span> <span class="o">=</span> <span class="n">Registry</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">plugin_id</span><span class="p">)</span>
+    <span class="n">reg</span><span class="o">.</span><span class="n">simple_cmdline</span><span class="p">(</span><span class="s1">&#39;do_something&#39;</span><span class="p">,</span> <span class="n">my_function</span><span class="p">)</span>
+</code></pre></div>
+<h4 id="registrysubscription"><code>Registry.subscription</code></h4>
+<div class="highlight"><pre><span></span><code><span class="n">Registry</span><span class="o">.</span><span class="n">subscription</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span> <span class="n">function</span><span class="p">)</span>
+</code></pre></div>
+<p>Subscribe to a <strong>channel</strong> (think passive check submissions) with a protobuf-based handler. Use
+<code>simple_subscription</code> unless you need raw access.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>channel</code></td>
+<td>The channel name to subscribe to</td>
+</tr>
+<tr>
+<td><code>function</code></td>
+<td>Callback invoked when a message arrives</td>
+</tr>
+</tbody>
+</table>
+<p>Callback signature: <code>(channel, message) -&gt; (success_bool, response_bytes)</code>. <code>message</code> is a memoryview
+over a serialized <code>SubmitRequestMessage</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">my_function</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span> <span class="n">message</span><span class="p">):</span>
+    <span class="n">request</span> <span class="o">=</span> <span class="n">plugin_pb2</span><span class="o">.</span><span class="n">SubmitRequestMessage</span><span class="p">()</span>
+    <span class="n">request</span><span class="o">.</span><span class="n">ParseFromString</span><span class="p">(</span><span class="nb">bytes</span><span class="p">(</span><span class="n">message</span><span class="p">))</span>
+    <span class="c1"># ... process ...</span>
+    <span class="k">return</span> <span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="sa">b</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h4 id="registrysimple_subscription"><code>Registry.simple_subscription</code></h4>
+<div class="highlight"><pre><span></span><code><span class="n">Registry</span><span class="o">.</span><span class="n">simple_subscription</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span> <span class="n">function</span><span class="p">)</span>
+</code></pre></div>
+<p>Subscribe to a channel with a simple per-payload callback.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>channel</code></td>
+<td>The channel name to subscribe to</td>
+</tr>
+<tr>
+<td><code>function</code></td>
+<td>Callback invoked per submitted check</td>
+</tr>
+</tbody>
+</table>
+<p>Callback signature: <code>(channel, source, command, status, message, perf) -&gt; bool</code>. Return <code>True</code> to
+indicate success.</p>
+<p><strong>Example — suppress repeated NSCA submissions:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">NSCP</span><span class="w"> </span><span class="kn">import</span> <span class="n">Registry</span><span class="p">,</span> <span class="n">Core</span><span class="p">,</span> <span class="n">status</span><span class="p">,</span> <span class="n">log</span>
+
+<span class="n">g_last_message</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+<span class="n">g_plugin_id</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">filter_nsca</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span> <span class="n">source</span><span class="p">,</span> <span class="n">command</span><span class="p">,</span> <span class="n">code</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">perf</span><span class="p">):</span>
+    <span class="k">global</span> <span class="n">g_last_message</span><span class="p">,</span> <span class="n">g_plugin_id</span>
+    <span class="k">if</span> <span class="n">message</span> <span class="o">!=</span> <span class="n">g_last_message</span><span class="p">:</span>
+        <span class="n">g_last_message</span> <span class="o">=</span> <span class="n">message</span>
+        <span class="n">log</span><span class="p">(</span><span class="s2">&quot;Sending: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">message</span><span class="p">)</span>
+        <span class="n">core</span> <span class="o">=</span> <span class="n">Core</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">g_plugin_id</span><span class="p">)</span>
+        <span class="n">core</span><span class="o">.</span><span class="n">simple_submit</span><span class="p">(</span><span class="s1">&#39;NSCA&#39;</span><span class="p">,</span> <span class="n">command</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">CRITICAL</span><span class="p">,</span>
+                           <span class="n">message</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">),</span> <span class="n">perf</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">True</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">log</span><span class="p">(</span><span class="s2">&quot;Suppressing duplicate message&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">True</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">init</span><span class="p">(</span><span class="n">plugin_id</span><span class="p">,</span> <span class="n">plugin_alias</span><span class="p">,</span> <span class="n">script_alias</span><span class="p">):</span>
+    <span class="k">global</span> <span class="n">g_plugin_id</span>
+    <span class="n">g_plugin_id</span> <span class="o">=</span> <span class="n">plugin_id</span>
+    <span class="n">reg</span> <span class="o">=</span> <span class="n">Registry</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">plugin_id</span><span class="p">)</span>
+    <span class="n">reg</span><span class="o">.</span><span class="n">simple_subscription</span><span class="p">(</span><span class="s1">&#39;filter_nsca&#39;</span><span class="p">,</span> <span class="n">filter_nsca</span><span class="p">)</span>
+</code></pre></div>
+<p>Then point a real-time filter at the synthetic <code>filter_nsca</code> channel instead of <code>NSCA</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="k">[/modules]</span>
+<span class="na">PythonScript</span><span class="o">=</span><span class="s">enabled</span>
+<span class="na">CheckEventLog</span><span class="o">=</span><span class="s">enabled</span>
+<span class="na">NSCAClient</span><span class="o">=</span><span class="s">enabled</span>
+
+<span class="k">[/settings/python/scripts]</span>
+<span class="na">filter_nsca</span><span class="o">=</span><span class="s">filter_nsca.py</span>
+
+<span class="k">[/settings/eventlog/real-time]</span>
+<span class="na">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
+
+<span class="k">[/settings/eventlog/real-time/filters/login]</span>
+<span class="na">log</span><span class="o">=</span><span class="s">Security</span>
+<span class="na">filter</span><span class="o">=</span><span class="s">id=4624</span>
+<span class="na">target</span><span class="o">=</span><span class="s">filter_nsca</span>
+<span class="na">detail syntax</span><span class="o">=</span><span class="s">%(id)</span>
+</code></pre></div>
+<h4 id="registryevent-registryevent_pb"><code>Registry.event</code> / <code>Registry.event_pb</code></h4>
+<div class="highlight"><pre><span></span><code><span class="n">Registry</span><span class="o">.</span><span class="n">event</span><span class="p">(</span><span class="n">event_name</span><span class="p">,</span> <span class="n">event_function</span><span class="p">)</span>
+<span class="n">Registry</span><span class="o">.</span><span class="n">event_pb</span><span class="p">(</span><span class="n">event_name</span><span class="p">,</span> <span class="n">event_function</span><span class="p">)</span>
+</code></pre></div>
+<p>Register a handler for a named event. The two variants differ in how the event payload is delivered
+to the callback:</p>
+<ul>
+<li><code>event</code> — payload is delivered as a Python <code>dict</code>. Callback signature: <code>(event_name, data) -&gt; None</code>.</li>
+<li><code>event_pb</code> — payload is delivered as a raw bytes buffer (serialized protobuf). Callback signature:
+  <code>(event_name, request_bytes)</code>. The return value is ignored.</li>
+</ul>
+<p><strong>Example (<code>event</code>):</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">NSCP</span><span class="w"> </span><span class="kn">import</span> <span class="n">log</span><span class="p">,</span> <span class="n">Registry</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">on_event</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+    <span class="n">log</span><span class="p">(</span><span class="s1">&#39;Got event: </span><span class="si">%s</span><span class="s1"> with key=</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;key&#39;</span><span class="p">)))</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">init</span><span class="p">(</span><span class="n">plugin_id</span><span class="p">,</span> <span class="n">plugin_alias</span><span class="p">,</span> <span class="n">script_alias</span><span class="p">):</span>
+    <span class="n">reg</span> <span class="o">=</span> <span class="n">Registry</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">plugin_id</span><span class="p">)</span>
+    <span class="n">reg</span><span class="o">.</span><span class="n">event</span><span class="p">(</span><span class="s1">&#39;eventlog:login&#39;</span><span class="p">,</span> <span class="n">on_event</span><span class="p">)</span>
+</code></pre></div>
+<h4 id="registrysubmit_metrics"><code>Registry.submit_metrics</code></h4>
+<div class="highlight"><pre><span></span><code><span class="n">Registry</span><span class="o">.</span><span class="n">submit_metrics</span><span class="p">(</span><span class="nb">callable</span><span class="p">)</span>
+</code></pre></div>
+<p>Register a function that <strong>receives</strong> metrics each time NSClient++ publishes a metrics snapshot.
+Useful for forwarding metrics to a custom backend.</p>
+<p>Callback signature: <code>(metrics, "") -&gt; None</code>, where <code>metrics</code> is a flat <code>dict</code> of dotted-name keys to
+stringified values.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">NSCP</span><span class="w"> </span><span class="kn">import</span> <span class="n">Registry</span><span class="p">,</span> <span class="n">log</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">on_metrics</span><span class="p">(</span><span class="n">metrics</span><span class="p">,</span> <span class="n">_</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">metrics</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">log</span><span class="p">(</span><span class="s2">&quot;metric </span><span class="si">%s</span><span class="s2"> = </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">))</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">init</span><span class="p">(</span><span class="n">plugin_id</span><span class="p">,</span> <span class="n">plugin_alias</span><span class="p">,</span> <span class="n">script_alias</span><span class="p">):</span>
+    <span class="n">reg</span> <span class="o">=</span> <span class="n">Registry</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">plugin_id</span><span class="p">)</span>
+    <span class="n">reg</span><span class="o">.</span><span class="n">submit_metrics</span><span class="p">(</span><span class="n">on_metrics</span><span class="p">)</span>
+</code></pre></div>
+<h4 id="registryfetch_metrics"><code>Registry.fetch_metrics</code></h4>
+<div class="highlight"><pre><span></span><code><span class="n">Registry</span><span class="o">.</span><span class="n">fetch_metrics</span><span class="p">(</span><span class="nb">callable</span><span class="p">)</span>
+</code></pre></div>
+<p>Register a function that <strong>produces</strong> metrics on demand. The callback takes no arguments and returns
+a <code>dict</code> whose values may be strings, ints, or floats; numeric values are emitted as gauges.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">NSCP</span><span class="w"> </span><span class="kn">import</span> <span class="n">Registry</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">my_metrics</span><span class="p">():</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s2">&quot;my_script.requests&quot;</span><span class="p">:</span> <span class="mi">42</span><span class="p">,</span>
+        <span class="s2">&quot;my_script.latency_ms&quot;</span><span class="p">:</span> <span class="mf">17.3</span><span class="p">,</span>
+        <span class="s2">&quot;my_script.status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">init</span><span class="p">(</span><span class="n">plugin_id</span><span class="p">,</span> <span class="n">plugin_alias</span><span class="p">,</span> <span class="n">script_alias</span><span class="p">):</span>
+    <span class="n">reg</span> <span class="o">=</span> <span class="n">Registry</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">plugin_id</span><span class="p">)</span>
+    <span class="n">reg</span><span class="o">.</span><span class="n">fetch_metrics</span><span class="p">(</span><span class="n">my_metrics</span><span class="p">)</span>
+</code></pre></div>
+<h4 id="registryquery"><code>Registry.query</code></h4>
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="n">return_code</span><span class="p">,</span> <span class="n">response_bytes</span><span class="p">)</span> <span class="o">=</span> <span class="n">Registry</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">request_bytes</span><span class="p">)</span>
+</code></pre></div>
+<p>Issue a raw query against the registry — used to enumerate modules, queries, channels, etc. The
+<code>request_bytes</code> must be a serialized <code>RegistryRequestMessage</code>; the response is a serialized
+<code>RegistryResponseMessage</code>.</p>
+<h3 id="core">Core</h3>
+<p>The <code>Core</code> object exposes operations that interact with the running NSClient++ instance itself —
+running queries, submitting passive results, loading and reloading modules, expanding paths.</p>
+<h4 id="coreget"><code>Core.get</code></h4>
+<div class="highlight"><pre><span></span><code><span class="n">Core</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">plugin_id</span><span class="p">)</span>
+</code></pre></div>
+<p>Obtain a <code>Core</code> instance bound to the calling plugin.</p>
+<h4 id="coresimple_query"><code>Core.simple_query</code></h4>
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="n">code</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">perf</span><span class="p">)</span> <span class="o">=</span> <span class="n">Core</span><span class="o">.</span><span class="n">simple_query</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">arguments</span><span class="p">)</span>
+</code></pre></div>
+<p>Run a check command by name with a list of argument strings.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>query</code></td>
+<td>Name of the query to run</td>
+</tr>
+<tr>
+<td><code>arguments</code></td>
+<td>List of <code>keyword=value</code> argument strings</td>
+</tr>
+<tr>
+<td><code>code</code></td>
+<td>Nagios status code</td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td>Resulting message</td>
+</tr>
+<tr>
+<td><code>perf</code></td>
+<td>Resulting performance data</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">NSCP</span><span class="w"> </span><span class="kn">import</span> <span class="n">Core</span><span class="p">,</span> <span class="n">log</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">init</span><span class="p">(</span><span class="n">plugin_id</span><span class="p">,</span> <span class="n">plugin_alias</span><span class="p">,</span> <span class="n">script_alias</span><span class="p">):</span>
+    <span class="n">core</span> <span class="o">=</span> <span class="n">Core</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">plugin_id</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">code</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">perf</span><span class="p">)</span> <span class="o">=</span> <span class="n">core</span><span class="o">.</span><span class="n">simple_query</span><span class="p">(</span><span class="s2">&quot;check_cpu&quot;</span><span class="p">,</span> <span class="p">[])</span>
+    <span class="n">log</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+</code></pre></div>
+<h4 id="corequery"><code>Core.query</code></h4>
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="n">return_code</span><span class="p">,</span> <span class="n">response_bytes</span><span class="p">)</span> <span class="o">=</span> <span class="n">Core</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">command</span><span class="p">,</span> <span class="n">request_bytes</span><span class="p">)</span>
+</code></pre></div>
+<p>Raw protobuf variant of <code>simple_query</code>. <code>request_bytes</code> is a serialized <code>QueryRequestMessage</code>;
+<code>response_bytes</code> is a serialized <code>QueryResponseMessage</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">NSCP</span><span class="w"> </span><span class="kn">import</span> <span class="n">Core</span><span class="p">,</span> <span class="n">log</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">plugin_pb2</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">init</span><span class="p">(</span><span class="n">plugin_id</span><span class="p">,</span> <span class="n">plugin_alias</span><span class="p">,</span> <span class="n">script_alias</span><span class="p">):</span>
+    <span class="n">request_message</span> <span class="o">=</span> <span class="n">plugin_pb2</span><span class="o">.</span><span class="n">QueryRequestMessage</span><span class="p">()</span>
+    <span class="c1"># ... populate request_message ...</span>
+    <span class="n">core</span> <span class="o">=</span> <span class="n">Core</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">plugin_id</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">ret</span><span class="p">,</span> <span class="n">response</span><span class="p">)</span> <span class="o">=</span> <span class="n">core</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;check_cpu&quot;</span><span class="p">,</span> <span class="n">request_message</span><span class="o">.</span><span class="n">SerializeToString</span><span class="p">())</span>
+    <span class="n">response_message</span> <span class="o">=</span> <span class="n">plugin_pb2</span><span class="o">.</span><span class="n">QueryResponseMessage</span><span class="p">()</span>
+    <span class="n">response_message</span><span class="o">.</span><span class="n">ParseFromString</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+</code></pre></div>
+<h4 id="coresimple_exec"><code>Core.simple_exec</code></h4>
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="n">return_code</span><span class="p">,</span> <span class="n">results</span><span class="p">)</span> <span class="o">=</span> <span class="n">Core</span><span class="o">.</span><span class="n">simple_exec</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">command</span><span class="p">,</span> <span class="n">arguments</span><span class="p">)</span>
+</code></pre></div>
+<p>Execute a command-line command (registered via <code>Registry.cmdline</code> / <code>Registry.simple_cmdline</code>)
+against <code>target</code> (a remote NSClient++ instance or <code>"local"</code>/<code>""</code> for in-process). Returns the result
+as a list of strings.</p>
+<h4 id="coreexec"><code>Core.exec</code></h4>
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="n">return_code</span><span class="p">,</span> <span class="n">response_bytes</span><span class="p">)</span> <span class="o">=</span> <span class="n">Core</span><span class="o">.</span><span class="n">exec</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">request_bytes</span><span class="p">)</span>
+</code></pre></div>
+<p>Raw protobuf variant of <code>simple_exec</code>.</p>
+<h4 id="coresimple_submit"><code>Core.simple_submit</code></h4>
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="n">success</span><span class="p">,</span> <span class="n">response</span><span class="p">)</span> <span class="o">=</span> <span class="n">Core</span><span class="o">.</span><span class="n">simple_submit</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span> <span class="n">command</span><span class="p">,</span> <span class="n">code</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">perf</span><span class="p">)</span>
+</code></pre></div>
+<p>Submit a passive check result on a channel.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>channel</code></td>
+<td>Channel to submit to (e.g. <code>"NSCA"</code>, <code>"NRDP"</code>)</td>
+</tr>
+<tr>
+<td><code>command</code></td>
+<td>Check command name being reported</td>
+</tr>
+<tr>
+<td><code>code</code></td>
+<td><code>status.OK</code> / <code>status.WARNING</code> / <code>status.CRITICAL</code> / <code>status.UNKNOWN</code></td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td>Message text (bytes or str)</td>
+</tr>
+<tr>
+<td><code>perf</code></td>
+<td>Performance data string</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">NSCP</span><span class="w"> </span><span class="kn">import</span> <span class="n">Core</span><span class="p">,</span> <span class="n">status</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">init</span><span class="p">(</span><span class="n">plugin_id</span><span class="p">,</span> <span class="n">plugin_alias</span><span class="p">,</span> <span class="n">script_alias</span><span class="p">):</span>
+    <span class="n">core</span> <span class="o">=</span> <span class="n">Core</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">plugin_id</span><span class="p">)</span>
+    <span class="n">core</span><span class="o">.</span><span class="n">simple_submit</span><span class="p">(</span><span class="s2">&quot;NSCA&quot;</span><span class="p">,</span> <span class="s2">&quot;check_py&quot;</span><span class="p">,</span> <span class="n">status</span><span class="o">.</span><span class="n">OK</span><span class="p">,</span>
+                       <span class="s2">&quot;All good&quot;</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">),</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h4 id="coresubmit"><code>Core.submit</code></h4>
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="n">success</span><span class="p">,</span> <span class="n">error_message</span><span class="p">)</span> <span class="o">=</span> <span class="n">Core</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span> <span class="n">request_bytes</span><span class="p">)</span>
+</code></pre></div>
+<p>Raw protobuf variant of <code>simple_submit</code>. <code>request_bytes</code> is a serialized <code>SubmitRequestMessage</code>.</p>
+<h4 id="corereload"><code>Core.reload</code></h4>
+<div class="highlight"><pre><span></span><code><span class="n">Core</span><span class="o">.</span><span class="n">reload</span><span class="p">(</span><span class="n">module</span><span class="p">)</span>
+</code></pre></div>
+<p>Reload the given module by name (e.g. <code>"CheckEventLog"</code>). Pass <code>"service"</code> to reload the entire
+service.</p>
+<h4 id="coreload_module"><code>Core.load_module</code></h4>
+<div class="highlight"><pre><span></span><code><span class="n">Core</span><span class="o">.</span><span class="n">load_module</span><span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="n">alias</span><span class="p">)</span>
+</code></pre></div>
+<p>Load a module into the running NSClient++ instance. <code>alias</code> lets you load the same module multiple
+times under different names; pass <code>""</code> for the default.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">NSCP</span><span class="w"> </span><span class="kn">import</span> <span class="n">Core</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">init</span><span class="p">(</span><span class="n">plugin_id</span><span class="p">,</span> <span class="n">plugin_alias</span><span class="p">,</span> <span class="n">script_alias</span><span class="p">):</span>
+    <span class="n">core</span> <span class="o">=</span> <span class="n">Core</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">plugin_id</span><span class="p">)</span>
+    <span class="n">core</span><span class="o">.</span><span class="n">load_module</span><span class="p">(</span><span class="s2">&quot;CheckEventLog&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h4 id="coreunload_module"><code>Core.unload_module</code></h4>
+<div class="highlight"><pre><span></span><code><span class="n">Core</span><span class="o">.</span><span class="n">unload_module</span><span class="p">(</span><span class="n">module_or_alias</span><span class="p">)</span>
+</code></pre></div>
+<p>Unload a previously loaded module by name or alias.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">NSCP</span><span class="w"> </span><span class="kn">import</span> <span class="n">Core</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">init</span><span class="p">(</span><span class="n">plugin_id</span><span class="p">,</span> <span class="n">plugin_alias</span><span class="p">,</span> <span class="n">script_alias</span><span class="p">):</span>
+    <span class="n">core</span> <span class="o">=</span> <span class="n">Core</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">plugin_id</span><span class="p">)</span>
+    <span class="n">core</span><span class="o">.</span><span class="n">unload_module</span><span class="p">(</span><span class="s2">&quot;CheckEventLog&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h4 id="coreexpand_path"><code>Core.expand_path</code></h4>
+<div class="highlight"><pre><span></span><code><span class="n">path</span> <span class="o">=</span> <span class="n">Core</span><span class="o">.</span><span class="n">expand_path</span><span class="p">(</span><span class="n">path_expression</span><span class="p">)</span>
+</code></pre></div>
+<p>Expand a path containing <code>${...}</code> placeholders (e.g. <code>${scripts}</code>, <code>${modules}</code>, <code>${base-path}</code>).</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">NSCP</span><span class="w"> </span><span class="kn">import</span> <span class="n">Core</span><span class="p">,</span> <span class="n">log</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">init</span><span class="p">(</span><span class="n">plugin_id</span><span class="p">,</span> <span class="n">plugin_alias</span><span class="p">,</span> <span class="n">script_alias</span><span class="p">):</span>
+    <span class="n">core</span> <span class="o">=</span> <span class="n">Core</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">plugin_id</span><span class="p">)</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="n">core</span><span class="o">.</span><span class="n">expand_path</span><span class="p">(</span><span class="s2">&quot;$</span><span class="si">{scripts}</span><span class="s2">/python/myscript.py&quot;</span><span class="p">)</span>
+    <span class="n">log</span><span class="p">(</span><span class="s1">&#39;The script path is: </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">path</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="settings">Settings</h3>
+<p><code>Settings</code> wraps the configuration store. Read and write are supported; written values are
+<strong>in-memory only</strong> until <code>save()</code> is called.</p>
+<h4 id="settingsget"><code>Settings.get</code></h4>
+<div class="highlight"><pre><span></span><code><span class="n">Settings</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">plugin_id</span><span class="p">)</span>
+</code></pre></div>
+<p>Obtain a <code>Settings</code> instance bound to the calling plugin.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">NSCP</span><span class="w"> </span><span class="kn">import</span> <span class="n">Settings</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">init</span><span class="p">(</span><span class="n">plugin_id</span><span class="p">,</span> <span class="n">plugin_alias</span><span class="p">,</span> <span class="n">script_alias</span><span class="p">):</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="n">Settings</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">plugin_id</span><span class="p">)</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get_string</span><span class="p">(</span><span class="s2">&quot;/modules&quot;</span><span class="p">,</span> <span class="s2">&quot;PythonScript&quot;</span><span class="p">,</span> <span class="s2">&quot;disabled&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h4 id="settingsget_section"><code>Settings.get_section</code></h4>
+<div class="highlight"><pre><span></span><code><span class="n">keys</span> <span class="o">=</span> <span class="n">Settings</span><span class="o">.</span><span class="n">get_section</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+</code></pre></div>
+<p>Return the list of keys under a given section.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">NSCP</span><span class="w"> </span><span class="kn">import</span> <span class="n">Settings</span><span class="p">,</span> <span class="n">log</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">init</span><span class="p">(</span><span class="n">plugin_id</span><span class="p">,</span> <span class="n">plugin_alias</span><span class="p">,</span> <span class="n">script_alias</span><span class="p">):</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="n">Settings</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">plugin_id</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">config</span><span class="o">.</span><span class="n">get_section</span><span class="p">(</span><span class="s2">&quot;/modules&quot;</span><span class="p">):</span>
+        <span class="n">log</span><span class="p">(</span><span class="s2">&quot;Module: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">key</span><span class="p">)</span>
+</code></pre></div>
+<h4 id="settingsget_string-settingsset_string"><code>Settings.get_string</code> / <code>Settings.set_string</code></h4>
+<div class="highlight"><pre><span></span><code><span class="n">value</span> <span class="o">=</span> <span class="n">Settings</span><span class="o">.</span><span class="n">get_string</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">default_value</span><span class="p">)</span>
+<span class="n">Settings</span><span class="o">.</span><span class="n">set_string</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+</code></pre></div>
+<p>Read or write a string. Writes are not persisted until <code>save()</code> is called.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">NSCP</span><span class="w"> </span><span class="kn">import</span> <span class="n">Settings</span><span class="p">,</span> <span class="n">log</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">init</span><span class="p">(</span><span class="n">plugin_id</span><span class="p">,</span> <span class="n">plugin_alias</span><span class="p">,</span> <span class="n">script_alias</span><span class="p">):</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="n">Settings</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">plugin_id</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">config</span><span class="o">.</span><span class="n">get_section</span><span class="p">(</span><span class="s2">&quot;/modules&quot;</span><span class="p">):</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get_string</span><span class="p">(</span><span class="s2">&quot;/modules&quot;</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="s2">&quot;unknown&quot;</span><span class="p">)</span>
+        <span class="n">log</span><span class="p">(</span><span class="s2">&quot;The module </span><span class="si">%s</span><span class="s2"> is </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">))</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">NSCP</span><span class="w"> </span><span class="kn">import</span> <span class="n">Settings</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">init</span><span class="p">(</span><span class="n">plugin_id</span><span class="p">,</span> <span class="n">plugin_alias</span><span class="p">,</span> <span class="n">script_alias</span><span class="p">):</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="n">Settings</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">plugin_id</span><span class="p">)</span>
+    <span class="n">config</span><span class="o">.</span><span class="n">set_string</span><span class="p">(</span><span class="s2">&quot;/modules&quot;</span><span class="p">,</span> <span class="s2">&quot;PythonScript&quot;</span><span class="p">,</span> <span class="s2">&quot;enabled&quot;</span><span class="p">)</span>
+    <span class="n">config</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+</code></pre></div>
+<h4 id="settingsget_bool-settingsset_bool"><code>Settings.get_bool</code> / <code>Settings.set_bool</code></h4>
+<div class="highlight"><pre><span></span><code><span class="n">value</span> <span class="o">=</span> <span class="n">Settings</span><span class="o">.</span><span class="n">get_bool</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">default_value</span><span class="p">)</span>
+<span class="n">Settings</span><span class="o">.</span><span class="n">set_bool</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+</code></pre></div>
+<p>Read or write a boolean.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">NSCP</span><span class="w"> </span><span class="kn">import</span> <span class="n">Settings</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">init</span><span class="p">(</span><span class="n">plugin_id</span><span class="p">,</span> <span class="n">plugin_alias</span><span class="p">,</span> <span class="n">script_alias</span><span class="p">):</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="n">Settings</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">plugin_id</span><span class="p">)</span>
+    <span class="n">config</span><span class="o">.</span><span class="n">set_bool</span><span class="p">(</span><span class="s2">&quot;/modules&quot;</span><span class="p">,</span> <span class="s2">&quot;PythonScript&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+    <span class="n">config</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+</code></pre></div>
+<h4 id="settingsget_int-settingsset_int"><code>Settings.get_int</code> / <code>Settings.set_int</code></h4>
+<div class="highlight"><pre><span></span><code><span class="n">value</span> <span class="o">=</span> <span class="n">Settings</span><span class="o">.</span><span class="n">get_int</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">default_value</span><span class="p">)</span>
+<span class="n">Settings</span><span class="o">.</span><span class="n">set_int</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+</code></pre></div>
+<p>Read or write an integer.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">NSCP</span><span class="w"> </span><span class="kn">import</span> <span class="n">Settings</span><span class="p">,</span> <span class="n">log</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">init</span><span class="p">(</span><span class="n">plugin_id</span><span class="p">,</span> <span class="n">plugin_alias</span><span class="p">,</span> <span class="n">script_alias</span><span class="p">):</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="n">Settings</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">plugin_id</span><span class="p">)</span>
+    <span class="n">port</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get_int</span><span class="p">(</span><span class="s2">&quot;/settings/NRPE/server&quot;</span><span class="p">,</span> <span class="s2">&quot;port&quot;</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">log</span><span class="p">(</span><span class="s2">&quot;NRPE port is: </span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">port</span><span class="p">)</span>
+    <span class="n">config</span><span class="o">.</span><span class="n">set_int</span><span class="p">(</span><span class="s2">&quot;/settings/NRPE/server&quot;</span><span class="p">,</span> <span class="s2">&quot;port&quot;</span><span class="p">,</span> <span class="mi">1234</span><span class="p">)</span>
+    <span class="n">config</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+</code></pre></div>
+<h4 id="settingssave"><code>Settings.save</code></h4>
+<div class="highlight"><pre><span></span><code><span class="n">Settings</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+</code></pre></div>
+<p>Persist any in-memory changes back to the settings store (file or registry, depending on configuration).</p>
+<h4 id="settingsregister_path"><code>Settings.register_path</code></h4>
+<div class="highlight"><pre><span></span><code><span class="n">Settings</span><span class="o">.</span><span class="n">register_path</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">description</span><span class="p">)</span>
+</code></pre></div>
+<p>Register a settings section so it is documented in the generated settings file and visible in the
+WEB UI.</p>
+<h4 id="settingsregister_key"><code>Settings.register_key</code></h4>
+<div class="highlight"><pre><span></span><code><span class="n">Settings</span><span class="o">.</span><span class="n">register_key</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="nb">type</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">description</span><span class="p">,</span> <span class="n">default_value</span><span class="p">)</span>
+</code></pre></div>
+<p>Register an individual settings key for documentation and UI purposes. The <code>type</code> argument is
+accepted for forward-compatibility, but the underlying store currently treats all script-registered
+keys as strings.</p>
+<h4 id="settingsquery"><code>Settings.query</code></h4>
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="n">return_code</span><span class="p">,</span> <span class="n">response_bytes</span><span class="p">)</span> <span class="o">=</span> <span class="n">Settings</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">request_bytes</span><span class="p">)</span>
+</code></pre></div>
+<p>Issue a raw settings query. <code>request_bytes</code> is a serialized <code>SettingsRequestMessage</code>; the response is
+a <code>SettingsResponseMessage</code>. Use this when you need operations that the typed helpers above don't
+cover (bulk reads, diffs, deletions, etc.).</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">NSCP</span><span class="w"> </span><span class="kn">import</span> <span class="n">Settings</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">plugin_pb2</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">init</span><span class="p">(</span><span class="n">plugin_id</span><span class="p">,</span> <span class="n">plugin_alias</span><span class="p">,</span> <span class="n">script_alias</span><span class="p">):</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="n">Settings</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">plugin_id</span><span class="p">)</span>
+    <span class="n">request_message</span> <span class="o">=</span> <span class="n">plugin_pb2</span><span class="o">.</span><span class="n">SettingsRequestMessage</span><span class="p">()</span>
+    <span class="c1"># ... populate request_message ...</span>
+    <span class="p">(</span><span class="n">ret</span><span class="p">,</span> <span class="n">response</span><span class="p">)</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">request_message</span><span class="o">.</span><span class="n">SerializeToString</span><span class="p">())</span>
+    <span class="n">response_message</span> <span class="o">=</span> <span class="n">plugin_pb2</span><span class="o">.</span><span class="n">SettingsResponseMessage</span><span class="p">()</span>
+    <span class="n">response_message</span><span class="o">.</span><span class="n">ParseFromString</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+</code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+      <div class="md-consent" data-md-component="consent" id="__consent" hidden>
+        <div class="md-consent__overlay"></div>
+        <aside class="md-consent__inner">
+          <form class="md-consent__form md-grid md-typeset" name="consent">
+            
+
+
+  
+
+
+<h4>Cookie consent</h4>
+<p>We use cookies to recognize your repeated visits and preferences, as well as to measure the effectiveness of our documentation and whether users find what they're searching for. With your consent, you're helping us to make our documentation better.</p>
+<input class="md-toggle" type="checkbox" id="__settings" >
+<div class="md-consent__settings">
+  <ul class="task-list">
+    
+    
+      
+    
+    
+      
+        
+  
+  
+    
+    
+  
+  <li class="task-list-item">
+    <label class="task-list-control">
+      <input type="checkbox" name="github" checked>
+      <span class="task-list-indicator"></span>
+      GitHub
+    </label>
+  </li>
+
+      
+    
+    
+  </ul>
+</div>
+<div class="md-consent__controls">
+  
+    
+      <button class="md-button md-button--primary">Accept</button>
+    
+    
+    
+  
+    
+    
+    
+      <label class="md-button" for="__settings">Manage settings</label>
+    
+  
+</div>
+          </form>
+        </aside>
+      </div>
+      <script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout((function(){document.querySelector("[data-md-component=consent]").hidden=!1}),250);var form=document.forms.consent;for(var action of["submit","reset"])form.addEventListener(action,(function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map((function(e){return[e,!0]})))),location.hash="",location.reload()}))</script>
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "toc.follow", "toc.integrate", "navigation.indexes", "search.suggest", "search.highlight", "search.share"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../assets/js/latest-release.js"></script>
+      
+    
+  </body>
+</html>
