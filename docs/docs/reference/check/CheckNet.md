@@ -2,8 +2,6 @@
 
 Network related checks such as check_ping, check_tcp, check_dns, check_http, check_connections and check_ntp_offset.
 
-
-
 ## Enable module
 
 To enable this module and and allow using the commands you need to ass `CheckNet = enabled` to the `[/modules]` section in nsclient.ini:
@@ -12,7 +10,6 @@ To enable this module and and allow using the commands you need to ass `CheckNet
 [/modules]
 CheckNet = enabled
 ```
-
 
 ## Queries
 
@@ -33,13 +30,9 @@ A list of all available queries (check commands)
 | [check_ssh](#check_ssh)                                 | Connect to an SSH port and verify the server presents a valid SSH banner.                   |
 | [check_tcp](#check_tcp)                                 | Connect to a TCP port and optionally send/expect data to check that a service is reachable. |
 
-
-
-
 ### check_connections
 
 Count active TCP/UDP connections and report counts per protocol and TCP state.
-
 
 **Jump to section:**
 
@@ -50,8 +43,6 @@ Count active TCP/UDP connections and report counts per protocol and TCP state.
 
 <a id="check_connections_samples"></a>
 #### Sample Commands
-
-_To edit these sample please edit [this page](https://github.com/mickem/nscp-docs/blob/master/samples/CheckNet_check_connections_samples.md)_
 
 **Default check (uses the `total` bucket):**
 
@@ -108,6 +99,9 @@ OK: total/all: 231|'total_all_close_wait'=0;0;0 'total_all_closing'=0;0;0 'total
 
 
 
+<a id="check_connections_options"></a>
+#### Command-line Arguments
+
 <a id="check_connections_warn"></a>
 <a id="check_connections_crit"></a>
 <a id="check_connections_debug"></a>
@@ -117,9 +111,6 @@ OK: total/all: 231|'total_all_close_wait'=0;0;0 'total_all_closing'=0;0;0 'total
 <a id="check_connections_help-pb"></a>
 <a id="check_connections_show-default"></a>
 <a id="check_connections_help-short"></a>
-<a id="check_connections_options"></a>
-#### Command-line Arguments
-
 
 | Option                                            | Default Value                  | Description                                                                                                      |
 |---------------------------------------------------|--------------------------------|------------------------------------------------------------------------------------------------------------------|
@@ -232,7 +223,6 @@ This is the syntax for the base names of the performance data.
 <a id="check_connections_filter_keys"></a>
 #### Filter keywords
 
-
 | Option      | Description                                                   |
 |-------------|---------------------------------------------------------------|
 | close_wait  | Number of TCP connections in CLOSE_WAIT state (total bucket)  |
@@ -267,11 +257,9 @@ This is the syntax for the base names of the performance data.
 | warn_count    | Number of items matched the warning criteria.                                  |
 | warn_list     | A list of all items which matched the warning criteria.                        |
 
-
 ### check_dns
 
 Resolve a host name and check the response time and resulting addresses.
-
 
 **Jump to section:**
 
@@ -282,8 +270,6 @@ Resolve a host name and check the response time and resulting addresses.
 
 <a id="check_dns_samples"></a>
 #### Sample Commands
-
-_To edit these sample please edit [this page](https://github.com/mickem/nscp-docs/blob/master/samples/CheckNet_check_dns_samples.md)_
 
 **Default lookup of a hostname:**
 
@@ -366,6 +352,9 @@ OK: example.com -> 93.184.216.34 (1) in 3ms [ok]
 
 
 
+<a id="check_dns_options"></a>
+#### Command-line Arguments
+
 <a id="check_dns_warn"></a>
 <a id="check_dns_crit"></a>
 <a id="check_dns_debug"></a>
@@ -378,12 +367,8 @@ OK: example.com -> 93.184.216.34 (1) in 3ms [ok]
 <a id="check_dns_host"></a>
 <a id="check_dns_lookup"></a>
 <a id="check_dns_server"></a>
-<a id="check_dns_norecursion"></a>
 <a id="check_dns_expected-address"></a>
 <a id="check_dns_expected"></a>
-<a id="check_dns_options"></a>
-#### Command-line Arguments
-
 
 | Option                                    | Default Value                                               | Description                                                                                                      |
 |-------------------------------------------|-------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------|
@@ -412,7 +397,7 @@ OK: example.com -> 93.184.216.34 (1) in 3ms [ok]
 | [type](#check_dns_type)                   | A                                                           | DNS record type to query: A, AAAA, MX, TXT, CNAME, NS, SOA, PTR.                                                 |
 | server                                    |                                                             | DNS server to query (default: the system resolver for A/AAAA, /etc/resolv.conf otherwise).                       |
 | [port](#check_dns_port)                   | 53                                                          | UDP port of the DNS server.                                                                                      |
-| norecursion                               | N/A                                                         | Do not request recursion (RD=0).                                                                                 |
+| [norecursion](#check_dns_norecursion)     | 1)] (=0                                                     | Do not request recursion (RD=0).                                                                                 |
 | [timeout](#check_dns_timeout)             | 5000                                                        | Timeout in milliseconds.                                                                                         |
 | expected-address                          |                                                             | Record that must be present in the answer (may be given multiple times).                                         |
 | expected                                  |                                                             | Comma separated list of records that must all be present in the answer.                                          |
@@ -512,6 +497,12 @@ UDP port of the DNS server.
 
 *Default Value:* `53`
 
+<h5 id="check_dns_norecursion">norecursion:</h5>
+
+Do not request recursion (RD=0).
+
+*Default Value:* `1)] (=0`
+
 <h5 id="check_dns_timeout">timeout:</h5>
 
 Timeout in milliseconds.
@@ -521,7 +512,6 @@ Timeout in milliseconds.
 
 <a id="check_dns_filter_keys"></a>
 #### Filter keywords
-
 
 | Option    | Description                                                        |
 |-----------|--------------------------------------------------------------------|
@@ -550,11 +540,9 @@ Timeout in milliseconds.
 | warn_count    | Number of items matched the warning criteria.                                  |
 | warn_list     | A list of all items which matched the warning criteria.                        |
 
-
 ### check_http
 
 Send an HTTP/HTTPS request and check the response status, time, size and body.
-
 
 **Jump to section:**
 
@@ -566,92 +554,90 @@ Send an HTTP/HTTPS request and check the response status, time, size and body.
 <a id="check_http_samples"></a>
 #### Sample Commands
 
-_To edit these sample please edit [this page](https://github.com/mickem/nscp-docs/blob/master/samples/CheckNet_check_http_samples.md)_
-
 **Default check against a single URL (success):**
 
 ```
 check_http url=https://nsclient.org/
-L        cli OK: : https://nsclient.org/ -> 200 ok (61204B in 561ms)
-L        cli  Performance data: 'https://nsclient.org/_code'=200;0;200 'https://nsclient.org/_time'=561;5000;0
+L        cli OK: https://nsclient.org/ -> 200 ok (68937B in 197ms)
+L        cli  Performance data: 'https://nsclient.org/_code'=200;0;200 'https://nsclient.org/_size'=68937B;0;0 'https://nsclient.org/'=197ms;5000;0
 ```
 
 **HTTPS with explicit port and path components (page not found):**
 
 ```
 check_http protocol=https host=nsclient.org port=443 path=/no-such-page
-L        cli CRITICAL: : https://nsclient.org:443/no-such-page -> 404 http_404 (46098B in 163ms)
-L        cli  Performance data: 'https://nsclient.org:443/no-such-page_code'=404;0;200 'https://nsclient.org:443/no-such-page_time'=163;5000;0
+L        cli CRITICAL: https://nsclient.org:443/no-such-page -> 404 http_404 (55109B in 165ms)
+L        cli  Performance data: 'https://nsclient.org:443/no-such-page_code'=404;0;200 'https://nsclient.org:443/no-such-page_size'=55109B;0;0 'https://nsclient.org:443/no-such-page'=165ms;5000;0
 ```
 
 **Connection / DNS failure (host does not resolve):**
 
 ```
 check_http url=https://nope.invalid/
-L        cli CRITICAL: : https://nope.invalid/ -> 0 error: resolve: Ingen sådan värd är känd (0B in 0ms)
-L        cli  Performance data: 'https://nope.invalid/_code'=0;0;200 'https://nope.invalid/_time'=0;5000;0
+L        cli CRITICAL: https://nope.invalid/ -> 0 error: Failed to resolve nope.invalid:443: Ingen sådan värd är känd (0B in 10ms)
+L        cli  Performance data: 'https://nope.invalid/_code'=0;0;200 'https://nope.invalid/_size'=0B;0;0 'https://nope.invalid/'=10ms;5000;0
 ```
 
 **Multiple URLs in one call:**
 
 ```
 check_http url=https://nsclient.org/ url=https://nsclient.org/nsclient/
-L        cli OK: : https://nsclient.org/ -> 200 ok (61204B in 39ms), https://nsclient.org/nsclient/ -> 200 ok (50656B in 160ms)
-L        cli  Performance data: 'https://nsclient.org/_code'=200;0;200 'https://nsclient.org/_time'=39;5000;0 'https://nsclient.org/nsclient/_code'=200;0;200 'https://nsclient.org/nsclient/_time'=160;5000;0
+L        cli OK: https://nsclient.org/ -> 200 ok (68937B in 59ms), https://nsclient.org/nsclient/ -> 200 ok (60820B in 179ms)
+L        cli  Performance data: 'https://nsclient.org/_code'=200;0;200 'https://nsclient.org/_size'=68937B;0;0 'https://nsclient.org/'=59ms;5000;0 'https://nsclient.org/nsclient/_code'=200;0;200 'https://nsclient.org/nsclient/_size'=60820B;0;0 'https://nsclient.org/nsclient/'=179ms;5000;0
 ```
 
 **Require an expected substring in the response body:**
 
 ```
 check_http url=https://nsclient.org/ expected-body="NSClient"
-L        cli OK: : https://nsclient.org/ -> 200 ok (61204B in 37ms)
-L        cli  Performance data: 'https://nsclient.org/_code'=200;0;200 'https://nsclient.org/_time'=37;5000;0
+L        cli OK: https://nsclient.org/ -> 200 ok (68937B in 47ms)
+L        cli  Performance data: 'https://nsclient.org/_code'=200;0;200 'https://nsclient.org/_size'=68937B;0;0 'https://nsclient.org/'=47ms;5000;0
 ```
 
 If the substring is absent the check goes CRITICAL with `result=no_match`:
 
 ```
 check_http url=https://nsclient.org/ expected-body="this-string-is-not-present"
-L        cli CRITICAL: : https://nsclient.org/ -> 200 no_match (61204B in 34ms)
-L        cli  Performance data: 'https://nsclient.org/_code'=200;0;200 'https://nsclient.org/_time'=34;5000;0
+L        cli CRITICAL: https://nsclient.org/ -> 200 no_match (68937B in 52ms)
+L        cli  Performance data: 'https://nsclient.org/_code'=200;0;200 'https://nsclient.org/_size'=68937B;0;0 'https://nsclient.org/'=52ms;5000;0
 ```
 
 **Custom user-agent and extra headers:**
 
 ```
 check_http url=https://nsclient.org/ user-agent="nscp-monitor/1" header="X-Trace: 1"
-L        cli OK: : https://nsclient.org/ -> 200 ok (61204B in 34ms)
-L        cli  Performance data: 'https://nsclient.org/_code'=200;0;200 'https://nsclient.org/_time'=34;5000;0
+L        cli OK: https://nsclient.org/ -> 200 ok (68937B in 50ms)
+L        cli  Performance data: 'https://nsclient.org/_code'=200;0;200 'https://nsclient.org/_size'=68937B;0;0 'https://nsclient.org/'=50ms;5000;0
 ```
 
 **Tighter latency thresholds and code rules:**
 
 ```
 check_http url=https://nsclient.org/ timeout=10000 "warn=time > 500 or code >= 400" "crit=time > 2000 or code >= 500 or result != 'ok'"
-L        cli OK: : https://nsclient.org/ -> 200 ok (61204B in 36ms)
-L        cli  Performance data: 'https://nsclient.org/_code'=200;400;500 'https://nsclient.org/_time'=36;500;2000
+L        cli OK: https://nsclient.org/ -> 200 ok (68937B in 61ms)
+L        cli  Performance data: 'https://nsclient.org/_code'=200;400;500 'https://nsclient.org/_size'=68937B;0;0 'https://nsclient.org/'=61ms;500;2000
 ```
 
 **Custom output text (drop result if you don't want it):**
 
 ```
 check_http url=https://nsclient.org/ "top-syntax=%(status): %(list)" "detail-syntax=%(url) -> %(code) in %(time)ms"
-L        cli OK: : https://nsclient.org/ -> 200 in 55ms
-L        cli  Performance data: 'https://nsclient.org/_code'=200;0;200 'https://nsclient.org/_time'=55;5000;0
+L        cli OK: https://nsclient.org/ -> 200 in 46ms
+L        cli  Performance data: 'https://nsclient.org/_code'=200;0;200 'https://nsclient.org/_size'=68937B;0;0 'https://nsclient.org/'=46ms;5000;0
 ```
 
 **Default check via NRPE:**
 
 ```
 check_nscp_client --host 192.168.56.103 --command check_http --argument "url=https://nsclient.org/"
-OK: https://nsclient.org/ -> 200 ok (61204B in 561ms)| 'https://nsclient.org/_code'=200;0;200 'https://nsclient.org/_time'=561;5000;0
+OK: https://nsclient.org/ -> 200 ok (68937B in 197ms)|'https://nsclient.org/_code'=200;0;200 'https://nsclient.org/_size'=68937B;0;0 'https://nsclient.org/'=197ms;5000;0
 ```
 
 **Use a specific HTTP method (`HEAD`, `POST`, `PUT`, …):**
 
 ```
 check_http url=https://www.google.com method=HEAD
-OK: https://www.google.com -> 200 ok (0B in 197ms)|'https://www.google.com_code'=200;0;200 'https://www.google.com_time'=197;5000;0
+OK: https://www.google.com -> 200 ok (0B in 58ms)|'https://www.google.com_code'=200;0;200 'https://www.google.com_size'=0B;0;0 'https://www.google.com'=58ms;5000;0
 ```
 
 **POST a body (`post-data` implies POST unless `method=` is given):**
@@ -691,6 +677,9 @@ OK: cert expires in 58 days
 
 
 
+<a id="check_http_options"></a>
+#### Command-line Arguments
+
 <a id="check_http_warn"></a>
 <a id="check_http_crit"></a>
 <a id="check_http_debug"></a>
@@ -709,53 +698,52 @@ OK: cert expires in 58 days
 <a id="check_http_expected-body"></a>
 <a id="check_http_header"></a>
 <a id="check_http_sni"></a>
-<a id="check_http_options"></a>
-#### Command-line Arguments
+<a id="check_http_json-path"></a>
 
-
-| Option                                     | Default Value                                       | Description                                                                                                      |
-|--------------------------------------------|-----------------------------------------------------|------------------------------------------------------------------------------------------------------------------|
-| [filter](#check_http_filter)               |                                                     | Filter which marks interesting items.                                                                            |
-| [warning](#check_http_warning)             | time > 5000                                         | Filter which marks items which generates a warning state.                                                        |
-| warn                                       |                                                     | Short alias for warning                                                                                          |
-| [critical](#check_http_critical)           | code < 200 or code >= 400 or result != 'ok'         | Filter which marks items which generates a critical state.                                                       |
-| crit                                       |                                                     | Short alias for critical.                                                                                        |
-| [ok](#check_http_ok)                       |                                                     | Filter which marks items which generates an ok state.                                                            |
-| debug                                      | N/A                                                 | Show debugging information in the log                                                                            |
-| show-all                                   | N/A                                                 | Show details for all matches regardless of status (normally details are only showed for warnings and criticals). |
-| [empty-state](#check_http_empty-state)     | ignored                                             | Return status to use when nothing matched filter.                                                                |
-| [perf-config](#check_http_perf-config)     |                                                     | Performance data generation configuration                                                                        |
-| escape-html                                | N/A                                                 | Escape any < and > characters to prevent HTML encoding                                                           |
-| help                                       | N/A                                                 | Show help screen (this screen)                                                                                   |
-| help-pb                                    | N/A                                                 | Show help screen as a protocol buffer payload                                                                    |
-| show-default                               | N/A                                                 | Show default values for a given command                                                                          |
-| help-short                                 | N/A                                                 | Show help screen (short format).                                                                                 |
-| [top-syntax](#check_http_top-syntax)       | ${status}: ${problem_list}                          | Top level syntax.                                                                                                |
-| [ok-syntax](#check_http_ok-syntax)         | %(status): %(list)                                  | ok syntax.                                                                                                       |
-| [empty-syntax](#check_http_empty-syntax)   | No URL checked                                      | Empty syntax.                                                                                                    |
-| [detail-syntax](#check_http_detail-syntax) | ${url} -> ${code} ${result} (${size}B in ${time}ms) | Detail level syntax.                                                                                             |
-| [perf-syntax](#check_http_perf-syntax)     | ${url}                                              | Performance alias syntax.                                                                                        |
-| url                                        |                                                     | Full URL to check (http://host[:port]/path or https://...). May be given multiple times.                         |
-| host                                       |                                                     | Hostname (used when --url is not given).                                                                         |
-| port                                       |                                                     | TCP port (defaults to 80 or 443).                                                                                |
-| [path](#check_http_path)                   | /                                                   | Path component of the URL.                                                                                       |
-| [protocol](#check_http_protocol)           | http                                                | Protocol to use: http or https.                                                                                  |
-| [ssl](#check_http_ssl)                     | 1)] (=0                                             | Force https, alias for --protocol https (ssl=true).                                                              |
-| [timeout](#check_http_timeout)             | 30000                                               | Timeout in milliseconds.                                                                                         |
-| [method](#check_http_method)               | GET                                                 | HTTP method to use (GET, HEAD, POST, PUT, DELETE, ...).                                                          |
-| post-data                                  |                                                     | Request body to send; implies POST unless --method is given.                                                     |
-| [content-type](#check_http_content-type)   | application/x-www-form-urlencoded                   | Content-Type header for the request body.                                                                        |
-| username                                   |                                                     | Username for HTTP Basic authentication.                                                                          |
-| password                                   |                                                     | Password for HTTP Basic authentication.                                                                          |
-| expected-body                              |                                                     | Substring that must appear in the body for the check to be ok.                                                   |
-| [user-agent](#check_http_user-agent)       | NSClient++                                          | User-Agent header value.                                                                                         |
-| header                                     |                                                     | Additional request header in 'Name: value' form (may be given multiple times).                                   |
-| [onredirect](#check_http_onredirect)       | ok                                                  | How to handle 3xx redirects: 'follow' to follow the Location, 'ok' (default) to report the redirect as-is.       |
-| [max-redirs](#check_http_max-redirs)       | 15                                                  | Maximum number of redirects to follow (with --onredirect follow).                                                |
-| sni                                        |                                                     | TLS Server Name Indication / verification hostname override (defaults to the URL host).                          |
-| [tls-version](#check_http_tls-version)     | tlsv1.2+                                            | TLS version for https (tlsv1.0, tlsv1.1, tlsv1.2, tlsv1.2+, tlsv1.3, sslv3).                                     |
-| [verify](#check_http_verify)               | peer                                                | Certificate verify mode: none, peer, peer-cert, fail-if-no-cert, fail-if-no-peer-cert, client-certificate.       |
-| [ca](#check_http_ca)                       | ${ca-path}                                          | Path to a CA bundle to use when verifying the server certificate.                                                |
+| Option                                     | Default Value                                       | Description                                                                                                                                                                                                                               |
+|--------------------------------------------|-----------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [filter](#check_http_filter)               |                                                     | Filter which marks interesting items.                                                                                                                                                                                                     |
+| [warning](#check_http_warning)             | time > 5000                                         | Filter which marks items which generates a warning state.                                                                                                                                                                                 |
+| warn                                       |                                                     | Short alias for warning                                                                                                                                                                                                                   |
+| [critical](#check_http_critical)           | code < 200 or code >= 400 or result != 'ok'         | Filter which marks items which generates a critical state.                                                                                                                                                                                |
+| crit                                       |                                                     | Short alias for critical.                                                                                                                                                                                                                 |
+| [ok](#check_http_ok)                       |                                                     | Filter which marks items which generates an ok state.                                                                                                                                                                                     |
+| debug                                      | N/A                                                 | Show debugging information in the log                                                                                                                                                                                                     |
+| show-all                                   | N/A                                                 | Show details for all matches regardless of status (normally details are only showed for warnings and criticals).                                                                                                                          |
+| [empty-state](#check_http_empty-state)     | ignored                                             | Return status to use when nothing matched filter.                                                                                                                                                                                         |
+| [perf-config](#check_http_perf-config)     |                                                     | Performance data generation configuration                                                                                                                                                                                                 |
+| escape-html                                | N/A                                                 | Escape any < and > characters to prevent HTML encoding                                                                                                                                                                                    |
+| help                                       | N/A                                                 | Show help screen (this screen)                                                                                                                                                                                                            |
+| help-pb                                    | N/A                                                 | Show help screen as a protocol buffer payload                                                                                                                                                                                             |
+| show-default                               | N/A                                                 | Show default values for a given command                                                                                                                                                                                                   |
+| help-short                                 | N/A                                                 | Show help screen (short format).                                                                                                                                                                                                          |
+| [top-syntax](#check_http_top-syntax)       | ${status}: ${problem_list}                          | Top level syntax.                                                                                                                                                                                                                         |
+| [ok-syntax](#check_http_ok-syntax)         | %(status): %(list)                                  | ok syntax.                                                                                                                                                                                                                                |
+| [empty-syntax](#check_http_empty-syntax)   | No URL checked                                      | Empty syntax.                                                                                                                                                                                                                             |
+| [detail-syntax](#check_http_detail-syntax) | ${url} -> ${code} ${result} (${size}B in ${time}ms) | Detail level syntax.                                                                                                                                                                                                                      |
+| [perf-syntax](#check_http_perf-syntax)     | ${url}                                              | Performance alias syntax.                                                                                                                                                                                                                 |
+| url                                        |                                                     | Full URL to check (http://host[:port]/path or https://...). May be given multiple times.                                                                                                                                                  |
+| host                                       |                                                     | Hostname (used when --url is not given).                                                                                                                                                                                                  |
+| port                                       |                                                     | TCP port (defaults to 80 or 443).                                                                                                                                                                                                         |
+| [path](#check_http_path)                   | /                                                   | Path component of the URL.                                                                                                                                                                                                                |
+| [protocol](#check_http_protocol)           | http                                                | Protocol to use: http or https.                                                                                                                                                                                                           |
+| [ssl](#check_http_ssl)                     | 1)] (=0                                             | Force https, alias for --protocol https (ssl=true).                                                                                                                                                                                       |
+| [timeout](#check_http_timeout)             | 30000                                               | Timeout in milliseconds.                                                                                                                                                                                                                  |
+| [method](#check_http_method)               | GET                                                 | HTTP method to use (GET, HEAD, POST, PUT, DELETE, ...).                                                                                                                                                                                   |
+| post-data                                  |                                                     | Request body to send; implies POST unless --method is given.                                                                                                                                                                              |
+| [content-type](#check_http_content-type)   | application/x-www-form-urlencoded                   | Content-Type header for the request body.                                                                                                                                                                                                 |
+| username                                   |                                                     | Username for HTTP Basic authentication.                                                                                                                                                                                                   |
+| password                                   |                                                     | Password for HTTP Basic authentication.                                                                                                                                                                                                   |
+| expected-body                              |                                                     | Substring that must appear in the body for the check to be ok.                                                                                                                                                                            |
+| [user-agent](#check_http_user-agent)       | NSClient++                                          | User-Agent header value.                                                                                                                                                                                                                  |
+| header                                     |                                                     | Additional request header in 'Name: value' form (may be given multiple times).                                                                                                                                                            |
+| [onredirect](#check_http_onredirect)       | ok                                                  | How to handle 3xx redirects: 'follow' to follow the Location, 'ok' (default) to report the redirect as-is.                                                                                                                                |
+| [max-redirs](#check_http_max-redirs)       | 15                                                  | Maximum number of redirects to follow (with --onredirect follow).                                                                                                                                                                         |
+| sni                                        |                                                     | TLS Server Name Indication / verification hostname override (defaults to the URL host).                                                                                                                                                   |
+| [tls-version](#check_http_tls-version)     | tlsv1.2+                                            | TLS version for https (tlsv1.0, tlsv1.1, tlsv1.2, tlsv1.2+, tlsv1.3, sslv3).                                                                                                                                                              |
+| [verify](#check_http_verify)               | peer                                                | Certificate verify mode: none, peer, peer-cert, fail-if-no-cert, fail-if-no-peer-cert, client-certificate.                                                                                                                                |
+| [ca](#check_http_ca)                       | ${ca-path}                                          | Path to a CA bundle to use when verifying the server certificate.                                                                                                                                                                         |
+| json-path                                  |                                                     | Extract a value from the JSON response body as a filter keyword: 'alias:dotted.path' (repeatable). Numeric segments index arrays; single-quote a segment containing a dot. Example: --json-path qlen:data.queue.length "crit=qlen > 100". |
 
 
 
@@ -916,7 +904,6 @@ Path to a CA bundle to use when verifying the server certificate.
 <a id="check_http_filter_keys"></a>
 #### Filter keywords
 
-
 | Option          | Description                                                                                      |
 |-----------------|--------------------------------------------------------------------------------------------------|
 | body            | Body of the response (use with substr/regex matching)                                            |
@@ -949,15 +936,14 @@ Path to a CA bundle to use when verifying the server certificate.
 | warn_count    | Number of items matched the warning criteria.                                  |
 | warn_list     | A list of all items which matched the warning criteria.                        |
 
-
 ### check_nsclient_web_online
 
 Query the REST API of a remote NSClient++ agent (reachability or a remote check).
 
 #### About `check_nsclient_web_online`
 
-`check_nsclient_web_online` queries the REST API of a **remote** NSClient++ agent
-over HTTPS. It has two modes:
+`check_nsclient_web_online` queries the REST API of a **remote** NSClient++ 
+agent over HTTPS. It has two modes:
 
 * **Reachability probe** (no `command=`): it hits `/api/v1/info` and reports
   **OK** `REST API reachable …` when the agent answers, **CRITICAL** when it
@@ -990,17 +976,13 @@ By default the remote certificate is **not** verified (`verify=none`) because
 agents commonly present a self-signed certificate; set `verify=peer` with `ca=`
 to enforce verification.
 
-
 **Jump to section:**
 
 * [Sample Commands](#check_nsclient_web_online_samples)
-* [Command-line Arguments](#check_nsclient_web_online_options)
 
 
 <a id="check_nsclient_web_online_samples"></a>
 #### Sample Commands
-
-_To edit these sample please edit [this page](https://github.com/mickem/nscp-docs/blob/master/samples/CheckNet_check_nsclient_web_online_samples.md)_
 
 **Check that a remote NSClient++ agent's REST API is reachable:**
 
@@ -1046,18 +1028,10 @@ CRITICAL: Failed to reach https://192.168.56.10:9999: Connection refused
 
 
 
-<a id="check_nsclient_web_online_options"></a>
-#### Command-line Arguments
-
-
-
-
-
 
 ### check_ntp_offset
 
 Query an NTP server and check the offset between the local clock and the server.
-
 
 **Jump to section:**
 
@@ -1068,8 +1042,6 @@ Query an NTP server and check the offset between the local clock and the server.
 
 <a id="check_ntp_offset_samples"></a>
 #### Sample Commands
-
-_To edit these sample please edit [this page](https://github.com/mickem/nscp-docs/blob/master/samples/CheckNet_check_ntp_offset_samples.md)_
 
 **Default check against a single NTP server:**
 
@@ -1122,6 +1094,9 @@ OK: pool.ntp.org offset=1326ms stratum=2| 'pool.ntp.org_offset'=1326;60000;12000
 
 
 
+<a id="check_ntp_offset_options"></a>
+#### Command-line Arguments
+
 <a id="check_ntp_offset_warn"></a>
 <a id="check_ntp_offset_crit"></a>
 <a id="check_ntp_offset_debug"></a>
@@ -1133,9 +1108,6 @@ OK: pool.ntp.org offset=1326ms stratum=2| 'pool.ntp.org_offset'=1326;60000;12000
 <a id="check_ntp_offset_help-short"></a>
 <a id="check_ntp_offset_server"></a>
 <a id="check_ntp_offset_servers"></a>
-<a id="check_ntp_offset_options"></a>
-#### Command-line Arguments
-
 
 | Option                                           | Default Value                                          | Description                                                                                                      |
 |--------------------------------------------------|--------------------------------------------------------|------------------------------------------------------------------------------------------------------------------|
@@ -1263,7 +1235,6 @@ Timeout in milliseconds.
 <a id="check_ntp_offset_filter_keys"></a>
 #### Filter keywords
 
-
 | Option        | Description                                                                      |
 |---------------|----------------------------------------------------------------------------------|
 | offset        | Absolute clock offset between local host and server, in milliseconds             |
@@ -1292,11 +1263,9 @@ Timeout in milliseconds.
 | warn_count    | Number of items matched the warning criteria.                                  |
 | warn_list     | A list of all items which matched the warning criteria.                        |
 
-
 ### check_ping
 
 Ping another host and check the result.
-
 
 **Jump to section:**
 
@@ -1308,48 +1277,48 @@ Ping another host and check the result.
 <a id="check_ping_samples"></a>
 #### Sample Commands
 
-_To edit these sample please edit [this page](https://github.com/mickem/nscp-docs/blob/master/samples/CheckNet_check_ping_samples.md)_
-
 **Pinging a single host:**
 
 ```
 check_ping host=192.168.0.1
-OK: All 1 hosts are ok|'192.168.0.1 loss'=0%;5;10 '192.168.0.1 time'=2ms;60;100
+OK: All 1 hosts are ok|'192.168.0.1_loss'=0%;5;10 '192.168.0.1'=2ms;60;100
 ```
 
-**Pinging multiple hosts (comma separated) with a total bucket:**
+**Pinging multiple hosts (repeat `host=`) with a total bucket:**
 
 ```
-check_ping host=192.168.0.1 host=8.8.8.8 host=google.com total
-L        cli OK: OK: All 4 hosts are ok
-L        cli  Performance data: '192.168.1.1_loss'=0;5;10 '192.168.1.1_time'=2;60;100 '8.8.8.8_loss'=0;5;10 '8.8.8.8_time'=3;60;100 'google.com_loss'=0;5;10 'google.com_time'=2;60;100 'total_loss'=0;5;10 'total_time'=7;60;100
+check_ping host=1.1.1.1 host=8.8.8.8 host=google.com total
+L        cli OK: All 4 hosts are ok
+L        cli  Performance data: '1.1.1.1_loss'=0%;5;10 '1.1.1.1'=3ms;60;100 '8.8.8.8_loss'=0%;5;10 '8.8.8.8'=9ms;60;100 'google.com_loss'=0%;5;10 'google.com'=2ms;60;100 'total_loss'=0%;5;10 'total'=14ms;60;100
 ```
 
 **Tighter thresholds with explicit count and timeout:**
 
 ```
 check_ping host=8.8.8.8 count=4 timeout=300 "warn=time > 30 or loss > 0%" "crit=time > 80 or loss > 25%"
-L        cli OK: OK: All 1 hosts are ok
-L        cli  Performance data: '8.8.8.8_loss'=0;0;25 '8.8.8.8_time'=3;30;80
+L        cli OK: All 1 hosts are ok
+L        cli  Performance data: '8.8.8.8_loss'=0%;0;25 '8.8.8.8'=2ms;30;80
 ```
 
 **Custom payload and per-host text output:**
 
 ```
-check_ping host=192.168.0.1 host=192.168.0.2 payload="hello" "top-syntax=%(status): %(list)" "detail-syntax=%(host)=%(time)ms"
-L        cli OK: OK: 192.168.0.1=2ms, 192.168.0.2=22ms
-L        cli  Performance data: '192.168.0.1_loss'=0;5;10 '192.168.0.1_time'=2;60;100 '192.168.0.2_loss'=0;5;10 '192.168.0.2_time'=22;60;100
+check_ping host=1.1.1.1 host=8.8.8.8 payload="hello" "top-syntax=%(status): %(list)" "detail-syntax=%(host)=%(time)ms"
+L        cli OK: 1.1.1.1=2ms, 8.8.8.8=2ms
+L        cli  Performance data: '1.1.1.1_loss'=0%;5;10 '1.1.1.1'=2ms;60;100 '8.8.8.8_loss'=0%;5;10 '8.8.8.8'=2ms;60;100
 ```
 
 **Default check via NRPE:**
 
 ```
 check_nscp_client --host 192.168.56.103 --command check_ping --argument "host=192.168.56.1"
-OK: All 1 hosts are ok|'192.168.56.1 loss'=0%;5;10 '192.168.56.1 time'=1ms;60;100
+OK: All 1 hosts are ok|'192.168.56.1_loss'=0%;5;10 '192.168.56.1'=1ms;60;100
 ```
 
 
 
+<a id="check_ping_options"></a>
+#### Command-line Arguments
 
 <a id="check_ping_warn"></a>
 <a id="check_ping_crit"></a>
@@ -1361,11 +1330,7 @@ OK: All 1 hosts are ok|'192.168.56.1 loss'=0%;5;10 '192.168.56.1 time'=1ms;60;10
 <a id="check_ping_show-default"></a>
 <a id="check_ping_help-short"></a>
 <a id="check_ping_host"></a>
-<a id="check_ping_total"></a>
 <a id="check_ping_hosts"></a>
-<a id="check_ping_options"></a>
-#### Command-line Arguments
-
 
 | Option                                     | Default Value                                     | Description                                                                                                      |
 |--------------------------------------------|---------------------------------------------------|------------------------------------------------------------------------------------------------------------------|
@@ -1390,7 +1355,7 @@ OK: All 1 hosts are ok|'192.168.56.1 loss'=0%;5;10 '192.168.56.1 time'=1ms;60;10
 | [detail-syntax](#check_ping_detail-syntax) | ${ip} Packet loss = ${loss}%, RTA = ${time}ms     | Detail level syntax.                                                                                             |
 | [perf-syntax](#check_ping_perf-syntax)     | ${host}                                           | Performance alias syntax.                                                                                        |
 | host                                       |                                                   | The host to check (or multiple hosts).                                                                           |
-| total                                      | N/A                                               | Include the total of all matching hosts                                                                          |
+| [total](#check_ping_total)                 | 1)] (=0                                           | Include the total of all matching hosts                                                                          |
 | hosts                                      |                                                   | The host to check (or multiple hosts).                                                                           |
 | [count](#check_ping_count)                 | 1                                                 | Number of packets to send.                                                                                       |
 | [timeout](#check_ping_timeout)             | 500                                               | Timeout in milliseconds.                                                                                         |
@@ -1479,6 +1444,12 @@ This is the syntax for the base names of the performance data.
 
 *Default Value:* `${host}`
 
+<h5 id="check_ping_total">total:</h5>
+
+Include the total of all matching hosts
+
+*Default Value:* `1)] (=0`
+
 <h5 id="check_ping_count">count:</h5>
 
 Number of packets to send.
@@ -1500,7 +1471,6 @@ The payload to send in the ping request (default: 'Hello from NSClient++')
 
 <a id="check_ping_filter_keys"></a>
 #### Filter keywords
-
 
 | Option  | Description                                            |
 |---------|--------------------------------------------------------|
@@ -1529,7 +1499,6 @@ The payload to send in the ping request (default: 'Hello from NSClient++')
 | total         | Total number of items.                                                         |
 | warn_count    | Number of items matched the warning criteria.                                  |
 | warn_list     | A list of all items which matched the warning criteria.                        |
-
 
 ### check_ssh
 
@@ -1560,7 +1529,6 @@ Default thresholds: **warning** `time > 1000`, **critical**
 `time > 5000 or result != 'ok'`. A port that answers but is not SSH yields
 `result = no_match` (CRITICAL); a closed port yields `result = refused`.
 
-
 **Jump to section:**
 
 * [Sample Commands](#check_ssh_samples)
@@ -1570,8 +1538,6 @@ Default thresholds: **warning** `time > 1000`, **critical**
 
 <a id="check_ssh_samples"></a>
 #### Sample Commands
-
-_To edit these sample please edit [this page](https://github.com/mickem/nscp-docs/blob/master/samples/CheckNet_check_ssh_samples.md)_
 
 **Check that an SSH server presents a valid banner:**
 
@@ -1611,6 +1577,9 @@ OK: 192.168.56.10:22 ok in 2ms
 
 
 
+<a id="check_ssh_options"></a>
+#### Command-line Arguments
+
 <a id="check_ssh_warn"></a>
 <a id="check_ssh_crit"></a>
 <a id="check_ssh_debug"></a>
@@ -1626,9 +1595,6 @@ OK: 192.168.56.10:22 ok in 2ms
 <a id="check_ssh_send"></a>
 <a id="check_ssh_expect"></a>
 <a id="check_ssh_ca"></a>
-<a id="check_ssh_options"></a>
-#### Command-line Arguments
-
 
 | Option                                    | Default Value                          | Description                                                                                                      |
 |-------------------------------------------|----------------------------------------|------------------------------------------------------------------------------------------------------------------|
@@ -1774,7 +1740,6 @@ Certificate verify mode when --ssl is used: none (default), peer, ... (peer requ
 <a id="check_ssh_filter_keys"></a>
 #### Filter keywords
 
-
 | Option    | Description                                                                    |
 |-----------|--------------------------------------------------------------------------------|
 | connected | 1 when the connection succeeded, 0 otherwise                                   |
@@ -1802,11 +1767,9 @@ Certificate verify mode when --ssl is used: none (default), peer, ... (peer requ
 | warn_count    | Number of items matched the warning criteria.                                  |
 | warn_list     | A list of all items which matched the warning criteria.                        |
 
-
 ### check_tcp
 
 Connect to a TCP port and optionally send/expect data to check that a service is reachable.
-
 
 **Jump to section:**
 
@@ -1817,8 +1780,6 @@ Connect to a TCP port and optionally send/expect data to check that a service is
 
 <a id="check_tcp_samples"></a>
 #### Sample Commands
-
-_To edit these sample please edit [this page](https://github.com/mickem/nscp-docs/blob/master/samples/CheckNet_check_tcp_samples.md)_
 
 **Default check against a single host/port:**
 
@@ -1904,6 +1865,9 @@ OK: All 1 hosts are ok|'192.168.56.1_22 time'=2ms;1000;5000
 
 
 
+<a id="check_tcp_options"></a>
+#### Command-line Arguments
+
 <a id="check_tcp_warn"></a>
 <a id="check_tcp_crit"></a>
 <a id="check_tcp_debug"></a>
@@ -1920,9 +1884,6 @@ OK: All 1 hosts are ok|'192.168.56.1_22 time'=2ms;1000;5000
 <a id="check_tcp_expect"></a>
 <a id="check_tcp_ca"></a>
 <a id="check_tcp_service"></a>
-<a id="check_tcp_options"></a>
-#### Command-line Arguments
-
 
 | Option                                    | Default Value                          | Description                                                                                                                                                          |
 |-------------------------------------------|----------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -2069,7 +2030,6 @@ Certificate verify mode when --ssl is used: none (default), peer, ... (peer requ
 <a id="check_tcp_filter_keys"></a>
 #### Filter keywords
 
-
 | Option    | Description                                                                    |
 |-----------|--------------------------------------------------------------------------------|
 | connected | 1 when the connection succeeded, 0 otherwise                                   |
@@ -2096,7 +2056,4 @@ Certificate verify mode when --ssl is used: none (default), peer, ... (peer requ
 | total         | Total number of items.                                                         |
 | warn_count    | Number of items matched the warning criteria.                                  |
 | warn_list     | A list of all items which matched the warning criteria.                        |
-
-
-
 
