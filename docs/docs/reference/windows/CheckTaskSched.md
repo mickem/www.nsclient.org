@@ -29,6 +29,39 @@ A list of all available queries (check commands)
 
 Check status of scheduled jobs.
 
+Checks the state of Windows Scheduled Tasks. Uses the modern Task Scheduler 2.0
+API (`IRegisteredTask`) by default, falling back to the legacy `ITask` API on
+downlevel systems or when `force-old=true`.
+
+### Run-time keywords
+
+| Keyword                 | Type  | Description                                                                                                                                              |
+|-------------------------|-------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `most_recent_run_time`  | date  | The most recent time the task began running. Comparable to relative times, e.g. `most_recent_run_time < -1d`.                                            |
+| `has_run`               | bool  | True if the task has ever executed.                                                                                                                      |
+| `next_run_time`         | date  | The next time the task is scheduled to run. Rendered as `none` (value `0`) when the task has no upcoming run (disabled, on-demand, or no more triggers). |
+| `number_of_missed_runs` | int   | Number of times the task was scheduled to run but did not. Always `0` on the legacy `ITask` API.                                                         |
+| `last_run_age`          | int   | Seconds since the task last ran, or `-1` if it has never run. Convenient for stale-task alerts, e.g. `last_run_age > 86400`.                             |
+| `task_status`           | state | The task state (`ready`, `running`, `disabled`, `queued`, `unknown`).                                                                                    |
+| `exit_code`             | int   | The task's last run result (`lasttaskresult`).                                                                                                           |
+| `uri`                   | str   | The task's full path / URI (e.g. `\Microsoft\Windows\Defrag\ScheduledDefrag`). Empty on the legacy `ITask` API.                                          |
+| `hidden`                | bool  | True if the task carries the `ITaskSettings` *Hidden* flag. Always `false` on the legacy `ITask` API. See the `hidden` option note below.                |
+
+### Default performance data
+
+`check_tasksched` emits `task_status` (state), `number_of_missed_runs`
+(missedruns), and `exit_code` (lasttaskresult) as perfdata by default, one set
+per matched task. Suppress with `perf-config=extra()` / `perf-syntax=none`, or
+narrow the matched set with `filter=`.
+
+### Hidden tasks
+
+Tasks marked *Hidden* (the `ITaskSettings` Hidden flag) are **excluded from
+enumeration by default** — pass `hidden=true` to include them. The `hidden`
+keyword then reports each task's flag, so `hidden=true "filter=hidden = 1"`
+lists only the hidden tasks. Without `hidden=true` a hidden task is invisible to
+the check regardless of any `hidden` reference in the filter.
+
 **Jump to section:**
 
 * [Sample Commands](#check_tasksched_samples)
@@ -46,6 +79,48 @@ check_nrpe --host 192.168.56.103 --command check_tasksched
 /test: 1 != 0|'test'=1;0;0
 ```
 
+**Alerting on stale tasks (last run older than a day):**
+
+`last_run_age` is the seconds since the task last ran (`-1` if it has never run),
+so you can alert on tasks that should be running regularly but have gone quiet.
+
+```
+check_tasksched "filter=title = 'Backup'" "crit=last_run_age > 86400" "detail-syntax=${title}: last ran ${most_recent_run_time}"
+CRITICAL: \Backup: last ran 2026-07-04 02:00:00
+```
+
+**Alerting on missed runs and inspecting the next scheduled run:**
+
+`number_of_missed_runs` and `next_run_time` come from the modern Task Scheduler
+API. Both are also emitted as perfdata by default (alongside `task_status` state
+and the `exit_code` last-run result).
+
+```
+check_tasksched "filter=folder = '\\'" "warn=number_of_missed_runs > 0" "detail-syntax=${title}: ${number_of_missed_runs} missed, next ${next_run_time}"
+WARNING: \DailyReport: 2 missed, next 2026-07-07 06:00:00
+'DailyReport task_status'=3;;; 'DailyReport number_of_missed_runs'=2;0;; ...
+```
+
+Equivalent semantics also work against `most_recent_run_time` directly — the
+where-parser understands relative-time thresholds, so
+`crit=most_recent_run_time < -1d` means "last run older than a day".
+
+**Reporting the task path (`uri`) and listing hidden tasks:**
+
+`uri` is the task's full path — the same identifier the Task Scheduler UI and
+`schtasks` use. Hidden tasks are skipped unless `hidden=true` is passed; the
+`hidden` keyword then reports the flag.
+
+```
+check_tasksched hidden=true "filter=hidden = 1" "top-syntax=${count} hidden tasks" "detail-syntax=${uri}"
+OK: 7 hidden tasks
+```
+
+```
+check_tasksched "filter=title = 'ScheduledDefrag'" "detail-syntax=${uri} hidden=${hidden}"
+OK: \Microsoft\Windows\Defrag\ScheduledDefrag hidden=0
+```
+
 
 
 <a id="check_tasksched_options"></a>
@@ -53,9 +128,6 @@ check_nrpe --host 192.168.56.103 --command check_tasksched
 
 <a id="check_tasksched_warn"></a>
 <a id="check_tasksched_crit"></a>
-<a id="check_tasksched_debug"></a>
-<a id="check_tasksched_show-all"></a>
-<a id="check_tasksched_escape-html"></a>
 <a id="check_tasksched_help"></a>
 <a id="check_tasksched_help-pb"></a>
 <a id="check_tasksched_show-default"></a>
@@ -68,36 +140,37 @@ check_nrpe --host 192.168.56.103 --command check_tasksched
 <a id="check_tasksched_recursive"></a>
 <a id="check_tasksched_hidden"></a>
 
-| Option                                          | Default Value                         | Description                                                                                                                            |
-|-------------------------------------------------|---------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------|
-| [filter](#check_tasksched_filter)               | enabled = 1                           | Filter which marks interesting items.                                                                                                  |
-| [warning](#check_tasksched_warning)             | exit_code != 0                        | Filter which marks items which generates a warning state.                                                                              |
-| warn                                            |                                       | Short alias for warning                                                                                                                |
-| [critical](#check_tasksched_critical)           | exit_code < 0                         | Filter which marks items which generates a critical state.                                                                             |
-| crit                                            |                                       | Short alias for critical.                                                                                                              |
-| [ok](#check_tasksched_ok)                       |                                       | Filter which marks items which generates an ok state.                                                                                  |
-| debug                                           | N/A                                   | Show debugging information in the log                                                                                                  |
-| show-all                                        | N/A                                   | Show details for all matches regardless of status (normally details are only showed for warnings and criticals).                       |
-| [empty-state](#check_tasksched_empty-state)     | warning                               | Return status to use when nothing matched filter.                                                                                      |
-| [perf-config](#check_tasksched_perf-config)     |                                       | Performance data generation configuration                                                                                              |
-| escape-html                                     | N/A                                   | Escape any < and > characters to prevent HTML encoding                                                                                 |
-| help                                            | N/A                                   | Show help screen (this screen)                                                                                                         |
-| help-pb                                         | N/A                                   | Show help screen as a protocol buffer payload                                                                                          |
-| show-default                                    | N/A                                   | Show default values for a given command                                                                                                |
-| help-short                                      | N/A                                   | Show help screen (short format).                                                                                                       |
-| [top-syntax](#check_tasksched_top-syntax)       | ${status}: ${problem_list}            | Top level syntax.                                                                                                                      |
-| [ok-syntax](#check_tasksched_ok-syntax)         | %(status): All tasks are ok           | ok syntax.                                                                                                                             |
-| [empty-syntax](#check_tasksched_empty-syntax)   | %(status): No tasks found             | Empty syntax.                                                                                                                          |
-| [detail-syntax](#check_tasksched_detail-syntax) | ${folder}/${title}: ${exit_code} != 0 | Detail level syntax.                                                                                                                   |
-| [perf-syntax](#check_tasksched_perf-syntax)     | ${title}                              | Performance alias syntax.                                                                                                              |
-| [force-old](#check_tasksched_force-old)         | 1)] (=0                               | The name of the computer that you want to connect to.                                                                                  |
-| computer                                        |                                       | The name of the computer that you want to connect to.                                                                                  |
-| user                                            |                                       | The user name that is used during the connection to the computer.                                                                      |
-| domain                                          |                                       | The domain of the user specified in the user parameter.                                                                                |
-| password                                        |                                       | The password that is used to connect to the computer. If the user name and password are not specified, then the current token is used. |
-| folder                                          |                                       | The folder in which the tasks to check reside.                                                                                         |
-| recursive                                       |                                       | Recurse sub folder (defaults to true).                                                                                                 |
-| hidden                                          |                                       | Look for hidden tasks.                                                                                                                 |
+| Option                                            | Default Value                         | Description                                                                                                                            |
+|---------------------------------------------------|---------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------|
+| [filter](#check_tasksched_filter)                 | enabled = 1                           | Filter which marks interesting items.                                                                                                  |
+| [warning](#check_tasksched_warning)               | exit_code != 0                        | Filter which marks items which generates a warning state.                                                                              |
+| warn                                              |                                       | Short alias for warning                                                                                                                |
+| [critical](#check_tasksched_critical)             | exit_code < 0                         | Filter which marks items which generates a critical state.                                                                             |
+| crit                                              |                                       | Short alias for critical.                                                                                                              |
+| [ok](#check_tasksched_ok)                         |                                       | Filter which marks items which generates an ok state.                                                                                  |
+| [debug](#check_tasksched_debug)                   | 1)] (=0                               | Show debugging information in the log                                                                                                  |
+| [show-all](#check_tasksched_show-all)             | 1)] (=0                               | Show details for all matches regardless of status (normally details are only showed for warnings and criticals).                       |
+| [empty-state](#check_tasksched_empty-state)       | warning                               | Return status to use when nothing matched filter.                                                                                      |
+| [perf-config](#check_tasksched_perf-config)       |                                       | Performance data generation configuration                                                                                              |
+| [escape-html](#check_tasksched_escape-html)       | 1)] (=0                               | Escape any < and > characters to prevent HTML encoding                                                                                 |
+| [list-separator](#check_tasksched_list-separator) | ,                                     | String used to separate the items of %(list), %(ok_list), %(warn_list), %(crit_list), %(problem_list) and %(detail_list).              |
+| help                                              | N/A                                   | Show help screen (this screen)                                                                                                         |
+| help-pb                                           | N/A                                   | Show help screen as a protocol buffer payload                                                                                          |
+| show-default                                      | N/A                                   | Show default values for a given command                                                                                                |
+| help-short                                        | N/A                                   | Show help screen (short format).                                                                                                       |
+| [top-syntax](#check_tasksched_top-syntax)         | ${status}: ${problem_list}            | Top level syntax.                                                                                                                      |
+| [ok-syntax](#check_tasksched_ok-syntax)           | %(status): All tasks are ok           | ok syntax.                                                                                                                             |
+| [empty-syntax](#check_tasksched_empty-syntax)     | %(status): No tasks found             | Empty syntax.                                                                                                                          |
+| [detail-syntax](#check_tasksched_detail-syntax)   | ${folder}/${title}: ${exit_code} != 0 | Detail level syntax.                                                                                                                   |
+| [perf-syntax](#check_tasksched_perf-syntax)       | ${title}                              | Performance alias syntax.                                                                                                              |
+| [force-old](#check_tasksched_force-old)           | 1)] (=0                               | The name of the computer that you want to connect to.                                                                                  |
+| computer                                          |                                       | The name of the computer that you want to connect to.                                                                                  |
+| user                                              |                                       | The user name that is used during the connection to the computer.                                                                      |
+| domain                                            |                                       | The domain of the user specified in the user parameter.                                                                                |
+| password                                          |                                       | The password that is used to connect to the computer. If the user name and password are not specified, then the current token is used. |
+| folder                                            |                                       | The folder in which the tasks to check reside.                                                                                         |
+| recursive                                         |                                       | Recurse sub folder (defaults to true).                                                                                                 |
+| hidden                                            |                                       | Look for hidden tasks.                                                                                                                 |
 
 
 
@@ -131,6 +204,18 @@ Filter which marks items which generates an ok state.
 If anything matches this any previous state for this item will be reset to ok.
 
 
+<h5 id="check_tasksched_debug">debug:</h5>
+
+Show debugging information in the log
+
+*Default Value:* `1)] (=0`
+
+<h5 id="check_tasksched_show-all">show-all:</h5>
+
+Show details for all matches regardless of status (normally details are only showed for warnings and criticals).
+
+*Default Value:* `1)] (=0`
+
 <h5 id="check_tasksched_empty-state">empty-state:</h5>
 
 Return status to use when nothing matched filter.
@@ -143,6 +228,21 @@ If no filter is specified this will never happen unless the file is empty.
 Performance data generation configuration
 TODO: obj ( key: value; key: value) obj (key:valuer;key:value)
 
+
+<h5 id="check_tasksched_escape-html">escape-html:</h5>
+
+Escape any < and > characters to prevent HTML encoding
+
+*Default Value:* `1)] (=0`
+
+<h5 id="check_tasksched_list-separator">list-separator:</h5>
+
+String used to separate the items of %(list), %(ok_list), %(warn_list), %(crit_list), %(problem_list) and %(detail_list).
+Accepts the escapes \n, \r, \t and \\ (a configuration file value is a single line, so a real newline cannot be written).
+Set to \n to render one item per line, which most Nagios compatible frontends show as long output below the summary line.
+The top-syntax decides what precedes the first item; templates are never escape-decoded, so reference the decoded separator as %(sep) to break before it too: --top-syntax "%(status): %(count) items:%(sep)%(list)".
+
+*Default Value:* `, `
 
 <h5 id="check_tasksched_top-syntax">top-syntax:</h5>
 
@@ -171,7 +271,7 @@ DEPRECATED! This is the syntax for when nothing matches the filter.
 
 Detail level syntax.
 Used to format each resulting item in the message.
-%(list) will be replaced with all the items formated by this syntax string in the top-syntax.
+%(list) will be replaced with all the items formatted by this syntax string in the top-syntax.
 To add a keyword to the message you can use two syntaxes either ${keyword} or %(keyword) (there is no difference between them apart from ${} can be difficult to escape on linux).
 
 *Default Value:* `${folder}/${title}: ${exit_code} != 0`
@@ -193,38 +293,44 @@ The name of the computer that you want to connect to.
 <a id="check_tasksched_filter_keys"></a>
 #### Filter keywords
 
-| Option               | Description                                                             |
-|----------------------|-------------------------------------------------------------------------|
-| application          | Retrieves the name of the application that the task is associated with. |
-| comment              | Retrieves the comment or description for the work item.                 |
-| creator              | Retrieves the creator of the work item.                                 |
-| enabled              | TODO.                                                                   |
-| exit_code            | Retrieves the work item's last exit code.                               |
-| folder               | The task folder                                                         |
-| has_run              | True if the task has ever executed.                                     |
-| max_run_time         | Retrieves the maximum length of time the task can run.                  |
-| most_recent_run_time | Retrieves the most recent time the work item began running.             |
-| parameters           | Retrieves the command-line parameters of a task.                        |
-| priority             | Retrieves the priority for the task.                                    |
-| task_status          | Retrieves the status of the work item.                                  |
-| title                | The task title                                                          |
-| working_directory    | Retrieves the working directory of the task.                            |
+| Option                | Description                                                                                                      |
+|-----------------------|------------------------------------------------------------------------------------------------------------------|
+| application           | Retrieves the name of the application that the task is associated with.                                          |
+| comment               | Retrieves the comment or description for the work item.                                                          |
+| creator               | Retrieves the creator of the work item.                                                                          |
+| enabled               | TODO.                                                                                                            |
+| exit_code             | Retrieves the work item's last exit code.                                                                        |
+| folder                | The task folder                                                                                                  |
+| has_run               | True if the task has ever executed.                                                                              |
+| hidden                | True if the task is marked hidden (ITaskSettings Hidden flag). Always false on the legacy ITask API.             |
+| last_run_age          | Seconds since the task last ran (-1 if it has never run). Use e.g. last_run_age > 86400 to alert on stale tasks. |
+| max_run_time          | Retrieves the maximum length of time the task can run.                                                           |
+| most_recent_run_time  | Retrieves the most recent time the work item began running.                                                      |
+| next_run_time         | The next time the task is scheduled to run (0 / rendered as 'none' if it has no upcoming run).                   |
+| number_of_missed_runs | Number of times the task was scheduled to run but did not (0 on the legacy ITask API).                           |
+| parameters            | Retrieves the command-line parameters of a task.                                                                 |
+| priority              | Retrieves the priority for the task.                                                                             |
+| task_status           | Retrieves the status of the work item.                                                                           |
+| title                 | The task title                                                                                                   |
+| uri                   | The task's full path / URI (e.g. \Microsoft\Windows\Defrag\ScheduledDefrag). Empty on the legacy ITask API.      |
+| working_directory     | Retrieves the working directory of the task.                                                                     |
 
 **Common options for all checks:**
 
-| Option        | Description                                                                    |
-|---------------|--------------------------------------------------------------------------------|
-| count         | Number of items matching the filter.                                           |
-| crit_count    | Number of items matched the critical criteria.                                 |
-| crit_list     | A list of all items which matched the critical criteria.                       |
-| detail_list   | A special list with critical, then warning and finally ok.                     |
-| list          | A list of all items which matched the filter.                                  |
-| ok_count      | Number of items matched the ok criteria.                                       |
-| ok_list       | A list of all items which matched the ok criteria.                             |
-| problem_count | Number of items matched either warning or critical criteria.                   |
-| problem_list  | A list of all items which matched either the critical or the warning criteria. |
-| status        | The returned status (OK/WARN/CRIT/UNKNOWN).                                    |
-| total         | Total number of items.                                                         |
-| warn_count    | Number of items matched the warning criteria.                                  |
-| warn_list     | A list of all items which matched the warning criteria.                        |
+| Option        | Description                                                                                                                                                                                                                                                           |
+|---------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| count         | Number of items matching the filter.                                                                                                                                                                                                                                  |
+| crit_count    | Number of items matched the critical criteria.                                                                                                                                                                                                                        |
+| crit_list     | A list of all items which matched the critical criteria.                                                                                                                                                                                                              |
+| detail_list   | A special list with critical, then warning and finally ok.                                                                                                                                                                                                            |
+| list          | A list of all items which matched the filter.                                                                                                                                                                                                                         |
+| ok_count      | Number of items matched the ok criteria.                                                                                                                                                                                                                              |
+| ok_list       | A list of all items which matched the ok criteria.                                                                                                                                                                                                                    |
+| problem_count | Number of items matched either warning or critical criteria.                                                                                                                                                                                                          |
+| problem_list  | A list of all items which matched either the critical or the warning criteria.                                                                                                                                                                                        |
+| sep           | The decoded list-separator, for use in the top-syntax: templates are never escape-decoded (a literal C:\temp must stay a literal C:\temp), so reference %(sep) to break the line before the first list item, e.g. top-syntax=%(status): %(count) items:%(sep)%(list). |
+| status        | The returned status (OK/WARN/CRIT/UNKNOWN).                                                                                                                                                                                                                           |
+| total         | Total number of items.                                                                                                                                                                                                                                                |
+| warn_count    | Number of items matched the warning criteria.                                                                                                                                                                                                                         |
+| warn_list     | A list of all items which matched the warning criteria.                                                                                                                                                                                                               |
 

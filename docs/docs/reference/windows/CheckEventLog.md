@@ -219,6 +219,36 @@ A list of all available queries (check commands)
 
 Check for errors in the event log.
 
+#### Filtering by account SID (`user` / `sid`)
+
+Each event carries the security identifier (SID) of the account associated with
+it. The `user` keyword (alias `sid`) exposes that SID as a string (e.g.
+`S-1-5-18` for `LOCAL SYSTEM`), so you can scope a check to a specific account.
+
+```
+check_eventlog file=Security "filter=user = 'S-1-5-18'" "detail-syntax=${id}: ${message}"
+```
+
+`user`/`sid` is populated by the modern Windows Event Log API
+(`EvtSystemUserID`). On the legacy `ReadEventLog` API (pre-Vista, or when the
+modern API is unavailable) it renders as an empty string.
+
+#### "Since last check" scanning
+
+To avoid re-scanning and double-counting the same events on every poll, use the
+`bookmark` option. With `bookmark=auto` (or a shared bookmark name) the check
+resumes after the last event it saw, rather than re-walking the whole
+`scan-range` window each time:
+
+```
+check_eventlog file=Application bookmark=auto "filter=level = 'error'"
+```
+
+The bookmark position is persisted across restarts (stored under
+`eventlog.bookmarks`), so a monitoring cycle only ever reports genuinely new
+events. Without a bookmark the check falls back to the time-window `scan-range`
+(default `-24h`), which is stateless and may re-report events inside the window.
+
 **Jump to section:**
 
 * [Command-line Arguments](#check_eventlog_options)
@@ -231,9 +261,6 @@ Check for errors in the event log.
 
 <a id="check_eventlog_warn"></a>
 <a id="check_eventlog_crit"></a>
-<a id="check_eventlog_debug"></a>
-<a id="check_eventlog_show-all"></a>
-<a id="check_eventlog_escape-html"></a>
 <a id="check_eventlog_help"></a>
 <a id="check_eventlog_help-pb"></a>
 <a id="check_eventlog_show-default"></a>
@@ -241,35 +268,36 @@ Check for errors in the event log.
 <a id="check_eventlog_log"></a>
 <a id="check_eventlog_truncate-message"></a>
 
-| Option                                         | Default Value                                  | Description                                                                                                                                                                                                 |
-|------------------------------------------------|------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| [filter](#check_eventlog_filter)               | level in ('warning', 'error', 'critical')      | Filter which marks interesting items.                                                                                                                                                                       |
-| [warning](#check_eventlog_warning)             | level = 'warning', problem_count > 0           | Filter which marks items which generates a warning state.                                                                                                                                                   |
-| warn                                           |                                                | Short alias for warning                                                                                                                                                                                     |
-| [critical](#check_eventlog_critical)           | level in ('error', 'critical')                 | Filter which marks items which generates a critical state.                                                                                                                                                  |
-| crit                                           |                                                | Short alias for critical.                                                                                                                                                                                   |
-| [ok](#check_eventlog_ok)                       |                                                | Filter which marks items which generates an ok state.                                                                                                                                                       |
-| debug                                          | N/A                                            | Show debugging information in the log                                                                                                                                                                       |
-| show-all                                       | N/A                                            | Show details for all matches regardless of status (normally details are only showed for warnings and criticals).                                                                                            |
-| [empty-state](#check_eventlog_empty-state)     | ok                                             | Return status to use when nothing matched filter.                                                                                                                                                           |
-| [perf-config](#check_eventlog_perf-config)     | level(ignored:true)                            | Performance data generation configuration                                                                                                                                                                   |
-| escape-html                                    | N/A                                            | Escape any < and > characters to prevent HTML encoding                                                                                                                                                      |
-| help                                           | N/A                                            | Show help screen (this screen)                                                                                                                                                                              |
-| help-pb                                        | N/A                                            | Show help screen as a protocol buffer payload                                                                                                                                                               |
-| show-default                                   | N/A                                            | Show default values for a given command                                                                                                                                                                     |
-| help-short                                     | N/A                                            | Show help screen (short format).                                                                                                                                                                            |
-| [unique-index](#check_eventlog_unique-index)   |                                                | Unique syntax.                                                                                                                                                                                              |
-| [top-syntax](#check_eventlog_top-syntax)       | ${status}: ${count} message(s) ${problem_list} | Top level syntax.                                                                                                                                                                                           |
-| [ok-syntax](#check_eventlog_ok-syntax)         | %(status): Event log seems fine                | ok syntax.                                                                                                                                                                                                  |
-| [empty-syntax](#check_eventlog_empty-syntax)   | %(status): No entries found                    | Empty syntax.                                                                                                                                                                                               |
-| [detail-syntax](#check_eventlog_detail-syntax) | ${file} ${source} (${message})                 | Detail level syntax.                                                                                                                                                                                        |
-| [perf-syntax](#check_eventlog_perf-syntax)     | ${file}_${source}                              | Performance alias syntax.                                                                                                                                                                                   |
-| [file](#check_eventlog_file)                   |                                                | File to read (can be specified multiple times to check multiple files.                                                                                                                                      |
-| log                                            |                                                | Same as file                                                                                                                                                                                                |
-| [scan-range](#check_eventlog_scan-range)       |                                                | Date range to scan.                                                                                                                                                                                         |
-| truncate-message                               |                                                | Maximum length of message for each event log message text.                                                                                                                                                  |
-| [unique](#check_eventlog_unique)               | 1                                              | Shorthand for setting default unique index: ${log}-${source}-${id}.                                                                                                                                         |
-| [bookmark](#check_eventlog_bookmark)           | auto                                           | Use bookmarks to only look for messages since last check (with the same bookmark name). If you set this to auto or leave it empty the bookmark name will be derived from your logs, filters, warn and crit. |
+| Option                                           | Default Value                                  | Description                                                                                                                                                                                                 |
+|--------------------------------------------------|------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [filter](#check_eventlog_filter)                 | level in ('warning', 'error', 'critical')      | Filter which marks interesting items.                                                                                                                                                                       |
+| [warning](#check_eventlog_warning)               | level = 'warning', problem_count > 0           | Filter which marks items which generates a warning state.                                                                                                                                                   |
+| warn                                             |                                                | Short alias for warning                                                                                                                                                                                     |
+| [critical](#check_eventlog_critical)             | level in ('error', 'critical')                 | Filter which marks items which generates a critical state.                                                                                                                                                  |
+| crit                                             |                                                | Short alias for critical.                                                                                                                                                                                   |
+| [ok](#check_eventlog_ok)                         |                                                | Filter which marks items which generates an ok state.                                                                                                                                                       |
+| [debug](#check_eventlog_debug)                   | 1)] (=0                                        | Show debugging information in the log                                                                                                                                                                       |
+| [show-all](#check_eventlog_show-all)             | 1)] (=0                                        | Show details for all matches regardless of status (normally details are only showed for warnings and criticals).                                                                                            |
+| [empty-state](#check_eventlog_empty-state)       | ok                                             | Return status to use when nothing matched filter.                                                                                                                                                           |
+| [perf-config](#check_eventlog_perf-config)       | level(ignored:true)                            | Performance data generation configuration                                                                                                                                                                   |
+| [escape-html](#check_eventlog_escape-html)       | 1)] (=0                                        | Escape any < and > characters to prevent HTML encoding                                                                                                                                                      |
+| [list-separator](#check_eventlog_list-separator) | ,                                              | String used to separate the items of %(list), %(ok_list), %(warn_list), %(crit_list), %(problem_list) and %(detail_list).                                                                                   |
+| help                                             | N/A                                            | Show help screen (this screen)                                                                                                                                                                              |
+| help-pb                                          | N/A                                            | Show help screen as a protocol buffer payload                                                                                                                                                               |
+| show-default                                     | N/A                                            | Show default values for a given command                                                                                                                                                                     |
+| help-short                                       | N/A                                            | Show help screen (short format).                                                                                                                                                                            |
+| [unique-index](#check_eventlog_unique-index)     |                                                | Unique syntax.                                                                                                                                                                                              |
+| [top-syntax](#check_eventlog_top-syntax)         | ${status}: ${count} message(s) ${problem_list} | Top level syntax.                                                                                                                                                                                           |
+| [ok-syntax](#check_eventlog_ok-syntax)           | %(status): Event log seems fine                | ok syntax.                                                                                                                                                                                                  |
+| [empty-syntax](#check_eventlog_empty-syntax)     | %(status): No entries found                    | Empty syntax.                                                                                                                                                                                               |
+| [detail-syntax](#check_eventlog_detail-syntax)   | ${file} ${source} (${message})                 | Detail level syntax.                                                                                                                                                                                        |
+| [perf-syntax](#check_eventlog_perf-syntax)       | ${file}_${source}                              | Performance alias syntax.                                                                                                                                                                                   |
+| [file](#check_eventlog_file)                     |                                                | File to read (can be specified multiple times to check multiple files.                                                                                                                                      |
+| log                                              |                                                | Same as file                                                                                                                                                                                                |
+| [scan-range](#check_eventlog_scan-range)         |                                                | Date range to scan.                                                                                                                                                                                         |
+| truncate-message                                 |                                                | Maximum length of message for each event log message text.                                                                                                                                                  |
+| [unique](#check_eventlog_unique)                 | 1                                              | Shorthand for setting default unique index: ${log}-${source}-${id}.                                                                                                                                         |
+| [bookmark](#check_eventlog_bookmark)             | auto                                           | Use bookmarks to only look for messages since last check (with the same bookmark name). If you set this to auto or leave it empty the bookmark name will be derived from your logs, filters, warn and crit. |
 
 
 
@@ -303,6 +331,18 @@ Filter which marks items which generates an ok state.
 If anything matches this any previous state for this item will be reset to ok.
 
 
+<h5 id="check_eventlog_debug">debug:</h5>
+
+Show debugging information in the log
+
+*Default Value:* `1)] (=0`
+
+<h5 id="check_eventlog_show-all">show-all:</h5>
+
+Show details for all matches regardless of status (normally details are only showed for warnings and criticals).
+
+*Default Value:* `1)] (=0`
+
 <h5 id="check_eventlog_empty-state">empty-state:</h5>
 
 Return status to use when nothing matched filter.
@@ -316,6 +356,21 @@ Performance data generation configuration
 TODO: obj ( key: value; key: value) obj (key:valuer;key:value)
 
 *Default Value:* `level(ignored:true)`
+
+<h5 id="check_eventlog_escape-html">escape-html:</h5>
+
+Escape any < and > characters to prevent HTML encoding
+
+*Default Value:* `1)] (=0`
+
+<h5 id="check_eventlog_list-separator">list-separator:</h5>
+
+String used to separate the items of %(list), %(ok_list), %(warn_list), %(crit_list), %(problem_list) and %(detail_list).
+Accepts the escapes \n, \r, \t and \\ (a configuration file value is a single line, so a real newline cannot be written).
+Set to \n to render one item per line, which most Nagios compatible frontends show as long output below the summary line.
+The top-syntax decides what precedes the first item; templates are never escape-decoded, so reference the decoded separator as %(sep) to break before it too: --top-syntax "%(status): %(count) items:%(sep)%(list)".
+
+*Default Value:* `, `
 
 <h5 id="check_eventlog_unique-index">unique-index:</h5>
 
@@ -350,7 +405,7 @@ DEPRECATED! This is the syntax for when nothing matches the filter.
 
 Detail level syntax.
 Used to format each resulting item in the message.
-%(list) will be replaced with all the items formated by this syntax string in the top-syntax.
+%(list) will be replaced with all the items formatted by this syntax string in the top-syntax.
 To add a keyword to the message you can use two syntaxes either ${keyword} or %(keyword) (there is no difference between them apart from ${} can be difficult to escape on linux).
 
 *Default Value:* `${file} ${source} (${message})`
@@ -390,45 +445,48 @@ Use bookmarks to only look for messages since last check (with the same bookmark
 <a id="check_eventlog_filter_keys"></a>
 #### Filter keywords
 
-| Option      | Description                                                                |
-|-------------|----------------------------------------------------------------------------|
-| category    | TODO                                                                       |
-| computer    | Which computer generated the message                                       |
-| customer    | TODO                                                                       |
-| file        | The logfile name                                                           |
-| guid        | The logfile name                                                           |
-| id          | Eventlog id                                                                |
-| keyword     | The keyword associated with this event                                     |
-| level       | Severity level (error, warning, info, success, auditSuccess, auditFailure) |
-| log         | alias for file                                                             |
-| message     | The message rendered as a string.                                          |
-| opcode      | The opcode associated with this event                                      |
-| provider    | Source system.                                                             |
-| rawid       | Raw message id (contains many other fields all baked into a single number) |
-| source      | Source system.                                                             |
-| task        | The type of event (task)                                                   |
-| type        | alias for level (old, deprecated)                                          |
-| written     | When the message was written to file                                       |
-| written_str | When the message was written to file as an absolute date string            |
-| xml         | Get event as XML message.                                                  |
+| Option      | Description                                                                                                      |
+|-------------|------------------------------------------------------------------------------------------------------------------|
+| category    | TODO                                                                                                             |
+| computer    | Which computer generated the message                                                                             |
+| customer    | TODO                                                                                                             |
+| file        | The logfile name                                                                                                 |
+| guid        | The logfile name                                                                                                 |
+| id          | Eventlog id                                                                                                      |
+| keyword     | The keyword associated with this event                                                                           |
+| level       | Severity level (error, warning, info, success, auditSuccess, auditFailure)                                       |
+| log         | alias for file                                                                                                   |
+| message     | The message rendered as a string.                                                                                |
+| opcode      | The opcode associated with this event                                                                            |
+| provider    | Source system.                                                                                                   |
+| rawid       | Raw message id (contains many other fields all baked into a single number)                                       |
+| sid         | Alias for user (the event's account SID)                                                                         |
+| source      | Source system.                                                                                                   |
+| task        | The type of event (task)                                                                                         |
+| type        | alias for level (old, deprecated)                                                                                |
+| user        | SID of the account associated with the event (e.g. S-1-5-18); empty on the legacy API. Enables filtering by SID. |
+| written     | When the message was written to file                                                                             |
+| written_str | When the message was written to file as an absolute date string                                                  |
+| xml         | Get event as XML message.                                                                                        |
 
 **Common options for all checks:**
 
-| Option        | Description                                                                    |
-|---------------|--------------------------------------------------------------------------------|
-| count         | Number of items matching the filter.                                           |
-| crit_count    | Number of items matched the critical criteria.                                 |
-| crit_list     | A list of all items which matched the critical criteria.                       |
-| detail_list   | A special list with critical, then warning and finally ok.                     |
-| list          | A list of all items which matched the filter.                                  |
-| ok_count      | Number of items matched the ok criteria.                                       |
-| ok_list       | A list of all items which matched the ok criteria.                             |
-| problem_count | Number of items matched either warning or critical criteria.                   |
-| problem_list  | A list of all items which matched either the critical or the warning criteria. |
-| status        | The returned status (OK/WARN/CRIT/UNKNOWN).                                    |
-| total         | Total number of items.                                                         |
-| warn_count    | Number of items matched the warning criteria.                                  |
-| warn_list     | A list of all items which matched the warning criteria.                        |
+| Option        | Description                                                                                                                                                                                                                                                           |
+|---------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| count         | Number of items matching the filter.                                                                                                                                                                                                                                  |
+| crit_count    | Number of items matched the critical criteria.                                                                                                                                                                                                                        |
+| crit_list     | A list of all items which matched the critical criteria.                                                                                                                                                                                                              |
+| detail_list   | A special list with critical, then warning and finally ok.                                                                                                                                                                                                            |
+| list          | A list of all items which matched the filter.                                                                                                                                                                                                                         |
+| ok_count      | Number of items matched the ok criteria.                                                                                                                                                                                                                              |
+| ok_list       | A list of all items which matched the ok criteria.                                                                                                                                                                                                                    |
+| problem_count | Number of items matched either warning or critical criteria.                                                                                                                                                                                                          |
+| problem_list  | A list of all items which matched either the critical or the warning criteria.                                                                                                                                                                                        |
+| sep           | The decoded list-separator, for use in the top-syntax: templates are never escape-decoded (a literal C:\temp must stay a literal C:\temp), so reference %(sep) to break the line before the first list item, e.g. top-syntax=%(status): %(count) items:%(sep)%(list). |
+| status        | The returned status (OK/WARN/CRIT/UNKNOWN).                                                                                                                                                                                                                           |
+| total         | Total number of items.                                                                                                                                                                                                                                                |
+| warn_count    | Number of items matched the warning criteria.                                                                                                                                                                                                                         |
+| warn_list     | A list of all items which matched the warning criteria.                                                                                                                                                                                                               |
 
 ## Configuration
 
@@ -651,30 +709,31 @@ This is a section of objects. This means that you will create objects below this
 **Keys:**
 
 
-| Key           | Default Value             | Description     |
-|---------------|---------------------------|-----------------|
-| command       |                           | COMMAND NAME    |
-| critical      |                           | CRITICAL FILTER |
-| debug         |                           | DEBUG           |
-| destination   |                           | DESTINATION     |
-| detail syntax |                           | SYNTAX          |
-| empty message | eventlog found no records | EMPTY MESSAGE   |
-| escape html   |                           | ESCAPE HTML     |
-| filter        |                           | FILTER          |
-| log           |                           | FILE            |
-| logs          |                           | FILES           |
-| maximum age   | 5m                        | MAXIMUM AGE     |
-| ok            |                           | OK FILTER       |
-| ok syntax     |                           | SYNTAX          |
-| perf config   |                           | PERF CONFIG     |
-| severity      |                           | SEVERITY        |
-| silent period | false                     | Silent period   |
-| source id     |                           | SOURCE ID       |
-| target        |                           | DESTINATION     |
-| target id     |                           | TARGET ID       |
-| top syntax    |                           | SYNTAX          |
-| truncate      |                           | Truncate        |
-| warning       |                           | WARNING FILTER  |
+| Key            | Default Value             | Description     |
+|----------------|---------------------------|-----------------|
+| command        |                           | COMMAND NAME    |
+| critical       |                           | CRITICAL FILTER |
+| debug          |                           | DEBUG           |
+| destination    |                           | DESTINATION     |
+| detail syntax  |                           | SYNTAX          |
+| empty message  | eventlog found no records | EMPTY MESSAGE   |
+| escape html    |                           | ESCAPE HTML     |
+| filter         |                           | FILTER          |
+| list separator |                           | LIST SEPARATOR  |
+| log            |                           | FILE            |
+| logs           |                           | FILES           |
+| maximum age    | 5m                        | MAXIMUM AGE     |
+| ok             |                           | OK FILTER       |
+| ok syntax      |                           | SYNTAX          |
+| perf config    |                           | PERF CONFIG     |
+| severity       |                           | SEVERITY        |
+| silent period  | false                     | Silent period   |
+| source id      |                           | SOURCE ID       |
+| target         |                           | DESTINATION     |
+| target id      |                           | TARGET ID       |
+| top syntax     |                           | SYNTAX          |
+| truncate       |                           | Truncate        |
+| warning        |                           | WARNING FILTER  |
 
 
 **Sample:**
@@ -690,6 +749,7 @@ This is a section of objects. This means that you will create objects below this
 empty message=eventlog found no records
 #escape html=...
 #filter=...
+#list separator=...
 #log=...
 #logs=...
 maximum age=5m
