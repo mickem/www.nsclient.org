@@ -12,6 +12,27 @@ page tracks those in one place. Full per-release detail lives in each
 
 ---
 
+## 0.16.4
+
+- 🔒 **The bundled Mongoose web server is upgraded to 7.23,** fixing two
+  critical (CVSS 9.1) HTTP request-smuggling vulnerabilities in its HTTP
+  parser ([CVE-2026-73256](https://nvd.nist.gov/vuln/detail/CVE-2026-73256),
+  [CVE-2026-73257](https://nvd.nist.gov/vuln/detail/CVE-2026-73257)). This
+  affects the **Windows builds** of the `WEBServer` module (REST API / web UI)
+  and is exploitable when NSClient++ sits behind a reverse proxy or WAF —
+  upgrade promptly in that topology. The Linux packages use the Boost.Beast
+  backend and are unaffected. No configuration change is needed. See
+  [Security notices](../security/notices.md).
+
+## 0.16.3
+
+- **`check_nt` (NSClientServer) answers the real nagios-plugins client again.**
+  Requests without a trailing newline used to hang until the client timed out
+  (`No data was received from host!`) — broken since 0.12.2. Remove any
+  client-side timeout/retry workarounds; no configuration change is needed.
+  If you expose this legacy endpoint, see the new guidance on securing it
+  (password, `allowed hosts` and the `allow` command list).
+
 ## 0.16.2
 
 - 🔒 **Sensitive settings values are redacted on read.** The REST settings
