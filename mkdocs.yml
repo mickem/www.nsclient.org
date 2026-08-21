@@ -1,4 +1,5 @@
 site_name: NSClient++
+site_url: https://nsclient.org
 repo_url: https://github.com/mickem/nscp
 repo_name: NSClient++
 
@@ -47,7 +48,7 @@ nav:
         - Settings: docs/concepts/settings.md
         - Permissions: docs/concepts/permissions.md
     - Setup:
-        - Supported platforms: docs/setup/supported-platforms.md0
+        - Supported platforms: docs/setup/supported-platforms.md
         - Installation: docs/setup/installing.md
         - Upgrading: docs/setup/upgrading.md
         - Securing NSClient++: docs/setup/securing.md
@@ -76,6 +77,7 @@ nav:
         - External Scripts: docs/scenarios/external-scripts.md
     - Reference:
         - Reference: docs/reference/index.md
+        - Common options: docs/reference/common-options.md
         - Check commands:
             - CheckDisk: docs/reference/check/CheckDisk.md
             - CheckExternalScripts: docs/reference/check/CheckExternalScripts.md
