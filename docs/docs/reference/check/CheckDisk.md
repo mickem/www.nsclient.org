@@ -137,25 +137,29 @@ Device-state keywords (populated on `has_device = 1` rows): `friendly_name`,
 These options are shared by all filter based commands and are described on the [common options](../common-options.md#common-options) page; the default values below are specific to this command.
 
 
-| Option                                                                                             | Default Value                                                                                                                       |
-|----------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------|
-| <a id="check_disk_health_filter"></a>[filter](../common-options.md#filter)                         | name != '_Total'                                                                                                                    |
-| <a id="check_disk_health_warning"></a>[warning](../common-options.md#warning)                      | (has_space = 1 and free_pct < 20) or percent_disk_time > 80 or (has_device = 1 and health_status = 'Warning')                       |
-| <a id="check_disk_health_warn"></a>[warn](../common-options.md#warn)                               |                                                                                                                                     |
-| <a id="check_disk_health_critical"></a>[critical](../common-options.md#critical)                   | (has_space = 1 and free_pct < 10) or percent_disk_time > 95 or (has_device = 1 and (health_status = 'Unhealthy' or is_offline = 1)) |
-| <a id="check_disk_health_crit"></a>[crit](../common-options.md#crit)                               |                                                                                                                                     |
-| <a id="check_disk_health_ok"></a>[ok](../common-options.md#ok)                                     |                                                                                                                                     |
-| <a id="check_disk_health_debug"></a>[debug](../common-options.md#debug)                            | false                                                                                                                               |
-| <a id="check_disk_health_show-all"></a>[show-all](../common-options.md#show-all)                   | false                                                                                                                               |
-| <a id="check_disk_health_empty-state"></a>[empty-state](../common-options.md#empty-state)          | critical                                                                                                                            |
-| <a id="check_disk_health_perf-config"></a>[perf-config](../common-options.md#perf-config)          |                                                                                                                                     |
-| <a id="check_disk_health_escape-html"></a>[escape-html](../common-options.md#escape-html)          | false                                                                                                                               |
-| <a id="check_disk_health_list-separator"></a>[list-separator](../common-options.md#list-separator) | ,                                                                                                                                   |
-| <a id="check_disk_health_top-syntax"></a>[top-syntax](../common-options.md#top-syntax)             | ${status}: ${list}                                                                                                                  |
-| <a id="check_disk_health_ok-syntax"></a>[ok-syntax](../common-options.md#ok-syntax)                | %(status): All disks are healthy.                                                                                                   |
-| <a id="check_disk_health_empty-syntax"></a>[empty-syntax](../common-options.md#empty-syntax)       |                                                                                                                                     |
-| <a id="check_disk_health_detail-syntax"></a>[detail-syntax](../common-options.md#detail-syntax)    | ${name}: ${free_pct} free, ${percent_disk_time}% busy, q=${queue_length} iops=${iops}                                               |
-| <a id="check_disk_health_perf-syntax"></a>[perf-syntax](../common-options.md#perf-syntax)          | ${name}                                                                                                                             |
+| Option                                                                                                            | Default Value                                                                                                                       |
+|-------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------|
+| <a id="check_disk_health_filter"></a>[filter](../common-options.md#filter)                                        | name != '_Total'                                                                                                                    |
+| <a id="check_disk_health_warning"></a>[warning](../common-options.md#warning)                                     | (has_space = 1 and free_pct < 20) or percent_disk_time > 80 or (has_device = 1 and health_status = 'Warning')                       |
+| <a id="check_disk_health_warn"></a>[warn](../common-options.md#warn)                                              |                                                                                                                                     |
+| <a id="check_disk_health_critical"></a>[critical](../common-options.md#critical)                                  | (has_space = 1 and free_pct < 10) or percent_disk_time > 95 or (has_device = 1 and (health_status = 'Unhealthy' or is_offline = 1)) |
+| <a id="check_disk_health_crit"></a>[crit](../common-options.md#crit)                                              |                                                                                                                                     |
+| <a id="check_disk_health_ok"></a>[ok](../common-options.md#ok)                                                    |                                                                                                                                     |
+| <a id="check_disk_health_debug"></a>[debug](../common-options.md#debug)                                           | false                                                                                                                               |
+| <a id="check_disk_health_show-all"></a>[show-all](../common-options.md#show-all)                                  | false                                                                                                                               |
+| <a id="check_disk_health_empty-state"></a>[empty-state](../common-options.md#empty-state)                         | critical                                                                                                                            |
+| <a id="check_disk_health_perf-config"></a>[perf-config](../common-options.md#perf-config)                         |                                                                                                                                     |
+| <a id="check_disk_health_escape-html"></a>[escape-html](../common-options.md#escape-html)                         | false                                                                                                                               |
+| <a id="check_disk_health_list-separator"></a>[list-separator](../common-options.md#list-separator)                | ,                                                                                                                                   |
+| <a id="check_disk_health_top-syntax"></a>[top-syntax](../common-options.md#top-syntax)                            | ${status}: ${list}                                                                                                                  |
+| <a id="check_disk_health_ok-syntax"></a>[ok-syntax](../common-options.md#ok-syntax)                               | %(status): All disks are healthy.                                                                                                   |
+| <a id="check_disk_health_empty-syntax"></a>[empty-syntax](../common-options.md#empty-syntax)                      |                                                                                                                                     |
+| <a id="check_disk_health_detail-syntax"></a>[detail-syntax](../common-options.md#detail-syntax)                   | ${name}: ${free_pct} free, ${percent_disk_time}% busy, q=${queue_length} iops=${iops}                                               |
+| <a id="check_disk_health_perf-syntax"></a>[perf-syntax](../common-options.md#perf-syntax)                         | ${name}                                                                                                                             |
+| <a id="check_disk_health_byte-unit"></a>[byte-unit](../common-options.md#byte-unit)                               |                                                                                                                                     |
+| <a id="check_disk_health_decimal-separator"></a>[decimal-separator](../common-options.md#decimal-separator)       |                                                                                                                                     |
+| <a id="check_disk_health_decimals"></a>[decimals](../common-options.md#decimals)                                  | -1                                                                                                                                  |
+| <a id="check_disk_health_thousands-separator"></a>[thousands-separator](../common-options.md#thousands-separator) |                                                                                                                                     |
 
 
 This command also accepts the standard [help options](../common-options.md#standard-options): help, help-pb, show-default, help-short.
@@ -169,6 +173,7 @@ This command also accepts the standard [help options](../common-options.md#stand
 | convert_bytes()     | Convert a byte count to a specific unit and return the numeric value (1024-based). Useful in thresholds.           |
 | disk_number         | Physical disk number/index (device rows)                                                                           |
 | format_bytes()      | Format a number as a human-readable byte string.                                                                   |
+| format_number()     | Render a number with a fixed number of decimals, using the check's decimal and thousands separators.               |
 | free                | Free disk space in bytes (I/O-only rows have none)                                                                 |
 | free_pct            | Percentage of free disk space (I/O-only rows have none)                                                            |
 | friendly_name       | Physical disk friendly name (device rows)                                                                          |
@@ -340,25 +345,29 @@ OK: All disk I/O seems ok.
 These options are shared by all filter based commands and are described on the [common options](../common-options.md#common-options) page; the default values below are specific to this command.
 
 
-| Option                                                                                         | Default Value                                                                                                        |
-|------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------|
-| <a id="check_disk_io_filter"></a>[filter](../common-options.md#filter)                         | name != '_Total'                                                                                                     |
-| <a id="check_disk_io_warning"></a>[warning](../common-options.md#warning)                      | percent_disk_time > 80                                                                                               |
-| <a id="check_disk_io_warn"></a>[warn](../common-options.md#warn)                               |                                                                                                                      |
-| <a id="check_disk_io_critical"></a>[critical](../common-options.md#critical)                   | percent_disk_time > 95                                                                                               |
-| <a id="check_disk_io_crit"></a>[crit](../common-options.md#crit)                               |                                                                                                                      |
-| <a id="check_disk_io_ok"></a>[ok](../common-options.md#ok)                                     |                                                                                                                      |
-| <a id="check_disk_io_debug"></a>[debug](../common-options.md#debug)                            | false                                                                                                                |
-| <a id="check_disk_io_show-all"></a>[show-all](../common-options.md#show-all)                   | false                                                                                                                |
-| <a id="check_disk_io_empty-state"></a>[empty-state](../common-options.md#empty-state)          | critical                                                                                                             |
-| <a id="check_disk_io_perf-config"></a>[perf-config](../common-options.md#perf-config)          |                                                                                                                      |
-| <a id="check_disk_io_escape-html"></a>[escape-html](../common-options.md#escape-html)          | false                                                                                                                |
-| <a id="check_disk_io_list-separator"></a>[list-separator](../common-options.md#list-separator) | ,                                                                                                                    |
-| <a id="check_disk_io_top-syntax"></a>[top-syntax](../common-options.md#top-syntax)             | ${status}: ${list}                                                                                                   |
-| <a id="check_disk_io_ok-syntax"></a>[ok-syntax](../common-options.md#ok-syntax)                | %(status): All disk I/O seems ok.                                                                                    |
-| <a id="check_disk_io_empty-syntax"></a>[empty-syntax](../common-options.md#empty-syntax)       |                                                                                                                      |
-| <a id="check_disk_io_detail-syntax"></a>[detail-syntax](../common-options.md#detail-syntax)    | ${name}: ${percent_disk_time}% busy, read=${read_bytes_per_sec}B/s write=${write_bytes_per_sec}B/s q=${queue_length} |
-| <a id="check_disk_io_perf-syntax"></a>[perf-syntax](../common-options.md#perf-syntax)          | ${name}                                                                                                              |
+| Option                                                                                                        | Default Value                                                                                                        |
+|---------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------|
+| <a id="check_disk_io_filter"></a>[filter](../common-options.md#filter)                                        | name != '_Total'                                                                                                     |
+| <a id="check_disk_io_warning"></a>[warning](../common-options.md#warning)                                     | percent_disk_time > 80                                                                                               |
+| <a id="check_disk_io_warn"></a>[warn](../common-options.md#warn)                                              |                                                                                                                      |
+| <a id="check_disk_io_critical"></a>[critical](../common-options.md#critical)                                  | percent_disk_time > 95                                                                                               |
+| <a id="check_disk_io_crit"></a>[crit](../common-options.md#crit)                                              |                                                                                                                      |
+| <a id="check_disk_io_ok"></a>[ok](../common-options.md#ok)                                                    |                                                                                                                      |
+| <a id="check_disk_io_debug"></a>[debug](../common-options.md#debug)                                           | false                                                                                                                |
+| <a id="check_disk_io_show-all"></a>[show-all](../common-options.md#show-all)                                  | false                                                                                                                |
+| <a id="check_disk_io_empty-state"></a>[empty-state](../common-options.md#empty-state)                         | critical                                                                                                             |
+| <a id="check_disk_io_perf-config"></a>[perf-config](../common-options.md#perf-config)                         |                                                                                                                      |
+| <a id="check_disk_io_escape-html"></a>[escape-html](../common-options.md#escape-html)                         | false                                                                                                                |
+| <a id="check_disk_io_list-separator"></a>[list-separator](../common-options.md#list-separator)                | ,                                                                                                                    |
+| <a id="check_disk_io_top-syntax"></a>[top-syntax](../common-options.md#top-syntax)                            | ${status}: ${list}                                                                                                   |
+| <a id="check_disk_io_ok-syntax"></a>[ok-syntax](../common-options.md#ok-syntax)                               | %(status): All disk I/O seems ok.                                                                                    |
+| <a id="check_disk_io_empty-syntax"></a>[empty-syntax](../common-options.md#empty-syntax)                      |                                                                                                                      |
+| <a id="check_disk_io_detail-syntax"></a>[detail-syntax](../common-options.md#detail-syntax)                   | ${name}: ${percent_disk_time}% busy, read=${read_bytes_per_sec}B/s write=${write_bytes_per_sec}B/s q=${queue_length} |
+| <a id="check_disk_io_perf-syntax"></a>[perf-syntax](../common-options.md#perf-syntax)                         | ${name}                                                                                                              |
+| <a id="check_disk_io_byte-unit"></a>[byte-unit](../common-options.md#byte-unit)                               |                                                                                                                      |
+| <a id="check_disk_io_decimal-separator"></a>[decimal-separator](../common-options.md#decimal-separator)       |                                                                                                                      |
+| <a id="check_disk_io_decimals"></a>[decimals](../common-options.md#decimals)                                  | -1                                                                                                                   |
+| <a id="check_disk_io_thousands-separator"></a>[thousands-separator](../common-options.md#thousands-separator) |                                                                                                                      |
 
 
 This command also accepts the standard [help options](../common-options.md#standard-options): help, help-pb, show-default, help-short.
@@ -371,6 +380,7 @@ This command also accepts the standard [help options](../common-options.md#stand
 |---------------------|--------------------------------------------------------------------------------------------------------------------|
 | convert_bytes()     | Convert a byte count to a specific unit and return the numeric value (1024-based). Useful in thresholds.           |
 | format_bytes()      | Format a number as a human-readable byte string.                                                                   |
+| format_number()     | Render a number with a fixed number of decimals, using the check's decimal and thousands separators.               |
 | iops                | Total IOPS (reads + writes)                                                                                        |
 | name                | Logical disk name (e.g. C:, D:, _Total)                                                                            |
 | percent_disk_time   | Percent of time the disk is busy                                                                                   |
@@ -509,25 +519,29 @@ The amount of data to write, in bytes or with a byte unit (e.g. 512, 4k, 1M). Ma
 These options are shared by all filter based commands and are described on the [common options](../common-options.md#common-options) page; the default values below are specific to this command.
 
 
-| Option                                                                                            | Default Value           |
-|---------------------------------------------------------------------------------------------------|-------------------------|
-| <a id="check_disk_write_filter"></a>[filter](../common-options.md#filter)                         |                         |
-| <a id="check_disk_write_warning"></a>[warning](../common-options.md#warning)                      |                         |
-| <a id="check_disk_write_warn"></a>[warn](../common-options.md#warn)                               |                         |
-| <a id="check_disk_write_critical"></a>[critical](../common-options.md#critical)                   | has_issues = 1          |
-| <a id="check_disk_write_crit"></a>[crit](../common-options.md#crit)                               |                         |
-| <a id="check_disk_write_ok"></a>[ok](../common-options.md#ok)                                     |                         |
-| <a id="check_disk_write_debug"></a>[debug](../common-options.md#debug)                            | false                   |
-| <a id="check_disk_write_show-all"></a>[show-all](../common-options.md#show-all)                   | false                   |
-| <a id="check_disk_write_empty-state"></a>[empty-state](../common-options.md#empty-state)          | unknown                 |
-| <a id="check_disk_write_perf-config"></a>[perf-config](../common-options.md#perf-config)          |                         |
-| <a id="check_disk_write_escape-html"></a>[escape-html](../common-options.md#escape-html)          | false                   |
-| <a id="check_disk_write_list-separator"></a>[list-separator](../common-options.md#list-separator) | ,                       |
-| <a id="check_disk_write_top-syntax"></a>[top-syntax](../common-options.md#top-syntax)             | ${status}: ${list}      |
-| <a id="check_disk_write_ok-syntax"></a>[ok-syntax](../common-options.md#ok-syntax)                | %(status): %(list)      |
-| <a id="check_disk_write_empty-syntax"></a>[empty-syntax](../common-options.md#empty-syntax)       | No write test performed |
-| <a id="check_disk_write_detail-syntax"></a>[detail-syntax](../common-options.md#detail-syntax)    | %(path): %(message)     |
-| <a id="check_disk_write_perf-syntax"></a>[perf-syntax](../common-options.md#perf-syntax)          | %(path)                 |
+| Option                                                                                                           | Default Value           |
+|------------------------------------------------------------------------------------------------------------------|-------------------------|
+| <a id="check_disk_write_filter"></a>[filter](../common-options.md#filter)                                        |                         |
+| <a id="check_disk_write_warning"></a>[warning](../common-options.md#warning)                                     |                         |
+| <a id="check_disk_write_warn"></a>[warn](../common-options.md#warn)                                              |                         |
+| <a id="check_disk_write_critical"></a>[critical](../common-options.md#critical)                                  | has_issues = 1          |
+| <a id="check_disk_write_crit"></a>[crit](../common-options.md#crit)                                              |                         |
+| <a id="check_disk_write_ok"></a>[ok](../common-options.md#ok)                                                    |                         |
+| <a id="check_disk_write_debug"></a>[debug](../common-options.md#debug)                                           | false                   |
+| <a id="check_disk_write_show-all"></a>[show-all](../common-options.md#show-all)                                  | false                   |
+| <a id="check_disk_write_empty-state"></a>[empty-state](../common-options.md#empty-state)                         | unknown                 |
+| <a id="check_disk_write_perf-config"></a>[perf-config](../common-options.md#perf-config)                         |                         |
+| <a id="check_disk_write_escape-html"></a>[escape-html](../common-options.md#escape-html)                         | false                   |
+| <a id="check_disk_write_list-separator"></a>[list-separator](../common-options.md#list-separator)                | ,                       |
+| <a id="check_disk_write_top-syntax"></a>[top-syntax](../common-options.md#top-syntax)                            | ${status}: ${list}      |
+| <a id="check_disk_write_ok-syntax"></a>[ok-syntax](../common-options.md#ok-syntax)                               | %(status): %(list)      |
+| <a id="check_disk_write_empty-syntax"></a>[empty-syntax](../common-options.md#empty-syntax)                      | No write test performed |
+| <a id="check_disk_write_detail-syntax"></a>[detail-syntax](../common-options.md#detail-syntax)                   | %(path): %(message)     |
+| <a id="check_disk_write_perf-syntax"></a>[perf-syntax](../common-options.md#perf-syntax)                         | %(path)                 |
+| <a id="check_disk_write_byte-unit"></a>[byte-unit](../common-options.md#byte-unit)                               |                         |
+| <a id="check_disk_write_decimal-separator"></a>[decimal-separator](../common-options.md#decimal-separator)       |                         |
+| <a id="check_disk_write_decimals"></a>[decimals](../common-options.md#decimals)                                  | -1                      |
+| <a id="check_disk_write_thousands-separator"></a>[thousands-separator](../common-options.md#thousands-separator) |                         |
 
 
 This command also accepts the standard [help options](../common-options.md#standard-options): help, help-pb, show-default, help-short.
@@ -914,25 +928,29 @@ check_drivesize "filter=full_in = 'never'"
     These options are shared by all filter based commands and are described on the [common options](../common-options.md#common-options) page; the default values below are specific to this command.
 
 
-    | Option                                                                                           | Default Value                          |
-    |--------------------------------------------------------------------------------------------------|----------------------------------------|
-    | <a id="check_drivesize_filter"></a>[filter](../common-options.md#filter)                         | mounted = 1                            |
-    | <a id="check_drivesize_warning"></a>[warning](../common-options.md#warning)                      | used > 80%                             |
-    | <a id="check_drivesize_warn"></a>[warn](../common-options.md#warn)                               |                                        |
-    | <a id="check_drivesize_critical"></a>[critical](../common-options.md#critical)                   | used > 90%                             |
-    | <a id="check_drivesize_crit"></a>[crit](../common-options.md#crit)                               |                                        |
-    | <a id="check_drivesize_ok"></a>[ok](../common-options.md#ok)                                     |                                        |
-    | <a id="check_drivesize_debug"></a>[debug](../common-options.md#debug)                            | false                                  |
-    | <a id="check_drivesize_show-all"></a>[show-all](../common-options.md#show-all)                   | false                                  |
-    | <a id="check_drivesize_empty-state"></a>[empty-state](../common-options.md#empty-state)          | unknown                                |
-    | <a id="check_drivesize_perf-config"></a>[perf-config](../common-options.md#perf-config)          |                                        |
-    | <a id="check_drivesize_escape-html"></a>[escape-html](../common-options.md#escape-html)          | false                                  |
-    | <a id="check_drivesize_list-separator"></a>[list-separator](../common-options.md#list-separator) | ,                                      |
-    | <a id="check_drivesize_top-syntax"></a>[top-syntax](../common-options.md#top-syntax)             | ${status} ${problem_list}              |
-    | <a id="check_drivesize_ok-syntax"></a>[ok-syntax](../common-options.md#ok-syntax)                | %(status) All %(count) drive(s) are ok |
-    | <a id="check_drivesize_empty-syntax"></a>[empty-syntax](../common-options.md#empty-syntax)       | %(status): No drives found             |
-    | <a id="check_drivesize_detail-syntax"></a>[detail-syntax](../common-options.md#detail-syntax)    | ${drive_or_name}: ${used}/${size} used |
-    | <a id="check_drivesize_perf-syntax"></a>[perf-syntax](../common-options.md#perf-syntax)          | ${drive_or_id}                         |
+    | Option                                                                                                          | Default Value                          |
+    |-----------------------------------------------------------------------------------------------------------------|----------------------------------------|
+    | <a id="check_drivesize_filter"></a>[filter](../common-options.md#filter)                                        | mounted = 1                            |
+    | <a id="check_drivesize_warning"></a>[warning](../common-options.md#warning)                                     | used > 80%                             |
+    | <a id="check_drivesize_warn"></a>[warn](../common-options.md#warn)                                              |                                        |
+    | <a id="check_drivesize_critical"></a>[critical](../common-options.md#critical)                                  | used > 90%                             |
+    | <a id="check_drivesize_crit"></a>[crit](../common-options.md#crit)                                              |                                        |
+    | <a id="check_drivesize_ok"></a>[ok](../common-options.md#ok)                                                    |                                        |
+    | <a id="check_drivesize_debug"></a>[debug](../common-options.md#debug)                                           | false                                  |
+    | <a id="check_drivesize_show-all"></a>[show-all](../common-options.md#show-all)                                  | false                                  |
+    | <a id="check_drivesize_empty-state"></a>[empty-state](../common-options.md#empty-state)                         | unknown                                |
+    | <a id="check_drivesize_perf-config"></a>[perf-config](../common-options.md#perf-config)                         |                                        |
+    | <a id="check_drivesize_escape-html"></a>[escape-html](../common-options.md#escape-html)                         | false                                  |
+    | <a id="check_drivesize_list-separator"></a>[list-separator](../common-options.md#list-separator)                | ,                                      |
+    | <a id="check_drivesize_top-syntax"></a>[top-syntax](../common-options.md#top-syntax)                            | ${status} ${problem_list}              |
+    | <a id="check_drivesize_ok-syntax"></a>[ok-syntax](../common-options.md#ok-syntax)                               | %(status) All %(count) drive(s) are ok |
+    | <a id="check_drivesize_empty-syntax"></a>[empty-syntax](../common-options.md#empty-syntax)                      | %(status): No drives found             |
+    | <a id="check_drivesize_detail-syntax"></a>[detail-syntax](../common-options.md#detail-syntax)                   | ${drive_or_name}: ${used}/${size} used |
+    | <a id="check_drivesize_perf-syntax"></a>[perf-syntax](../common-options.md#perf-syntax)                         | ${drive_or_id}                         |
+    | <a id="check_drivesize_byte-unit"></a>[byte-unit](../common-options.md#byte-unit)                               |                                        |
+    | <a id="check_drivesize_decimal-separator"></a>[decimal-separator](../common-options.md#decimal-separator)       |                                        |
+    | <a id="check_drivesize_decimals"></a>[decimals](../common-options.md#decimals)                                  | -1                                     |
+    | <a id="check_drivesize_thousands-separator"></a>[thousands-separator](../common-options.md#thousands-separator) |                                        |
 
 
     This command also accepts the standard [help options](../common-options.md#standard-options): help, help-pb, show-default, help-short.
@@ -981,25 +999,29 @@ check_drivesize "filter=full_in = 'never'"
     These options are shared by all filter based commands and are described on the [common options](../common-options.md#common-options) page; the default values below are specific to this command.
 
 
-    | Option                                                                                           | Default Value                          |
-    |--------------------------------------------------------------------------------------------------|----------------------------------------|
-    | <a id="check_drivesize_filter"></a>[filter](../common-options.md#filter)                         | mounted = 1                            |
-    | <a id="check_drivesize_warning"></a>[warning](../common-options.md#warning)                      | used > 80%                             |
-    | <a id="check_drivesize_warn"></a>[warn](../common-options.md#warn)                               |                                        |
-    | <a id="check_drivesize_critical"></a>[critical](../common-options.md#critical)                   | used > 90%                             |
-    | <a id="check_drivesize_crit"></a>[crit](../common-options.md#crit)                               |                                        |
-    | <a id="check_drivesize_ok"></a>[ok](../common-options.md#ok)                                     |                                        |
-    | <a id="check_drivesize_debug"></a>[debug](../common-options.md#debug)                            | false                                  |
-    | <a id="check_drivesize_show-all"></a>[show-all](../common-options.md#show-all)                   | false                                  |
-    | <a id="check_drivesize_empty-state"></a>[empty-state](../common-options.md#empty-state)          | unknown                                |
-    | <a id="check_drivesize_perf-config"></a>[perf-config](../common-options.md#perf-config)          |                                        |
-    | <a id="check_drivesize_escape-html"></a>[escape-html](../common-options.md#escape-html)          | false                                  |
-    | <a id="check_drivesize_list-separator"></a>[list-separator](../common-options.md#list-separator) | ,                                      |
-    | <a id="check_drivesize_top-syntax"></a>[top-syntax](../common-options.md#top-syntax)             | ${status} ${problem_list}              |
-    | <a id="check_drivesize_ok-syntax"></a>[ok-syntax](../common-options.md#ok-syntax)                | %(status) All %(count) drive(s) are ok |
-    | <a id="check_drivesize_empty-syntax"></a>[empty-syntax](../common-options.md#empty-syntax)       | %(status): No drives found             |
-    | <a id="check_drivesize_detail-syntax"></a>[detail-syntax](../common-options.md#detail-syntax)    | ${drive_or_name}: ${used}/${size} used |
-    | <a id="check_drivesize_perf-syntax"></a>[perf-syntax](../common-options.md#perf-syntax)          | ${drive_or_id}                         |
+    | Option                                                                                                          | Default Value                          |
+    |-----------------------------------------------------------------------------------------------------------------|----------------------------------------|
+    | <a id="check_drivesize_filter"></a>[filter](../common-options.md#filter)                                        | mounted = 1                            |
+    | <a id="check_drivesize_warning"></a>[warning](../common-options.md#warning)                                     | used > 80%                             |
+    | <a id="check_drivesize_warn"></a>[warn](../common-options.md#warn)                                              |                                        |
+    | <a id="check_drivesize_critical"></a>[critical](../common-options.md#critical)                                  | used > 90%                             |
+    | <a id="check_drivesize_crit"></a>[crit](../common-options.md#crit)                                              |                                        |
+    | <a id="check_drivesize_ok"></a>[ok](../common-options.md#ok)                                                    |                                        |
+    | <a id="check_drivesize_debug"></a>[debug](../common-options.md#debug)                                           | false                                  |
+    | <a id="check_drivesize_show-all"></a>[show-all](../common-options.md#show-all)                                  | false                                  |
+    | <a id="check_drivesize_empty-state"></a>[empty-state](../common-options.md#empty-state)                         | unknown                                |
+    | <a id="check_drivesize_perf-config"></a>[perf-config](../common-options.md#perf-config)                         |                                        |
+    | <a id="check_drivesize_escape-html"></a>[escape-html](../common-options.md#escape-html)                         | false                                  |
+    | <a id="check_drivesize_list-separator"></a>[list-separator](../common-options.md#list-separator)                | ,                                      |
+    | <a id="check_drivesize_top-syntax"></a>[top-syntax](../common-options.md#top-syntax)                            | ${status} ${problem_list}              |
+    | <a id="check_drivesize_ok-syntax"></a>[ok-syntax](../common-options.md#ok-syntax)                               | %(status) All %(count) drive(s) are ok |
+    | <a id="check_drivesize_empty-syntax"></a>[empty-syntax](../common-options.md#empty-syntax)                      | %(status): No drives found             |
+    | <a id="check_drivesize_detail-syntax"></a>[detail-syntax](../common-options.md#detail-syntax)                   | ${drive_or_name}: ${used}/${size} used |
+    | <a id="check_drivesize_perf-syntax"></a>[perf-syntax](../common-options.md#perf-syntax)                         | ${drive_or_id}                         |
+    | <a id="check_drivesize_byte-unit"></a>[byte-unit](../common-options.md#byte-unit)                               |                                        |
+    | <a id="check_drivesize_decimal-separator"></a>[decimal-separator](../common-options.md#decimal-separator)       |                                        |
+    | <a id="check_drivesize_decimals"></a>[decimals](../common-options.md#decimals)                                  | -1                                     |
+    | <a id="check_drivesize_thousands-separator"></a>[thousands-separator](../common-options.md#thousands-separator) |                                        |
 
 
     This command also accepts the standard [help options](../common-options.md#standard-options): help, help-pb, show-default, help-short.
@@ -1010,42 +1032,46 @@ check_drivesize "filter=full_in = 'never'"
 
 === "Windows"
 
-    | Option         | Description                                                                                                                                                                                                                                                                                                                                 |
-    |----------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-    | drive          | Technical name of drive                                                                                                                                                                                                                                                                                                                     |
-    | drive_or_id    | Drive letter if present if not use id                                                                                                                                                                                                                                                                                                       |
-    | drive_or_name  | Drive letter if present if not use name                                                                                                                                                                                                                                                                                                     |
-    | erasable       | 1 (true) if drive is erasable                                                                                                                                                                                                                                                                                                               |
-    | filesystem     | Filesystem name as reported by the OS (e.g. NTFS, FAT32, exFAT, ReFS)                                                                                                                                                                                                                                                                       |
-    | flags          | String representation of flags                                                                                                                                                                                                                                                                                                              |
-    | free           | Shorthand for total_free (Number of free bytes)                                                                                                                                                                                                                                                                                             |
-    | free_pct       | Shorthand for total_free_pct (% free space)                                                                                                                                                                                                                                                                                                 |
-    | fs             | Shorthand alias for filesystem                                                                                                                                                                                                                                                                                                              |
-    | full_in        | Estimated seconds until the drive is full at the current growth rate, projected from the current free space. Thresholds take durations (full_in < 12h, full_in < 5d); renders as a duration ('3d 04:00'), or 'never' (and no threshold fires) while the drive is shrinking or no trend exists yet. Window set by trend-window (default 24h) |
-    | hotplug        | 1 (true) if drive is hotplugable                                                                                                                                                                                                                                                                                                            |
-    | id             | Drive or id of drive                                                                                                                                                                                                                                                                                                                        |
-    | letter         | Letter the drive is mountedd on                                                                                                                                                                                                                                                                                                             |
-    | media_type     | Get the media type                                                                                                                                                                                                                                                                                                                          |
-    | mounted        | Check if a drive is mounted                                                                                                                                                                                                                                                                                                                 |
-    | name           | Descriptive name of drive                                                                                                                                                                                                                                                                                                                   |
-    | rate           | Growth of used space in bytes/day over the trend window, signed (negative = emptying); renders auto-scaled ('12.3MB/day'), or 'unknown' until enough history exists                                                                                                                                                                         |
-    | readable       | 1 (true) if drive is readable                                                                                                                                                                                                                                                                                                               |
-    | removable      | 1 (true) if drive is removable                                                                                                                                                                                                                                                                                                              |
-    | size           | Total size of drive                                                                                                                                                                                                                                                                                                                         |
-    | total_free     | Number of free bytes                                                                                                                                                                                                                                                                                                                        |
-    | total_free_pct | % free space                                                                                                                                                                                                                                                                                                                                |
-    | total_used     | Number of used bytes                                                                                                                                                                                                                                                                                                                        |
-    | total_used_pct | % used space                                                                                                                                                                                                                                                                                                                                |
-    | trend_samples  | Number of samples behind the trend estimate                                                                                                                                                                                                                                                                                                 |
-    | trend_span     | Seconds of history behind the trend estimate (0 = no data); use e.g. warn=trend_span < 1h to assert data sufficiency                                                                                                                                                                                                                        |
-    | type           | Type of drive                                                                                                                                                                                                                                                                                                                               |
-    | used           | Number of used bytes                                                                                                                                                                                                                                                                                                                        |
-    | used_pct       | Shorthand for total_used_pct (% used space)                                                                                                                                                                                                                                                                                                 |
-    | user_free      | Free space available to user (which runs NSClient++)                                                                                                                                                                                                                                                                                        |
-    | user_free_pct  | % free space available to user                                                                                                                                                                                                                                                                                                              |
-    | user_used      | Number of used bytes (related to user)                                                                                                                                                                                                                                                                                                      |
-    | user_used_pct  | % used space available to user                                                                                                                                                                                                                                                                                                              |
-    | writable       | 1 (true) if drive is writable                                                                                                                                                                                                                                                                                                               |
+    | Option          | Description                                                                                                                                                                                                                                                                                                                                 |
+    |-----------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+    | convert_bytes() | Convert a byte count to a specific unit and return the numeric value (1024-based). Useful in thresholds.                                                                                                                                                                                                                                    |
+    | drive           | Technical name of drive                                                                                                                                                                                                                                                                                                                     |
+    | drive_or_id     | Drive letter if present if not use id                                                                                                                                                                                                                                                                                                       |
+    | drive_or_name   | Drive letter if present if not use name                                                                                                                                                                                                                                                                                                     |
+    | erasable        | 1 (true) if drive is erasable                                                                                                                                                                                                                                                                                                               |
+    | filesystem      | Filesystem name as reported by the OS (e.g. NTFS, FAT32, exFAT, ReFS)                                                                                                                                                                                                                                                                       |
+    | flags           | String representation of flags                                                                                                                                                                                                                                                                                                              |
+    | format_bytes()  | Format a number as a human-readable byte string.                                                                                                                                                                                                                                                                                            |
+    | format_number() | Render a number with a fixed number of decimals, using the check's decimal and thousands separators.                                                                                                                                                                                                                                        |
+    | free            | Shorthand for total_free (Number of free bytes)                                                                                                                                                                                                                                                                                             |
+    | free_pct        | Shorthand for total_free_pct (% free space)                                                                                                                                                                                                                                                                                                 |
+    | fs              | Shorthand alias for filesystem                                                                                                                                                                                                                                                                                                              |
+    | full_in         | Estimated seconds until the drive is full at the current growth rate, projected from the current free space. Thresholds take durations (full_in < 12h, full_in < 5d); renders as a duration ('3d 04:00'), or 'never' (and no threshold fires) while the drive is shrinking or no trend exists yet. Window set by trend-window (default 24h) |
+    | hotplug         | 1 (true) if drive is hotplugable                                                                                                                                                                                                                                                                                                            |
+    | id              | Drive or id of drive                                                                                                                                                                                                                                                                                                                        |
+    | letter          | Letter the drive is mountedd on                                                                                                                                                                                                                                                                                                             |
+    | media_type      | Get the media type                                                                                                                                                                                                                                                                                                                          |
+    | mounted         | Check if a drive is mounted                                                                                                                                                                                                                                                                                                                 |
+    | name            | Descriptive name of drive                                                                                                                                                                                                                                                                                                                   |
+    | rate            | Growth of used space in bytes/day over the trend window, signed (negative = emptying); renders auto-scaled ('12.3MB/day'), or 'unknown' until enough history exists                                                                                                                                                                         |
+    | readable        | 1 (true) if drive is readable                                                                                                                                                                                                                                                                                                               |
+    | removable       | 1 (true) if drive is removable                                                                                                                                                                                                                                                                                                              |
+    | scale()         | Divide a value by a divisor. Useful for arbitrary unit conversions (e.g. decimal Mbps with scale(value, 1000000)).                                                                                                                                                                                                                          |
+    | size            | Total size of drive                                                                                                                                                                                                                                                                                                                         |
+    | total_free      | Number of free bytes                                                                                                                                                                                                                                                                                                                        |
+    | total_free_pct  | % free space                                                                                                                                                                                                                                                                                                                                |
+    | total_used      | Number of used bytes                                                                                                                                                                                                                                                                                                                        |
+    | total_used_pct  | % used space                                                                                                                                                                                                                                                                                                                                |
+    | trend_samples   | Number of samples behind the trend estimate                                                                                                                                                                                                                                                                                                 |
+    | trend_span      | Seconds of history behind the trend estimate (0 = no data); use e.g. warn=trend_span < 1h to assert data sufficiency                                                                                                                                                                                                                        |
+    | type            | Type of drive                                                                                                                                                                                                                                                                                                                               |
+    | used            | Number of used bytes                                                                                                                                                                                                                                                                                                                        |
+    | used_pct        | Shorthand for total_used_pct (% used space)                                                                                                                                                                                                                                                                                                 |
+    | user_free       | Free space available to user (which runs NSClient++)                                                                                                                                                                                                                                                                                        |
+    | user_free_pct   | % free space available to user                                                                                                                                                                                                                                                                                                              |
+    | user_used       | Number of used bytes (related to user)                                                                                                                                                                                                                                                                                                      |
+    | user_used_pct   | % used space available to user                                                                                                                                                                                                                                                                                                              |
+    | writable        | 1 (true) if drive is writable                                                                                                                                                                                                                                                                                                               |
 
     This command also supports the [common filter keywords](../common-options.md#common-filter-keywords): count, total, ok_count, warn_count, crit_count, problem_count, list, ok_list, warn_list, crit_list, problem_list, detail_list, sep, status.
 
@@ -1053,12 +1079,15 @@ check_drivesize "filter=full_in = 'never'"
 
     | Option          | Description                                                                                                                                                                                                                                                                                                                                 |
     |-----------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+    | convert_bytes() | Convert a byte count to a specific unit and return the numeric value (1024-based). Useful in thresholds.                                                                                                                                                                                                                                    |
     | drive           | Technical name of drive (mount point)                                                                                                                                                                                                                                                                                                       |
     | drive_or_id     | Mount point if present if not use device                                                                                                                                                                                                                                                                                                    |
     | drive_or_name   | Mount point if present if not use device                                                                                                                                                                                                                                                                                                    |
     | erasable        | 1 (true) if drive is erasable                                                                                                                                                                                                                                                                                                               |
     | filesystem      | Filesystem type as reported by the OS (e.g. ext4, xfs, btrfs, nfs)                                                                                                                                                                                                                                                                          |
     | flags           | String representation of flags                                                                                                                                                                                                                                                                                                              |
+    | format_bytes()  | Format a number as a human-readable byte string.                                                                                                                                                                                                                                                                                            |
+    | format_number() | Render a number with a fixed number of decimals, using the check's decimal and thousands separators.                                                                                                                                                                                                                                        |
     | free            | Shorthand for total_free (Number of free bytes)                                                                                                                                                                                                                                                                                             |
     | free_pct        | Shorthand for total_free_pct (% free space)                                                                                                                                                                                                                                                                                                 |
     | fs              | Shorthand alias for filesystem                                                                                                                                                                                                                                                                                                              |
@@ -1077,6 +1106,7 @@ check_drivesize "filter=full_in = 'never'"
     | rate            | Growth of used space in bytes/day over the trend window, signed (negative = emptying); renders auto-scaled ('12.3MB/day'), or 'unknown' until enough history exists                                                                                                                                                                         |
     | readable        | 1 (true) if drive is readable                                                                                                                                                                                                                                                                                                               |
     | removable       | 1 (true) if drive is removable                                                                                                                                                                                                                                                                                                              |
+    | scale()         | Divide a value by a divisor. Useful for arbitrary unit conversions (e.g. decimal Mbps with scale(value, 1000000)).                                                                                                                                                                                                                          |
     | size            | Total size of drive                                                                                                                                                                                                                                                                                                                         |
     | total_free      | Number of free bytes                                                                                                                                                                                                                                                                                                                        |
     | total_free_pct  | % free space                                                                                                                                                                                                                                                                                                                                |
@@ -1275,25 +1305,29 @@ Silently skip top-level paths that do not exist, instead of failing the whole ch
 These options are shared by all filter based commands and are described on the [common options](../common-options.md#common-options) page; the default values below are specific to this command.
 
 
-| Option                                                                                       | Default Value                                                |
-|----------------------------------------------------------------------------------------------|--------------------------------------------------------------|
-| <a id="check_files_filter"></a>[filter](../common-options.md#filter)                         |                                                              |
-| <a id="check_files_warning"></a>[warning](../common-options.md#warning)                      |                                                              |
-| <a id="check_files_warn"></a>[warn](../common-options.md#warn)                               |                                                              |
-| <a id="check_files_critical"></a>[critical](../common-options.md#critical)                   |                                                              |
-| <a id="check_files_crit"></a>[crit](../common-options.md#crit)                               |                                                              |
-| <a id="check_files_ok"></a>[ok](../common-options.md#ok)                                     |                                                              |
-| <a id="check_files_debug"></a>[debug](../common-options.md#debug)                            | false                                                        |
-| <a id="check_files_show-all"></a>[show-all](../common-options.md#show-all)                   | false                                                        |
-| <a id="check_files_empty-state"></a>[empty-state](../common-options.md#empty-state)          | unknown                                                      |
-| <a id="check_files_perf-config"></a>[perf-config](../common-options.md#perf-config)          |                                                              |
-| <a id="check_files_escape-html"></a>[escape-html](../common-options.md#escape-html)          | false                                                        |
-| <a id="check_files_list-separator"></a>[list-separator](../common-options.md#list-separator) | ,                                                            |
-| <a id="check_files_top-syntax"></a>[top-syntax](../common-options.md#top-syntax)             | ${status}: ${problem_count}/${count} files (${problem_list}) |
-| <a id="check_files_ok-syntax"></a>[ok-syntax](../common-options.md#ok-syntax)                | %(status): All %(count) files are ok                         |
-| <a id="check_files_empty-syntax"></a>[empty-syntax](../common-options.md#empty-syntax)       | No files found                                               |
-| <a id="check_files_detail-syntax"></a>[detail-syntax](../common-options.md#detail-syntax)    | ${name}                                                      |
-| <a id="check_files_perf-syntax"></a>[perf-syntax](../common-options.md#perf-syntax)          | ${name}                                                      |
+| Option                                                                                                      | Default Value                                                |
+|-------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------|
+| <a id="check_files_filter"></a>[filter](../common-options.md#filter)                                        |                                                              |
+| <a id="check_files_warning"></a>[warning](../common-options.md#warning)                                     |                                                              |
+| <a id="check_files_warn"></a>[warn](../common-options.md#warn)                                              |                                                              |
+| <a id="check_files_critical"></a>[critical](../common-options.md#critical)                                  |                                                              |
+| <a id="check_files_crit"></a>[crit](../common-options.md#crit)                                              |                                                              |
+| <a id="check_files_ok"></a>[ok](../common-options.md#ok)                                                    |                                                              |
+| <a id="check_files_debug"></a>[debug](../common-options.md#debug)                                           | false                                                        |
+| <a id="check_files_show-all"></a>[show-all](../common-options.md#show-all)                                  | false                                                        |
+| <a id="check_files_empty-state"></a>[empty-state](../common-options.md#empty-state)                         | unknown                                                      |
+| <a id="check_files_perf-config"></a>[perf-config](../common-options.md#perf-config)                         |                                                              |
+| <a id="check_files_escape-html"></a>[escape-html](../common-options.md#escape-html)                         | false                                                        |
+| <a id="check_files_list-separator"></a>[list-separator](../common-options.md#list-separator)                | ,                                                            |
+| <a id="check_files_top-syntax"></a>[top-syntax](../common-options.md#top-syntax)                            | ${status}: ${problem_count}/${count} files (${problem_list}) |
+| <a id="check_files_ok-syntax"></a>[ok-syntax](../common-options.md#ok-syntax)                               | %(status): All %(count) files are ok                         |
+| <a id="check_files_empty-syntax"></a>[empty-syntax](../common-options.md#empty-syntax)                      | No files found                                               |
+| <a id="check_files_detail-syntax"></a>[detail-syntax](../common-options.md#detail-syntax)                   | ${name}                                                      |
+| <a id="check_files_perf-syntax"></a>[perf-syntax](../common-options.md#perf-syntax)                         | ${name}                                                      |
+| <a id="check_files_byte-unit"></a>[byte-unit](../common-options.md#byte-unit)                               |                                                              |
+| <a id="check_files_decimal-separator"></a>[decimal-separator](../common-options.md#decimal-separator)       |                                                              |
+| <a id="check_files_decimals"></a>[decimals](../common-options.md#decimals)                                  | -1                                                           |
+| <a id="check_files_thousands-separator"></a>[thousands-separator](../common-options.md#thousands-separator) |                                                              |
 
 
 This command also accepts the standard [help options](../common-options.md#standard-options): help, help-pb, show-default, help-short.
@@ -1439,25 +1473,29 @@ OK: mounts are as expected
 These options are shared by all filter based commands and are described on the [common options](../common-options.md#common-options) page; the default values below are specific to this command.
 
 
-| Option                                                                                       | Default Value                                  |
-|----------------------------------------------------------------------------------------------|------------------------------------------------|
-| <a id="check_mount_filter"></a>[filter](../common-options.md#filter)                         |                                                |
-| <a id="check_mount_warning"></a>[warning](../common-options.md#warning)                      | has_issues = 1                                 |
-| <a id="check_mount_warn"></a>[warn](../common-options.md#warn)                               |                                                |
-| <a id="check_mount_critical"></a>[critical](../common-options.md#critical)                   | issues like 'not mounted'                      |
-| <a id="check_mount_crit"></a>[crit](../common-options.md#crit)                               |                                                |
-| <a id="check_mount_ok"></a>[ok](../common-options.md#ok)                                     |                                                |
-| <a id="check_mount_debug"></a>[debug](../common-options.md#debug)                            | false                                          |
-| <a id="check_mount_show-all"></a>[show-all](../common-options.md#show-all)                   | false                                          |
-| <a id="check_mount_empty-state"></a>[empty-state](../common-options.md#empty-state)          | unknown                                        |
-| <a id="check_mount_perf-config"></a>[perf-config](../common-options.md#perf-config)          |                                                |
-| <a id="check_mount_escape-html"></a>[escape-html](../common-options.md#escape-html)          | false                                          |
-| <a id="check_mount_list-separator"></a>[list-separator](../common-options.md#list-separator) | ,                                              |
-| <a id="check_mount_top-syntax"></a>[top-syntax](../common-options.md#top-syntax)             | ${status}: ${problem_list}                     |
-| <a id="check_mount_ok-syntax"></a>[ok-syntax](../common-options.md#ok-syntax)                | %(status): mounts are as expected              |
-| <a id="check_mount_empty-syntax"></a>[empty-syntax](../common-options.md#empty-syntax)       | check_mount found nothing matching this filter |
-| <a id="check_mount_detail-syntax"></a>[detail-syntax](../common-options.md#detail-syntax)    | mount ${mount} ${issues}                       |
-| <a id="check_mount_perf-syntax"></a>[perf-syntax](../common-options.md#perf-syntax)          | ${mount}                                       |
+| Option                                                                                                      | Default Value                                  |
+|-------------------------------------------------------------------------------------------------------------|------------------------------------------------|
+| <a id="check_mount_filter"></a>[filter](../common-options.md#filter)                                        |                                                |
+| <a id="check_mount_warning"></a>[warning](../common-options.md#warning)                                     | has_issues = 1                                 |
+| <a id="check_mount_warn"></a>[warn](../common-options.md#warn)                                              |                                                |
+| <a id="check_mount_critical"></a>[critical](../common-options.md#critical)                                  | issues like 'not mounted'                      |
+| <a id="check_mount_crit"></a>[crit](../common-options.md#crit)                                              |                                                |
+| <a id="check_mount_ok"></a>[ok](../common-options.md#ok)                                                    |                                                |
+| <a id="check_mount_debug"></a>[debug](../common-options.md#debug)                                           | false                                          |
+| <a id="check_mount_show-all"></a>[show-all](../common-options.md#show-all)                                  | false                                          |
+| <a id="check_mount_empty-state"></a>[empty-state](../common-options.md#empty-state)                         | unknown                                        |
+| <a id="check_mount_perf-config"></a>[perf-config](../common-options.md#perf-config)                         |                                                |
+| <a id="check_mount_escape-html"></a>[escape-html](../common-options.md#escape-html)                         | false                                          |
+| <a id="check_mount_list-separator"></a>[list-separator](../common-options.md#list-separator)                | ,                                              |
+| <a id="check_mount_top-syntax"></a>[top-syntax](../common-options.md#top-syntax)                            | ${status}: ${problem_list}                     |
+| <a id="check_mount_ok-syntax"></a>[ok-syntax](../common-options.md#ok-syntax)                               | %(status): mounts are as expected              |
+| <a id="check_mount_empty-syntax"></a>[empty-syntax](../common-options.md#empty-syntax)                      | check_mount found nothing matching this filter |
+| <a id="check_mount_detail-syntax"></a>[detail-syntax](../common-options.md#detail-syntax)                   | mount ${mount} ${issues}                       |
+| <a id="check_mount_perf-syntax"></a>[perf-syntax](../common-options.md#perf-syntax)                         | ${mount}                                       |
+| <a id="check_mount_byte-unit"></a>[byte-unit](../common-options.md#byte-unit)                               |                                                |
+| <a id="check_mount_decimal-separator"></a>[decimal-separator](../common-options.md#decimal-separator)       |                                                |
+| <a id="check_mount_decimals"></a>[decimals](../common-options.md#decimals)                                  | -1                                             |
+| <a id="check_mount_thousands-separator"></a>[thousands-separator](../common-options.md#thousands-separator) |                                                |
 
 
 This command also accepts the standard [help options](../common-options.md#standard-options): help, help-pb, show-default, help-short.
@@ -1584,25 +1622,29 @@ OK: \\?\Volume{4c2b...}\: 12 copies, newest 2026-07-11 07:00:03 UTC
 These options are shared by all filter based commands and are described on the [common options](../common-options.md#common-options) page; the default values below are specific to this command.
 
 
-| Option                                                                                            | Default Value                                                |
-|---------------------------------------------------------------------------------------------------|--------------------------------------------------------------|
-| <a id="check_shadowcopy_filter"></a>[filter](../common-options.md#filter)                         |                                                              |
-| <a id="check_shadowcopy_warning"></a>[warning](../common-options.md#warning)                      | newest > 26h                                                 |
-| <a id="check_shadowcopy_warn"></a>[warn](../common-options.md#warn)                               |                                                              |
-| <a id="check_shadowcopy_critical"></a>[critical](../common-options.md#critical)                   | newest > 50h                                                 |
-| <a id="check_shadowcopy_crit"></a>[crit](../common-options.md#crit)                               |                                                              |
-| <a id="check_shadowcopy_ok"></a>[ok](../common-options.md#ok)                                     |                                                              |
-| <a id="check_shadowcopy_debug"></a>[debug](../common-options.md#debug)                            | false                                                        |
-| <a id="check_shadowcopy_show-all"></a>[show-all](../common-options.md#show-all)                   | false                                                        |
-| <a id="check_shadowcopy_empty-state"></a>[empty-state](../common-options.md#empty-state)          | ok                                                           |
-| <a id="check_shadowcopy_perf-config"></a>[perf-config](../common-options.md#perf-config)          |                                                              |
-| <a id="check_shadowcopy_escape-html"></a>[escape-html](../common-options.md#escape-html)          | false                                                        |
-| <a id="check_shadowcopy_list-separator"></a>[list-separator](../common-options.md#list-separator) | ,                                                            |
-| <a id="check_shadowcopy_top-syntax"></a>[top-syntax](../common-options.md#top-syntax)             | ${status}: ${list}                                           |
-| <a id="check_shadowcopy_ok-syntax"></a>[ok-syntax](../common-options.md#ok-syntax)                | %(status): All %(count) volume(s) have recent shadow copies. |
-| <a id="check_shadowcopy_empty-syntax"></a>[empty-syntax](../common-options.md#empty-syntax)       | %(status): No shadow copies found                            |
-| <a id="check_shadowcopy_detail-syntax"></a>[detail-syntax](../common-options.md#detail-syntax)    | ${volume}: ${copies} copies, newest ${newest_date}           |
-| <a id="check_shadowcopy_perf-syntax"></a>[perf-syntax](../common-options.md#perf-syntax)          | ${volume}                                                    |
+| Option                                                                                                           | Default Value                                                |
+|------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------|
+| <a id="check_shadowcopy_filter"></a>[filter](../common-options.md#filter)                                        |                                                              |
+| <a id="check_shadowcopy_warning"></a>[warning](../common-options.md#warning)                                     | newest > 26h                                                 |
+| <a id="check_shadowcopy_warn"></a>[warn](../common-options.md#warn)                                              |                                                              |
+| <a id="check_shadowcopy_critical"></a>[critical](../common-options.md#critical)                                  | newest > 50h                                                 |
+| <a id="check_shadowcopy_crit"></a>[crit](../common-options.md#crit)                                              |                                                              |
+| <a id="check_shadowcopy_ok"></a>[ok](../common-options.md#ok)                                                    |                                                              |
+| <a id="check_shadowcopy_debug"></a>[debug](../common-options.md#debug)                                           | false                                                        |
+| <a id="check_shadowcopy_show-all"></a>[show-all](../common-options.md#show-all)                                  | false                                                        |
+| <a id="check_shadowcopy_empty-state"></a>[empty-state](../common-options.md#empty-state)                         | ok                                                           |
+| <a id="check_shadowcopy_perf-config"></a>[perf-config](../common-options.md#perf-config)                         |                                                              |
+| <a id="check_shadowcopy_escape-html"></a>[escape-html](../common-options.md#escape-html)                         | false                                                        |
+| <a id="check_shadowcopy_list-separator"></a>[list-separator](../common-options.md#list-separator)                | ,                                                            |
+| <a id="check_shadowcopy_top-syntax"></a>[top-syntax](../common-options.md#top-syntax)                            | ${status}: ${list}                                           |
+| <a id="check_shadowcopy_ok-syntax"></a>[ok-syntax](../common-options.md#ok-syntax)                               | %(status): All %(count) volume(s) have recent shadow copies. |
+| <a id="check_shadowcopy_empty-syntax"></a>[empty-syntax](../common-options.md#empty-syntax)                      | %(status): No shadow copies found                            |
+| <a id="check_shadowcopy_detail-syntax"></a>[detail-syntax](../common-options.md#detail-syntax)                   | ${volume}: ${copies} copies, newest ${newest_date}           |
+| <a id="check_shadowcopy_perf-syntax"></a>[perf-syntax](../common-options.md#perf-syntax)                         | ${volume}                                                    |
+| <a id="check_shadowcopy_byte-unit"></a>[byte-unit](../common-options.md#byte-unit)                               |                                                              |
+| <a id="check_shadowcopy_decimal-separator"></a>[decimal-separator](../common-options.md#decimal-separator)       |                                                              |
+| <a id="check_shadowcopy_decimals"></a>[decimals](../common-options.md#decimals)                                  | -1                                                           |
+| <a id="check_shadowcopy_thousands-separator"></a>[thousands-separator](../common-options.md#thousands-separator) |                                                              |
 
 
 This command also accepts the standard [help options](../common-options.md#standard-options): help, help-pb, show-default, help-short.
@@ -1617,6 +1659,7 @@ This command also accepts the standard [help options](../common-options.md#stand
 | convert_bytes() | Convert a byte count to a specific unit and return the numeric value (1024-based). Useful in thresholds.           |
 | copies          | Number of shadow copies on this volume                                                                             |
 | format_bytes()  | Format a number as a human-readable byte string.                                                                   |
+| format_number() | Render a number with a fixed number of decimals, using the check's decimal and thousands separators.               |
 | max_size        | Shadow storage maximum in bytes (0 if unbounded/unresolved)                                                        |
 | newest          | Seconds since the newest shadow copy (-1 if unknown); threshold with durations, e.g. newest > 26h                  |
 | newest_date     | Timestamp of the newest shadow copy on this volume (UTC)                                                           |
@@ -1732,25 +1775,29 @@ OK: All 2 share(s) ok.
 These options are shared by all filter based commands and are described on the [common options](../common-options.md#common-options) page; the default values below are specific to this command.
 
 
-| Option                                                                                       | Default Value                                          |
-|----------------------------------------------------------------------------------------------|--------------------------------------------------------|
-| <a id="check_share_filter"></a>[filter](../common-options.md#filter)                         |                                                        |
-| <a id="check_share_warning"></a>[warning](../common-options.md#warning)                      |                                                        |
-| <a id="check_share_warn"></a>[warn](../common-options.md#warn)                               |                                                        |
-| <a id="check_share_critical"></a>[critical](../common-options.md#critical)                   | not exists                                             |
-| <a id="check_share_crit"></a>[crit](../common-options.md#crit)                               |                                                        |
-| <a id="check_share_ok"></a>[ok](../common-options.md#ok)                                     |                                                        |
-| <a id="check_share_debug"></a>[debug](../common-options.md#debug)                            | false                                                  |
-| <a id="check_share_show-all"></a>[show-all](../common-options.md#show-all)                   | false                                                  |
-| <a id="check_share_empty-state"></a>[empty-state](../common-options.md#empty-state)          | ok                                                     |
-| <a id="check_share_perf-config"></a>[perf-config](../common-options.md#perf-config)          |                                                        |
-| <a id="check_share_escape-html"></a>[escape-html](../common-options.md#escape-html)          | false                                                  |
-| <a id="check_share_list-separator"></a>[list-separator](../common-options.md#list-separator) | ,                                                      |
-| <a id="check_share_top-syntax"></a>[top-syntax](../common-options.md#top-syntax)             | ${status}: ${list}                                     |
-| <a id="check_share_ok-syntax"></a>[ok-syntax](../common-options.md#ok-syntax)                | %(status): All %(count) share(s) ok.                   |
-| <a id="check_share_empty-syntax"></a>[empty-syntax](../common-options.md#empty-syntax)       | %(status): No shares found                             |
-| <a id="check_share_detail-syntax"></a>[detail-syntax](../common-options.md#detail-syntax)    | ${name} (type=${type}, path=${path}, exists=${exists}) |
-| <a id="check_share_perf-syntax"></a>[perf-syntax](../common-options.md#perf-syntax)          | ${name}                                                |
+| Option                                                                                                      | Default Value                                          |
+|-------------------------------------------------------------------------------------------------------------|--------------------------------------------------------|
+| <a id="check_share_filter"></a>[filter](../common-options.md#filter)                                        |                                                        |
+| <a id="check_share_warning"></a>[warning](../common-options.md#warning)                                     |                                                        |
+| <a id="check_share_warn"></a>[warn](../common-options.md#warn)                                              |                                                        |
+| <a id="check_share_critical"></a>[critical](../common-options.md#critical)                                  | not exists                                             |
+| <a id="check_share_crit"></a>[crit](../common-options.md#crit)                                              |                                                        |
+| <a id="check_share_ok"></a>[ok](../common-options.md#ok)                                                    |                                                        |
+| <a id="check_share_debug"></a>[debug](../common-options.md#debug)                                           | false                                                  |
+| <a id="check_share_show-all"></a>[show-all](../common-options.md#show-all)                                  | false                                                  |
+| <a id="check_share_empty-state"></a>[empty-state](../common-options.md#empty-state)                         | ok                                                     |
+| <a id="check_share_perf-config"></a>[perf-config](../common-options.md#perf-config)                         |                                                        |
+| <a id="check_share_escape-html"></a>[escape-html](../common-options.md#escape-html)                         | false                                                  |
+| <a id="check_share_list-separator"></a>[list-separator](../common-options.md#list-separator)                | ,                                                      |
+| <a id="check_share_top-syntax"></a>[top-syntax](../common-options.md#top-syntax)                            | ${status}: ${list}                                     |
+| <a id="check_share_ok-syntax"></a>[ok-syntax](../common-options.md#ok-syntax)                               | %(status): All %(count) share(s) ok.                   |
+| <a id="check_share_empty-syntax"></a>[empty-syntax](../common-options.md#empty-syntax)                      | %(status): No shares found                             |
+| <a id="check_share_detail-syntax"></a>[detail-syntax](../common-options.md#detail-syntax)                   | ${name} (type=${type}, path=${path}, exists=${exists}) |
+| <a id="check_share_perf-syntax"></a>[perf-syntax](../common-options.md#perf-syntax)                         | ${name}                                                |
+| <a id="check_share_byte-unit"></a>[byte-unit](../common-options.md#byte-unit)                               |                                                        |
+| <a id="check_share_decimal-separator"></a>[decimal-separator](../common-options.md#decimal-separator)       |                                                        |
+| <a id="check_share_decimals"></a>[decimals](../common-options.md#decimals)                                  | -1                                                     |
+| <a id="check_share_thousands-separator"></a>[thousands-separator](../common-options.md#thousands-separator) |                                                        |
 
 
 This command also accepts the standard [help options](../common-options.md#standard-options): help, help-pb, show-default, help-short.
@@ -1912,25 +1959,29 @@ Return OK instead of failing when the file does not exist. Intended for files th
 These options are shared by all filter based commands and are described on the [common options](../common-options.md#common-options) page; the default values below are specific to this command.
 
 
-| Option                                                                                             | Default Value                          |
-|----------------------------------------------------------------------------------------------------|----------------------------------------|
-| <a id="check_single_file_filter"></a>[filter](../common-options.md#filter)                         |                                        |
-| <a id="check_single_file_warning"></a>[warning](../common-options.md#warning)                      |                                        |
-| <a id="check_single_file_warn"></a>[warn](../common-options.md#warn)                               |                                        |
-| <a id="check_single_file_critical"></a>[critical](../common-options.md#critical)                   |                                        |
-| <a id="check_single_file_crit"></a>[crit](../common-options.md#crit)                               |                                        |
-| <a id="check_single_file_ok"></a>[ok](../common-options.md#ok)                                     |                                        |
-| <a id="check_single_file_debug"></a>[debug](../common-options.md#debug)                            | false                                  |
-| <a id="check_single_file_show-all"></a>[show-all](../common-options.md#show-all)                   | false                                  |
-| <a id="check_single_file_empty-state"></a>[empty-state](../common-options.md#empty-state)          | ok                                     |
-| <a id="check_single_file_perf-config"></a>[perf-config](../common-options.md#perf-config)          |                                        |
-| <a id="check_single_file_escape-html"></a>[escape-html](../common-options.md#escape-html)          | false                                  |
-| <a id="check_single_file_list-separator"></a>[list-separator](../common-options.md#list-separator) | ,                                      |
-| <a id="check_single_file_top-syntax"></a>[top-syntax](../common-options.md#top-syntax)             | %(status): %(list)                     |
-| <a id="check_single_file_ok-syntax"></a>[ok-syntax](../common-options.md#ok-syntax)                | %(status): %(filename) is ok           |
-| <a id="check_single_file_empty-syntax"></a>[empty-syntax](../common-options.md#empty-syntax)       | No file inspected                      |
-| <a id="check_single_file_detail-syntax"></a>[detail-syntax](../common-options.md#detail-syntax)    | %(filename) (size=%(size), age=%(age)) |
-| <a id="check_single_file_perf-syntax"></a>[perf-syntax](../common-options.md#perf-syntax)          | %(filename)                            |
+| Option                                                                                                            | Default Value                          |
+|-------------------------------------------------------------------------------------------------------------------|----------------------------------------|
+| <a id="check_single_file_filter"></a>[filter](../common-options.md#filter)                                        |                                        |
+| <a id="check_single_file_warning"></a>[warning](../common-options.md#warning)                                     |                                        |
+| <a id="check_single_file_warn"></a>[warn](../common-options.md#warn)                                              |                                        |
+| <a id="check_single_file_critical"></a>[critical](../common-options.md#critical)                                  |                                        |
+| <a id="check_single_file_crit"></a>[crit](../common-options.md#crit)                                              |                                        |
+| <a id="check_single_file_ok"></a>[ok](../common-options.md#ok)                                                    |                                        |
+| <a id="check_single_file_debug"></a>[debug](../common-options.md#debug)                                           | false                                  |
+| <a id="check_single_file_show-all"></a>[show-all](../common-options.md#show-all)                                  | false                                  |
+| <a id="check_single_file_empty-state"></a>[empty-state](../common-options.md#empty-state)                         | ok                                     |
+| <a id="check_single_file_perf-config"></a>[perf-config](../common-options.md#perf-config)                         |                                        |
+| <a id="check_single_file_escape-html"></a>[escape-html](../common-options.md#escape-html)                         | false                                  |
+| <a id="check_single_file_list-separator"></a>[list-separator](../common-options.md#list-separator)                | ,                                      |
+| <a id="check_single_file_top-syntax"></a>[top-syntax](../common-options.md#top-syntax)                            | %(status): %(list)                     |
+| <a id="check_single_file_ok-syntax"></a>[ok-syntax](../common-options.md#ok-syntax)                               | %(status): %(filename) is ok           |
+| <a id="check_single_file_empty-syntax"></a>[empty-syntax](../common-options.md#empty-syntax)                      | No file inspected                      |
+| <a id="check_single_file_detail-syntax"></a>[detail-syntax](../common-options.md#detail-syntax)                   | %(filename) (size=%(size), age=%(age)) |
+| <a id="check_single_file_perf-syntax"></a>[perf-syntax](../common-options.md#perf-syntax)                         | %(filename)                            |
+| <a id="check_single_file_byte-unit"></a>[byte-unit](../common-options.md#byte-unit)                               |                                        |
+| <a id="check_single_file_decimal-separator"></a>[decimal-separator](../common-options.md#decimal-separator)       |                                        |
+| <a id="check_single_file_decimals"></a>[decimals](../common-options.md#decimals)                                  | -1                                     |
+| <a id="check_single_file_thousands-separator"></a>[thousands-separator](../common-options.md#thousands-separator) |                                        |
 
 
 This command also accepts the standard [help options](../common-options.md#standard-options): help, help-pb, show-default, help-short.
@@ -2036,25 +2087,29 @@ Keywords: `name`, `health_status` (Healthy/Warning/Unhealthy/Unknown),
 These options are shared by all filter based commands and are described on the [common options](../common-options.md#common-options) page; the default values below are specific to this command.
 
 
-| Option                                                                                             | Default Value                                       |
-|----------------------------------------------------------------------------------------------------|-----------------------------------------------------|
-| <a id="check_storagepool_filter"></a>[filter](../common-options.md#filter)                         |                                                     |
-| <a id="check_storagepool_warning"></a>[warning](../common-options.md#warning)                      | health_status = 'Warning' or free_pct < 20          |
-| <a id="check_storagepool_warn"></a>[warn](../common-options.md#warn)                               |                                                     |
-| <a id="check_storagepool_critical"></a>[critical](../common-options.md#critical)                   | health_status = 'Unhealthy' or free_pct < 10        |
-| <a id="check_storagepool_crit"></a>[crit](../common-options.md#crit)                               |                                                     |
-| <a id="check_storagepool_ok"></a>[ok](../common-options.md#ok)                                     |                                                     |
-| <a id="check_storagepool_debug"></a>[debug](../common-options.md#debug)                            | false                                               |
-| <a id="check_storagepool_show-all"></a>[show-all](../common-options.md#show-all)                   | false                                               |
-| <a id="check_storagepool_empty-state"></a>[empty-state](../common-options.md#empty-state)          | ok                                                  |
-| <a id="check_storagepool_perf-config"></a>[perf-config](../common-options.md#perf-config)          |                                                     |
-| <a id="check_storagepool_escape-html"></a>[escape-html](../common-options.md#escape-html)          | false                                               |
-| <a id="check_storagepool_list-separator"></a>[list-separator](../common-options.md#list-separator) | ,                                                   |
-| <a id="check_storagepool_top-syntax"></a>[top-syntax](../common-options.md#top-syntax)             | ${status}: ${list}                                  |
-| <a id="check_storagepool_ok-syntax"></a>[ok-syntax](../common-options.md#ok-syntax)                | %(status): All storage pools are healthy.           |
-| <a id="check_storagepool_empty-syntax"></a>[empty-syntax](../common-options.md#empty-syntax)       | %(status): No storage pools found                   |
-| <a id="check_storagepool_detail-syntax"></a>[detail-syntax](../common-options.md#detail-syntax)    | ${name}: ${health_status}, ${used}/${capacity} used |
-| <a id="check_storagepool_perf-syntax"></a>[perf-syntax](../common-options.md#perf-syntax)          | ${name}                                             |
+| Option                                                                                                            | Default Value                                       |
+|-------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------|
+| <a id="check_storagepool_filter"></a>[filter](../common-options.md#filter)                                        |                                                     |
+| <a id="check_storagepool_warning"></a>[warning](../common-options.md#warning)                                     | health_status = 'Warning' or free_pct < 20          |
+| <a id="check_storagepool_warn"></a>[warn](../common-options.md#warn)                                              |                                                     |
+| <a id="check_storagepool_critical"></a>[critical](../common-options.md#critical)                                  | health_status = 'Unhealthy' or free_pct < 10        |
+| <a id="check_storagepool_crit"></a>[crit](../common-options.md#crit)                                              |                                                     |
+| <a id="check_storagepool_ok"></a>[ok](../common-options.md#ok)                                                    |                                                     |
+| <a id="check_storagepool_debug"></a>[debug](../common-options.md#debug)                                           | false                                               |
+| <a id="check_storagepool_show-all"></a>[show-all](../common-options.md#show-all)                                  | false                                               |
+| <a id="check_storagepool_empty-state"></a>[empty-state](../common-options.md#empty-state)                         | ok                                                  |
+| <a id="check_storagepool_perf-config"></a>[perf-config](../common-options.md#perf-config)                         |                                                     |
+| <a id="check_storagepool_escape-html"></a>[escape-html](../common-options.md#escape-html)                         | false                                               |
+| <a id="check_storagepool_list-separator"></a>[list-separator](../common-options.md#list-separator)                | ,                                                   |
+| <a id="check_storagepool_top-syntax"></a>[top-syntax](../common-options.md#top-syntax)                            | ${status}: ${list}                                  |
+| <a id="check_storagepool_ok-syntax"></a>[ok-syntax](../common-options.md#ok-syntax)                               | %(status): All storage pools are healthy.           |
+| <a id="check_storagepool_empty-syntax"></a>[empty-syntax](../common-options.md#empty-syntax)                      | %(status): No storage pools found                   |
+| <a id="check_storagepool_detail-syntax"></a>[detail-syntax](../common-options.md#detail-syntax)                   | ${name}: ${health_status}, ${used}/${capacity} used |
+| <a id="check_storagepool_perf-syntax"></a>[perf-syntax](../common-options.md#perf-syntax)                         | ${name}                                             |
+| <a id="check_storagepool_byte-unit"></a>[byte-unit](../common-options.md#byte-unit)                               |                                                     |
+| <a id="check_storagepool_decimal-separator"></a>[decimal-separator](../common-options.md#decimal-separator)       |                                                     |
+| <a id="check_storagepool_decimals"></a>[decimals](../common-options.md#decimals)                                  | -1                                                  |
+| <a id="check_storagepool_thousands-separator"></a>[thousands-separator](../common-options.md#thousands-separator) |                                                     |
 
 
 This command also accepts the standard [help options](../common-options.md#standard-options): help, help-pb, show-default, help-short.
@@ -2068,6 +2123,7 @@ This command also accepts the standard [help options](../common-options.md#stand
 | capacity           | Total pool capacity in bytes                                                                                       |
 | convert_bytes()    | Convert a byte count to a specific unit and return the numeric value (1024-based). Useful in thresholds.           |
 | format_bytes()     | Format a number as a human-readable byte string.                                                                   |
+| format_number()    | Render a number with a fixed number of decimals, using the check's decimal and thousands separators.               |
 | free               | Unallocated (free) pool space in bytes                                                                             |
 | free_pct           | Percentage of free pool space                                                                                      |
 | health_status      | Pool health: Healthy, Warning, Unhealthy or Unknown                                                                |
@@ -2160,25 +2216,29 @@ check_uncpath path=\\a\share path=\\b\share "crit=free_pct < 10" "top-syntax=${s
 These options are shared by all filter based commands and are described on the [common options](../common-options.md#common-options) page; the default values below are specific to this command.
 
 
-| Option                                                                                         | Default Value                                |
-|------------------------------------------------------------------------------------------------|----------------------------------------------|
-| <a id="check_uncpath_filter"></a>[filter](../common-options.md#filter)                         |                                              |
-| <a id="check_uncpath_warning"></a>[warning](../common-options.md#warning)                      | used_pct > 80                                |
-| <a id="check_uncpath_warn"></a>[warn](../common-options.md#warn)                               |                                              |
-| <a id="check_uncpath_critical"></a>[critical](../common-options.md#critical)                   | used_pct > 90                                |
-| <a id="check_uncpath_crit"></a>[crit](../common-options.md#crit)                               |                                              |
-| <a id="check_uncpath_ok"></a>[ok](../common-options.md#ok)                                     |                                              |
-| <a id="check_uncpath_debug"></a>[debug](../common-options.md#debug)                            | false                                        |
-| <a id="check_uncpath_show-all"></a>[show-all](../common-options.md#show-all)                   | false                                        |
-| <a id="check_uncpath_empty-state"></a>[empty-state](../common-options.md#empty-state)          | unknown                                      |
-| <a id="check_uncpath_perf-config"></a>[perf-config](../common-options.md#perf-config)          |                                              |
-| <a id="check_uncpath_escape-html"></a>[escape-html](../common-options.md#escape-html)          | false                                        |
-| <a id="check_uncpath_list-separator"></a>[list-separator](../common-options.md#list-separator) | ,                                            |
-| <a id="check_uncpath_top-syntax"></a>[top-syntax](../common-options.md#top-syntax)             | ${status}: ${list}                           |
-| <a id="check_uncpath_ok-syntax"></a>[ok-syntax](../common-options.md#ok-syntax)                | %(status): All UNC paths are ok.             |
-| <a id="check_uncpath_empty-syntax"></a>[empty-syntax](../common-options.md#empty-syntax)       | %(status): No paths checked                  |
-| <a id="check_uncpath_detail-syntax"></a>[detail-syntax](../common-options.md#detail-syntax)    | ${path}: ${used}/${size} used (${free} free) |
-| <a id="check_uncpath_perf-syntax"></a>[perf-syntax](../common-options.md#perf-syntax)          | ${path}                                      |
+| Option                                                                                                        | Default Value                                |
+|---------------------------------------------------------------------------------------------------------------|----------------------------------------------|
+| <a id="check_uncpath_filter"></a>[filter](../common-options.md#filter)                                        |                                              |
+| <a id="check_uncpath_warning"></a>[warning](../common-options.md#warning)                                     | used_pct > 80                                |
+| <a id="check_uncpath_warn"></a>[warn](../common-options.md#warn)                                              |                                              |
+| <a id="check_uncpath_critical"></a>[critical](../common-options.md#critical)                                  | used_pct > 90                                |
+| <a id="check_uncpath_crit"></a>[crit](../common-options.md#crit)                                              |                                              |
+| <a id="check_uncpath_ok"></a>[ok](../common-options.md#ok)                                                    |                                              |
+| <a id="check_uncpath_debug"></a>[debug](../common-options.md#debug)                                           | false                                        |
+| <a id="check_uncpath_show-all"></a>[show-all](../common-options.md#show-all)                                  | false                                        |
+| <a id="check_uncpath_empty-state"></a>[empty-state](../common-options.md#empty-state)                         | unknown                                      |
+| <a id="check_uncpath_perf-config"></a>[perf-config](../common-options.md#perf-config)                         |                                              |
+| <a id="check_uncpath_escape-html"></a>[escape-html](../common-options.md#escape-html)                         | false                                        |
+| <a id="check_uncpath_list-separator"></a>[list-separator](../common-options.md#list-separator)                | ,                                            |
+| <a id="check_uncpath_top-syntax"></a>[top-syntax](../common-options.md#top-syntax)                            | ${status}: ${list}                           |
+| <a id="check_uncpath_ok-syntax"></a>[ok-syntax](../common-options.md#ok-syntax)                               | %(status): All UNC paths are ok.             |
+| <a id="check_uncpath_empty-syntax"></a>[empty-syntax](../common-options.md#empty-syntax)                      | %(status): No paths checked                  |
+| <a id="check_uncpath_detail-syntax"></a>[detail-syntax](../common-options.md#detail-syntax)                   | ${path}: ${used}/${size} used (${free} free) |
+| <a id="check_uncpath_perf-syntax"></a>[perf-syntax](../common-options.md#perf-syntax)                         | ${path}                                      |
+| <a id="check_uncpath_byte-unit"></a>[byte-unit](../common-options.md#byte-unit)                               |                                              |
+| <a id="check_uncpath_decimal-separator"></a>[decimal-separator](../common-options.md#decimal-separator)       |                                              |
+| <a id="check_uncpath_decimals"></a>[decimals](../common-options.md#decimals)                                  | -1                                           |
+| <a id="check_uncpath_thousands-separator"></a>[thousands-separator](../common-options.md#thousands-separator) |                                              |
 
 
 This command also accepts the standard [help options](../common-options.md#standard-options): help, help-pb, show-default, help-short.
@@ -2191,6 +2251,7 @@ This command also accepts the standard [help options](../common-options.md#stand
 |-----------------|--------------------------------------------------------------------------------------------------------------------|
 | convert_bytes() | Convert a byte count to a specific unit and return the numeric value (1024-based). Useful in thresholds.           |
 | format_bytes()  | Format a number as a human-readable byte string.                                                                   |
+| format_number() | Render a number with a fixed number of decimals, using the check's decimal and thousands separators.               |
 | free            | Free space on the share in bytes                                                                                   |
 | free_pct        | Percentage of free space                                                                                           |
 | path            | The UNC path being checked                                                                                         |

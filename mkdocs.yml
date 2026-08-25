@@ -80,37 +80,39 @@ nav:
         - Common options: docs/reference/common-options.md
         - Check commands:
             - CheckDisk: docs/reference/check/CheckDisk.md
+            - CheckDocker: docs/reference/check/CheckDocker.md
             - CheckExternalScripts: docs/reference/check/CheckExternalScripts.md
             - CheckEventLog (Windows): docs/reference/windows/CheckEventLog.md
             - CheckHelpers: docs/reference/check/CheckHelpers.md
             - CheckLogFile: docs/reference/check/CheckLogFile.md
-            - CheckMKClient: docs/reference/check/CheckMKClient.md
-            - CheckMKServer: docs/reference/check/CheckMKServer.md
+            - CheckMySQL: docs/reference/check/CheckMySQL.md
             - CheckNet: docs/reference/check/CheckNet.md
             - CheckNSCP: docs/reference/check/CheckNSCP.md
             - CheckSecurity: docs/reference/check/CheckSecurity.md
             - CheckSystem: docs/reference/check/CheckSystem.md
             - CheckMSSQL (Windows): docs/reference/windows/CheckMSSQL.md
+            - CheckWindowsApps (Windows): docs/reference/windows/CheckWindowsApps.md
             - CheckTaskSched (Windows): docs/reference/windows/CheckTaskSched.md
             - CheckWMI (Windows): docs/reference/windows/CheckWMI.md
         - Clients & Servers:
             - WEBServer: docs/reference/generic/WEBServer.md
-            - WEBClient: docs/reference/misc/WEBClient.md
             - NRPEServer: docs/reference/client/NRPEServer.md
             - NRPEClient: docs/reference/client/NRPEClient.md
             - NSClientServer: docs/reference/windows/NSClientServer.md
             - NSCAServer: docs/reference/client/NSCAServer.md
             - NSCAClient: docs/reference/client/NSCAClient.md
-            - NRDPClient: docs/reference/client/NRDPClient.md
             - NSCANgClient: docs/reference/client/NSCANgClient.md
-            - NSCPClient: docs/reference/misc/NSCPClient.md
+            - NSCPClient: docs/reference/client/NSCPClient.md
+            - NRDPClient: docs/reference/client/NRDPClient.md
             - IcingaClient: docs/reference/client/IcingaClient.md
             - SMTPClient: docs/reference/client/SMTPClient.md
             - GraphiteClient: docs/reference/client/GraphiteClient.md
             - SyslogClient: docs/reference/client/SyslogClient.md
-            - CollectdClient: docs/reference/misc/CollectdClient.md
-            - Op5Client: docs/reference/misc/Op5Client.md
-            - ElasticClient: docs/reference/misc/ElasticClient.md
+            - CollectdClient: docs/reference/client/CollectdClient.md
+            - Op5Client: docs/reference/client/Op5Client.md
+            - ElasticClient: docs/reference/client/ElasticClient.md
+            - CheckMKClient: docs/reference/client/CheckMKClient.md
+            - CheckMKServer: docs/reference/client/CheckMKServer.md
         - Helper modules:
             - Scheduler: docs/reference/generic/Scheduler.md
             - SimpleFileWriter: docs/reference/generic/SimpleFileWriter.md
