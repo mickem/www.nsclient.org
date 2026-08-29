@@ -91,6 +91,7 @@ per-release detail lives in each
     command now reports that failure instead of `Message submitted` — including
     when only one channel of a comma list (`channel=NSCA,GRAPHITE`) fails,
     which previously was silently reported as success.
+
 - ⚙️ **A reload now loads modules enabled in an included file since the last one.**
   An `[/includes]` file is read once when the configuration is loaded and served
   from memory after that, so a module switched on in one — most importantly
