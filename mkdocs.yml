@@ -46,6 +46,7 @@ nav:
         - How NSClient++ Works: docs/concepts/index.md
         - Checks In Depth: docs/concepts/checks.md
         - Settings: docs/concepts/settings.md
+        - File Layout: concepts/file-layout.md
         - Permissions: docs/concepts/permissions.md
     - Setup:
         - Supported platforms: docs/setup/supported-platforms.md
