@@ -317,6 +317,16 @@ mkcert -uninstall
 
 ## Using `check_nsclient` Command
 
+[`check_nsclient`](../check_nsclient/index.md) is a command line client for the
+same REST API this web interface uses, and the MSI already installed it for you
+as `C:\Program Files\NSClient++\check_nsclient.exe`. It is the quickest way to
+confirm the certificate you just installed actually validates.
+
+It is also a single self-contained binary, so you can
+[download it separately](../check_nsclient/index.md#standalone-download) onto a
+machine that does not run the agent — a monitoring server or your own
+workstation — and manage agents remotely from there.
+
 `check_nsclient` validates the NSClient++ TLS certificate against a CA file
 you pass with `--ca`. The simplest choice is the bundle NSClient++ already
 maintains for you — `windows-ca.pem` contains every Windows trusted root,
@@ -331,41 +341,31 @@ $ check_nsclient nsclient auth login --password PASSWORD --insecure
 Successfully logged in
 ```
 
-This command will connect to a local NSClient instance and authenticate using the provided password and CA certificate.
-The password and key will be store in your local credential store.
-To logout (and remove password and key from credential store) you can run:
+The login stores an API key in your operating system credential store, so
+later commands do not need the password. Verify the connection with `ping`:
 
-```
-check_nsclient nsclient auth logout
-```
-
-Next up we can try to connect using the ping command:
-
-```
-check_nsclient nsclient check ping
-Successfully pinged NSClient++ version 0.4.0 2026-01-10
-```
-
-This tool can also be used to connect to remote NSClient++ instances by providing the `--url` option:
 ```commandline
-$ check_nsclient nsclient auth login --help
-Login and store token
-
-Usage: check_nsclient.exe nsclient auth login [OPTIONS] --password <PASSWORD> [ID]
-
-Arguments:
-  [ID]  Profile ID to store the token under [default: default]
-
-Options:
-      --url <URL>            NSClient++ URL [default: https://localhost:8443]
-      --username <USERNAME>  Username to login with [default: admin]
-      --password <PASSWORD>  Password to login with
-      --insecure             Allow insecure TLS connections (i.e. dont validate certificate)
-      --ca <CA>              CA File to use for TLS connections
-  -h, --help                 Print help
+$ check_nsclient nsclient ping
+Successfully pinged NSClient++ version 0.18.0 2026-08-29
 ```
 
-One of the benefits of the `check_nsclient` tool apart from having a CLI interface where you can manage NSClient is that it also has an interactive client you can use:
+To log out — which revokes the key on the agent *and* removes it from the
+credential store:
+
+```commandline
+$ check_nsclient nsclient auth logout
+```
+
+Point `--url` at another host to manage a remote agent, giving the stored
+connection a [profile](../check_nsclient/profile.md) name:
+
+```commandline
+$ check_nsclient nsclient auth login prod --url https://prod-01.example.com:8443 --password PASSWORD
+$ check_nsclient nsclient --profile prod ping
+```
+
+Besides the CLI, `check_nsclient` has an interactive terminal client where you
+can run queries, watch the log and inspect status:
 
 ```commandline
 $ check_nsclient nsclient client
@@ -373,7 +373,10 @@ $ check_nsclient nsclient client
 
 ![Example CLI UI](../images/client-ui.png)
 
-In this client you can execute queries, check status, see log and so on and so fort.
+See [check_nsclient](../check_nsclient/index.md) for installation and the full
+command reference, and
+[Authentication](../check_nsclient/nsclient.md#authentication) for the login
+options in detail.
 
 ---
 

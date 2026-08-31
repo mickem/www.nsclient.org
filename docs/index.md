@@ -17,7 +17,7 @@ Works with Nagios, Icinga, Op5, Prometheus, check_mk — and anything that speak
 </p>
 
 <p class="hero-meta">
-Released <span data-release="date">recently</span> &middot; <a href="https://github.com/mickem/nscp/releases" data-release="notes-link">release notes</a>
+Released <span data-release="date">recently</span> &middot; <a href="https://github.com/mickem/nscp/releases" data-release="notes-link">release notes</a> &middot; <a href="download/">all downloads</a>
 </p>
 
 </div>
@@ -31,6 +31,7 @@ Released <span data-release="date">recently</span> &middot; <a href="https://git
 - :material-connection: **Many protocols** — NRPE, NSCA, NSCA-NG, NRDP, check_mk, Icinga 2, Op5, Graphite, Syslog, SMTP, REST, Prometheus/OpenMetrics
 - :material-view-dashboard: **Web UI** with live dashboards and check explorer
 - :material-language-python: **Scriptable** in Python, Lua, or any external script
+- :material-console: **Command line client** — [check_nsclient](docs/check_nsclient/index.md) drives local and remote agents from a single binary
 - :material-shield-check: **Secure by default** — TLS, client certs, allowed-hosts
 
 </div>
@@ -57,6 +58,7 @@ Released <span data-release="date">recently</span> &middot; <a href="https://git
 
 - [:fontawesome-solid-graduation-cap: Quick Start](docs/quick-start.md) — 10-minute walkthrough
 - [:material-download: Installation guide](docs/setup/installing.md) — MSI options & silent install
+- [:material-package-down: All downloads](download.md) — agent, command line client, web UI bundle
 - [:material-shield-key: Securing the agent](docs/setup/securing.md) — TLS & client certs
 - [:material-monitor-dashboard: Web Interface](docs/setup/web-interface.md)
 
@@ -68,6 +70,7 @@ Released <span data-release="date">recently</span> &middot; <a href="https://git
 - [:material-format-list-bulleted: Monitoring scenarios](docs/scenarios/index.md) — common real-world setups
 - [:material-bookshelf: Reference](docs/reference/index.md) — every module & command
 - [:material-school: Concepts](docs/concepts/index.md) — how it works under the hood
+- [:material-console: check_nsclient](docs/check_nsclient/index.md) — the standalone command line client
 - [:material-frequently-asked-questions: FAQ](docs/faq.md)
 
 </div>

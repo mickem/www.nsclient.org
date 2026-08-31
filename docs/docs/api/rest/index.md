@@ -19,6 +19,13 @@ Each topic has its own page:
 * [Metadata](metadata.md) — performance counters, registered channels
 * [Legacy API](legacy.md) — pre-`/api/v2` endpoints kept for backwards compatibility
 
+> **Note**
+>
+> You do not have to call the API by hand. [`check_nsclient`](../../check_nsclient/index.md)
+> is a standalone command line client that wraps every endpoint on this page,
+> handles login and API-key storage for you, and can be used as a Nagios check
+> plugin — see [Active Checks over the REST API](../../scenarios/rest-api-checks.md).
+
 ## API versions
 
 The REST API is currently exposed under two prefixes:

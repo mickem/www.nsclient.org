@@ -1,7 +1,26 @@
 (function () {
-  var REPO = 'mickem/nscp';
-  var CACHE_KEY = 'nscp-latest-release-v1';
+  // Captured while the script is executing; used to resolve /data/*.json from
+  // any page depth (the home page is at the root, /download/ is not).
+  var SCRIPT_SRC = (document.currentScript && document.currentScript.src) || '';
+
+  // key -> where to get its releases. `data` is relative to the site root.
+  var PROJECTS = {
+    nscp: { repo: 'mickem/nscp', data: 'data/releases.json' },
+    check_nsclient: { repo: 'mickem/check_nsclient', data: 'data/check_nsclient-releases.json' }
+  };
+  var DEFAULT_PROJECT = 'nscp';
+  var CACHE_PREFIX = 'nscp-latest-release-v2:';
   var CACHE_TTL_MS = 60 * 60 * 1000;
+
+  // assets/js/latest-release.js -> the site root, whatever the page depth.
+  function siteUrl(path) {
+    if (!SCRIPT_SRC) return path;
+    try {
+      return new URL('../../' + path, SCRIPT_SRC).toString();
+    } catch (e) {
+      return path;
+    }
+  }
 
   function fmtDate(iso) {
     if (!iso) return '';
@@ -28,28 +47,42 @@
     return '';
   }
 
-  function applyLatest(release) {
+  // Elements opt into a project with data-release-repo; no attribute means the
+  // agent, so the original home page markup keeps working unchanged.
+  function elements(kind, key) {
+    var attr = '[data-release="' + kind + '"]';
+    var selector = attr + '[data-release-repo="' + key + '"]';
+    if (key === DEFAULT_PROJECT) {
+      selector = attr + ':not([data-release-repo]), ' + selector;
+    }
+    return document.querySelectorAll(selector);
+  }
+
+  function applyLatest(release, key) {
     if (!release) return;
     var version = cleanTag(release.tag_name || release.name);
     var date = fmtDate(release.published_at);
-    var url = release.html_url || 'https://github.com/' + REPO + '/releases/latest';
+    var url = release.html_url ||
+      'https://github.com/' + PROJECTS[key].repo + '/releases/latest';
 
-    document.querySelectorAll('[data-release="version"]').forEach(function (el) {
+    elements('version', key).forEach(function (el) {
       el.textContent = version || 'latest';
     });
-    document.querySelectorAll('[data-release="date"]').forEach(function (el) {
+    elements('date', key).forEach(function (el) {
       el.textContent = date;
     });
-    document.querySelectorAll('[data-release="notes-link"]').forEach(function (el) {
+    elements('notes-link', key).forEach(function (el) {
       el.href = url;
     });
-    document.querySelectorAll('[data-release="download-link"]').forEach(function (el) {
+    elements('download-link', key).forEach(function (el) {
       el.href = url;
     });
   }
 
-  function renderReleases(releases) {
-    var container = document.getElementById('nscp-releases');
+  function renderReleases(releases, key) {
+    var container = document.getElementById(
+      key === DEFAULT_PROJECT ? 'nscp-releases' : key + '-releases'
+    );
     if (!container) return;
     if (!releases || !releases.length) return;
     container.replaceChildren();
@@ -85,9 +118,9 @@
     });
   }
 
-  function loadCache() {
+  function loadCache(key) {
     try {
-      var raw = localStorage.getItem(CACHE_KEY);
+      var raw = localStorage.getItem(CACHE_PREFIX + key);
       if (!raw) return null;
       var parsed = JSON.parse(raw);
       if (!parsed || !parsed.ts) return null;
@@ -96,43 +129,46 @@
     } catch (e) { return null; }
   }
 
-  function saveCache(data) {
+  function saveCache(key, data) {
     try {
-      localStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now(), data: data }));
+      localStorage.setItem(CACHE_PREFIX + key, JSON.stringify({ ts: Date.now(), data: data }));
     } catch (e) {}
   }
 
-  function paint(data) {
+  function paint(data, key) {
     if (!data) return;
-    applyLatest(data.latest || (data.releases && data.releases[0]));
-    renderReleases(data.releases);
+    applyLatest(data.latest || (data.releases && data.releases[0]), key);
+    renderReleases(data.releases, key);
   }
 
-  function showFallback(message) {
-    var container = document.getElementById('nscp-releases');
+  function showFallback(key, message) {
+    var container = document.getElementById(
+      key === DEFAULT_PROJECT ? 'nscp-releases' : key + '-releases'
+    );
     if (!container) return;
     if (container.querySelector('.release-item')) return;
     container.replaceChildren();
     var p = document.createElement('p');
     p.className = 'release-loading';
     var link = document.createElement('a');
-    link.href = 'https://github.com/' + REPO + '/releases';
+    link.href = 'https://github.com/' + PROJECTS[key].repo + '/releases';
     link.textContent = 'See all releases on GitHub';
     p.appendChild(document.createTextNode(message + ' '));
     p.appendChild(link);
     container.appendChild(p);
   }
 
-  function fetchLocal() {
-    return fetch('data/releases.json', { cache: 'no-cache' })
+  function fetchLocal(key) {
+    var url = siteUrl(PROJECTS[key].data);
+    return fetch(url, { cache: 'no-cache' })
       .then(function (r) {
-        if (!r.ok) throw new Error('local releases.json: ' + r.status);
+        if (!r.ok) throw new Error(PROJECTS[key].data + ': ' + r.status);
         return r.json();
       });
   }
 
-  function fetchGithub() {
-    return fetch('https://api.github.com/repos/' + REPO + '/releases?per_page=15', {
+  function fetchGithub(key) {
+    return fetch('https://api.github.com/repos/' + PROJECTS[key].repo + '/releases?per_page=15', {
       headers: { 'Accept': 'application/vnd.github+json' }
     }).then(function (r) {
       if (!r.ok) throw new Error('GitHub API: ' + r.status);
@@ -142,31 +178,48 @@
     });
   }
 
-  function init() {
-    var cached = loadCache();
-    if (cached) paint(cached);
+  function load(key) {
+    var cached = loadCache(key);
+    if (cached) paint(cached, key);
 
-    fetchLocal()
+    return fetchLocal(key)
       .catch(function (localErr) {
         if (window.console && console.info) {
-          console.info('latest-release: no build-time data (' + localErr.message + '), falling back to GitHub API');
+          console.info('latest-release: no build-time data for ' + key +
+            ' (' + localErr.message + '), falling back to GitHub API');
         }
-        return fetchGithub();
+        return fetchGithub(key);
       })
       .then(function (releases) {
         if (!releases || !releases.length) {
           throw new Error('No releases available');
         }
         var data = { latest: releases[0], releases: releases };
-        paint(data);
-        saveCache(data);
+        paint(data, key);
+        saveCache(key, data);
       })
       .catch(function (err) {
         if (window.console && console.warn) {
-          console.warn('latest-release: failed to load releases —', err.message);
+          console.warn('latest-release: failed to load releases for ' + key + ' —', err.message);
         }
-        showFallback('Could not load latest releases.');
+        showFallback(key, 'Could not load latest releases.');
       });
+  }
+
+  // Only ask for a project this page actually shows something for.
+  function isUsed(key) {
+    if (document.getElementById(key === DEFAULT_PROJECT ? 'nscp-releases' : key + '-releases')) {
+      return true;
+    }
+    return ['version', 'date', 'notes-link', 'download-link'].some(function (kind) {
+      return elements(kind, key).length > 0;
+    });
+  }
+
+  function init() {
+    Object.keys(PROJECTS).forEach(function (key) {
+      if (isUsed(key)) load(key);
+    });
   }
 
   if (document.readyState === 'loading') {

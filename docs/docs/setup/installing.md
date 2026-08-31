@@ -333,6 +333,11 @@ NSClient++ consists of the following features most which can be disabled when do
 | WEBPlugins        | WEB Server             | NSClient WEB Server. Use this to administrate or check NSClient via a browser or REST API |
 | OP5Monitoring     | OP5 Monitoring         | Scripts/config for the op5 monitoring system.                                             |
 
+The main program is not a selectable feature — besides `nscp.exe` it also
+installs `check_nrpe.exe` and `check_nsclient.exe`, the
+[command line client](../check_nsclient/index.md) for the agent's REST API,
+into the installation folder.
+
 ### Silent install
 
 Now we can put all this together using the normal silent installer which is again part of the standard windows install

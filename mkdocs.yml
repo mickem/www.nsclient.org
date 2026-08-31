@@ -38,111 +38,116 @@ nav:
     - Welcome: index.md
     - About NSClient++: nsclient.md
   - News: news/index.md
-  - Download: https://github.com/mickem/nscp/releases
+  - Download: download.md
   - Documentation:
     - Home: docs/index.md
-    - Quick Start: docs/quick-start.md
-    - Concepts:
-        - How NSClient++ Works: docs/concepts/index.md
-        - Checks In Depth: docs/concepts/checks.md
-        - Settings: docs/concepts/settings.md
-        - File Layout: concepts/file-layout.md
-        - Permissions: docs/concepts/permissions.md
-    - Setup:
-        - Supported platforms: docs/setup/supported-platforms.md
-        - Installation: docs/setup/installing.md
-        - Upgrading: docs/setup/upgrading.md
-        - Securing NSClient++: docs/setup/securing.md
-        - Web Interface: docs/setup/web-interface.md
-    - Security:
-        - Security notices: docs/security/notices.md
-    - Monitoring Scenarios:
-        - Overview: docs/scenarios/index.md
-        - Windows Server Health: docs/scenarios/windows-server-health.md
-        - Linux Server Health: docs/scenarios/linux-server-health.md
-        - Disk Space Alerting: docs/scenarios/disk-space.md
-        - Service & Process Monitoring: docs/scenarios/service-monitoring.md
-        - Real-Time System Monitoring: docs/scenarios/realtime-monitoring.md
-        - Event Log Monitoring: docs/scenarios/event-log.md
-        - Performance Counters (PDH): docs/scenarios/counters.md
-        - SQL Server Monitoring: docs/scenarios/sql-server.md
-        - Network Checks: docs/scenarios/network-checks.md
-        - Host Security Posture: docs/scenarios/security-posture.md
-        - Active Monitoring with NRPE: docs/scenarios/nrpe.md
-        - Passive Monitoring (NSCA/NRDP): docs/scenarios/passive-monitoring-nsca.md
-        - Passive Monitoring (NSCA-NG): docs/scenarios/passive-monitoring-nsca-ng.md
-        - Passive Monitoring (Icinga 2): docs/scenarios/passive-monitoring-icinga.md
-        - Passive Monitoring (Graphite): docs/scenarios/passive-monitoring-graphite.md
-        - Checkmk Agent Integration: docs/scenarios/check-mk.md
-        - Prometheus Scraping: docs/scenarios/prometheus.md
-        - External Scripts: docs/scenarios/external-scripts.md
-    - Reference:
-        - Reference: docs/reference/index.md
-        - Common options: docs/reference/common-options.md
-        - Check commands:
-            - CheckDisk: docs/reference/check/CheckDisk.md
-            - CheckDocker: docs/reference/check/CheckDocker.md
-            - CheckExternalScripts: docs/reference/check/CheckExternalScripts.md
-            - CheckEventLog (Windows): docs/reference/windows/CheckEventLog.md
-            - CheckHelpers: docs/reference/check/CheckHelpers.md
-            - CheckLogFile: docs/reference/check/CheckLogFile.md
-            - CheckMySQL: docs/reference/check/CheckMySQL.md
-            - CheckNet: docs/reference/check/CheckNet.md
-            - CheckNSCP: docs/reference/check/CheckNSCP.md
-            - CheckSecurity: docs/reference/check/CheckSecurity.md
-            - CheckSystem: docs/reference/check/CheckSystem.md
-            - CheckMSSQL (Windows): docs/reference/windows/CheckMSSQL.md
-            - CheckWindowsApps (Windows): docs/reference/windows/CheckWindowsApps.md
-            - CheckTaskSched (Windows): docs/reference/windows/CheckTaskSched.md
-            - CheckWMI (Windows): docs/reference/windows/CheckWMI.md
-        - Clients & Servers:
-            - WEBServer: docs/reference/generic/WEBServer.md
-            - NRPEServer: docs/reference/client/NRPEServer.md
-            - NRPEClient: docs/reference/client/NRPEClient.md
-            - NSClientServer: docs/reference/windows/NSClientServer.md
-            - NSCAServer: docs/reference/client/NSCAServer.md
-            - NSCAClient: docs/reference/client/NSCAClient.md
-            - NSCANgClient: docs/reference/client/NSCANgClient.md
-            - NSCPClient: docs/reference/client/NSCPClient.md
-            - NRDPClient: docs/reference/client/NRDPClient.md
-            - IcingaClient: docs/reference/client/IcingaClient.md
-            - SMTPClient: docs/reference/client/SMTPClient.md
-            - GraphiteClient: docs/reference/client/GraphiteClient.md
-            - SyslogClient: docs/reference/client/SyslogClient.md
-            - CollectdClient: docs/reference/client/CollectdClient.md
-            - Op5Client: docs/reference/client/Op5Client.md
-            - ElasticClient: docs/reference/client/ElasticClient.md
-            - CheckMKClient: docs/reference/client/CheckMKClient.md
-            - CheckMKServer: docs/reference/client/CheckMKServer.md
-        - Helper modules:
-            - Scheduler: docs/reference/generic/Scheduler.md
-            - SimpleFileWriter: docs/reference/generic/SimpleFileWriter.md
-            - CommandClient: docs/reference/generic/CommandClient.md
-            - SimpleCache: docs/reference/generic/SimpleCache.md
-            - PythonScript: docs/reference/generic/PythonScript.md
-            - LUAScript: docs/reference/generic/LUAScript.md
-    - Extending:
-        - Overview: docs/extending/index.md
-        - Python Scripts: docs/extending/python.md
-        - Lua Scripts: docs/extending/lua.md
-        - Zip Modules: docs/extending/zip-modules.md
-        - Plugin API Reference: docs/extending/plugin-api.md
-    - API:
-        - REST:
-            - Introduction: docs/api/rest/index.md
-            - Info: docs/api/rest/info.md
-            - Login: docs/api/rest/login.md
-            - Modules: docs/api/rest/modules.md
-            - Queries: docs/api/rest/queries.md
-            - Aliases: docs/api/rest/aliases.md
-            - Scripts: docs/api/rest/scripts.md
-            - Settings: docs/api/rest/settings.md
-            - Metadata: docs/api/rest/metadata.md
-            - Metrics: docs/api/rest/metrics.md
-            - Logs: docs/api/rest/logs.md
-            - Legacy API: docs/api/rest/legacy.md
-    - FAQ: docs/faq.md
-
+    - NSClient++ agent:
+      - Quick Start: docs/quick-start.md
+      - Concepts:
+          - How NSClient++ Works: docs/concepts/index.md
+          - Checks In Depth: docs/concepts/checks.md
+          - Settings: docs/concepts/settings.md
+          - File Layout: docs/concepts/file-layout.md
+          - Permissions: docs/concepts/permissions.md
+      - Setup:
+          - Supported platforms: docs/setup/supported-platforms.md
+          - Installation: docs/setup/installing.md
+          - Upgrading: docs/setup/upgrading.md
+          - Securing NSClient++: docs/setup/securing.md
+          - Web Interface: docs/setup/web-interface.md
+      - Security:
+          - Security notices: docs/security/notices.md
+      - Monitoring Scenarios:
+          - Overview: docs/scenarios/index.md
+          - Windows Server Health: docs/scenarios/windows-server-health.md
+          - Linux Server Health: docs/scenarios/linux-server-health.md
+          - Disk Space Alerting: docs/scenarios/disk-space.md
+          - Service & Process Monitoring: docs/scenarios/service-monitoring.md
+          - Real-Time System Monitoring: docs/scenarios/realtime-monitoring.md
+          - Event Log Monitoring: docs/scenarios/event-log.md
+          - Performance Counters (PDH): docs/scenarios/counters.md
+          - SQL Server Monitoring: docs/scenarios/sql-server.md
+          - Network Checks: docs/scenarios/network-checks.md
+          - Host Security Posture: docs/scenarios/security-posture.md
+          - Active Monitoring with NRPE: docs/scenarios/nrpe.md
+          - Active Checks over the REST API: docs/scenarios/rest-api-checks.md
+          - Passive Monitoring (NSCA/NRDP): docs/scenarios/passive-monitoring-nsca.md
+          - Passive Monitoring (NSCA-NG): docs/scenarios/passive-monitoring-nsca-ng.md
+          - Passive Monitoring (Icinga 2): docs/scenarios/passive-monitoring-icinga.md
+          - Passive Monitoring (Graphite): docs/scenarios/passive-monitoring-graphite.md
+          - Checkmk Agent Integration: docs/scenarios/check-mk.md
+          - Prometheus Scraping: docs/scenarios/prometheus.md
+          - External Scripts: docs/scenarios/external-scripts.md
+      - Reference:
+          - Reference: docs/reference/index.md
+          - Common options: docs/reference/common-options.md
+          - Check commands:
+              - CheckDisk: docs/reference/check/CheckDisk.md
+              - CheckDocker: docs/reference/check/CheckDocker.md
+              - CheckExternalScripts: docs/reference/check/CheckExternalScripts.md
+              - CheckEventLog (Windows): docs/reference/windows/CheckEventLog.md
+              - CheckHelpers: docs/reference/check/CheckHelpers.md
+              - CheckLogFile: docs/reference/check/CheckLogFile.md
+              - CheckMySQL: docs/reference/check/CheckMySQL.md
+              - CheckNet: docs/reference/check/CheckNet.md
+              - CheckNSCP: docs/reference/check/CheckNSCP.md
+              - CheckSecurity: docs/reference/check/CheckSecurity.md
+              - CheckSystem: docs/reference/check/CheckSystem.md
+              - CheckMSSQL (Windows): docs/reference/windows/CheckMSSQL.md
+              - CheckWindowsApps (Windows): docs/reference/windows/CheckWindowsApps.md
+              - CheckTaskSched (Windows): docs/reference/windows/CheckTaskSched.md
+              - CheckWMI (Windows): docs/reference/windows/CheckWMI.md
+          - Clients & Servers:
+              - WEBServer: docs/reference/generic/WEBServer.md
+              - NRPEServer: docs/reference/client/NRPEServer.md
+              - NRPEClient: docs/reference/client/NRPEClient.md
+              - NSClientServer: docs/reference/windows/NSClientServer.md
+              - NSCAServer: docs/reference/client/NSCAServer.md
+              - NSCAClient: docs/reference/client/NSCAClient.md
+              - NSCANgClient: docs/reference/client/NSCANgClient.md
+              - NSCPClient: docs/reference/client/NSCPClient.md
+              - NRDPClient: docs/reference/client/NRDPClient.md
+              - IcingaClient: docs/reference/client/IcingaClient.md
+              - SMTPClient: docs/reference/client/SMTPClient.md
+              - GraphiteClient: docs/reference/client/GraphiteClient.md
+              - SyslogClient: docs/reference/client/SyslogClient.md
+              - CollectdClient: docs/reference/client/CollectdClient.md
+              - Op5Client: docs/reference/client/Op5Client.md
+              - ElasticClient: docs/reference/client/ElasticClient.md
+              - CheckMKClient: docs/reference/client/CheckMKClient.md
+              - CheckMKServer: docs/reference/client/CheckMKServer.md
+          - Helper modules:
+              - Scheduler: docs/reference/generic/Scheduler.md
+              - SimpleFileWriter: docs/reference/generic/SimpleFileWriter.md
+              - CommandClient: docs/reference/generic/CommandClient.md
+              - SimpleCache: docs/reference/generic/SimpleCache.md
+              - PythonScript: docs/reference/generic/PythonScript.md
+              - LUAScript: docs/reference/generic/LUAScript.md
+      - Extending:
+          - Overview: docs/extending/index.md
+          - Python Scripts: docs/extending/python.md
+          - Lua Scripts: docs/extending/lua.md
+          - Zip Modules: docs/extending/zip-modules.md
+          - Plugin API Reference: docs/extending/plugin-api.md
+      - API:
+          - REST:
+              - Introduction: docs/api/rest/index.md
+              - Info: docs/api/rest/info.md
+              - Login: docs/api/rest/login.md
+              - Modules: docs/api/rest/modules.md
+              - Queries: docs/api/rest/queries.md
+              - Aliases: docs/api/rest/aliases.md
+              - Scripts: docs/api/rest/scripts.md
+              - Settings: docs/api/rest/settings.md
+              - Metadata: docs/api/rest/metadata.md
+              - Metrics: docs/api/rest/metrics.md
+              - Logs: docs/api/rest/logs.md
+              - Legacy API: docs/api/rest/legacy.md
+      - FAQ: docs/faq.md
+    - check_nsclient (CLI):
+        - Overview: docs/check_nsclient/index.md
+        - Agent commands: docs/check_nsclient/nsclient.md
+        - Profiles: docs/check_nsclient/profile.md
 
   - Forums: https://github.com/mickem/nscp/discussions
 
@@ -192,6 +197,7 @@ markdown_extensions:
   - pymdownx.tabbed:
       alternate_style: true
   - pymdownx.details
+  - pymdownx.keys
   - pymdownx.superfences:
       custom_fences:
         - name: mermaid

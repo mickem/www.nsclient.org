@@ -40,6 +40,19 @@ NSClient++ was designed to work with Nagios/Naemon/Icinga but can easily be adap
 * Elastic
 * Prometheus / OpenMetrics (scraped from the REST API)
 
+## What else is there?
+
+The agent is not the only piece. [`check_nsclient`](docs/check_nsclient/index.md)
+is a standalone command line client for the agent's REST API — a single binary
+for Linux and Windows that runs checks, edits the configuration, reads
+the log and manages modules on a local or remote agent. It is developed
+separately, in [its own repository](https://github.com/mickem/check_nsclient),
+and documented [here](docs/check_nsclient/index.md).
+
+Because it exits with the Nagios status code, it also works as a check plugin,
+which makes it an alternative to NRPE for active checks — see
+[Active Checks over the REST API](docs/scenarios/rest-api-checks.md).
+
 ## Where does it run?
 
 NSClient++ runs on Windows and most Linux distributions. There are two Windows editions — a standard build for Windows Server 2008 R2 / Windows 7 and later, and a legacy build that still runs on Windows XP. See [Supported platforms](docs/setup/supported-platforms.md) for the full matrix.

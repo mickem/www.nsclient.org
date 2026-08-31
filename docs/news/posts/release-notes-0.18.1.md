@@ -3,7 +3,7 @@ date:
   created: 2026-08-31
 ---
 
-# Security hardening and bugfixes of monitoring clients
+# 0.18.1 Security hardening and bugfixes of monitoring clients
 
 0.18.1 is a security and correctness release for the passive/outbound side of
 the agent. A review pass over the client modules — Icinga, NRDP, NSCA, NSCA-NG,

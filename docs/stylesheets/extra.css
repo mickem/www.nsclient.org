@@ -129,6 +129,51 @@
     margin: 0;
 }
 
+/* ----- Download: per-project cards ----- */
+
+.downloads {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+    margin: 1.5rem 0 2rem;
+    align-items: start;
+}
+
+.download-card {
+    padding: 1.25rem 1.4rem 1.4rem;
+    border: 1px solid var(--md-default-fg-color--lightest);
+    border-radius: 8px;
+    background: var(--md-default-bg-color);
+}
+
+.download-card > h2:first-child {
+    margin-top: 0 !important;
+    font-size: 1.25rem;
+}
+
+.download-card .md-button {
+    margin: .25rem 0 .5rem;
+}
+
+.download-version {
+    font-size: .75rem;
+    color: var(--md-default-fg-color--light);
+    margin: .25rem 0 .9rem !important;
+}
+
+.download-version a {
+    color: inherit;
+    text-decoration: underline;
+}
+
+.download-card table {
+    font-size: .72rem;
+}
+
+.download-card ul {
+    font-size: .8rem;
+}
+
 /* ----- Home: nav cards ----- */
 
 .cards {

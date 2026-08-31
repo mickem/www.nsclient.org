@@ -1,8 +1,14 @@
 """mkdocs hook: fetch latest GitHub releases at build time.
 
-Writes a trimmed `data/releases.json` into the built site so visitors never
-have to call the GitHub API directly (which is rate-limited to 60/hr per IP
-when unauthenticated).
+Writes trimmed release data into the built site so visitors never have to call
+the GitHub API directly (which is rate-limited to 60/hr per IP when
+unauthenticated). One file per project:
+
+    data/releases.json                  mickem/nscp            (the agent)
+    data/check_nsclient-releases.json   mickem/check_nsclient  (the CLI)
+
+`assets/js/latest-release.js` reads them to fill in versions, dates and
+download links on the home page and on /download/.
 
 Set GITHUB_TOKEN in the environment to bump the build-time rate limit to
 5000/hr (auto-set inside GitHub Actions).
@@ -15,21 +21,33 @@ import time
 import urllib.error
 import urllib.request
 
-REPO = "mickem/nscp"
+# key -> (GitHub repo, file written under <site>/data/)
+PROJECTS = {
+    "nscp": ("mickem/nscp", "releases.json"),
+    "check_nsclient": ("mickem/check_nsclient", "check_nsclient-releases.json"),
+}
 PER_PAGE = 15
 KEEP = 5
-CACHE_PATH = ".cache/github-releases.json"
+CACHE_DIR = ".cache"
 CACHE_TTL_SECONDS = 60 * 60
 TIMEOUT_SECONDS = 10
 
 
-def _load_cache():
+def _cache_path(key):
+    if key == "nscp":
+        # Keep the original name so existing caches stay valid.
+        return os.path.join(CACHE_DIR, "github-releases.json")
+    return os.path.join(CACHE_DIR, "github-releases-%s.json" % key)
+
+
+def _load_cache(key):
+    path = _cache_path(key)
     try:
-        if not os.path.exists(CACHE_PATH):
+        if not os.path.exists(path):
             return None
-        if time.time() - os.path.getmtime(CACHE_PATH) > CACHE_TTL_SECONDS:
+        if time.time() - os.path.getmtime(path) > CACHE_TTL_SECONDS:
             return None
-        with open(CACHE_PATH, "r", encoding="utf-8") as fh:
+        with open(path, "r", encoding="utf-8") as fh:
             data = json.load(fh)
         if not isinstance(data, list):
             return None
@@ -38,16 +56,17 @@ def _load_cache():
         return None
 
 
-def _save_cache(data):
+def _save_cache(key, data):
+    path = _cache_path(key)
     try:
-        os.makedirs(os.path.dirname(CACHE_PATH), exist_ok=True)
-        with open(CACHE_PATH, "w", encoding="utf-8") as fh:
+        os.makedirs(os.path.dirname(path), exist_ok=True)
+        with open(path, "w", encoding="utf-8") as fh:
             json.dump(data, fh)
     except OSError:
         pass
 
 
-def _fetch_github():
+def _fetch_github(repo):
     headers = {
         "Accept": "application/vnd.github+json",
         "User-Agent": "nsclient-docs-build",
@@ -56,7 +75,7 @@ def _fetch_github():
     if token:
         headers["Authorization"] = "Bearer " + token
     req = urllib.request.Request(
-        "https://api.github.com/repos/" + REPO + "/releases?per_page=" + str(PER_PAGE),
+        "https://api.github.com/repos/" + repo + "/releases?per_page=" + str(PER_PAGE),
         headers=headers,
     )
     with urllib.request.urlopen(req, timeout=TIMEOUT_SECONDS) as resp:
@@ -83,28 +102,34 @@ def _trim(releases):
     return result
 
 
-def on_post_build(config, **kwargs):
-    cached = _load_cache()
+def _write(config, key, repo, filename):
+    cached = _load_cache(key)
     if cached is not None:
         releases = cached
         source = "cache"
     else:
         try:
-            releases = _fetch_github()
-            _save_cache(releases)
+            releases = _fetch_github(repo)
+            _save_cache(key, releases)
             source = "github"
         except (urllib.error.URLError, TimeoutError, ValueError) as e:
-            print("fetch_releases: GitHub fetch failed: %s" % e, file=sys.stderr)
+            print("fetch_releases: %s fetch failed: %s" % (repo, e), file=sys.stderr)
             return
 
     trimmed = _trim(releases)
     if not trimmed:
-        print("fetch_releases: no stable releases found, skipping", file=sys.stderr)
+        print("fetch_releases: no stable releases for %s, skipping" % repo, file=sys.stderr)
         return
 
-    out_path = os.path.join(config["site_dir"], "data", "releases.json")
+    out_path = os.path.join(config["site_dir"], "data", filename)
     os.makedirs(os.path.dirname(out_path), exist_ok=True)
     with open(out_path, "w", encoding="utf-8") as fh:
         json.dump(trimmed, fh)
 
-    print("fetch_releases: wrote %d stable releases (source: %s)" % (len(trimmed), source))
+    print("fetch_releases: %s -> %s, %d stable releases (source: %s)"
+          % (repo, filename, len(trimmed), source))
+
+
+def on_post_build(config, **kwargs):
+    for key, (repo, filename) in PROJECTS.items():
+        _write(config, key, repo, filename)

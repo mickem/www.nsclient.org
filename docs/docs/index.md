@@ -46,6 +46,13 @@ Pick the protocol that matches your setup:
 ### 🔒 I want to harden the agent
 [Securing NSClient++](setup/securing.md) — TLS configuration, two-way authentication with client certificates, and protocol-specific hardening guidance.
 
+### 💻 I want to drive the agent from the command line
+[check_nsclient](check_nsclient/index.md) is a standalone command line client for the
+[REST API](api/rest/index.md) — a single binary for Linux and Windows that runs
+checks, edits settings, reads the log and manages modules on a local or remote agent.
+Because it exits with the Nagios status code it also works as a check plugin, which is
+covered in [Active Checks over the REST API](scenarios/rest-api-checks.md).
+
 ### 🔍 I need reference material
 The [Reference section](reference/index.md) has complete documentation for every module, command, and configuration option.
 
@@ -86,7 +93,7 @@ The most common check commands with their default thresholds:
 - **[NSCA](scenarios/passive-monitoring-nsca.md)**: Nagios Service Check Acceptor — for passive monitoring (push).
 - **[NRDP](scenarios/passive-monitoring-nsca.md#using-nrdp-instead-of-nsca)**: Nagios Remote Data Processor — modern HTTP-based alternative to NSCA.
 - **[Icinga 2](scenarios/passive-monitoring-icinga.md)**: Submit scheduled check results to the Icinga 2 REST API.
-- **[REST API](api/rest/index.md)**: For custom integrations and scripts.
+- **[REST API](api/rest/index.md)**: For custom integrations and scripts — and for [check_nsclient](check_nsclient/index.md), the standalone command line client.
 - **check_mk**: For check_mk users, NSClient++ can be configured to work with the check_mk agent protocol — see [CheckMKClient](reference/check/CheckMKClient.md) / [CheckMKServer](reference/check/CheckMKServer.md) reference.
 - **Graphite**: For sending performance data to Graphite/Carbon — see [GraphiteClient](reference/client/GraphiteClient.md) reference.
 - **[Prometheus](scenarios/prometheus.md)**: Exposes metrics in OpenMetrics format on `/api/v2/openmetrics` for Prometheus to scrape.
