@@ -1,0 +1,6750 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://nsclient.org/docs/reference/check/CheckDocker/">
+      
+      
+        <link rel="prev" href="../CheckDisk/">
+      
+      
+        <link rel="next" href="../CheckExternalScripts/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>CheckDocker - NSClient++</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#checkdocker" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="NSClient++" class="md-header__button md-logo" aria-label="NSClient++" data-md-component="logo">
+      
+  <img src="../../../../assets/nsclient-logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            NSClient++
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              CheckDocker
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/mickem/nscp" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M202.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1M496 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2m-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3m-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1"/></svg>
+  </div>
+  <div class="md-source__repository">
+    NSClient++
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../.." class="md-tabs__link">
+          
+  
+  
+    
+  
+  Home
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../news/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  News
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../download/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Download
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Documentation
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://github.com/mickem/nscp/discussions" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Forums
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="NSClient++" class="md-nav__button md-logo" aria-label="NSClient++" data-md-component="logo">
+      
+  <img src="../../../../assets/nsclient-logo.png" alt="logo">
+
+    </a>
+    NSClient++
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/mickem/nscp" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M202.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1M496 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2m-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3m-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1"/></svg>
+  </div>
+  <div class="md-source__repository">
+    NSClient++
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../.." class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_1" id="__nav_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Home
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../nsclient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About NSClient++
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../news/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    News
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../download/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Download
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Documentation
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Documentation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSClient++ agent
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    NSClient++ agent
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../quick-start/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../concepts/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_2_2" id="__nav_4_2_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Concepts
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../concepts/checks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Checks In Depth
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../concepts/settings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Settings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../concepts/file-layout/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    File Layout
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../concepts/permissions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Permissions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2_3" id="__nav_4_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Setup
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../setup/supported-platforms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Supported platforms
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../setup/installing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../setup/upgrading/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Upgrading
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../setup/securing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Securing NSClient++
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../setup/web-interface/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Web Interface
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2_4" id="__nav_4_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Security
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../security/notices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security notices
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../scenarios/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Monitoring Scenarios
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_2_5" id="__nav_4_2_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Monitoring Scenarios
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/windows-server-health/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Windows Server Health
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/linux-server-health/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux Server Health
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/disk-space/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Disk Space Alerting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/service-monitoring/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Service & Process Monitoring
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/realtime-monitoring/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Real-Time System Monitoring
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/event-log/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Event Log Monitoring
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/counters/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Performance Counters (PDH)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/sql-server/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SQL Server Monitoring
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/network-checks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Network Checks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/security-posture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Host Security Posture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/nrpe/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Active Monitoring with NRPE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/rest-api-checks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Active Checks over the REST API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/passive-monitoring-nsca/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Passive Monitoring (NSCA/NRDP)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/passive-monitoring-nsca-ng/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Passive Monitoring (NSCA-NG)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/passive-monitoring-icinga/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Passive Monitoring (Icinga 2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/passive-monitoring-graphite/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Passive Monitoring (Graphite)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/check-mk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Checkmk Agent Integration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/prometheus/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prometheus Scraping
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/external-scripts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    External Scripts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_6" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_2_6" id="__nav_4_2_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_2_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../common-options/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Common options
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_6_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4_2_6_3" id="__nav_4_2_6_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Check commands
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_2_6_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_2_6_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Check commands
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CheckDisk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckDisk
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckDocker
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckDocker
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#enable-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enable module
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#queries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Queries
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Queries">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#check_docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        check_docker
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="check_docker">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#about-check_docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        About check_docker
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sample-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#command-line-arguments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Command-line Arguments
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filter-keywords" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Filter keywords
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check_docker_df" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        check_docker_df
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="check_docker_df">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#about-check_docker_df" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        About check_docker_df
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sample-commands_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#command-line-arguments_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Command-line Arguments
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filter-keywords_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Filter keywords
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check_docker_info" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        check_docker_info
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="check_docker_info">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#about-check_docker_info" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        About check_docker_info
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sample-commands_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#command-line-arguments_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Command-line Arguments
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filter-keywords_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Filter keywords
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check_docker_restarts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        check_docker_restarts
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="check_docker_restarts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#about-check_docker_restarts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        About check_docker_restarts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sample-commands_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#command-line-arguments_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Command-line Arguments
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filter-keywords_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Filter keywords
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check_docker_stats" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        check_docker_stats
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="check_docker_stats">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#about-check_docker_stats" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        About check_docker_stats
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sample-commands_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#command-line-arguments_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Command-line Arguments
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filter-keywords_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Filter keywords
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#settingsdocker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /settings/docker
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="/settings/docker">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#docker-endpoint" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DOCKER ENDPOINT
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker-endpoint_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DOCKER ENDPOINT
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#timeout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TIMEOUT
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CheckExternalScripts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckExternalScripts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../windows/CheckEventLog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckEventLog (Windows)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CheckHelpers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckHelpers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CheckLogFile/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckLogFile
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CheckMySQL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckMySQL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CheckNet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckNet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CheckNSCP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckNSCP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CheckSecurity/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckSecurity
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CheckSystem/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckSystem
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../windows/CheckMSSQL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckMSSQL (Windows)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../windows/CheckWindowsApps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckWindowsApps (Windows)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../windows/CheckTaskSched/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckTaskSched (Windows)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../windows/CheckWMI/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckWMI (Windows)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_6_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2_6_4" id="__nav_4_2_6_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Clients & Servers
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_2_6_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_6_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Clients & Servers
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../generic/WEBServer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WEBServer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/NRPEServer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NRPEServer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/NRPEClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NRPEClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../windows/NSClientServer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSClientServer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/NSCAServer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSCAServer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/NSCAClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSCAClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/NSCANgClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSCANgClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/NSCPClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSCPClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/NRDPClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NRDPClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/IcingaClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IcingaClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/SMTPClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SMTPClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/GraphiteClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GraphiteClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/SyslogClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SyslogClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/CollectdClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CollectdClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/Op5Client/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Op5Client
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/ElasticClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ElasticClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/CheckMKClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckMKClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/CheckMKServer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckMKServer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_6_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2_6_5" id="__nav_4_2_6_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Helper modules
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_2_6_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_6_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Helper modules
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../generic/Scheduler/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scheduler
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../generic/SimpleFileWriter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SimpleFileWriter
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../generic/CommandClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CommandClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../generic/SimpleCache/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SimpleCache
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../generic/PythonScript/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PythonScript
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../generic/LUAScript/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LUAScript
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../extending/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Extending
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_2_7" id="__nav_4_2_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Extending
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../extending/python/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python Scripts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../extending/lua/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lua Scripts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../extending/zip-modules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Zip Modules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../extending/plugin-api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plugin API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2_8" id="__nav_4_2_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    API
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_8_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../api/rest/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    REST
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_2_8_1" id="__nav_4_2_8_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_2_8_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_8_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    REST
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/rest/info/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Info
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/rest/login/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Login
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/rest/modules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/rest/queries/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Queries
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/rest/aliases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Aliases
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/rest/scripts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scripts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/rest/settings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Settings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/rest/metadata/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Metadata
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/rest/metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Metrics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/rest/logs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/rest/legacy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Legacy API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../check_nsclient/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    check_nsclient (CLI)
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    check_nsclient (CLI)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../check_nsclient/nsclient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Agent commands
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../check_nsclient/profile/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Profiles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/mickem/nscp/discussions" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Forums
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="checkdocker">CheckDocker<a class="headerlink" href="#checkdocker" title="Permanent link">&para;</a></h1>
+<p>Check docker containers (state, health) and the docker daemon itself.</p>
+<h2 id="enable-module">Enable module<a class="headerlink" href="#enable-module" title="Permanent link">&para;</a></h2>
+<p>To enable this module and and allow using the commands you need to ass <code>CheckDocker = enabled</code> to the <code>[/modules]</code> section in nsclient.ini:</p>
+<div class="highlight"><pre><span></span><code>[/modules]
+CheckDocker = enabled
+</code></pre></div>
+<h2 id="queries">Queries<a class="headerlink" href="#queries" title="Permanent link">&para;</a></h2>
+<p>A quick reference for all available queries (check commands) in the CheckDocker module.</p>
+<p><strong>List of commands:</strong></p>
+<p>A list of all available queries (check commands)</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#check_docker">check_docker</a></td>
+<td>Check the state of docker containers, optionally requiring specific containers to be running.</td>
+</tr>
+<tr>
+<td><a href="#check_docker_df">check_docker_df</a></td>
+<td>Check docker disk usage: images, containers, volumes, build cache and reclaimable space.</td>
+</tr>
+<tr>
+<td><a href="#check_docker_info">check_docker_info</a></td>
+<td>Check that the docker daemon is healthy: version plus container and image counts.</td>
+</tr>
+<tr>
+<td><a href="#check_docker_restarts">check_docker_restarts</a></td>
+<td>Detect container restart loops and out-of-memory kills.</td>
+</tr>
+<tr>
+<td><a href="#check_docker_stats">check_docker_stats</a></td>
+<td>Check per-container resource usage: CPU percent and memory versus limit.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="check_docker">check_docker<a class="headerlink" href="#check_docker" title="Permanent link">&para;</a></h3>
+<p>Check the state of docker containers, optionally requiring specific containers to be running.</p>
+<h4 id="about-check_docker">About <code>check_docker</code><a class="headerlink" href="#about-check_docker" title="Permanent link">&para;</a></h4>
+<p><code>check_docker</code> checks the state of docker containers via the local daemon
+socket (<code>/var/run/docker.sock</code> on Linux, the <code>\\.\pipe\docker_engine</code> named
+pipe on Windows; configurable via the <code>endpoint</code> setting or <code>host=</code>). It works
+against any daemon speaking the docker API, including podman&rsquo;s compatibility
+socket.</p>
+<p>Three ways to use it:</p>
+<ul>
+<li><code>container=&lt;name&gt;</code> (repeatable) — the &ldquo;is my container running&rdquo; mode: only
+  the named containers are checked, and a name the daemon does not know gets
+  the synthetic state <code>missing</code>, so it trips the default critical instead of
+  silently disappearing from the listing.</li>
+<li>No arguments — lists running containers; nothing trips the default
+  thresholds, so this is an inventory-style check.</li>
+<li><code>all=true</code> — also includes stopped containers (like <code>docker ps -a</code>); any
+  non-running container then trips the default critical
+  (<code>container_state != 'running'</code>), so combine it with <code>filter=</code> on hosts
+  where exited one-shot containers are expected.</li>
+</ul>
+<p>The daemon endpoint is restricted to a local named pipe / absolute socket path:
+a UNC path in <code>host=</code> would make a Windows host authenticate to a remote SMB
+server with the service account, so anything non-local is refused outright.</p>
+<p><strong>Jump to section:</strong></p>
+<ul>
+<li><a href="#check_docker_samples">Sample Commands</a></li>
+<li><a href="#check_docker_options">Command-line Arguments</a></li>
+<li><a href="#check_docker_filter_keys">Filter keywords</a></li>
+</ul>
+<p><a id="check_docker_samples"></a></p>
+<h4 id="sample-commands">Sample Commands<a class="headerlink" href="#sample-commands" title="Permanent link">&para;</a></h4>
+<p><strong>Require that specific containers are running (a missing or stopped container is CRITICAL):</strong></p>
+<div class="highlight"><pre><span></span><code>check_docker container=web-frontend
+OK: web-frontend=running
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>check_docker container=web-frontend container=backup-agent
+CRITICAL: backup-agent=missing
+</code></pre></div>
+<p><strong>List all running containers (inventory-style):</strong></p>
+<div class="highlight"><pre><span></span><code>check_docker
+OK: web-frontend=running, database=running
+</code></pre></div>
+<p><strong>Include stopped containers (<code>docker ps -a</code>) — any non-running container trips the default critical:</strong></p>
+<div class="highlight"><pre><span></span><code>check_docker all=true
+CRITICAL: old-job=exited
+</code></pre></div>
+<p><strong>Use the container keywords in the output:</strong></p>
+<div class="highlight"><pre><span></span><code>check_docker container=web-frontend "detail-syntax=%(names): %(image) %(container_status) ports=%(ports)" "top-syntax=${status}: ${list}"
+OK: web-frontend: nginx:alpine Up 2 hours ports=0.0.0.0:18080-&gt;80/tcp,:::18080-&gt;80/tcp
+</code></pre></div>
+<p><strong>Alert on failing container health checks instead of state:</strong></p>
+<div class="highlight"><pre><span></span><code>check_docker "filter=has_health_check = 1" "warning=health = 'starting'" "critical=health = 'unhealthy'" "detail-syntax=%(names)=%(health)"
+OK: web-frontend=healthy
+</code></pre></div>
+<p><strong>A daemon that is down is clearly reported (UNKNOWN):</strong></p>
+<div class="highlight"><pre><span></span><code>check_docker host=/var/run/missing.sock
+Failed to connect to docker daemon at '/var/run/missing.sock': Failed to connect to /var/run/missing.sock: No such file or directory
+</code></pre></div>
+<p><a id="check_docker_options"></a></p>
+<h4 id="command-line-arguments">Command-line Arguments<a class="headerlink" href="#command-line-arguments" title="Permanent link">&para;</a></h4>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Windows</label><label for="__tabbed_1_2">Linux</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><a id="check_docker_container"></a></p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#check_docker_host">host</a></td>
+<td>\.\pipe\docker_engine</td>
+<td>The local docker daemon socket (named pipe on Windows, unix socket elsewhere).</td>
+</tr>
+<tr>
+<td><a href="#check_docker_timeout">timeout</a></td>
+<td>10</td>
+<td>Timeout for talking to the daemon, in seconds.</td>
+</tr>
+<tr>
+<td><a href="#check_docker_all">all</a></td>
+<td>false</td>
+<td>Include stopped containers (docker ps -a); by default only running containers are listed.</td>
+</tr>
+<tr>
+<td>container</td>
+<td></td>
+<td>Name of a container that must exist (repeatable). Implies all; a name the daemon does not know gets container_state &lsquo;missing&rsquo;.</td>
+</tr>
+</tbody>
+</table>
+<p><h5 id="check_docker_host">host:</h5></p>
+<p>The local docker daemon socket (named pipe on Windows, unix socket elsewhere).</p>
+<p><em>Default Value:</em> <code>\\.\pipe\docker_engine</code></p>
+<p><h5 id="check_docker_timeout">timeout:</h5></p>
+<p>Timeout for talking to the daemon, in seconds.</p>
+<p><em>Default Value:</em> <code>10</code></p>
+<p><h5 id="check_docker_all">all:</h5></p>
+<p>Include stopped containers (docker ps -a); by default only running containers are listed.</p>
+<p><em>Default Value:</em> <code>false</code></p>
+<p><strong>Common options:</strong></p>
+<p>These options are shared by all filter based commands and are described on the <a href="../../common-options/#common-options">common options</a> page; the default values below are specific to this command.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Default Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="check_docker_filter"></a><a href="../../common-options/#filter">filter</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_docker_warning"></a><a href="../../common-options/#warning">warning</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_docker_warn"></a><a href="../../common-options/#warn">warn</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_docker_critical"></a><a href="../../common-options/#critical">critical</a></td>
+<td>container_state != &lsquo;running&rsquo;</td>
+</tr>
+<tr>
+<td><a id="check_docker_crit"></a><a href="../../common-options/#crit">crit</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_docker_ok"></a><a href="../../common-options/#ok">ok</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_docker_debug"></a><a href="../../common-options/#debug">debug</a></td>
+<td>false</td>
+</tr>
+<tr>
+<td><a id="check_docker_show-all"></a><a href="../../common-options/#show-all">show-all</a></td>
+<td>false</td>
+</tr>
+<tr>
+<td><a id="check_docker_empty-state"></a><a href="../../common-options/#empty-state">empty-state</a></td>
+<td>warning</td>
+</tr>
+<tr>
+<td><a id="check_docker_perf-config"></a><a href="../../common-options/#perf-config">perf-config</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_docker_escape-html"></a><a href="../../common-options/#escape-html">escape-html</a></td>
+<td>false</td>
+</tr>
+<tr>
+<td><a id="check_docker_list-separator"></a><a href="../../common-options/#list-separator">list-separator</a></td>
+<td>,</td>
+</tr>
+<tr>
+<td><a id="check_docker_top-syntax"></a><a href="../../common-options/#top-syntax">top-syntax</a></td>
+<td>${status}: ${list}</td>
+</tr>
+<tr>
+<td><a id="check_docker_ok-syntax"></a><a href="../../common-options/#ok-syntax">ok-syntax</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_docker_empty-syntax"></a><a href="../../common-options/#empty-syntax">empty-syntax</a></td>
+<td>No containers found</td>
+</tr>
+<tr>
+<td><a id="check_docker_detail-syntax"></a><a href="../../common-options/#detail-syntax">detail-syntax</a></td>
+<td>${names}=${container_state}</td>
+</tr>
+<tr>
+<td><a id="check_docker_perf-syntax"></a><a href="../../common-options/#perf-syntax">perf-syntax</a></td>
+<td>${names}</td>
+</tr>
+<tr>
+<td><a id="check_docker_byte-unit"></a><a href="../../common-options/#byte-unit">byte-unit</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_docker_decimal-separator"></a><a href="../../common-options/#decimal-separator">decimal-separator</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_docker_decimals"></a><a href="../../common-options/#decimals">decimals</a></td>
+<td>-1</td>
+</tr>
+<tr>
+<td><a id="check_docker_thousands-separator"></a><a href="../../common-options/#thousands-separator">thousands-separator</a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>This command also accepts the standard <a href="../../common-options/#standard-options">help options</a>: help, help-pb, show-default, help-short.</p>
+</div>
+<div class="tabbed-block">
+<p><a id="check_docker_container"></a></p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#check_docker_host">host</a></td>
+<td>/var/run/docker.sock</td>
+<td>The local docker daemon socket (named pipe on Windows, unix socket elsewhere).</td>
+</tr>
+<tr>
+<td><a href="#check_docker_timeout">timeout</a></td>
+<td>10</td>
+<td>Timeout for talking to the daemon, in seconds.</td>
+</tr>
+<tr>
+<td><a href="#check_docker_all">all</a></td>
+<td>false</td>
+<td>Include stopped containers (docker ps -a); by default only running containers are listed.</td>
+</tr>
+<tr>
+<td>container</td>
+<td></td>
+<td>Name of a container that must exist (repeatable). Implies all; a name the daemon does not know gets container_state &lsquo;missing&rsquo;.</td>
+</tr>
+</tbody>
+</table>
+<p><h5 id="check_docker_host">host:</h5></p>
+<p>The local docker daemon socket (named pipe on Windows, unix socket elsewhere).</p>
+<p><em>Default Value:</em> <code>/var/run/docker.sock</code></p>
+<p><h5 id="check_docker_timeout">timeout:</h5></p>
+<p>Timeout for talking to the daemon, in seconds.</p>
+<p><em>Default Value:</em> <code>10</code></p>
+<p><h5 id="check_docker_all">all:</h5></p>
+<p>Include stopped containers (docker ps -a); by default only running containers are listed.</p>
+<p><em>Default Value:</em> <code>false</code></p>
+<p><strong>Common options:</strong></p>
+<p>These options are shared by all filter based commands and are described on the <a href="../../common-options/#common-options">common options</a> page; the default values below are specific to this command.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Default Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="check_docker_filter"></a><a href="../../common-options/#filter">filter</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_docker_warning"></a><a href="../../common-options/#warning">warning</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_docker_warn"></a><a href="../../common-options/#warn">warn</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_docker_critical"></a><a href="../../common-options/#critical">critical</a></td>
+<td>container_state != &lsquo;running&rsquo;</td>
+</tr>
+<tr>
+<td><a id="check_docker_crit"></a><a href="../../common-options/#crit">crit</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_docker_ok"></a><a href="../../common-options/#ok">ok</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_docker_debug"></a><a href="../../common-options/#debug">debug</a></td>
+<td>false</td>
+</tr>
+<tr>
+<td><a id="check_docker_show-all"></a><a href="../../common-options/#show-all">show-all</a></td>
+<td>false</td>
+</tr>
+<tr>
+<td><a id="check_docker_empty-state"></a><a href="../../common-options/#empty-state">empty-state</a></td>
+<td>warning</td>
+</tr>
+<tr>
+<td><a id="check_docker_perf-config"></a><a href="../../common-options/#perf-config">perf-config</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_docker_escape-html"></a><a href="../../common-options/#escape-html">escape-html</a></td>
+<td>false</td>
+</tr>
+<tr>
+<td><a id="check_docker_list-separator"></a><a href="../../common-options/#list-separator">list-separator</a></td>
+<td>,</td>
+</tr>
+<tr>
+<td><a id="check_docker_top-syntax"></a><a href="../../common-options/#top-syntax">top-syntax</a></td>
+<td>${status}: ${list}</td>
+</tr>
+<tr>
+<td><a id="check_docker_ok-syntax"></a><a href="../../common-options/#ok-syntax">ok-syntax</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_docker_empty-syntax"></a><a href="../../common-options/#empty-syntax">empty-syntax</a></td>
+<td>No containers found</td>
+</tr>
+<tr>
+<td><a id="check_docker_detail-syntax"></a><a href="../../common-options/#detail-syntax">detail-syntax</a></td>
+<td>${names}=${container_state}</td>
+</tr>
+<tr>
+<td><a id="check_docker_perf-syntax"></a><a href="../../common-options/#perf-syntax">perf-syntax</a></td>
+<td>${names}</td>
+</tr>
+<tr>
+<td><a id="check_docker_byte-unit"></a><a href="../../common-options/#byte-unit">byte-unit</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_docker_decimal-separator"></a><a href="../../common-options/#decimal-separator">decimal-separator</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_docker_decimals"></a><a href="../../common-options/#decimals">decimals</a></td>
+<td>-1</td>
+</tr>
+<tr>
+<td><a id="check_docker_thousands-separator"></a><a href="../../common-options/#thousands-separator">thousands-separator</a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>This command also accepts the standard <a href="../../common-options/#standard-options">help options</a>: help, help-pb, show-default, help-short.</p>
+</div>
+</div>
+</div>
+<p><a id="check_docker_filter_keys"></a></p>
+<h4 id="filter-keywords">Filter keywords<a class="headerlink" href="#filter-keywords" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>command</td>
+<td>Command the container runs</td>
+</tr>
+<tr>
+<td>container_state</td>
+<td>Container state: created, restarting, running, removing, paused, exited, dead or missing (a requested container the daemon does not know about)</td>
+</tr>
+<tr>
+<td>container_status</td>
+<td>Human readable status, e.g. &lsquo;Up 3 hours (healthy)&rsquo;</td>
+</tr>
+<tr>
+<td>created</td>
+<td>When the container was created (date)</td>
+</tr>
+<tr>
+<td>has_health_check</td>
+<td>1 when the container defines a health check, else 0</td>
+</tr>
+<tr>
+<td>health</td>
+<td>Health-check state: healthy, unhealthy, starting or empty when the container has no health check</td>
+</tr>
+<tr>
+<td>id</td>
+<td>Container id</td>
+</tr>
+<tr>
+<td>image</td>
+<td>Image the container was created from</td>
+</tr>
+<tr>
+<td>image_id</td>
+<td>Id of the image the container was created from</td>
+</tr>
+<tr>
+<td>ip</td>
+<td>First IP address on any network the container is attached to</td>
+</tr>
+<tr>
+<td>labels</td>
+<td>Container labels as key=value, comma separated</td>
+</tr>
+<tr>
+<td>names</td>
+<td>Container name(s), comma separated</td>
+</tr>
+<tr>
+<td>ports</td>
+<td>Published/exposed ports, e.g. 0.0.0.0:8080-&gt;80/tcp</td>
+</tr>
+</tbody>
+</table>
+<p>This command also supports the <a href="../../common-options/#common-filter-keywords">common filter keywords</a>: count, total, ok_count, warn_count, crit_count, problem_count, list, ok_list, warn_list, crit_list, problem_list, detail_list, sep, status.</p>
+<h3 id="check_docker_df">check_docker_df<a class="headerlink" href="#check_docker_df" title="Permanent link">&para;</a></h3>
+<p>Check docker disk usage: images, containers, volumes, build cache and reclaimable space.</p>
+<h4 id="about-check_docker_df">About <code>check_docker_df</code><a class="headerlink" href="#about-check_docker_df" title="Permanent link">&para;</a></h4>
+<p><code>check_docker_df</code> reports docker&rsquo;s disk usage the way <code>docker system df</code>
+does — images, container writable layers, volumes and the build cache — plus
+what a prune would reclaim: unused images (their non-shared size), stopped
+containers, unreferenced volumes and idle build cache.</p>
+<p>The daemon computes this by walking every image layer, container filesystem
+and volume, so <strong>the request is slow on large hosts</strong> (seconds to minutes).
+The check therefore defaults to six times the module&rsquo;s normal timeout; don&rsquo;t
+schedule it more often than you need it.</p>
+<p>All <code>*_size</code> / <code>*_reclaimable</code> keywords are byte-sized: thresholds take a unit
+(<code>500M</code>, <code>10G</code>, <code>1T</code>); a bare number is rejected. No default thresholds — a
+responding daemon is OK until you add limits.</p>
+<p><strong>Jump to section:</strong></p>
+<ul>
+<li><a href="#check_docker_df_samples">Sample Commands</a></li>
+<li><a href="#check_docker_df_options">Command-line Arguments</a></li>
+<li><a href="#check_docker_df_filter_keys">Filter keywords</a></li>
+</ul>
+<p><a id="check_docker_df_samples"></a></p>
+<h4 id="sample-commands_1">Sample Commands<a class="headerlink" href="#sample-commands_1" title="Permanent link">&para;</a></h4>
+<p><strong>Show docker disk usage (like <code>docker system df</code>):</strong></p>
+<div class="highlight"><pre><span></span><code>check_docker_df
+OK: images 71 (8.216GB), containers 19 (388KB), volumes 6 (4.517GB), build cache 12.808GB, reclaimable 21.479GB
+</code></pre></div>
+<p><strong>Alert when a prune would free a lot of space (size thresholds take a unit):</strong></p>
+<div class="highlight"><pre><span></span><code>check_docker_df "warning=total_reclaimable &gt; 10G" "critical=total_reclaimable &gt; 50G"
+WARNING: images 71 (8.216GB), containers 19 (388KB), volumes 6 (4.517GB), build cache 12.808GB, reclaimable 21.479GB|'docker reclaimable'=23063090871B;10737418240;53687091200
+</code></pre></div>
+<p><strong>Alert on unused images piling up:</strong></p>
+<div class="highlight"><pre><span></span><code>check_docker_df "warning=unused_images &gt; 20"
+OK: images 71 (8.216GB), containers 19 (388KB), volumes 6 (4.517GB), build cache 12.808GB, reclaimable 21.479GB|'docker unused images'=63;20;0
+</code></pre></div>
+<p><strong>Watch a specific category, e.g. the build cache:</strong></p>
+<div class="highlight"><pre><span></span><code>check_docker_df "warning=build_cache_size &gt; 20G" "detail-syntax=build cache %(build_cache_size) (reclaimable %(build_cache_reclaimable))"
+OK: build cache 13752766549 (reclaimable 13752766549)|'docker build cache'=13752766549B;21474836480;0
+</code></pre></div>
+<p><a id="check_docker_df_options"></a></p>
+<h4 id="command-line-arguments_1">Command-line Arguments<a class="headerlink" href="#command-line-arguments_1" title="Permanent link">&para;</a></h4>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Windows</label><label for="__tabbed_2_2">Linux</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#check_docker_df_host">host</a></td>
+<td>\.\pipe\docker_engine</td>
+<td>The local docker daemon socket (named pipe on Windows, unix socket elsewhere).</td>
+</tr>
+<tr>
+<td><a href="#check_docker_df_timeout">timeout</a></td>
+<td>60</td>
+<td>Timeout for talking to the daemon, in seconds (this endpoint is slow on large hosts).</td>
+</tr>
+</tbody>
+</table>
+<p><h5 id="check_docker_df_host">host:</h5></p>
+<p>The local docker daemon socket (named pipe on Windows, unix socket elsewhere).</p>
+<p><em>Default Value:</em> <code>\\.\pipe\docker_engine</code></p>
+<p><h5 id="check_docker_df_timeout">timeout:</h5></p>
+<p>Timeout for talking to the daemon, in seconds (this endpoint is slow on large hosts).</p>
+<p><em>Default Value:</em> <code>60</code></p>
+<p><strong>Common options:</strong></p>
+<p>These options are shared by all filter based commands and are described on the <a href="../../common-options/#common-options">common options</a> page; the default values below are specific to this command.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Default Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="check_docker_df_filter"></a><a href="../../common-options/#filter">filter</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_docker_df_warning"></a><a href="../../common-options/#warning">warning</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_docker_df_warn"></a><a href="../../common-options/#warn">warn</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_docker_df_critical"></a><a href="../../common-options/#critical">critical</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_docker_df_crit"></a><a href="../../common-options/#crit">crit</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_docker_df_ok"></a><a href="../../common-options/#ok">ok</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_docker_df_debug"></a><a href="../../common-options/#debug">debug</a></td>
+<td>false</td>
+</tr>
+<tr>
+<td><a id="check_docker_df_show-all"></a><a href="../../common-options/#show-all">show-all</a></td>
+<td>false</td>
+</tr>
+<tr>
+<td><a id="check_docker_df_empty-state"></a><a href="../../common-options/#empty-state">empty-state</a></td>
+<td>unknown</td>
+</tr>
+<tr>
+<td><a id="check_docker_df_perf-config"></a><a href="../../common-options/#perf-config">perf-config</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_docker_df_escape-html"></a><a href="../../common-options/#escape-html">escape-html</a></td>
+<td>false</td>
+</tr>
+<tr>
+<td><a id="check_docker_df_list-separator"></a><a href="../../common-options/#list-separator">list-separator</a></td>
+<td>,</td>
+</tr>
+<tr>
+<td><a id="check_docker_df_top-syntax"></a><a href="../../common-options/#top-syntax">top-syntax</a></td>
+<td>${status}: ${list}</td>
+</tr>
+<tr>
+<td><a id="check_docker_df_ok-syntax"></a><a href="../../common-options/#ok-syntax">ok-syntax</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_docker_df_empty-syntax"></a><a href="../../common-options/#empty-syntax">empty-syntax</a></td>
+<td>%(status): No disk usage information returned</td>
+</tr>
+<tr>
+<td><a id="check_docker_df_detail-syntax"></a><a href="../../common-options/#detail-syntax">detail-syntax</a></td>
+<td>${message}</td>
+</tr>
+<tr>
+<td><a id="check_docker_df_perf-syntax"></a><a href="../../common-options/#perf-syntax">perf-syntax</a></td>
+<td>docker</td>
+</tr>
+<tr>
+<td><a id="check_docker_df_byte-unit"></a><a href="../../common-options/#byte-unit">byte-unit</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_docker_df_decimal-separator"></a><a href="../../common-options/#decimal-separator">decimal-separator</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_docker_df_decimals"></a><a href="../../common-options/#decimals">decimals</a></td>
+<td>-1</td>
+</tr>
+<tr>
+<td><a id="check_docker_df_thousands-separator"></a><a href="../../common-options/#thousands-separator">thousands-separator</a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>This command also accepts the standard <a href="../../common-options/#standard-options">help options</a>: help, help-pb, show-default, help-short.</p>
+</div>
+<div class="tabbed-block">
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#check_docker_df_host">host</a></td>
+<td>/var/run/docker.sock</td>
+<td>The local docker daemon socket (named pipe on Windows, unix socket elsewhere).</td>
+</tr>
+<tr>
+<td><a href="#check_docker_df_timeout">timeout</a></td>
+<td>60</td>
+<td>Timeout for talking to the daemon, in seconds (this endpoint is slow on large hosts).</td>
+</tr>
+</tbody>
+</table>
+<p><h5 id="check_docker_df_host">host:</h5></p>
+<p>The local docker daemon socket (named pipe on Windows, unix socket elsewhere).</p>
+<p><em>Default Value:</em> <code>/var/run/docker.sock</code></p>
+<p><h5 id="check_docker_df_timeout">timeout:</h5></p>
+<p>Timeout for talking to the daemon, in seconds (this endpoint is slow on large hosts).</p>
+<p><em>Default Value:</em> <code>60</code></p>
+<p><strong>Common options:</strong></p>
+<p>These options are shared by all filter based commands and are described on the <a href="../../common-options/#common-options">common options</a> page; the default values below are specific to this command.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Default Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="check_docker_df_filter"></a><a href="../../common-options/#filter">filter</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_docker_df_warning"></a><a href="../../common-options/#warning">warning</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_docker_df_warn"></a><a href="../../common-options/#warn">warn</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_docker_df_critical"></a><a href="../../common-options/#critical">critical</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_docker_df_crit"></a><a href="../../common-options/#crit">crit</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_docker_df_ok"></a><a href="../../common-options/#ok">ok</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_docker_df_debug"></a><a href="../../common-options/#debug">debug</a></td>
+<td>false</td>
+</tr>
+<tr>
+<td><a id="check_docker_df_show-all"></a><a href="../../common-options/#show-all">show-all</a></td>
+<td>false</td>
+</tr>
+<tr>
+<td><a id="check_docker_df_empty-state"></a><a href="../../common-options/#empty-state">empty-state</a></td>
+<td>unknown</td>
+</tr>
+<tr>
+<td><a id="check_docker_df_perf-config"></a><a href="../../common-options/#perf-config">perf-config</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_docker_df_escape-html"></a><a href="../../common-options/#escape-html">escape-html</a></td>
+<td>false</td>
+</tr>
+<tr>
+<td><a id="check_docker_df_list-separator"></a><a href="../../common-options/#list-separator">list-separator</a></td>
+<td>,</td>
+</tr>
+<tr>
+<td><a id="check_docker_df_top-syntax"></a><a href="../../common-options/#top-syntax">top-syntax</a></td>
+<td>${status}: ${list}</td>
+</tr>
+<tr>
+<td><a id="check_docker_df_ok-syntax"></a><a href="../../common-options/#ok-syntax">ok-syntax</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_docker_df_empty-syntax"></a><a href="../../common-options/#empty-syntax">empty-syntax</a></td>
+<td>%(status): No disk usage information returned</td>
+</tr>
+<tr>
+<td><a id="check_docker_df_detail-syntax"></a><a href="../../common-options/#detail-syntax">detail-syntax</a></td>
+<td>${message}</td>
+</tr>
+<tr>
+<td><a id="check_docker_df_perf-syntax"></a><a href="../../common-options/#perf-syntax">perf-syntax</a></td>
+<td>docker</td>
+</tr>
+<tr>
+<td><a id="check_docker_df_byte-unit"></a><a href="../../common-options/#byte-unit">byte-unit</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_docker_df_decimal-separator"></a><a href="../../common-options/#decimal-separator">decimal-separator</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_docker_df_decimals"></a><a href="../../common-options/#decimals">decimals</a></td>
+<td>-1</td>
+</tr>
+<tr>
+<td><a id="check_docker_df_thousands-separator"></a><a href="../../common-options/#thousands-separator">thousands-separator</a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>This command also accepts the standard <a href="../../common-options/#standard-options">help options</a>: help, help-pb, show-default, help-short.</p>
+</div>
+</div>
+</div>
+<p><a id="check_docker_df_filter_keys"></a></p>
+<h4 id="filter-keywords_1">Filter keywords<a class="headerlink" href="#filter-keywords_1" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>build_cache_reclaimable</td>
+<td>Disk freed by pruning the idle build cache (bytes)</td>
+</tr>
+<tr>
+<td>build_cache_size</td>
+<td>Disk used by the build cache (bytes)</td>
+</tr>
+<tr>
+<td>containers</td>
+<td>Number of containers (running and stopped)</td>
+</tr>
+<tr>
+<td>containers_reclaimable</td>
+<td>Disk freed by pruning stopped containers (bytes)</td>
+</tr>
+<tr>
+<td>containers_size</td>
+<td>Disk used by container writable layers (bytes)</td>
+</tr>
+<tr>
+<td>images</td>
+<td>Number of images</td>
+</tr>
+<tr>
+<td>images_reclaimable</td>
+<td>Disk freed by pruning unused images (bytes)</td>
+</tr>
+<tr>
+<td>images_size</td>
+<td>Disk used by all image layers, deduplicated as in docker system df (bytes; supports units, e.g. images_size &gt; 10G)</td>
+</tr>
+<tr>
+<td>message</td>
+<td>Human readable disk-usage summary</td>
+</tr>
+<tr>
+<td>total_reclaimable</td>
+<td>Total disk a full prune would free (bytes)</td>
+</tr>
+<tr>
+<td>total_size</td>
+<td>Total disk used by docker (bytes)</td>
+</tr>
+<tr>
+<td>unused_images</td>
+<td>Number of images not used by any container</td>
+</tr>
+<tr>
+<td>unused_volumes</td>
+<td>Number of volumes not referenced by any container</td>
+</tr>
+<tr>
+<td>volumes</td>
+<td>Number of volumes</td>
+</tr>
+<tr>
+<td>volumes_reclaimable</td>
+<td>Disk freed by pruning unused volumes (bytes)</td>
+</tr>
+<tr>
+<td>volumes_size</td>
+<td>Disk used by volumes (bytes)</td>
+</tr>
+</tbody>
+</table>
+<p>This command also supports the <a href="../../common-options/#common-filter-keywords">common filter keywords</a>: count, total, ok_count, warn_count, crit_count, problem_count, list, ok_list, warn_list, crit_list, problem_list, detail_list, sep, status.</p>
+<h3 id="check_docker_info">check_docker_info<a class="headerlink" href="#check_docker_info" title="Permanent link">&para;</a></h3>
+<p>Check that the docker daemon is healthy: version plus container and image counts.</p>
+<h4 id="about-check_docker_info">About <code>check_docker_info</code><a class="headerlink" href="#about-check_docker_info" title="Permanent link">&para;</a></h4>
+<p><code>check_docker_info</code> checks the docker daemon itself: it reads <code>/info</code> from the
+local daemon socket and reports the server version, host name and the
+container/image counts. A responding daemon is <strong>OK</strong> unless you threshold the
+counts; an unreachable daemon is <strong>UNKNOWN</strong> with the transport error — which
+makes this the natural &ldquo;is docker itself healthy&rdquo; companion to per-container
+<code>check_docker</code> checks.</p>
+<p>Count keywords used in thresholds are emitted as performance data.</p>
+<p><strong>Jump to section:</strong></p>
+<ul>
+<li><a href="#check_docker_info_samples">Sample Commands</a></li>
+<li><a href="#check_docker_info_options">Command-line Arguments</a></li>
+<li><a href="#check_docker_info_filter_keys">Filter keywords</a></li>
+</ul>
+<p><a id="check_docker_info_samples"></a></p>
+<h4 id="sample-commands_2">Sample Commands<a class="headerlink" href="#sample-commands_2" title="Permanent link">&para;</a></h4>
+<p><strong>Check that the docker daemon itself is up and responding:</strong></p>
+<div class="highlight"><pre><span></span><code>check_docker_info
+OK: docker 29.5.3 on docker-host: 16 running, 0 paused, 4 stopped containers, 231 images
+</code></pre></div>
+<p><strong>Alert when nothing is running (or too much is stopped), with perf data:</strong></p>
+<div class="highlight"><pre><span></span><code>check_docker_info "warning=running &lt; 1" "critical=stopped &gt; 100"
+OK: docker 29.5.3 on docker-host: 16 running, 0 paused, 4 stopped containers, 231 images|'docker-host running'=16;1;0 'docker-host stopped'=4;0;100
+</code></pre></div>
+<p><strong>A daemon that is down is clearly reported (UNKNOWN):</strong></p>
+<div class="highlight"><pre><span></span><code>check_docker_info host=/var/run/missing.sock
+Failed to connect to docker daemon at '/var/run/missing.sock': Failed to connect to /var/run/missing.sock: No such file or directory
+</code></pre></div>
+<p><a id="check_docker_info_options"></a></p>
+<h4 id="command-line-arguments_2">Command-line Arguments<a class="headerlink" href="#command-line-arguments_2" title="Permanent link">&para;</a></h4>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Windows</label><label for="__tabbed_3_2">Linux</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#check_docker_info_host">host</a></td>
+<td>\.\pipe\docker_engine</td>
+<td>The local docker daemon socket (named pipe on Windows, unix socket elsewhere).</td>
+</tr>
+<tr>
+<td><a href="#check_docker_info_timeout">timeout</a></td>
+<td>10</td>
+<td>Timeout for talking to the daemon, in seconds.</td>
+</tr>
+</tbody>
+</table>
+<p><h5 id="check_docker_info_host">host:</h5></p>
+<p>The local docker daemon socket (named pipe on Windows, unix socket elsewhere).</p>
+<p><em>Default Value:</em> <code>\\.\pipe\docker_engine</code></p>
+<p><h5 id="check_docker_info_timeout">timeout:</h5></p>
+<p>Timeout for talking to the daemon, in seconds.</p>
+<p><em>Default Value:</em> <code>10</code></p>
+<p><strong>Common options:</strong></p>
+<p>These options are shared by all filter based commands and are described on the <a href="../../common-options/#common-options">common options</a> page; the default values below are specific to this command.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Default Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="check_docker_info_filter"></a><a href="../../common-options/#filter">filter</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_docker_info_warning"></a><a href="../../common-options/#warning">warning</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_docker_info_warn"></a><a href="../../common-options/#warn">warn</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_docker_info_critical"></a><a href="../../common-options/#critical">critical</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_docker_info_crit"></a><a href="../../common-options/#crit">crit</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_docker_info_ok"></a><a href="../../common-options/#ok">ok</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_docker_info_debug"></a><a href="../../common-options/#debug">debug</a></td>
+<td>false</td>
+</tr>
+<tr>
+<td><a id="check_docker_info_show-all"></a><a href="../../common-options/#show-all">show-all</a></td>
+<td>false</td>
+</tr>
+<tr>
+<td><a id="check_docker_info_empty-state"></a><a href="../../common-options/#empty-state">empty-state</a></td>
+<td>unknown</td>
+</tr>
+<tr>
+<td><a id="check_docker_info_perf-config"></a><a href="../../common-options/#perf-config">perf-config</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_docker_info_escape-html"></a><a href="../../common-options/#escape-html">escape-html</a></td>
+<td>false</td>
+</tr>
+<tr>
+<td><a id="check_docker_info_list-separator"></a><a href="../../common-options/#list-separator">list-separator</a></td>
+<td>,</td>
+</tr>
+<tr>
+<td><a id="check_docker_info_top-syntax"></a><a href="../../common-options/#top-syntax">top-syntax</a></td>
+<td>${status}: ${list}</td>
+</tr>
+<tr>
+<td><a id="check_docker_info_ok-syntax"></a><a href="../../common-options/#ok-syntax">ok-syntax</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_docker_info_empty-syntax"></a><a href="../../common-options/#empty-syntax">empty-syntax</a></td>
+<td>%(status): No daemon information returned</td>
+</tr>
+<tr>
+<td><a id="check_docker_info_detail-syntax"></a><a href="../../common-options/#detail-syntax">detail-syntax</a></td>
+<td>docker ${version} on ${name}: ${running} running, ${paused} paused, ${stopped} stopped containers, ${images} images</td>
+</tr>
+<tr>
+<td><a id="check_docker_info_perf-syntax"></a><a href="../../common-options/#perf-syntax">perf-syntax</a></td>
+<td>${name}</td>
+</tr>
+<tr>
+<td><a id="check_docker_info_byte-unit"></a><a href="../../common-options/#byte-unit">byte-unit</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_docker_info_decimal-separator"></a><a href="../../common-options/#decimal-separator">decimal-separator</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_docker_info_decimals"></a><a href="../../common-options/#decimals">decimals</a></td>
+<td>-1</td>
+</tr>
+<tr>
+<td><a id="check_docker_info_thousands-separator"></a><a href="../../common-options/#thousands-separator">thousands-separator</a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>This command also accepts the standard <a href="../../common-options/#standard-options">help options</a>: help, help-pb, show-default, help-short.</p>
+</div>
+<div class="tabbed-block">
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#check_docker_info_host">host</a></td>
+<td>/var/run/docker.sock</td>
+<td>The local docker daemon socket (named pipe on Windows, unix socket elsewhere).</td>
+</tr>
+<tr>
+<td><a href="#check_docker_info_timeout">timeout</a></td>
+<td>10</td>
+<td>Timeout for talking to the daemon, in seconds.</td>
+</tr>
+</tbody>
+</table>
+<p><h5 id="check_docker_info_host">host:</h5></p>
+<p>The local docker daemon socket (named pipe on Windows, unix socket elsewhere).</p>
+<p><em>Default Value:</em> <code>/var/run/docker.sock</code></p>
+<p><h5 id="check_docker_info_timeout">timeout:</h5></p>
+<p>Timeout for talking to the daemon, in seconds.</p>
+<p><em>Default Value:</em> <code>10</code></p>
+<p><strong>Common options:</strong></p>
+<p>These options are shared by all filter based commands and are described on the <a href="../../common-options/#common-options">common options</a> page; the default values below are specific to this command.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Default Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="check_docker_info_filter"></a><a href="../../common-options/#filter">filter</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_docker_info_warning"></a><a href="../../common-options/#warning">warning</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_docker_info_warn"></a><a href="../../common-options/#warn">warn</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_docker_info_critical"></a><a href="../../common-options/#critical">critical</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_docker_info_crit"></a><a href="../../common-options/#crit">crit</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_docker_info_ok"></a><a href="../../common-options/#ok">ok</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_docker_info_debug"></a><a href="../../common-options/#debug">debug</a></td>
+<td>false</td>
+</tr>
+<tr>
+<td><a id="check_docker_info_show-all"></a><a href="../../common-options/#show-all">show-all</a></td>
+<td>false</td>
+</tr>
+<tr>
+<td><a id="check_docker_info_empty-state"></a><a href="../../common-options/#empty-state">empty-state</a></td>
+<td>unknown</td>
+</tr>
+<tr>
+<td><a id="check_docker_info_perf-config"></a><a href="../../common-options/#perf-config">perf-config</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_docker_info_escape-html"></a><a href="../../common-options/#escape-html">escape-html</a></td>
+<td>false</td>
+</tr>
+<tr>
+<td><a id="check_docker_info_list-separator"></a><a href="../../common-options/#list-separator">list-separator</a></td>
+<td>,</td>
+</tr>
+<tr>
+<td><a id="check_docker_info_top-syntax"></a><a href="../../common-options/#top-syntax">top-syntax</a></td>
+<td>${status}: ${list}</td>
+</tr>
+<tr>
+<td><a id="check_docker_info_ok-syntax"></a><a href="../../common-options/#ok-syntax">ok-syntax</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_docker_info_empty-syntax"></a><a href="../../common-options/#empty-syntax">empty-syntax</a></td>
+<td>%(status): No daemon information returned</td>
+</tr>
+<tr>
+<td><a id="check_docker_info_detail-syntax"></a><a href="../../common-options/#detail-syntax">detail-syntax</a></td>
+<td>docker ${version} on ${name}: ${running} running, ${paused} paused, ${stopped} stopped containers, ${images} images</td>
+</tr>
+<tr>
+<td><a id="check_docker_info_perf-syntax"></a><a href="../../common-options/#perf-syntax">perf-syntax</a></td>
+<td>${name}</td>
+</tr>
+<tr>
+<td><a id="check_docker_info_byte-unit"></a><a href="../../common-options/#byte-unit">byte-unit</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_docker_info_decimal-separator"></a><a href="../../common-options/#decimal-separator">decimal-separator</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_docker_info_decimals"></a><a href="../../common-options/#decimals">decimals</a></td>
+<td>-1</td>
+</tr>
+<tr>
+<td><a id="check_docker_info_thousands-separator"></a><a href="../../common-options/#thousands-separator">thousands-separator</a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>This command also accepts the standard <a href="../../common-options/#standard-options">help options</a>: help, help-pb, show-default, help-short.</p>
+</div>
+</div>
+</div>
+<p><a id="check_docker_info_filter_keys"></a></p>
+<h4 id="filter-keywords_2">Filter keywords<a class="headerlink" href="#filter-keywords_2" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>containers</td>
+<td>Total number of containers</td>
+</tr>
+<tr>
+<td>images</td>
+<td>Number of images</td>
+</tr>
+<tr>
+<td>name</td>
+<td>Daemon host name</td>
+</tr>
+<tr>
+<td>os</td>
+<td>Operating system the daemon runs on</td>
+</tr>
+<tr>
+<td>paused</td>
+<td>Number of paused containers</td>
+</tr>
+<tr>
+<td>running</td>
+<td>Number of running containers</td>
+</tr>
+<tr>
+<td>stopped</td>
+<td>Number of stopped containers</td>
+</tr>
+<tr>
+<td>version</td>
+<td>Docker server version</td>
+</tr>
+</tbody>
+</table>
+<p>This command also supports the <a href="../../common-options/#common-filter-keywords">common filter keywords</a>: count, total, ok_count, warn_count, crit_count, problem_count, list, ok_list, warn_list, crit_list, problem_list, detail_list, sep, status.</p>
+<h3 id="check_docker_restarts">check_docker_restarts<a class="headerlink" href="#check_docker_restarts" title="Permanent link">&para;</a></h3>
+<p>Detect container restart loops and out-of-memory kills.</p>
+<h4 id="about-check_docker_restarts">About <code>check_docker_restarts</code><a class="headerlink" href="#about-check_docker_restarts" title="Permanent link">&para;</a></h4>
+<p><code>check_docker_restarts</code> detects crash-looping and OOM-killed containers via
+the inspect endpoint (<code>RestartCount</code>, <code>State.OOMKilled</code>, <code>State.StartedAt</code>,
+<code>State.ExitCode</code>). It always includes stopped containers: a crash-looping
+container spends most of its time not-running, and a final crash leaves it
+exited — both must stay visible.</p>
+<p>Default thresholds encode the crash-loop signature: <strong>warning</strong> when
+<code>restart_count &gt; 3 and started &lt; 15m and started &gt;= 0</code> (many restarts <em>and</em> a
+recent start — a container that has been up for a month is fine no matter how
+bumpy its past), <strong>critical</strong> when <code>oom_killed = 1</code> (the last exit was an
+out-of-memory kill).</p>
+<p><code>container=&lt;name&gt;</code> (repeatable) scopes the check to specific containers.
+Note that <code>restart_count</code> is cumulative for the container&rsquo;s lifetime; that is
+why the default warning also requires a recent start before it fires.</p>
+<p><strong>Jump to section:</strong></p>
+<ul>
+<li><a href="#check_docker_restarts_samples">Sample Commands</a></li>
+<li><a href="#check_docker_restarts_options">Command-line Arguments</a></li>
+<li><a href="#check_docker_restarts_filter_keys">Filter keywords</a></li>
+</ul>
+<p><a id="check_docker_restarts_samples"></a></p>
+<h4 id="sample-commands_3">Sample Commands<a class="headerlink" href="#sample-commands_3" title="Permanent link">&para;</a></h4>
+<p><strong>Detect restart loops (default: WARNING when a container restarted more than 3 times and last started within 15 minutes; OOM kills are CRITICAL):</strong></p>
+<div class="highlight"><pre><span></span><code>check_docker_restarts
+WARNING: crashy-app: 8 restarts, restarting
+</code></pre></div>
+<p>A stable container is OK no matter how bumpy its distant past:</p>
+<div class="highlight"><pre><span></span><code>check_docker_restarts container=app-backend
+OK: app-backend: 0 restarts, running
+</code></pre></div>
+<p><strong>An out-of-memory kill is CRITICAL by default:</strong></p>
+<div class="highlight"><pre><span></span><code>check_docker_restarts container=greedy-app
+CRITICAL: greedy-app: 2 restarts, exited
+</code></pre></div>
+<p><strong>Custom rules using the keywords (e.g. any restart of a specific container within the last hour):</strong></p>
+<div class="highlight"><pre><span></span><code>check_docker_restarts container=app-backend "warning=restart_count &gt; 0 and started &lt; 1h" "detail-syntax=%(names): %(restart_count) restarts, up %(started)s, exit=%(exit_code) oom=%(oom_killed)"
+OK: app-backend: 0 restarts, up 236s, exit=0 oom=0|'app-backend restarts'=0;0;0
+</code></pre></div>
+<p><a id="check_docker_restarts_options"></a></p>
+<h4 id="command-line-arguments_3">Command-line Arguments<a class="headerlink" href="#command-line-arguments_3" title="Permanent link">&para;</a></h4>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">Windows</label><label for="__tabbed_4_2">Linux</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><a id="check_docker_restarts_container"></a></p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#check_docker_restarts_host">host</a></td>
+<td>\.\pipe\docker_engine</td>
+<td>The local docker daemon socket (named pipe on Windows, unix socket elsewhere).</td>
+</tr>
+<tr>
+<td><a href="#check_docker_restarts_timeout">timeout</a></td>
+<td>10</td>
+<td>Timeout for talking to the daemon, in seconds.</td>
+</tr>
+<tr>
+<td>container</td>
+<td></td>
+<td>Only inspect the named container (repeatable).</td>
+</tr>
+</tbody>
+</table>
+<p><h5 id="check_docker_restarts_host">host:</h5></p>
+<p>The local docker daemon socket (named pipe on Windows, unix socket elsewhere).</p>
+<p><em>Default Value:</em> <code>\\.\pipe\docker_engine</code></p>
+<p><h5 id="check_docker_restarts_timeout">timeout:</h5></p>
+<p>Timeout for talking to the daemon, in seconds.</p>
+<p><em>Default Value:</em> <code>10</code></p>
+<p><strong>Common options:</strong></p>
+<p>These options are shared by all filter based commands and are described on the <a href="../../common-options/#common-options">common options</a> page; the default values below are specific to this command.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Default Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="check_docker_restarts_filter"></a><a href="../../common-options/#filter">filter</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_docker_restarts_warning"></a><a href="../../common-options/#warning">warning</a></td>
+<td>restart_count &gt; 3 and started &lt; 15m and started &gt;= 0</td>
+</tr>
+<tr>
+<td><a id="check_docker_restarts_warn"></a><a href="../../common-options/#warn">warn</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_docker_restarts_critical"></a><a href="../../common-options/#critical">critical</a></td>
+<td>oom_killed = 1</td>
+</tr>
+<tr>
+<td><a id="check_docker_restarts_crit"></a><a href="../../common-options/#crit">crit</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_docker_restarts_ok"></a><a href="../../common-options/#ok">ok</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_docker_restarts_debug"></a><a href="../../common-options/#debug">debug</a></td>
+<td>false</td>
+</tr>
+<tr>
+<td><a id="check_docker_restarts_show-all"></a><a href="../../common-options/#show-all">show-all</a></td>
+<td>false</td>
+</tr>
+<tr>
+<td><a id="check_docker_restarts_empty-state"></a><a href="../../common-options/#empty-state">empty-state</a></td>
+<td>ok</td>
+</tr>
+<tr>
+<td><a id="check_docker_restarts_perf-config"></a><a href="../../common-options/#perf-config">perf-config</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_docker_restarts_escape-html"></a><a href="../../common-options/#escape-html">escape-html</a></td>
+<td>false</td>
+</tr>
+<tr>
+<td><a id="check_docker_restarts_list-separator"></a><a href="../../common-options/#list-separator">list-separator</a></td>
+<td>,</td>
+</tr>
+<tr>
+<td><a id="check_docker_restarts_top-syntax"></a><a href="../../common-options/#top-syntax">top-syntax</a></td>
+<td>${status}: ${list}</td>
+</tr>
+<tr>
+<td><a id="check_docker_restarts_ok-syntax"></a><a href="../../common-options/#ok-syntax">ok-syntax</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_docker_restarts_empty-syntax"></a><a href="../../common-options/#empty-syntax">empty-syntax</a></td>
+<td>No containers found</td>
+</tr>
+<tr>
+<td><a id="check_docker_restarts_detail-syntax"></a><a href="../../common-options/#detail-syntax">detail-syntax</a></td>
+<td>${names}: ${restart_count} restarts, ${container_state}</td>
+</tr>
+<tr>
+<td><a id="check_docker_restarts_perf-syntax"></a><a href="../../common-options/#perf-syntax">perf-syntax</a></td>
+<td>${names}</td>
+</tr>
+<tr>
+<td><a id="check_docker_restarts_byte-unit"></a><a href="../../common-options/#byte-unit">byte-unit</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_docker_restarts_decimal-separator"></a><a href="../../common-options/#decimal-separator">decimal-separator</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_docker_restarts_decimals"></a><a href="../../common-options/#decimals">decimals</a></td>
+<td>-1</td>
+</tr>
+<tr>
+<td><a id="check_docker_restarts_thousands-separator"></a><a href="../../common-options/#thousands-separator">thousands-separator</a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>This command also accepts the standard <a href="../../common-options/#standard-options">help options</a>: help, help-pb, show-default, help-short.</p>
+</div>
+<div class="tabbed-block">
+<p><a id="check_docker_restarts_container"></a></p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#check_docker_restarts_host">host</a></td>
+<td>/var/run/docker.sock</td>
+<td>The local docker daemon socket (named pipe on Windows, unix socket elsewhere).</td>
+</tr>
+<tr>
+<td><a href="#check_docker_restarts_timeout">timeout</a></td>
+<td>10</td>
+<td>Timeout for talking to the daemon, in seconds.</td>
+</tr>
+<tr>
+<td>container</td>
+<td></td>
+<td>Only inspect the named container (repeatable).</td>
+</tr>
+</tbody>
+</table>
+<p><h5 id="check_docker_restarts_host">host:</h5></p>
+<p>The local docker daemon socket (named pipe on Windows, unix socket elsewhere).</p>
+<p><em>Default Value:</em> <code>/var/run/docker.sock</code></p>
+<p><h5 id="check_docker_restarts_timeout">timeout:</h5></p>
+<p>Timeout for talking to the daemon, in seconds.</p>
+<p><em>Default Value:</em> <code>10</code></p>
+<p><strong>Common options:</strong></p>
+<p>These options are shared by all filter based commands and are described on the <a href="../../common-options/#common-options">common options</a> page; the default values below are specific to this command.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Default Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="check_docker_restarts_filter"></a><a href="../../common-options/#filter">filter</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_docker_restarts_warning"></a><a href="../../common-options/#warning">warning</a></td>
+<td>restart_count &gt; 3 and started &lt; 15m and started &gt;= 0</td>
+</tr>
+<tr>
+<td><a id="check_docker_restarts_warn"></a><a href="../../common-options/#warn">warn</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_docker_restarts_critical"></a><a href="../../common-options/#critical">critical</a></td>
+<td>oom_killed = 1</td>
+</tr>
+<tr>
+<td><a id="check_docker_restarts_crit"></a><a href="../../common-options/#crit">crit</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_docker_restarts_ok"></a><a href="../../common-options/#ok">ok</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_docker_restarts_debug"></a><a href="../../common-options/#debug">debug</a></td>
+<td>false</td>
+</tr>
+<tr>
+<td><a id="check_docker_restarts_show-all"></a><a href="../../common-options/#show-all">show-all</a></td>
+<td>false</td>
+</tr>
+<tr>
+<td><a id="check_docker_restarts_empty-state"></a><a href="../../common-options/#empty-state">empty-state</a></td>
+<td>ok</td>
+</tr>
+<tr>
+<td><a id="check_docker_restarts_perf-config"></a><a href="../../common-options/#perf-config">perf-config</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_docker_restarts_escape-html"></a><a href="../../common-options/#escape-html">escape-html</a></td>
+<td>false</td>
+</tr>
+<tr>
+<td><a id="check_docker_restarts_list-separator"></a><a href="../../common-options/#list-separator">list-separator</a></td>
+<td>,</td>
+</tr>
+<tr>
+<td><a id="check_docker_restarts_top-syntax"></a><a href="../../common-options/#top-syntax">top-syntax</a></td>
+<td>${status}: ${list}</td>
+</tr>
+<tr>
+<td><a id="check_docker_restarts_ok-syntax"></a><a href="../../common-options/#ok-syntax">ok-syntax</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_docker_restarts_empty-syntax"></a><a href="../../common-options/#empty-syntax">empty-syntax</a></td>
+<td>No containers found</td>
+</tr>
+<tr>
+<td><a id="check_docker_restarts_detail-syntax"></a><a href="../../common-options/#detail-syntax">detail-syntax</a></td>
+<td>${names}: ${restart_count} restarts, ${container_state}</td>
+</tr>
+<tr>
+<td><a id="check_docker_restarts_perf-syntax"></a><a href="../../common-options/#perf-syntax">perf-syntax</a></td>
+<td>${names}</td>
+</tr>
+<tr>
+<td><a id="check_docker_restarts_byte-unit"></a><a href="../../common-options/#byte-unit">byte-unit</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_docker_restarts_decimal-separator"></a><a href="../../common-options/#decimal-separator">decimal-separator</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_docker_restarts_decimals"></a><a href="../../common-options/#decimals">decimals</a></td>
+<td>-1</td>
+</tr>
+<tr>
+<td><a id="check_docker_restarts_thousands-separator"></a><a href="../../common-options/#thousands-separator">thousands-separator</a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>This command also accepts the standard <a href="../../common-options/#standard-options">help options</a>: help, help-pb, show-default, help-short.</p>
+</div>
+</div>
+</div>
+<p><a id="check_docker_restarts_filter_keys"></a></p>
+<h4 id="filter-keywords_3">Filter keywords<a class="headerlink" href="#filter-keywords_3" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>container_state</td>
+<td>Container state: created, restarting, running, removing, paused, exited or dead</td>
+</tr>
+<tr>
+<td>exit_code</td>
+<td>Exit code of the last exit (0 while running fine)</td>
+</tr>
+<tr>
+<td>image</td>
+<td>Image the container was created from</td>
+</tr>
+<tr>
+<td>names</td>
+<td>Container name(s), comma separated</td>
+</tr>
+<tr>
+<td>oom_killed</td>
+<td>1 when the last exit was an out-of-memory kill, else 0</td>
+</tr>
+<tr>
+<td>restart_count</td>
+<td>How many times the container has been restarted (since creation)</td>
+</tr>
+<tr>
+<td>started</td>
+<td>Seconds since the container last started, -1 when it never started (supports units, e.g. started &lt; 10m)</td>
+</tr>
+</tbody>
+</table>
+<p>This command also supports the <a href="../../common-options/#common-filter-keywords">common filter keywords</a>: count, total, ok_count, warn_count, crit_count, problem_count, list, ok_list, warn_list, crit_list, problem_list, detail_list, sep, status.</p>
+<h3 id="check_docker_stats">check_docker_stats<a class="headerlink" href="#check_docker_stats" title="Permanent link">&para;</a></h3>
+<p>Check per-container resource usage: CPU percent and memory versus limit.</p>
+<h4 id="about-check_docker_stats">About <code>check_docker_stats</code><a class="headerlink" href="#about-check_docker_stats" title="Permanent link">&para;</a></h4>
+<p><code>check_docker_stats</code> samples per-container resource usage the way
+<code>docker stats</code> does: CPU as a percentage of the host (delta of the container&rsquo;s
+CPU time over the host&rsquo;s, scaled by online CPUs) and memory usage with the
+page cache excluded, against the container&rsquo;s memory limit.</p>
+<p>Sampling uses the daemon&rsquo;s <code>stream=false</code> stats mode, which takes two readings
+about a second apart so the CPU delta is meaningful — expect roughly <strong>one
+second per sampled container</strong>. On hosts with many containers, scope the check
+with <code>container=&lt;name&gt;</code> (repeatable) or accept the added latency.</p>
+<p>Size-typed thresholds need a unit (<code>1b</code>, <code>64k</code>, <code>200M</code>, <code>1G</code>); a bare number
+is rejected. No default thresholds: an idle container is OK until you say
+otherwise.</p>
+<p><strong>Jump to section:</strong></p>
+<ul>
+<li><a href="#check_docker_stats_samples">Sample Commands</a></li>
+<li><a href="#check_docker_stats_options">Command-line Arguments</a></li>
+<li><a href="#check_docker_stats_filter_keys">Filter keywords</a></li>
+</ul>
+<p><a id="check_docker_stats_samples"></a></p>
+<h4 id="sample-commands_4">Sample Commands<a class="headerlink" href="#sample-commands_4" title="Permanent link">&para;</a></h4>
+<p><strong>Check resource usage of a specific container:</strong></p>
+<div class="highlight"><pre><span></span><code>check_docker_stats container=app-backend
+OK: app-backend: cpu 2%, memory 45.2MB of 256MB (17%)
+</code></pre></div>
+<p><strong>Alert on memory pressure or CPU saturation (thresholded keywords become perf data):</strong></p>
+<div class="highlight"><pre><span></span><code>check_docker_stats container=app-backend "warning=memory_pct &gt; 80" "critical=memory_pct &gt; 95"
+OK: app-backend: cpu 2%, memory 45.2MB of 256MB (17%)|'app-backend memory %'=17%;80;95
+</code></pre></div>
+<p><strong>Absolute memory thresholds take byte units (<code>1b</code>, <code>64k</code>, <code>200M</code>, <code>1G</code>, &hellip;):</strong></p>
+<div class="highlight"><pre><span></span><code>check_docker_stats container=app-backend "critical=memory_used &gt; 200M"
+OK: app-backend: cpu 2%, memory 45.2MB of 256MB (17%)|'app-backend memory'=47401984B;0;209715200
+</code></pre></div>
+<p><strong>Sample every running container (about a second per container, so scope on busy hosts):</strong></p>
+<div class="highlight"><pre><span></span><code>check_docker_stats "warning=cpu_pct &gt; 80"
+OK: web-frontend: cpu 1%, memory 12.4MB of 15.35GB (0%), app-backend: cpu 2%, memory 45.2MB of 256MB (17%)
+</code></pre></div>
+<p><a id="check_docker_stats_options"></a></p>
+<h4 id="command-line-arguments_4">Command-line Arguments<a class="headerlink" href="#command-line-arguments_4" title="Permanent link">&para;</a></h4>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">Windows</label><label for="__tabbed_5_2">Linux</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><a id="check_docker_stats_container"></a></p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#check_docker_stats_host">host</a></td>
+<td>\.\pipe\docker_engine</td>
+<td>The local docker daemon socket (named pipe on Windows, unix socket elsewhere).</td>
+</tr>
+<tr>
+<td><a href="#check_docker_stats_timeout">timeout</a></td>
+<td>10</td>
+<td>Timeout for talking to the daemon, in seconds.</td>
+</tr>
+<tr>
+<td>container</td>
+<td></td>
+<td>Only sample the named container (repeatable). Sampling takes about a second per container, so scope this check on busy hosts.</td>
+</tr>
+</tbody>
+</table>
+<p><h5 id="check_docker_stats_host">host:</h5></p>
+<p>The local docker daemon socket (named pipe on Windows, unix socket elsewhere).</p>
+<p><em>Default Value:</em> <code>\\.\pipe\docker_engine</code></p>
+<p><h5 id="check_docker_stats_timeout">timeout:</h5></p>
+<p>Timeout for talking to the daemon, in seconds.</p>
+<p><em>Default Value:</em> <code>10</code></p>
+<p><strong>Common options:</strong></p>
+<p>These options are shared by all filter based commands and are described on the <a href="../../common-options/#common-options">common options</a> page; the default values below are specific to this command.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Default Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="check_docker_stats_filter"></a><a href="../../common-options/#filter">filter</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_docker_stats_warning"></a><a href="../../common-options/#warning">warning</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_docker_stats_warn"></a><a href="../../common-options/#warn">warn</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_docker_stats_critical"></a><a href="../../common-options/#critical">critical</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_docker_stats_crit"></a><a href="../../common-options/#crit">crit</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_docker_stats_ok"></a><a href="../../common-options/#ok">ok</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_docker_stats_debug"></a><a href="../../common-options/#debug">debug</a></td>
+<td>false</td>
+</tr>
+<tr>
+<td><a id="check_docker_stats_show-all"></a><a href="../../common-options/#show-all">show-all</a></td>
+<td>false</td>
+</tr>
+<tr>
+<td><a id="check_docker_stats_empty-state"></a><a href="../../common-options/#empty-state">empty-state</a></td>
+<td>ok</td>
+</tr>
+<tr>
+<td><a id="check_docker_stats_perf-config"></a><a href="../../common-options/#perf-config">perf-config</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_docker_stats_escape-html"></a><a href="../../common-options/#escape-html">escape-html</a></td>
+<td>false</td>
+</tr>
+<tr>
+<td><a id="check_docker_stats_list-separator"></a><a href="../../common-options/#list-separator">list-separator</a></td>
+<td>,</td>
+</tr>
+<tr>
+<td><a id="check_docker_stats_top-syntax"></a><a href="../../common-options/#top-syntax">top-syntax</a></td>
+<td>${status}: ${list}</td>
+</tr>
+<tr>
+<td><a id="check_docker_stats_ok-syntax"></a><a href="../../common-options/#ok-syntax">ok-syntax</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_docker_stats_empty-syntax"></a><a href="../../common-options/#empty-syntax">empty-syntax</a></td>
+<td>No running containers</td>
+</tr>
+<tr>
+<td><a id="check_docker_stats_detail-syntax"></a><a href="../../common-options/#detail-syntax">detail-syntax</a></td>
+<td>${names}: cpu ${cpu_pct}%, memory ${memory} (${memory_pct}%)</td>
+</tr>
+<tr>
+<td><a id="check_docker_stats_perf-syntax"></a><a href="../../common-options/#perf-syntax">perf-syntax</a></td>
+<td>${names}</td>
+</tr>
+<tr>
+<td><a id="check_docker_stats_byte-unit"></a><a href="../../common-options/#byte-unit">byte-unit</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_docker_stats_decimal-separator"></a><a href="../../common-options/#decimal-separator">decimal-separator</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_docker_stats_decimals"></a><a href="../../common-options/#decimals">decimals</a></td>
+<td>-1</td>
+</tr>
+<tr>
+<td><a id="check_docker_stats_thousands-separator"></a><a href="../../common-options/#thousands-separator">thousands-separator</a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>This command also accepts the standard <a href="../../common-options/#standard-options">help options</a>: help, help-pb, show-default, help-short.</p>
+</div>
+<div class="tabbed-block">
+<p><a id="check_docker_stats_container"></a></p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#check_docker_stats_host">host</a></td>
+<td>/var/run/docker.sock</td>
+<td>The local docker daemon socket (named pipe on Windows, unix socket elsewhere).</td>
+</tr>
+<tr>
+<td><a href="#check_docker_stats_timeout">timeout</a></td>
+<td>10</td>
+<td>Timeout for talking to the daemon, in seconds.</td>
+</tr>
+<tr>
+<td>container</td>
+<td></td>
+<td>Only sample the named container (repeatable). Sampling takes about a second per container, so scope this check on busy hosts.</td>
+</tr>
+</tbody>
+</table>
+<p><h5 id="check_docker_stats_host">host:</h5></p>
+<p>The local docker daemon socket (named pipe on Windows, unix socket elsewhere).</p>
+<p><em>Default Value:</em> <code>/var/run/docker.sock</code></p>
+<p><h5 id="check_docker_stats_timeout">timeout:</h5></p>
+<p>Timeout for talking to the daemon, in seconds.</p>
+<p><em>Default Value:</em> <code>10</code></p>
+<p><strong>Common options:</strong></p>
+<p>These options are shared by all filter based commands and are described on the <a href="../../common-options/#common-options">common options</a> page; the default values below are specific to this command.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Default Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="check_docker_stats_filter"></a><a href="../../common-options/#filter">filter</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_docker_stats_warning"></a><a href="../../common-options/#warning">warning</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_docker_stats_warn"></a><a href="../../common-options/#warn">warn</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_docker_stats_critical"></a><a href="../../common-options/#critical">critical</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_docker_stats_crit"></a><a href="../../common-options/#crit">crit</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_docker_stats_ok"></a><a href="../../common-options/#ok">ok</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_docker_stats_debug"></a><a href="../../common-options/#debug">debug</a></td>
+<td>false</td>
+</tr>
+<tr>
+<td><a id="check_docker_stats_show-all"></a><a href="../../common-options/#show-all">show-all</a></td>
+<td>false</td>
+</tr>
+<tr>
+<td><a id="check_docker_stats_empty-state"></a><a href="../../common-options/#empty-state">empty-state</a></td>
+<td>ok</td>
+</tr>
+<tr>
+<td><a id="check_docker_stats_perf-config"></a><a href="../../common-options/#perf-config">perf-config</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_docker_stats_escape-html"></a><a href="../../common-options/#escape-html">escape-html</a></td>
+<td>false</td>
+</tr>
+<tr>
+<td><a id="check_docker_stats_list-separator"></a><a href="../../common-options/#list-separator">list-separator</a></td>
+<td>,</td>
+</tr>
+<tr>
+<td><a id="check_docker_stats_top-syntax"></a><a href="../../common-options/#top-syntax">top-syntax</a></td>
+<td>${status}: ${list}</td>
+</tr>
+<tr>
+<td><a id="check_docker_stats_ok-syntax"></a><a href="../../common-options/#ok-syntax">ok-syntax</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_docker_stats_empty-syntax"></a><a href="../../common-options/#empty-syntax">empty-syntax</a></td>
+<td>No running containers</td>
+</tr>
+<tr>
+<td><a id="check_docker_stats_detail-syntax"></a><a href="../../common-options/#detail-syntax">detail-syntax</a></td>
+<td>${names}: cpu ${cpu_pct}%, memory ${memory} (${memory_pct}%)</td>
+</tr>
+<tr>
+<td><a id="check_docker_stats_perf-syntax"></a><a href="../../common-options/#perf-syntax">perf-syntax</a></td>
+<td>${names}</td>
+</tr>
+<tr>
+<td><a id="check_docker_stats_byte-unit"></a><a href="../../common-options/#byte-unit">byte-unit</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_docker_stats_decimal-separator"></a><a href="../../common-options/#decimal-separator">decimal-separator</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_docker_stats_decimals"></a><a href="../../common-options/#decimals">decimals</a></td>
+<td>-1</td>
+</tr>
+<tr>
+<td><a id="check_docker_stats_thousands-separator"></a><a href="../../common-options/#thousands-separator">thousands-separator</a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>This command also accepts the standard <a href="../../common-options/#standard-options">help options</a>: help, help-pb, show-default, help-short.</p>
+</div>
+</div>
+</div>
+<p><a id="check_docker_stats_filter_keys"></a></p>
+<h4 id="filter-keywords_4">Filter keywords<a class="headerlink" href="#filter-keywords_4" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>cpu_pct</td>
+<td>CPU usage in percent of the host (like docker stats)</td>
+</tr>
+<tr>
+<td>image</td>
+<td>Image the container was created from</td>
+</tr>
+<tr>
+<td>memory</td>
+<td>Memory usage as human readable text, e.g. 45.2M of 512M (display only; threshold on memory_used or memory_pct)</td>
+</tr>
+<tr>
+<td>memory_limit</td>
+<td>Memory limit in bytes (the host&rsquo;s total memory when the container is unlimited)</td>
+</tr>
+<tr>
+<td>memory_pct</td>
+<td>Memory usage in percent of the container&rsquo;s limit</td>
+</tr>
+<tr>
+<td>memory_used</td>
+<td>Memory used in bytes, page cache excluded (supports size units, e.g. memory_used &gt; 200M)</td>
+</tr>
+<tr>
+<td>names</td>
+<td>Container name(s), comma separated</td>
+</tr>
+</tbody>
+</table>
+<p>This command also supports the <a href="../../common-options/#common-filter-keywords">common filter keywords</a>: count, total, ok_count, warn_count, crit_count, problem_count, list, ok_list, warn_list, crit_list, problem_list, detail_list, sep, status.</p>
+<h2 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Path / Section</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#/settings/docker">/settings/docker</a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="settingsdocker">/settings/docker <a id="/settings/docker"></a><a class="headerlink" href="#settingsdocker" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#docker-endpoint">endpoint</a></td>
+<td>\.\pipe\docker_engine</td>
+<td>DOCKER ENDPOINT</td>
+</tr>
+<tr>
+<td><a href="#timeout">timeout</a></td>
+<td>10</td>
+<td>TIMEOUT</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="c1"># </span>
+<span class="k">[/settings/docker]</span>
+<span class="na">endpoint</span><span class="o">=</span><span class="s">\\.\pipe\docker_engine</span>
+<span class="na">timeout</span><span class="o">=</span><span class="s">10</span>
+</code></pre></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="6:2"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><input id="__tabbed_6_2" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">Windows</label><label for="__tabbed_6_2">Linux</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<h4 id="docker-endpoint">DOCKER ENDPOINT <a id="/settings/docker/endpoint"></a><a class="headerlink" href="#docker-endpoint" title="Permanent link">&para;</a></h4>
+<p>The local docker daemon socket: a named pipe (\\.\pipe\docker_engine) on Windows, a unix socket (/var/run/docker.sock) elsewhere.</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Path:</td>
+<td><a href="#/settings/docker">/settings/docker</a></td>
+</tr>
+<tr>
+<td>Key:</td>
+<td>endpoint</td>
+</tr>
+<tr>
+<td>Default value:</td>
+<td><code>\\.\pipe\docker_engine</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Sample:</strong></p>
+<div class="highlight"><pre><span></span><code>[/settings/docker]
+# DOCKER ENDPOINT
+endpoint=\\.\pipe\docker_engine
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<h4 id="docker-endpoint_1">DOCKER ENDPOINT <a id="/settings/docker/endpoint"></a><a class="headerlink" href="#docker-endpoint_1" title="Permanent link">&para;</a></h4>
+<p>The local docker daemon socket: a named pipe (\\.\pipe\docker_engine) on Windows, a unix socket (/var/run/docker.sock) elsewhere.</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Path:</td>
+<td><a href="#/settings/docker">/settings/docker</a></td>
+</tr>
+<tr>
+<td>Key:</td>
+<td>endpoint</td>
+</tr>
+<tr>
+<td>Default value:</td>
+<td><code>/var/run/docker.sock</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Sample:</strong></p>
+<div class="highlight"><pre><span></span><code>[/settings/docker]
+# DOCKER ENDPOINT
+endpoint=/var/run/docker.sock
+</code></pre></div>
+</div>
+</div>
+</div>
+<h4 id="timeout">TIMEOUT <a id="/settings/docker/timeout"></a><a class="headerlink" href="#timeout" title="Permanent link">&para;</a></h4>
+<p>Timeout for talking to the daemon, in seconds.</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Path:</td>
+<td><a href="#/settings/docker">/settings/docker</a></td>
+</tr>
+<tr>
+<td>Key:</td>
+<td>timeout</td>
+</tr>
+<tr>
+<td>Advanced:</td>
+<td>Yes (means it is not commonly used)</td>
+</tr>
+<tr>
+<td>Default value:</td>
+<td><code>10</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Sample:</strong></p>
+<div class="highlight"><pre><span></span><code>[/settings/docker]
+# TIMEOUT
+timeout=10
+</code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+      <div class="md-consent" data-md-component="consent" id="__consent" hidden>
+        <div class="md-consent__overlay"></div>
+        <aside class="md-consent__inner">
+          <form class="md-consent__form md-grid md-typeset" name="consent">
+            
+
+
+  
+
+
+<h4>Cookie consent</h4>
+<p>We use cookies to recognize your repeated visits and preferences, as well as to measure the effectiveness of our documentation and whether users find what they're searching for. With your consent, you're helping us to make our documentation better.</p>
+<input class="md-toggle" type="checkbox" id="__settings" >
+<div class="md-consent__settings">
+  <ul class="task-list">
+    
+    
+      
+    
+    
+      
+        
+  
+  
+    
+    
+  
+  <li class="task-list-item">
+    <label class="task-list-control">
+      <input type="checkbox" name="github" checked>
+      <span class="task-list-indicator"></span>
+      GitHub
+    </label>
+  </li>
+
+      
+    
+    
+  </ul>
+</div>
+<div class="md-consent__controls">
+  
+    
+      <button class="md-button md-button--primary">Accept</button>
+    
+    
+    
+  
+    
+    
+    
+      <label class="md-button" for="__settings">Manage settings</label>
+    
+  
+</div>
+          </form>
+        </aside>
+      </div>
+      <script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout((function(){document.querySelector("[data-md-component=consent]").hidden=!1}),250);var form=document.forms.consent;for(var action of["submit","reset"])form.addEventListener(action,(function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map((function(e){return[e,!0]})))),location.hash="",location.reload()}))</script>
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.tabs", "toc.follow", "toc.integrate", "navigation.indexes", "search.suggest", "search.highlight", "search.share"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../../../assets/js/latest-release.js"></script>
+      
+    
+  </body>
+</html>

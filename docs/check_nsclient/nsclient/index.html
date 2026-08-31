@@ -1,0 +1,6891 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://nsclient.org/docs/check_nsclient/nsclient/">
+      
+      
+        <link rel="prev" href="../">
+      
+      
+        <link rel="next" href="../profile/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Agent commands - NSClient++</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#nsclient" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="NSClient++" class="md-header__button md-logo" aria-label="NSClient++" data-md-component="logo">
+      
+  <img src="../../../assets/nsclient-logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            NSClient++
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Agent commands
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/mickem/nscp" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M202.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1M496 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2m-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3m-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1"/></svg>
+  </div>
+  <div class="md-source__repository">
+    NSClient++
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../.." class="md-tabs__link">
+          
+  
+  
+    
+  
+  Home
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../news/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  News
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../download/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Download
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Documentation
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://github.com/mickem/nscp/discussions" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Forums
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="NSClient++" class="md-nav__button md-logo" aria-label="NSClient++" data-md-component="logo">
+      
+  <img src="../../../assets/nsclient-logo.png" alt="logo">
+
+    </a>
+    NSClient++
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/mickem/nscp" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M202.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1M496 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2m-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3m-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1"/></svg>
+  </div>
+  <div class="md-source__repository">
+    NSClient++
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../.." class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_1" id="__nav_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Home
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../nsclient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About NSClient++
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../news/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    News
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../download/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Download
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Documentation
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Documentation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSClient++ agent
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    NSClient++ agent
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quick-start/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../concepts/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_2_2" id="__nav_4_2_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Concepts
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/checks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Checks In Depth
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/settings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Settings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/file-layout/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    File Layout
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/permissions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Permissions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2_3" id="__nav_4_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Setup
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/supported-platforms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Supported platforms
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/installing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/upgrading/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Upgrading
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/securing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Securing NSClient++
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/web-interface/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Web Interface
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2_4" id="__nav_4_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Security
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../security/notices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security notices
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../scenarios/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Monitoring Scenarios
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_2_5" id="__nav_4_2_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Monitoring Scenarios
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scenarios/windows-server-health/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Windows Server Health
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scenarios/linux-server-health/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux Server Health
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scenarios/disk-space/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Disk Space Alerting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scenarios/service-monitoring/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Service & Process Monitoring
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scenarios/realtime-monitoring/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Real-Time System Monitoring
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scenarios/event-log/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Event Log Monitoring
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scenarios/counters/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Performance Counters (PDH)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scenarios/sql-server/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SQL Server Monitoring
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scenarios/network-checks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Network Checks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scenarios/security-posture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Host Security Posture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scenarios/nrpe/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Active Monitoring with NRPE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scenarios/rest-api-checks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Active Checks over the REST API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scenarios/passive-monitoring-nsca/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Passive Monitoring (NSCA/NRDP)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scenarios/passive-monitoring-nsca-ng/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Passive Monitoring (NSCA-NG)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scenarios/passive-monitoring-icinga/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Passive Monitoring (Icinga 2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scenarios/passive-monitoring-graphite/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Passive Monitoring (Graphite)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scenarios/check-mk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Checkmk Agent Integration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scenarios/prometheus/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prometheus Scraping
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scenarios/external-scripts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    External Scripts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../reference/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_2_6" id="__nav_4_2_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/common-options/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Common options
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_6_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2_6_3" id="__nav_4_2_6_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Check commands
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_2_6_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_6_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Check commands
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/check/CheckDisk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckDisk
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/check/CheckDocker/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckDocker
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/check/CheckExternalScripts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckExternalScripts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/windows/CheckEventLog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckEventLog (Windows)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/check/CheckHelpers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckHelpers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/check/CheckLogFile/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckLogFile
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/check/CheckMySQL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckMySQL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/check/CheckNet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckNet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/check/CheckNSCP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckNSCP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/check/CheckSecurity/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckSecurity
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/check/CheckSystem/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckSystem
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/windows/CheckMSSQL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckMSSQL (Windows)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/windows/CheckWindowsApps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckWindowsApps (Windows)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/windows/CheckTaskSched/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckTaskSched (Windows)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/windows/CheckWMI/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckWMI (Windows)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_6_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2_6_4" id="__nav_4_2_6_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Clients & Servers
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_2_6_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_6_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Clients & Servers
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/generic/WEBServer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WEBServer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/client/NRPEServer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NRPEServer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/client/NRPEClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NRPEClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/windows/NSClientServer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSClientServer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/client/NSCAServer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSCAServer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/client/NSCAClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSCAClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/client/NSCANgClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSCANgClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/client/NSCPClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSCPClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/client/NRDPClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NRDPClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/client/IcingaClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IcingaClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/client/SMTPClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SMTPClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/client/GraphiteClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GraphiteClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/client/SyslogClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SyslogClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/client/CollectdClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CollectdClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/client/Op5Client/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Op5Client
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/client/ElasticClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ElasticClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/client/CheckMKClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckMKClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/client/CheckMKServer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckMKServer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_6_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2_6_5" id="__nav_4_2_6_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Helper modules
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_2_6_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_6_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Helper modules
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/generic/Scheduler/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scheduler
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/generic/SimpleFileWriter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SimpleFileWriter
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/generic/CommandClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CommandClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/generic/SimpleCache/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SimpleCache
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/generic/PythonScript/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PythonScript
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/generic/LUAScript/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LUAScript
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../extending/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Extending
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_2_7" id="__nav_4_2_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Extending
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../extending/python/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python Scripts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../extending/lua/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lua Scripts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../extending/zip-modules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Zip Modules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../extending/plugin-api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plugin API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2_8" id="__nav_4_2_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    API
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_8_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../api/rest/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    REST
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_2_8_1" id="__nav_4_2_8_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_2_8_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_8_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    REST
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/rest/info/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Info
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/rest/login/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Login
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/rest/modules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/rest/queries/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Queries
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/rest/aliases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Aliases
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/rest/scripts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scripts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/rest/settings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Settings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/rest/metadata/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Metadata
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/rest/metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Metrics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/rest/logs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/rest/legacy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Legacy API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    check_nsclient (CLI)
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    check_nsclient (CLI)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Agent commands
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Agent commands
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#checking-the-connection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Checking the connection
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Checking the connection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ping" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ping
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#version" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        version
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#authentication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Authentication
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Authentication">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#auth-login" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        auth login
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="auth login">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#keeping-the-password-out-of-your-shell-history" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Keeping the password out of your shell history
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tls-certificates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TLS certificates
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#remote-agents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Remote agents
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#auth-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        auth status
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#auth-refresh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        auth refresh
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#auth-logout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        auth logout
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#where-credentials-are-stored" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Where credentials are stored
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#queries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Queries
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Queries">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#queries-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        queries list
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#queries-show" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        queries show
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#queries-execute" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        queries execute
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#passing-arguments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Passing arguments
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aliases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Aliases
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Aliases">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aliases-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        aliases list
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#running-an-alias" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running an alias
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aliases-versus-queries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Aliases versus queries
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Modules
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Modules">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#loaded-versus-enabled" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Loaded versus enabled
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#modules-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        modules list
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#modules-show" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        modules show
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#modules-load-unload" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        modules load / unload
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#modules-enable-disable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        modules enable / disable
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#modules-use" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        modules use
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#modules-upload" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        modules upload
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Settings
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Settings">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#changes-are-in-memory-until-you-save" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Changes are in memory until you save
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#settings-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        settings status
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#settings-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        settings list
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#settings-descriptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        settings descriptions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#settings-set" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        settings set
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#settings-diff" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        settings diff
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#settings-delete" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        settings delete
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#settings-command" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        settings command
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-complete-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A complete example
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#logs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Logs
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Logs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#logs-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        logs list
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logs-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        logs status
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logs-reset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        logs reset
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logs-clear" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        logs clear
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logs-add" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        logs add
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scripts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scripts
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Scripts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#runtimes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Runtimes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scripts-list-runtimes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        scripts list-runtimes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scripts-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        scripts list
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scripts-show" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        scripts show
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scripts-add" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        scripts add
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scripts-delete" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        scripts delete
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Metrics
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Metrics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#metrics-show" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        metrics show
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#which-one-to-use" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Which one to use
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Metadata
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Metadata">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#metadata-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        metadata list
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metadata-counters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        metadata counters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metadata-channels" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        metadata channels
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#events" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Events
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Events">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#events-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        events list
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#events-clear" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        events clear
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tags" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tags
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tags">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tags-show" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        tags show
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-tags" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using tags
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-client" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interactive client
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Interactive client">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#layout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Layout
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#editing-and-history" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Editing and history
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-to-use-the-cli-instead" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When to use the CLI instead
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../profile/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Profiles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/mickem/nscp/discussions" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Forums
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<!--
+  This page is generated. It is maintained in the check_nsclient repository:
+  https://github.com/mickem/check_nsclient/blob/main/docs/nsclient.md
+  Run scripts/sync-check-nsclient-docs.py to refresh it; edits made here are
+  overwritten.
+-->
+
+<h1 id="nsclient">nsclient<a class="headerlink" href="#nsclient" title="Permanent link">&para;</a></h1>
+<p>Everything <code>check_nsclient</code> does against a running agent lives under the
+<code>nsclient</code> sub command:</p>
+<div class="highlight"><pre><span></span><code>check_nsclient [GLOBAL OPTIONS] nsclient [CONNECTION OPTIONS] &lt;COMMAND&gt; [ARGS]
+</code></pre></div>
+<p>The <a href="../#global-options">global options</a> (output format, debugging) and
+the <a href="../#connection-options">connection options</a> (<code>--profile</code>,
+<code>--timeout-s</code>, <code>--user-agent</code>) are described on the
+<a href="../">overview page</a>, as are the <a href="../#output-formats">output formats</a>
+and <a href="../#exit-codes">exit codes</a> every command shares.</p>
+<h2 id="checking-the-connection">Checking the connection<a class="headerlink" href="#checking-the-connection" title="Permanent link">&para;</a></h2>
+<h3 id="ping">ping<a class="headerlink" href="#ping" title="Permanent link">&para;</a></h3>
+<p>Confirms the agent is reachable and prints its version as a single line:</p>
+<div class="highlight"><pre><span></span><code>$ check_nsclient nsclient ping
+Successfully pinged NSClient++ version 0.18.0 2026-08-29
+</code></pre></div>
+<h3 id="version">version<a class="headerlink" href="#version" title="Permanent link">&para;</a></h3>
+<p>The same information as a table (and, in json/yaml/csv, as data):</p>
+<div class="highlight"><pre><span></span><code>$ check_nsclient nsclient version
+╭─────────┬───────────────────╮
+│ name    │ NSClient++        │
+│ version │ 0.18.0 2026-08-29 │
+╰─────────┴───────────────────╯
+</code></pre></div>
+<h2 id="authentication">Authentication<a class="headerlink" href="#authentication" title="Permanent link">&para;</a></h2>
+<p><code>check_nsclient nsclient auth …</code> obtains and manages the credentials used to
+talk to an agent. Logging in stores an API key (and the password used to renew
+it) in the operating system credential store and creates a
+<a href="../profile/">profile</a> describing the server.</p>
+<h3 id="auth-login">auth login<a class="headerlink" href="#auth-login" title="Permanent link">&para;</a></h3>
+<p>Authenticates against the agent, stores the API key it hands back and creates
+(or replaces) a profile.</p>
+<div class="highlight"><pre><span></span><code>check_nsclient nsclient auth login [OPTIONS] [ID]
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Argument / option</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>[ID]</code></td>
+<td><code>default</code></td>
+<td>Profile to store the credentials under.</td>
+</tr>
+<tr>
+<td><code>--url &lt;URL&gt;</code></td>
+<td><code>https://localhost:8443</code></td>
+<td>Base URL of the agent.</td>
+</tr>
+<tr>
+<td><code>--username &lt;USER&gt;</code></td>
+<td><code>admin</code></td>
+<td>User to authenticate as.</td>
+</tr>
+<tr>
+<td><code>--password &lt;PASSWORD&gt;</code></td>
+<td>prompted</td>
+<td>Password. Can also come from <code>CHECK_NSCLIENT_PASSWORD</code>.</td>
+</tr>
+<tr>
+<td><code>--insecure</code></td>
+<td>off</td>
+<td>Do not validate the TLS certificate.</td>
+</tr>
+<tr>
+<td><code>--ca &lt;FILE&gt;</code></td>
+<td>system store</td>
+<td>CA bundle to validate the certificate against.</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code>$ check_nsclient nsclient auth login --password &lt;MY SECURE PASSWORD&gt;
+Successfully logged in
+</code></pre></div>
+<p>The first profile you create becomes the default, so subsequent commands need
+no <code>--profile</code>.</p>
+<h4 id="keeping-the-password-out-of-your-shell-history">Keeping the password out of your shell history<a class="headerlink" href="#keeping-the-password-out-of-your-shell-history" title="Permanent link">&para;</a></h4>
+<p><code>--password</code> is optional. When it is omitted the password is read from the
+<code>CHECK_NSCLIENT_PASSWORD</code> environment variable, and if that is unset you are
+prompted for it (the input is not echoed):</p>
+<div class="highlight"><pre><span></span><code>$ check_nsclient nsclient auth login
+Password:
+Successfully logged in
+</code></pre></div>
+<p>Both alternatives keep the password out of your shell history and out of the
+process list.</p>
+<h4 id="tls-certificates">TLS certificates<a class="headerlink" href="#tls-certificates" title="Permanent link">&para;</a></h4>
+<p>NSClient++ generates a self-signed certificate on install, which no CA trusts.
+You therefore have to either point at a CA bundle or accept the certificate as
+it is:</p>
+<div class="highlight"><pre><span></span><code># validate against a CA bundle (recommended)
+$ check_nsclient nsclient auth login --ca "C:\Program Files\NSClient++\security\windows-ca.pem"
+
+# ...or skip validation entirely
+$ check_nsclient nsclient auth login --insecure
+</code></pre></div>
+<p>Without either, the login fails:</p>
+<div class="highlight"><pre><span></span><code>$ check_nsclient nsclient auth login --password &lt;PASSWORD&gt;
+Error: Failed to login: Failed to login: error sending request for url (https://localhost:8443/api/v2/login): client error (Connect): invalid peer certificate: UnknownIssuer
+</code></pre></div>
+<p>See
+<a href="../../setup/web-interface/#using-check_nsclient-command">Web interface</a>
+for how to get a certificate browsers and clients trust.</p>
+<h4 id="remote-agents">Remote agents<a class="headerlink" href="#remote-agents" title="Permanent link">&para;</a></h4>
+<p>Point <code>--url</code> at another host and give the profile a name:</p>
+<div class="highlight"><pre><span></span><code>$ check_nsclient nsclient auth login prod --url https://prod-01.example.com:8443 --password &lt;PASSWORD&gt;
+Successfully logged in
+$ check_nsclient nsclient --profile prod ping
+Successfully pinged NSClient++ version 0.18.0 2026-08-29
+</code></pre></div>
+<h3 id="auth-status">auth status<a class="headerlink" href="#auth-status" title="Permanent link">&para;</a></h3>
+<p>Shows who the stored credentials authenticate as, and confirms they still work.
+This is the cheapest way to verify a profile without side effects.</p>
+<div class="highlight"><pre><span></span><code>$ check_nsclient nsclient auth status
+╭───────────────┬────────────────────────╮
+│ profile       │ default                │
+│ url           │ https://127.0.0.1:8443 │
+│ username      │ admin                  │
+│ user          │ admin                  │
+│ authenticated │ true                   │
+╰───────────────┴────────────────────────╯
+</code></pre></div>
+<p><code>username</code> is what the profile logs in as; <code>user</code> is who the server says you
+are. In json:</p>
+<div class="highlight"><pre><span></span><code>$ check_nsclient --output json nsclient auth status
+{
+  "profile": "default",
+  "url": "https://127.0.0.1:8443",
+  "username": "admin",
+  "user": "admin",
+  "authenticated": true
+}
+</code></pre></div>
+<p>The command fails when the credentials are not accepted, so it can be used as a
+health check:</p>
+<div class="highlight"><pre><span></span><code>$ check_nsclient nsclient --profile prod auth status || echo "re-authentication needed"
+</code></pre></div>
+<h3 id="auth-refresh">auth refresh<a class="headerlink" href="#auth-refresh" title="Permanent link">&para;</a></h3>
+<p>Fetches a new API key using the stored password and replaces the old one.</p>
+<div class="highlight"><pre><span></span><code>$ check_nsclient nsclient auth refresh
+Token successfully refreshed
+</code></pre></div>
+<p>You rarely need this: an expired key is renewed automatically on the next
+request, provided the password is still in the credential store. Use <code>refresh</code>
+when you want the renewal to happen at a predictable moment, for example from
+a scheduled job.</p>
+<h3 id="auth-logout">auth logout<a class="headerlink" href="#auth-logout" title="Permanent link">&para;</a></h3>
+<p>Revokes the API key on the server and removes the profile together with its
+stored credentials.</p>
+<div class="highlight"><pre><span></span><code>$ check_nsclient nsclient auth logout default
+Successfully logged out
+</code></pre></div>
+<p>Revoking on the server matters: without it the key would remain valid until it
+expired, even though it was gone from your machine.</p>
+<p>If the agent cannot be reached, or has already forgotten the key, the local
+credentials are still removed and the problem is reported as a warning:</p>
+<div class="highlight"><pre><span></span><code>Warning: could not revoke the token on the server: Invalid response status from api/v2/login: 500 Internal Server Error
+Successfully logged out
+</code></pre></div>
+<h3 id="where-credentials-are-stored">Where credentials are stored<a class="headerlink" href="#where-credentials-are-stored" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Platform</th>
+<th>Store</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Windows</td>
+<td>Windows Credential Manager</td>
+</tr>
+<tr>
+<td>macOS</td>
+<td>Keychain</td>
+</tr>
+<tr>
+<td>Linux</td>
+<td>Secret Service (<code>libsecret</code>)</td>
+</tr>
+</tbody>
+</table>
+<p>Two entries are written per profile: <code>&lt;id&gt;_token</code> (the API key) and
+<code>&lt;id&gt;_password</code> (used to renew the key). <code>auth logout</code> and
+<code>profile remove</code> delete both.</p>
+<h4 id="wsl">Running under WSL</h4>
+
+<p>WSL has no Secret Service by default, so storing the key fails:</p>
+<div class="highlight"><pre><span></span><code>Failed to store token in keystore, if you're running under wsl try specifying: check_nsclient --wsl
+</code></pre></div>
+<p><code>--wsl</code> switches to a keyring target that works there. Pass it on every
+invocation, not just the login.</p>
+<h2 id="queries">Queries<a class="headerlink" href="#queries" title="Permanent link">&para;</a></h2>
+<p>Queries are the check commands the agent exposes — <code>check_cpu</code>,
+<code>check_drivesize</code> and so on. <code>check_nsclient nsclient queries …</code> lists them and
+runs them remotely, which makes it a convenient way to try out a check before
+wiring it into your monitoring system.</p>
+<p>The full list of available checks is in the
+<a href="../../reference/">reference</a>.</p>
+<h3 id="queries-list">queries list<a class="headerlink" href="#queries-list" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>$ check_nsclient nsclient queries list
+╭───────────────────────────┬───────────────────────────┬──────────────╮
+│ name                      │ title                     │ plugin       │
+├───────────────────────────┼───────────────────────────┼──────────────┤
+│ check_always_critical     │ check_always_critical     │ CheckHelpers │
+│ check_cpu                 │ check_cpu                 │ CheckSystem  │
+│ check_drivesize           │ check_drivesize           │ CheckDisk    │
+│ check_memory              │ check_memory              │ CheckSystem  │
+│ check_ok                  │ check_ok                  │ CheckHelpers │
+│ check_uptime              │ check_uptime              │ CheckSystem  │
+╰───────────────────────────┴───────────────────────────┴──────────────╯
+</code></pre></div>
+<p><code>name</code> is what you pass to <code>execute</code>. The description is hidden by default:</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--long</code></td>
+<td>Also show the description.</td>
+</tr>
+<tr>
+<td><code>--all</code></td>
+<td>Include queries from modules that are not loaded.</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code>$ check_nsclient nsclient queries list --long | head -5
+</code></pre></div>
+<h3 id="queries-show">queries show<a class="headerlink" href="#queries-show" title="Permanent link">&para;</a></h3>
+<p>Details for one query:</p>
+<div class="highlight"><pre><span></span><code>$ check_nsclient nsclient queries show check_cpu
+╭─────────────┬──────────────────────────────────────────────────────╮
+│ name        │ check_cpu                                            │
+│ title       │ check_cpu                                            │
+│ description │ Check that the load of the CPU(s) are within bounds. │
+│ plugin      │ CheckSystem                                          │
+╰─────────────┴──────────────────────────────────────────────────────╯
+</code></pre></div>
+<p><code>--output json</code> additionally carries the query metadata.</p>
+<h3 id="queries-execute">queries execute<a class="headerlink" href="#queries-execute" title="Permanent link">&para;</a></h3>
+<p>Runs a check and renders the result — the message, the performance data and
+the status:</p>
+<div class="highlight"><pre><span></span><code>$ check_nsclient nsclient queries execute check_cpu
+╭──────────┬───────────────────────────────╮
+│ command  │ check_cpu                     │
+│ output   │ OK: CPU load is ok.           │
+│ total 1m │ 6%, warning: 80, critical: 90 │
+│ total 5m │ 2%, warning: 80, critical: 90 │
+│ total 5s │ 9%, warning: 80, critical: 90 │
+│ result   │ OK                            │
+╰──────────┴───────────────────────────────╯
+</code></pre></div>
+<p>Each performance counter becomes a row. When a check returns several lines they
+are numbered (<code>output 1</code>, <code>output 2</code>, …) and counters that repeat across lines
+get a <code>(line N)</code> suffix, so nothing is lost.</p>
+<p><code>--output json</code> keeps the structure, which is what you want when a script has
+to look at individual values:</p>
+<div class="highlight"><pre><span></span><code>$ check_nsclient --output json nsclient queries execute check_ok
+{
+  "command": "check_ok",
+  "lines": [
+    {
+      "message": "No message",
+      "perf": {}
+    }
+  ],
+  "result": 0
+}
+</code></pre></div>
+<blockquote>
+<p><strong>Note</strong></p>
+<p><code>execute</code> always exits <code>0</code> when the request itself succeeded, even if the
+check returned CRITICAL — the status is in the output. Use
+<a href="#queries-execute-nagios"><code>execute-nagios</code></a> if you want the status as the exit code.</p>
+</blockquote>
+<p>An unknown query is not an error at the transport level; the agent answers with
+an UNKNOWN result:</p>
+<div class="highlight"><pre><span></span><code>$ check_nsclient nsclient queries execute no_such_query
+╭─────────┬───────────────────────────────────╮
+│ command │ no_such_query                     │
+│ output  │ Unknown command(s): no_such_query │
+│ result  │ UNKNOWN                           │
+╰─────────┴───────────────────────────────────╯
+</code></pre></div>
+<h3 id="queries-execute-nagios">queries execute-nagios</h3>
+
+<p>Runs a check and behaves like a Nagios plugin: one line of
+<code>message|performance data</code> on stdout, and the check status as the <strong>exit code</strong>.</p>
+<div class="highlight"><pre><span></span><code>$ check_nsclient nsclient queries execute-nagios check_cpu
+OK: CPU load is ok.|'total 5s'=9%;80;90 'total 1m'=6%;80;90 'total 5m'=2%;80;90
+$ echo $?
+0
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>$ check_nsclient nsclient queries execute-nagios check_warning message="disk almost full"
+disk almost full
+$ echo $?
+1
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Exit code</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>0</code></td>
+<td>OK</td>
+</tr>
+<tr>
+<td><code>1</code></td>
+<td>WARNING</td>
+</tr>
+<tr>
+<td><code>2</code></td>
+<td>CRITICAL</td>
+</tr>
+<tr>
+<td><code>3</code></td>
+<td>UNKNOWN</td>
+</tr>
+</tbody>
+</table>
+<p>This makes <code>check_nsclient</code> usable directly as a check plugin for a monitoring
+system that runs checks remotely:</p>
+<div class="highlight"><pre><span></span><code>define command {
+    command_name    check_nscp_remote
+    command_line    /usr/bin/check_nsclient nsclient --profile $HOSTNAME$ queries execute-nagios $ARG1$ $ARG2$
+}
+</code></pre></div>
+<p>The other output formats work too and still set the exit code, which is handy
+when you want both the status and the structured result:</p>
+<div class="highlight"><pre><span></span><code>$ check_nsclient --output json nsclient queries execute-nagios check_cpu
+{
+  "command": "check_cpu",
+  "lines": [
+    {
+      "message": "OK: CPU load is ok.",
+      "perf": "'total 5s'=6%;80;90 'total 1m'=6%;80;90 'total 5m'=6%;80;90"
+    }
+  ],
+  "result": "OK"
+}
+$ echo $?
+0
+</code></pre></div>
+<h3 id="passing-arguments">Passing arguments<a class="headerlink" href="#passing-arguments" title="Permanent link">&para;</a></h3>
+<p>Check arguments are given after the query name, either as <code>key=value</code> or as
+<code>--key=value</code>:</p>
+<div class="highlight"><pre><span></span><code>$ check_nsclient nsclient queries execute check_cpu --warning="load &gt; 90" --time=5m
+$ check_nsclient nsclient queries execute check_cpu warning="load &gt; 90" time=5m
+</code></pre></div>
+<p>Both forms are equivalent — the leading dashes are stripped before the argument
+is sent. A bare word becomes a flag with an empty value:</p>
+<div class="highlight"><pre><span></span><code>$ check_nsclient nsclient queries execute check_drivesize show-all
+</code></pre></div>
+<p>Arguments are passed through verbatim and keep their order, so anything the
+check itself accepts works. The
+<a href="../../reference/common-options/">common options</a> page documents
+the filter, warning and critical syntax shared by most checks.</p>
+<blockquote>
+<p><strong>Note</strong></p>
+<p>Quote values containing spaces or shell metacharacters, as with any other
+command. <code>--warning="load &gt; 90"</code> — without the quotes the shell would
+redirect to a file called <code>90</code>.</p>
+</blockquote>
+<h2 id="aliases">Aliases<a class="headerlink" href="#aliases" title="Permanent link">&para;</a></h2>
+<p>An alias is an admin-defined wrapper around a real check command: a short name
+bound to a check plus a fixed set of arguments. They are configured under
+<code>[/settings/check helpers/alias]</code> (CheckHelpers) or
+<code>[/settings/external scripts/alias]</code> (CheckExternalScripts).</p>
+<h3 id="aliases-list">aliases list<a class="headerlink" href="#aliases-list" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>$ check_nsclient nsclient aliases list
+╭───────────────────────────┬───────────────────────────┬──────────────────────╮
+│ name                      │ title                     │ plugin               │
+├───────────────────────────┼───────────────────────────┼──────────────────────┤
+│ alias_cpu                 │ alias_cpu                 │ CheckExternalScripts │
+│ alias_disk                │ alias_disk                │ CheckExternalScripts │
+│ alias_mem                 │ alias_mem                 │ CheckExternalScripts │
+│ alias_service             │ alias_service             │ CheckExternalScripts │
+│ checkalwaysok             │ CheckAlwaysOK             │ CheckHelpers         │
+│ checkversion              │ CheckVersion              │ CheckHelpers         │
+╰───────────────────────────┴───────────────────────────┴──────────────────────╯
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--long</code></td>
+<td>Also show the description, which says what the alias expands to.</td>
+</tr>
+<tr>
+<td><code>--all</code></td>
+<td>Include aliases from modules that are not loaded.</td>
+</tr>
+</tbody>
+</table>
+<p><code>--long</code> is how you find out what an alias actually runs:</p>
+<div class="highlight"><pre><span></span><code>$ check_nsclient nsclient aliases list --long | grep alias_cpu
+│ alias_cpu     │ alias_cpu     │ Alias for: check_cpu     │ CheckExternalScripts │
+</code></pre></div>
+<h3 id="running-an-alias">Running an alias<a class="headerlink" href="#running-an-alias" title="Permanent link">&para;</a></h3>
+<p>There is no <code>aliases execute</code>. An alias is dispatched by the agent exactly like
+a regular query, so run it with <a href="#queries-execute"><code>queries execute</code></a>:</p>
+<div class="highlight"><pre><span></span><code>$ check_nsclient nsclient queries execute-nagios alias_cpu
+OK: CPU load is ok.|'total 5s'=6%;80;90 'total 1m'=6%;80;90 'total 5m'=6%;80;90
+</code></pre></div>
+<p>The json output makes this explicit with a <code>query_url</code> pointing at the queries
+endpoint:</p>
+<div class="highlight"><pre><span></span><code>$ check_nsclient --output json nsclient aliases list | jq '.[0]'
+{
+  "name": "alias_cpu",
+  "title": "alias_cpu",
+  "description": "Alias for: check_cpu",
+  "plugin": "CheckExternalScripts",
+  "query_url": "https://127.0.0.1:8443/api/v2/queries/alias_cpu/",
+  "metadata": {}
+}
+</code></pre></div>
+<h3 id="aliases-versus-queries">Aliases versus queries<a class="headerlink" href="#aliases-versus-queries" title="Permanent link">&para;</a></h3>
+<p><a href="#queries-list"><code>queries list</code></a> shows the real check commands;
+<code>aliases list</code> shows the wrappers. A name that appears only in <code>aliases list</code>
+is an alias, and its <code>description</code> tells you which check it delegates to.</p>
+<p>Aliases mostly exist for backwards compatibility with the old <code>check_nt</code> style
+command names, and to give a site its own vocabulary for a check that always
+takes the same arguments.</p>
+<h2 id="modules">Modules<a class="headerlink" href="#modules" title="Permanent link">&para;</a></h2>
+<p>Modules are the plugins that give NSClient++ its functionality — the check
+commands, the servers and the clients. <code>check_nsclient nsclient modules …</code>
+lists them and controls whether they are loaded and enabled.</p>
+<h3 id="loaded-versus-enabled">Loaded versus enabled<a class="headerlink" href="#loaded-versus-enabled" title="Permanent link">&para;</a></h3>
+<p>Two independent flags decide a module&rsquo;s state:</p>
+<table>
+<thead>
+<tr>
+<th>Flag</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>loaded</code></td>
+<td>The module is loaded into the running process right now.</td>
+</tr>
+<tr>
+<td><code>enabled</code></td>
+<td>The module is configured to load on startup (<code>&lt;Module&gt; = enabled</code>).</td>
+</tr>
+</tbody>
+</table>
+<p>You can load a module temporarily without enabling it (it disappears on
+restart), or enable one without loading it (it appears on the next restart).
+<a href="#modules-use"><code>use</code></a> does both.</p>
+<h3 id="modules-list">modules list<a class="headerlink" href="#modules-list" title="Permanent link">&para;</a></h3>
+<p>Modules that are currently loaded:</p>
+<div class="highlight"><pre><span></span><code>$ check_nsclient nsclient modules list
+╭──────────────────────┬──────────────────────┬─────────┬────────┬───────╮
+│ id                   │ title                │ enabled │ loaded │ alias │
+├──────────────────────┼──────────────────────┼─────────┼────────┼───────┤
+│ CheckDisk            │ CheckDisk            │ true    │ true   │       │
+│ CheckExternalScripts │ CheckExternalScripts │ true    │ true   │       │
+│ CheckHelpers         │ CheckHelpers         │ true    │ true   │       │
+│ CheckSystem          │ CheckSystem          │ true    │ true   │       │
+│ LUAScript            │ LUAScript            │ true    │ true   │       │
+│ WEBServer            │ WEBServer            │ true    │ true   │       │
+│ CommandClient        │ CommandClient        │ false   │ true   │       │
+╰──────────────────────┴──────────────────────┴─────────┴────────┴───────╯
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--all</code></td>
+<td>Also list modules that are not loaded. Slower: every module on disk is inspected.</td>
+</tr>
+<tr>
+<td><code>--long</code></td>
+<td>Also show <code>description</code>, <code>name</code> and <code>plugin_id</code>.</td>
+</tr>
+</tbody>
+</table>
+<p><code>--all</code> is how you find out what else is available:</p>
+<div class="highlight"><pre><span></span><code>$ check_nsclient nsclient modules list --all
+╭──────────────────────┬──────────────────────┬─────────┬────────┬───────╮
+│ id                   │ title                │ enabled │ loaded │ alias │
+├──────────────────────┼──────────────────────┼─────────┼────────┼───────┤
+│ CheckDisk            │ CheckDisk            │ true    │ true   │       │
+│ WEBServer            │ WEBServer            │ true    │ true   │       │
+│ CheckSecurity        │                      │ false   │ false  │       │
+│ NRPEServer           │                      │ false   │ false  │       │
+│ Scheduler            │                      │ false   │ false  │       │
+│ PythonScript         │                      │ false   │ false  │       │
+╰──────────────────────┴──────────────────────┴─────────┴────────┴───────╯
+</code></pre></div>
+<p>Modules that are not loaded have no title or description — the agent only reads
+that out of a module once it is loaded.</p>
+<h3 id="modules-show">modules show<a class="headerlink" href="#modules-show" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>$ check_nsclient nsclient modules show CheckSystem
+╭─────────────┬────────────────────────────────────────────────────────────────────────────╮
+│ id          │ CheckSystem                                                                │
+│ name        │ CheckSystem                                                                │
+│ title       │ CheckSystem                                                                │
+│ description │ Various system related checks, such as CPU load, process state and memory. │
+│ enabled     │ true                                                                       │
+│ loaded      │ true                                                                       │
+│ alias       │                                                                            │
+│ plugin_id   │ 3                                                                          │
+╰─────────────┴────────────────────────────────────────────────────────────────────────────╯
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>$ check_nsclient --output json nsclient modules show CheckSystem
+{
+  "id": "CheckSystem",
+  "name": "CheckSystem",
+  "title": "CheckSystem",
+  "description": "Various system related checks, such as CPU load, process state and memory.",
+  "enabled": true,
+  "loaded": true,
+  "metadata": {
+    "alias": "",
+    "plugin_id": "3"
+  }
+}
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>$ check_nsclient nsclient modules show NoSuchModule
+Error: Failed to fetch module NoSuchModule: Invalid response status from api/v2/modules/NoSuchModule: 404 Not Found: Module not found: NoSuchModule
+</code></pre></div>
+<h3 id="modules-load-unload">modules load / unload<a class="headerlink" href="#modules-load-unload" title="Permanent link">&para;</a></h3>
+<p>Loads or unloads the module in the <strong>running</strong> agent. The configuration is not
+touched, so a restart undoes it:</p>
+<div class="highlight"><pre><span></span><code>$ check_nsclient nsclient modules load CheckNet
+Successfully loaded module CheckNet, you can now interact with it but next time the service is restarted it will be unloaded
+
+$ check_nsclient nsclient modules unload CheckNet
+Successfully unloaded module CheckNet
+</code></pre></div>
+<p>Loading a module makes its checks available immediately:</p>
+<div class="highlight"><pre><span></span><code>$ check_nsclient nsclient modules load CheckNet
+$ check_nsclient nsclient queries execute check_tcp host=example.com port=443
+</code></pre></div>
+<h3 id="modules-enable-disable">modules enable / disable<a class="headerlink" href="#modules-enable-disable" title="Permanent link">&para;</a></h3>
+<p>Changes the <strong>configuration</strong> only. The running agent is not affected until the
+module is loaded (or the service restarts):</p>
+<div class="highlight"><pre><span></span><code>$ check_nsclient nsclient modules enable CheckNet
+Successfully enabled module CheckNet, this module will be available if you restart the service or if you load it
+
+$ check_nsclient nsclient modules disable CheckNet
+Successfully disabled module CheckNet, this module will not be available if you restart the service
+</code></pre></div>
+<blockquote>
+<p><strong>Note</strong></p>
+<p><code>enable</code> and <code>disable</code> write to the in-memory configuration. Run
+<a href="#settings-command"><code>settings command save</code></a> to persist the change, or it
+is lost on restart.</p>
+</blockquote>
+<h3 id="modules-use">modules use<a class="headerlink" href="#modules-use" title="Permanent link">&para;</a></h3>
+<p>The common case: load the module now <em>and</em> enable it for future restarts.</p>
+<div class="highlight"><pre><span></span><code>$ check_nsclient nsclient modules use CheckNet
+Successfully loaded and enabled module CheckNet
+</code></pre></div>
+<p>Equivalent to <code>modules load</code> followed by <code>modules enable</code>. If the load fails
+the enable is not attempted.</p>
+<h3 id="modules-upload">modules upload<a class="headerlink" href="#modules-upload" title="Permanent link">&para;</a></h3>
+<p>Uploads a module archive (a <code>.zip</code> <a href="../../extending/zip-modules/">zip module</a>)
+and loads it:</p>
+<div class="highlight"><pre><span></span><code>$ check_nsclient nsclient modules upload MyModule --file ./MyModule.zip
+Uploaded and loaded module MyModule
+</code></pre></div>
+<p>The archive is stored as <code>&lt;module-path&gt;/&lt;ID&gt;.zip</code> on the agent.</p>
+<blockquote>
+<p><strong>Warning</strong></p>
+<p>The uploaded archive is loaded immediately and its code runs as the user the
+NSClient++ service runs as — usually a privileged account. Only upload
+archives you trust, and consider whether the <code>modules.post</code> privilege should
+be granted at all.</p>
+</blockquote>
+<p>The agent validates the module name and refuses anything that would escape the
+module directory.</p>
+<p>A missing file is reported before anything is sent, without contacting the
+agent:</p>
+<div class="highlight"><pre><span></span><code>$ check_nsclient nsclient modules upload MyModule --file missing.zip
+Error: Failed to read missing.zip: The system cannot find the file specified. (os error 2)
+</code></pre></div>
+<h2 id="settings">Settings<a class="headerlink" href="#settings" title="Permanent link">&para;</a></h2>
+<p><code>check_nsclient nsclient settings …</code> reads and changes the agent configuration
+— the same tree you would otherwise edit in <code>nsclient.ini</code>.</p>
+<h3 id="changes-are-in-memory-until-you-save">Changes are in memory until you save<a class="headerlink" href="#changes-are-in-memory-until-you-save" title="Permanent link">&para;</a></h3>
+<p><code>set</code> and <code>delete</code> change the configuration the running agent holds in memory.
+Nothing is written to disk until you run <a href="#settings-command"><code>settings command save</code></a>.
+The usual sequence is therefore:</p>
+<div class="highlight"><pre><span></span><code>$ check_nsclient nsclient settings set --path /settings/WEB/server --key threads --value 20
+$ check_nsclient nsclient settings diff          # review
+$ check_nsclient nsclient settings command save  # persist
+</code></pre></div>
+<h3 id="settings-status">settings status<a class="headerlink" href="#settings-status" title="Permanent link">&para;</a></h3>
+<p>Where the configuration lives and whether it has unsaved changes:</p>
+<div class="highlight"><pre><span></span><code>$ check_nsclient nsclient settings status
+╭─────────────┬──────────────────────────────────╮
+│ context     │ ini:///etc/nsclient/nsclient.ini │
+│ type        │ ini                              │
+│ has_changed │ false                            │
+╰─────────────┴──────────────────────────────────╯
+</code></pre></div>
+<p><code>has_changed: true</code> means there are changes that <code>save</code> has not yet written.</p>
+<h3 id="settings-list">settings list<a class="headerlink" href="#settings-list" title="Permanent link">&para;</a></h3>
+<p>Lists the keys that are actually set, with their values:</p>
+<div class="highlight"><pre><span></span><code>$ check_nsclient nsclient settings list --path /modules
+╭──────────────────────┬──────────┬─────────╮
+│ key                  │ path     │ value   │
+├──────────────────────┼──────────┼─────────┤
+│ CheckDisk            │ /modules │ enabled │
+│ CheckExternalScripts │ /modules │ enabled │
+│ CheckHelpers         │ /modules │ enabled │
+│ CheckSystem          │ /modules │ enabled │
+│ LUAScript            │ /modules │ enabled │
+│ WEBServer            │ /modules │ enabled │
+╰──────────────────────┴──────────┴─────────╯
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--path &lt;PATH&gt;</code></td>
+<td>(all)</td>
+<td>Only list keys under this path (recursively).</td>
+</tr>
+</tbody>
+</table>
+<p>Without <code>--path</code> the whole store is returned, which on a stock agent is a lot
+— filtering is usually what you want.</p>
+<blockquote>
+<p><strong>Note</strong></p>
+<p>Values of keys the agent marks sensitive (passwords) are returned as <code>***</code>.</p>
+</blockquote>
+<h3 id="settings-descriptions">settings descriptions<a class="headerlink" href="#settings-descriptions" title="Permanent link">&para;</a></h3>
+<p>Every key that <em>can</em> be set, with its type, title and default — the reference
+for a section:</p>
+<div class="highlight"><pre><span></span><code>$ check_nsclient nsclient settings descriptions --path /settings/WEB/server
+╭───────────────────────────────┬──────────────────────┬──────────┬───────────┬─────────────────────────────────╮
+│ key                           │ path                 │ type     │ plugins   │ title                           │
+├───────────────────────────────┼──────────────────────┼──────────┼───────────┼─────────────────────────────────┤
+│ allow anonymous access        │ /settings/WEB/server │ bool     │ WEBServer │ ALLOW ANONYMOUS ACCESS          │
+│ allow insecure                │ /settings/WEB/server │ bool     │ WEBServer │ ALLOW INSECURE (CLEARTEXT HTTP) │
+│ allowed hosts                 │ /settings/WEB/server │ string   │ WEBServer │ Allowed hosts                   │
+│ auth rate limit block seconds │ /settings/WEB/server │ int      │ WEBServer │ AUTH RATE LIMIT (BLOCK SECONDS) │
+│ certificate                   │ /settings/WEB/server │ string   │ WEBServer │ TLS Certificate                 │
+│ password                      │ /settings/WEB/server │ password │ WEBServer │ Password                        │
+│ port                          │ /settings/WEB/server │ string   │ WEBServer │ Server port                     │
+│ threads                       │ /settings/WEB/server │ int      │ WEBServer │ Server threads                  │
+╰───────────────────────────────┴──────────────────────┴──────────┴───────────┴─────────────────────────────────╯
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--path &lt;PATH&gt;</code></td>
+<td>Only describe keys under this path.</td>
+</tr>
+<tr>
+<td><code>--samples</code></td>
+<td>Include sample keys (templates showing how a section is filled).</td>
+</tr>
+<tr>
+<td><code>--long</code></td>
+<td>Also show description, default value, current value and flags.</td>
+</tr>
+</tbody>
+</table>
+<p><code>--long</code> (or <code>--output json</code>) is where the actual documentation is:</p>
+<div class="highlight"><pre><span></span><code>$ check_nsclient --output json nsclient settings descriptions --path /settings/WEB/server \
+    | jq '.[] | select(.key == "threads") | {key, type, default_value, description}'
+{
+  "key": "threads",
+  "type": "int",
+  "default_value": "10",
+  "description": "The number of threads in the sever response pool."
+}
+</code></pre></div>
+<h3 id="settings-set">settings set<a class="headerlink" href="#settings-set" title="Permanent link">&para;</a></h3>
+<p>Sets a single key:</p>
+<div class="highlight"><pre><span></span><code>$ check_nsclient nsclient settings set --path /settings/doc-demo --key sample --value demo
+Updated /settings/doc-demo/sample
+</code></pre></div>
+<p>All three options are required. The change is in memory only until you
+<a href="#settings-command">save</a>.</p>
+<h3 id="settings-diff">settings diff<a class="headerlink" href="#settings-diff" title="Permanent link">&para;</a></h3>
+<p>Everything that changed since the last save — the review step before you
+persist:</p>
+<div class="highlight"><pre><span></span><code>$ check_nsclient nsclient settings diff
+╭─────────────┬────────────────────┬────────┬───────────┬───────────╮
+│ change_type │ path               │ key    │ old_value │ new_value │
+├─────────────┼────────────────────┼────────┼───────────┼───────────┤
+│ added       │ /settings/doc-demo │ sample │           │ demo      │
+│ path_added  │ /settings/doc-demo │        │           │           │
+╰─────────────┴────────────────────┴────────┴───────────┴───────────╯
+</code></pre></div>
+<p><code>change_type</code> is one of <code>added</code>, <code>removed</code>, <code>modified</code>, <code>path_added</code> or
+<code>path_removed</code>. Adding a key in a section that did not exist yet reports both
+the key and the section, as above.</p>
+<p>When there is nothing to save:</p>
+<div class="highlight"><pre><span></span><code>$ check_nsclient nsclient settings diff
+No unsaved changes
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--path &lt;PATH&gt;</code></td>
+<td>Only show changes under this path.</td>
+</tr>
+</tbody>
+</table>
+<p>The <code>is_sensitive</code> column is hidden by default; sensitive values are redacted
+to <code>***</code> by the agent. <code>--output json</code> also reports a <code>count</code>:</p>
+<div class="highlight"><pre><span></span><code>$ check_nsclient --output json nsclient settings diff --path /settings/doc-demo
+{
+  "entries": [
+    {
+      "change_type": "added",
+      "path": "/settings/doc-demo",
+      "key": "sample",
+      "old_value": "",
+      "new_value": "demo",
+      "is_sensitive": false
+    }
+  ],
+  "count": 1
+}
+</code></pre></div>
+<h3 id="settings-delete">settings delete<a class="headerlink" href="#settings-delete" title="Permanent link">&para;</a></h3>
+<p>Removes a single key:</p>
+<div class="highlight"><pre><span></span><code>$ check_nsclient nsclient settings delete --path /settings/doc-demo --key sample
+Removed 1 key(s) from /settings/doc-demo/sample
+</code></pre></div>
+<p>Or a whole section, which has to be asked for explicitly:</p>
+<div class="highlight"><pre><span></span><code>$ check_nsclient nsclient settings delete --path /settings/doc-demo --all-keys
+Removed 1 key(s) from /settings/doc-demo
+</code></pre></div>
+<p>Exactly one of <code>--key</code> or <code>--all-keys</code> is required, so a section can never be
+wiped by forgetting an argument:</p>
+<div class="highlight"><pre><span></span><code>$ check_nsclient nsclient settings delete --path /settings/doc-demo
+error: the following required arguments were not provided:
+  &lt;--key &lt;KEY&gt;|--all-keys&gt;
+</code></pre></div>
+<h3 id="settings-command">settings command<a class="headerlink" href="#settings-command" title="Permanent link">&para;</a></h3>
+<p>Drives the configuration store itself:</p>
+<table>
+<thead>
+<tr>
+<th>Action</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>save</code></td>
+<td>Write the in-memory configuration to disk.</td>
+</tr>
+<tr>
+<td><code>load</code></td>
+<td>Re-read the configuration from disk, discarding unsaved changes.</td>
+</tr>
+<tr>
+<td><code>reload</code></td>
+<td>Ask the service to reload (modules are restarted).</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code>$ check_nsclient nsclient settings command save
+Executed Save command
+</code></pre></div>
+<blockquote>
+<p><strong>Note</strong></p>
+<p><code>load</code> discards unsaved changes — check <a href="#settings-diff"><code>diff</code></a> first. <code>reload</code>
+restarts modules, which briefly interrupts servers such as NRPE or the web
+interface you are talking to.</p>
+</blockquote>
+<h3 id="a-complete-example">A complete example<a class="headerlink" href="#a-complete-example" title="Permanent link">&para;</a></h3>
+<p>Raise the number of web server threads and make it permanent:</p>
+<div class="highlight"><pre><span></span><code>$ check_nsclient nsclient settings descriptions --path /settings/WEB/server --long \
+    | grep threads
+$ check_nsclient nsclient settings set --path /settings/WEB/server --key threads --value 20
+Updated /settings/WEB/server/threads
+$ check_nsclient nsclient settings diff
+╭─────────────┬──────────────────────┬─────────┬───────────┬───────────╮
+│ change_type │ path                 │ key     │ old_value │ new_value │
+├─────────────┼──────────────────────┼─────────┼───────────┼───────────┤
+│ added       │ /settings/WEB/server │ threads │           │ 20        │
+╰─────────────┴──────────────────────┴─────────┴───────────┴───────────╯
+$ check_nsclient nsclient settings command save
+Executed Save command
+$ check_nsclient nsclient settings command reload
+Executed Reload command
+</code></pre></div>
+<h2 id="logs">Logs<a class="headerlink" href="#logs" title="Permanent link">&para;</a></h2>
+<p>The agent keeps its recent log records in memory and exposes them over the API.
+<code>check_nsclient nsclient logs …</code> reads that buffer, reports the error counters
+and can clear both.</p>
+<p>This is the fastest way to find out why a check or a module misbehaves without
+opening a shell on the host.</p>
+<h3 id="logs-list">logs list<a class="headerlink" href="#logs-list" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>$ check_nsclient nsclient logs list --size 3
+╭───────┬──────────────────────┬───────────────────────────────────────────────────────────────╮
+│ level │ date                 │ message                                                       │
+├───────┼──────────────────────┼───────────────────────────────────────────────────────────────┤
+│ debug │ 2026-Aug-30 15:45:17 │ Using certificate: /usr/lib/nsclient/security/certificate.pem │
+│ debug │ 2026-Aug-30 15:45:17 │ Loading webserver on port: 8443                               │
+│ debug │ 2026-Aug-30 15:45:17 │ Starting plugin: LUAScript                                    │
+╰───────┴──────────────────────┴───────────────────────────────────────────────────────────────╯
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--page &lt;N&gt;</code></td>
+<td><code>1</code></td>
+<td>Page to read.</td>
+</tr>
+<tr>
+<td><code>--size &lt;N&gt;</code></td>
+<td><code>50</code></td>
+<td>Records per page.</td>
+</tr>
+<tr>
+<td><code>--level &lt;LEVEL&gt;</code></td>
+<td>(all)</td>
+<td>Only records of this level.</td>
+</tr>
+<tr>
+<td><code>--long</code></td>
+<td>off</td>
+<td>Also show the source file and line.</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Note</strong></p>
+<p>The agent rejects <code>--size 1</code> with <code>400 Bad Request</code>; use <code>2</code> or more.</p>
+</blockquote>
+<p>Filter to the interesting records:</p>
+<div class="highlight"><pre><span></span><code>$ check_nsclient nsclient logs list --level error --size 20
+</code></pre></div>
+<p><code>--long</code> adds where the record came from, which is what you want when reporting
+a problem:</p>
+<div class="highlight"><pre><span></span><code>$ check_nsclient nsclient logs list --size 2 --long
+╭───────┬──────────────────────┬───────────────────────────────────────────────────┬──────┬───────────────────────────────────────────────────────╮
+│ level │ date                 │ file                                              │ line │ message                                               │
+├───────┼──────────────────────┼───────────────────────────────────────────────────┼──────┼───────────────────────────────────────────────────────┤
+│ debug │ 2026-Aug-30 15:47:23 │ /__w/nscp/nscp/service/plugins/plugin_manager.cpp │ 966  │ Executing command is target for: CheckExternalScripts │
+│ debug │ 2026-Aug-30 15:47:23 │ /__w/nscp/nscp/service/plugins/plugin_manager.cpp │ 1014 │ Executing command in: CheckExternalScripts            │
+╰───────┴──────────────────────┴───────────────────────────────────────────────────┴──────┴───────────────────────────────────────────────────────╯
+</code></pre></div>
+<p>In json the pagination is included, so a script knows whether more pages
+follow:</p>
+<div class="highlight"><pre><span></span><code>$ check_nsclient --output json nsclient logs list --size 2
+{
+  "content": [
+    {
+      "level": "debug",
+      "date": "2026-Aug-30 15:47:23",
+      "file": "/__w/nscp/nscp/service/plugins/plugin_manager.cpp",
+      "line": 966,
+      "message": "Executing command is target for: CheckExternalScripts"
+    },
+    {
+      "level": "debug",
+      "date": "2026-Aug-30 15:47:23",
+      "file": "/__w/nscp/nscp/service/plugins/plugin_manager.cpp",
+      "line": 1014,
+      "message": "Executing command in: CheckExternalScripts"
+    }
+  ],
+  "page": 1,
+  "pages": 26,
+  "limit": 2,
+  "count": 52
+}
+</code></pre></div>
+<h3 id="logs-status">logs status<a class="headerlink" href="#logs-status" title="Permanent link">&para;</a></h3>
+<p>The aggregated error counters — a cheap health check:</p>
+<div class="highlight"><pre><span></span><code>$ check_nsclient nsclient logs status
+╭────────────┬──────────────────────────────────────────╮
+│ errors     │ 1                                        │
+│ last_error │ Failed to execute command on CheckSystem │
+╰────────────┴──────────────────────────────────────────╯
+</code></pre></div>
+<p><code>errors</code> counts the errors logged since the counters were last reset, and
+<code>last_error</code> is the most recent one. On a healthy agent:</p>
+<div class="highlight"><pre><span></span><code>$ check_nsclient nsclient logs status
+╭────────────┬───╮
+│ errors     │ 0 │
+│ last_error │   │
+╰────────────┴───╯
+</code></pre></div>
+<p>This maps nicely onto a monitoring check of the agent itself:</p>
+<div class="highlight"><pre><span></span><code>$ errors=$(check_nsclient --output json nsclient logs status | jq .errors)
+$ [ "$errors" -eq 0 ] || echo "WARNING: $errors error(s) in the NSClient++ log"
+</code></pre></div>
+<h3 id="logs-reset">logs reset<a class="headerlink" href="#logs-reset" title="Permanent link">&para;</a></h3>
+<p>Resets the counters <code>status</code> reports. The buffered records are kept:</p>
+<div class="highlight"><pre><span></span><code>$ check_nsclient nsclient logs reset
+Successfully reset log status
+</code></pre></div>
+<p>Use it after you have acknowledged a problem, so the next <code>status</code> reflects
+only new errors.</p>
+<h3 id="logs-clear">logs clear<a class="headerlink" href="#logs-clear" title="Permanent link">&para;</a></h3>
+<p>Drops the buffered records. The counters are unaffected:</p>
+<div class="highlight"><pre><span></span><code>$ check_nsclient nsclient logs clear
+Cleared 23 log record(s)
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Clears records</th>
+<th>Resets counters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>reset</code></td>
+<td>no</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><code>clear</code></td>
+<td>yes</td>
+<td>no</td>
+</tr>
+</tbody>
+</table>
+<p>Clearing before reproducing a problem gives you a buffer that contains only the
+relevant records:</p>
+<div class="highlight"><pre><span></span><code>$ check_nsclient nsclient logs clear
+$ check_nsclient nsclient queries execute check_that_misbehaves
+$ check_nsclient nsclient logs list --size 50 --long
+</code></pre></div>
+<h3 id="logs-add">logs add<a class="headerlink" href="#logs-add" title="Permanent link">&para;</a></h3>
+<p>Appends a record to the agent log:</p>
+<div class="highlight"><pre><span></span><code>$ check_nsclient nsclient logs add --message "reboot scheduled by maintenance script"
+Log record added
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--message &lt;TEXT&gt;</code></td>
+<td>(required)</td>
+<td>The message to log.</td>
+</tr>
+<tr>
+<td><code>--level &lt;LEVEL&gt;</code></td>
+<td><code>info</code></td>
+<td><code>debug</code>, <code>info</code>, <code>warning</code> or <code>error</code>.</td>
+</tr>
+<tr>
+<td><code>--file &lt;NAME&gt;</code></td>
+<td><code>check_nsclient</code></td>
+<td>Source attributed to the record.</td>
+</tr>
+<tr>
+<td><code>--line &lt;N&gt;</code></td>
+<td><code>0</code></td>
+<td>Line attributed to the record.</td>
+</tr>
+</tbody>
+</table>
+<p>Useful for correlating external activity with what the agent was doing:</p>
+<div class="highlight"><pre><span></span><code>$ check_nsclient nsclient logs add --level warning --message "starting deploy $VERSION"
+</code></pre></div>
+<blockquote>
+<p><strong>Note</strong></p>
+<p>A record logged at <code>error</code> level increases the error counter that
+<a href="#logs-status"><code>status</code></a> reports, and so will show up in any check watching it.</p>
+</blockquote>
+<h2 id="scripts">Scripts<a class="headerlink" href="#scripts" title="Permanent link">&para;</a></h2>
+<p>NSClient++ can run external scripts (batch, shell, PowerShell, …) and Lua
+scripts as checks. <code>check_nsclient nsclient scripts …</code> lists the runtimes, and
+reads, uploads and removes script definitions.</p>
+<p>See <a href="../../scenarios/external-scripts/">External scripts</a> for
+how scripts are configured and secured.</p>
+<h3 id="runtimes">Runtimes<a class="headerlink" href="#runtimes" title="Permanent link">&para;</a></h3>
+<p>A script belongs to a runtime, selected with <code>--runtime</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Module</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ext</code></td>
+<td>CheckExternalScripts</td>
+<td>Anything executed on the command line.</td>
+</tr>
+<tr>
+<td><code>lua</code></td>
+<td>LUAScript</td>
+<td>Lua scripts running inside NSClient++.</td>
+</tr>
+<tr>
+<td><code>py</code></td>
+<td>PythonScript</td>
+<td>Python scripts running inside NSClient++.</td>
+</tr>
+</tbody>
+</table>
+<p>Only runtimes whose module is loaded are available.</p>
+<h3 id="scripts-list-runtimes">scripts list-runtimes<a class="headerlink" href="#scripts-list-runtimes" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>$ check_nsclient nsclient scripts list-runtimes
+╭──────────────────────┬──────┬──────────────────────╮
+│ module               │ name │ title                │
+├──────────────────────┼──────┼──────────────────────┤
+│ CheckExternalScripts │ ext  │ CheckExternalScripts │
+│ LUAScript            │ lua  │ LUAScript            │
+╰──────────────────────┴──────┴──────────────────────╯
+</code></pre></div>
+<p><code>name</code> is what you pass to <code>--runtime</code>.</p>
+<h3 id="scripts-list">scripts list<a class="headerlink" href="#scripts-list" title="Permanent link">&para;</a></h3>
+<p>The scripts registered as commands in a runtime:</p>
+<div class="highlight"><pre><span></span><code>$ check_nsclient nsclient scripts list --runtime ext
+╭───────────╮
+│ script    │
+├───────────┤
+│ check_doc │
+╰───────────╯
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--runtime</code></td>
+<td>Runtime to list (required).</td>
+</tr>
+<tr>
+<td><code>--all</code></td>
+<td>List every script file found on disk, not only those wired up as a command.</td>
+</tr>
+</tbody>
+</table>
+<p><code>--all</code> shows what is available to be turned into a command:</p>
+<div class="highlight"><pre><span></span><code>$ check_nsclient --output json nsclient scripts list --runtime ext --all
+[
+  "scripts\\check_60s.bat",
+  "scripts\\check_battery.vbs",
+  "scripts\\check_files.vbs",
+  "scripts\\check_long.bat",
+  "scripts\\check_no_rdp.bat",
+  "scripts\\check_ok.bat"
+]
+</code></pre></div>
+<blockquote>
+<p><strong>Note</strong></p>
+<p>NSClient++ 0.18.0 does not answer the script listing for the <code>lua</code> runtime
+and returns <code>500 No response from module</code>. Use
+<a href="#settings-list"><code>settings list --path "/settings/lua/scripts"</code></a> to see the
+configured Lua scripts instead.</p>
+</blockquote>
+<h3 id="scripts-show">scripts show<a class="headerlink" href="#scripts-show" title="Permanent link">&para;</a></h3>
+<p>Prints the <em>definition</em> — the command line that runs when the check is called:</p>
+<div class="highlight"><pre><span></span><code>$ check_nsclient nsclient scripts show --runtime ext check_doc
+scripts\check_doc
+</code></pre></div>
+<p>The definition is a command line, so its first token tells you which file is
+executed. The API also accepts that path in place of the command name to return
+the file&rsquo;s contents, but only for files the runtime can resolve under its
+configured <code>script root</code>; otherwise it answers:</p>
+<div class="highlight"><pre><span></span><code>$ check_nsclient nsclient scripts show --runtime ext "scripts/check_doc"
+Error: Failed to fetch script scripts/check_doc (ext): Invalid response status from api/v2/scripts/ext/scripts/check_doc: 500 Internal Server Error: Command returned errors: Script not found: scripts/check_doc
+</code></pre></div>
+<p>Both <code>/</code> and <code>\</code> work as separators.</p>
+<h3 id="scripts-add">scripts add<a class="headerlink" href="#scripts-add" title="Permanent link">&para;</a></h3>
+<p>Uploads a script and registers it as a command, replacing any existing
+definition of the same name:</p>
+<div class="highlight"><pre><span></span><code>$ check_nsclient nsclient scripts add --runtime ext check_doc.bat --file ./check_doc.bat
+Added check_doc as scripts\check_doc.bat
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Argument / option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&lt;SCRIPT&gt;</code></td>
+<td>File name to store the script under.</td>
+</tr>
+<tr>
+<td><code>--runtime</code></td>
+<td>Runtime to add it to (required).</td>
+</tr>
+<tr>
+<td><code>--file &lt;PATH&gt;</code></td>
+<td>Local file to read the script from (required).</td>
+</tr>
+</tbody>
+</table>
+<p>Note what the confirmation says: the script was stored as
+<code>scripts\check_doc.bat</code> and registered as the command <strong><code>check_doc</code></strong> — the
+agent keeps the extension for the file and strips it for the command name. So
+include the extension in <code>&lt;SCRIPT&gt;</code>, and call the check without it:</p>
+<div class="highlight"><pre><span></span><code>$ check_nsclient nsclient scripts show --runtime ext check_doc
+scripts\check_doc.bat
+$ check_nsclient nsclient queries execute-nagios check_doc
+OK: everything is fine
+</code></pre></div>
+<p>Leaving the extension out stores an extension-less file the agent then cannot
+execute:</p>
+<div class="highlight"><pre><span></span><code>$ check_nsclient nsclient scripts add --runtime ext check_doc --file ./check_doc.bat
+Added check_doc as scripts\check_doc
+$ check_nsclient nsclient queries execute-nagios check_doc
+Failed to execute check_doc: 2: The system cannot find the file specified.
+</code></pre></div>
+<blockquote>
+<p><strong>Note</strong></p>
+<p>On Linux, NSClient++ 0.18.0 stores the definition with a Windows path
+separator (<code>scripts\check_doc.sh</code>) whichever name you use, and the agent then
+cannot run it:</p>
+<div class="highlight"><pre><span></span><code>The command (check_doc) returned an invalid return code: 127
+</code></pre></div>
+<p>Uploading works, but on Linux configure the command through the
+<a href="#settings">settings</a> commands or <code>[/settings/external scripts/scripts]</code>
+instead, where you control the path.</p>
+</blockquote>
+<p>A missing local file is reported before anything is sent:</p>
+<div class="highlight"><pre><span></span><code>$ check_nsclient nsclient scripts add --runtime ext check_doc --file missing.sh
+Error: Failed to read missing.sh: The system cannot find the file specified. (os error 2)
+</code></pre></div>
+<blockquote>
+<p><strong>Warning</strong></p>
+<p>An uploaded script runs as the user the NSClient++ service runs as. Treat
+<code>scripts.add</code> as an ability to execute arbitrary code on the host and grant
+it accordingly.</p>
+<p><strong>Note</strong></p>
+<p>This endpoint is a convenience: it cannot set per-script arguments or a
+dedicated user. Use the <a href="#settings">settings</a> commands, or
+<code>[/settings/external scripts/scripts]</code> in the configuration, when you need
+that.</p>
+</blockquote>
+<h3 id="scripts-delete">scripts delete<a class="headerlink" href="#scripts-delete" title="Permanent link">&para;</a></h3>
+<p>Removes the script definition:</p>
+<div class="highlight"><pre><span></span><code>$ check_nsclient nsclient scripts delete --runtime ext check_doc
+Script definition has been removed don't forget to delete any artifact for: scripts\check_doc
+</code></pre></div>
+<p>As the message says, only the definition goes away — the file itself is left on
+disk and has to be removed separately.</p>
+<p>The API also accepts a script <em>file</em> path here, to delete the file as well, but
+just like <a href="#scripts-show"><code>show</code></a> that only works for files the runtime resolves under
+its configured <code>script root</code>:</p>
+<div class="highlight"><pre><span></span><code>$ check_nsclient nsclient scripts delete --runtime ext "scripts/check_doc"
+Error: Failed to delete script scripts/check_doc (ext): Invalid response status from api/v2/scripts/ext/scripts/check_doc: 500 Internal Server Error: Command returned errors: Script not found: scripts/check_doc
+</code></pre></div>
+<blockquote>
+<p><strong>Note</strong></p>
+<p>Removing a definition changes the in-memory configuration. Run
+<a href="#settings-command"><code>settings command save</code></a> to make it permanent,
+otherwise the script reappears on the next restart or <code>settings command load</code>.</p>
+</blockquote>
+<h2 id="metrics">Metrics<a class="headerlink" href="#metrics" title="Permanent link">&para;</a></h2>
+<p>NSClient++ collects system metrics continuously — CPU, memory, disk space and
+disk I/O — independently of any check. <code>check_nsclient nsclient metrics …</code>
+reads the current values, either as data or in the Prometheus/OpenMetrics text
+format.</p>
+<p>See <a href="../../scenarios/prometheus/">Prometheus scraping</a> for
+setting the agent up as a scrape target.</p>
+<h3 id="metrics-show">metrics show<a class="headerlink" href="#metrics-show" title="Permanent link">&para;</a></h3>
+<p>Every metric as a key/value table:</p>
+<div class="highlight"><pre><span></span><code>$ check_nsclient nsclient metrics show
+╭─────────────────────────────────┬────────────────────╮
+│ disk.io._Total.queue_length     │ 0                  │
+│ disk.io._Total.percent_idle_time│ 100                │
+│ system.cpu.total.idle           │ 94.06491968367467  │
+│ system.cpu.total.kernel         │ 1.7618464190929828 │
+│ system.cpu.total.total          │ 5.935080316325317  │
+│ system.cpu.total.user           │ 4.173233897232334  │
+│ system.mem.physical.%           │ 73                 │
+│ system.mem.physical.avail       │ 4389036032         │
+│ system.mem.physical.total       │ 16554041344        │
+│ system.mem.physical.used        │ 12165005312        │
+╰─────────────────────────────────┴────────────────────╯
+</code></pre></div>
+<p>The list is long — a container reports one entry per mount point and per block
+device — so filtering is usually what you want:</p>
+<div class="highlight"><pre><span></span><code>$ check_nsclient nsclient metrics show | grep system.mem
+</code></pre></div>
+<p><code>--output json</code> keeps the native types (numbers stay numbers), which is what a
+script should consume:</p>
+<div class="highlight"><pre><span></span><code>$ check_nsclient --output json nsclient metrics show | jq '."system.mem.physical.%"'
+73
+</code></pre></div>
+<blockquote>
+<p><strong>Note</strong></p>
+<p>For the first few seconds after the agent starts, before CheckSystem has
+completed a collection cycle, the endpoint returns an empty body and the
+command reports:</p>
+<div class="highlight"><pre><span></span><code>Error: Failed to fetch metrics: Empty response from api/v2/metrics (the server may still be starting up, try again shortly)
+</code></pre></div>
+</blockquote>
+<h3 id="metrics-openmetrics">metrics openmetrics</h3>
+
+<p>The same values in the OpenMetrics/Prometheus text exposition format, printed
+verbatim:</p>
+<div class="highlight"><pre><span></span><code>$ check_nsclient nsclient metrics openmetrics
+system_cpu_core_0.idle 97.0626
+system_cpu_core_0.user 0.586332
+system_cpu_core_0.kernel 2.35111
+system_cpu_core_0.total 2.93744
+system_cpu_core_1.idle 98.8019
+system_cpu_core_1.user 0.59802
+</code></pre></div>
+<p>This is the format a scraper expects, so it can be piped straight into one:</p>
+<div class="highlight"><pre><span></span><code>$ check_nsclient nsclient metrics openmetrics &gt; /var/lib/node_exporter/nscp.prom
+</code></pre></div>
+<p>The body is passed through unchanged in every output format — <code>--output json</code>
+does not turn it into JSON, because it is not.</p>
+<blockquote>
+<p><strong>Note</strong></p>
+<p>A Prometheus server would normally scrape <code>/api/v2/openmetrics</code> directly
+rather than go through this command. It is here for ad-hoc inspection and for
+hosts a scraper cannot reach, where a cron job can push the file instead.</p>
+</blockquote>
+<h3 id="which-one-to-use">Which one to use<a class="headerlink" href="#which-one-to-use" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Use case</th>
+<th>Command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Look at a value by hand</td>
+<td><code>metrics show</code></td>
+</tr>
+<tr>
+<td>Feed a script (jq, PowerShell, …)</td>
+<td><code>--output json metrics show</code></td>
+</tr>
+<tr>
+<td>Feed Prometheus, or a textfile collector</td>
+<td><code>metrics openmetrics</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="metadata">Metadata<a class="headerlink" href="#metadata" title="Permanent link">&para;</a></h2>
+<p>The metadata commands describe what the agent <em>can</em> do rather than what it is
+doing right now: which performance counters exist on the host, and which
+submission channels have a listener. Use them to discover what to configure.</p>
+<h3 id="metadata-list">metadata list<a class="headerlink" href="#metadata-list" title="Permanent link">&para;</a></h3>
+<p>The available metadata resources:</p>
+<div class="highlight"><pre><span></span><code>$ check_nsclient nsclient metadata list
+╭──────────┬────────────────────────────────┬─────────────────────────────────────────────────╮
+│ name     │ title                          │ url                                             │
+├──────────┼────────────────────────────────┼─────────────────────────────────────────────────┤
+│ counters │ Performance counters           │ https://127.0.0.1:8443/api/v2/metadata/counters │
+│ channels │ Registered submission channels │ https://127.0.0.1:8443/api/v2/metadata/channels │
+╰──────────┴────────────────────────────────┴─────────────────────────────────────────────────╯
+</code></pre></div>
+<p>More resources may be added in future releases, so this index is the reliable
+way to see what an agent offers.</p>
+<h3 id="metadata-counters">metadata counters<a class="headerlink" href="#metadata-counters" title="Permanent link">&para;</a></h3>
+<p>The Windows performance counters (PDH) discovered on the host — the values you
+can hand to <code>check_pdh</code>:</p>
+<div class="highlight"><pre><span></span><code>$ check_nsclient nsclient metadata counters
+╭─────────────────────────────────────────────────┬──────╮
+│ name                                            │ type │
+├─────────────────────────────────────────────────┼──────┤
+│ \Processor Information(_Total)\% Processor Time │      │
+│ \Memory\Available Bytes                         │      │
+│ \PhysicalDisk(_Total)\Avg. Disk Queue Length    │      │
+╰─────────────────────────────────────────────────┴──────╯
+</code></pre></div>
+<p>A real host has thousands of them, and the names follow the Windows display
+language — on a Swedish Windows they come back in Swedish. Searching is
+therefore the usual reason to run this:</p>
+<div class="highlight"><pre><span></span><code>$ check_nsclient --output json nsclient metadata counters | jq -r '.[]' | grep -i "processor time"
+</code></pre></div>
+<blockquote>
+<p><strong>Note</strong></p>
+<p>NSClient++ 0.18.0 returns a plain list of counter paths, so the <code>type</code> column
+is empty. The client also accepts the richer <code>{name, type}</code> form described in
+the <a href="../../api/rest/metadata/">API documentation</a> should a
+later release start sending it.</p>
+</blockquote>
+<p>Then use it in a check:</p>
+<div class="highlight"><pre><span></span><code>$ check_nsclient nsclient queries execute check_pdh "counter=\\Processor(_Total)\\% Processor Time"
+</code></pre></div>
+<blockquote>
+<p><strong>Note</strong></p>
+<p>This is a Windows feature and needs the CheckSystem module. On Linux the
+agent has no PDH subsystem and the command fails:</p>
+<div class="highlight"><pre><span></span><code>Error: Failed to fetch performance counters: Invalid response status from api/v2/metadata/counters: 500 Internal Server Error: No response from module, is the CheckSystem module loaded?
+</code></pre></div>
+<p>Enumerating every counter on a Windows host can take a long time. Raise the
+timeout if the default is not enough:
+<code>check_nsclient nsclient --timeout-s 300 metadata counters</code>.</p>
+</blockquote>
+<p>See <a href="../../scenarios/counters/">Performance counters (PDH)</a> for
+what to do with them.</p>
+<h3 id="metadata-channels">metadata channels<a class="headerlink" href="#metadata-channels" title="Permanent link">&para;</a></h3>
+<p>The submission channels modules have registered. A channel is the target name a
+passive check, a scheduled job or an external script submits its result to; the
+agent then dispatches the payload to the listening module.</p>
+<div class="highlight"><pre><span></span><code>$ check_nsclient nsclient metadata channels
+╭────────┬───────────────────────────╮
+│ name   │ plugins                   │
+├────────┼───────────────────────────┤
+│ nsca   │ NSCAClient                │
+│ submit │ Op5Client, GraphiteClient │
+╰────────┴───────────────────────────╯
+</code></pre></div>
+<p><code>plugins</code> is a list because more than one module can listen on the same
+channel, as <code>submit</code> shows above; every submission is then delivered to all of
+them.</p>
+<p>A stock agent has no submission clients loaded and therefore no channels — the
+table is empty until you enable something like
+<a href="../../reference/client/NSCAClient/">NSCAClient</a> or
+<a href="../../reference/client/GraphiteClient/">GraphiteClient</a>.</p>
+<p>This is how you verify that a passive monitoring setup is wired up before
+sending anything:</p>
+<div class="highlight"><pre><span></span><code>$ check_nsclient --output json nsclient metadata channels | jq -r '.[].name'
+nsca
+submit
+</code></pre></div>
+<blockquote>
+<p><strong>Note</strong></p>
+<p>The built-in pseudo-channels handled by the core itself — <code>noop</code> (discard)
+and <code>log</code> (write to the agent log) — are not listeners and do not appear
+here, but remain valid submission targets.</p>
+</blockquote>
+<h2 id="events">Events<a class="headerlink" href="#events" title="Permanent link">&para;</a></h2>
+<p>The agent buffers notable occurrences — event log hits, real-time filter
+matches — in an event store. <code>check_nsclient nsclient events …</code> reads and
+drains it, which lets a poller collect what happened without keeping a
+connection open.</p>
+<h3 id="events-list">events list<a class="headerlink" href="#events-list" title="Permanent link">&para;</a></h3>
+<p>Shows the buffered events without removing them:</p>
+<div class="highlight"><pre><span></span><code>$ check_nsclient nsclient events list
+╭───────┬──────────────────────┬──────────┬─────────────────────────────────────────╮
+│ index │ date                 │ event    │ data                                    │
+├───────┼──────────────────────┼──────────┼─────────────────────────────────────────┤
+│ 1     │ 2026-Aug-30 15:52:03 │ eventlog │ id=7036, source=Service Control Manager │
+│ 2     │ 2026-Aug-30 15:52:41 │ eventlog │ id=1074, source=User32                  │
+╰───────┴──────────────────────┴──────────┴─────────────────────────────────────────╯
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Column</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>index</code></td>
+<td>Position in the store, increasing.</td>
+</tr>
+<tr>
+<td><code>date</code></td>
+<td>When the event was recorded.</td>
+</tr>
+<tr>
+<td><code>event</code></td>
+<td>What produced it, for example <code>eventlog</code>.</td>
+</tr>
+<tr>
+<td><code>data</code></td>
+<td>The event payload, flattened to <code>key=value</code> pairs for the table.</td>
+</tr>
+</tbody>
+</table>
+<p>In json the payload keeps its structure:</p>
+<div class="highlight"><pre><span></span><code>$ check_nsclient --output json nsclient events list
+[
+  {
+    "index": 1,
+    "event": "eventlog",
+    "date": "2026-Aug-30 15:52:03",
+    "data": {
+      "source": "Service Control Manager",
+      "id": "7036"
+    }
+  }
+]
+</code></pre></div>
+<p>A stock agent produces no events — the store fills only when something feeds
+it, such as <a href="../../reference/windows/CheckEventLog/">CheckEventLog</a>
+real-time filters or
+<a href="../../scenarios/realtime-monitoring/">real-time system monitoring</a>.
+Until then the list is empty.</p>
+<h3 id="events-clear">events clear<a class="headerlink" href="#events-clear" title="Permanent link">&para;</a></h3>
+<p>Drains the store and prints what it removed:</p>
+<div class="highlight"><pre><span></span><code>$ check_nsclient nsclient events clear
+╭───────┬──────────────────────┬──────────┬─────────────────────────────────────────╮
+│ index │ date                 │ event    │ data                                    │
+├───────┼──────────────────────┼──────────┼─────────────────────────────────────────┤
+│ 1     │ 2026-Aug-30 15:52:03 │ eventlog │ id=7036, source=Service Control Manager │
+│ 2     │ 2026-Aug-30 15:52:41 │ eventlog │ id=1074, source=User32                  │
+╰───────┴──────────────────────┴──────────┴─────────────────────────────────────────╯
+</code></pre></div>
+<blockquote>
+<p><strong>Note</strong></p>
+<p><code>clear</code> is a <em>drain</em>, not a discard: the events it returns are gone from the
+agent. Capture the output if you need it — running <code>clear</code> and ignoring what
+it prints loses those events permanently.</p>
+</blockquote>
+<p>Because of that, <code>clear</code> is really &ldquo;fetch and acknowledge&rdquo;, which is how you
+poll the store without processing anything twice:</p>
+<div class="highlight"><pre><span></span><code>$ check_nsclient --output json nsclient events clear &gt;&gt; /var/log/nscp-events.jsonl
+</code></pre></div>
+<p>A second run finds nothing:</p>
+<div class="highlight"><pre><span></span><code>$ check_nsclient --output json nsclient events clear
+[]
+</code></pre></div>
+<p>Use <a href="#events-list"><code>list</code></a> when you only want to look, and <code>clear</code> when you are
+consuming.</p>
+<h2 id="tags">Tags<a class="headerlink" href="#tags" title="Permanent link">&para;</a></h2>
+<p>Tags are small <code>name = value</code> facts an agent reports about the host it runs on
+— which drives exist, which operating system it is, whether a particular
+product was detected. They are contributed at runtime by the loaded modules and
+by the core itself, and are read by the web interface and by fleet
+synchronisation.</p>
+<h3 id="tags-show">tags show<a class="headerlink" href="#tags-show" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>$ check_nsclient nsclient tags show
+╭────────────┬─────────────────╮
+│ drives     │ c:,d:           │
+│ os_name    │ Windows 11 24H2 │
+│ os_version │ 10.0.26200      │
+╰────────────┴─────────────────╯
+</code></pre></div>
+<p>Tags are listed in alphabetical order. Which ones exist depends entirely on
+which modules are loaded — CheckDisk contributes <code>drives</code>, CheckSystem
+contributes the operating system tags, and so on. An agent whose loaded modules
+report nothing says so rather than printing an empty table:</p>
+<div class="highlight"><pre><span></span><code>$ check_nsclient nsclient tags show
+No tags set
+</code></pre></div>
+<p>In json the tags are returned as an object, which stays <code>{}</code> when there are
+none, so a script does not have to special-case the message:</p>
+<div class="highlight"><pre><span></span><code>$ check_nsclient --output json nsclient tags show
+{
+  "drives": "c:,d:",
+  "os_name": "Windows 11 24H2",
+  "os_version": "10.0.26200"
+}
+</code></pre></div>
+<p>Reading a single tag:</p>
+<div class="highlight"><pre><span></span><code>$ check_nsclient --output json nsclient tags show | jq -r .os_name
+Windows 11 24H2
+</code></pre></div>
+<blockquote>
+<p><strong>Note</strong></p>
+<p>Tags are read-only over the API and are <strong>not</strong> configuration — there is no
+<code>tags set</code>, and nothing you write under <code>/settings</code> shows up here. A module
+publishes a tag through the plugin API (<code>NSAPISetTag</code>), so the way to add one
+is to load a module that reports it.</p>
+</blockquote>
+<h3 id="using-tags">Using tags<a class="headerlink" href="#using-tags" title="Permanent link">&para;</a></h3>
+<p>Tags are a cheap inventory when you drive several agents from one place:</p>
+<div class="highlight"><pre><span></span><code>$ for profile in web-01 web-02 db-01; do
+&gt;   os=$(check_nsclient --output json nsclient --profile $profile tags show | jq -r '.os_name // "unknown"')
+&gt;   echo "$profile runs $os"
+&gt; done
+</code></pre></div>
+<p>Because the values come from the agent itself they stay correct without a
+separate inventory step — a host that gains a drive reports it on the next
+poll.</p>
+<h2 id="interactive-client">Interactive client<a class="headerlink" href="#interactive-client" title="Permanent link">&para;</a></h2>
+<p><code>check_nsclient nsclient client</code> opens a terminal UI connected to an agent: a
+live CPU and memory bar chart at the top, a log and output pane in the middle,
+and a command prompt at the bottom. It is meant for exploring an agent — trying
+checks, watching the log react, loading a module — without retyping a full
+command line each time.</p>
+<div class="highlight"><pre><span></span><code>$ check_nsclient nsclient client
+</code></pre></div>
+<p><code>check_nsclient nsclient test</code> is a legacy alias for the same thing.</p>
+<h3 id="layout">Layout<a class="headerlink" href="#layout" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Area</th>
+<th>Content</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Top</td>
+<td>Bar chart of CPU user, CPU kernel and memory usage, refreshed every 5 seconds.</td>
+</tr>
+<tr>
+<td>Middle</td>
+<td>Command output and the agent log, streamed as it arrives, coloured by level.</td>
+</tr>
+<tr>
+<td>Bottom</td>
+<td>Command prompt.</td>
+</tr>
+</tbody>
+</table>
+<p>The bars turn yellow above 50% and red above 80%.</p>
+<p>New log records are fetched continuously, so a check that logs an error shows
+it immediately underneath the output.</p>
+<h3 id="commands">Commands<a class="headerlink" href="#commands" title="Permanent link">&para;</a></h3>
+<p>Type a command and press <span class="keys"><kbd class="key-enter">Enter</kbd></span>.</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>help</code></td>
+<td>List the available commands.</td>
+</tr>
+<tr>
+<td><code>ping</code></td>
+<td>Check that the agent is reachable.</td>
+</tr>
+<tr>
+<td><code>version</code></td>
+<td>Show the agent version.</td>
+</tr>
+<tr>
+<td><code>queries</code> (or <code>list</code>)</td>
+<td>List every available check command.</td>
+</tr>
+<tr>
+<td><code>query &lt;name&gt; [k=v ...]</code></td>
+<td>Run a check.</td>
+</tr>
+<tr>
+<td><code>&lt;name&gt; [k=v ...]</code></td>
+<td>Run a check directly — the <code>query</code> keyword is optional.</td>
+</tr>
+<tr>
+<td><code>modules</code> (or <code>plugins</code>)</td>
+<td>List modules with a ✓ for the loaded ones.</td>
+</tr>
+<tr>
+<td><code>modules load &lt;module&gt;</code></td>
+<td>Load a module (also <code>load &lt;module&gt;</code>).</td>
+</tr>
+<tr>
+<td><code>modules unload &lt;module&gt;</code></td>
+<td>Unload a module (also <code>unload &lt;module&gt;</code>).</td>
+</tr>
+<tr>
+<td><code>refresh</code></td>
+<td>Re-read the status and the list of available checks.</td>
+</tr>
+<tr>
+<td><code>history</code></td>
+<td>Show the command history.</td>
+</tr>
+<tr>
+<td><code>history clear</code></td>
+<td>Empty the history.</td>
+</tr>
+<tr>
+<td><code>history delete &lt;index&gt;</code></td>
+<td>Remove one entry.</td>
+</tr>
+<tr>
+<td><code>exit</code></td>
+<td>Leave the client (or press <span class="keys"><kbd class="key-escape">Esc</kbd></span>).</td>
+</tr>
+</tbody>
+</table>
+<p>Any check command can be typed on its own, so the two lines below are
+equivalent:</p>
+<div class="highlight"><pre><span></span><code>query check_cpu warning=90
+check_cpu warning=90
+</code></pre></div>
+<p>Arguments use the same <code>key=value</code> form as
+<a href="#passing-arguments"><code>queries execute</code></a>. Values containing spaces can
+be quoted, and <code>\</code> escapes the next character:</p>
+<div class="highlight"><pre><span></span><code>check_drivesize "drive=C:\" warning=used&gt;80%
+</code></pre></div>
+<h3 id="editing-and-history">Editing and history<a class="headerlink" href="#editing-and-history" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="keys"><kbd class="key-arrow-up">Up</kbd></span> / <span class="keys"><kbd class="key-arrow-down">Down</kbd></span></td>
+<td>Walk through the command history.</td>
+</tr>
+<tr>
+<td><span class="keys"><kbd class="key-arrow-left">Left</kbd></span> / <span class="keys"><kbd class="key-arrow-right">Right</kbd></span></td>
+<td>Move the cursor (also <span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-b">B</kbd></span> / <span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-f">F</kbd></span>).</td>
+</tr>
+<tr>
+<td><span class="keys"><kbd class="key-home">Home</kbd></span> / <span class="keys"><kbd class="key-end">End</kbd></span></td>
+<td>Jump to the start or end (also <span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-a">A</kbd></span> / <span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-e">E</kbd></span>).</td>
+</tr>
+<tr>
+<td><span class="keys"><kbd class="key-backspace">Backspace</kbd></span> / <span class="keys"><kbd class="key-delete">Del</kbd></span></td>
+<td>Delete a character (also <span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-h">H</kbd></span> / <span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-d">D</kbd></span>).</td>
+</tr>
+<tr>
+<td><span class="keys"><kbd class="key-enter">Enter</kbd></span></td>
+<td>Run the command.</td>
+</tr>
+<tr>
+<td><span class="keys"><kbd class="key-escape">Esc</kbd></span></td>
+<td>Exit.</td>
+</tr>
+</tbody>
+</table>
+<p>The prompt validates as you type: a command the agent knows is marked as valid,
+an unknown one as invalid, so a typo is visible before you press <span class="keys"><kbd class="key-enter">Enter</kbd></span>.</p>
+<p>Only commands that parse are recorded. A half-typed line you abandon by
+pressing <span class="keys"><kbd class="key-arrow-up">Up</kbd></span> is remembered while you browse and restored when you come back
+past the newest entry, but it never enters the history.</p>
+<p>The history holds the last 30 commands and is stored with the rest of the
+client configuration, so it survives between sessions.</p>
+<h3 id="when-to-use-the-cli-instead">When to use the CLI instead<a class="headerlink" href="#when-to-use-the-cli-instead" title="Permanent link">&para;</a></h3>
+<p>The interactive client is for exploration. For anything scripted — monitoring
+integration, automation, structured output — use the ordinary commands, which
+support <code>--output json</code> and set meaningful <a href="../#exit-codes">exit codes</a>.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+      <div class="md-consent" data-md-component="consent" id="__consent" hidden>
+        <div class="md-consent__overlay"></div>
+        <aside class="md-consent__inner">
+          <form class="md-consent__form md-grid md-typeset" name="consent">
+            
+
+
+  
+
+
+<h4>Cookie consent</h4>
+<p>We use cookies to recognize your repeated visits and preferences, as well as to measure the effectiveness of our documentation and whether users find what they're searching for. With your consent, you're helping us to make our documentation better.</p>
+<input class="md-toggle" type="checkbox" id="__settings" >
+<div class="md-consent__settings">
+  <ul class="task-list">
+    
+    
+      
+    
+    
+      
+        
+  
+  
+    
+    
+  
+  <li class="task-list-item">
+    <label class="task-list-control">
+      <input type="checkbox" name="github" checked>
+      <span class="task-list-indicator"></span>
+      GitHub
+    </label>
+  </li>
+
+      
+    
+    
+  </ul>
+</div>
+<div class="md-consent__controls">
+  
+    
+      <button class="md-button md-button--primary">Accept</button>
+    
+    
+    
+  
+    
+    
+    
+      <label class="md-button" for="__settings">Manage settings</label>
+    
+  
+</div>
+          </form>
+        </aside>
+      </div>
+      <script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout((function(){document.querySelector("[data-md-component=consent]").hidden=!1}),250);var form=document.forms.consent;for(var action of["submit","reset"])form.addEventListener(action,(function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map((function(e){return[e,!0]})))),location.hash="",location.reload()}))</script>
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "toc.follow", "toc.integrate", "navigation.indexes", "search.suggest", "search.highlight", "search.share"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../../assets/js/latest-release.js"></script>
+      
+    
+  </body>
+</html>

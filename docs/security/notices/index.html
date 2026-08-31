@@ -1,0 +1,5145 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://nsclient.org/docs/security/notices/">
+      
+      
+        <link rel="prev" href="../../setup/web-interface/">
+      
+      
+        <link rel="next" href="../../scenarios/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Security notices - NSClient++</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#security-notices" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="NSClient++" class="md-header__button md-logo" aria-label="NSClient++" data-md-component="logo">
+      
+  <img src="../../../assets/nsclient-logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            NSClient++
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Security notices
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/mickem/nscp" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M202.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1M496 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2m-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3m-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1"/></svg>
+  </div>
+  <div class="md-source__repository">
+    NSClient++
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../.." class="md-tabs__link">
+          
+  
+  
+    
+  
+  Home
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../news/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  News
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../download/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Download
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Documentation
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://github.com/mickem/nscp/discussions" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Forums
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="NSClient++" class="md-nav__button md-logo" aria-label="NSClient++" data-md-component="logo">
+      
+  <img src="../../../assets/nsclient-logo.png" alt="logo">
+
+    </a>
+    NSClient++
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/mickem/nscp" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M202.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1M496 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2m-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3m-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1"/></svg>
+  </div>
+  <div class="md-source__repository">
+    NSClient++
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../.." class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_1" id="__nav_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Home
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../nsclient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About NSClient++
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../news/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    News
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../download/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Download
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Documentation
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Documentation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSClient++ agent
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    NSClient++ agent
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quick-start/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../concepts/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_2_2" id="__nav_4_2_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Concepts
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/checks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Checks In Depth
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/settings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Settings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/file-layout/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    File Layout
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/permissions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Permissions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2_3" id="__nav_4_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Setup
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/supported-platforms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Supported platforms
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/installing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/upgrading/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Upgrading
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/securing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Securing NSClient++
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/web-interface/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Web Interface
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4_2_4" id="__nav_4_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Security
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security notices
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security notices
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#published-advisories" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Published advisories
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Published advisories">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#openssl-355358-bundled-openssl-updated-past-four-upstream-security-releases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OpenSSL 3.5.5–3.5.8 — bundled OpenSSL updated past four upstream security releases
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cve-2026-73256-cve-2026-73257-http-request-smuggling-in-the-bundled-mongoose-web-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CVE-2026-73256 / CVE-2026-73257 — HTTP request smuggling in the bundled Mongoose web server
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cve-2025-34079-authenticated-rce-via-externalscripts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CVE-2025-34079 — Authenticated RCE via ExternalScripts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cve-2025-34078-local-privilege-escalation-via-plaintext-credentials" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CVE-2025-34078 — Local privilege escalation via plaintext credentials
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hardening-changes-no-cve" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hardening changes (no CVE)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Hardening changes (no CVE)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#security-hardening-across-the-clients-scripts-and-filter-framework" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security hardening across the clients, scripts and filter framework
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Security hardening across the clients, scripts and filter framework">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#settings-that-were-read-but-never-applied" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Settings that were read but never applied
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#operations-that-could-never-time-out" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Operations that could never time out
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#injection-scrubbing-and-resource-limits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Injection, scrubbing and resource limits
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tls-and-credentials" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TLS and credentials
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#smtp-client-security-hardening" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SMTP client security hardening
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nrpe-decoded-argument-metachar-guard-optional-version-banner-and-consistency-fixes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NRPE: decoded-argument metachar guard, optional version banner, and consistency fixes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nrdp-client-security-hardening" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NRDP client security hardening
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#web-server-security-hardening" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        WEB server security hardening
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#host-name-placeholders-are-sanitized-before-they-land-in-a-local-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Host name placeholders are sanitized before they land in a local path
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#settings-values-for-sensitive-keys-are-redacted-on-read" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Settings values for sensitive keys are redacted on read
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-legacy-web-permission-is-flagged-and-no-longer-seeded-by-default" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The legacy WEB permission is flagged and no longer seeded by default
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../scenarios/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Monitoring Scenarios
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_2_5" id="__nav_4_2_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Monitoring Scenarios
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scenarios/windows-server-health/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Windows Server Health
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scenarios/linux-server-health/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux Server Health
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scenarios/disk-space/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Disk Space Alerting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scenarios/service-monitoring/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Service & Process Monitoring
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scenarios/realtime-monitoring/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Real-Time System Monitoring
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scenarios/event-log/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Event Log Monitoring
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scenarios/counters/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Performance Counters (PDH)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scenarios/sql-server/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SQL Server Monitoring
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scenarios/network-checks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Network Checks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scenarios/security-posture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Host Security Posture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scenarios/nrpe/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Active Monitoring with NRPE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scenarios/rest-api-checks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Active Checks over the REST API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scenarios/passive-monitoring-nsca/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Passive Monitoring (NSCA/NRDP)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scenarios/passive-monitoring-nsca-ng/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Passive Monitoring (NSCA-NG)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scenarios/passive-monitoring-icinga/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Passive Monitoring (Icinga 2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scenarios/passive-monitoring-graphite/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Passive Monitoring (Graphite)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scenarios/check-mk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Checkmk Agent Integration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scenarios/prometheus/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prometheus Scraping
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scenarios/external-scripts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    External Scripts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../reference/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_2_6" id="__nav_4_2_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/common-options/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Common options
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_6_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2_6_3" id="__nav_4_2_6_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Check commands
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_2_6_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_6_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Check commands
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/check/CheckDisk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckDisk
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/check/CheckDocker/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckDocker
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/check/CheckExternalScripts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckExternalScripts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/windows/CheckEventLog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckEventLog (Windows)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/check/CheckHelpers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckHelpers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/check/CheckLogFile/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckLogFile
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/check/CheckMySQL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckMySQL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/check/CheckNet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckNet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/check/CheckNSCP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckNSCP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/check/CheckSecurity/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckSecurity
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/check/CheckSystem/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckSystem
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/windows/CheckMSSQL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckMSSQL (Windows)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/windows/CheckWindowsApps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckWindowsApps (Windows)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/windows/CheckTaskSched/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckTaskSched (Windows)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/windows/CheckWMI/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckWMI (Windows)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_6_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2_6_4" id="__nav_4_2_6_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Clients & Servers
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_2_6_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_6_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Clients & Servers
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/generic/WEBServer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WEBServer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/client/NRPEServer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NRPEServer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/client/NRPEClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NRPEClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/windows/NSClientServer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSClientServer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/client/NSCAServer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSCAServer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/client/NSCAClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSCAClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/client/NSCANgClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSCANgClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/client/NSCPClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSCPClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/client/NRDPClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NRDPClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/client/IcingaClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IcingaClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/client/SMTPClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SMTPClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/client/GraphiteClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GraphiteClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/client/SyslogClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SyslogClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/client/CollectdClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CollectdClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/client/Op5Client/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Op5Client
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/client/ElasticClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ElasticClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/client/CheckMKClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckMKClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/client/CheckMKServer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckMKServer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_6_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2_6_5" id="__nav_4_2_6_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Helper modules
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_2_6_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_6_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Helper modules
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/generic/Scheduler/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scheduler
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/generic/SimpleFileWriter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SimpleFileWriter
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/generic/CommandClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CommandClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/generic/SimpleCache/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SimpleCache
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/generic/PythonScript/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PythonScript
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/generic/LUAScript/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LUAScript
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../extending/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Extending
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_2_7" id="__nav_4_2_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Extending
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../extending/python/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python Scripts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../extending/lua/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lua Scripts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../extending/zip-modules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Zip Modules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../extending/plugin-api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plugin API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2_8" id="__nav_4_2_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    API
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_8_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../api/rest/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    REST
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_2_8_1" id="__nav_4_2_8_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_2_8_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_8_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    REST
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/rest/info/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Info
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/rest/login/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Login
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/rest/modules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/rest/queries/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Queries
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/rest/aliases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Aliases
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/rest/scripts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scripts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/rest/settings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Settings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/rest/metadata/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Metadata
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/rest/metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Metrics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/rest/logs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/rest/legacy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Legacy API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../check_nsclient/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    check_nsclient (CLI)
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    check_nsclient (CLI)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../check_nsclient/nsclient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Agent commands
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../check_nsclient/profile/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Profiles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/mickem/nscp/discussions" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Forums
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="security-notices">Security notices<a class="headerlink" href="#security-notices" title="Permanent link">&para;</a></h1>
+<p>This page is the running record of security-relevant changes in NSClient++ —
+both published advisories (with their CVE / GHSA identifiers) and security
+<strong>hardening</strong> that changed behaviour but was not assigned a CVE. It complements
+the GitHub <a href="https://github.com/mickem/nscp/security/advisories">Security Advisories</a>
+tab, which lists only <em>published</em> advisories and so does not capture hardening
+changes.</p>
+<ul>
+<li>To <strong>report</strong> a vulnerability, follow the
+  <a href="https://github.com/mickem/nscp/blob/main/SECURITY.md">security policy</a>.</li>
+<li>For the concrete operator actions a given release requires, see
+  <a href="../../setup/upgrading/">Upgrading</a>.</li>
+</ul>
+<hr />
+<h2 id="published-advisories">Published advisories<a class="headerlink" href="#published-advisories" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Advisory</th>
+<th>CVE</th>
+<th>Severity</th>
+<th>Affected</th>
+<th>Summary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Upstream (<a href="https://github.com/openssl/openssl">OpenSSL</a>)</td>
+<td><a href="https://nvd.nist.gov/vuln/detail/CVE-2025-11187">CVE-2025-11187</a> and the other OpenSSL 3.5.5–3.5.8 fixes</td>
+<td>Moderate (highest reachable)</td>
+<td>Windows builds up to 0.17.0 (bundled OpenSSL ≤ 3.5.4)</td>
+<td>Crafted-input flaws in the bundled OpenSSL; the most severe reachable one is a stack overflow parsing a hostile PKCS#12 file via <code>check_certificate</code>.</td>
+</tr>
+<tr>
+<td>Upstream (<a href="https://github.com/cesanta/mongoose">Cesanta Mongoose</a>)</td>
+<td><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-73256">CVE-2026-73256</a>, <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-73257">CVE-2026-73257</a></td>
+<td>Critical (9.1)</td>
+<td>Windows builds up to 0.16.3 (bundled Mongoose &lt; 7.22)</td>
+<td>HTTP request smuggling in the bundled Mongoose web server; exploitable behind a reverse proxy / WAF.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/mickem/nscp/security/advisories/GHSA-rhrw-79v5-jc5x">GHSA-rhrw-79v5-jc5x</a></td>
+<td>CVE-2025-34079</td>
+<td>High (7.8)</td>
+<td>0.5.2.35 and earlier</td>
+<td>Authenticated remote code execution via <code>ExternalScripts</code>.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/mickem/nscp/security/advisories/GHSA-jr25-22p3-gm6r">GHSA-jr25-22p3-gm6r</a></td>
+<td>CVE-2025-34078</td>
+<td>High (7.8)</td>
+<td>0.5.2.35 and earlier</td>
+<td>Local privilege escalation from plaintext credentials in the configuration file.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="openssl-355358-bundled-openssl-updated-past-four-upstream-security-releases">OpenSSL 3.5.5–3.5.8 — bundled OpenSSL updated past four upstream security releases<a class="headerlink" href="#openssl-355358-bundled-openssl-updated-past-four-upstream-security-releases" title="Permanent link">&para;</a></h3>
+<p><strong>Fixed in:</strong> 0.18.0 (bundles OpenSSL 3.5.8) · <strong>Severity:</strong> Moderate (highest fix reachable through NSClient++)</p>
+<p>The <strong>Windows builds</strong> of NSClient++ statically bundle
+<a href="https://github.com/openssl/openssl">OpenSSL</a> as the TLS engine for the
+NRPE/NSCA/NSClient server and client modules and the web server / REST API,
+for certificate parsing in <code>check_certificate</code>, and for password hashing.
+Releases up to 0.17.0 bundled OpenSSL 3.5.4; the four upstream security
+releases since then — 3.5.5 (27 Jan 2026), 3.5.6 (7 Apr 2026), 3.5.7
+(9 Jun 2026) and 3.5.8 (25 Aug 2026) — fix some forty CVEs on the 3.5 LTS
+line, and 0.18.0 moves the bundled copy to 3.5.8.</p>
+<p>The fixes most relevant to NSClient++ sit on code paths it actually calls:</p>
+<ul>
+<li><strong><a href="https://nvd.nist.gov/vuln/detail/CVE-2025-11187">CVE-2025-11187</a></strong>
+  (Moderate) — missing validation of PBMAC1 parameters in PKCS#12 files can
+  trigger a stack buffer overflow or invalid pointer dereference during MAC
+  verification. <code>check_certificate</code> parses operator-specified certificate
+  files and falls back to PKCS#12 (<code>.pfx</code>/<code>.p12</code>) parsing, so a hostile
+  certificate file scanned by a check reaches this code.</li>
+<li>Several further low-severity fixes on the same PKCS#12/ASN.1 parsing paths
+  (<a href="https://nvd.nist.gov/vuln/detail/CVE-2025-69421">CVE-2025-69421</a>,
+  <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-22795">CVE-2026-22795</a>,
+  <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-34181">CVE-2026-34181</a>,
+  <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-7383">CVE-2026-7383</a>,
+  <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-34180">CVE-2026-34180</a>) and in
+  the TLS stack
+  (<a href="https://nvd.nist.gov/vuln/detail/CVE-2025-66199">CVE-2025-66199</a>
+  TLS 1.3 <code>CompressedCertificate</code> memory growth,
+  <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-15468">CVE-2025-15468</a>).</li>
+</ul>
+<p>The highest-severity upstream fixes in this span —
+<a href="https://nvd.nist.gov/vuln/detail/CVE-2026-45447">CVE-2026-45447</a> (High,
+use-after-free verifying a PKCS#7/S/MIME signature) and
+<a href="https://nvd.nist.gov/vuln/detail/CVE-2025-15467">CVE-2025-15467</a> (High,
+stack overflow parsing CMS <code>AuthEnvelopedData</code>) — are in CMS / S/MIME code
+NSClient++ never calls, and the QUIC, CMP and DTLS fixes likewise do not
+apply.</p>
+<p>Not affected: the Linux packages (DEB/RPM) link the distribution&rsquo;s OpenSSL
+and receive these fixes through ordinary OS updates.</p>
+<p><strong>What to do:</strong> upgrade Windows installs to 0.18.0 or later — promptly if
+<code>check_certificate</code> is pointed at certificate files or directories that
+less-trusted principals can write to. No configuration change is needed.</p>
+<h3 id="cve-2026-73256-cve-2026-73257-http-request-smuggling-in-the-bundled-mongoose-web-server">CVE-2026-73256 / CVE-2026-73257 — HTTP request smuggling in the bundled Mongoose web server<a class="headerlink" href="#cve-2026-73256-cve-2026-73257-http-request-smuggling-in-the-bundled-mongoose-web-server" title="Permanent link">&para;</a></h3>
+<p><strong>Fixed in:</strong> 0.16.4 (bundles Mongoose 7.23) · <strong>Severity:</strong> Critical (CVSS 9.1, upstream)</p>
+<p>NSClient++ bundles the <a href="https://github.com/cesanta/mongoose">Cesanta Mongoose</a>
+embedded web server as the HTTP engine for the <code>WEBServer</code> module (the REST API
+and web UI) in the <strong>Windows builds</strong> (<code>NSCP_WEB_BACKEND=mongoose</code>, the Windows
+default). Two request-smuggling vulnerabilities were published upstream against
+Mongoose&rsquo;s HTTP parser, both fixed in Mongoose 7.22:</p>
+<ul>
+<li><strong>CVE-2026-73256</strong> — a broken HTTP/1.0 detection check in <code>http_cb()</code> lets a
+  request that combines <code>Transfer-Encoding: chunked</code> with conflicting HTTP/1.0
+  framing be parsed with different message boundaries than an HTTP/1.0 reverse
+  proxy in front of it.</li>
+<li><strong>CVE-2026-73257</strong> — a request carrying <strong>both</strong> <code>Content-Length</code> and
+  <code>Transfer-Encoding: chunked</code> is accepted instead of rejected, enabling a
+  classic CL.TE desynchronization against a Content-Length-preferring front end.</li>
+</ul>
+<p>Both are only exploitable when requests reach NSClient++ <strong>through an
+intermediary</strong> (reverse proxy, WAF, load balancer) that frames the request
+stream differently than Mongoose: an unauthenticated attacker can then smuggle
+a second request past the intermediary&rsquo;s access controls (path/method ACLs,
+IP restrictions, proxy-level authentication) or inject it into another client&rsquo;s
+reused connection. In the common direct client → NSClient++ deployment there is
+no front end to desynchronize. NSClient++&rsquo;s own authentication and WEB
+permissions are evaluated per request inside the module, so a smuggled request
+still needs valid NSClient++ credentials — what smuggling defeats is any
+security control enforced <em>in front of</em> NSClient++.</p>
+<p>Not affected: the Linux packages (DEB/RPM) build the <code>WEBServer</code> module on the
+Boost.Beast backend and do not contain Mongoose at all; neither do builds with
+the <code>WEBServer</code> module disabled.</p>
+<p><strong>What to do:</strong> upgrade Windows installs to 0.16.4 or later, which bundles
+Mongoose 7.23 — promptly if NSClient++ sits behind a reverse proxy or WAF. As a
+stop-gap, an HTTP/1.1-only front end that itself rejects requests with both
+<code>Content-Length</code> and <code>Transfer-Encoding</code> reduces (but does not remove) the
+exposure.</p>
+<h3 id="cve-2025-34079-authenticated-rce-via-externalscripts">CVE-2025-34079 — Authenticated RCE via ExternalScripts<a class="headerlink" href="#cve-2025-34079-authenticated-rce-via-externalscripts" title="Permanent link">&para;</a></h3>
+<p>An attacker who already holds valid administrator credentials can register and
+run an external script, achieving remote code execution. It affects the legacy
+<code>0.5.2.35</code> architecture that predates the current REST v2 API.</p>
+<p><strong>What to do:</strong> upgrade to a current supported release, and restrict who can
+configure <code>ExternalScripts</code> / hold an administrator role. See the
+<a href="../../scenarios/external-scripts/">external scripts</a> and
+<a href="../../concepts/permissions/">permissions</a> guidance. Full detail:
+<a href="https://github.com/mickem/nscp/security/advisories/GHSA-rhrw-79v5-jc5x">GHSA-rhrw-79v5-jc5x</a>.</p>
+<h3 id="cve-2025-34078-local-privilege-escalation-via-plaintext-credentials">CVE-2025-34078 — Local privilege escalation via plaintext credentials<a class="headerlink" href="#cve-2025-34078-local-privilege-escalation-via-plaintext-credentials" title="Permanent link">&para;</a></h3>
+<p>A principal with local filesystem access can read plaintext credentials stored
+in <code>nsclient.ini</code> and reuse them. It affects the legacy <code>0.5.2.35</code> architecture.</p>
+<p><strong>What to do:</strong> upgrade to a current supported release; lock down the
+configuration file with filesystem ACLs and, where possible, move sensitive
+values into the credential manager (see
+<a href="../../setup/securing/">Securing NSClient++</a>). Full detail:
+<a href="https://github.com/mickem/nscp/security/advisories/GHSA-jr25-22p3-gm6r">GHSA-jr25-22p3-gm6r</a>.</p>
+<hr />
+<h2 id="hardening-changes-no-cve">Hardening changes (no CVE)<a class="headerlink" href="#hardening-changes-no-cve" title="Permanent link">&para;</a></h2>
+<p>Security-relevant changes that are handled as defense-in-depth / consistency
+hardening rather than assigned a CVE are listed here as they ship, newest
+first, alongside the release that contains them.</p>
+<h3 id="security-hardening-across-the-clients-scripts-and-filter-framework">Security hardening across the clients, scripts and filter framework<a class="headerlink" href="#security-hardening-across-the-clients-scripts-and-filter-framework" title="Permanent link">&para;</a></h3>
+<p><strong>Fixed in:</strong> 0.18.1 · <strong>Severity:</strong> High for NSCA-NG cert-mode targets,
+Low–Medium for everything else</p>
+<p>One sweep over the outbound client modules (Icinga, NRDP, NSCA, NSCA-NG,
+check_mk, Elastic, Graphite, syslog and a second round on SMTP), the
+external-script launcher and the filter framework. Three themes run through it:
+<strong>configuration that silently did not apply</strong>, <strong>operations that could never
+time out</strong>, and
+<strong>attacker-influenced text reaching another system&rsquo;s log unscrubbed</strong>. None of
+it is remotely exploitable code execution on a default install; the NSCA-NG and
+check_mk items are the ones that change what goes on the wire.</p>
+<h4 id="settings-that-were-read-but-never-applied">Settings that were read but never applied<a class="headerlink" href="#settings-that-were-read-but-never-applied" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>NSCA-NG cert mode ignored its TLS configuration</strong> (High; affects 0.18.0,
+  <code>use psk = false</code> only). The OpenSSL context was configured <em>after</em> the TLS
+  stream had been created from it, and <code>SSL_new()</code> copies the verify mode,
+  certificate, cipher list and version bounds out of the context at creation
+  time — so <code>verify mode = peer-cert</code> ran with verification off and accepted
+  any certificate, a man-in-the-middle&rsquo;s included, and the configured client
+  certificate was never presented. The default PSK mode authenticates both
+  ends through the pre-shared key and was never affected.</li>
+<li><strong>check_mk client TLS keys were discarded</strong> (Medium). The target object
+  never called <code>register_all()</code>/<code>notify()</code>, so <code>use ssl</code>, <code>certificate</code>,
+  <code>certificate key</code>, <code>ca</code>, <code>allowed ciphers</code>, <code>verify mode</code> and <code>dh</code> were
+  parsed and thrown away — the client connected in plaintext whatever the
+  configuration said, and the keys were missing from the reference docs.</li>
+<li><strong>An unrecognized NSCA <code>encryption</code> value meant &ldquo;no encryption&rdquo;.</strong> A typo
+  (<code>aes-256</code>), or an algorithm not compiled into the build, silently resolved
+  to plaintext on the end carrying it. It is now a hard error naming the
+  available algorithms: the <code>NSCAServer</code> module refuses to load and an
+  <code>NSCAClient</code> submission fails. <code>encryption = none</code> remains the explicit way
+  to run unencrypted.</li>
+<li><strong>Syslog severities and templates did nothing.</strong> The per-state severity
+  options (<code>ok-severity</code>, …) and the <code>tag_syntax</code> / <code>message_syntax</code> target
+  settings were stored under keys the sender never read, so they parsed fine
+  and silently did nothing — leaving submissions on the emergency fallback
+  below, and settings-defined targets sending an empty tag.</li>
+<li><strong><code>ext-scr install --arguments=…</code> wrote to a path nothing reads</strong>, so an
+  argument lockdown reported success while leaving arguments enabled.</li>
+<li><strong>NSCA server <code>performance data = false</code> was ignored</strong>; perfdata is stripped
+  from forwarded submissions again, as documented.</li>
+</ul>
+<h4 id="operations-that-could-never-time-out">Operations that could never time out<a class="headerlink" href="#operations-that-could-never-time-out" title="Permanent link">&para;</a></h4>
+<p>Each of these ran with no deadline, so an endpoint that accepted the connection
+and then stalled held the submitting thread indefinitely — silently stopping
+passive results until a service restart:</p>
+<ul>
+<li><strong>Icinga</strong> API calls, <strong>NRDP</strong> submissions, <strong>Graphite</strong> carbon submissions
+  and the recurring metrics flush, and <strong>Elastic</strong> bulk submissions. Each is
+  now bounded by the target&rsquo;s configured <code>timeout</code> (default 30 s) as a single
+  budget covering name resolution, connect, TLS handshake and the exchange.
+  NRDP additionally retries transport failures up to <code>retry</code>, each attempt on
+  a fresh connection; Graphite&rsquo;s <code>retry</code> never had any effect and is gone.
+  Several of these settings were also looked up in the free-form option map
+  while the framework routes them into typed fields, so a configured value was
+  ignored even where a timeout <em>was</em> honoured.</li>
+<li><strong>External scripts.</strong> On Unix the single-string shell fallback ran through
+  <code>popen()</code>, which hides the child PID, so <code>timeout=</code> was silently unenforced
+  and a hung script wedged a worker thread per invocation. On Windows the read
+  loop counted iterations rather than elapsed time, so a continuously chatty
+  script escaped the timeout entirely and leaked an unkillable process each
+  run. Both launchers now bound the wait by wall-clock deadline.</li>
+<li><strong>SMTP</strong> did bound its submission, but a budget that expired mid-connect left
+  the cancelled operation&rsquo;s completion handler queued, to be run by the retry
+  against the next resolved address with references into a stack frame that no
+  longer existed — a use-after-return in a long-running service. Handler state
+  is heap-owned now, and a spent budget ends the endpoint walk instead of
+  retrying into it.</li>
+</ul>
+<h4 id="injection-scrubbing-and-resource-limits">Injection, scrubbing and resource limits<a class="headerlink" href="#injection-scrubbing-and-resource-limits" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Graphite status paths</strong> now go through the same scrub as the perf path.
+  The <code>${check_alias}</code> substituted into them can originate from a remote
+  submitter, so an alias carrying a newline injected an extra, attacker-chosen
+  metric line into Graphite (and a <code>;</code> injected carbon tags) — a way to hide a
+  real problem or fabricate one.</li>
+<li><strong>Syslog</strong> emits the RFC 3164 HOSTNAME field. Without it a conforming
+  receiver promoted the tag to origin host, so with a tag template expanding
+  <code>%message%</code> check output chose which host a record was filed under. Every C0
+  control byte and DEL is neutralised rather than just CR/LF/NUL, and an
+  unknown <code>severity</code> or <code>facility</code> name falls back to <code>&lt;13&gt;</code> (user.notice)
+  instead of <code>&lt;0&gt;</code> — kernel.emergency, which many receivers page or <code>wall</code> on.</li>
+<li><strong>Inbound NSCA wire fields</strong> are validated before they reach logs and the
+  inbox channel: control characters are stripped from the host and service
+  names (a log-injection vector) and a return code outside 0–3 is clamped to
+  UNKNOWN instead of flowing on as an arbitrary 16-bit integer.</li>
+<li><strong>Filter expressions</strong> are capped at <strong>1024 characters</strong> and <strong>64</strong> nesting
+  levels. Both the recursive-descent parser and the AST evaluator recurse with
+  the shape of the input, so a long or deeply nested expression could exhaust
+  the thread stack and crash the whole agent — reachable by anyone able to
+  influence a filter string over the authenticated REST API, or over NRPE with
+  <code>allow arguments = true</code>. The limits sit an order of magnitude above any real
+  filter, and string literals are exempt from the depth count.</li>
+<li><strong>Buffers are bounded</strong>: an NRDP response body is capped at 5 MB (previously
+  unbounded, so a hostile server — or a man-in-the-middle on a plain <code>http://</code>
+  target — could stream the agent out of memory), captured script output at
+  8 MiB, and an SMTP reply at 64 KB per line and 100 lines — nothing capped
+  how much a peer could make the client buffer inside its timeout window, so
+  bytes without a line ending, or endless <code>250-</code> continuations, turned a
+  30-second budget into gigabytes of agent memory.</li>
+<li><strong>SMTP reply text is rendered inert before it reaches the log.</strong> Error
+  messages quoted server replies verbatim into the agent log and the submit
+  response. Anything outside printable US-ASCII is replaced now — the C0
+  controls and the C1 range (0x80–0x9F), which carries single-byte terminal
+  escapes such as CSI — so a multi-line reply can no longer forge extra log
+  lines, and an oversized one is truncated. Two smaller items came with it:
+  the reply to <code>STARTTLS</code> must be exactly <code>220</code> per RFC 3207 rather than any
+  <code>2xx</code>, and AUTH credentials containing a NUL are refused before connecting
+  (a NUL shifts the RFC 4616 <code>AUTH PLAIN</code> field boundaries).</li>
+<li><strong>The <code>ext-scr show</code> / <code>delete</code> sandbox resolves symlinks</strong> before its
+  containment test; previously a symlink inside the script root pointing
+  outside it let an authenticated admin read or remove files anywhere the
+  service account could reach. On the Windows shell fallback <code>%</code> and <code>^</code> are
+  now refused as well (cmd.exe <code>%VAR%</code> expansion and its escape character),
+  opt-out via <code>allow nasty characters</code>.</li>
+</ul>
+<h4 id="tls-and-credentials">TLS and credentials<a class="headerlink" href="#tls-and-credentials" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Elastic submissions verify the server certificate.</strong> Verification was
+  hardcoded to <code>none</code>, so an <code>https://</code> address validated neither the chain
+  nor the host name while shipping event-log entries, metrics and the agent
+  log. It defaults to <code>peer</code> against the platform CA bundle now, with
+  <code>tls version</code>, <code>verify mode</code> and <code>ca</code> settings matching the other HTTP
+  clients, and new <code>user</code>/<code>password</code> and <code>api key</code> authentication —
+  Elasticsearch has enabled security by default since 8.0, which the module
+  previously could not satisfy at all.</li>
+<li><strong><code>tls version = 1.2+</code> means &ldquo;1.2 or later&rdquo; again.</strong> The <code>+</code> was stripped and
+  the value mapped onto a version-pinned OpenSSL method, which pins the
+  <em>maximum</em> too, so the widely used default negotiated TLS 1.2 only and
+  silently excluded 1.3; <code>any</code> is accepted as the documentation always claimed.
+  The fix is in the shared stack: all HTTP-based clients, the NRPE/NSCA socket
+  clients and servers, and <code>check_tcp</code>.</li>
+<li><strong>Credentials are masked in the trace log.</strong> At log level <code>trace</code> the whole
+  target configuration was dumped, printing the raw <code>password</code> / <code>token</code>
+  values; the fix sits in the shared client machinery, so every outbound
+  client module is covered.</li>
+<li><strong>Unverified links are called out.</strong> An Icinga <code>https</code> submission whose
+  <code>verify mode</code> resolves to no peer verification logs a message naming the
+  endpoint, since the API credentials then go to whichever server answers. An
+  empty NSCA <code>password</code> with encryption enabled logs an error too: the key is
+  the password zero-padded with no derivation step, so an empty one is a
+  well-known all-zero key that anyone past <code>allowed hosts</code> can forge with.</li>
+</ul>
+<p><strong>What to do:</strong> most installs need nothing. Specifically:</p>
+<ul>
+<li><strong>NSCA-NG cert mode:</strong> upgrade if any target sets <code>use psk = false</code>. A target
+  whose server certificate does not chain to the configured <code>ca</code> (or does not
+  match the host name) will now fail to connect — that is the verification
+  taking effect; fix the certificate, or accept the exposure explicitly with
+  <code>insecure = true</code>.</li>
+<li><strong>check_mk:</strong> a target carrying <code>use ssl = true</code> now really negotiates TLS,
+  so a plaintext-only server end will start failing — loudly, which is the
+  point.</li>
+<li><strong>Elastic over <code>https</code> with a self-signed certificate:</strong> point <code>ca</code> at it, or
+  set <code>verify mode = none</code> to keep the old insecure behaviour. On Elasticsearch
+  6.x or older set <code>event type</code>, <code>metrics type</code> and <code>nsclient log type</code>
+  explicitly — the legacy <code>_type</code> parameter is no longer sent by default.</li>
+<li><strong>NSCA:</strong> fix any typo&rsquo;d <code>encryption</code> value (that end was silently running
+  plaintext, usually visible as the peer rejecting submissions with a CRC
+  error), and set the same real <code>password</code> on both ends if the new
+  empty-password error appears. If you relied on <code>performance data = false</code>
+  while it was broken, perfdata really is dropped now.</li>
+<li><strong>External scripts:</strong> re-run <code>ext-scr install</code> after upgrading so an argument
+  lockdown lands on the setting the module actually reads. Treat write access
+  to any <code>script path</code> directory, and the ability to configure external-script
+  commands, as equivalent to code execution as the service account.</li>
+<li><strong>Slow endpoints:</strong> a submission to an unresponsive Icinga, NRDP, Graphite or
+  Elastic endpoint now fails after <code>timeout</code> instead of hanging — raise it on
+  that target if the endpoint is legitimately slower. Peers negotiating with a
+  <code>+</code> or <code>any</code> TLS version can now select TLS 1.3; pin an exact version if one
+  misbehaves on it.</li>
+<li><strong>Syslog receivers</strong> whose parsing rules keyed on the old malformed datagram
+  (no HOSTNAME field) need adjusting — records now arrive attributed to the
+  agent&rsquo;s host name instead of the tag. Syslog remains cleartext and
+  unauthenticated: keep the path to the server on a trusted segment.</li>
+</ul>
+<h3 id="smtp-client-security-hardening">SMTP client security hardening<a class="headerlink" href="#smtp-client-security-hardening" title="Permanent link">&para;</a></h3>
+<p><strong>Fixed in:</strong> 0.18.0 · <strong>Severity:</strong> Low–Medium</p>
+<p>A review of the <code>SMTPClient</code> module produced a set of fixes to how it sets up
+and trusts a submission session. None is remotely exploitable by an
+unauthenticated third party on its own — the attacker positions required are a
+man in the middle on the path to the mail server, or the ability to submit a
+passive result the agent relays to a mail target — but each removes a way the
+agent can be made to trust something it should not.</p>
+<ul>
+<li><strong>Data pipelined across the STARTTLS handshake is refused.</strong> The client kept
+  one receive buffer for the whole session, and <code>read_until()</code> consumes whole
+  segments, so bytes appended to the server&rsquo;s <code>220</code> STARTTLS greeting stayed
+  buffered across the handshake and were then served to every read that
+  followed. Those bytes arrive in cleartext and are writable by anyone who can
+  inject a packet, yet the rest of the session treated them as though they had
+  come from inside the TLS tunnel — the STARTTLS command/response injection
+  family (<a href="https://nvd.nist.gov/vuln/detail/CVE-2011-0411">CVE-2011-0411</a> and
+  relatives). Beyond forged capabilities after the upgrade, a prepared run of
+  <code>2xx</code> replies walks the client through <code>MAIL</code>, <code>RCPT</code> and <code>DATA</code> and has it
+  report a notification as delivered when nothing was ever sent, which for a
+  monitoring agent means alerts that silently go nowhere. Per RFC 3207 §4 the
+  session is now refused if anything is buffered at handshake time.</li>
+<li><strong>The EHLO name is validated before it reaches the wire.</strong> The envelope
+  addresses and the subject were all checked for CRLF injection; the EHLO
+  argument was interpolated into the command line raw. It defaults to the
+  submitting sender&rsquo;s host name, which for a relayed submission comes from the
+  request header, so a CR or LF in it ended the <code>EHLO</code> and began a command of
+  the sender&rsquo;s choosing on a session the agent had already authenticated —
+  their <code>MAIL FROM</code> and <code>RCPT TO</code>, sent as the agent. Only a host name or an
+  address literal is accepted now, and the check runs before any socket opens.</li>
+<li><strong>Server certificates are verified against the agent&rsquo;s CA bundle.</strong>
+  Verification rested on OpenSSL&rsquo;s compiled-in default verify paths, which on
+  <strong>Windows do not include the Windows certificate store</strong>. The default
+  <code>security=starttls</code> therefore failed verification against Gmail, Microsoft
+  365 and every other public-CA submission service on every Windows agent, and
+  the module&rsquo;s only escape hatch was <code>insecure-skip-verify</code> — so the
+  configuration operators arrived at was the one with verification turned off.
+  A <code>ca</code> setting now defaults to <code>${ca-path}</code> like every other TLS client in
+  the tree. See the <a href="../../setup/upgrading/#0180">upgrade note</a>.</li>
+<li><strong>ESMTP capabilities are matched per line rather than by substring.</strong> Reply
+  lines were concatenated with no separator and searched with <code>find()</code>, so a
+  server&rsquo;s free text could answer for a capability it never advertised — a
+  greeting naming the host <code>starttls.example.com</code> satisfied the STARTTLS
+  lookup, and the seam between two joined lines formed tokens no line
+  contained. That lookup is what decides whether the session gets encrypted
+  before <code>AUTH</code>.</li>
+<li><strong>The timeout bounds the whole submission.</strong> Every operation took a fresh
+  deadline, and connect took one per resolved address, so a peer answering
+  just inside the deadline on each round trip — or a name resolving to several
+  black-holed addresses — held a submission thread for a large multiple of the
+  configured timeout. Name resolution ran outside the deadline entirely.</li>
+<li><strong><code>insecure-skip-verify</code> no longer resets itself.</strong> Declared as a
+  <code>bool_switch</code>, its notifier fired with <code>false</code> on every submission that did
+  not name the option, overwriting whatever the target had configured, so the
+  setting never worked from configuration at all. It also rejected the valued
+  <code>insecure-skip-verify=true</code> token that REST passes. The reset failed
+  <em>towards</em> verifying, so this was not a hole — it is why the setting appeared
+  to do nothing.</li>
+<li><strong><code>--source-host</code> no longer redirects the connection.</strong> Shared by every
+  client module, it was registered against the destination container, where
+  the well-known <code>host</code> key routes into the typed address field — so naming a
+  source host pointed the client at that host instead of the configured
+  server, sending the submission (credentials included, for a module that
+  authenticates) somewhere the operator did not intend. It binds to the sender
+  now. <code>SMTPClient</code> and <code>NRDPClient</code> were not exposed: each registered its own
+  competing copy, which made the option ambiguous and refused outright.</li>
+</ul>
+<p><strong>What to do:</strong> nothing is required on unix, where <code>${ca-path}</code> resolves to the
+distribution&rsquo;s own CA bundle. On <strong>Windows</strong>, an SMTP target that was working
+only because <code>insecure-skip-verify = true</code> should have that removed and
+retried — certificate verification now succeeds against public providers. A
+target pointing at an internal relay with a private CA should name that bundle
+in <code>ca</code> rather than waive verification. See
+<a href="../../setup/upgrading/#0180">Upgrading</a> for the full list.</p>
+<h3 id="nrpe-decoded-argument-metachar-guard-optional-version-banner-and-consistency-fixes">NRPE: decoded-argument metachar guard, optional version banner, and consistency fixes<a class="headerlink" href="#nrpe-decoded-argument-metachar-guard-optional-version-banner-and-consistency-fixes" title="Permanent link">&para;</a></h3>
+<p><strong>Fixed in:</strong> 0.18.0 · <strong>Severity:</strong> Low</p>
+<p>A review of the <code>NRPEServer</code> / <code>NRPEClient</code> modules produced a set of
+defense-in-depth fixes. None is remotely exploitable on a default install
+(the listener still fails closed on <code>allowed hosts</code> and the argument guard
+is off by default), but each tightens a rough edge:</p>
+<ul>
+<li><strong>Metachars are now re-checked on the <em>decoded</em> command and arguments.</strong>
+  The <code>allow nasty characters = false</code> guard previously ran only on the raw
+  wire bytes, before the configured <code>encoding</code> was applied. With a non-UTF-8
+  <code>encoding</code> set, a multi-byte sequence could decode into an ASCII shell
+  metacharacter (<code>|</code>, <code>`</code>, <code>&amp;</code>, <code>&gt;</code>, …) that was not literally present on
+  the wire and so slipped past the ingress filter. The guard now also runs on
+  the decoded strings that are actually dispatched. Downstream
+  <code>CheckExternalScripts</code> argv isolation already prevented shell execution, so
+  this closes a filter-bypass, not an RCE.</li>
+<li><strong>The unauthenticated <code>_NRPE_CHECK</code> ping reply can stop disclosing the
+  build.</strong> A new <code>expose version</code> server setting (default <code>true</code>, preserving
+  the legacy banner <code>check_nrpe</code> expects) lets operators return a generic
+  &ldquo;doing fine&rdquo; message instead of the exact NSClient++ version to any host
+  permitted to open the port.</li>
+<li><strong><code>nscp nrpe install</code> now reads the stored <code>verify mode</code>.</strong> It previously
+  queried the value but matched it under the wrong key name, so a re-run
+  silently reset peer verification to its built-in default (<code>peer-cert</code> — a
+  fail-secure direction, but it discarded the operator&rsquo;s setting).</li>
+<li>A cosmetic <code>std::wstring::npos</code> vs <code>std::string::npos</code> comparison in the
+  metachar guard was corrected (both equal <code>SIZE_MAX</code>, so behaviour was
+  unchanged).</li>
+</ul>
+<p><strong>What to do:</strong> nothing required. To harden further, set
+<code>expose version = false</code> and prefer client-certificate authentication over
+IP-only filtering — see
+<a href="../../scenarios/nrpe/#securing-the-nrpe-endpoint">Active Monitoring with NRPE</a>.
+The decoded-metachar re-check can reject a request that a non-UTF-8
+<code>encoding</code> previously let through while <code>allow nasty characters = false</code>;
+such a request was meant to be blocked, so this only affects inputs the
+guard was always intended to catch.</p>
+<h3 id="nrdp-client-security-hardening">NRDP client security hardening<a class="headerlink" href="#nrdp-client-security-hardening" title="Permanent link">&para;</a></h3>
+<p><strong>Fixed in:</strong> 0.18.0 · <strong>Severity:</strong> Low–Medium</p>
+<p>A focused hardening pass over the passive submission protocols (<code>NRDPClient</code>,
+<code>NSCAClient</code>/<code>NSCAServer</code>) produced a small set of defense-in-depth fixes on
+the NRDP side. None is a confirmed remote vulnerability in a default
+configuration; they close latent gaps and bring NRDP in line with the
+redaction already applied to NSCA.</p>
+<ul>
+<li><strong>A malformed NRDP server response can no longer crash the submitting
+  agent.</strong> <code>nrdp::data::parse_response</code> dereferenced the text node of the
+  <code>&lt;status&gt;</code>/<code>&lt;message&gt;</code> elements without a null check, so a response
+  containing an empty element (<code>&lt;status&gt;&lt;/status&gt;</code>) — which anyone able to
+  answer or tamper with the connection can send, including a man-in-the-middle
+  on a plaintext or unverified link — dereferenced a null pointer and crashed
+  the process rather than throwing. It is now reported as an invalid response.</li>
+<li><strong>The NRDP token is no longer written to the trace log.</strong> The per-target
+  configuration is emitted at trace level on every submission and included the
+  <code>token</code> — a shared secret equivalent to the NSCA password, which was already
+  redacted. It now logs <code>&lt;set&gt;</code>/<code>&lt;unset&gt;</code>, and any credentials embedded in a
+  configured <code>proxy</code> URL (<code>http://user:pass@host</code>) are redacted to
+  <code>&lt;redacted&gt;@host</code>.</li>
+<li><strong>HTTPS submissions no longer silently skip certificate verification when no
+  verify mode is set.</strong> An unset <code>verify mode</code> resolves to <code>verify_none</code> in the
+  TLS layer. Configured targets already defaulted to <code>peer</code>, but the bare
+  <code>nscp client</code>/REST submission path did not, so an <code>https://</code> submission made
+  that way validated neither the certificate chain nor the host name and
+  exposed the token to a man-in-the-middle. That path now defaults to <code>peer</code>
+  as well; plain <code>http://</code> is unaffected.</li>
+</ul>
+<p><strong>What to do:</strong> nothing required for the default install or for targets
+configured through settings. If you submit to an <code>https://</code> NRDP endpoint via
+<code>nscp client</code>/REST against a self-signed certificate <em>without</em> a configured
+verify mode, add <code>--verify none</code> (or a CA) explicitly — the previous
+behaviour was to trust any certificate silently.</p>
+<h3 id="web-server-security-hardening">WEB server security hardening<a class="headerlink" href="#web-server-security-hardening" title="Permanent link">&para;</a></h3>
+<p><strong>Fixed in:</strong> 0.18.0 · <strong>Severity:</strong> Low–Medium</p>
+<p>A focused hardening pass over the <code>WEBServer</code> module (REST API + web UI)
+produced a set of defense-in-depth fixes. None is a confirmed remote
+vulnerability in a default configuration; they close latent gaps and
+consistency issues.</p>
+<ul>
+<li><strong>Session tokens are drawn from the OpenSSL CSPRNG.</strong> <code>token_store::generate_token</code>
+  minted bearer session tokens (and generated admin passwords) with
+  <code>std::random_device</code>, which the C++ standard does not require to be
+  non-deterministic — some toolchains have historically implemented it as a
+  fixed-seed PRNG, which would make tokens predictable. Tokens now come from
+  <code>RAND_bytes()</code> (the same CSPRNG already used for password salts), with
+  rejection sampling to keep the alphabet unbiased. A build <em>without</em> OpenSSL
+  still uses <code>std::random_device</code> (it cannot serve TLS either); a build that
+  has the CSPRNG never silently substitutes the weaker source — if
+  <code>RAND_bytes()</code> fails, <strong>no token or generated password is issued at all</strong>
+  and the request fails with a 500 (<code>nscp web add-user</code> / <code>nscp web install</code>
+  report an RNG failure). Refusing is the correct outcome for a bearer
+  credential, but it does mean a broken OpenSSL RNG blocks logins rather than
+  degrading them; the failure is logged as a <code>SECURITY:</code> error.</li>
+<li><strong>Cookie name matching now requires a name boundary.</strong> The bundled
+  <code>mg_get_cookie</code> matched a requested cookie name as a substring, so a
+  client cookie named <code>eviltoken</code> could satisfy a lookup for <code>token</code>. It now
+  requires the match to start at a cookie boundary. The WEBServer module
+  authenticates from headers, not request cookies, so this path was not used
+  for authentication — the fix hardens the exported helper regardless.</li>
+<li><strong>The legacy <code>/auth/logout</code> route enforces the allowed-hosts perimeter.</strong>
+  Its sibling <code>/auth/token</code> already called <code>is_allowed()</code>; logout did not, so
+  a host outside <code>allowed hosts</code> could revoke an observed token with a
+  spoofed <code>User-Agent</code>. It now applies the same check.</li>
+<li><strong>Script / module names may no longer begin with <code>-</code>.</strong> A leading dash could
+  be mistaken for an option flag when the name is later passed as an argument
+  value; interior dashes (<code>check-disk</code>) are unchanged.</li>
+<li><strong>The web-UI installer refuses an HTTPS→HTTP redirect.</strong> The bundle&rsquo;s
+  integrity rests on the TLS channel (the SHA-256 manifest is fetched over the
+  same connection), so a redirect chain that began on <code>https://</code> is no longer
+  allowed to drop to cleartext. A protocol-relative <code>Location</code> (<code>//host/path</code>)
+  is now resolved as such, inheriting the current scheme, instead of being
+  glued onto the current origin as a path — which both mis-resolved the
+  redirect and hid it from the downgrade check. An operator who explicitly
+  passes an <code>http://</code> <code>--url</code> is unaffected.</li>
+<li><strong>The <code>legacy</code> grant&rsquo;s startup warning now names <code>/settings/query.pb</code>.</strong> In
+  addition to the query/RCE routes it already flagged, the <code>SECURITY</code> warning
+  now states that <code>legacy</code> also unlocks <code>POST /settings/query.pb</code>, which reads
+  settings <em>without</em> the redaction the <code>/api/v2/settings</code> endpoints apply and
+  can write settings — without holding <code>settings.get</code>/<code>settings.put</code>. This is
+  a documentation fix; the endpoint&rsquo;s behaviour is unchanged, and <code>legacy</code> was
+  already an RCE-equivalent, trusted-only grant.</li>
+</ul>
+<p><strong>What to do:</strong> nothing required for the default install. If you have a custom
+script/module name that begins with <code>-</code>, rename it. If a client outside
+<code>allowed hosts</code> relied on the legacy <code>/auth/logout</code> route, move it inside the
+perimeter. Review any role that grants <code>legacy</code> — it confers unredacted
+settings read and settings write in addition to command execution.</p>
+<h3 id="host-name-placeholders-are-sanitized-before-they-land-in-a-local-path">Host name placeholders are sanitized before they land in a local path<a class="headerlink" href="#host-name-placeholders-are-sanitized-before-they-land-in-a-local-path" title="Permanent link">&para;</a></h3>
+<p><strong>Fixed in:</strong> 0.17.0 · <strong>Severity:</strong> Low</p>
+<p>With host name placeholders now resolving in attachment target paths and in
+<code>[/includes]</code> (issue <a href="https://github.com/mickem/nscp/issues/458">#458</a>), the
+system host name is substituted into paths the agent reads and writes with its
+service privileges (typically root / SYSTEM). The host name is not fully under
+the operator&rsquo;s control — DHCP can set it on some systems, as can any local
+privileged process — so a hostile value such as <code>../../etc/cron.d/evil</code> must
+not be able to redirect where an attachment is written or which file an
+include opens. Values substituted into a path are therefore reduced to the
+characters a legal RFC-952 host name can contain (letters, digits, <code>.</code>, <code>-</code>,
+plus <code>_</code>): anything else becomes <code>_</code>, and a dots-only value (<code>.</code>/<code>..</code>) becomes
+<code>_</code>. A legitimate host name comes through unchanged; settings urls and the
+submit clients&rsquo; host name specs are not affected, since there the value never
+names a local file. The same expansion pass no longer aborts settings boot if
+<code>gethostname()</code> itself fails — the placeholders are then left unresolved.</p>
+<p><strong>What to do:</strong> nothing required. Only a host name that is not a legal host
+name resolves differently, and only in attachment targets and <code>[/includes]</code>.</p>
+<h3 id="settings-values-for-sensitive-keys-are-redacted-on-read">Settings values for sensitive keys are redacted on read<a class="headerlink" href="#settings-values-for-sensitive-keys-are-redacted-on-read" title="Permanent link">&para;</a></h3>
+<p><strong>Fixed in:</strong> 0.16.2 · <strong>Severity:</strong> Medium · <strong>Reported by:</strong> <a href="https://github.com/yagust">yagust</a></p>
+<p>The settings read paths — <code>GET /api/v2/settings/...</code>,
+<code>GET /api/v2/settings/descriptions/...</code>, and the <code>nscp settings --list</code> /
+<code>--show</code> CLI — returned values for keys registered sensitive (via
+<code>add_password</code> / <code>is_sensitive_key</code>) in clear text, while the settings <code>diff</code>
+endpoint already masked them. They now return <code>***</code> for sensitive keys, to
+match <code>diff</code>; internal reads a module makes of its own configuration are
+unaffected. This is a defense-in-depth / consistency change, not an
+authorization boundary: the values remain stored in plaintext in
+<code>nsclient.ini</code> (shared with the legacy NRPE/NSCA/NSClient protocols) and are
+readable by any principal with write or execute privilege regardless.</p>
+<p><strong>What to do:</strong> nothing required. Tooling that read a secret back out of
+<code>GET /api/v2/settings/...</code> now receives <code>***</code> for keys registered sensitive.</p>
+<h3 id="the-legacy-web-permission-is-flagged-and-no-longer-seeded-by-default">The <code>legacy</code> WEB permission is flagged and no longer seeded by default<a class="headerlink" href="#the-legacy-web-permission-is-flagged-and-no-longer-seeded-by-default" title="Permanent link">&para;</a></h3>
+<p><strong>Fixed in:</strong> 0.16.2 · <strong>Severity:</strong> Medium · <strong>Reported by:</strong> <a href="https://github.com/yagust">yagust</a></p>
+<p>The <code>legacy</code> WEB grant unlocks the deprecated <code>POST /query.pb</code> and
+<code>GET /query/{name}</code> endpoints, which dispatch through the same command registry
+as the versioned <code>/api/v2/queries</code> API — so a token holding the <code>legacy</code>
+permission can run any registered check or command (including any configured
+<code>CheckExternalScripts</code> command) even without <code>queries.execute</code>. This is
+intended compatibility behaviour for clients that predate the versioned API,
+but it was under-documented and more powerful than the role name suggests.</p>
+<p>The built-in <code>legacy</code> role is no longer seeded on fresh installs; NSClient++
+now logs a <code>SECURITY</code> warning at startup — and from <code>nscp web add-role</code> /
+<code>add-user</code> — for any role whose grant includes the <code>legacy</code> token (so a custom
+role such as <code>reporting = legacy,login.get</code> is flagged too); and the capability
+is documented in the securing guide.</p>
+<p><strong>What to do:</strong> existing installs are unaffected (the role stays in their
+config and keeps working). Only grant <code>legacy</code> to trusted legacy systems that
+cannot use the versioned <code>/api/v2/queries</code> endpoints; see
+<a href="../../setup/securing/">Securing NSClient++</a>.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+      <div class="md-consent" data-md-component="consent" id="__consent" hidden>
+        <div class="md-consent__overlay"></div>
+        <aside class="md-consent__inner">
+          <form class="md-consent__form md-grid md-typeset" name="consent">
+            
+
+
+  
+
+
+<h4>Cookie consent</h4>
+<p>We use cookies to recognize your repeated visits and preferences, as well as to measure the effectiveness of our documentation and whether users find what they're searching for. With your consent, you're helping us to make our documentation better.</p>
+<input class="md-toggle" type="checkbox" id="__settings" >
+<div class="md-consent__settings">
+  <ul class="task-list">
+    
+    
+      
+    
+    
+      
+        
+  
+  
+    
+    
+  
+  <li class="task-list-item">
+    <label class="task-list-control">
+      <input type="checkbox" name="github" checked>
+      <span class="task-list-indicator"></span>
+      GitHub
+    </label>
+  </li>
+
+      
+    
+    
+  </ul>
+</div>
+<div class="md-consent__controls">
+  
+    
+      <button class="md-button md-button--primary">Accept</button>
+    
+    
+    
+  
+    
+    
+    
+      <label class="md-button" for="__settings">Manage settings</label>
+    
+  
+</div>
+          </form>
+        </aside>
+      </div>
+      <script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout((function(){document.querySelector("[data-md-component=consent]").hidden=!1}),250);var form=document.forms.consent;for(var action of["submit","reset"])form.addEventListener(action,(function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map((function(e){return[e,!0]})))),location.hash="",location.reload()}))</script>
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "toc.follow", "toc.integrate", "navigation.indexes", "search.suggest", "search.highlight", "search.share"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../../assets/js/latest-release.js"></script>
+      
+    
+  </body>
+</html>
