@@ -80,10 +80,10 @@ Submit information to the remote syslog server.
 | batch             |               | Add multiple records using the separator format is: command|result|message            |
 | path              |               |                                                                                       |
 | severity          |               | Severity of error message                                                             |
-| unknown-severity  |               | Severity of error message                                                             |
-| ok-severity       |               | Severity of error message                                                             |
-| warning-severity  |               | Severity of error message                                                             |
-| critical-severity |               | Severity of error message                                                             |
+| unknown-severity  |               | Severity to use when the check result is UNKNOWN                                      |
+| ok-severity       |               | Severity to use when the check result is OK                                           |
+| warning-severity  |               | Severity to use when the check result is WARNING                                      |
+| critical-severity |               | Severity to use when the check result is CRITICAL                                     |
 | facility          |               | Facility of error message                                                             |
 | tag template      |               | Tag template (TODO)                                                                   |
 | message template  |               | Message template (TODO)                                                               |
@@ -201,13 +201,21 @@ This is a section of objects. This means that you will create objects below this
 **Keys:**
 
 
-| Key     | Default Value | Description    |
-|---------|---------------|----------------|
-| address |               | TARGET ADDRESS |
-| host    |               | TARGET HOST    |
-| port    |               | TARGET PORT    |
-| retries | 3             | RETRIES        |
-| timeout | 30            | TIMEOUT        |
+| Key               | Default Value | Description    |
+|-------------------|---------------|----------------|
+| address           |               | TARGET ADDRESS |
+| critical severity | critical      | TODO           |
+| facility          | kernel        | TODO           |
+| host              |               | TARGET HOST    |
+| message_syntax    | %message%     | TODO           |
+| ok severity       | informational | TODO           |
+| port              |               | TARGET PORT    |
+| retries           | 3             | RETRIES        |
+| severity          | error         | TODO           |
+| tag_syntax        | NSCA          | TODO           |
+| timeout           | 30            | TIMEOUT        |
+| unknown severity  | emergency     | TODO           |
+| warning severity  | warning       | TODO           |
 
 
 **Sample:**
@@ -216,10 +224,18 @@ This is a section of objects. This means that you will create objects below this
 # An example of a REMOTE TARGET DEFINITIONS section
 [/settings/syslog/client/targets/sample]
 #address=...
+critical severity=critical
+facility=kernel
 #host=...
+message_syntax=%message%
+ok severity=informational
 #port=...
 retries=3
+severity=error
+tag_syntax=NSCA
 timeout=30
+unknown severity=emergency
+warning severity=warning
 
 ```
 

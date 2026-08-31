@@ -14,6 +14,183 @@ per-release detail lives in each
 
 ---
 
+## 0.18.1
+
+- 🔒 **Icinga API submissions now honour the configured `timeout`, and
+  credentials no longer reach the trace log.** The `IcingaClient` module's
+  HTTP calls previously waited forever — the target's `timeout` setting
+  (default 30 s) was read but never applied — so a stalled Icinga endpoint
+  could silently wedge passive-result submission; set `timeout = 0` on the
+  target if you depend on the old unbounded wait. The same pass masked
+  `password`/`token` values in the trace-level target dump (this also covers
+  the other client modules sharing that machinery) and added a log message
+  when an `https` submission runs with certificate verification disabled
+  (`verify mode` empty or `none`). See
+  [Security notices](../security/notices.md#security-hardening-across-the-clients-scripts-and-filter-framework).
+- 🔒 **Filter expressions are now bounded in length and nesting depth.** A
+  `filter` / `warning` / `critical` expression — and a `%(...)` expression
+  placeholder inside a syntax template — longer than **1024 characters** or
+  nested more than **64** parentheses deep is now rejected at parse time
+  instead of being evaluated, failing with a clear "exceeds the maximum
+  length/depth" error. The where-parser and the expression evaluator both
+  recurse with the shape of the input, so an unbounded or deeply nested
+  expression could exhaust the stack and crash the agent. Real filters are a
+  small fraction of these limits, so the default install and every normal
+  configuration are unaffected — only a pathologically large or deeply nested
+  expression is refused. See the
+  [security notice](../security/notices.md#security-hardening-across-the-clients-scripts-and-filter-framework).
+- 🔒 **CheckExternalScripts hardening.** A hardening pass over the external
+  scripts module tightened several rough edges: the `ext-scr install` argument
+  lockdown now writes to the setting the module actually reads (previously it
+  was a no-op, so a lockdown could silently not apply), the command timeout is
+  enforced on every execution path with output capped, the `show`/`delete`
+  sandbox resolves symlinks, and `%`/`^` are blocked on the shell-fallback path.
+  The default install is unaffected (arguments are off by default). If you rely
+  on `ext-scr install` to disable arguments, re-run it after upgrading so the
+  effective setting is written. See the
+  [security notice](../security/notices.md#security-hardening-across-the-clients-scripts-and-filter-framework).
+- 🔒 **NSCA-NG cert mode now actually verifies the server (and presents the
+  client certificate).** In 0.18.0 the `NSCANgClient` cert mode
+  (`use psk = false`) applied its TLS configuration to the OpenSSL context
+  *after* the connection object had been created from it, and OpenSSL copies
+  the verify mode, client certificate, cipher list and TLS-version bounds out
+  of the context at creation time — so `verify mode = peer-cert` was silently
+  ignored, any certificate the server presented was accepted, and the
+  configured client certificate was never sent. The configuration is applied
+  before the connection is created now. Two operator-visible consequences:
+  a cert-mode target that "worked" against a server whose certificate does
+  not chain to the configured `ca` (or does not match the host name) will now
+  fail to connect — that is the verification working; fix the server
+  certificate, or opt out explicitly with `insecure = true` if you accept the
+  MITM risk. And servers that require a client certificate will start seeing
+  it. The default PSK mode (`use psk = true`) is unaffected. See
+  [Security notices](../security/notices.md).
+- 🔒 **NSCA: an unrecognized `encryption` value is now a hard error instead of
+  silently running without encryption.** A typo'd algorithm name (`aes-256`),
+  or one not compiled into the build, used to fall back to *no encryption* on
+  the end carrying it. Since the ciphers must match, a one-sided typo showed
+  up as the peer rejecting every submission with a CRC error rather than as
+  accepted plaintext — but that failure gave no hint of its cause, and a
+  value broken the same way on both ends did run plaintext while looking
+  encrypted. Now the `NSCAServer` module refuses to load and an `NSCAClient`
+  submission fails, each naming the problem and listing the available
+  algorithms. Default installs (`aes256`) are unaffected. **Breaking** only
+  for setups relying on the fallback: fix the algorithm name, or set
+  `encryption = none` explicitly if plaintext was intended — this includes
+  builds compiled without crypto++, where any cipher name previously
+  degraded to plaintext and the server now refuses to start.
+  See the [security notice](../security/notices.md#security-hardening-across-the-clients-scripts-and-filter-framework).
+- 🔒 **NSCA hardening: empty-password warning, `performance data = false`
+  honoured, wire-field validation.** Enabling NSCA encryption with an empty
+  `password` now logs an error on both ends (the password *is* the key, so an
+  empty one is a well-known key) — set the same password on both ends to
+  clear it. `NSCAServer`'s `performance data = false` now actually strips
+  perfdata from forwarded submissions (it was silently ignored). Inbound
+  host/service names are stripped of control characters and out-of-range
+  status codes are clamped to UNKNOWN. No action needed on a default install.
+  See the [security notice](../security/notices.md#security-hardening-across-the-clients-scripts-and-filter-framework).
+- 🔒 **NRDP submissions now honour `timeout` and `retry`.** Both settings were
+  parsed but never applied: a submission to a server that accepted the
+  connection and then stalled hung the submission thread forever, and failed
+  submissions were never retried. Every step of the exchange (connect, TLS
+  handshake, proxy tunnel, request, response) now runs under the configured
+  `timeout` (default 30 seconds for configured targets, 10 for one-shot
+  `nscp client` submissions), and transport failures are retried up to `retry`
+  times. Nothing to do unless your NRDP endpoint legitimately takes longer
+  than the timeout to answer — raise `timeout` on that target. The response
+  body is also capped at 5 MB, far above any real NRDP reply. See the
+  [security notice](../security/notices.md#security-hardening-across-the-clients-scripts-and-filter-framework).
+- 🔒 **A `tls version` with a trailing `+` now means "that version or later".**
+  `1.2+` (the common default) previously negotiated TLS 1.2 *only*; it now
+  also permits TLS 1.3, and `any` is accepted as the documentation always
+  claimed. This applies everywhere the setting exists: NRDP and the other
+  HTTP-based clients, the NRPE/NSCA clients and servers, and `check_tcp`.
+  No action needed; pin an exact version (`tls version = 1.2`) if a peer
+  misbehaves when TLS 1.3 is offered. See the
+  [security notice](../security/notices.md#security-hardening-across-the-clients-scripts-and-filter-framework).
+- 🔒 **The Elastic module now verifies HTTPS server certificates and can
+  authenticate.** `ElasticClient` previously hardcoded TLS verification off;
+  an `https://` address now defaults to `verify mode = peer` against the
+  platform CA bundle, with new `tls version`, `verify mode` and `ca` settings
+  to tune it. New `user`/`password` and `api key` settings authenticate
+  against secured clusters (Elasticsearch 8+ defaults), and a new `timeout`
+  (default 30s) bounds each submission. If you rely on a self-signed
+  certificate, point `ca` at it or set `verify mode = none` explicitly. See
+  [Security notices](../security/notices.md).
+- 📤 **The Elastic module no longer sends the legacy `_type` parameter by
+  default.** Mapping types were removed in Elasticsearch 8, which rejects
+  bulk requests carrying them, so the `event type`, `metrics type` and
+  `nsclient log type` defaults are now empty. Only Elasticsearch 6.x or older
+  needs them: set the old values (`eventlog`, `metrics`, `nsclient log`)
+  explicitly to keep the previous behaviour. Batched documents also now get
+  distinct ids — previously all documents in one bulk request shared an id
+  and overwrote each other, so multi-entry events show up completely now.
+- 🔒 **check_mk client targets: configured TLS settings are honoured again.**
+  `check_mk_target_object::read()` added the SSL keys (`use ssl`,
+  `certificate`, `verify mode`, `ca`, …) to its settings registry but never
+  called `register_all()`/`notify()`, so values set on a
+  `[/settings/check_mk/client/targets/…]` section were silently ignored and
+  the client connected in plaintext regardless of configuration. The keys are
+  read (and documented) again. If you configured `use ssl = true` on a
+  check_mk target, the connection becomes TLS on upgrade — make sure the
+  server side actually speaks TLS, or the check starts failing. Details in the
+  [security notice](../security/notices.md#security-hardening-across-the-clients-scripts-and-filter-framework).
+- 📨 **Syslog client targets: configured severities and templates are honoured
+  again.** The same defect existed in the syslog client's target object: the
+  `severity`, `facility`, `tag_syntax`, `message_syntax` and per-status
+  severity keys on a `[/settings/syslog/client/targets/…]` section were never
+  read, so the built-in defaults (`error`/`kernel`/…) always won. Values you
+  configured — perhaps years ago, without effect — now apply; if your syslog
+  routing depends on the previously effective defaults, review the target
+  sections for stale keys.
+- 📨 🔒 **Syslog messages now carry the RFC 3164 HOSTNAME field, and several
+  syslog options work for the first time** (see the
+  [security notice](../security/notices.md#security-hardening-across-the-clients-scripts-and-filter-framework)).
+  What changes on the wire and in behaviour:
+
+    - Datagrams now read `<PRI>TIMESTAMP HOSTNAME TAG MESSAGE`. The `hostname`
+      setting under `[/settings/syslog/client]` — until now read but never
+      used — fills the HOSTNAME field (default `auto`, the machine name).
+      Receivers that promoted the tag (default `NSCA`) to origin host will now
+      file records under the real host name; adjust any log-parsing rule that
+      keyed on the old, hostname-less format.
+    - The `tag_syntax` and `message_syntax` target settings now reach the
+      wire. They were stored under keys the sender never read, so a
+      settings-defined target sent an empty tag and dropped the message text.
+    - The per-state severity options (`ok-severity`, `warning-severity`,
+      `critical-severity`, `unknown-severity`) passed as command arguments now
+      take effect; they too were stored under keys that were never read.
+    - An unknown `severity` or `facility` name now degrades to priority `<13>`
+      (user.notice) instead of `<0>` — which is kernel.**emergency**, a
+      priority many receivers page or broadcast on. A missing per-state
+      severity now falls back to the base `severity` instead of tripping that
+      fallback.
+    - All C0 control bytes and DEL in the outgoing line are replaced with
+      spaces (previously only CR, LF and NUL), so check output cannot smuggle
+      ANSI escape sequences into the receiver's log.
+
+- ⏱️ **The Graphite `timeout` is now enforced — as a budget for the whole
+  submission.** It was doubly dead before: the value the operator configured
+  never reached the connection (the lookup read a map the well-known `timeout`
+  key is not stored in, so the default 30 always won), and the connection did
+  not use even that — resolution, connect, the TLS handshake and every write
+  ran with no deadline, so a stalled carbon endpoint could hold the submitting
+  thread for the OS-level TCP timeout, or indefinitely on a stuck write. The
+  configured `timeout` (default 30s) is read now and bounds the whole
+  submission as one budget, like the SMTP client's. A target whose submissions
+  previously completed by quietly taking longer will now fail at the
+  configured value; raise `timeout` on targets talking to a slow relay. See
+  [Security notices](../security/notices.md#security-hardening-across-the-clients-scripts-and-filter-framework).
+- 🧹 **The Graphite `retry` setting is not honoured and is no longer read.**
+  The module always made exactly one attempt per submission; reading the value
+  made it look otherwise, and a retry loop would multiply the worst-case time
+  a stalled endpoint can hold the submitting thread by the retry count.
+  `retry`/`retries` are registered for every client module centrally, so they
+  still appear in the GraphiteClient reference, but `GraphiteClient` does not
+  act on them. Mirrors the SMTP `retry` change in 0.18.0.
+
+---
+
 ## 0.18.0
 
 - 💥 **`check_nscp` is now a filter check, and it can see crash reports again.**
@@ -179,13 +356,13 @@ per-release detail lives in each
   one-shot command line, or a default target — falls back to the same bundle,
   resolved once at module load, so no submission path is left on OpenSSL's
   built-in verify paths by accident.
-- 🔒 **SMTP client security-review hardening.** The same review closed a set of
+- 🔒 **SMTP client security hardening.** The same pass closed a set of
   trust gaps in `SMTPClient`: data pipelined into the STARTTLS greeting is
   refused rather than trusted as post-handshake input, the EHLO name is
   validated for command injection before it reaches the wire, and ESMTP
   capabilities are matched per reply line instead of by substring search. No
   configuration change is needed. See
-  [Security notices](../security/notices.md#smtp-client-security-review-hardening).
+  [Security notices](../security/notices.md#smtp-client-security-hardening).
 - ⏱️ **The SMTP `timeout` is now a budget for the whole submission** rather than a
   fresh deadline per operation (and per resolved address). A target that
   previously completed by using several times its configured `timeout` across
@@ -215,7 +392,7 @@ per-release detail lives in each
   `nscp nrpe install` reads the stored `verify mode` again instead of silently
   resetting it on a re-run.
   See the [security notice](../security/notices.md#nrpe-decoded-argument-metachar-guard-optional-version-banner-and-consistency-fixes).
-- 🔒 **WEB server security-review hardening.** A review of the `WEBServer`
+- 🔒 **WEB server security hardening.** A review of the `WEBServer`
   module produced several defense-in-depth fixes (session tokens now come from
   the OpenSSL CSPRNG, cookie-name matching requires a name boundary, the
   installer refuses an HTTPS→HTTP redirect, and the `legacy` grant's startup
@@ -227,7 +404,7 @@ per-release detail lives in each
   A third only bites on a broken system: if the OpenSSL CSPRNG fails, the
   server now **refuses to issue a session token** (HTTP 500, logged as
   `SECURITY:`) rather than falling back to a weaker generator.
-  See the [security notice](../security/notices.md#web-server-security-review-hardening).
+  See the [security notice](../security/notices.md#web-server-security-hardening).
 - 🔒 **The bundled OpenSSL is updated from 3.5.4 to 3.5.8** in the Windows
   builds, picking up the fixes from four upstream security releases on the
   3.5 LTS line. The most relevant fix for NSClient++ is
