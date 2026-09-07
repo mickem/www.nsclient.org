@@ -119,14 +119,16 @@ This is a section of objects. This means that you will create objects below this
 **Keys:**
 
 
-| Key      | Default Value | Description      |
-|----------|---------------|------------------|
-| address  |               | TARGET ADDRESS   |
-| host     |               | TARGET HOST      |
-| interval |               | METRICS INTERVAL |
-| port     |               | TARGET PORT      |
-| retries  | 3             | RETRIES          |
-| timeout  | 30            | TIMEOUT          |
+| Key                 | Default Value | Description         |
+|---------------------|---------------|---------------------|
+| address             |               | TARGET ADDRESS      |
+| allow host override | false         | ALLOW HOST OVERRIDE |
+| host                |               | TARGET HOST         |
+| interval            |               | METRICS INTERVAL    |
+| multicast interface | auto          | MULTICAST INTERFACE |
+| port                |               | TARGET PORT         |
+| retries             | 3             | RETRIES             |
+| timeout             | 30            | TIMEOUT             |
 
 
 **Sample:**
@@ -135,8 +137,10 @@ This is a section of objects. This means that you will create objects below this
 # An example of a REMOTE TARGET DEFINITIONS section
 [/settings/collectd/client/targets/sample]
 #address=...
+allow host override=false
 #host=...
 #interval=...
+multicast interface=auto
 #port=...
 retries=3
 timeout=30
