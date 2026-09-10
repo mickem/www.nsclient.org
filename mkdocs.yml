@@ -65,6 +65,7 @@ nav:
           - How NSClient++ Works: docs/concepts/index.md
           - Checks In Depth: docs/concepts/checks.md
           - Settings: docs/concepts/settings.md
+          - Test Mode: docs/concepts/test-mode.md
           - File Layout: docs/concepts/file-layout.md
           - Permissions: docs/concepts/permissions.md
       - Setup:
@@ -93,6 +94,7 @@ nav:
           - Passive Monitoring (NSCA-NG): docs/scenarios/passive-monitoring-nsca-ng.md
           - Passive Monitoring (Icinga 2): docs/scenarios/passive-monitoring-icinga.md
           - Passive Monitoring (Graphite): docs/scenarios/passive-monitoring-graphite.md
+          - Polled Passive Checks (Nagios Core): docs/scenarios/nagios-result-cache.md
           - Checkmk Agent Integration: docs/scenarios/check-mk.md
           - Prometheus Scraping: docs/scenarios/prometheus.md
           - External Scripts: docs/scenarios/external-scripts.md
@@ -141,9 +143,11 @@ nav:
               - SimpleCache: docs/reference/generic/SimpleCache.md
               - PythonScript: docs/reference/generic/PythonScript.md
               - LUAScript: docs/reference/generic/LUAScript.md
+              - DotnetPlugins: docs/reference/generic/DotnetPlugins.md
       - Extending:
           - Overview: docs/extending/index.md
           - Python Scripts: docs/extending/python.md
+          - .NET Plugins: docs/extending/dotnet.md
           - Lua Scripts: docs/extending/lua.md
           - Zip Modules: docs/extending/zip-modules.md
           - Plugin API Reference: docs/extending/plugin-api.md
@@ -160,6 +164,7 @@ nav:
               - Metadata: docs/api/rest/metadata.md
               - Metrics: docs/api/rest/metrics.md
               - Logs: docs/api/rest/logs.md
+              - Results: docs/api/rest/results.md
               - Legacy API: docs/api/rest/legacy.md
       - FAQ: docs/faq.md
     - check_nsclient (CLI):
