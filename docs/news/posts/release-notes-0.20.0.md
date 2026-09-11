@@ -3,76 +3,73 @@ date:
   created: 2026-09-10
 ---
 
-# 0.20.0 .NET plugins return, the WEB server keeps passive results, and a security review of NRPE and TLS
+# 0.20.0 .NET plugins return, the WEB server keeps passive results, and more security fixes
 
-0.20.0 brings back the `DotnetPlugins` module — now hosting an installed .NET
-runtime through `hostfxr`, so it works on Linux as well as Windows — and
-teaches the WEB server to keep passive check results in memory and serve them
-over REST, so a monitoring server that cannot be pushed to can poll a host's
-scheduled checks out of the agent in one request. A review of the NRPE path and
-the shared TLS layer closed a handful of findings, the most important being
-that generated TLS private keys were world-readable and that a generated CA
-shipped its private key inside the `ca.pem` handed to clients.
+0.20.0 brings back .NET plugins — on Linux as well as Windows this time — and
+lets the WEB server hold on to passive check results so a monitoring server
+can collect a host's scheduled checks in a single request instead of being
+pushed to. A security review of NRPE and the TLS layer underneath it fixed a
+handful of findings; the one to act on is that TLS certificates the agent
+generated itself were readable by every local user, and a generated CA handed
+its private key to every client it was distributed to.
 
-Alongside that, the undefined-behaviour audit that followed #1499 fixed roughly
-seventy crash and memory-safety findings across the tree, the client
-host-override guard from 0.19.0 closes two ways past it, stopping the service
-no longer waits minutes on a stalled Windows Update search, every enumerating
-check is now tested against an empty filter result, and the tree builds with
-GCC 16.
+The release also fixes some seventy crash and hang bugs found by scanning the
+whole code base after the `check_service` crash in 0.19.0, closes two gaps in
+the credential guard introduced in 0.19.0, and makes stopping the service
+prompt again on Windows hosts where it could hang for minutes.
 
 ## ✨ Highlights
 
-- 🔌 **.NET plugins are back, on Windows and Linux.** `DotnetPlugins` is built
-  again, hosting an installed .NET runtime (8.0 or newer) through `hostfxr`
-  instead of the old Windows-only C++/CLI build. Nothing is bundled and the
-  module is not loaded unless you enable it; the Windows installer regained
-  its ".NET plugin support" feature. Plugins written against the old .NET
-  Framework `NSCP.Core.dll` need a rebuild against the `net8.0` one — the
-  interfaces are unchanged. (#1481)
-- 📤 **The WEB server can cache passive results and serve them over REST.**
-  Enable `[/settings/WEB/server/results]` and `WEBServer` registers a
-  submission channel, keeps one result per key (newest or worst, your choice)
-  and answers `GET /api/v2/results`. The bundled `check_nsclient` moves to
-  1.1.0, whose `results feed` polls that cache and hands everything in it to
-  Nagios as passive results — one active check per host instead of one per
-  service. A new scenario walks through the Nagios Core setup. (#1498)
-- 🔒 **NRPE and the shared TLS layer reviewed.** Generated private keys are
-  now `0600` and a generated CA keeps its key out of `ca.pem`; the inbound TLS
-  handshake is bounded by the listener's `timeout`; the NRPE client says so
-  when it is not authenticating the server; a short v3/v4 packet can no longer
-  smuggle unchecksummed trailing bytes into the command; and the Logjam-broken
-  512-bit DH parameter file is gone. (#1496)
-- 🛡️ **Undefined-behaviour audit.** Roughly seventy findings fixed, one commit
-  each. Three were reachable from outside the agent: a malformed chunked HTTP
-  response could hang it, an empty `POST /console/exec` command could crash
-  it, and `filter_perf sort=normal` could crash on the Nagios `U` marker. The
-  rest were memory errors on common Windows checks, races on module reload and
-  unload, and unguarded threshold arithmetic. (#1505)
-- 🔐 **Two ways past the client host-override guard are closed.** A secret
-  carried inside the target's `address` (`?token=`, `user:password@`) now
-  counts as the configured credential it is, and a target with a credential
-  but no address no longer adopts the caller's `host=` as its own.
-- ⏱️ **Stopping the service no longer waits on stalled collectors.** The
-  Windows Update search and the WMI perf-data queries that CheckSystem and
-  CheckDisk issue at start are abandoned on shutdown instead of holding the
-  unload for minutes. (#1504, #1507)
-- 🧪 **Every enumerating check is tested against an empty filter result.** The
-  path that killed the agent in 0.18 (#1499) now has one integration case per
-  check, so a regression fails a test instead of the process. (#1503)
-- 🐧 **Builds with GCC 16**, which defaults to C++20; the C++ standard is now
-  declared instead of taken from the compiler. (#1479, #1483)
+- 🔌 **.NET plugins are back, on Windows and Linux.** The `DotnetPlugins`
+  module hosts an installed .NET runtime (8.0 or newer), so plugins written in
+  C# or F# load on both platforms. Nothing changes on a default install: the
+  module stays off until you enable it, and no runtime is bundled. Plugins
+  built for the old .NET Framework API need a rebuild against the new
+  `NSCP.Core.dll`; the interfaces are the same. (#1481)
+- 📤 **The WEB server can keep passive results and serve them over REST.**
+  Turn the result cache on and everything submitted to its channel — typically
+  scheduled checks — waits in the agent until something polls
+  `GET /api/v2/results`. The bundled `check_nsclient` 1.1.0 adds
+  `results feed`, which collects that cache and hands every entry to Nagios as
+  a passive result: one active check per host instead of one per service, and
+  no NSCA or NRDP receiver needed. A new scenario walks through the Nagios
+  Core setup. (#1498)
+- 🔒 **Generated TLS keys are private now; check yours.** Certificates the
+  agent generated itself — including the one a default NRPE start creates —
+  were written world-readable, and a generated CA wrote its private key into
+  the `ca.pem` meant for clients. New files are created correctly; existing
+  ones are left alone, so see the upgrade notes. (#1496)
+- 🛡️ **NRPE and TLS hardened.** A TLS handshake can no longer be left open
+  forever by a permitted host, a short NRPE packet can no longer smuggle
+  unverified bytes into the command, the NRPE client tells you when it is not
+  authenticating the server, and the Logjam-broken 512-bit DH parameter file
+  is gone. (#1496)
+- 🐛 **Seventy crash and hang fixes across the agent.** Three could be
+  triggered from outside: a malformed HTTP response from any server the agent
+  talks to could hang it, an empty console command over REST could crash it,
+  and `filter_perf sort=normal` could crash on the Nagios `U` marker. The rest
+  were bugs on the default paths of common Windows checks, races when a module
+  is reloaded or unloaded, and thresholds that silently overflowed. (#1505)
+- 🔐 **Two ways past the credential guard closed.** A token or password
+  written inside a target's `address` is now protected the same way as one in
+  its own key, and a target without an address no longer adopts the caller's
+  host as its own.
+- ⏱️ **Stopping the service is prompt again.** On Windows, stopping shortly
+  after start could take minutes while the Windows Update check or a WMI query
+  finished; those are now abandoned on shutdown. (#1504)
+- 🐧 **Builds with GCC 16** for anyone building from source on a current
+  Debian or Fedora. (#1479)
 
 ## 🔍 Detailed changes
 
-### 🔌 DotnetPlugins — hosted through hostfxr on Windows and Linux
+### 🔌 DotnetPlugins — .NET plugins on Windows and Linux
 
-The old module was a C++/CLI build that only ever worked on Windows and was
-dropped from the build years ago. The new one is native code that locates an
-installed .NET runtime (`DOTNET_ROOT`, the registered install location, or the
-platform's default install folders — or `runtime path` if you want to pin it),
-loads `hostfxr`, and hosts the managed plugin API `NSCP.Core.dll` from
-`modules/dotnet/`. Plugins are declared under `[/settings/dotnet/plugins]`:
+The old module only ever worked on Windows and had been out of the build for
+years. The new one finds an installed .NET runtime — `DOTNET_ROOT`, the
+registered install location or the platform's default folders, or a path you
+give in `runtime path` — and hosts your plugins through it. Everything a
+plugin could do before still works: commands, submission channels,
+command-line exec and log messages all reach the managed side.
 
 ```ini
 [/modules]
@@ -82,197 +79,162 @@ DotnetPlugins = enabled
 MyPlugin = MyPlugin.dll
 ```
 
-Every handler the module advertises is wired: commands, submission channels,
-command-line exec and log messages all reach the managed side. Only a
-`hostfxr` built for the process' architecture is accepted, and the
-native/managed boundary pins its calling convention on both platforms. The
-Windows installer's ".NET plugin support" feature installs the module and the
-managed API; the Linux packages ship the same files when built with the dotnet
-SDK, and a C# sample plugin is built (never shipped) to keep the API honest.
-See [Extending with .NET](https://nsclient.org/docs/extending/dotnet/) and the
+Assemblies are looked up in `plugin path` (`modules/dotnet` by default,
+where `NSCP.Core.dll` lives too). On Windows the installer has a ".NET plugin
+support" feature again, selected by default; the Linux packages ship the same
+files. See [Extending with .NET](https://nsclient.org/docs/extending/dotnet/)
+and the
 [DotnetPlugins reference](https://nsclient.org/docs/reference/generic/DotnetPlugins/).
 
 ### 📤 WEBServer — a passive result cache served over REST
 
-The usual passive flow pushes results from the agent to the monitoring server.
-That fails when the server has no NSCA/NRDP receiver or the agent has no route
-in. The WEB server can now invert it: with the cache enabled it registers a
-submission channel (`WEB` by default), keeps whatever is submitted to it —
-scheduled checks from `Scheduler`, `check_and_forward` from `CheckHelpers`,
-anything that submits to a channel — and serves it back on request.
+Passive monitoring normally means the agent pushes results to the monitoring
+server. That does not work when the server has no NSCA or NRDP receiver, or
+when the agent cannot reach it. The WEB server can now turn it around: with
+the cache enabled it listens on a submission channel (`WEB` by default),
+keeps whatever arrives there — scheduled checks from `Scheduler`,
+`check_and_forward` from `CheckHelpers`, anything that submits to a channel —
+and hands it over when polled.
 
 | Setting (`/settings/WEB/server/results`) | Default | Meaning |
 |---|---|---|
-| `enabled` | `false` | Register the channel and serve the endpoints; read at web server start |
+| `enabled` | `false` | Turn the cache on (takes effect on restart) |
 | `channel` | `WEB` | The submission channel to listen on |
-| `primary index` | `${host}/${alias-or-command}` | The key one result is kept under |
-| `mode` | `last` | `last`: newest result per key wins; `worst`: the most severe since the last poll wins |
-| `clear on poll` | `true` | `GET /api/v2/results` drains what it returns |
-| `max entries` | `1000` | Keys kept before the oldest is evicted |
-| `max age` | none | Results older than this are dropped |
+| `primary index` | `${host}/${alias-or-command}` | What makes two results "the same check" |
+| `mode` | `last` | Which of two results for a check to keep: the newest (`last`) or the most severe (`worst`) |
+| `clear on poll` | `true` | Polling empties the cache, so `worst` means "worst since the last poll" |
+| `max entries` | `1000` | How many checks to keep before the oldest is dropped |
+| `max age` | none | Drop results older than this |
 
-Four endpoints expose the cache — `GET /api/v2/results`,
-`GET /api/v2/results/{key}`, `DELETE /api/v2/results` and
-`DELETE /api/v2/results/{key}` — behind the new `results.list`, `results.get`
-and `results.delete` privileges, which only the `full` role carries:
+The cache is exposed as `GET /api/v2/results`, `GET /api/v2/results/{key}`,
+`DELETE /api/v2/results` and `DELETE /api/v2/results/{key}`. They need the
+new `results.list`, `results.get` and `results.delete` privileges, which only
+the `full` role has, so grant them to the account that polls:
 
 ```
 nscp web add-role --role poller --grant results.list,results.get,login.get
 ```
 
-The cache survives a settings reload with its contents, while `enabled` and
-`channel` only take effect on a restart because a channel cannot be registered
-from a reload. The bundled `check_nsclient` (Windows MSI and Linux packages
-alike) moves from 1.0.1 to 1.1.0, which adds `results list`, `results show`,
-`results delete`, `results clear` and `results feed`; the last polls an agent's
-cache and submits every entry to Nagios as a passive check result. The
-[REST results page](https://nsclient.org/docs/api/rest/results/) has the
-contract and the
+`check_nsclient` 1.1.0, bundled with the Windows and Linux packages, adds the
+`results list`, `results show`, `results delete`, `results clear` and
+`results feed` commands; `feed` is the one to schedule from Nagios. The
+[REST results page](https://nsclient.org/docs/api/rest/results/) describes
+the API and the
 [Polled Passive Checks (Nagios Core)](https://nsclient.org/docs/scenarios/nagios-result-cache/)
-scenario the end-to-end setup.
+scenario the complete setup.
 
-### 🔒 NRPE and the shared TLS layer — review findings
+### 🔒 NRPE and TLS — what the review found
 
-A review of the wire codec, the server parser and protocol, both NRPE modules
-and the socket/TLS layer beneath them. None of it is remotely exploitable for
-code execution past `allowed hosts`.
+None of the findings lets anyone past `allowed hosts` run code on the agent.
 
-- **Generated TLS private keys were world-readable.** `write_certs` used a
-  plain `fopen`, so the unencrypted key a default NRPE start generates landed
-  at `0644`. The CA branch also wrote the CA private key into the `ca.pem`
-  operators are told to distribute, letting any recipient mint certificates
-  that pass `verify mode = peer-cert`. Keys are now `0600` (a restricted DACL
-  on Windows) and a generated CA keeps its key in `ca-key.pem`.
-- **The inbound TLS handshake had no deadline.** The connection timer was armed
-  only after the handshake, so a permitted host could open sockets, send
-  nothing and pin connections indefinitely. It is now armed first, bounded by
-  the listener's `timeout`.
-- **The NRPE client never authenticated the server.** `verify mode` defaults to
-  `none`; the default stands, but the client now logs one error per target at
-  its first check, and generated certificates carry a usable SAN so
-  verification is possible at all.
-- **A short v3/v4 packet let unchecksummed bytes into the command.** The
-  decoder bounded the payload by the bytes received rather than the declared
-  length the CRC covers.
-- **The 512-bit DH parameter file is no longer shipped.** Unused by default but
-  Logjam-broken, and inherited by anyone who copied the shipped default into
-  `dh`.
-- Smaller fixes: the peer certificate CN is constrained before it becomes a
-  policy principal, `workarounds`/`single` no longer leak into the TLS verify
-  mask, every documented `tls version` spelling is accepted (`tlsv1.3+`,
-  `1.0+`, `sslv3+`, `any`, … were rejected with "Invalid tls version", which an
-  NRPE listener reported as "listener failed to start"), and a set of NRPE
-  codec bugs — wire version 4 unrecognised, packets declared complete early,
-  length underflows, a re-sending response loop.
+- **Generated private keys were readable by every local user**, and a
+  generated CA put its private key into the `ca.pem` you distribute to
+  clients — anyone holding that file could mint certificates the server
+  accepts with `verify mode = peer-cert`. New keys are created readable only
+  by the agent, and a generated CA keeps its key in a separate `ca-key.pem`.
+- **A TLS handshake could be left open forever.** A permitted host could open
+  connections, send nothing, and hold them indefinitely. The listener's
+  `timeout` now covers the handshake as well.
+- **The NRPE client did not authenticate the server.** With `ssl = true` and
+  the default `verify mode = none` the link is encrypted but anyone on the
+  path could impersonate the server. The default stays, but the client now
+  logs one error per target so the choice is visible, and generated
+  certificates name the machine rather than only `localhost` so verification
+  can actually be turned on.
+- **A short NRPE v3/v4 packet could carry extra bytes into the command** that
+  the checksum never covered.
+- **The 512-bit DH parameter file is no longer shipped.** Nothing used it by
+  default, but anyone who copied it into `dh` was running a Logjam-broken
+  key exchange.
+- Smaller fixes: `tls version` accepts every spelling the documentation lists
+  (`tlsv1.3+`, `1.0+`, `sslv3+`, `any`, … used to fail with "Invalid tls
+  version", which for an NRPE listener showed up as "listener failed to
+  start"), and several NRPE wire-format bugs are fixed, including version 4
+  packets not being recognised by the server.
 
-### 🔐 Client modules — two ways past the host-override guard
+### 🔐 Client modules — the credential guard covers the address too
 
-The 0.19.0 guard refuses a request that moves a credentialed target's
-destination, but it only recognised a credential in a `password` or `token`
-key. A secret inside the address — `?token=SECRET` in the URL, or
-`user:password@host` — looked like no credential at all, so `host=` could
-redirect it. And a target that supplied a credential but named no address had
-the caller's `host=` recorded as its own, so the guard compared the host with
-itself. A credential now counts wherever it is written and a target records
-only an address it names. The remedies are unchanged: pass the credential with
-the request, configure each destination as its own target, or set
-`allow host override = true`.
+0.19.0 stopped a caller from redirecting a target that carries a credential
+to a host of their choosing. It missed two cases: a secret written inside the
+address itself (`?token=SECRET` in the URL, or `user:password@host`), and a
+target that had a credential but no address, which took the caller's host as
+its own. Both are closed. If you relied on either, the options are the same as
+in 0.19.0: pass the credential with the request, configure one target per
+destination and pick it with `target=`, or set `allow host override = true`.
 
-### 🛡️ Undefined-behaviour audit — crash and memory-safety fixes across the agent
+### 🛡️ Crash and hang fixes across the agent
 
-After #1499 the C++ tree was scanned for the same class of bug and roughly
-seventy findings were fixed, one commit per finding (#1505). Beyond the three
-externally reachable ones in the highlights, the bulk were memory errors on the
-default paths of common Windows checks (event log records, WMI arrays, task
-scheduler COM objects, process snapshots, `check_cpu` and `check_pagefile`
-temporaries), races when a module is reloaded or unloaded (a module unload now
-waits for its in-flight dispatches, a plugin is never unloaded mid-call,
-reloads no longer rewrite server and client tables under live workers), and
-unguarded arithmetic in thresholds and unit suffixes. A few inputs that used to
-misbehave are now rejected instead:
+After the `check_service` crash in 0.19.0 (#1499) the whole code base was
+checked for the same kind of mistake, and roughly seventy were fixed. Most
+were on paths ordinary checks take every day: reading event log records, WMI
+results and scheduled tasks, taking process snapshots, `check_cpu` and
+`check_pagefile`. Others showed up when a module was reloaded or unloaded
+while a check was running, or when a threshold or unit suffix was larger than
+the agent could represent. As a side effect, a few inputs that used to do
+something odd are now rejected outright:
 
 | Input | Now |
 |---|---|
-| `check_cpu time=0` | Error: the window must be at least one second |
-| A threshold or unit suffix that overflows 64 bits (`used > 1.0e30T`, `time=5000000w`) | Reported as an error instead of wrapping |
-| A module whose load fails | Dropped from the plugin list; no longer answers `exec` |
-| `NSClientServer` / `CheckMKServer` on a settings reload | Restart their listener, as `NRPEServer` already did; open connections are dropped |
-| A Python script unloading `PythonScript` | Refused |
+| `check_cpu time=0` | An error: the window must be at least one second |
+| A threshold or unit that overflows (`used > 1.0e30T`, `time=5000000w`) | An error instead of a wrapped-around value |
+| A module that failed to load | Dropped from the module list; no longer answers `exec` |
+| `NSClientServer` (check_nt) or `CheckMKServer` on a settings reload | Restart their listener so a changed port or password takes effect; open connections drop |
+| A Python script unloading `PythonScript` from inside | Refused |
 
-### ⏱️ CheckSystem and CheckDisk — shutdown no longer waits on stalled collectors
+### ⏱️ CheckSystem and CheckDisk — shutdown no longer waits on Windows Update or WMI
 
-Stopping the service shortly after start could take minutes (#1504). The whole
-delay sat in the CheckSystem unload: its collector thread was blocked in the
-synchronous Windows Update search the OS updates collector issues on its first
-cycle, which goes online to Windows Update or WSUS and routinely takes minutes
-on a server. The search now runs asynchronously and is aborted on shutdown,
-the module stays mapped until the abandoned search has let go of it, and the
-WMI perf-data queries CheckSystem (network, temperature, CPU frequency,
-battery) and CheckDisk (disk I/O) issue — which stall while `WmiApSrv`
-restarts — are abandoned the same way. (#1507)
+Stopping the service shortly after it started could take minutes on Windows
+(#1504). The first Windows Update check the agent runs goes online to Windows
+Update or WSUS and cannot be interrupted, and the service waited for it. The
+WMI queries behind the network, temperature, CPU frequency, battery and disk
+I/O collectors could hold things up the same way while the WMI performance
+service restarts. All of them are now abandoned when the service stops.
 
-### 🐧 Build and CI
+### 🐧 Building from source
 
-- GCC 16 (Debian unstable) failed on two fronts, neither a regression: under
-  its default `gnu++20` the generated plugin instance no longer
-  aggregate-initialised, and the standalone `check_nscp` clients lacked the
-  plugin singleton their inline logging members reference. Both fixed, and the
-  C++ standard is now declared in CMake instead of taken from the compiler
-  (#1479, #1483). The vendored simpleini header builds under C++17 (#1509).
-- CI cancels superseded runs per ref and runs the sanitizer jobs on `main`
-  only, so a pushed fix or a run of merges no longer queues full builds nobody
-  will release (#1510).
-
-### 🧪 Testing
-
-One integration case per enumerating check passes a filter that matches
-nothing and asserts the documented empty contract: `check_process`,
-`check_network`, `check_registry_key`, `check_registry_value`,
-`check_printqueue`, `check_printjobs`, `check_drivesize`, `check_disk_io`,
-`check_disk_health`, `check_files`, `check_share`, `check_tasksched`,
-`check_connections` and `check_logfile` with a `column()` threshold (#1503).
+The tree builds with GCC 16 (Debian unstable, Fedora rawhide), which defaults
+to C++20 (#1479).
 
 ### 📚 Documentation
 
 - New scenario: [Polled Passive Checks (Nagios Core)](https://nsclient.org/docs/scenarios/nagios-result-cache/).
 - New REST page: [Results](https://nsclient.org/docs/api/rest/results/).
-- New extending page: [.NET plugins](https://nsclient.org/docs/extending/dotnet/), and the
-  `DotnetPlugins` reference is filed under the generic modules now that it runs on both platforms.
-- The WEB server reference documents the `/settings/WEB/server/results` section.
+- New extending page: [.NET plugins](https://nsclient.org/docs/extending/dotnet/).
+- The WEB server reference covers the new `/settings/WEB/server/results` section.
 
 ## ⚠️ Upgrade notes
 
-- 🔒 **Generated TLS private keys are now created `0600`, and a generated CA
-  keeps its key out of `ca.pem`.** Existing files are not touched: run
-  `chmod 600 /etc/nscp/security/certificate.pem`, and if you distributed a
-  generated `ca.pem`, regenerate that CA and re-issue client certificates —
-  anyone holding the old file can mint certificates that pass
-  `verify mode = peer-cert`.
-- 🔒 **The client host-override guard also covers a credential kept inside the
-  target's address.** Nothing to do unless you relied on `host=` to point a
-  credentialed target at several hosts; use `target=`, pass the credential
-  with the request, or set `allow host override = true`.
-- 🔒 **Undefined-behaviour audit: some inputs are now rejected.** See the table
-  above; nothing to do unless you relied on one of them.
-- 🔒 **Inbound TLS handshakes are bounded by the listener's `timeout`.** A
-  client on a link too slow to complete a handshake within `timeout` (30 s by
-  default) is dropped; raise `timeout` on the listener if that is too tight.
-- 🔒 **The NRPE client logs one error per target when `verify mode = none`.**
-  The default is unchanged; set `verify mode = peer-cert` with `ca` pointing at
-  the issuer to silence it and actually authenticate the server. Regenerate an
-  existing generated certificate to get a usable SAN.
-- 🔒 **`security/nrpe_dh_512.pem` is no longer shipped.** If you set `dh` to it
-  explicitly, change it to `${nrpe-dh}/nrpe_dh_2048.pem` before upgrading or
-  the listener will fail to start. An existing copy on disk is left alone.
-- 🔌 **`DotnetPlugins` is back.** Not loaded unless you add
-  `DotnetPlugins = enabled` to `[/modules]`; no runtime is bundled (8.0 or
-  newer must be installed). Plugins built against the pre-0.6 .NET Framework
-  `NSCP.Core.dll` must be rebuilt against the `net8.0` one.
-- 📤 **The WEB passive result cache is off by default.** Enabling it needs a
-  restart, and `results.list`/`results.get`/`results.delete` must be granted
-  to whoever polls. The bundled `check_nsclient` is now 1.1.0; no existing
-  invocation changes.
-- 🔧 **`tls version` accepts every spelling it documents.** Nothing to do; the
+- 🔒 **Check the permissions of certificates the agent generated for you.**
+  The upgrade does not touch existing files: run
+  `chmod 600 /etc/nscp/security/certificate.pem` (or restrict the file to the
+  service account on Windows). If you handed out a generated `ca.pem`,
+  regenerate that CA and re-issue client certificates — the old file contains
+  the CA's private key.
+- 🔒 **If `dh` names `nrpe_dh_512.pem`, change it before upgrading** to
+  `${nrpe-dh}/nrpe_dh_2048.pem`; the file is no longer shipped and the
+  listener will otherwise fail to start. An existing copy on disk is left
+  where it is.
+- 🔒 **The NRPE client logs an error for every target it does not
+  authenticate.** The default (`verify mode = none`) is unchanged. Set
+  `verify mode = peer-cert` with `ca` pointing at the issuer to authenticate
+  the server and silence it. Regenerate an existing generated certificate to
+  get one that can be verified.
+- 🔒 **Slow clients may be dropped during the TLS handshake.** The handshake
+  now has to finish within the listener's `timeout` (30 s by default). Raise
+  `timeout` if a client on a slow link stops connecting.
+- 🔒 **A credential inside a target's `address` now blocks `host=` overrides**,
+  as one in `password` or `token` already did. Use `target=`, pass the
+  credential with the request, or set `allow host override = true`.
+- 🔒 **Some inputs that used to misbehave are rejected**: see the table above.
+  Nothing to do unless you relied on one of them.
+- 🔌 **`DotnetPlugins` is available again** but not loaded unless you add
+  `DotnetPlugins = enabled` under `[/modules]`, and it needs a .NET runtime
+  (8.0 or newer) installed on the host. Plugins built against the old .NET
+  Framework `NSCP.Core.dll` must be rebuilt against the new one.
+- 📤 **The result cache is off by default.** Enabling it needs a service
+  restart, and the account that polls needs the `results.*` privileges. The
+  bundled `check_nsclient` is now 1.1.0; existing invocations are unaffected.
+- 🔧 **Every documented `tls version` spelling works now.** Nothing to do; the
   default `tlsv1.2+` was never affected.
 
 Full detail on the security items lives in [Security notices](https://nsclient.org/docs/security/notices/); the operator
