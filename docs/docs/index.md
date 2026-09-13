@@ -16,6 +16,9 @@ Follow the [Quick Start guide](quick-start.md) to install NSClient++, run your f
 ### 🌐 I want to manage the agent from the browser
 [Using the Web Interface](setup/web-interface.md) — enable the built-in web server, log in, run queries, and edit settings without the command line.
 
+### 🛰️ I have more agents than I want to configure by hand
+[Central management with NSClient Fleet](setup/fleet.md) — run a fleet server, enroll your agents against it, and manage their configuration centrally instead of editing `nsclient.ini` on every machine. The server has [its own documentation](fleet/index.md).
+
 ### 📋 I want to monitor something specific
 Browse the [Monitoring Scenarios](scenarios/index.md) for step-by-step guides covering the most common real-world monitoring tasks:
 

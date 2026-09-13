@@ -1,0 +1,352 @@
+<!--
+  This page is generated. It is maintained in the nsclient-fleet-server repository:
+  https://github.com/mickem/nsclient-fleet-server/blob/main/docs/agent-implementation.md
+  Run scripts/sync-fleet-server-docs.py to refresh it; edits made here are
+  overwritten.
+-->
+
+# Building the Agent
+
+This document describes how to implement the real (production) agent for
+NSClient Fleet. The protocol is fully pull-based: the agent enrolls once
+using a one-time bootstrap token, then drives everything itself over mTLS —
+polling for desired state, downloading and verifying bundles, and reporting
+back. The server never pushes to the agent.
+
+A working reference client lives in `crates/agent-sim/src/lib.rs`, and the full
+lifecycle is exercised end-to-end in `crates/server/tests/fleet_flow.rs` and
+`crates/server/tests/poll_flow.rs`. Any real agent should behave identically on
+the wire.
+
+Once an agent is enrolled, the day-to-day operating contract (config sync, state
+reporting, renewal, error handling) is specified in
+[agent-integration.md](agent-integration.md).
+
+## Lifecycle overview
+
+```
+install (with bootstrap token)
+        │
+        ▼
+  POST /enroll/v1  ──────────────  public HTTPS, one-time token
+        │  cert + CA + bundle-signing key + mTLS URL
+        ▼
+┌─────────────────────────────────────────────────────┐
+│  main loop (all over mTLS)                          │
+│                                                     │
+│   GET  /agent/v1/desired-state?current_hash=…       │
+│     ├─ 304 → sleep next_poll_in_seconds, repeat     │
+│     └─ 200 → download + verify bundles, apply       │
+│   GET  /agent/v1/bundles/:id     (per bundle)       │
+│   POST /agent/v1/state-report    (after applying)   │
+│   POST /agent/v1/renew           (before cert expiry)│
+└─────────────────────────────────────────────────────┘
+```
+
+## 1. Enrollment
+
+The user adds a host in the UI/API; the server returns an `install_command`
+containing a **bootstrap token** (a JWT wrapping a one-time nonce, expiring
+after `bootstrap_ttl_secs`). The agent is started with this token and:
+
+1. Generates an **Ed25519 keypair**. This is the agent's long-term identity key
+   until the next renewal.
+2. Builds a PKCS#10 **CSR** from it (CN can be anything, e.g. `client` — the
+   server sets the real identity in the issued cert from the token's claims).
+3. Sends, over plain public HTTPS:
+
+```
+POST {server_url}/enroll/v1
+Content-Type: application/json
+
+{
+  "bootstrap_token": "<token from install command>",
+  "csr_pem": "-----BEGIN CERTIFICATE REQUEST-----…",
+  "hostname": "web-01",        // optional
+  "os": "linux"                // optional
+}
+```
+
+Success response (`200`):
+
+```jsonc
+{
+  "cert_pem": "…",                 // client cert signed by the tenant CA
+  "ca_pem": "…",                   // tenant CA cert
+  "bundle_signing_pub_pem": "…",   // Ed25519 public key for bundle signatures
+  "server_url": "…",               // public API base
+  "mtls_url": "…",                 // base URL for all /agent/v1/* calls
+  "mtls_server_cert_pem": "…"      // cert to pin when connecting to mtls_url
+}
+```
+
+Persist **all of this plus the private key** to durable storage (e.g.
+`agent-state.json` / a state directory with `0600` permissions). Enrollment
+cannot be repeated: the server burns the nonce atomically on first use
+(`crates/storage/src/repos.rs`, `mark_enrolled_if_pending`), so a replayed or
+expired token gets a `4xx`. If the state file is lost, the user must create a
+new host (or re-issue a token) server-side.
+
+Failure handling:
+
+- `401/403` — token invalid, expired, or already used. Do not retry; surface a
+  clear error telling the user to generate a new install command.
+- `429` — per-tenant enrollment rate limit. Back off and retry with jitter.
+
+## 2. The mTLS client
+
+Every call after enrollment goes to `mtls_url` using:
+
+- **ALPN**: offer `nsclient-fleet/1` — first, with `http/1.1` after it. **Not optional.**
+- **Client auth**: the issued `cert_pem` + the locally generated private key.
+- **Server trust**: pin `mtls_server_cert_pem` as the only root — do not use
+  the system trust store for this connection.
+
+The server side resolves `(tenant_id, host_id)` from the client cert, so no
+request body ever carries identity — there is no host-id header or token.
+
+### Why ALPN is mandatory
+
+`mtls_url` usually points at port 443, shared with the operator web UI. The
+server picks which TLS configuration to use by reading ALPN out of your
+ClientHello: `nsclient-fleet/1` gets the pinned certificate and a client-certificate
+request; anything else gets the public web certificate and no client-cert
+request. Omit it and the connection *appears* to work at the TCP level, then
+fails pin validation with a confusing "untrusted certificate" error.
+
+Send `nsclient-fleet/1` unconditionally. It is harmless against a deployment that runs a
+dedicated mTLS port, which advertises both `nsclient-fleet/1` and `http/1.1`.
+
+The constant is defined once, in `crates/proto` (`fleet_proto::AGENT_ALPN`).
+
+## 3. Poll loop: desired state
+
+```
+GET {mtls_url}/agent/v1/desired-state?current_hash=<last applied hash>
+```
+
+Omit `current_hash` on the very first poll.
+
+Responses:
+
+- **`304 Not Modified`** — you are up to date. Body:
+  `{"next_poll_in_seconds": N}`. Sleep `N` seconds, poll again.
+- **`200 OK`** — new state:
+
+```json
+{
+  "tenant_id": 7,
+  "state_hash": "…",
+  "next_poll_in_seconds": 60,
+  "merged_config_json": {},
+  "bundles": [
+    {
+      "id": "…",
+      "name": "…",
+      "version": "…",
+      "sha256": "<hex digest of the bundle bytes>",
+      "signature": "<base64 Ed25519 signature over this bundle's descriptor>",
+      "url": "/agent/v1/bundles/<id>",
+      "priority": 10,
+      "format": "plain"
+    }
+  ]
+}
+```
+
+- **`429 Too Many Requests`** — you polled faster than your tier's
+  `min_poll_interval_secs`. Honor the `Retry-After` header. Treat
+  `next_poll_in_seconds` from previous responses as authoritative cadence; the
+  server derives it from the tenant tier, so never hardcode an interval.
+
+Notes:
+
+- `tenant_id` identifies the tenant these bundles belong to. You need it to
+  verify a bundle signature (§4); it is sent rather than derived because your
+  certificate carries the tenant *slug*, not this id. There is nothing to trust
+  here — a wrong value simply fails signature verification, since the verifying
+  key is per tenant.
+- `merged_config_json` is currently always `{}` — real configuration lives
+  inside bundle contents; the agent is responsible for unpacking and applying
+  them (see `crates/server/src/desired_state.rs`).
+- `state_hash` covers the merged config **and** the bundle set. Store it only
+  after a successful apply, and echo it as `current_hash` on subsequent polls.
+- Add jitter to the sleep to avoid thundering-herd across a fleet.
+
+## 4. Bundle download and verification
+
+For each entry in `bundles` (process in ascending `priority` order):
+
+1. `GET {mtls_url}{bundle.url}` — the server re-checks that the bundle is in
+   this host's effective set and returns `403` otherwise. What bounds that set
+   is group membership, and group membership is only as trustworthy as the
+   tags the selectors read: a selector clause that accepts `agent`-sourced
+   tags can be satisfied by a host claiming the tag in its own state report.
+   Clauses default to operator-set tags precisely so that the effective set is
+   not something the host chooses — see §5.
+2. **Verify integrity**: SHA-256 of the raw bytes must equal `sha256` (hex).
+3. **Verify authenticity**: `signature` is a base64 Ed25519 signature over the
+   bundle's **descriptor** — not over the bytes, and not over their digest
+   alone — verified with `bundle_signing_pub_pem` obtained at enrollment.
+
+   The descriptor is the identity the server advertised for this bundle,
+   serialised as a version prefix followed by six NUL-separated fields:
+
+   ```
+   nsclient-fleet/bundle-sig/v2 \0 tenant_id \0 id \0 name \0 version \0 format \0 sha256
+   ```
+
+   `tenant_id` is the top-level field of the same desired-state response;
+   everything else comes from this bundle's entry, verbatim, including the
+   `sha256` you just checked the bytes against. Sign nothing yourself and
+   reconstruct nothing — read the fields out of the response, because what you
+   are verifying is the server's own claim about *what this bundle is*.
+
+   A signature over the digest alone would say only "this tenant's server saw
+   these bytes once", which lets an old signed blob be re-advertised under a
+   different name, version or id. Reference implementation:
+   `fleet_core::bundlesig`.
+4. **Decrypt if sealed**: bytes starting with the `NSEB1` magic are a
+   client-side-encrypted envelope (`format: "enc-v1"`); decrypt with the
+   locally-configured bundle key, using the advertised `name`/`version` as
+   AAD. Detect by the magic, not the `format` field. Full format, key
+   provisioning, and the `require_encrypted_bundles` hardening flag:
+   `agent-integration.md` §1.2.1; reference implementations in
+   `fleet_core::encbundle` and `EnrolledAgent::open_bundle` in
+   `crates/agent-sim`.
+5. Only then unpack (bundles are zip archives) and apply the contents.
+
+Reject and report (via `errors` in the state report) on any mismatch or
+decrypt failure — never apply an unverified bundle. Cache verified bundles by
+`(id, sha256)` so an unchanged bundle in a new desired state is not
+re-downloaded.
+
+## 5. State report
+
+After applying (or failing to apply) a desired state:
+
+```
+POST {mtls_url}/agent/v1/state-report
+Content-Type: application/json
+
+{
+  "applied_state_hash": "<state_hash you successfully applied, or null>",
+  "bundles_installed": [],
+  "errors": ["…any apply/verify failures…"],
+  "reported_tags": { "os": "linux", "role": "web" },
+  "local_config_present": false
+}
+```
+
+All fields are optional server-side (`crates/server/src/agent_api.rs`,
+`StateReport`). Semantics:
+
+- `applied_state_hash` set → server records it and updates `last_seen_at`.
+  Omit it (null) when nothing was applied; the server still touches
+  `last_seen_at`. It must be exactly 64 hex characters — it is the SHA-256 the
+  server sent you and nothing else is meaningful; anything else is a `400`.
+- `reported_tags` → **the host's complete set of self-reported tags**, stored
+  with `source = "agent"` and kept distinct from tags an operator set. Send the
+  full map every time: it *replaces* what was stored, so a key you stop
+  reporting is removed rather than left standing. Omitting the field entirely
+  means "no answer" and leaves the stored set alone; an explicit `{}` is an
+  answer and clears it. Resending an identical map is a no-op.
+
+  Capped at 128 tags, keys at 128 bytes and values at 256 bytes — the same
+  limits a selector can compare, so anything longer could never be matched. Over
+  any of them the whole report is refused with `400`.
+
+  A change here affects only *this* host's next desired-state poll (tags feed
+  group selectors); it does not disturb any other host in the tenant.
+
+  **Trust boundary.** These tags are the host's claims about itself and are
+  treated as such. A selector clause reads operator-set tags only unless it
+  says `"source": "agent"` or `"source": "any"`, so reporting `role=sql_server`
+  does not by itself put a host in the SQL group. An operator who does write a
+  clause over agent tags is stating that hosts in that tenant may place
+  themselves in that group, and the console says so at the point they write it.
+  Anything gating access to scripts or secrets should stay on operator tags.
+- `errors` → logged server-side; use it for bundle verification or apply
+  failures. At most 32 entries of 512 characters reach the log; send a summary,
+  not a log file.
+- `local_config_present` → whether the host has configuration of its own that
+  takes precedence over what you were sent. Send the fact on every report, both
+  ways round, and **never** send the configuration itself — it typically holds
+  credentials. Omitting the field means "no answer" and leaves any previous
+  answer standing. Full contract:
+  [agent-integration.md §2.1](agent-integration.md#21-local-configuration).
+
+Report tags early (right after enrollment, before the first apply) so the host
+gets matched into groups and receives its real desired state promptly — for the
+groups whose selectors opt into agent tags. A host that matches only
+operator-set selectors is placed by the operator, and reporting tags changes
+nothing about its membership.
+
+## 6. Certificate renewal
+
+Client certs expire (`client_cert_lifetime_days` server config). Well before
+expiry (e.g. at 2/3 of lifetime), while the current cert is still valid:
+
+1. Generate a **fresh** Ed25519 keypair and CSR.
+2. `POST {mtls_url}/agent/v1/renew` with `{"csr_pem": "…"}` — authenticated by
+   the existing mTLS cert; no bootstrap token is involved.
+3. Response mirrors enrollment: `cert_pem`, `ca_pem`, `mtls_server_cert_pem`,
+   `bundle_signing_pub_pem`. Persist the new key + material **atomically**
+   (write temp file, fsync, rename) and swap the in-memory identity. The old
+   cert stays valid server-side until its natural expiry, so a crash between
+   renew and persist is recoverable as long as you don't delete the old key
+   until the new material is durably stored.
+
+Also refresh `bundle_signing_pub_pem` and `mtls_server_cert_pem` from the
+renew response — this is how server-side key rotation reaches agents.
+
+There is also `GET {mtls_url}/agent/v1/heartbeat` for a cheap liveness check,
+useful at startup to validate the stored identity before entering the loop.
+
+## 7. Suggested agent structure
+
+```
+agent
+├── identity.rs      // keypair gen, CSR, state file load/store (atomic writes)
+├── enroll.rs        // one-shot bootstrap → EnrolledAgent material
+├── transport.rs     // mTLS client construction (pinned server cert)
+├── poll.rs          // desired-state loop, 304/200/429 handling, jitter
+├── bundles.rs       // download, sha256 + Ed25519 verify, cache, unpack
+├── apply.rs         // apply bundle contents / local config
+├── report.rs        // state-report + tag collection
+└── renew.rs         // cert lifecycle
+```
+
+Main loop sketch:
+
+```text
+load state file
+  ├─ none + bootstrap token given → enroll, persist, report initial tags
+  └─ none + no token → exit with instructions
+heartbeat (sanity-check identity; on cert-expired → surface re-enroll guidance)
+loop:
+  if cert past renewal threshold → renew + persist
+  ds = fetch_desired_state(current_hash)
+  if 200:
+      for bundle in ds.bundles (by priority): download, verify, stage
+      apply all-or-nothing; on success current_hash = ds.state_hash
+      report_state(current_hash or null, tags, errors)
+  sleep next_poll_in_seconds (+ jitter)
+```
+
+## 9. Reference material
+
+| Concern                                             | Reference                                                               |
+|-----------------------------------------------------|-------------------------------------------------------------------------|
+| Wire-level client (all endpoints)                   | `crates/agent-sim/src/lib.rs`                                           |
+| Enrollment server-side                              | `crates/server/src/hosts.rs` (`enroll`)                                 |
+| Desired-state / state-report / renew handlers       | `crates/server/src/agent_api.rs`                                        |
+| Desired-state computation (tags → groups → bundles) | `crates/server/src/desired_state.rs`                                    |
+| Bundle download authz                               | `crates/server/src/bundles.rs` (`download`)                             |
+| Route wiring (public vs mTLS router)                | `crates/server/src/lib.rs`                                              |
+| End-to-end lifecycle tests                          | `crates/server/tests/fleet_flow.rs`, `crates/server/tests/poll_flow.rs` |
+
+The simulator uses `rcgen` (keys/CSRs), `rustls` + `reqwest` (mTLS),
+`ed25519-dalek` (signature verify), and `sha2` — a real Rust agent can reuse
+these choices directly; an agent in another language just needs Ed25519,
+SHA-256, PKCS#10 CSRs, and mTLS with a pinned server cert.
