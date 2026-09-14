@@ -6,7 +6,8 @@
   // key -> where to get its releases. `data` is relative to the site root.
   var PROJECTS = {
     nscp: { repo: 'mickem/nscp', data: 'data/releases.json' },
-    check_nsclient: { repo: 'mickem/check_nsclient', data: 'data/check_nsclient-releases.json' }
+    check_nsclient: { repo: 'mickem/check_nsclient', data: 'data/check_nsclient-releases.json' },
+    fleet: { repo: 'mickem/nsclient-fleet-server', data: 'data/fleet-releases.json' }
   };
   var DEFAULT_PROJECT = 'nscp';
   var CACHE_PREFIX = 'nscp-latest-release-v3:';
