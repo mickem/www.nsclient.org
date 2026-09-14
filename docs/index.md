@@ -32,6 +32,7 @@ Released <span data-release="date">recently</span> &middot; <a href="https://git
 - :material-view-dashboard: **Web UI** with live dashboards and check explorer
 - :material-language-python: **Scriptable** in Python, Lua, or any external script
 - :material-console: **Command line client** — [check_nsclient](docs/check_nsclient/index.md) drives local and remote agents from a single binary
+- :material-server-network: **Central management** — [NSClient Fleet](docs/fleet/index.md) configures a whole estate from one server
 - :material-shield-check: **Secure by default** — TLS, client certs, allowed-hosts
 
 </div>
@@ -41,6 +42,43 @@ Released <span data-release="date">recently</span> &middot; <a href="https://git
 
 </div>
 </div>
+
+## :material-package-down: Downloads
+
+<div class="download-strip" markdown="1">
+<div markdown="1">
+
+### :material-server: NSClient++
+
+The monitoring agent, on every machine you want to watch.
+
+[:material-download: Download <span data-release="version">latest</span>](https://github.com/mickem/nscp/releases/latest){ .md-button .md-button--primary data-release="download-link" }
+
+</div>
+<div markdown="1">
+
+### :material-server-network: NSClient Fleet
+
+One server that configures the whole estate.
+
+[:material-download: Download <span data-release="version" data-release-repo="fleet">latest</span>](https://github.com/mickem/nsclient-fleet-server/releases/latest){ .md-button data-release="download-link" data-release-repo="fleet" }
+
+</div>
+<div markdown="1">
+
+### :material-console: check_nsclient
+
+The command line client for the agent's REST API.
+
+[:material-download: Download <span data-release="version" data-release-repo="check_nsclient">latest</span>](https://github.com/mickem/check_nsclient/releases/latest){ .md-button data-release="download-link" data-release-repo="check_nsclient" }
+
+</div>
+</div>
+
+<p class="download-strip-meta">
+Which file for which platform, the web UI bundle and the container image are all on
+<a href="download/">the download page</a>.
+</p>
 
 ## :material-newspaper: Latest releases
 
@@ -58,7 +96,8 @@ Released <span data-release="date">recently</span> &middot; <a href="https://git
 
 - [:fontawesome-solid-graduation-cap: Quick Start](docs/quick-start.md) — 10-minute walkthrough
 - [:material-download: Installation guide](docs/setup/installing.md) — MSI options & silent install
-- [:material-package-down: All downloads](download.md) — agent, command line client, web UI bundle
+- [:material-package-down: All downloads](download.md) — agent, fleet server, command line client
+- [:material-server-network: NSClient Fleet](docs/fleet/index.md) — manage every agent from one server
 - [:material-shield-key: Securing the agent](docs/setup/securing.md) — TLS & client certs
 - [:material-monitor-dashboard: Web Interface](docs/setup/web-interface.md)
 

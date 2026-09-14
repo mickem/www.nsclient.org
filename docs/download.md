@@ -1,8 +1,15 @@
+---
+hide:
+  - navigation
+  - toc
+---
+
 # Download
 
 Everything is published on GitHub. Pick the piece you need — the **agent** goes
-on the machines you want to monitor, the **command line client** goes wherever
-you want to drive them from.
+on the machines you want to monitor, the **fleet server** goes on one host and
+configures all of them, and the **command line client** goes wherever you want
+to drive them from.
 
 <div class="downloads" markdown="1">
 <div class="download-card" markdown="1">
@@ -39,6 +46,43 @@ lists every artifact with the distributions it is tested on.
 - [Installation guide](docs/setup/installing.md) — MSI options and silent install
 - [Supported platforms](docs/setup/supported-platforms.md)
 - [Source: mickem/nscp](https://github.com/mickem/nscp)
+
+</div>
+<div class="download-card" markdown="1">
+
+## :material-server-network: NSClient Fleet
+
+The control plane. One server holds the configuration for a whole estate,
+hands each host the part that applies to it, and shows you what every host is
+actually running. Agents enroll themselves and poll — nothing is pushed.
+
+<p class="download-version">
+Latest: <strong data-release="version" data-release-repo="fleet">latest</strong>
+&middot; released <span data-release="date" data-release-repo="fleet">recently</span>
+&middot; <a href="https://github.com/mickem/nsclient-fleet-server/releases" data-release="notes-link" data-release-repo="fleet">release notes</a>
+</p>
+
+[:material-download: Download NSClient Fleet](https://github.com/mickem/nsclient-fleet-server/releases/latest){ .md-button .md-button--primary data-release="download-link" data-release-repo="fleet" }
+
+**Which file?**
+
+| Host | File |
+|------|------|
+| Linux, x86-64 | `nsclient-fleet-x86_64-unknown-linux-musl` |
+| Linux, arm64 | `nsclient-fleet-aarch64-unknown-linux-musl` |
+| Windows, 64-bit | `nsclient-fleet-x86_64-pc-windows-msvc.exe` |
+| Windows on ARM | `nsclient-fleet-aarch64-pc-windows-msvc.exe` |
+| Docker | `ghcr.io/mickem/nsclient-fleet:latest` |
+
+One static binary and a SQLite file — no runtime, no database server. Each
+release also carries `SHA256SUMS`, a `nsclient-fleet.service` unit and
+`bootstrap-vm.sh`, which sets up a fresh Linux VM end to end.
+
+- [NSClient Fleet documentation](docs/fleet/index.md) — what it is and how it fits together
+- [Running it in Docker](docs/fleet/docker.md) — the fastest way to try it
+- [Installing on Linux](docs/fleet/linux-install.md) · [on Windows](docs/fleet/windows-install.md)
+- [Enrolling your agents](docs/setup/fleet.md) — the agent side of the round trip
+- [Source: mickem/nsclient-fleet-server](https://github.com/mickem/nsclient-fleet-server)
 
 </div>
 <div class="download-card" markdown="1">
@@ -103,6 +147,7 @@ including the offline procedure for air-gapped hosts.
 | Project | What it is | Repository | Releases |
 |---------|------------|------------|----------|
 | NSClient++ | The monitoring agent | [mickem/nscp](https://github.com/mickem/nscp) | [releases](https://github.com/mickem/nscp/releases) |
+| NSClient Fleet | The control plane for a whole estate | [mickem/nsclient-fleet-server](https://github.com/mickem/nsclient-fleet-server) | [releases](https://github.com/mickem/nsclient-fleet-server/releases) |
 | check_nsclient | Command line client for the REST API | [mickem/check_nsclient](https://github.com/mickem/check_nsclient) | [releases](https://github.com/mickem/check_nsclient/releases) |
 | This site | Documentation for all of the above | [mickem/www.nsclient.org](https://github.com/mickem/www.nsclient.org) | — |
 
