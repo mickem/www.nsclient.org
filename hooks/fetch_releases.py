@@ -4,8 +4,9 @@ Writes trimmed release data into the built site so visitors never have to call
 the GitHub API directly (which is rate-limited to 60/hr per IP when
 unauthenticated). One file per project:
 
-    data/releases.json                  mickem/nscp            (the agent)
-    data/check_nsclient-releases.json   mickem/check_nsclient  (the CLI)
+    data/releases.json                  mickem/nscp                   (the agent)
+    data/check_nsclient-releases.json   mickem/check_nsclient         (the CLI)
+    data/fleet-releases.json            mickem/nsclient-fleet-server  (the fleet server)
 
 `assets/js/latest-release.js` reads them to fill in versions, dates and
 download links on the home page and on /download/.
@@ -25,6 +26,7 @@ import urllib.request
 PROJECTS = {
     "nscp": ("mickem/nscp", "releases.json"),
     "check_nsclient": ("mickem/check_nsclient", "check_nsclient-releases.json"),
+    "fleet": ("mickem/nsclient-fleet-server", "fleet-releases.json"),
 }
 PER_PAGE = 15
 KEEP = 5

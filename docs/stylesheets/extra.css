@@ -129,6 +129,17 @@
     margin: 0;
 }
 
+/* ----- Download: a wider page ----- */
+
+/* download.md hides the nav and the (integrated) table of contents, but the
+   theme still caps every .md-grid at 61rem, so the three project cards stay
+   cramped. Widen the cap on that page only -- matching on the .downloads grid,
+   which no other page uses. Scoped from <body> so the header and the tab bar
+   widen with the content instead of sitting narrower than it. */
+body:has(.downloads) .md-grid {
+    max-width: 76rem;
+}
+
 /* ----- Download: per-project cards ----- */
 
 .downloads {
@@ -172,6 +183,52 @@
 
 .download-card ul {
     font-size: .8rem;
+}
+
+/* ----- Home: one download tile per project ----- */
+
+.download-strip {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.25rem;
+    margin: 1.5rem 0 .5rem;
+    align-items: stretch;
+}
+
+.download-strip > div {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 1.25rem 1.25rem;
+    border: 1px solid var(--md-default-fg-color--lightest);
+    border-radius: 6px;
+    background: var(--md-default-bg-color);
+}
+
+.download-strip h3 {
+    margin-top: 0 !important;
+    font-size: 1.05rem;
+}
+
+.download-strip p {
+    font-size: .8rem;
+    color: var(--md-default-fg-color--light);
+}
+
+/* Push every button to the bottom so the three tiles line up even when the
+   descriptions wrap to different heights. */
+.download-strip p:last-child {
+    margin-top: auto;
+    margin-bottom: 0;
+}
+
+.download-strip .md-button {
+    width: 100%;
+    text-align: center;
+}
+
+.download-strip-meta {
+    font-size: .75rem;
+    color: var(--md-default-fg-color--light);
 }
 
 /* ----- Home: nav cards ----- */
