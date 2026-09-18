@@ -50,16 +50,23 @@
     return asset.url || asset.browser_download_url || '';
   }
 
-  // 'NSCP-<version>-x64.msi' -> /^NSCP-(.+?)-x64\.msi$/, so a file is found
+  // The version placeholder in an asset pattern: <version> in visible text
+  // (inside a code span) or $version in a data-release-asset attribute,
+  // where Markdown would read <version> as an HTML tag.
+  var PLACEHOLDER = /<version>|\$version/g;
+
+  // 'NSCP-$version-x64.msi' -> /^NSCP-(.+?)-x64\.msi$/, so a file is found
   // even when the tag and the version in the file name are spelled apart.
   function assetPattern(template) {
-    var escaped = template.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-    return new RegExp('^' + escaped.replace(/<version>/g, '(.+?)') + '$');
+    var parts = template.split(PLACEHOLDER).map(function (part) {
+      return part.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    });
+    return new RegExp('^' + parts.join('(.+?)') + '$');
   }
 
   function findAsset(release, template, version) {
     var assets = (release && release.assets) || [];
-    var exact = template.replace(/<version>/g, version);
+    var exact = template.replace(PLACEHOLDER, version);
     for (var i = 0; i < assets.length; i++) {
       if (assets[i].name === exact) return assets[i];
     }
@@ -116,25 +123,29 @@
   }
 
   // Links marked data-release="asset" name a file of the latest release with
-  // <version> standing in for the version, either in data-release-asset or
-  // in their visible text (e.g. `NSCP-<version>-x64.msi`). Point each at the
-  // matching asset and show the real file name; leave links whose file is
-  // not in the release alone, so they keep pointing at the release page.
+  // a placeholder for the version: data-release-asset="NSCP-$version-x64.msi"
+  // on a link with its own label ("64-bit"), or the visible text itself,
+  // e.g. `NSCP-Web-<version>.zip`, which is then replaced by the real file
+  // name. Point each at the matching asset; leave links whose file is not
+  // in the release alone, so they keep pointing at the release page.
   function applyAssets(release, key, version) {
     elements('asset', key).forEach(function (el) {
       var template = el.getAttribute('data-release-asset');
       if (!template) {
         template = (el.textContent || '').trim();
-        // Remember the pattern: the text is replaced by the file name below.
+        // Remember the pattern, and that the label shows the file name,
+        // for when a later paint carries a newer release.
         el.setAttribute('data-release-asset', template);
+        el.setAttribute('data-release-label', 'name');
       }
       var asset = template && findAsset(release, template, version);
       if (!asset || !assetUrl(asset)) return;
       el.href = assetUrl(asset);
-      var label = el.querySelector('code') || el;
-      label.textContent = asset.name;
+      if (el.getAttribute('data-release-label') === 'name') {
+        (el.querySelector('code') || el).textContent = asset.name;
+      }
       var size = fmtSize(asset.size);
-      if (size) el.title = asset.name + ' (' + size + ')';
+      el.title = size ? asset.name + ' (' + size + ')' : asset.name;
     });
   }
 
