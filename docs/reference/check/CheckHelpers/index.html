@@ -1,0 +1,6806 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://nsclient.org/docs/reference/check/CheckHelpers/">
+      
+      
+        <link rel="prev" href="../../windows/CheckEventLog/">
+      
+      
+        <link rel="next" href="../CheckLogFile/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>CheckHelpers - NSClient++</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="../../../custom.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#checkhelpers" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="NSClient++" class="md-header__button md-logo" aria-label="NSClient++" data-md-component="logo">
+      
+  <img src="../../../../assets/nsclient-logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            NSClient++
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              CheckHelpers
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/mickem/nscp" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M202.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1M496 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2m-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3m-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1"/></svg>
+  </div>
+  <div class="md-source__repository">
+    NSClient++
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../.." class="md-tabs__link">
+          
+  
+  
+    
+  
+  Home
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../news/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  News
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../download/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Download
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Documentation
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://github.com/mickem/nscp/discussions" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Forums
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="NSClient++" class="md-nav__button md-logo" aria-label="NSClient++" data-md-component="logo">
+      
+  <img src="../../../../assets/nsclient-logo.png" alt="logo">
+
+    </a>
+    NSClient++
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/mickem/nscp" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M202.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1M496 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2m-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3m-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1"/></svg>
+  </div>
+  <div class="md-source__repository">
+    NSClient++
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../.." class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_1" id="__nav_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Home
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../nsclient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About NSClient++
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../news/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    News
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../download/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Download
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Documentation
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Documentation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSClient++ agent
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    NSClient++ agent
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../quick-start/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../concepts/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_2_2" id="__nav_4_2_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Concepts
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../concepts/checks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Checks In Depth
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../concepts/settings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Settings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../concepts/test-mode/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Test Mode
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../concepts/file-layout/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    File Layout
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../concepts/permissions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Permissions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2_3" id="__nav_4_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Setup
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../setup/supported-platforms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Supported platforms
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../setup/installing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../setup/upgrading/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Upgrading
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../setup/securing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Securing NSClient++
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../setup/web-interface/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Web Interface
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2_4" id="__nav_4_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Security
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../security/notices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security notices
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../scenarios/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Monitoring Scenarios
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_2_5" id="__nav_4_2_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Monitoring Scenarios
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/windows-server-health/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Windows Server Health
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/linux-server-health/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux Server Health
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/disk-space/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Disk Space Alerting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/service-monitoring/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Service & Process Monitoring
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/realtime-monitoring/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Real-Time System Monitoring
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/event-log/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Event Log Monitoring
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/counters/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Performance Counters (PDH)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/sql-server/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SQL Server Monitoring
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/network-checks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Network Checks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/security-posture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Host Security Posture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/nrpe/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Active Monitoring with NRPE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/rest-api-checks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Active Checks over the REST API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/passive-monitoring-nsca/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Passive Monitoring (NSCA/NRDP)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/passive-monitoring-nsca-ng/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Passive Monitoring (NSCA-NG)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/passive-monitoring-icinga/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Passive Monitoring (Icinga 2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/passive-monitoring-graphite/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Passive Monitoring (Graphite)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/nagios-result-cache/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Polled Passive Checks (Nagios Core)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/check-mk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Checkmk Agent Integration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/prometheus/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prometheus Scraping
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/external-scripts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    External Scripts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_6" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_2_6" id="__nav_4_2_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_2_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../common-options/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Common options
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_6_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4_2_6_3" id="__nav_4_2_6_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Check commands
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_2_6_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_2_6_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Check commands
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CheckDisk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckDisk
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CheckDocker/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckDocker
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CheckExternalScripts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckExternalScripts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../windows/CheckEventLog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckEventLog (Windows)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckHelpers
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckHelpers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#enable-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enable module
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#queries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Queries
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Queries">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#check_always_critical" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        check_always_critical
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="check_always_critical">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#about-check_always_critical" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        About check_always_critical
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sample-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#command-line-arguments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Command-line Arguments
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check_always_ok" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        check_always_ok
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="check_always_ok">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#about-check_always_ok" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        About check_always_ok
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sample-commands_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#command-line-arguments_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Command-line Arguments
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check_always_warning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        check_always_warning
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="check_always_warning">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#about-check_always_warning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        About check_always_warning
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sample-commands_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#command-line-arguments_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Command-line Arguments
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check_and_forward" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        check_and_forward
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="check_and_forward">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#about-check_and_forward" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        About check_and_forward
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sample-commands_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trying-it-without-a-monitoring-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trying it without a monitoring server
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#command-line-arguments_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Command-line Arguments
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check_critical" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        check_critical
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="check_critical">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#about-check_critical" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        About check_critical
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sample-commands_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#command-line-arguments_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Command-line Arguments
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check_multi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        check_multi
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="check_multi">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#about-check_multi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        About check_multi
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sample-commands_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#command-line-arguments_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Command-line Arguments
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check_negate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        check_negate
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="check_negate">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#about-check_negate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        About check_negate
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sample-commands_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#command-line-arguments_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Command-line Arguments
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check_ok" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        check_ok
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="check_ok">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#about-check_ok" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        About check_ok
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sample-commands_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#command-line-arguments_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Command-line Arguments
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check_timeout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        check_timeout
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="check_timeout">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#about-check_timeout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        About check_timeout
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sample-commands_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#command-line-arguments_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Command-line Arguments
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check_version" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        check_version
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="check_version">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#about-check_version" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        About check_version
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sample-commands_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#command-line-arguments_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Command-line Arguments
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check_warning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        check_warning
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="check_warning">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#about-check_warning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        About check_warning
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sample-commands_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#command-line-arguments_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Command-line Arguments
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filter_perf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        filter_perf
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="filter_perf">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sample-commands_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#command-line-arguments_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Command-line Arguments
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#render_perf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        render_perf
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="render_perf">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#about-render_perf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        About render_perf
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sample-commands_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#command-line-arguments_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Command-line Arguments
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filter-keywords" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Filter keywords
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#xform_perf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        xform_perf
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="xform_perf">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#about-xform_perf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        About xform_perf
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="About xform_perf">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#modeminmax" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mode=minmax
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#modeextract" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mode=extract
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sample-commands_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#command-line-arguments_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Command-line Arguments
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#command-aliases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Command aliases
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CheckLogFile/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckLogFile
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CheckMySQL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckMySQL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CheckNet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckNet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CheckNSCP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckNSCP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CheckSecurity/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckSecurity
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CheckSystem/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckSystem
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../windows/CheckMSSQL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckMSSQL (Windows)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../windows/CheckWindowsApps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckWindowsApps (Windows)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../windows/CheckTaskSched/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckTaskSched (Windows)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../windows/CheckWMI/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckWMI (Windows)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_6_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2_6_4" id="__nav_4_2_6_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Clients & Servers
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_2_6_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_6_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Clients & Servers
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../generic/WEBServer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WEBServer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/NRPEServer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NRPEServer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/NRPEClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NRPEClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../windows/NSClientServer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSClientServer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/NSCAServer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSCAServer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/NSCAClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSCAClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/NSCANgClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSCANgClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/NSCPClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSCPClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/NRDPClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NRDPClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/IcingaClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IcingaClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/SMTPClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SMTPClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/GraphiteClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GraphiteClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/SyslogClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SyslogClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/CollectdClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CollectdClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/Op5Client/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Op5Client
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/ElasticClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ElasticClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/CheckMKClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckMKClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/CheckMKServer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckMKServer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_6_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2_6_5" id="__nav_4_2_6_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Helper modules
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_2_6_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_6_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Helper modules
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../generic/Scheduler/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scheduler
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../generic/SimpleFileWriter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SimpleFileWriter
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../generic/CommandClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CommandClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../generic/SimpleCache/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SimpleCache
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../generic/PythonScript/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PythonScript
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../generic/LUAScript/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LUAScript
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../generic/DotnetPlugins/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DotnetPlugins
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../extending/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Extending
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_2_7" id="__nav_4_2_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Extending
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../extending/python/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python Scripts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../extending/dotnet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    .NET Plugins
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../extending/lua/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lua Scripts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../extending/zip-modules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Zip Modules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../extending/plugin-api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plugin API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2_8" id="__nav_4_2_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    API
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_8_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../api/rest/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    REST
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_2_8_1" id="__nav_4_2_8_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_2_8_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_8_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    REST
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/rest/info/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Info
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/rest/login/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Login
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/rest/modules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/rest/queries/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Queries
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/rest/aliases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Aliases
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/rest/scripts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scripts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/rest/settings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Settings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/rest/metadata/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Metadata
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/rest/metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Metrics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/rest/logs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/rest/results/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Results
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/rest/legacy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Legacy API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../check_nsclient/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    check_nsclient (CLI)
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    check_nsclient (CLI)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../check_nsclient/nsclient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Agent commands
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../check_nsclient/profile/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Profiles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/mickem/nscp/discussions" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Forums
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="checkhelpers">CheckHelpers<a class="headerlink" href="#checkhelpers" title="Permanent link">&para;</a></h1>
+<p>Various helper function to extend other checks.</p>
+<h2 id="enable-module">Enable module<a class="headerlink" href="#enable-module" title="Permanent link">&para;</a></h2>
+<p>To enable this module and allow using the commands you need to add <code>CheckHelpers = enabled</code> to the <code>[/modules]</code> section in nsclient.ini:</p>
+<div class="highlight"><pre><span></span><code>[/modules]
+CheckHelpers = enabled
+</code></pre></div>
+<h2 id="queries">Queries<a class="headerlink" href="#queries" title="Permanent link">&para;</a></h2>
+<p>A quick reference for all available queries (check commands) in the CheckHelpers module.</p>
+<p><strong>List of commands:</strong></p>
+<p>A list of all available queries (check commands)</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#check_always_critical">check_always_critical</a></td>
+<td>Run another check and regardless of its return code return CRITICAL.</td>
+</tr>
+<tr>
+<td><a href="#check_always_ok">check_always_ok</a></td>
+<td>Run another check and regardless of its return code return OK.</td>
+</tr>
+<tr>
+<td><a href="#check_always_warning">check_always_warning</a></td>
+<td>Run another check and regardless of its return code return WARNING.</td>
+</tr>
+<tr>
+<td><a href="#check_and_forward">check_and_forward</a></td>
+<td>Run a check and forward the result as a passive check.</td>
+</tr>
+<tr>
+<td><a href="#check_critical">check_critical</a></td>
+<td>Just return CRITICAL (anything passed along will be used as a message).</td>
+</tr>
+<tr>
+<td><a href="#check_multi">check_multi</a></td>
+<td>Run more then one check and return the worst state.</td>
+</tr>
+<tr>
+<td><a href="#check_negate">check_negate</a></td>
+<td>Run a check and alter the return status codes according to arguments.</td>
+</tr>
+<tr>
+<td><a href="#check_ok">check_ok</a></td>
+<td>Just return OK (anything passed along will be used as a message).</td>
+</tr>
+<tr>
+<td><a href="#check_timeout">check_timeout</a></td>
+<td>Run a check and timeout after a given amount of time if the check has not returned.</td>
+</tr>
+<tr>
+<td><a href="#check_version">check_version</a></td>
+<td>Just return the NSClient++ version.</td>
+</tr>
+<tr>
+<td><a href="#check_warning">check_warning</a></td>
+<td>Just return WARNING (anything passed along will be used as a message).</td>
+</tr>
+<tr>
+<td><a href="#filter_perf">filter_perf</a></td>
+<td>Run a check and filter performance data.</td>
+</tr>
+<tr>
+<td><a href="#render_perf">render_perf</a></td>
+<td>Run a check and render the performance data as output message.</td>
+</tr>
+<tr>
+<td><a href="#xform_perf">xform_perf</a></td>
+<td>Run a check and transform the performance data in various (currently one) way.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>List of command aliases:</strong></p>
+<p>A list of all short hand aliases for queries (check commands)</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>checkalwayscritical</td>
+<td>Alias for: :query:<code>check_always_critical</code></td>
+</tr>
+<tr>
+<td>checkalwaysok</td>
+<td>Alias for: :query:<code>check_always_ok</code></td>
+</tr>
+<tr>
+<td>checkalwayswarning</td>
+<td>Alias for: :query:<code>check_always_warning</code></td>
+</tr>
+<tr>
+<td>checkcritical</td>
+<td>Alias for: :query:<code>check_critical</code></td>
+</tr>
+<tr>
+<td>checkmultiple</td>
+<td>Alias for: :query:<code>check_multi</code></td>
+</tr>
+<tr>
+<td>checkok</td>
+<td>Alias for: :query:<code>check_ok</code></td>
+</tr>
+<tr>
+<td>checkversion</td>
+<td>Alias for: :query:<code>check_version</code></td>
+</tr>
+<tr>
+<td>checkwarning</td>
+<td>Alias for: :query:<code>check_warning</code></td>
+</tr>
+<tr>
+<td>negate</td>
+<td>Alias for: :query:<code>check_negate</code></td>
+</tr>
+<tr>
+<td>timeout</td>
+<td>Alias for: :query:<code>check_timeout</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="check_always_critical">check_always_critical<a class="headerlink" href="#check_always_critical" title="Permanent link">&para;</a></h3>
+<p>Run another check and regardless of its return code return CRITICAL.</p>
+<h4 id="about-check_always_critical">About <code>check_always_critical</code><a class="headerlink" href="#about-check_always_critical" title="Permanent link">&para;</a></h4>
+<p><code>check_always_critical</code> runs another check and then <strong>overwrites its status with
+CRITICAL</strong>, keeping the wrapped check&rsquo;s message and performance data intact.</p>
+<p>The wrapped command and its arguments are passed positionally: everything after
+the command name is handed to the wrapped check unchanged.</p>
+<p>Use it to demote a check that is informational rather than actionable — you
+still want its numbers graphed and its message in the service detail, but you do
+not want it to page anyone. It is the blunt counterpart to
+<a href="#check_negate"><code>check_negate</code></a>, which remaps individual states rather than
+collapsing all of them to one.</p>
+<p><strong>The override is unconditional.</strong> A misspelt command name, a module that is not
+loaded, or a check that failed outright all come back as CRITICAL with the error
+text as the message — the failure is visible only if somebody reads it. That
+makes this a poor choice for anything you rely on to still be running; prefer
+<code>check_negate</code> when you want to relabel some states but keep the ability to
+notice that the check itself broke.</p>
+<p>The legacy alias <code>CheckAlwaysCRITICAL</code> is accepted for backwards compatibility.</p>
+<p><strong>Jump to section:</strong></p>
+<ul>
+<li><a href="#check_always_critical_samples">Sample Commands</a></li>
+<li><a href="#check_always_critical_options">Command-line Arguments</a></li>
+</ul>
+<p><a id="check_always_critical_samples"></a></p>
+<h4 id="sample-commands">Sample Commands<a class="headerlink" href="#sample-commands" title="Permanent link">&para;</a></h4>
+<p><strong>Force a check&rsquo;s result to CRITICAL:</strong></p>
+<p>The wrapped check&rsquo;s message survives; only the status is replaced.</p>
+<div class="highlight"><pre><span></span><code>check_always_critical check_critical "message=Nightly report generated"
+CRITICAL: Nightly report generated
+</code></pre></div>
+<p><strong>With a real check:</strong></p>
+<div class="highlight"><pre><span></span><code>check_always_critical check_drivesize "crit=used &gt; 50%"
+CRITICAL: CRITICAL /opt/claude-code: 202.746MB/229.949MB used, /opt/env-runner: 29.777MB/46.227MB used
+'/ used'=8.27045GB;201.57782;125.98613;0;251.97227 '/ used %'=3%;80;50;0;100 '/opt/claude-code used'=202.74609MB;183.95937;114.9746;0;229.94921 '/opt/claude-code used %'=88%;80;50;0;100
+</code></pre></div>
+<p>Performance data passes through unchanged, so the numbers are still graphed even
+though the status has been overridden.</p>
+<p><strong>A command that does not exist is also reported as CRITICAL:</strong></p>
+<p>The override is unconditional, so a broken configuration hides behind it. Only
+the message says what went wrong.</p>
+<div class="highlight"><pre><span></span><code>check_always_critical check_no_such_command
+CRITICAL: Unknown command(s): check_no_such_command
+</code></pre></div>
+<p><strong>Over NRPE against a remote host:</strong></p>
+<div class="highlight"><pre><span></span><code>check_nrpe --host 192.168.56.103 --command check_always_critical --arguments check_drivesize
+CRITICAL: WARNING /opt/claude-code: 202.746MB/229.949MB used
+</code></pre></div>
+<p><a id="check_always_critical_options"></a></p>
+<h4 id="command-line-arguments">Command-line Arguments<a class="headerlink" href="#command-line-arguments" title="Permanent link">&para;</a></h4>
+<p>This command also accepts the standard <a href="../../common-options/#standard-options">help options</a>: help, help-pb, show-default, help-short.</p>
+<h3 id="check_always_ok">check_always_ok<a class="headerlink" href="#check_always_ok" title="Permanent link">&para;</a></h3>
+<p>Run another check and regardless of its return code return OK.</p>
+<h4 id="about-check_always_ok">About <code>check_always_ok</code><a class="headerlink" href="#about-check_always_ok" title="Permanent link">&para;</a></h4>
+<p><code>check_always_ok</code> runs another check and then <strong>overwrites its status with
+OK</strong>, keeping the wrapped check&rsquo;s message and performance data intact.</p>
+<p>The wrapped command and its arguments are passed positionally: everything after
+the command name is handed to the wrapped check unchanged.</p>
+<p>Use it to demote a check that is informational rather than actionable — you
+still want its numbers graphed and its message in the service detail, but you do
+not want it to page anyone. It is the blunt counterpart to
+<a href="#check_negate"><code>check_negate</code></a>, which remaps individual states rather than
+collapsing all of them to one.</p>
+<p><strong>The override is unconditional.</strong> A misspelt command name, a module that is not
+loaded, or a check that failed outright all come back as OK with the error
+text as the message — the failure is visible only if somebody reads it. That
+makes this a poor choice for anything you rely on to still be running; prefer
+<code>check_negate</code> when you want to relabel some states but keep the ability to
+notice that the check itself broke.</p>
+<p>The legacy alias <code>CheckAlwaysOK</code> is accepted for backwards compatibility.</p>
+<p><strong>Jump to section:</strong></p>
+<ul>
+<li><a href="#check_always_ok_samples">Sample Commands</a></li>
+<li><a href="#check_always_ok_options">Command-line Arguments</a></li>
+</ul>
+<p><a id="check_always_ok_samples"></a></p>
+<h4 id="sample-commands_1">Sample Commands<a class="headerlink" href="#sample-commands_1" title="Permanent link">&para;</a></h4>
+<p><strong>Force a check&rsquo;s result to OK:</strong></p>
+<p>The wrapped check&rsquo;s message survives; only the status is replaced.</p>
+<div class="highlight"><pre><span></span><code>check_always_ok check_critical "message=Nightly report generated"
+OK: Nightly report generated
+</code></pre></div>
+<p><strong>With a real check:</strong></p>
+<div class="highlight"><pre><span></span><code>check_always_ok check_drivesize "crit=used &gt; 50%"
+OK: CRITICAL /opt/claude-code: 202.746MB/229.949MB used, /opt/env-runner: 29.777MB/46.227MB used
+'/ used'=8.27045GB;201.57782;125.98613;0;251.97227 '/ used %'=3%;80;50;0;100 '/opt/claude-code used'=202.74609MB;183.95937;114.9746;0;229.94921 '/opt/claude-code used %'=88%;80;50;0;100
+</code></pre></div>
+<p>Performance data passes through unchanged, so the numbers are still graphed even
+though the status has been overridden.</p>
+<p><strong>A command that does not exist is also reported as OK:</strong></p>
+<p>The override is unconditional, so a broken configuration hides behind it. Only
+the message says what went wrong.</p>
+<div class="highlight"><pre><span></span><code>check_always_ok check_no_such_command
+OK: Unknown command(s): check_no_such_command
+</code></pre></div>
+<p><strong>Over NRPE against a remote host:</strong></p>
+<div class="highlight"><pre><span></span><code>check_nrpe --host 192.168.56.103 --command check_always_ok --arguments check_drivesize
+OK: WARNING /opt/claude-code: 202.746MB/229.949MB used
+</code></pre></div>
+<p><a id="check_always_ok_options"></a></p>
+<h4 id="command-line-arguments_1">Command-line Arguments<a class="headerlink" href="#command-line-arguments_1" title="Permanent link">&para;</a></h4>
+<p>This command also accepts the standard <a href="../../common-options/#standard-options">help options</a>: help, help-pb, show-default, help-short.</p>
+<h3 id="check_always_warning">check_always_warning<a class="headerlink" href="#check_always_warning" title="Permanent link">&para;</a></h3>
+<p>Run another check and regardless of its return code return WARNING.</p>
+<h4 id="about-check_always_warning">About <code>check_always_warning</code><a class="headerlink" href="#about-check_always_warning" title="Permanent link">&para;</a></h4>
+<p><code>check_always_warning</code> runs another check and then <strong>overwrites its status with
+WARNING</strong>, keeping the wrapped check&rsquo;s message and performance data intact.</p>
+<p>The wrapped command and its arguments are passed positionally: everything after
+the command name is handed to the wrapped check unchanged.</p>
+<p>Use it to demote a check that is informational rather than actionable — you
+still want its numbers graphed and its message in the service detail, but you do
+not want it to page anyone. It is the blunt counterpart to
+<a href="#check_negate"><code>check_negate</code></a>, which remaps individual states rather than
+collapsing all of them to one.</p>
+<p><strong>The override is unconditional.</strong> A misspelt command name, a module that is not
+loaded, or a check that failed outright all come back as WARNING with the error
+text as the message — the failure is visible only if somebody reads it. That
+makes this a poor choice for anything you rely on to still be running; prefer
+<code>check_negate</code> when you want to relabel some states but keep the ability to
+notice that the check itself broke.</p>
+<p>The legacy alias <code>CheckAlwaysWARNING</code> is accepted for backwards compatibility.</p>
+<p><strong>Jump to section:</strong></p>
+<ul>
+<li><a href="#check_always_warning_samples">Sample Commands</a></li>
+<li><a href="#check_always_warning_options">Command-line Arguments</a></li>
+</ul>
+<p><a id="check_always_warning_samples"></a></p>
+<h4 id="sample-commands_2">Sample Commands<a class="headerlink" href="#sample-commands_2" title="Permanent link">&para;</a></h4>
+<p><strong>Force a check&rsquo;s result to WARNING:</strong></p>
+<p>The wrapped check&rsquo;s message survives; only the status is replaced.</p>
+<div class="highlight"><pre><span></span><code>check_always_warning check_critical "message=Nightly report generated"
+WARNING: Nightly report generated
+</code></pre></div>
+<p><strong>With a real check:</strong></p>
+<div class="highlight"><pre><span></span><code>check_always_warning check_drivesize "crit=used &gt; 50%"
+WARNING: CRITICAL /opt/claude-code: 202.746MB/229.949MB used, /opt/env-runner: 29.777MB/46.227MB used
+'/ used'=8.27045GB;201.57782;125.98613;0;251.97227 '/ used %'=3%;80;50;0;100 '/opt/claude-code used'=202.74609MB;183.95937;114.9746;0;229.94921 '/opt/claude-code used %'=88%;80;50;0;100
+</code></pre></div>
+<p>Performance data passes through unchanged, so the numbers are still graphed even
+though the status has been overridden.</p>
+<p><strong>A command that does not exist is also reported as WARNING:</strong></p>
+<p>The override is unconditional, so a broken configuration hides behind it. Only
+the message says what went wrong.</p>
+<div class="highlight"><pre><span></span><code>check_always_warning check_no_such_command
+WARNING: Unknown command(s): check_no_such_command
+</code></pre></div>
+<p><strong>Over NRPE against a remote host:</strong></p>
+<div class="highlight"><pre><span></span><code>check_nrpe --host 192.168.56.103 --command check_always_warning --arguments check_drivesize
+WARNING: WARNING /opt/claude-code: 202.746MB/229.949MB used
+</code></pre></div>
+<p><a id="check_always_warning_options"></a></p>
+<h4 id="command-line-arguments_2">Command-line Arguments<a class="headerlink" href="#command-line-arguments_2" title="Permanent link">&para;</a></h4>
+<p>This command also accepts the standard <a href="../../common-options/#standard-options">help options</a>: help, help-pb, show-default, help-short.</p>
+<h3 id="check_and_forward">check_and_forward<a class="headerlink" href="#check_and_forward" title="Permanent link">&para;</a></h3>
+<p>Run a check and forward the result as a passive check.</p>
+<h4 id="about-check_and_forward">About <code>check_and_forward</code><a class="headerlink" href="#about-check_and_forward" title="Permanent link">&para;</a></h4>
+<p><code>check_and_forward</code> runs another check and submits its result as a <strong>passive
+check</strong> on a channel — the same thing the Scheduler does when an
+interval elapses, but on demand and for a single check.</p>
+<p>Use it when you want a result to reach the monitoring server <em>now</em>: after
+changing a check&rsquo;s arguments in <code>nsclient.ini</code>, while setting up a new NSCA or
+NRDP target, or from a script that decides for itself when a result is
+interesting.</p>
+<p>The channel is the name a client module listens on — <code>NSCA</code> for the NSCA
+client, <code>NRDP</code> for NRDP, <code>GRAPHITE</code>, <code>SYSLOG</code>, and so on (see the module&rsquo;s
+<code>channel</code> setting). The client module then resolves the destination, encrypts
+and sends the result exactly as it would for a scheduled check, so what arrives
+on the server is indistinguishable from the scheduled version.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>What it is for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>command</code></td>
+<td>The check to run. Required.</td>
+</tr>
+<tr>
+<td><code>arguments</code></td>
+<td>Arguments for that check, repeat for more than one. Not accepted positionally.</td>
+</tr>
+<tr>
+<td><code>channel</code></td>
+<td>Channel to submit on, defaults to <code>NSCA</code>. <code>target</code> is kept as a legacy synonym.</td>
+</tr>
+<tr>
+<td><code>alias</code></td>
+<td>Service description to report as, defaults to the name of the command.</td>
+</tr>
+<tr>
+<td><code>destination</code></td>
+<td>Which target of the client module to send to, defaults to that module&rsquo;s default target.</td>
+</tr>
+<tr>
+<td><code>source</code></td>
+<td>Source host name to report as, defaults to the host name of this machine.</td>
+</tr>
+</tbody>
+</table>
+<p>The command itself returns <strong>OK</strong> when the result was handed to the channel and
+<strong>UNKNOWN</strong> when the check could not be run or the channel refused it (no such
+channel, or the client module failed to send). It does <strong>not</strong> return the status
+of the wrapped check — that status is what was submitted, and is visible on the
+monitoring server.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The wrapped check runs with the permissions of whoever called
+<code>check_and_forward</code>, not with those of <code>CheckHelpers</code> — see
+<a href="../../../concepts/permissions/">permissions</a>. If the wrapped check is
+denied, nothing is submitted and the command returns the denial as an
+error.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Before 0.18.0 the result never left the agent: the submission was built in a
+way the channels could not read, so the check ran, the command answered
+<code>Message submitted</code> and nothing at all reached the monitoring server. If you
+worked around this, the workaround is no longer needed.</p>
+</div>
+<p><strong>Jump to section:</strong></p>
+<ul>
+<li><a href="#check_and_forward_samples">Sample Commands</a></li>
+<li><a href="#check_and_forward_options">Command-line Arguments</a></li>
+</ul>
+<p><a id="check_and_forward_samples"></a></p>
+<h4 id="sample-commands_3">Sample Commands<a class="headerlink" href="#sample-commands_3" title="Permanent link">&para;</a></h4>
+<p>Given this configuration:</p>
+<div class="highlight"><pre><span></span><code><span class="k">[/modules]</span>
+<span class="na">CheckSystem</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s">enabled</span>
+<span class="na">CheckHelpers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">enabled</span>
+<span class="na">NSCAClient</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="s">enabled</span>
+
+<span class="k">[/settings/NSCA/client/targets/default]</span>
+<span class="na">address</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="s">nsca://nagios-server:5667</span>
+<span class="na">password</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="s">secret-password</span>
+<span class="na">encryption</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">aes256</span>
+</code></pre></div>
+<p><strong>Run a check and send its result as a passive check:</strong></p>
+<div class="highlight"><pre><span></span><code>nscp client --boot --query check_and_forward command=check_cpu channel=NSCA "alias=CPU Load"
+Message submitted: NSCA
+</code></pre></div>
+<p>The NSCA daemon on the monitoring server logs the result under the service
+description given by <code>alias</code>, exactly as a scheduled check would deliver it:</p>
+<div class="highlight"><pre><span></span><code>nsca: SERVICE CHECK -&gt; Host Name: 'win-server-01', Service Description: 'CPU Load',
+      Return Code: '0', Output: 'OK: CPU load is ok.|...'
+</code></pre></div>
+<p><strong>Pass arguments to the wrapped check</strong> — one per <code>arguments=</code>:</p>
+<div class="highlight"><pre><span></span><code>nscp client --boot --query check_and_forward command=check_cpu channel=NSCA "alias=CPU Load" "arguments=warning=load&gt;10"
+Message submitted: NSCA
+</code></pre></div>
+<p>The status of the wrapped check is what gets submitted; the <code>OK</code> you see here
+only says the result was handed to the NSCA client.</p>
+<p><strong>The <code>-a</code> / <code>--argument</code> spelling works too</strong>, which is what you want from a
+batch file or a script:</p>
+<div class="highlight"><pre><span></span><code>nscp client --boot --query check_and_forward --argument command=check_cpu --argument channel=NSCA --argument "alias=CPU Load"
+Message submitted: NSCA
+</code></pre></div>
+<p><strong>A channel nobody listens on is an error, not a silent drop:</strong></p>
+<div class="highlight"><pre><span></span><code>nscp client --boot --query check_and_forward command=check_cpu channel=NOPE
+Failed to submit to: NOPE
+</code></pre></div>
+<p><strong>Over REST</strong>, to push a result on demand from a script:</p>
+<div class="highlight"><pre><span></span><code>curl -k -u admin:&lt;password&gt; "https://&lt;agent&gt;:8443/api/v2/queries/check_and_forward/commands/execute?command=check_cpu&amp;channel=NSCA&amp;alias=CPU+Load"
+{"command":"check_and_forward","result":0,"lines":[{"message":"Message submitted: NSCA","perf":{}}]}
+</code></pre></div>
+<h4 id="trying-it-without-a-monitoring-server">Trying it without a monitoring server<a class="headerlink" href="#trying-it-without-a-monitoring-server" title="Permanent link">&para;</a></h4>
+<p><code>SimpleFileWriter</code> is a channel that writes results to a local file, which makes
+it a quick way to see exactly what is being submitted:</p>
+<div class="highlight"><pre><span></span><code><span class="k">[/modules]</span>
+<span class="na">CheckSystem</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="s">enabled</span>
+<span class="na">CheckHelpers</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="s">enabled</span>
+<span class="na">SimpleFileWriter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">enabled</span>
+
+<span class="k">[/settings/writers/file]</span>
+<span class="na">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">results.txt</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>nscp client --boot --query check_and_forward command=check_cpu channel=FILE "alias=CPU Load"
+Message submitted: FILE
+</code></pre></div>
+<p><code>results.txt</code> then contains one line per submitted result, as
+<code>${alias-or-command} ${result} ${message}</code>:</p>
+<div class="highlight"><pre><span></span><code>CPU Load OK OK: CPU load is ok.
+</code></pre></div>
+<p>Add an argument for the wrapped check and the forwarded status changes with it —
+the check really runs, it is not a fixed OK:</p>
+<div class="highlight"><pre><span></span><code>nscp client --boot --query check_and_forward command=check_cpu channel=FILE "alias=CPU Load" "arguments=warning=load&gt;-1"
+Message submitted: FILE
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>CPU Load WARNING WARNING: 5s: 0%, 1m: 0%, 5m: 0%
+</code></pre></div>
+<p>Without <code>alias</code> the result is named after the command instead:</p>
+<div class="highlight"><pre><span></span><code>check_cpu OK OK: CPU load is ok.
+</code></pre></div>
+<p><a id="check_and_forward_options"></a></p>
+<h4 id="command-line-arguments_3">Command-line Arguments<a class="headerlink" href="#command-line-arguments_3" title="Permanent link">&para;</a></h4>
+<p><a id="check_and_forward_command"></a>
+<a id="check_and_forward_arguments"></a>
+<a id="check_and_forward_channel"></a>
+<a id="check_and_forward_target"></a>
+<a id="check_and_forward_alias"></a>
+<a id="check_and_forward_destination"></a>
+<a id="check_and_forward_source"></a></p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>command</td>
+<td></td>
+<td>The command to run before forwarding the result</td>
+</tr>
+<tr>
+<td>arguments</td>
+<td></td>
+<td>An argument for the wrapped command, repeat for more than one</td>
+</tr>
+<tr>
+<td>channel</td>
+<td></td>
+<td>The channel to submit the result on, i.e. which client module sends it (NSCA, NRDP, GRAPHITE, &hellip;). Defaults to NSCA</td>
+</tr>
+<tr>
+<td>target</td>
+<td></td>
+<td>Legacy synonym for channel (kept for backwards compatibility)</td>
+</tr>
+<tr>
+<td>alias</td>
+<td></td>
+<td>Alias (service description) to report the result as, defaults to the name of the command</td>
+</tr>
+<tr>
+<td>destination</td>
+<td></td>
+<td>The target to send the message to (resolved by the client module, defaults to its default target)</td>
+</tr>
+<tr>
+<td>source</td>
+<td></td>
+<td>The name of the source system, defaults to the host name of this machine</td>
+</tr>
+</tbody>
+</table>
+<p>This command also accepts the standard <a href="../../common-options/#standard-options">help options</a>: help, help-pb, show-default, help-short.</p>
+<h3 id="check_critical">check_critical<a class="headerlink" href="#check_critical" title="Permanent link">&para;</a></h3>
+<p>Just return CRITICAL (anything passed along will be used as a message).</p>
+<h4 id="about-check_critical">About <code>check_critical</code><a class="headerlink" href="#about-check_critical" title="Permanent link">&para;</a></h4>
+<p><code>check_critical</code> is a constant: it always returns <strong>CRITICAL</strong>, without running
+anything. It exists so that a monitoring configuration can be exercised
+end-to-end — that the transport works, that the command is allowed, that the
+server renders the state — without depending on the health of the host.</p>
+<p>The only option is <code>message=</code>, which sets the text returned alongside the
+status. It defaults to <code>No message</code>.</p>
+<p>The legacy alias <code>CheckCRITICAL</code> is accepted for backwards compatibility.</p>
+<p><strong>Jump to section:</strong></p>
+<ul>
+<li><a href="#check_critical_samples">Sample Commands</a></li>
+<li><a href="#check_critical_options">Command-line Arguments</a></li>
+</ul>
+<p><a id="check_critical_samples"></a></p>
+<h4 id="sample-commands_4">Sample Commands<a class="headerlink" href="#sample-commands_4" title="Permanent link">&para;</a></h4>
+<p><strong>Return CRITICAL with the default message:</strong></p>
+<div class="highlight"><pre><span></span><code>check_critical
+CRITICAL: No message
+</code></pre></div>
+<p><strong>Return CRITICAL with your own message:</strong></p>
+<div class="highlight"><pre><span></span><code>check_critical "message=Service is down"
+CRITICAL: Service is down
+</code></pre></div>
+<p><strong>As a placeholder for a check that is not implemented yet:</strong></p>
+<p>Wiring a service to <code>check_critical</code> makes the gap visible on the dashboard
+instead of leaving a silently missing check.</p>
+<div class="highlight"><pre><span></span><code>check_nrpe --host 192.168.56.103 --command check_critical --arguments "message=TODO: implement backup verification"
+CRITICAL: TODO: implement backup verification
+</code></pre></div>
+<p><a id="check_critical_options"></a></p>
+<h4 id="command-line-arguments_4">Command-line Arguments<a class="headerlink" href="#command-line-arguments_4" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#check_critical_message">message</a></td>
+<td>No message</td>
+<td>Message to return</td>
+</tr>
+</tbody>
+</table>
+<h5 id="check_critical_message">message:</h5>
+
+<p>Message to return</p>
+<p><em>Default Value:</em> <code>No message</code></p>
+<p>This command also accepts the standard <a href="../../common-options/#standard-options">help options</a>: help, help-pb, show-default, help-short.</p>
+<h3 id="check_multi">check_multi<a class="headerlink" href="#check_multi" title="Permanent link">&para;</a></h3>
+<p>Run more then one check and return the worst state.</p>
+<h4 id="about-check_multi">About <code>check_multi</code><a class="headerlink" href="#about-check_multi" title="Permanent link">&para;</a></h4>
+<p><code>check_multi</code> runs several checks in one round trip and returns the <strong>worst</strong>
+status any of them produced, concatenating their messages and merging their
+performance data.</p>
+<p>Each check is given as one <code>command=</code> argument holding the whole command line —
+the command name plus its arguments, quoted as a single token. <code>command=</code> may be
+repeated; <code>arguments=</code> is a deprecated alias for it. <code>separator=</code> (default
+<code>,</code>), <code>prefix=</code> and <code>suffix=</code> shape the combined message.</p>
+<p>Status escalation follows the usual Nagios ordering — OK &lt; WARNING &lt; CRITICAL &lt;
+UNKNOWN — so one UNKNOWN check makes the whole result UNKNOWN. If any command
+cannot be executed at all, the whole check fails rather than silently reporting
+on the subset that ran.</p>
+<p>Note that the checks run <strong>sequentially</strong>, so the total run time is the sum of
+the parts; keep an eye on your monitoring system&rsquo;s check timeout when combining
+several slow checks, and consider wrapping the slow one in
+<a href="#check_timeout"><code>check_timeout</code></a>.</p>
+<p>The legacy alias <code>CheckMultiple</code> is accepted for backwards compatibility.</p>
+<p><strong>Jump to section:</strong></p>
+<ul>
+<li><a href="#check_multi_samples">Sample Commands</a></li>
+<li><a href="#check_multi_options">Command-line Arguments</a></li>
+</ul>
+<p><a id="check_multi_samples"></a></p>
+<h4 id="sample-commands_5">Sample Commands<a class="headerlink" href="#sample-commands_5" title="Permanent link">&para;</a></h4>
+<p><strong>Run two checks and return the worst status:</strong></p>
+<p>Each check is one <code>command=</code> argument holding the whole command line. The result
+carries one line per wrapped check.</p>
+<div class="highlight"><pre><span></span><code>check_multi "command=check_ok message=first" "command=check_warning message=second"
+WARNING: first
+WARNING: , second
+</code></pre></div>
+<p><strong>Shape the combined message with <code>separator</code> and <code>prefix</code>:</strong></p>
+<div class="highlight"><pre><span></span><code>check_multi "command=check_ok message=a" "command=check_ok message=b" "separator= | " "prefix=results: "
+OK: results: a
+OK:  | b
+</code></pre></div>
+<p><strong>Combine real checks into one service:</strong></p>
+<div class="highlight"><pre><span></span><code>check_multi "command=check_drivesize" "command=check_ok message=second"
+WARNING: WARNING /opt/claude-code: 202.746MB/229.949MB used
+'/ used'=8.28236GB;201.57782;226.77505;0;251.97227 '/ used %'=3%;80;90;0;100 '/opt/claude-code used'=202.74609MB;183.95937;206.95429;0;229.94921 '/opt/claude-code used %'=88%;80;90;0;100
+WARNING: , second
+</code></pre></div>
+<p>The performance data of every wrapped check is merged into the result, so all
+the numbers are still graphed against the one service.</p>
+<p><strong>Status escalation:</strong></p>
+<p>The worst status wins, in the order OK &lt; WARNING &lt; CRITICAL &lt; UNKNOWN — so a
+single check that returns UNKNOWN makes the whole result UNKNOWN even if the
+others are merely CRITICAL.</p>
+<div class="highlight"><pre><span></span><code>check_multi "command=check_critical" "command=check_no_such_command"
+UNKNOWN: No message
+UNKNOWN: , Unknown command(s): check_no_such_command
+</code></pre></div>
+<p><strong>Over NRPE against a remote host:</strong></p>
+<div class="highlight"><pre><span></span><code>check_nrpe --host 192.168.56.103 --command check_multi --arguments "command=check_drivesize" --arguments "command=check_uptime"
+WARNING: WARNING /opt/claude-code: 202.746MB/229.949MB used, uptime: 5d 03:14h
+</code></pre></div>
+<p><a id="check_multi_options"></a></p>
+<h4 id="command-line-arguments_5">Command-line Arguments<a class="headerlink" href="#command-line-arguments_5" title="Permanent link">&para;</a></h4>
+<p><a id="check_multi_command"></a>
+<a id="check_multi_arguments"></a>
+<a id="check_multi_prefix"></a>
+<a id="check_multi_suffix"></a></p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>command</td>
+<td></td>
+<td>Commands to run (can be used multiple times)</td>
+</tr>
+<tr>
+<td>arguments</td>
+<td></td>
+<td>Deprecated alias for command</td>
+</tr>
+<tr>
+<td><a href="#check_multi_separator">separator</a></td>
+<td>,</td>
+<td>Separator between messages</td>
+</tr>
+<tr>
+<td>prefix</td>
+<td></td>
+<td>Message prefix</td>
+</tr>
+<tr>
+<td>suffix</td>
+<td></td>
+<td>Message suffix</td>
+</tr>
+</tbody>
+</table>
+<h5 id="check_multi_separator">separator:</h5>
+
+<p>Separator between messages</p>
+<p><em>Default Value:</em> <code>,</code></p>
+<p>This command also accepts the standard <a href="../../common-options/#standard-options">help options</a>: help, help-pb, show-default, help-short.</p>
+<h3 id="check_negate">check_negate<a class="headerlink" href="#check_negate" title="Permanent link">&para;</a></h3>
+<p>Run a check and alter the return status codes according to arguments.</p>
+<h4 id="about-check_negate">About <code>check_negate</code><a class="headerlink" href="#about-check_negate" title="Permanent link">&para;</a></h4>
+<p><code>check_negate</code> runs another check and <strong>remaps its status</strong>, leaving the message
+and performance data untouched. It is the NSClient++ equivalent of the Nagios
+<code>negate</code> plugin, and is available under the alias <code>negate</code>.</p>
+<p>The command to run is named with <code>command=</code> (<code>-q</code>) and its arguments are passed
+one per <code>arguments=</code> (<code>-a</code>). The four mapping options — <code>ok=</code> (<code>-o</code>),
+<code>warning=</code> (<code>-w</code>), <code>critical=</code> (<code>-c</code>) and <code>unknown=</code> (<code>-u</code>) — each name the
+state to return <em>instead of</em> that one. Every mapping defaults to itself, so the
+options you omit pass through unchanged, and state names are parsed the usual
+way (<code>ok</code>, <code>warning</code>, <code>critical</code>, <code>unknown</code>).</p>
+<p>The classic use is inverting a check — &ldquo;alert when this process <em>is</em> running&rdquo;,
+&ldquo;alert when this port <em>is</em> open&rdquo;.</p>
+<p><strong>Beware that the mappings are applied in sequence to the value as it is being
+rewritten, not to the original status.</strong> The order is OK, WARNING, CRITICAL,
+UNKNOWN, so a mapping that moves a status <em>forward</em> in that order can be picked
+up and rewritten again by a later rule. <code>ok=critical critical=ok</code> is therefore
+<strong>not</strong> a clean swap: an OK result is rewritten to CRITICAL by the first rule and
+then straight back to OK by the third, so the OK half of the inversion silently
+does nothing. The CRITICAL half works, because nothing after it rewrites OK.</p>
+<p>The mappings that are safe are the ones that move a status <em>backwards</em>
+(<code>critical=warning</code>, <code>unknown=critical</code>, <code>warning=ok</code>) and any single mapping
+whose destination you do not also remap. To invert a check reliably, map only
+the direction you actually need:</p>
+<div class="highlight"><pre><span></span><code>check_negate command=check_thing critical=ok
+</code></pre></div>
+<p>Unlike <a href="#check_always_ok"><code>check_always_ok</code></a> and its siblings, <code>check_negate</code>
+keeps the distinctions between states; use it whenever you want to relabel
+rather than flatten. If the wrapped command cannot be executed the check fails
+outright and no mapping is applied.</p>
+<p><strong>Jump to section:</strong></p>
+<ul>
+<li><a href="#check_negate_samples">Sample Commands</a></li>
+<li><a href="#check_negate_options">Command-line Arguments</a></li>
+</ul>
+<p><a id="check_negate_samples"></a></p>
+<h4 id="sample-commands_6">Sample Commands<a class="headerlink" href="#sample-commands_6" title="Permanent link">&para;</a></h4>
+<p><strong>Pass through unchanged (no mappings given):</strong></p>
+<div class="highlight"><pre><span></span><code>check_negate command=check_critical
+CRITICAL: No message
+</code></pre></div>
+<p><strong>Invert a check — but only in one direction at a time:</strong></p>
+<div class="highlight"><pre><span></span><code>check_negate command=check_critical critical=ok
+OK: No message
+</code></pre></div>
+<p><code>ok=critical critical=ok</code> looks like a swap and is not one. The mappings are
+applied in sequence to the value as it is rewritten, in the order OK, WARNING,
+CRITICAL, UNKNOWN — so an OK result is rewritten to CRITICAL by the first rule
+and back to OK by the third:</p>
+<div class="highlight"><pre><span></span><code>check_negate command=check_critical ok=critical critical=ok
+OK: No message
+</code></pre></div>
+<p>Both report OK here only because the input was CRITICAL, which the third rule
+maps to OK. An OK input takes the first rule to CRITICAL and then the third
+straight back to OK, so the inversion never fires in that direction.</p>
+<p>Map only the direction you need, and put it on the state the wrapped check
+actually returns in the case you want to alert on.</p>
+<p><strong>Downgrade CRITICAL to WARNING, leaving everything else alone:</strong></p>
+<div class="highlight"><pre><span></span><code>check_negate command=check_drivesize critical=warning
+WARNING: WARNING /opt/claude-code: 202.746MB/229.949MB used
+</code></pre></div>
+<p><strong>Pass arguments to the wrapped check:</strong></p>
+<p><code>arguments=</code> (<code>-a</code>) is repeatable; each one is handed to the wrapped command.</p>
+<div class="highlight"><pre><span></span><code>check_negate command=check_drivesize "arguments=crit=used &gt; 50%" critical=warning
+WARNING: CRITICAL /opt/claude-code: 202.746MB/229.949MB used, /opt/env-runner: 29.777MB/46.227MB used
+</code></pre></div>
+<p><strong>Treat UNKNOWN as CRITICAL:</strong></p>
+<p>Useful where an UNKNOWN result — a missing counter, an unreachable service — is
+just as actionable as a failure, and you do not want it filtered out by a
+notification rule that ignores UNKNOWN.</p>
+<div class="highlight"><pre><span></span><code>check_negate command=check_no_such_command unknown=critical
+CRITICAL: Unknown command(s): check_no_such_command
+</code></pre></div>
+<p><strong>Over NRPE against a remote host:</strong></p>
+<div class="highlight"><pre><span></span><code>check_nrpe --host 192.168.56.103 --command check_negate --arguments "command=check_drivesize" --arguments "critical=warning"
+WARNING: WARNING /opt/claude-code: 202.746MB/229.949MB used
+</code></pre></div>
+<p><a id="check_negate_options"></a></p>
+<h4 id="command-line-arguments_6">Command-line Arguments<a class="headerlink" href="#command-line-arguments_6" title="Permanent link">&para;</a></h4>
+<p><a id="check_negate_ok"></a>
+<a id="check_negate_warning"></a>
+<a id="check_negate_critical"></a>
+<a id="check_negate_unknown"></a>
+<a id="check_negate_command"></a>
+<a id="check_negate_arguments"></a></p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ok</td>
+<td></td>
+<td>The state to return instead of OK</td>
+</tr>
+<tr>
+<td>warning</td>
+<td></td>
+<td>The state to return instead of WARNING</td>
+</tr>
+<tr>
+<td>critical</td>
+<td></td>
+<td>The state to return instead of CRITICAL</td>
+</tr>
+<tr>
+<td>unknown</td>
+<td></td>
+<td>The state to return instead of UNKNOWN</td>
+</tr>
+<tr>
+<td>command</td>
+<td></td>
+<td>Wrapped command to execute</td>
+</tr>
+<tr>
+<td>arguments</td>
+<td></td>
+<td>List of arguments (for wrapped command)</td>
+</tr>
+</tbody>
+</table>
+<p>This command also accepts the standard <a href="../../common-options/#standard-options">help options</a>: help, help-pb, show-default, help-short.</p>
+<h3 id="check_ok">check_ok<a class="headerlink" href="#check_ok" title="Permanent link">&para;</a></h3>
+<p>Just return OK (anything passed along will be used as a message).</p>
+<h4 id="about-check_ok">About <code>check_ok</code><a class="headerlink" href="#about-check_ok" title="Permanent link">&para;</a></h4>
+<p><code>check_ok</code> is a constant: it always returns <strong>OK</strong>, without running
+anything. It exists so that a monitoring configuration can be exercised
+end-to-end — that the transport works, that the command is allowed, that the
+server renders the state — without depending on the health of the host.</p>
+<p>The only option is <code>message=</code>, which sets the text returned alongside the
+status. It defaults to <code>No message</code>.</p>
+<p>The legacy alias <code>CheckOK</code> is accepted for backwards compatibility.</p>
+<p><strong>Jump to section:</strong></p>
+<ul>
+<li><a href="#check_ok_samples">Sample Commands</a></li>
+<li><a href="#check_ok_options">Command-line Arguments</a></li>
+</ul>
+<p><a id="check_ok_samples"></a></p>
+<h4 id="sample-commands_7">Sample Commands<a class="headerlink" href="#sample-commands_7" title="Permanent link">&para;</a></h4>
+<p><strong>Return OK with the default message:</strong></p>
+<div class="highlight"><pre><span></span><code>check_ok
+OK: No message
+</code></pre></div>
+<p><strong>Return OK with your own message:</strong></p>
+<div class="highlight"><pre><span></span><code>check_ok "message=Database backup completed"
+OK: Database backup completed
+</code></pre></div>
+<p><strong>As a connectivity probe over NRPE:</strong></p>
+<p>Nothing on the far end can make this fail, so a non-OK answer means the
+transport, the permissions or the agent itself is the problem — not the host
+being checked.</p>
+<div class="highlight"><pre><span></span><code>check_nrpe --host 192.168.56.103 --command check_ok
+OK: No message
+</code></pre></div>
+<p><a id="check_ok_options"></a></p>
+<h4 id="command-line-arguments_7">Command-line Arguments<a class="headerlink" href="#command-line-arguments_7" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#check_ok_message">message</a></td>
+<td>No message</td>
+<td>Message to return</td>
+</tr>
+</tbody>
+</table>
+<h5 id="check_ok_message">message:</h5>
+
+<p>Message to return</p>
+<p><em>Default Value:</em> <code>No message</code></p>
+<p>This command also accepts the standard <a href="../../common-options/#standard-options">help options</a>: help, help-pb, show-default, help-short.</p>
+<h3 id="check_timeout">check_timeout<a class="headerlink" href="#check_timeout" title="Permanent link">&para;</a></h3>
+<p>Run a check and timeout after a given amount of time if the check has not returned.</p>
+<h4 id="about-check_timeout">About <code>check_timeout</code><a class="headerlink" href="#about-check_timeout" title="Permanent link">&para;</a></h4>
+<p><code>check_timeout</code> runs another check with a wall-clock deadline and returns
+<code>Thread failed to return within given timeout</code> if the check has not answered in
+time. It is available under the alias <code>timeout</code>.</p>
+<p>The command to run is named with <code>command=</code> (<code>-q</code>) and its arguments are passed
+one per <code>arguments=</code> (<code>-a</code>). <code>timeout=</code> (<code>-t</code>) is the deadline in seconds and
+defaults to 30; <code>return=</code> (<code>-r</code>) overrides the status returned when the check
+<em>does</em> finish in time.</p>
+<p>Use it to stop a check that talks to something remote — a database, a share, an
+HTTP endpoint — from hanging past your monitoring system&rsquo;s own timeout, which
+would otherwise leave the service in a stale state with no message explaining
+why.</p>
+<p>Two things are worth knowing about how the deadline is enforced. On timeout the
+worker thread is <strong>detached, not killed</strong>: the wrapped check keeps running to
+completion in the background and only its result is discarded. A check that
+hangs indefinitely therefore leaks a thread per invocation, so pair a short
+timeout with a fix for whatever is hanging rather than treating it as a
+permanent arrangement. And a timeout is reported as a <em>bad response</em> (UNKNOWN) —
+<code>return=</code> only substitutes the status when the check finishes within the
+deadline, so it cannot be used to make a timeout look like a success.</p>
+<p><strong>Jump to section:</strong></p>
+<ul>
+<li><a href="#check_timeout_samples">Sample Commands</a></li>
+<li><a href="#check_timeout_options">Command-line Arguments</a></li>
+</ul>
+<p><a id="check_timeout_samples"></a></p>
+<h4 id="sample-commands_8">Sample Commands<a class="headerlink" href="#sample-commands_8" title="Permanent link">&para;</a></h4>
+<p><strong>Run a check with a deadline:</strong></p>
+<p>A check that answers in time returns its own result unchanged.</p>
+<div class="highlight"><pre><span></span><code>check_timeout command=check_drivesize timeout=1
+WARNING: WARNING /opt/claude-code: 202.746MB/229.949MB used
+'/ used'=8.27112GB;201.57782;226.77505;0;251.97227 '/ used %'=3%;80;90;0;100 '/opt/claude-code used'=202.74609MB;183.95937;206.95429;0;229.94921 '/opt/claude-code used %'=88%;80;90;0;100
+</code></pre></div>
+<p><strong>Pass arguments to the wrapped check:</strong></p>
+<div class="highlight"><pre><span></span><code>check_timeout command=check_drivesize timeout=10 "arguments=crit=used &gt; 50%"
+CRITICAL: CRITICAL /opt/claude-code: 202.746MB/229.949MB used, /opt/env-runner: 29.777MB/46.227MB used
+</code></pre></div>
+<p><strong>What a timeout looks like:</strong></p>
+<p>Here <code>slow_thing</code> is an external script that sleeps for 30 seconds:</p>
+<div class="highlight"><pre><span></span><code>check_timeout command=slow_thing timeout=3
+UNKNOWN: Thread failed to return within given timeout
+</code></pre></div>
+<p>The wrapped check is <em>detached</em>, not killed, so it goes on running in the
+background — only its result is thrown away.</p>
+<p><strong>Override the status of a check that does finish:</strong></p>
+<p><code>return=</code> applies only on success; it cannot turn a timeout into an OK.</p>
+<div class="highlight"><pre><span></span><code>check_timeout command=check_critical timeout=5 return=ok
+OK: No message
+</code></pre></div>
+<p><strong>Guarding a slow remote check over NRPE:</strong></p>
+<p>Set the timeout comfortably below the monitoring server&rsquo;s own check timeout so
+you get a message explaining the hang rather than a bare plugin timeout.</p>
+<div class="highlight"><pre><span></span><code>check_nrpe --host 192.168.56.103 --command check_timeout --arguments "command=check_mssql" --arguments "timeout=20"
+UNKNOWN: Thread failed to return within given timeout
+</code></pre></div>
+<p><a id="check_timeout_options"></a></p>
+<h4 id="command-line-arguments_8">Command-line Arguments<a class="headerlink" href="#command-line-arguments_8" title="Permanent link">&para;</a></h4>
+<p><a id="check_timeout_timeout"></a>
+<a id="check_timeout_command"></a>
+<a id="check_timeout_arguments"></a>
+<a id="check_timeout_return"></a></p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>timeout</td>
+<td></td>
+<td>The timeout value</td>
+</tr>
+<tr>
+<td>command</td>
+<td></td>
+<td>Wrapped command to execute</td>
+</tr>
+<tr>
+<td>arguments</td>
+<td></td>
+<td>List of arguments (for wrapped command)</td>
+</tr>
+<tr>
+<td>return</td>
+<td></td>
+<td>The return status</td>
+</tr>
+</tbody>
+</table>
+<p>This command also accepts the standard <a href="../../common-options/#standard-options">help options</a>: help, help-pb, show-default, help-short.</p>
+<h3 id="check_version">check_version<a class="headerlink" href="#check_version" title="Permanent link">&para;</a></h3>
+<p>Just return the NSClient++ version.</p>
+<h4 id="about-check_version">About <code>check_version</code><a class="headerlink" href="#about-check_version" title="Permanent link">&para;</a></h4>
+<p><code>check_version</code> returns the running NSClient++ version string as an OK result.
+It takes no options and never fails, which makes it the cheapest possible
+&ldquo;is the agent alive and answering?&rdquo; probe — useful as a heartbeat check, and as
+the first thing to run when verifying a new NRPE/REST connection.</p>
+<p>It reports only the version <em>string</em>. If you want to threshold on the version —
+&ldquo;alert when this fleet member falls behind&rdquo; — use
+<a href="../CheckNSCP/#check_nscp_version"><code>check_nscp_version</code></a> from the CheckNSCP
+module, which exposes <code>major</code>, <code>minor</code>, <code>release</code> and <code>build</code> as filterable
+keywords, or <a href="../CheckNSCP/#check_nscp_update"><code>check_nscp_update</code></a> to compare
+against the latest release published on GitHub.</p>
+<p>The legacy alias <code>CheckVersion</code> is accepted for backwards compatibility.</p>
+<p><strong>Jump to section:</strong></p>
+<ul>
+<li><a href="#check_version_samples">Sample Commands</a></li>
+<li><a href="#check_version_options">Command-line Arguments</a></li>
+</ul>
+<p><a id="check_version_samples"></a></p>
+<h4 id="sample-commands_9">Sample Commands<a class="headerlink" href="#sample-commands_9" title="Permanent link">&para;</a></h4>
+<p><strong>Report the running agent version:</strong></p>
+<div class="highlight"><pre><span></span><code>check_version
+OK: 0.18.1 2026-08-14
+</code></pre></div>
+<p><strong>As a heartbeat check over NRPE:</strong></p>
+<p>The command never fails on its own, so anything other than OK means the agent
+is not answering — which makes it the cheapest possible &ldquo;is this agent alive&rdquo;
+service.</p>
+<div class="highlight"><pre><span></span><code>check_nrpe --host 192.168.56.103 --command check_version
+OK: 0.18.1 2026-08-14
+</code></pre></div>
+<p><strong>When you want to alert on the version rather than just report it:</strong></p>
+<p><code>check_version</code> returns a string with no thresholds. Use CheckNSCP&rsquo;s
+<a href="../CheckNSCP/#check_nscp_version"><code>check_nscp_version</code></a> instead, which exposes
+the parts as numbers:</p>
+<div class="highlight"><pre><span></span><code>check_nscp_version "crit=major &lt; 12"
+OK: 0.18.1 (2026-08-14)
+</code></pre></div>
+<p><a id="check_version_options"></a></p>
+<h4 id="command-line-arguments_9">Command-line Arguments<a class="headerlink" href="#command-line-arguments_9" title="Permanent link">&para;</a></h4>
+<p>This command also accepts the standard <a href="../../common-options/#standard-options">help options</a>: help, help-pb, show-default, help-short.</p>
+<h3 id="check_warning">check_warning<a class="headerlink" href="#check_warning" title="Permanent link">&para;</a></h3>
+<p>Just return WARNING (anything passed along will be used as a message).</p>
+<h4 id="about-check_warning">About <code>check_warning</code><a class="headerlink" href="#about-check_warning" title="Permanent link">&para;</a></h4>
+<p><code>check_warning</code> is a constant: it always returns <strong>WARNING</strong>, without running
+anything. It exists so that a monitoring configuration can be exercised
+end-to-end — that the transport works, that the command is allowed, that the
+server renders the state — without depending on the health of the host.</p>
+<p>The only option is <code>message=</code>, which sets the text returned alongside the
+status. It defaults to <code>No message</code>.</p>
+<p>The legacy alias <code>CheckWARNING</code> is accepted for backwards compatibility.</p>
+<p><strong>Jump to section:</strong></p>
+<ul>
+<li><a href="#check_warning_samples">Sample Commands</a></li>
+<li><a href="#check_warning_options">Command-line Arguments</a></li>
+</ul>
+<p><a id="check_warning_samples"></a></p>
+<h4 id="sample-commands_10">Sample Commands<a class="headerlink" href="#sample-commands_10" title="Permanent link">&para;</a></h4>
+<p><strong>Return WARNING with the default message:</strong></p>
+<div class="highlight"><pre><span></span><code>check_warning
+WARNING: No message
+</code></pre></div>
+<p><strong>Return WARNING with your own message:</strong></p>
+<div class="highlight"><pre><span></span><code>check_warning "message=Disk approaching capacity"
+WARNING: Disk approaching capacity
+</code></pre></div>
+<p><strong>Verifying that a monitoring server renders each state correctly:</strong></p>
+<p>Running <code>check_ok</code>, <code>check_warning</code> and <code>check_critical</code> in turn is the quickest
+way to confirm that a newly configured service actually shows all three states,
+and that notifications fire for the ones you expect.</p>
+<div class="highlight"><pre><span></span><code>check_nrpe --host 192.168.56.103 --command check_warning --arguments "message=state test"
+WARNING: state test
+</code></pre></div>
+<p><a id="check_warning_options"></a></p>
+<h4 id="command-line-arguments_10">Command-line Arguments<a class="headerlink" href="#command-line-arguments_10" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#check_warning_message">message</a></td>
+<td>No message</td>
+<td>Message to return</td>
+</tr>
+</tbody>
+</table>
+<h5 id="check_warning_message">message:</h5>
+
+<p>Message to return</p>
+<p><em>Default Value:</em> <code>No message</code></p>
+<p>This command also accepts the standard <a href="../../common-options/#standard-options">help options</a>: help, help-pb, show-default, help-short.</p>
+<h3 id="filter_perf">filter_perf<a class="headerlink" href="#filter_perf" title="Permanent link">&para;</a></h3>
+<p>Run a check and filter performance data.</p>
+<p><code>filter_perf</code> while badly named can be used to post process performance data.</p>
+<p>It can be useful for sorting performance data or limiting the number of performance data items shown.</p>
+<p>In its most basic form you can run <code>filter_perf command=COMMAND arguments REGULAR ARGUMENTS</code> for example <code>check_process</code>:
+<div class="highlight"><pre><span></span><code>filter_perf command=check_process arguments "filter=exe not in ('sqlservr.exe')" "warn=working_set &gt; 3G" "crit=working_set &gt; 5G"
+L        cli WARNING: WARNING: clion64.exe=started
+L        cli  Performance data: ' ws_size'=0GB;3;5 ' ws_size'=0GB;3;5 ' ws_size'=0GB;3;5 ' ...
+</code></pre></div></p>
+<p>This will not do anything by itself but we can for instance sort performance data entries by adding <code>sort=normal</code>:
+<div class="highlight"><pre><span></span><code>filter_perf sort=normal command=check_process arguments "filter=exe not in ('sqlservr.exe')" "warn=working_set &gt; 3G" "crit=working_set &gt; 5G"
+L        cli WARNING: WARNING: clion64.exe=started
+L        cli  Performance data: 'clion64.exe ws_size'=3.30851GB;3;5 'Rider.Backend.exe ws_size'=1.80017GB;3;5 'clangd.exe ws_size'=1.4822GB;3;5 'devenv.exe ws_size'=1.14938GB;3;5 ...
+</code></pre></div></p>
+<p>And further can also limit the number of results shown by adding <code>limit=5</code> like so:
+<div class="highlight"><pre><span></span><code>filter_perf sort=normal limit=5 command=check_process arguments "filter=exe not in ('sqlservr.exe')" "warn=working_set &gt; 3G" "crit=working_set &gt; 5G"
+L        cli WARNING: WARNING: clion64.exe=started
+L        cli  Performance data: 'clion64.exe ws_size'=3.30852GB;3;5 'Rider.Backend.exe ws_size'=1.80017GB;3;5 'clangd.exe ws_size'=1.4822GB;3;5 'devenv.exe ws_size'=1.14938GB;3;5 'msedge.exe ws_size'=0.5757GB;3;5
+</code></pre></div></p>
+<p><strong>Jump to section:</strong></p>
+<ul>
+<li><a href="#filter_perf_samples">Sample Commands</a></li>
+<li><a href="#filter_perf_options">Command-line Arguments</a></li>
+</ul>
+<p><a id="filter_perf_samples"></a></p>
+<h4 id="sample-commands_11">Sample Commands<a class="headerlink" href="#sample-commands_11" title="Permanent link">&para;</a></h4>
+<p><strong>Run a check unchanged (no sorting, no limit):</strong></p>
+<div class="highlight"><pre><span></span><code>filter_perf command=check_drivesize
+WARNING: WARNING /opt/claude-code: 202.746MB/229.949MB used
+'/ used'=8.24464GB;201.57782;226.77505;0;251.97227 '/ used %'=3%;80;90;0;100 '/opt/claude-code used'=202.74609MB;183.95937;206.95429;0;229.94921 '/opt/claude-code used %'=88%;80;90;0;100 '/opt/env-runner used'=29.77734MB;36.98125;41.6039;0;46.22656 '/opt/env-runner used %'=64%;80;90;0;100
+</code></pre></div>
+<p><strong>Keep only the largest values (<code>sort=normal</code>, biggest first):</strong></p>
+<div class="highlight"><pre><span></span><code>filter_perf command=check_drivesize sort=normal limit=3
+WARNING: WARNING /opt/claude-code: 202.746MB/229.949MB used
+'/opt/claude-code used'=202.74609MB;183.95937;206.95429;0;229.94921 '/opt/claude-code used %'=88%;80;90;0;100 '/opt/env-runner used %'=64%;80;90;0;100
+</code></pre></div>
+<p>Note that the comparison is on the raw numeric value, ignoring units — <code>88</code> (a
+percentage) sorts above <code>8.24</code> (gigabytes). Mixing units in one sorted, trimmed
+set rarely gives you the ranking you meant; filter down to one unit first.</p>
+<p><strong>Sorting the other way is <code>sort=reverse</code> — not <code>reversed</code>:</strong></p>
+<p>Only <code>none</code>, <code>normal</code> and <code>reverse</code> are recognised, despite the option&rsquo;s own
+help text naming <code>reversed</code>. Any other value silently leaves the performance
+data unsorted, so <code>limit=</code> then trims the <em>original</em> order rather than the
+smallest values — which is exactly what this captured run shows, the first two
+counters in the order the check emitted them:</p>
+<div class="highlight"><pre><span></span><code>filter_perf command=check_drivesize sort=reversed limit=2
+WARNING: WARNING /opt/claude-code: 202.746MB/229.949MB used
+'/ used'=8.24916GB;201.57782;226.77505;0;251.97227 '/ used %'=3%;80;90;0;100
+</code></pre></div>
+<p>There is no error to tell you the value was ignored, so check the order of what
+comes back rather than trusting the flag.</p>
+<p><strong>Top N processes by memory:</strong></p>
+<p>The typical use — a check that emits one counter per process would otherwise
+produce hundreds of series.</p>
+<div class="highlight"><pre><span></span><code>filter_perf sort=normal limit=10 command=check_process arguments "filter=working_set &gt; 0" "warn=working_set &gt; 3G" "crit=working_set &gt; 5G" "detail-syntax=%(exe) ws=%(working_set)"
+WARNING: WARNING: clion64.exe=started
+'clion64.exe ws_size'=3.30851GB;3;5 'Rider.Backend.exe ws_size'=1.80017GB;3;5 'clangd.exe ws_size'=1.4822GB;3;5 'devenv.exe ws_size'=1.14938GB;3;5 'msedge.exe ws_size'=0.5757GB;3;5
+</code></pre></div>
+<p><strong>The status is not affected by <code>limit</code>:</strong></p>
+<p>Warning and critical are still evaluated against <em>every</em> matching item, so the
+alert fires even when the offending series is not among the ones shown.</p>
+<div class="highlight"><pre><span></span><code>filter_perf command=check_drivesize limit=1 "arguments=crit=used &gt; 50%"
+CRITICAL: CRITICAL /opt/claude-code: 202.746MB/229.949MB used, /opt/env-runner: 29.777MB/46.227MB used
+'/ used'=8.30583GB;201.57782;125.98613;0;251.97227
+</code></pre></div>
+<p>Sorting only ever considers numeric counters; entries without a numeric value
+keep their original position.</p>
+<p><a id="filter_perf_options"></a></p>
+<h4 id="command-line-arguments_11">Command-line Arguments<a class="headerlink" href="#command-line-arguments_11" title="Permanent link">&para;</a></h4>
+<p><a id="filter_perf_command"></a>
+<a id="filter_perf_arguments"></a></p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#filter_perf_sort">sort</a></td>
+<td>none</td>
+<td>The sort order to use: none, normal or reversed</td>
+</tr>
+<tr>
+<td><a href="#filter_perf_limit">limit</a></td>
+<td>0</td>
+<td>The maximum number of items to return (0 returns all items)</td>
+</tr>
+<tr>
+<td>command</td>
+<td></td>
+<td>Wrapped command to execute</td>
+</tr>
+<tr>
+<td>arguments</td>
+<td></td>
+<td>List of arguments (for wrapped command)</td>
+</tr>
+</tbody>
+</table>
+<h5 id="filter_perf_sort">sort:</h5>
+
+<p>The sort order to use: none, normal or reversed</p>
+<p><em>Default Value:</em> <code>none</code></p>
+<h5 id="filter_perf_limit">limit:</h5>
+
+<p>The maximum number of items to return (0 returns all items)</p>
+<p><em>Default Value:</em> <code>0</code></p>
+<p>This command also accepts the standard <a href="../../common-options/#standard-options">help options</a>: help, help-pb, show-default, help-short.</p>
+<h3 id="render_perf">render_perf<a class="headerlink" href="#render_perf" title="Permanent link">&para;</a></h3>
+<p>Run a check and render the performance data as output message.</p>
+<h4 id="about-render_perf">About <code>render_perf</code><a class="headerlink" href="#about-render_perf" title="Permanent link">&para;</a></h4>
+<p><code>render_perf</code> runs another check and turns its <strong>performance data into the
+message</strong>. The wrapped check&rsquo;s own numbers become filterable records, so you can
+list, filter and threshold them from the outside — useful when the check itself
+does not expose the value you want to alert on in its message, and when you want
+to see what a check is actually emitting.</p>
+<p>The check to run is named with <code>command=</code>, and its arguments follow (as
+<code>arguments=</code>, or simply positionally). Because it is a filter check, the full
+<code>filter=</code> / <code>warning=</code> / <code>critical=</code> / <code>top-syntax=</code> / <code>detail-syntax=</code>
+vocabulary applies over one record per performance counter.</p>
+<p>The default <code>detail-syntax</code> renders one tab-separated row per counter — key,
+value, unit, warning, critical, min, max — which makes the output easy to read
+in a terminal and easy to paste into a spreadsheet. Set <code>remove-perf=true</code> when
+the rendered message is the point and you do not also want the numbers
+duplicated as perf data on the result.</p>
+<p><code>empty-state</code> defaults to <code>unknown</code>, so a wrapped check that emits no
+performance data at all reports UNKNOWN rather than a misleading OK.</p>
+<p>See also <a href="#filter_perf"><code>filter_perf</code></a>, which sorts and trims performance data
+while leaving the message alone, and <a href="#xform_perf"><code>xform_perf</code></a>, which rewrites
+the perf data itself.</p>
+<p><strong>Jump to section:</strong></p>
+<ul>
+<li><a href="#render_perf_samples">Sample Commands</a></li>
+<li><a href="#render_perf_options">Command-line Arguments</a></li>
+<li><a href="#render_perf_filter_keys">Filter keywords</a></li>
+</ul>
+<p><a id="render_perf_samples"></a></p>
+<h4 id="sample-commands_12">Sample Commands<a class="headerlink" href="#sample-commands_12" title="Permanent link">&para;</a></h4>
+<p><strong>Render a check&rsquo;s performance data as the message:</strong></p>
+<p>The result carries two lines: the wrapped check&rsquo;s own result, then the rendered
+one. The default <code>detail-syntax</code> produces one tab-separated row per counter —
+key, value, unit, warning, critical, min, max.</p>
+<div class="highlight"><pre><span></span><code>render_perf command=check_drivesize
+OK: WARNING /opt/claude-code: 202.746MB/229.949MB used
+'/ used'=8.24544GB;201.57782;226.77505;0;251.97227 '/ used %'=3%;80;90;0;100 '/opt/claude-code used'=202.74609MB;183.95937;206.95429;0;229.94921 '/opt/claude-code used %'=88%;80;90;0;100
+OK: OK:  / used 8.24544 GB  201.578 226.775 0   251.972 ...
+</code></pre></div>
+<p><strong>Drop the original performance data (<code>remove-perf=true</code>):</strong></p>
+<p>Useful when the rendered message is the point and you do not want every number
+duplicated as a graphed series.</p>
+<div class="highlight"><pre><span></span><code>render_perf command=check_drivesize remove-perf=true
+OK: WARNING /opt/claude-code: 202.746MB/229.949MB used
+OK: OK:  / used 8.24618 GB  201.578 226.775 0   251.972 ...
+</code></pre></div>
+<p><strong>Pick out just the counters you care about:</strong></p>
+<p><code>like</code> is substring matching, so this keeps only the percentage counters.</p>
+<div class="highlight"><pre><span></span><code>render_perf command=check_drivesize "filter=key like '%'" "detail-syntax=${key}=${value}${unit}"
+OK: WARNING /opt/claude-code: 202.746MB/229.949MB used
+OK: OK:  / used %=3%, /opt/claude-code used %=88%, /opt/env-runner used %=64%
+</code></pre></div>
+<p><strong>Threshold on a value the wrapped check does not expose in its message:</strong></p>
+<p>Note that the rendered line lists <em>every</em> matching counter, not only the ones
+that breached — the default <code>top-syntax</code> is <code>%(status): %(message) %(list)</code>.</p>
+<div class="highlight"><pre><span></span><code>render_perf command=check_drivesize "filter=key like 'used %'" "crit=value &gt; 80" "detail-syntax=${key}=${value}%"
+CRITICAL: WARNING /opt/claude-code: 202.746MB/229.949MB used
+CRITICAL: CRITICAL:  / used %=3%, /opt/claude-code used %=88%, /opt/env-runner used %=64%
+</code></pre></div>
+<p>The wrapped check itself was only WARNING here; the CRITICAL comes from
+<code>render_perf</code>&rsquo;s own threshold on the counter value.</p>
+<p><strong>A check with no performance data reports UNKNOWN:</strong></p>
+<p><code>empty-state</code> defaults to <code>unknown</code>, so an empty result is distinguishable from
+a healthy one rather than reading as OK.</p>
+<div class="highlight"><pre><span></span><code>render_perf command=check_ok
+UNKNOWN: No message
+UNKNOWN: UNKNOWN:
+</code></pre></div>
+<p><a id="render_perf_options"></a></p>
+<h4 id="command-line-arguments_12">Command-line Arguments<a class="headerlink" href="#command-line-arguments_12" title="Permanent link">&para;</a></h4>
+<p><a id="render_perf_command"></a>
+<a id="render_perf_arguments"></a></p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>command</td>
+<td></td>
+<td>Wrapped command to execute</td>
+</tr>
+<tr>
+<td>arguments</td>
+<td></td>
+<td>List of arguments (for wrapped command)</td>
+</tr>
+<tr>
+<td><a href="#render_perf_remove-perf">remove-perf</a></td>
+<td>false</td>
+<td>List of arguments (for wrapped command)</td>
+</tr>
+</tbody>
+</table>
+<h5 id="render_perf_remove-perf">remove-perf:</h5>
+
+<p>List of arguments (for wrapped command)</p>
+<p><em>Default Value:</em> <code>false</code></p>
+<p><strong>Common options:</strong></p>
+<p>These options are shared by all filter based commands and are described on the <a href="../../common-options/#common-options">common options</a> page; the default values below are specific to this command.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Default Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="render_perf_filter"></a><a href="../../common-options/#filter">filter</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="render_perf_warning"></a><a href="../../common-options/#warning">warning</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="render_perf_warn"></a><a href="../../common-options/#warn">warn</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="render_perf_critical"></a><a href="../../common-options/#critical">critical</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="render_perf_crit"></a><a href="../../common-options/#crit">crit</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="render_perf_ok"></a><a href="../../common-options/#ok">ok</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="render_perf_debug"></a><a href="../../common-options/#debug">debug</a></td>
+<td>false</td>
+</tr>
+<tr>
+<td><a id="render_perf_show-all"></a><a href="../../common-options/#show-all">show-all</a></td>
+<td>false</td>
+</tr>
+<tr>
+<td><a id="render_perf_empty-state"></a><a href="../../common-options/#empty-state">empty-state</a></td>
+<td>unknown</td>
+</tr>
+<tr>
+<td><a id="render_perf_perf-config"></a><a href="../../common-options/#perf-config">perf-config</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="render_perf_escape-html"></a><a href="../../common-options/#escape-html">escape-html</a></td>
+<td>false</td>
+</tr>
+<tr>
+<td><a id="render_perf_list-separator"></a><a href="../../common-options/#list-separator">list-separator</a></td>
+<td>,</td>
+</tr>
+<tr>
+<td><a id="render_perf_top-syntax"></a><a href="../../common-options/#top-syntax">top-syntax</a></td>
+<td>%(status): %(message) %(list)</td>
+</tr>
+<tr>
+<td><a id="render_perf_ok-syntax"></a><a href="../../common-options/#ok-syntax">ok-syntax</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="render_perf_empty-syntax"></a><a href="../../common-options/#empty-syntax">empty-syntax</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="render_perf_detail-syntax"></a><a href="../../common-options/#detail-syntax">detail-syntax</a></td>
+<td>%(key)  %(value)    %(unit) %(warn) %(crit) %(min)  %(max)</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="render_perf_perf-syntax"></a><a href="../../common-options/#perf-syntax">perf-syntax</a></td>
+<td>%(key)</td>
+</tr>
+<tr>
+<td><a id="render_perf_byte-unit"></a><a href="../../common-options/#byte-unit">byte-unit</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="render_perf_decimal-separator"></a><a href="../../common-options/#decimal-separator">decimal-separator</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="render_perf_decimals"></a><a href="../../common-options/#decimals">decimals</a></td>
+<td>-1</td>
+</tr>
+<tr>
+<td><a id="render_perf_thousands-separator"></a><a href="../../common-options/#thousands-separator">thousands-separator</a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>This command also accepts the standard <a href="../../common-options/#standard-options">help options</a>: help, help-pb, show-default, help-short.</p>
+<p><a id="render_perf_filter_keys"></a></p>
+<h4 id="filter-keywords">Filter keywords<a class="headerlink" href="#filter-keywords" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>crit</td>
+<td>The critical threshold (range when set, otherwise the numeric bound)</td>
+</tr>
+<tr>
+<td>key</td>
+<td>The name (alias) of the performance data entry</td>
+</tr>
+<tr>
+<td>max</td>
+<td>The maximum bound of the performance data entry</td>
+</tr>
+<tr>
+<td>message</td>
+<td>The name (alias) of the performance data entry</td>
+</tr>
+<tr>
+<td>min</td>
+<td>The minimum bound of the performance data entry</td>
+</tr>
+<tr>
+<td>unit</td>
+<td>The unit of the performance data entry</td>
+</tr>
+<tr>
+<td>value</td>
+<td>The value of the performance data entry</td>
+</tr>
+<tr>
+<td>warn</td>
+<td>The warning threshold (range when set, otherwise the numeric bound)</td>
+</tr>
+</tbody>
+</table>
+<p>This command also supports the <a href="../../common-options/#common-filter-keywords">common filter keywords</a>: count, total, ok_count, warn_count, crit_count, problem_count, list, ok_list, warn_list, crit_list, problem_list, detail_list, sep, status.</p>
+<h3 id="xform_perf">xform_perf<a class="headerlink" href="#xform_perf" title="Permanent link">&para;</a></h3>
+<p>Run a check and transform the performance data in various (currently one) way.</p>
+<h4 id="about-xform_perf">About <code>xform_perf</code><a class="headerlink" href="#about-xform_perf" title="Permanent link">&para;</a></h4>
+<p><code>xform_perf</code> runs another check and <strong>transforms its performance data</strong> before
+returning it. It exists for graphing backends that need something the original
+check does not emit. The wrapped check&rsquo;s status and message pass through
+untouched.</p>
+<h5 id="modeminmax"><code>mode=minmax</code><a class="headerlink" href="#modeminmax" title="Permanent link">&para;</a></h5>
+<p>Sets <code>min=0</code> and <code>max=100</code> on every <strong>percentage</strong> counter — those whose unit is
+<code>%</code>. Counters with any other unit are left alone. Some graphing systems will not
+draw a percentage gauge on a fixed 0–100 axis, or will autoscale it to the
+observed range, unless the bounds are declared.</p>
+<h5 id="modeextract"><code>mode=extract</code><a class="headerlink" href="#modeextract" title="Permanent link">&para;</a></h5>
+<p>Copies one field of every counter into a <strong>new, additional</strong> counter, renamed
+with <code>replace=</code>. The original counters are kept, so the result carries both
+series and the graph can show a value against its own bound.</p>
+<p><code>replace=</code> is written as <code>&lt;match&gt;=&lt;replacement&gt;</code> and is a plain substring
+substitution on the counter label, applied everywhere it occurs — so
+<code>replace=used=size</code> turns <code>/ used</code> into <code>/ size</code> and <code>/ used %</code> into <code>/ size %</code>.
+It must contain exactly one <code>=</code>, or the check returns a syntax error.</p>
+<p><strong>Only <code>field=max</code> and <code>field=min</code> do anything.</strong> Despite what the option help
+suggests, <code>value</code>, <code>warn</code> and <code>crit</code> add no counters at all — the check simply
+returns the original performance data unchanged, with no error. If an <code>extract</code>
+run appears to be a no-op, this is why.</p>
+<p>So the useful shape is emitting a counter&rsquo;s declared maximum as its own series:</p>
+<div class="highlight"><pre><span></span><code>xform_perf command=check_drivesize mode=extract field=max "replace=used=size"
+</code></pre></div>
+<p>An unrecognised <code>mode=</code> is an error (<code>Invalid mode specified</code>, UNKNOWN), not a
+silent pass-through.</p>
+<p>See also <a href="#render_perf"><code>render_perf</code></a>, which turns performance data into the
+message, and <a href="#filter_perf"><code>filter_perf</code></a>, which sorts and trims it.</p>
+<p><strong>Jump to section:</strong></p>
+<ul>
+<li><a href="#xform_perf_samples">Sample Commands</a></li>
+<li><a href="#xform_perf_options">Command-line Arguments</a></li>
+</ul>
+<p><a id="xform_perf_samples"></a></p>
+<h4 id="sample-commands_13">Sample Commands<a class="headerlink" href="#sample-commands_13" title="Permanent link">&para;</a></h4>
+<p><strong>Emit each counter&rsquo;s declared maximum as its own series (<code>mode=extract</code>):</strong></p>
+<p>The original counters are kept and the extracted ones are added alongside,
+renamed by substituting <code>used</code> with <code>size</code> everywhere it appears in the label.</p>
+<div class="highlight"><pre><span></span><code>xform_perf command=check_drivesize mode=extract field=max "replace=used=size"
+WARNING: WARNING /opt/claude-code: 202.746MB/229.949MB used
+'/ used'=8.25672GB;201.57782;226.77505;0;251.97227 '/ used %'=3%;80;90;0;100 '/opt/claude-code used'=202.74609MB;183.95937;206.95429;0;229.94921 '/opt/claude-code used %'=88%;80;90;0;100 '/opt/env-runner used'=29.77734MB;36.98125;41.6039;0;46.22656 '/opt/env-runner used %'=64%;80;90;0;100 '/ size'=251.97227GB;201.57782;226.77505;0;251.97227 '/ size %'=100%;80;90;0;100 '/opt/claude-code size'=229.94921MB;183.95937;206.95429;0;229.94921 '/opt/claude-code size %'=100%;80;90;0;100 '/opt/env-runner size'=46.22656MB;36.98125;41.6039;0;46.22656 '/opt/env-runner size %'=100%;80;90;0;100
+</code></pre></div>
+<p>The graph now has a <code>size</code> line to draw <code>used</code> against.</p>
+<p><strong><code>field=min</code> works the same way; every other field is a silent no-op:</strong></p>
+<p>Despite what the option help suggests, <code>value</code>, <code>warn</code> and <code>crit</code> add nothing —
+the performance data comes back exactly as the wrapped check produced it, with
+no error to tell you so.</p>
+<div class="highlight"><pre><span></span><code>xform_perf command=check_drivesize mode=extract field=crit "replace=used=used_crit"
+WARNING: WARNING /opt/claude-code: 202.746MB/229.949MB used
+'/ used'=8.25701GB;201.57782;226.77505;0;251.97227 '/ used %'=3%;80;90;0;100 '/opt/claude-code used'=202.74609MB;183.95937;206.95429;0;229.94921 '/opt/claude-code used %'=88%;80;90;0;100 '/opt/env-runner used'=29.77734MB;36.98125;41.6039;0;46.22656 '/opt/env-runner used %'=64%;80;90;0;100
+</code></pre></div>
+<p><strong>Pin percentage counters to a 0-100 axis (<code>mode=minmax</code>):</strong></p>
+<p>Only counters whose unit is <code>%</code> are touched; everything else is left alone.
+<code>check_drivesize</code> already declares 0/100 on its percentage counters, so here the
+transformation is a no-op — it matters for checks that do not.</p>
+<div class="highlight"><pre><span></span><code>xform_perf command=check_drivesize mode=minmax
+WARNING: WARNING /opt/claude-code: 202.746MB/229.949MB used
+'/ used'=8.2454GB;201.57782;226.77505;0;251.97227 '/ used %'=3%;80;90;0;100 '/opt/claude-code used'=202.74609MB;183.95937;206.95429;0;229.94921 '/opt/claude-code used %'=88%;80;90;0;100
+</code></pre></div>
+<p><strong>An unrecognised mode is an error:</strong></p>
+<div class="highlight"><pre><span></span><code>xform_perf command=check_drivesize mode=bogus
+UNKNOWN: WARNING /opt/claude-code: 202.746MB/229.949MB used
+UNKNOWN: Invalid mode specified ...
+</code></pre></div>
+<p><a id="xform_perf_options"></a></p>
+<h4 id="command-line-arguments_13">Command-line Arguments<a class="headerlink" href="#command-line-arguments_13" title="Permanent link">&para;</a></h4>
+<p><a id="xform_perf_command"></a>
+<a id="xform_perf_arguments"></a>
+<a id="xform_perf_mode"></a>
+<a id="xform_perf_field"></a>
+<a id="xform_perf_replace"></a></p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>command</td>
+<td></td>
+<td>Wrapped command to execute</td>
+</tr>
+<tr>
+<td>arguments</td>
+<td></td>
+<td>List of arguments (for wrapped command)</td>
+</tr>
+<tr>
+<td>mode</td>
+<td></td>
+<td>Transformation mode: extract to fetch data or minmax to add missing min/max</td>
+</tr>
+<tr>
+<td>field</td>
+<td></td>
+<td>Field to work with (value, warn, crit, max, min)</td>
+</tr>
+<tr>
+<td>replace</td>
+<td></td>
+<td>Replace expression for the alias</td>
+</tr>
+</tbody>
+</table>
+<p>This command also accepts the standard <a href="../../common-options/#standard-options">help options</a>: help, help-pb, show-default, help-short.</p>
+<h2 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Path / Section</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#command-aliases">/settings/check helpers/alias</a></td>
+<td>Command aliases</td>
+</tr>
+</tbody>
+</table>
+<h3 id="command-aliases">Command aliases <a id="/settings/check helpers/alias"></a><a class="headerlink" href="#command-aliases" title="Permanent link">&para;</a></h3>
+<p>A list of aliases for already-defined commands (with arguments).
+An alias is an internal command that has been predefined to provide a single command without arguments. Be careful so you don&rsquo;t create loops (e.g. check_loop=check_a, check_a=check_loop).
+Aliases are also available in CheckExternalScripts under [/settings/external scripts/alias]; use this section when you want aliases without enabling external-script execution. If the same alias name is registered by both modules, the last one to load wins - avoid duplicating definitions.</p>
+<p>This is a section of objects. This means that you will create objects below this point by adding sections which all look the same.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+      <div class="md-consent" data-md-component="consent" id="__consent" hidden>
+        <div class="md-consent__overlay"></div>
+        <aside class="md-consent__inner">
+          <form class="md-consent__form md-grid md-typeset" name="consent">
+            
+
+
+  
+
+
+<h4>Cookie consent</h4>
+<p>We use cookies to recognize your repeated visits and preferences, as well as to measure the effectiveness of our documentation and whether users find what they're searching for. With your consent, you're helping us to make our documentation better.</p>
+<input class="md-toggle" type="checkbox" id="__settings" >
+<div class="md-consent__settings">
+  <ul class="task-list">
+    
+    
+      
+    
+    
+      
+        
+  
+  
+    
+    
+  
+  <li class="task-list-item">
+    <label class="task-list-control">
+      <input type="checkbox" name="github" checked>
+      <span class="task-list-indicator"></span>
+      GitHub
+    </label>
+  </li>
+
+      
+    
+    
+  </ul>
+</div>
+<div class="md-consent__controls">
+  
+    
+      <button class="md-button md-button--primary">Accept</button>
+    
+    
+    
+  
+    
+    
+    
+      <label class="md-button" for="__settings">Manage settings</label>
+    
+  
+</div>
+          </form>
+        </aside>
+      </div>
+      <script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout((function(){document.querySelector("[data-md-component=consent]").hidden=!1}),250);var form=document.forms.consent;for(var action of["submit","reset"])form.addEventListener(action,(function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map((function(e){return[e,!0]})))),location.hash="",location.reload()}))</script>
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.tabs", "toc.follow", "toc.integrate", "navigation.indexes", "search.suggest", "search.highlight", "search.share"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../../js/notes.js"></script>
+      
+        <script src="../../../../assets/js/latest-release.js"></script>
+      
+    
+  </body>
+</html>
