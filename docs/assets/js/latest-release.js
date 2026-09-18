@@ -9,7 +9,7 @@
     check_nsclient: { repo: 'mickem/check_nsclient', data: 'data/check_nsclient-releases.json' }
   };
   var DEFAULT_PROJECT = 'nscp';
-  var CACHE_PREFIX = 'nscp-latest-release-v2:';
+  var CACHE_PREFIX = 'nscp-latest-release-v3:';
   var CACHE_TTL_MS = 60 * 60 * 1000;
 
   // assets/js/latest-release.js -> the site root, whatever the page depth.
@@ -33,6 +33,41 @@
 
   function cleanTag(s) {
     return (s || '').replace(/^v/i, '');
+  }
+
+  // GitHub shows binary sizes labelled MB, so do the same.
+  function fmtSize(bytes) {
+    if (!bytes || bytes <= 0) return '';
+    var units = ['B', 'KB', 'MB', 'GB'];
+    var n = bytes, i = 0;
+    while (n >= 1024 && i < units.length - 1) { n /= 1024; i++; }
+    return (i === 0 ? n : n.toFixed(1)) + ' ' + units[i];
+  }
+
+  // Assets come trimmed from data/*.json (url) or raw from the GitHub API
+  // (browser_download_url) when the build-time data is unavailable.
+  function assetUrl(asset) {
+    return asset.url || asset.browser_download_url || '';
+  }
+
+  // 'NSCP-<version>-x64.msi' -> /^NSCP-(.+?)-x64\.msi$/, so a file is found
+  // even when the tag and the version in the file name are spelled apart.
+  function assetPattern(template) {
+    var escaped = template.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    return new RegExp('^' + escaped.replace(/<version>/g, '(.+?)') + '$');
+  }
+
+  function findAsset(release, template, version) {
+    var assets = (release && release.assets) || [];
+    var exact = template.replace(/<version>/g, version);
+    for (var i = 0; i < assets.length; i++) {
+      if (assets[i].name === exact) return assets[i];
+    }
+    var re = assetPattern(template);
+    for (var j = 0; j < assets.length; j++) {
+      if (re.test(assets[j].name || '')) return assets[j];
+    }
+    return null;
   }
 
   function firstMeaningfulLine(body) {
@@ -76,6 +111,30 @@
     });
     elements('download-link', key).forEach(function (el) {
       el.href = url;
+    });
+    applyAssets(release, key, version);
+  }
+
+  // Links marked data-release="asset" name a file of the latest release with
+  // <version> standing in for the version, either in data-release-asset or
+  // in their visible text (e.g. `NSCP-<version>-x64.msi`). Point each at the
+  // matching asset and show the real file name; leave links whose file is
+  // not in the release alone, so they keep pointing at the release page.
+  function applyAssets(release, key, version) {
+    elements('asset', key).forEach(function (el) {
+      var template = el.getAttribute('data-release-asset');
+      if (!template) {
+        template = (el.textContent || '').trim();
+        // Remember the pattern: the text is replaced by the file name below.
+        el.setAttribute('data-release-asset', template);
+      }
+      var asset = template && findAsset(release, template, version);
+      if (!asset || !assetUrl(asset)) return;
+      el.href = assetUrl(asset);
+      var label = el.querySelector('code') || el;
+      label.textContent = asset.name;
+      var size = fmtSize(asset.size);
+      if (size) el.title = asset.name + ' (' + size + ')';
     });
   }
 
@@ -211,7 +270,7 @@
     if (document.getElementById(key === DEFAULT_PROJECT ? 'nscp-releases' : key + '-releases')) {
       return true;
     }
-    return ['version', 'date', 'notes-link', 'download-link'].some(function (kind) {
+    return ['version', 'date', 'notes-link', 'download-link', 'asset'].some(function (kind) {
       return elements(kind, key).length > 0;
     });
   }

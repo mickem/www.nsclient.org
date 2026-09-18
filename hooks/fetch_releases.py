@@ -8,7 +8,9 @@ unauthenticated). One file per project:
     data/check_nsclient-releases.json   mickem/check_nsclient  (the CLI)
 
 `assets/js/latest-release.js` reads them to fill in versions, dates and
-download links on the home page and on /download/.
+download links on the home page and on /download/. Each release carries
+its assets (name, download URL, size) so the file table on /download/
+can link straight to the files of the latest release.
 
 Set GITHUB_TOKEN in the environment to bump the build-time rate limit to
 5000/hr (auto-set inside GitHub Actions).
@@ -98,6 +100,14 @@ def _trim(releases):
             "html_url": r.get("html_url"),
             "published_at": r.get("published_at"),
             "body": body,
+            "assets": [
+                {
+                    "name": a.get("name"),
+                    "url": a.get("browser_download_url"),
+                    "size": a.get("size"),
+                }
+                for a in (r.get("assets") or [])
+            ],
         })
     return result
 

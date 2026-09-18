@@ -25,14 +25,19 @@ Latest: <strong data-release="version">latest</strong>
 
 | Host | File |
 |------|------|
-| Windows, 64-bit | `NSCP-<version>-x64.msi` |
-| Windows, 32-bit | `NSCP-<version>-Win32.msi` |
-| Windows on ARM | `NSCP-<version>-ARM64.msi` |
-| Windows XP / 2003 | `NSCP-<version>-Win32-legacy-xp.msi` |
-| Debian / Ubuntu | `NSCP-<version>-ubuntu-24.04-<arch>.deb` |
-| RHEL / Rocky / Alma | `NSCP-<version>-rocky-<9\|10>-<arch>.rpm` |
+| Windows, 64-bit | [`NSCP-<version>-x64.msi`](https://github.com/mickem/nscp/releases/latest){ data-release="asset" } |
+| Windows, 32-bit | [`NSCP-<version>-Win32.msi`](https://github.com/mickem/nscp/releases/latest){ data-release="asset" } |
+| Windows on ARM | [`NSCP-<version>-ARM64.msi`](https://github.com/mickem/nscp/releases/latest){ data-release="asset" } |
+| Windows XP / 2003 | [`NSCP-<version>-Win32-legacy-xp.msi`](https://github.com/mickem/nscp/releases/latest){ data-release="asset" } |
+| Debian / Ubuntu, x86-64 | [`NSCP-<version>-ubuntu-24.04-amd64.deb`](https://github.com/mickem/nscp/releases/latest){ data-release="asset" } |
+| Debian / Ubuntu, arm64 | [`NSCP-<version>-ubuntu-24.04-arm64.deb`](https://github.com/mickem/nscp/releases/latest){ data-release="asset" } |
+| RHEL / Rocky / Alma 9, x86-64 | [`NSCP-<version>-rocky-9-x86_64.rpm`](https://github.com/mickem/nscp/releases/latest){ data-release="asset" } |
+| RHEL / Rocky / Alma 9, arm64 | [`NSCP-<version>-rocky-9-aarch64.rpm`](https://github.com/mickem/nscp/releases/latest){ data-release="asset" } |
+| RHEL / Rocky / Alma 10, x86-64 | [`NSCP-<version>-rocky-10-x86_64.rpm`](https://github.com/mickem/nscp/releases/latest){ data-release="asset" } |
+| RHEL / Rocky / Alma 10, arm64 | [`NSCP-<version>-rocky-10-aarch64.rpm`](https://github.com/mickem/nscp/releases/latest){ data-release="asset" } |
 
-The [package matrix](https://github.com/mickem/nscp#which-package-to-download)
+The links point at the files of the latest release. The
+[package matrix](https://github.com/mickem/nscp#which-package-to-download)
 lists every artifact with the distributions it is tested on.
 
 - [Quick Start](docs/quick-start.md) — installed and checking in 10 minutes
@@ -62,10 +67,10 @@ Latest: <strong data-release="version" data-release-repo="check_nsclient">latest
 
 | Host | File |
 |------|------|
-| Linux, x86-64 | `check_nsclient-<version>-linux-x64` |
-| Linux, arm64 | `check_nsclient-<version>-linux-arm64` |
-| Windows, 64-bit | `check_nsclient-<version>-windows-x64.exe` |
-| Windows, 32-bit | `check_nsclient-<version>-windows-x86.exe` |
+| Linux, x86-64 | [`check_nsclient-<version>-linux-x64`](https://github.com/mickem/check_nsclient/releases/latest){ data-release="asset" data-release-repo="check_nsclient" } |
+| Linux, arm64 | [`check_nsclient-<version>-linux-arm64`](https://github.com/mickem/check_nsclient/releases/latest){ data-release="asset" data-release-repo="check_nsclient" } |
+| Windows, 64-bit | [`check_nsclient-<version>-windows-x64.exe`](https://github.com/mickem/check_nsclient/releases/latest){ data-release="asset" data-release-repo="check_nsclient" } |
+| Windows, 32-bit | [`check_nsclient-<version>-windows-x86.exe`](https://github.com/mickem/check_nsclient/releases/latest){ data-release="asset" data-release-repo="check_nsclient" } |
 
 <!-- @formatter:off -->
 !!! tip "Already on your Windows agents"
@@ -83,7 +88,8 @@ Latest: <strong data-release="version" data-release-repo="check_nsclient">latest
 
 ## Also on the releases page
 
-**Web UI bundle** — `NSCP-Web-<version>.zip`, attached to each NSClient++
+**Web UI bundle** — [`NSCP-Web-<version>.zip`](https://github.com/mickem/nscp/releases/latest){ data-release="asset" },
+attached to each NSClient++
 release. The Windows MSI bundles the UI inline, so this is only needed on
 Linux, where `sudo nscp web install-ui` fetches and unpacks it for you. See
 [Installing the web UI bundle](docs/setup/installing.md#installing-the-web-ui-bundle),
