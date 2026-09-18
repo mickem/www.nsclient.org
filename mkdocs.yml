@@ -48,6 +48,8 @@ hooks:
   - hooks/fetch_releases.py
   - hooks/extra_files.py
   - hooks/notes.py
+  # Latest news posts on the home page (<!-- latest-news --> in docs/index.md).
+  - hooks/latest_news.py
 
 
 

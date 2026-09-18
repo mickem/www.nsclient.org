@@ -42,11 +42,9 @@ Released <span data-release="date">recently</span> &middot; <a href="https://git
 </div>
 </div>
 
-## :material-newspaper: Latest releases
+## :material-newspaper: Latest news
 
-<div id="nscp-releases" class="release-list">
-<p class="release-loading">Loading latest releases…</p>
-</div>
+<!-- latest-news -->
 
 [All news :material-arrow-right:](news/index.md){ .md-button }
 [All releases on GitHub :material-arrow-right:](https://github.com/mickem/nscp/releases){ .md-button }

@@ -78,22 +78,25 @@
     }
 }
 
-/* ----- Home: latest releases ----- */
+/* ----- Home: latest news (hooks/latest_news.py), Download: latest releases ----- */
 
-.release-list {
+.release-list,
+.news-list {
     display: grid;
     gap: .75rem;
     margin: 1rem 0 1.5rem;
 }
 
-.release-item {
+.release-item,
+.news-item {
     padding: .9rem 1rem;
     border: 1px solid var(--md-default-fg-color--lightest);
     border-radius: 6px;
     background: var(--md-default-bg-color);
 }
 
-.release-header {
+.release-header,
+.news-header {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
@@ -101,29 +104,34 @@
     flex-wrap: wrap;
 }
 
-.release-title {
+.release-title,
+.news-title {
     font-weight: 600;
     font-size: 1rem;
     text-decoration: none;
     color: var(--md-primary-fg-color);
 }
 
-.release-title:hover {
+.release-title:hover,
+.news-title:hover {
     text-decoration: underline;
 }
 
-.release-date {
+.release-date,
+.news-date {
     font-size: .75rem;
     color: var(--md-default-fg-color--light);
 }
 
-.release-summary {
+.release-summary,
+.news-summary {
     margin: .4rem 0 0 !important;
     font-size: .85rem;
     color: var(--md-default-fg-color--light);
 }
 
-.release-loading {
+.release-loading,
+.news-loading {
     color: var(--md-default-fg-color--light);
     font-size: .85rem;
     margin: 0;
