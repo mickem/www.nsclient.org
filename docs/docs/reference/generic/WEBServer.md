@@ -28,21 +28,24 @@ WEBServer = enabled
 
 Section for WEB (WEBServer.dll) (check_WEB) protocol options.
 
-| Key                                                                  | Default Value                       | Description                        |
-|----------------------------------------------------------------------|-------------------------------------|------------------------------------|
-| [allow anonymous access](#allow-anonymous-access)                    | false                               | ALLOW ANONYMOUS ACCESS             |
-| [allow insecure](#allow-insecure-cleartext-http)                     | false                               | ALLOW INSECURE (CLEARTEXT HTTP)    |
-| [allowed hosts](#allowed-hosts)                                      | 127.0.0.1                           | Allowed hosts                      |
-| [auth rate limit block seconds](#auth-rate-limit-block-seconds)      | 60                                  | AUTH RATE LIMIT (BLOCK SECONDS)    |
-| [auth rate limit max failures](#auth-rate-limit-failures)            | 10                                  | AUTH RATE LIMIT (FAILURES)         |
-| [cache allowed hosts](#cache-list-of-allowed-hosts)                  | true                                | Cache list of allowed hosts        |
-| [certificate](#tls-certificate)                                      | ${certificate-path}/certificate.pem | TLS Certificate                    |
-| [certificate key](#tls-private-key)                                  |                                     | TLS private key                    |
-| [disable admin user](#disable-admin-user)                            | false                               | DISABLE ADMIN USER                 |
-| [legacy query auth user agents](#legacy-query-string-auth-allowlist) | Icinga/check_nscp_api               | LEGACY QUERY-STRING AUTH ALLOWLIST |
-| [password](#password)                                                |                                     | Password                           |
-| [port](#server-port)                                                 | 8443                                | Server port                        |
-| [threads](#server-threads)                                           | 10                                  | Server threads                     |
+| Key                                                                  | Default Value                       | Description                         |
+|----------------------------------------------------------------------|-------------------------------------|-------------------------------------|
+| [allow anonymous access](#allow-anonymous-access)                    | false                               | ALLOW ANONYMOUS ACCESS              |
+| [allow insecure](#allow-insecure-cleartext-http)                     | false                               | ALLOW INSECURE (CLEARTEXT HTTP)     |
+| [allowed ciphers](#allowed-ciphers)                                  |                                     | ALLOWED CIPHERS _(Windows only)_    |
+| [allowed hosts](#allowed-hosts)                                      | 127.0.0.1                           | Allowed hosts                       |
+| [auth rate limit block seconds](#auth-rate-limit-block-seconds)      | 60                                  | AUTH RATE LIMIT (BLOCK SECONDS)     |
+| [auth rate limit max failures](#auth-rate-limit-failures)            | 10                                  | AUTH RATE LIMIT (FAILURES)          |
+| [cache allowed hosts](#cache-list-of-allowed-hosts)                  | true                                | Cache list of allowed hosts         |
+| [certificate](#tls-certificate)                                      | ${certificate-path}/certificate.pem | TLS Certificate                     |
+| [certificate key](#tls-private-key)                                  |                                     | TLS private key                     |
+| [disable admin user](#disable-admin-user)                            | false                               | DISABLE ADMIN USER                  |
+| [legacy query auth user agents](#legacy-query-string-auth-allowlist) | Icinga/check_nscp_api               | LEGACY QUERY-STRING AUTH ALLOWLIST  |
+| [openmetrics format](#openmetrics-exposition-format)                 | openmetrics                         | OPENMETRICS EXPOSITION FORMAT       |
+| [password](#password)                                                |                                     | Password                            |
+| [port](#server-port)                                                 | 8443                                | Server port                         |
+| [threads](#server-threads)                                           | 10                                  | Server threads                      |
+| [tls version](#tls-version-to-use)                                   | 1.2+                                | TLS version to use _(Windows only)_ |
 
 
 ```ini
@@ -57,8 +60,10 @@ cache allowed hosts=true
 certificate=${certificate-path}/certificate.pem
 disable admin user=false
 legacy query auth user agents=Icinga/check_nscp_api
+openmetrics format=openmetrics
 port=8443
 threads=10
+tls version=1.2+  # Windows only
 ```
 
 #### ALLOW ANONYMOUS ACCESS <a id="/settings/WEB/server/allow anonymous access"></a>
@@ -99,6 +104,27 @@ When false (the default) the WEB server refuses to start if the TLS certificate 
 [/settings/WEB/server]
 # ALLOW INSECURE (CLEARTEXT HTTP)
 allow insecure=false
+```
+
+#### ALLOWED CIPHERS <a id="/settings/WEB/server/allowed ciphers"></a>
+
+OpenSSL cipher list the listener is restricted to. Empty (the default) leaves the library's own selection in place. Same backend caveat as \`tls version\`.
+
+
+| Key            | Description                                   |
+|----------------|-----------------------------------------------|
+| Path:          | [/settings/WEB/server](#/settings/WEB/server) |
+| Key:           | allowed ciphers                               |
+| Platform:      | Windows only                                  |
+| Default value: | _N/A_                                         |
+
+
+**Sample:**
+
+```
+[/settings/WEB/server]
+# ALLOWED CIPHERS
+allowed ciphers=
 ```
 
 #### Allowed hosts <a id="/settings/WEB/server/allowed hosts"></a>
@@ -285,6 +311,26 @@ Comma-separated list of User-Agent substrings (case-insensitive) for clients all
 legacy query auth user agents=Icinga/check_nscp_api
 ```
 
+#### OPENMETRICS EXPOSITION FORMAT <a id="/settings/WEB/server/openmetrics format"></a>
+
+Which exposition /api/v2/openmetrics serves. \`openmetrics\` (the default) emits a conformant OpenMetrics document: metric names are rewritten to the \`[a-zA-Z_][a-zA-Z0-9_]*\` grammar (\`system.mem.physical.%\` becomes \`system_mem_physical_percent\`), every family carries a \`# TYPE\` line, the body ends with \`# EOF\` and values keep their full precision. \`legacy\` reproduces the previous body byte for byte - \`<name> <value>\` lines with dots, spaces and colons left in the names, and values truncated to six significant digits - for a dashboard or recording rule that has not been migrated yet. The legacy format is deprecated and will be removed in a future release.
+
+
+| Key            | Description                                   |
+|----------------|-----------------------------------------------|
+| Path:          | [/settings/WEB/server](#/settings/WEB/server) |
+| Key:           | openmetrics format                            |
+| Default value: | `openmetrics`                                 |
+
+
+**Sample:**
+
+```
+[/settings/WEB/server]
+# OPENMETRICS EXPOSITION FORMAT
+openmetrics format=openmetrics
+```
+
 #### Password <a id="/settings/WEB/server/password"></a>
 
 Password used to authenticate against server
@@ -343,6 +389,27 @@ The number of threads in the sever response pool.
 [/settings/WEB/server]
 # Server threads
 threads=10
+```
+
+#### TLS version to use <a id="/settings/WEB/server/tls version"></a>
+
+Which TLS versions the listener will negotiate, in the same vocabulary as the NRPE and NSCA listeners: an exact version (1.0, 1.1, 1.2, 1.3), a trailing + for that version or later, or \`any\`. The default 1.2+ allows TLS 1.2 and TLS 1.3. \`sslv3\` is the one spelling those listeners take that this one does not: the web listener never serves SSL 3.0, so pinning the range to it would accept no handshake at all and is refused at startup (\`sslv3+\`, a floor rather than a pin, is accepted). A version this listener cannot honour stops it starting rather than falling back to a default. Honoured on builds using the beast web backend (all Linux packages); the mongoose backend drives TLS through its own stack and logs that it is ignoring a value you set.
+
+
+| Key            | Description                                   |
+|----------------|-----------------------------------------------|
+| Path:          | [/settings/WEB/server](#/settings/WEB/server) |
+| Key:           | tls version                                   |
+| Platform:      | Windows only                                  |
+| Default value: | `1.2+`                                        |
+
+
+**Sample:**
+
+```
+[/settings/WEB/server]
+# TLS version to use
+tls version=1.2+
 ```
 
 ### Log configuration <a id="/settings/WEB/server/log"></a>

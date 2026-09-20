@@ -99,6 +99,7 @@ nav:
           - Passive Monitoring (Icinga 2): docs/scenarios/passive-monitoring-icinga.md
           - Passive Monitoring (Graphite): docs/scenarios/passive-monitoring-graphite.md
           - Polled Passive Checks (Nagios Core): docs/scenarios/nagios-result-cache.md
+          - Mod-Gearman (Naemon / Nagios Core): docs/scenarios/mod-gearman.md
           - Checkmk Agent Integration: docs/scenarios/check-mk.md
           - Prometheus Scraping: docs/scenarios/prometheus.md
           - External Scripts: docs/scenarios/external-scripts.md
@@ -132,6 +133,7 @@ nav:
               - NSCPClient: docs/reference/client/NSCPClient.md
               - NRDPClient: docs/reference/client/NRDPClient.md
               - IcingaClient: docs/reference/client/IcingaClient.md
+              - GearmanClient: docs/reference/client/GearmanClient.md
               - SMTPClient: docs/reference/client/SMTPClient.md
               - GraphiteClient: docs/reference/client/GraphiteClient.md
               - SyslogClient: docs/reference/client/SyslogClient.md
