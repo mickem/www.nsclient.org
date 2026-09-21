@@ -33,11 +33,13 @@ Latest: <strong data-release="version">latest</strong>
 - :fontawesome-brands-windows: **Windows** —
   [64-bit](https://github.com/mickem/nscp/releases/latest){ data-release="asset" data-release-asset="NSCP-$version-x64.msi" } ·
   [32-bit](https://github.com/mickem/nscp/releases/latest){ data-release="asset" data-release-asset="NSCP-$version-Win32.msi" } ·
-  [ARM64](https://github.com/mickem/nscp/releases/latest){ data-release="asset" data-release-asset="NSCP-$version-ARM64.msi" } ·
+  [ARM64](https://github.com/mickem/nscp/releases/latest){ data-release="asset" data-release-asset="NSCP-$version-ARM64.msi" data-release-optional="self" } ·
   [XP / 2003](https://github.com/mickem/nscp/releases/latest){ data-release="asset" data-release-asset="NSCP-$version-Win32-legacy-xp.msi" }
 - :fontawesome-brands-ubuntu: **Debian / Ubuntu** —
   [x86-64](https://github.com/mickem/nscp/releases/latest){ data-release="asset" data-release-asset="NSCP-$version-ubuntu-24.04-amd64.deb" } ·
   [arm64](https://github.com/mickem/nscp/releases/latest){ data-release="asset" data-release-asset="NSCP-$version-ubuntu-24.04-arm64.deb" }
+- :fontawesome-brands-raspberry-pi: **Raspberry Pi OS / Debian 13** —
+  [arm64](https://github.com/mickem/nscp/releases/latest){ data-release="asset" data-release-asset="NSCP-$version-debian-trixie-arm64.deb" data-release-optional="li" }
 - :fontawesome-brands-redhat: **RHEL / Rocky / Alma 9** —
   [x86-64](https://github.com/mickem/nscp/releases/latest){ data-release="asset" data-release-asset="NSCP-$version-rocky-9-x86_64.rpm" } ·
   [arm64](https://github.com/mickem/nscp/releases/latest){ data-release="asset" data-release-asset="NSCP-$version-rocky-9-aarch64.rpm" }
@@ -45,9 +47,21 @@ Latest: <strong data-release="version">latest</strong>
   [x86-64](https://github.com/mickem/nscp/releases/latest){ data-release="asset" data-release-asset="NSCP-$version-rocky-10-x86_64.rpm" } ·
   [arm64](https://github.com/mickem/nscp/releases/latest){ data-release="asset" data-release-asset="NSCP-$version-rocky-10-aarch64.rpm" }
 
-The links point at the files of the latest release. The
-[package matrix](https://github.com/mickem/nscp#which-package-to-download)
+The links point at the files of the latest release, and a platform only
+appears when that release actually carries a file for it — **Windows on ARM**
+and **Raspberry Pi** arrived in 0.22.0, so they are missing from anything
+older. The [package matrix](https://github.com/mickem/nscp#which-package-to-download)
 lists every artifact with the distributions it is tested on.
+
+<!-- @formatter:off -->
+!!! note "Two things to know about the ARM builds"
+    The Windows **ARM64** MSI ships without `PythonScript` and does not bundle
+    the Visual C++ runtime, so install
+    [vc_redist.arm64.exe](https://aka.ms/vs/17/release/vc_redist.arm64.exe)
+    first on a fresh machine. The **Raspberry Pi** package is 64-bit only — a
+    Pi 3 or newer running Raspberry Pi OS 64-bit, or Debian 13 arm64 in
+    general — and comes without the managed (C#) plugin API.
+<!-- @formatter:on -->
 
 - [Quick Start](docs/quick-start.md) — installed and checking in 10 minutes
 - [Installation guide](docs/setup/installing.md) — MSI options and silent install

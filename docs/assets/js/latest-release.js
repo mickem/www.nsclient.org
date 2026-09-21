@@ -101,7 +101,7 @@
     return document.querySelectorAll(selector);
   }
 
-  function applyLatest(release, key) {
+  function applyLatest(release, key, authoritative) {
     if (!release) return;
     var version = cleanTag(release.tag_name || release.name);
     var date = fmtDate(release.published_at);
@@ -120,7 +120,45 @@
     elements('download-link', key).forEach(function (el) {
       el.href = url;
     });
-    applyAssets(release, key, version);
+    applyAssets(release, key, version, authoritative);
+  }
+
+  // Sits between two links on one line: " · ", " | " or ", ".
+  var SEPARATOR = /^\s*[·|,]\s*$/;
+
+  // Take the separator in front of a dropped link with it, or the one behind
+  // it when the link was first on the line, so what is left does not start or
+  // end with a stray bullet.
+  function dropSeparator(el) {
+    var before = el.previousSibling;
+    if (before && before.nodeType === 3 && SEPARATOR.test(before.nodeValue)) {
+      before.parentNode.removeChild(before);
+      return;
+    }
+    var after = el.nextSibling;
+    if (after && after.nodeType === 3 && SEPARATOR.test(after.nodeValue)) {
+      after.parentNode.removeChild(after);
+    }
+  }
+
+  // A link marked data-release-optional names a file that not every release
+  // carries — a platform added along the way, such as the Windows ARM64 MSI or
+  // the Raspberry Pi package. Drop it when the latest release has no such
+  // file, rather than leaving it pointing at the release page as if the
+  // download existed. The value says what to drop: "self" for the link alone,
+  // or a selector for the element around it ("li" when the link is the only
+  // thing in its bullet, which would otherwise be left dangling).
+  function dropOptional(el) {
+    var target = el.getAttribute('data-release-optional');
+    if (target && target !== 'self') {
+      var around = el.closest(target);
+      if (around) {
+        around.parentNode.removeChild(around);
+        return;
+      }
+    }
+    dropSeparator(el);
+    el.parentNode.removeChild(el);
   }
 
   // Links marked data-release="asset" name a file of the latest release with
@@ -128,8 +166,10 @@
   // on a link with its own label ("64-bit"), or the visible text itself,
   // e.g. `NSCP-Web-<version>.zip`, which is then replaced by the real file
   // name. Point each at the matching asset; leave links whose file is not
-  // in the release alone, so they keep pointing at the release page.
-  function applyAssets(release, key, version) {
+  // in the release alone, so they keep pointing at the release page — unless
+  // they are marked optional, which only a paint from fresh data may drop,
+  // since a stale cache could be a release behind the file's arrival.
+  function applyAssets(release, key, version, authoritative) {
     elements('asset', key).forEach(function (el) {
       var template = el.getAttribute('data-release-asset');
       if (!template) {
@@ -140,7 +180,12 @@
         el.setAttribute('data-release-label', 'name');
       }
       var asset = template && findAsset(release, template, version);
-      if (!asset || !assetUrl(asset)) return;
+      if (!asset || !assetUrl(asset)) {
+        if (authoritative && el.hasAttribute('data-release-optional')) {
+          dropOptional(el);
+        }
+        return;
+      }
       el.href = assetUrl(asset);
       if (el.getAttribute('data-release-label') === 'name') {
         (el.querySelector('code') || el).textContent = asset.name;
@@ -206,9 +251,11 @@
     } catch (e) {}
   }
 
-  function paint(data, key) {
+  // `authoritative` marks a paint from freshly fetched data, as opposed to one
+  // from the local cache: only those may drop an optional download link.
+  function paint(data, key, authoritative) {
     if (!data) return;
-    applyLatest(data.latest || (data.releases && data.releases[0]), key);
+    applyLatest(data.latest || (data.releases && data.releases[0]), key, authoritative);
     renderReleases(data.releases, key);
   }
 
@@ -266,7 +313,7 @@
           throw new Error('No releases available');
         }
         var data = { latest: releases[0], releases: releases };
-        paint(data, key);
+        paint(data, key, true);
         saveCache(key, data);
       })
       .catch(function (err) {
