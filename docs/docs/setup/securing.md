@@ -85,6 +85,76 @@ If you want to verify a target before relying on it, submit a synthetic passive 
 $ nscp nrdp --module submit --target default --host myhost --command check_ok --message "test"
 ```
 
+## Mod-Gearman
+
+Mod-Gearman is a **pull** protocol: the agent connects out to a `gearmand` job
+server, registers on a queue and runs whatever checks the monitoring core put
+there. Nothing listens on the monitored host, which is the security win. What
+you get in exchange is a shared-secret model with some sharp edges, because
+the protocol has no better one to offer:
+
+> `gearmand` has no authentication, and the payload envelope is AES-256 in
+> **ECB** mode with the password used directly as the key. It hides content.
+> It does **not** authenticate the sender and it does **not** prevent replay.
+> **Anyone holding the key can queue jobs onto a queue a worker listens on,
+> and can forge results for any host the core monitors.**
+
+That is the protocol's design (it is the same for mod_gearman's own workers),
+and this module cannot fix it — only contain it. The containment:
+
+1. **Never run without a key.** The agent refuses to start with
+   `encryption = true` (the default) and no `key`. Turning encryption off
+   additionally requires `insecure = true`, and logs a warning on every start.
+   Use `key file` to keep the secret out of `nsclient.ini`, and restrict that
+   file to the account the agent runs as — on Linux the module warns when it
+   is group- or world-readable; on Windows, set the ACL yourself.
+2. **Register the fewest queues.** Only `hostgroups` / `servicegroups` are
+   registered by default. `allow shared queues` adds the generic `host` and
+   `service` queues, which carry every check in the installation — leave it
+   off.
+3. **Prefer agent mode where it fits.** In `mode = agent` a job naming any
+   other host is answered UNKNOWN rather than executed, so a leaked key buys
+   an attacker only this host's own command surface.
+4. **Treat a proxy as a privileged host.** In `mode = proxy` a job can drive
+   the proxy's `NRPEClient`, `NSCPClient` and `CheckWMI` at any host those can
+   reach, using any credentials stored in the proxy's configuration. Give each
+   proxy queue its own key, scope those credentials to monitoring, and put the
+   proxy and `gearmand` on a network you control.
+5. **Expire replays.** Set `max age` to a little more than the check interval.
+   A job older than that is answered UNKNOWN instead of run, which both
+   discards a replayed job and stops a post-outage backlog from being executed
+   late.
+6. **Cap the command surface.** A job can only invoke commands the agent
+   already exposes, and the `allow arguments` / `allow nasty characters`
+   guards are NRPEServer's. There is no shell fallback. Use the
+   [permission policy](#permission-policy) to restrict `GearmanClient` to the
+   exact commands the core actually schedules.
+
+A minimal hardened worker:
+
+```ini
+[/modules]
+GearmanClient = enabled
+
+[/settings/gearman/worker]
+server     = gearmand.example.com:4730
+; Keep the secret out of the config file; lock the file to the service account.
+key file   = ${shared-path}/gearman.key
+hostgroups = win-srv01
+; Agent mode is the default: refuse a job that names another host.
+mode       = agent
+; A little over the check interval, so a replayed or stale job is not run.
+max age    = 600
+```
+
+The passive channel (`/settings/gearman/client`) uses the same key and the
+same reasoning — a forged result is a forged alert. It refuses to submit
+encrypted without a key, and refuses `encryption = false` unless the target
+also sets `insecure = true`.
+
+For the full setup on either core see
+[Mod-Gearman](../scenarios/mod-gearman.md).
+
 ## Http/Https/WebServer
 
 The WEB module exposes the REST API and the web UI over HTTP or HTTPS on port `8443` by default. In any production
@@ -128,12 +198,21 @@ $ nscp web install ^
 $ nscp web add-user monitoring --role monitoring --password "<strong password>"
 ```
 
+If the monitoring server only runs checks the agent already defines — no
+thresholds or targets supplied in the request — use `--role restricted`
+instead. It is the same role with arguments refused, the REST counterpart of
+NRPE's `allow arguments = false`. If it only scrapes metrics, use
+`--role metrics`, which opens the two metrics endpoints and nothing else. See
+the role list below.
+
 ### Adding a dedicated user
 
 `nscp web add-user` creates or updates a per-user row under `[/settings/WEB/server/users/<name>]`:
 
 ```commandline
 $ nscp web add-user monitoring --role monitoring --password "<strong password>"
+$ nscp web add-user poller     --role restricted --password "<strong password>"
+$ nscp web add-user prometheus --role metrics    --password "<strong password>"
 $ nscp web add-user dashboard  --role client
 ```
 
@@ -143,12 +222,24 @@ Options:
 * `--password`: Plaintext password. Hashed before being written to the config. If omitted, a random one is generated
   and printed once — copy it then.
 * `--role`: Built-in roles shipped by the module:
-    * `monitoring` — `queries.execute, login.get, metrics.get`. Recommended for monitoring servers and Prometheus
-      scrapes.
+    * `restricted` — `public, queries.execute.noargs, aliases.list, login.get`. The tightest useful role: it can run
+      the checks the agent defines but **cannot pass arguments** to them, which is the REST equivalent of the NRPE
+      server's `allow arguments = false`. A request that carries any query-string parameter is refused with
+      `403 Arguments are not allowed for this user`. Give such a caller the checks it needs as
+      [aliases](../api/rest/aliases.md), so the arguments live in your configuration rather than in the request. Note
+      that every query parameter counts, so this role must authenticate with a header rather than with a legacy
+      `?TOKEN=` query parameter.
+    * `metrics` — `public, metrics.list, openmetrics.list, login.get`. Reads `/api/v2/metrics` and
+      `/api/v2/openmetrics` and nothing else: the role for a Prometheus scraper, which needs no ability to run checks.
+      See the [Prometheus scenario](../scenarios/prometheus.md).
+    * `monitoring` — `public, queries.execute, aliases.list, login.get, metrics.list, openmetrics.list`. Recommended
+      for monitoring servers that need to pass arguments (thresholds, drives, service names) in the request, and that
+      also scrape metrics. Where they don't pass arguments, `restricted` above is the tighter choice — it is the same
+      role with arguments refused; where they only scrape, `metrics` is.
     * `client` — adds query listing; needed for the legacy `check_nscp_api` integration.
     * `full` — admin (settings, modules, scripts). Avoid for monitoring callers.
     * `legacy` — `legacy,login.get`. **Dangerous — do not use for normal clients.** It unlocks the deprecated
-      `POST /query.pb` and `GET /query/{name}` endpoints, which dispatch through the same command registry as the
+      `GET /query/{name}` endpoint, which dispatches through the same command registry as the
       versioned query API. A `legacy`-only token can therefore run **any** registered check or command — including any
       configured `CheckExternalScripts` command, which can amount to arbitrary command execution — even though it lacks
       `queries.execute`. The danger is the **`legacy` grant token itself**, not the role name: any role whose grant
@@ -171,6 +262,12 @@ invoke through `/queries/{command}/commands/execute`, layer the [Permission poli
 WEBServer:admin      = *
 WEBServer:monitoring = CheckSystem.check_cpu, CheckSystem.check_drivesize, CheckDisk.check_drivesize
 ```
+
+The two controls are complementary and worth pairing: the policy decides *which
+commands* the user may invoke, the `restricted` role decides *whether it may
+shape them*. A `restricted` user pinned to a policy runs a fixed set of checks
+exactly as you defined them — which, over REST, is what NRPE with
+`allow arguments = false` gives you.
 
 For deeper coverage of the WEB module's attack surface — including the `--disable-admin` trade-off and the
 `scripts_controller` endpoint — see the [WEB module](#web-module) section further down.
@@ -464,6 +561,113 @@ WEBServer : monitor = CheckSystem.check_cpu, CheckSystem.check_drivesize, CheckD
 See [Permissions](../concepts/permissions.md) for the full reference: identity model, which modules stamp what,
 pattern syntax, the worked `CheckHelpers` example, and the detailed step-by-step setup guide.
 
+## Data disclosure: restricting what a check may read
+
+Code execution is the risk people look for first, but a handful of checks take an argument which decides **what data is
+read**, and the agent reads it with its own privileges - `SYSTEM` on Windows, `root` or `nsclient` on Linux:
+
+| Check | Argument | What an unrestricted argument reaches |
+|-------|----------|---------------------------------------|
+| `check_logfile` | `file=` | any file the agent can open; `${line}` returns its contents |
+| `check_wmi` | `query=` | any WMI class, the filesystem included (`CIM_DataFile`, `Win32_Directory`) |
+| `check_pdh` / `check_counter` | `counter=` | any performance object on the machine |
+| `check_files`, `check_single_file` | `path=` / `file=` | any directory tree: every name, size and timestamp, plus a checksum of any file |
+| `check_disk_write` | `file=` | creates and deletes a test file at any writable path |
+| `check_registry_key`, `check_registry_value` | `key=` | any registry key, and the value data itself (binary as hex) |
+| `check_eventlog` | `file=` / `log=` | any event log channel, and the event text itself |
+
+That is what those checks are *for*, so it is not a defect, and where only your configuration decides what runs it does
+not matter. It matters where the **caller** picks the argument: NRPE with `allow arguments = true`, or the REST API. A
+caller who can reach `check_logfile` with an arbitrary `file=` can read `/etc/shadow`, a private key or a registry hive
+backup, and gets the contents back in the check output.
+
+Each of these modules has an access mode which narrows this. They all default to `any` - the behaviour of every
+release before 0.21.0 - so this is opt-in and an upgrade changes nothing:
+
+| Check | Section | Mode setting | Allow list |
+|-------|---------|--------------|------------|
+| `check_logfile` | `[/settings/logfile]` | `file access` | `allowed files` |
+| `check_wmi` | `[/settings/wmi]` | `query access` | `allowed classes`, `allowed namespaces` |
+| `check_pdh` | `[/settings/system/windows]` | `counter access` | `allowed counters` |
+| `check_files`, `check_single_file`, `check_disk_write` | `[/settings/disk]` | `file access` | `allowed files` |
+| `check_registry_key`, `check_registry_value` | `[/settings/system/windows]` | `registry access` | `allowed registry keys` |
+| `check_eventlog` | `[/settings/eventlog]` | `log access` | `allowed logs` |
+
+If you set only one of these, set `registry access`. `check_registry_value` returns value data with binary rendered as hex,
+in its *default* syntax, and `recursive=true` walks a whole subtree — the registry is where autologon passwords, product keys
+and stored connection settings live. `check_eventlog` is the next widest: event text comes back in its default syntax too, from
+any channel the agent can read, `Security` included.
+
+The disk checks never return file contents, but they enumerate whole trees and can report a checksum of any readable
+file, which confirms known content and for a short file effectively recovers it. Narrower than `check_logfile`, but much
+wider reach.
+
+The modes are `any` (anything the caller names), `allowed` (only what matches the list) and `predefined` (only names you
+configured). `allowed` is experimental: it parses and matches what the caller sent, and a parser is a place where the
+gate and the operating system can disagree about what a string means. `predefined` only looks a name up, so it is the
+secure option and the one to use wherever the data behind a check matters. Names you configure resolve in **every**
+mode, so you can name your checks first, confirm the monitoring server still works, and tighten the mode afterwards:
+
+```ini
+[/settings/logfile]
+file access = predefined
+
+[/settings/logfile/files]
+app = C:/logs/app.log
+iis = C:/inetpub/logs/LogFiles/W3SVC1/u_ex.log
+```
+
+The monitoring server then runs `check_logfile file=app`, and a caller asking for anything else is refused.
+
+**Recommended posture.** If no caller can pass arguments at all - `allow arguments` off for NRPE, and every web user on
+the `restricted` role or the REST API not exposed - `any` costs you nothing; your configuration already decides
+everything. Otherwise set `predefined` on whichever of the modules you have enabled;
+`allowed` is the middle ground when you want a whole directory, key subtree or performance object without enumerating
+each entry.
+
+Refusing arguments is the other way to close this, and it is now available on both doors: `allow arguments = false` for
+NRPE, and the [`restricted` web role](#adding-a-dedicated-user) (`queries.execute.noargs`) for REST. Note what still
+differs, because it decides whether you need an access mode as well: **refusing arguments is set per transport, an access
+mode is set per check.** You have to remember both doors, and a third added later; an access mode covers every transport
+at once. The concepts page has a
+[table comparing the four approaches](../concepts/check-access.md#choosing-an-approach) - refusing arguments, allowing a
+folder, allowing specific items, and predefined names only - with what each costs and where each falls short.
+
+File paths are resolved before they are matched, so `..` and symbolic links or junctions cannot widen an allowed
+directory, and a misspelled mode is refused rather than ignored. The full reference - entry syntax, the WMI query forms
+which can and cannot be checked by class, and what a refusal looks like - is in
+[Restricting what a check may read](../concepts/check-access.md).
+
+This is the companion to the [permission policy](#permission-policy) above: that one restricts *which* checks a caller
+may run, this one restricts *what* those checks may reach.
+
+### Checks that connect somewhere else
+
+A separate group of checks does not read this host at all - it connects to another one, with the destination and the
+credentials in the arguments:
+
+| Check | Arguments | What an unrestricted argument decides |
+|-------|-----------|---------------------------------------|
+| `check_wmi` | `target=`, `user=`, `password=`, `namespace=` | which machine is queried over DCOM, and with which account |
+| `check_mysql` | `host=`, `port=`, `user=`, `password=` | which MySQL/MariaDB server is connected to, and with which account |
+| `check_mssql` | the ODBC connection string | the driver, the server, the credentials and every other connection attribute |
+| `check_uncpath` | `path=`, `user=`, `password=` | which SMB share this host authenticates to |
+
+Read these as what they are: **remote-connection primitives, run from the agent's network position and with the agent's
+privileges.** A caller who can pass arguments to them gets two things. First, server-side request forgery - the agent
+will connect to any host named, from inside whatever network it lives in, which on a monitoring host is often a better
+vantage point than wherever the caller sits. Second, an outbound authentication attempt this host makes on the caller's
+behalf, with credentials the caller supplied.
+
+Only `check_wmi` has a gate of its own: with `query access` set to anything but `any`, `target=` must name an entry in
+`[/settings/wmi/targets]`. For the other three the argument controls are the whole answer, so:
+
+* keep `allow arguments = false` on the NRPE, NSCA and check_nt listeners;
+* give REST users the [`restricted` role](#adding-a-dedicated-user) or a command allow-list rather than
+  `queries.execute` at large;
+* put the host and the credentials in a command definition and let the caller name the definition - the difference
+  between "run this check" and "connect wherever you like".
+
 ## Remote code execution: understanding the attack surface
 
 NSClient++ is, by design, a remote-administration agent. Several modules can ultimately cause arbitrary code to run on
@@ -491,6 +695,11 @@ In detail, when the monitoring server asks the agent to run `check_this`, the ag
 The default posture is that arguments and shell metacharacters are **both rejected**. Even with
 `allow arguments = true`, the agent only substitutes arguments into the *already-configured* command line — the command
 itself is not user-controllable.
+
+This gate is per-transport. `allow arguments` covers callers arriving over NRPE; the equivalent for the REST API is the
+`restricted` web role (`queries.execute.noargs`), which refuses any request carrying arguments. If you rely on
+`allow arguments = false` for your NRPE clients, give your REST clients `restricted` rather than `monitoring` so the
+same rule holds on both doors.
 
 ```ini
 [/settings/external scripts]
@@ -603,6 +812,15 @@ $ nscp web add-user monitoring ^
     --password "$(openssl rand -base64 32)"
 ```
 
+Swap `--role monitoring` for `--role restricted` if the monitoring server only
+needs to run the checks this agent defines: the `restricted` role refuses any
+request that carries arguments, which is the REST equivalent of NRPE's
+`allow arguments = false`. Checks that do need arguments are then defined as
+aliases on the agent, so the arguments live in your configuration rather than in
+whatever the caller sends. A caller that only scrapes metrics — a Prometheus
+server — wants `--role metrics`, which reads the metrics endpoints and cannot
+run checks at all.
+
 With `--disable-admin`, the install command does three things differently:
 
 1. Sets `disable admin user = true` under `[/settings/WEB/server]`.
@@ -621,9 +839,12 @@ password = <hash>
 ```
 
 The `monitoring` role is registered by the WEB module at startup and grants only
-`public,queries.execute,login.get,metrics.get` — enough for a monitoring server to log in, run queries and scrape
-metrics, and nothing else. No `settings.*`, no `modules.*`, no `scripts.*`. If you need more (e.g. the legacy
-`check_nscp_api` integration that lists queries), prefer the `client` role over `full`.
+`public,queries.execute,aliases.list,login.get,metrics.list,openmetrics.list` — enough for a monitoring server to log
+in, run queries and scrape metrics, and nothing else. No `settings.*`, no `modules.*`, no `scripts.*`. If you need more
+(e.g. the legacy `check_nscp_api` integration that lists queries), prefer the `client` role over `full`. If you need
+*less*, the `restricted` role (`public,queries.execute.noargs,aliases.list,login.get`) runs the same checks but refuses
+any request carrying arguments, and the `metrics` role (`public,metrics.list,openmetrics.list,login.get`) only reads
+the metrics endpoints.
 
 With `disable admin user = true`, the agent never creates or activates the `admin` account. The script-upload path is
 still wired up in the code, but no account can authenticate to it — so even an attacker who recovers the
@@ -699,3 +920,12 @@ If two-way TLS is not yet in place, the compensating controls are:
 | check_nt (`NSClientServer`) protocol            | optional      | avoid; leave disabled. If required, firewall to the monitor, treat the password as public, and set `allow = metrics, info` |
 | Service account                                 | `LocalSystem` | dedicated low-privilege account with only the access your checks require |
 | Permission policy (`/settings/permissions`)     | disabled      | enable in observe mode, lock down to per-subject allow-list              |
+| `check_logfile` `file access`                   | `any`         | `predefined` (or `allowed`) wherever callers may pass arguments          |
+| `check_wmi` `query access`                      | `any`         | `predefined` (or `allowed`) wherever callers may pass arguments          |
+| `check_pdh` `counter access`                    | `any`         | `predefined` (or `allowed`) wherever callers may pass arguments          |
+| CheckDisk `file access`                         | `any`         | `predefined` (or `allowed`) wherever callers may pass arguments          |
+| `check_registry_*` `registry access`            | `any`         | `predefined` (or `allowed`) wherever callers may pass arguments          |
+| `check_eventlog` `log access`                   | `any`         | `predefined` (or `allowed`) wherever callers may pass arguments          |
+| `GearmanClient` `encryption` / `key`            | on / empty    | always set a key; never `encryption = false` outside a lab               |
+| `GearmanClient` `mode`                          | `agent`       | keep `agent` unless a proxy is needed; treat a proxy as a privileged host |
+| `GearmanClient` `allow shared queues`           | `false`       | leave `false` — the generic queues carry every host's checks             |

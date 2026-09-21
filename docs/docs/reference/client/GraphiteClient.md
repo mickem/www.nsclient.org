@@ -169,6 +169,22 @@ the metrics were stored — only that the connection was accepted.
 <a id="submit_graphite_batch"></a>
 <a id="submit_graphite_path"></a>
 
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
 | Option      | Default Value | Description                                                                           |
 |-------------|---------------|---------------------------------------------------------------------------------------|
 | host        |               | The host of the host running the server                                               |
@@ -311,6 +327,7 @@ This is a section of objects. This means that you will create objects below this
 | certificate format  | PEM                               | CERTIFICATE FORMAT     |
 | certificate key     |                                   | CLIENT CERTIFICATE KEY |
 | host                |                                   | TARGET HOST            |
+| metric tags         |                                   | SEND METRIC TAGS       |
 | path                |                                   | PATH FOR METRICS       |
 | port                |                                   | TARGET PORT            |
 | retries             | 3                                 | RETRIES                |
@@ -336,6 +353,7 @@ ca=${ca-path}
 certificate format=PEM
 #certificate key=...
 #host=...
+#metric tags=...
 #path=...
 #port=...
 retries=3

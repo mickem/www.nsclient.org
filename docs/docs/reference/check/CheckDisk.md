@@ -29,21 +29,27 @@ A quick reference for all available queries (check commands) in the CheckDisk mo
 
 A list of all available queries (check commands)
 
-| Command                                 | Description                                                                                                                                                       |
-|-----------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| [check_disk_health](#check_disk_health) | Combined per-drive health check (free space + I/O metrics).                                                                                                       |
-| [check_disk_io](#check_disk_io)         | Check disk I/O performance metrics (throughput, IOPS, queue length, busy time).                                                                                   |
-| [check_disk_write](#check_disk_write)   | Verify that a disk is writable by creating a test file, writing to it, reading it back and deleting it.                                                           |
-| [check_drivesize](#check_drivesize)     | Check the size (free-space) of a drive or volume.                                                                                                                 |
-| [check_files](#check_files)             | Check various aspects of a file and/or folder.                                                                                                                    |
-| [check_mount](#check_mount)             | Check that a filesystem is mounted with the expected fstype and options.                                                                                          |
-| [check_shadowcopy](#check_shadowcopy)   | Check VSS shadow-copy (Volume Shadow Copy) recency, count and shadow-storage usage per volume. Windows only.                                                      |
-| [check_share](#check_share)             | Check Windows SMB shares: list them, or verify that specific required shares exist. Windows only.                                                                 |
-| [check_single_file](#check_single_file) | Check various aspects of a single file (size, age, line count, version, ...). Simpler alternative to check_files when you only need to inspect one specific file. |
-| [check_storagepool](#check_storagepool) | Check Storage Spaces pool health and capacity. Windows only.                                                                                                      |
-| [check_uncpath](#check_uncpath)         | Check free space on a UNC path (server share), with optional alternate credentials.                                                                               |
+| Command                                                  | Description                                                                                                                                                       |
+|----------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [check_disk_health](#check_disk_health) *(experimental)* | Combined per-drive health check (free space + I/O metrics).                                                                                                       |
+| [check_disk_io](#check_disk_io) *(experimental)*         | Check disk I/O performance metrics (throughput, IOPS, queue length, busy time).                                                                                   |
+| [check_disk_write](#check_disk_write) *(experimental)*   | Verify that a disk is writable by creating a test file, writing to it, reading it back and deleting it.                                                           |
+| [check_drivesize](#check_drivesize)                      | Check the size (free-space) of a drive or volume.                                                                                                                 |
+| [check_files](#check_files)                              | Check various aspects of a file and/or folder.                                                                                                                    |
+| [check_mount](#check_mount) *(experimental)*             | Check that a filesystem is mounted with the expected fstype and options.                                                                                          |
+| [check_shadowcopy](#check_shadowcopy) *(experimental)*   | Check VSS shadow-copy (Volume Shadow Copy) recency, count and shadow-storage usage per volume. Windows only.                                                      |
+| [check_share](#check_share) *(experimental)*             | Check Windows SMB shares: list them, or verify that specific required shares exist. Windows only.                                                                 |
+| [check_single_file](#check_single_file) *(experimental)* | Check various aspects of a single file (size, age, line count, version, ...). Simpler alternative to check_files when you only need to inspect one specific file. |
+| [check_storagepool](#check_storagepool) *(experimental)* | Check Storage Spaces pool health and capacity. Windows only.                                                                                                      |
+| [check_uncpath](#check_uncpath) *(experimental)*         | Check free space on a UNC path (server share), with optional alternate credentials.                                                                               |
 
 ### check_disk_health
+
+!!! warning "Experimental"
+
+    This check command is experimental: it works, but its options, filter keywords
+    and output may change in a future release. Please try it and report
+    anything that does not behave the way you expect.
 
 Combined per-drive health check (free space + I/O metrics).
 
@@ -208,6 +214,12 @@ This command also accepts the standard [help options](../common-options.md#stand
 This command also supports the [common filter keywords](../common-options.md#common-filter-keywords): count, total, ok_count, warn_count, crit_count, problem_count, list, ok_list, warn_list, crit_list, problem_list, detail_list, sep, status.
 
 ### check_disk_io
+
+!!! warning "Experimental"
+
+    This check command is experimental: it works, but its options, filter keywords
+    and output may change in a future release. Please try it and report
+    anything that does not behave the way you expect.
 
 Check disk I/O performance metrics (throughput, IOPS, queue length, busy time).
 
@@ -401,6 +413,12 @@ This command also supports the [common filter keywords](../common-options.md#com
 
 ### check_disk_write
 
+!!! warning "Experimental"
+
+    This check command is experimental: it works, but its options, filter keywords
+    and output may change in a future release. Please try it and report
+    anything that does not behave the way you expect.
+
 Verify that a disk is writable by creating a test file, writing to it, reading it back and deleting it.
 
 #### About `check_disk_write`
@@ -499,6 +517,9 @@ OK: /data/nscp-write-test.dat: wrote and read back 1048576 bytes in 9ms
 <a id="check_disk_write_file"></a>
 <a id="check_disk_write_path"></a>
 
+        
+        
+        
 | Option                         | Default Value | Description                                                                                  |
 |--------------------------------|---------------|----------------------------------------------------------------------------------------------|
 | file                           |               | The test file to create (must not already exist; it is deleted after the test).              |
@@ -870,6 +891,16 @@ check_drivesize "filter=full_in = 'never'"
     <a id="check_drivesize_require"></a>
     <a id="check_drivesize_mandatory-drives"></a>
 
+
+
+
+
+
+
+
+
+
+
     | Option                                                  | Default Value | Description                                                                                                                                                                                                                                                                                                                                                                                   |
     |---------------------------------------------------------|---------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
     | [drive](#check_drivesize_drive)                         |               | The drives to check.                                                                                                                                                                                                                                                                                                                                                                          |
@@ -958,6 +989,11 @@ check_drivesize "filter=full_in = 'never'"
 === "Linux"
 
     <a id="check_drivesize_exclude"></a>
+
+
+
+
+
 
     | Option                                            | Default Value | Description                                                                                                                                                                                                                                                               |
     |---------------------------------------------------|---------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -1263,6 +1299,13 @@ No files found
 <a id="check_files_paths"></a>
 <a id="check_files_max-depth"></a>
 
+        
+        
+        
+        
+        
+        
+        
 | Option                                        | Default Value | Description                                                                                                                                                                                                                                                                                              |
 |-----------------------------------------------|---------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | [path](#check_files_path)                     |               | The path to search for files under.                                                                                                                                                                                                                                                                      |
@@ -1284,6 +1327,7 @@ Notice that specifying multiple path will create an aggregate set you will not c
 <h5 id="check_files_pattern">pattern:</h5>
 
 The pattern of files to search for (works like a filter but is faster and can be combined with a filter).
+This is a file mask, not a path: while 'file access' in [/settings/disk] is restricted it may not contain a path separator or '..', since the scan root is what was held against the allow list.
 
 *Default Value:* `*.*`
 
@@ -1372,6 +1416,12 @@ This command also supports the [common filter keywords](../common-options.md#com
 
 ### check_mount
 
+!!! warning "Experimental"
+
+    This check command is experimental: it works, but its options, filter keywords
+    and output may change in a future release. Please try it and report
+    anything that does not behave the way you expect.
+
 Check that a filesystem is mounted with the expected fstype and options.
 
 #### About `check_mount`
@@ -1459,6 +1509,9 @@ OK: mounts are as expected
 <a id="check_mount_options"></a>
 <a id="check_mount_fstype"></a>
 
+        
+        
+        
 | Option  | Default Value | Description                                              |
 |---------|---------------|----------------------------------------------------------|
 | mount   |               | The mount point to check (omit to check all real mounts) |
@@ -1518,6 +1571,12 @@ This command also supports the [common filter keywords](../common-options.md#com
 ### check_shadowcopy
 
 *Available on Windows only.*
+
+!!! warning "Experimental"
+
+    This check command is experimental: it works, but its options, filter keywords
+    and output may change in a future release. Please try it and report
+    anything that does not behave the way you expect.
 
 Check VSS shadow-copy (Volume Shadow Copy) recency, count and shadow-storage usage per volume. Windows only.
 
@@ -1674,6 +1733,12 @@ This command also supports the [common filter keywords](../common-options.md#com
 
 *Available on Windows only.*
 
+!!! warning "Experimental"
+
+    This check command is experimental: it works, but its options, filter keywords
+    and output may change in a future release. Please try it and report
+    anything that does not behave the way you expect.
+
 Check Windows SMB shares: list them, or verify that specific required shares exist. Windows only.
 
 #### About `check_share`
@@ -1763,6 +1828,7 @@ OK: All 2 share(s) ok.
 
 <a id="check_share_share"></a>
 
+        
 | Option | Default Value | Description                                                                                                                                           |
 |--------|---------------|-------------------------------------------------------------------------------------------------------------------------------------------------------|
 | share  |               | Require a specific share to exist (repeatable). The check is CRITICAL when a requested share is missing. When omitted, all shares are listed instead. |
@@ -1818,6 +1884,12 @@ This command also accepts the standard [help options](../common-options.md#stand
 This command also supports the [common filter keywords](../common-options.md#common-filter-keywords): count, total, ok_count, warn_count, crit_count, problem_count, list, ok_list, warn_list, crit_list, problem_list, detail_list, sep, status.
 
 ### check_single_file
+
+!!! warning "Experimental"
+
+    This check command is experimental: it works, but its options, filter keywords
+    and output may change in a future release. Please try it and report
+    anything that does not behave the way you expect.
 
 Check various aspects of a single file (size, age, line count, version, ...). Simpler alternative to check_files when you only need to inspect one specific file.
 
@@ -1939,6 +2011,9 @@ File not found (ignored): /tmp/no-such-report.csv
 <a id="check_single_file_file"></a>
 <a id="check_single_file_path"></a>
 
+        
+        
+        
 | Option                                              | Default Value | Description                                                                                                                                                                                    |
 |-----------------------------------------------------|---------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | file                                                |               | The file to check.                                                                                                                                                                             |
@@ -2027,6 +2102,12 @@ This command also supports the [common filter keywords](../common-options.md#com
 ### check_storagepool
 
 *Available on Windows only.*
+
+!!! warning "Experimental"
+
+    This check command is experimental: it works, but its options, filter keywords
+    and output may change in a future release. Please try it and report
+    anything that does not behave the way you expect.
 
 Check Storage Spaces pool health and capacity. Windows only.
 
@@ -2138,6 +2219,12 @@ This command also supports the [common filter keywords](../common-options.md#com
 
 ### check_uncpath
 
+!!! warning "Experimental"
+
+    This check command is experimental: it works, but its options, filter keywords
+    and output may change in a future release. Please try it and report
+    anything that does not behave the way you expect.
+
 Check free space on a UNC path (server share), with optional alternate credentials.
 
 Checks free space on a UNC path (`\\server\share`), optionally authenticating
@@ -2202,6 +2289,9 @@ check_uncpath path=\\a\share path=\\b\share "crit=free_pct < 10" "top-syntax=${s
 <a id="check_uncpath_user"></a>
 <a id="check_uncpath_password"></a>
 
+        
+        
+        
 | Option   | Default Value | Description                                                         |
 |----------|---------------|---------------------------------------------------------------------|
 | path     |               | The UNC path(s) to check, e.g. \\server\share. Repeat for multiple. |
@@ -2265,9 +2355,10 @@ This command also supports the [common filter keywords](../common-options.md#com
 
 ## Configuration
 
-| Path / Section                    | Description |
-|-----------------------------------|-------------|
-| [/settings/disk](#/settings/disk) |             |
+| Path / Section                            | Description      |
+|-------------------------------------------|------------------|
+| [/settings/disk](#/settings/disk)         |                  |
+| [/settings/disk/files](#predefined-paths) | PREDEFINED PATHS |
 
 
 ### /settings/disk <a id="/settings/disk"></a>
@@ -2276,8 +2367,10 @@ This command also supports the [common filter keywords](../common-options.md#com
 
 | Key                                                             | Default Value | Description                           |
 |-----------------------------------------------------------------|---------------|---------------------------------------|
+| [allowed files](#allowed-paths)                                 |               | ALLOWED PATHS                         |
 | [collection interval](#collection-interval)                     | 10s           | Collection interval                   |
 | [disable](#disable-automatic-checks)                            |               | Disable automatic checks              |
+| [file access](#file-access-mode)                                | any           | FILE ACCESS MODE                      |
 | [max collection errors](#maximum-consecutive-collection-errors) | 10            | Maximum consecutive collection errors |
 | [trend interval](#trend-sampling-interval)                      | 5m            | Trend sampling interval               |
 | [trend retention](#trend-history-retention)                     | 7d            | Trend history retention               |
@@ -2287,9 +2380,31 @@ This command also supports the [common filter keywords](../common-options.md#com
 # 
 [/settings/disk]
 collection interval=10s
+file access=any
 max collection errors=10
 trend interval=5m
 trend retention=7d
+```
+
+#### ALLOWED PATHS <a id="/settings/disk/allowed files"></a>
+
+Comma separated list of paths the disk checks may use when 'file access' is set to allowed.
+An entry naming a directory (or a path which does not exist yet) allows it and everything beneath it at any depth; an entry naming an existing file is that single file; an entry containing * or ? is a wildcard matched against the whole path, where * and ? do not cross a directory separator and ** does. Paths are resolved (\`..\` is flattened and symbolic links and junctions are followed) before they are matched, so a link planted inside an allowed directory does not widen it.
+
+
+| Key            | Description                       |
+|----------------|-----------------------------------|
+| Path:          | [/settings/disk](#/settings/disk) |
+| Key:           | allowed files                     |
+| Default value: | _N/A_                             |
+
+
+**Sample:**
+
+```
+[/settings/disk]
+# ALLOWED PATHS
+allowed files=
 ```
 
 #### Collection interval <a id="/settings/disk/collection interval"></a>
@@ -2332,6 +2447,27 @@ A comma separated list of checks to disable in the collector: disk_io, disk_free
 [/settings/disk]
 # Disable automatic checks
 disable=
+```
+
+#### FILE ACCESS MODE <a id="/settings/disk/file access"></a>
+
+Which paths a caller may ask check_files, check_single_file and check_disk_write to use: any (the default - any path the caller names, which is how every earlier release behaved), allowed (only paths matching 'allowed files') or predefined (only names defined in the [/settings/disk/files] section).
+These checks do not return file contents, but they enumerate whole directory trees (name, size, timestamps) and can report a file's checksum, so on a host where callers may pass arguments (NRPE with 'allow arguments', or the REST API) this decides how much of the filesystem a check can describe. See the 'Restricting what a check may read' section of the documentation.
+
+
+| Key            | Description                       |
+|----------------|-----------------------------------|
+| Path:          | [/settings/disk](#/settings/disk) |
+| Key:           | file access                       |
+| Default value: | `any`                             |
+
+
+**Sample:**
+
+```
+[/settings/disk]
+# FILE ACCESS MODE
+file access=any
 ```
 
 #### Maximum consecutive collection errors <a id="/settings/disk/max collection errors"></a>
@@ -2395,4 +2531,16 @@ How much used-space history is kept per drive; bounds the largest useful trend-w
 [/settings/disk]
 # Trend history retention
 trend retention=7d
+```
+
+### PREDEFINED PATHS <a id="/settings/disk/files"></a>
+
+Files and folders the disk checks may use by name, as <name> = <path>.
+A name defined here can be used as file=<name> (or path=<name>) in any access mode, and is the only thing accepted when 'file access' is set to predefined.
+
+
+
+```ini
+# Files and folders the disk checks may use by name, as <name> = <path>.
+[/settings/disk/files]
 ```

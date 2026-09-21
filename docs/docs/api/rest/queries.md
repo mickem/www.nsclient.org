@@ -5,6 +5,8 @@ provided by the loaded modules.
 
 * [List queries](#list-queries)
 * [Get query](#get-query)
+* [Get query help](#get-query-help)
+* [Executing without arguments](#executing-without-arguments)
 * [Execute query](#command-execute)
 * [Execute Query (Nagios format)](#command-execute_nagios)
 
@@ -44,11 +46,18 @@ GET /api/v2/queries
         "name": "check_cpu",
         "title": "check_cpu",
         "description": "Check that the load of the CPU(s) are within bounds.",
+        "experimental": false,
         "metadata": {},
         "query_url": "https://localhost:8443/api/v2/queries/check_cpu/"
     }
 ]
 ```
+
+`experimental` marks a check command that works but is still young: its
+options, filter keywords and output may change in a coming release. The module
+declares it (`module.json`) — either on the command or on itself, in which case
+every command it provides reports it — and `nscp test` and the web UI show it
+next to the command name.
 
 ### Example
 
@@ -79,11 +88,94 @@ GET /api/v2/queries/check_cpu
     "name": "check_cpu",
     "title": "check_cpu",
     "description": "Check that the load of the CPU(s) are within bounds.",
+    "experimental": false,
     "metadata": {},
     "execute_url":        "https://localhost:8443/api/v2/queries/check_cpu/commands/execute",
     "execute_nagios_url": "https://localhost:8443/api/v2/queries/check_cpu/commands/execute_nagios"
 }
 ```
+
+## Get query help
+
+Returns the vocabulary of a single query: every option it accepts, with its
+default value and description, and every filter keyword it offers. This is the
+same information the interactive console prints for `desc` and `keywords`, and
+what the web interface reads to highlight and complete an argument line.
+
+| Key       | Value                        |
+|-----------|------------------------------|
+| Verb      | GET                          |
+| Address   | /api/v2/queries/{query}/help |
+| Privilege | queries.get                  |
+
+### Request
+
+```
+GET /api/v2/queries/check_drivesize/help
+```
+
+### Response
+
+```json
+{
+    "name": "check_drivesize",
+    "keyword_source": "check_drivesize",
+    "parameters": [
+        {
+            "name": "filter",
+            "default_value": "none",
+            "required": false,
+            "repeatable": false,
+            "content_type": "string",
+            "short_description": "Filter which marks interesting items.",
+            "long_description": "Filter which marks interesting items.
+...
+Common option for all filter checks."
+        }
+    ],
+    "fields": [
+        {
+            "name": "free",
+            "short_description": "",
+            "long_description": "Free disk space"
+        },
+        {
+            "name": "convert_bytes()",
+            "short_description": "",
+            "long_description": "Convert a byte value to another unit."
+        }
+    ]
+}
+```
+
+A filter **function** is spelled with a trailing `()` on its name, which is how
+the registry tells it from a variable; the suffix is not part of the name.
+
+`content_type` is `bool` for an option that takes a boolean and `string` for
+everything else. A boolean option still takes a value on the wire — checks
+declare their flags so that REST can pass `show-all=true`, and a bare
+`show-all` is refused with *does not take any arguments* — so `content_type` is
+what tells a caller which of the two to send. A `bool` with an empty
+`default_value` is a plain switch (`help`, `show-default`), which takes no
+value at all.
+
+`keyword_source` is the command the keywords belong to. It differs from `name`
+only for an [alias](aliases.md), which declares no keywords of its own — its
+filter expressions are written in the keywords of the command it stands for, so
+that is the list answered with.
+
+A query that is not filter based (it has options but no filter) answers with an
+empty `fields` list. An unknown query is a `404`.
+
+<!-- @formatter:off -->
+!!! note "Common options are marked in the description, not in a field"
+    An option or keyword shared by many checks carries a marker line at the end
+    of its `long_description` — `Common option for all filter checks.`,
+    `Common option for all commands.` or, for the generic summary keywords,
+    `Common option for all checks.` The reference documentation and the web
+    interface both split on those lines to keep the handful a check defines
+    itself apart from the many every check has.
+<!-- @formatter:on -->
 
 ## Commands
 
@@ -95,6 +187,50 @@ shape of the result:
 | `execute`        | Structured JSON with parsed performance data.            |
 | `execute_nagios` | Plain Nagios-style payload (`message` + `perf` strings). |
 
+## Executing without arguments
+
+Two grants open the execute endpoints:
+
+| Grant                    | May run a query | May pass arguments |
+|--------------------------|-----------------|--------------------|
+| `queries.execute`        | yes             | yes                |
+| `queries.execute.noargs` | yes             | no                 |
+
+`queries.execute.noargs` is the REST equivalent of the NRPE server's
+`allow arguments = false`: the caller may run the checks the agent defines,
+but cannot shape what they do. A request that carries any query-string
+parameter is answered with `403 Arguments are not allowed for this user`
+and the refusal is logged.
+
+The built-in [`restricted`](../../setup/web-interface.md) role
+(`public,queries.execute.noargs,aliases.list,login.get`) is exactly this.
+Neither grant implies the other, so a `restricted` role can never widen into
+the full privilege, and the existing `client` / `monitoring` roles keep
+passing arguments as before. `full` (`*`) confers both.
+
+To give such a caller a check that does need arguments, define an
+[alias](aliases.md) — the arguments live in the agent's configuration and
+the caller only names the alias:
+
+```ini
+[/settings/check helpers/alias]
+check_root_disk = check_drivesize drive=/ warning=free<10% critical=free<5%
+```
+
+```
+GET /api/v2/queries/check_root_disk/commands/execute
+```
+
+<!-- @formatter:off -->
+!!! note "Credentials must travel in a header"
+    Every query-string parameter counts as an argument, including a session
+    token passed the legacy way as `?TOKEN=` — it is forwarded to the check
+    like any other parameter, so exempting it would reopen the argument
+    smuggling the grant exists to prevent. A no-arguments caller
+    authenticates with the `Authorization`, `X-Auth-Token` or `TOKEN`
+    header.
+<!-- @formatter:on -->
+
 ## Command: execute
 
 Executes a query and returns the result as structured JSON.
@@ -103,7 +239,7 @@ Executes a query and returns the result as structured JSON.
 |-----------|------------------------------------------------------|
 | Verb      | GET                                                  |
 | Address   | /api/v2/queries/{query}/commands/execute             |
-| Privilege | queries.execute                                      |
+| Privilege | queries.execute (or queries.execute.noargs)          |
 
 ### Parameters
 
@@ -113,6 +249,9 @@ to configure `check_cpu` with three time windows:
 ```
 GET /api/v2/queries/check_cpu/commands/execute?time=5m&time=30m&time=90m
 ```
+
+A caller holding only `queries.execute.noargs` may not pass any — see
+[Executing without arguments](#executing-without-arguments).
 
 !!! note "Client-module commands and configured targets"
     The `submit_*` / `check_*` commands of the outbound client modules
@@ -169,12 +308,13 @@ Executes a query and returns a Nagios-style payload.
 |-----------|------------------------------------------------------|
 | Verb      | GET                                                  |
 | Address   | /api/v2/queries/{query}/commands/execute_nagios      |
-| Privilege | queries.execute                                      |
+| Privilege | queries.execute (or queries.execute.noargs)          |
 
 ### Parameters
 
 Identical to [`execute`](#command-execute) — any query-string parameter is
-forwarded to the check.
+forwarded to the check, and the same
+[no-arguments restriction](#executing-without-arguments) applies.
 
 ### Response
 

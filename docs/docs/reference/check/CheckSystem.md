@@ -568,6 +568,8 @@ CPU Load ok
     <a id="check_cpu_time"></a>
     <a id="check_cpu_cores"></a>
 
+
+
     | Option | Default Value | Description                                                                                 |
     |--------|---------------|---------------------------------------------------------------------------------------------|
     | time   |               | The time to check                                                                           |
@@ -612,6 +614,8 @@ CPU Load ok
 
     <a id="check_cpu_time"></a>
     <a id="check_cpu_cores"></a>
+
+
 
     | Option | Default Value | Description                                                                                 |
     |--------|---------------|---------------------------------------------------------------------------------------------|
@@ -1465,11 +1469,13 @@ OK: web01 (web01.corp.example.com), domain=corp.example.com
     rather than an empty "no installed software found" inventory, so a broken
     package database can never read as a clean OK.
 
-    **Caveats:** install dates are exact on rpm (`INSTALLTIME`); dpkg does not
-    record them, so they are approximated from the mtime of the package's
-    `/var/lib/dpkg/info/<name>[:<arch>].list` file (rewritten on upgrade — treat as
-    "last installed/upgraded"). `pacman -Q` exposes only name and version, so
-    `publisher`, `size` and `install_date` stay unset there.
+    **Caveats:** install dates are exact on rpm (`INSTALLTIME`). dpkg does not
+    record them; the date is the one `dpkg-query` reports as `db-fsys:Last-Modified`,
+    the last time dpkg rewrote the package's file list, which it also does on
+    upgrade — treat it as "last installed/upgraded". A dpkg older than 1.19.3 does
+    not have that field, so `install_date` stays unset there. `pacman -Q` exposes
+    only name and version, so `publisher`, `size` and `install_date` stay unset
+    there.
 
 === "Linux"
 
@@ -1526,11 +1532,13 @@ OK: web01 (web01.corp.example.com), domain=corp.example.com
     rather than an empty "no installed software found" inventory, so a broken
     package database can never read as a clean OK.
 
-    **Caveats:** install dates are exact on rpm (`INSTALLTIME`); dpkg does not
-    record them, so they are approximated from the mtime of the package's
-    `/var/lib/dpkg/info/<name>[:<arch>].list` file (rewritten on upgrade — treat as
-    "last installed/upgraded"). `pacman -Q` exposes only name and version, so
-    `publisher`, `size` and `install_date` stay unset there.
+    **Caveats:** install dates are exact on rpm (`INSTALLTIME`). dpkg does not
+    record them; the date is the one `dpkg-query` reports as `db-fsys:Last-Modified`,
+    the last time dpkg rewrote the package's file list, which it also does on
+    upgrade — treat it as "last installed/upgraded". A dpkg older than 1.19.3 does
+    not have that field, so `install_date` stays unset there. `pacman -Q` exposes
+    only name and version, so `publisher`, `size` and `install_date` stay unset
+    there.
 
 **Jump to section:**
 
@@ -2222,6 +2230,7 @@ OK - Context Switches 57111.0/s, Process Creations 317.0/s
 
     <a id="check_kernel_stats_type"></a>
 
+
     | Option | Default Value | Description                                                                                    |
     |--------|---------------|------------------------------------------------------------------------------------------------|
     | type   |               | Select metric type(s) to show: ctxt, syscalls, processes or threads (repeatable; default: all) |
@@ -2264,6 +2273,7 @@ OK - Context Switches 57111.0/s, Process Creations 317.0/s
 === "Linux"
 
     <a id="check_kernel_stats_type"></a>
+
 
     | Option | Default Value | Description                                                                          |
     |--------|---------------|--------------------------------------------------------------------------------------|
@@ -2529,6 +2539,7 @@ OK: total load average: 2.33528, 1.84625, 1.74261
 <a id="check_load_options"></a>
 #### Command-line Arguments
 
+        
 | Option                       | Default Value | Description                                                                         |
 |------------------------------|---------------|-------------------------------------------------------------------------------------|
 | [percpu](#check_load_percpu) | false         | Divide the load averages by the number of CPUs (reports the 'scaled' per-core load) |
@@ -2677,6 +2688,7 @@ page = 8.05G, physical = 7.85G
 
     <a id="check_memory_type"></a>
 
+
     | Option | Default Value | Description                                                                                        |
     |--------|---------------|----------------------------------------------------------------------------------------------------|
     | type   |               | The type of memory to check (physical = Physical memory (RAM), committed = total memory (RAM+PAGE) |
@@ -2719,6 +2731,7 @@ page = 8.05G, physical = 7.85G
 === "Linux"
 
     <a id="check_memory_type"></a>
+
 
     | Option | Default Value | Description                                                                                        |
     |--------|---------------|----------------------------------------------------------------------------------------------------|
@@ -3193,6 +3206,7 @@ OK: eth0 >659B/s <659B/s, lo >0B/s <0B/s
 
 === "Windows"
 
+
     | Option                      | Default Value | Description                                                                                                                                                                                                                                                         |
     |-----------------------------|---------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
     | [mode](#check_network_mode) | interface     | Which WMI source to report from: 'interface' (default; Win32_PerfRawData_Tcpip_NetworkInterface, physical adapters only), 'adapter' (Win32_PerfRawData_Tcpip_NetworkAdapter, includes NIC team aggregates), or 'both' (every interface reported under both sources) |
@@ -3658,6 +3672,7 @@ OK: 0 updates available (0 security)
 === "Windows"
 
     <a id="check_os_updates_update-filter"></a>
+
 
     | Option        | Default Value | Description                                                                                                                                 |
     |---------------|---------------|---------------------------------------------------------------------------------------------------------------------------------------------|
@@ -4224,6 +4239,7 @@ OK: 42 hotfixes installed, newest KB5034441 on 3/12/2024 (18d ago)
 
 <a id="check_patch_age_hotfix"></a>
 
+        
 | Option | Default Value | Description                                                                                                                                                                                   |
 |--------|---------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | hotfix |               | A required HotFixID (repeatable). The check is CRITICAL when a requested hotfix is not installed. A bare number is matched with an implicit 'KB' prefix (hotfix=5034441 == hotfix=KB5034441). |
@@ -4432,13 +4448,22 @@ L     client OK: \\MIME-LAPTOP\Processor(0)\% processortid = 100, \\MIME-LAPTOP\
 <a id="check_pdh_options"></a>
 #### Command-line Arguments
 
-<a id="check_pdh_counter"></a>
 <a id="check_pdh_time"></a>
 <a id="check_pdh_flags"></a>
 
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
 | Option                                    | Default Value | Description                                                                                                                                                                                                                                                                                 |
 |-------------------------------------------|---------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| counter                                   |               | Performance counter to check                                                                                                                                                                                                                                                                |
+| [counter](#check_pdh_counter)             |               | Performance counter to check.                                                                                                                                                                                                                                                               |
 | [expand-index](#check_pdh_expand-index)   | false         | Expand indexes in counter strings                                                                                                                                                                                                                                                           |
 | [resolution](#check_pdh_resolution)       | auto          | How to resolve counter names against the system locale: auto (try the localized name, then the English API, then index expansion - the default), english (force English counter names regardless of the system language) or index (expand numeric counter indexes to their localized names) |
 | [instances](#check_pdh_instances)         | false         | Expand wildcards and fetch all instances                                                                                                                                                                                                                                                    |
@@ -4449,6 +4474,12 @@ L     client OK: \\MIME-LAPTOP\Processor(0)\% processortid = 100, \\MIME-LAPTOP\
 | [type](#check_pdh_type)                   | large         | Format of value (double, long, large)                                                                                                                                                                                                                                                       |
 | [ignore-errors](#check_pdh_ignore-errors) | false         | If we should ignore errors when checking counters, for instance missing counters or invalid counters will return 0 instead of errors                                                                                                                                                        |
 
+
+
+<h5 id="check_pdh_counter">counter:</h5>
+
+Performance counter to check.
+Which counters may be named here is governed by 'counter access' in [/settings/system/windows]: by default any counter is read, but an operator can restrict this to paths matching 'allowed counters', or to the counters configured in [/settings/system/windows/counters].
 
 
 <h5 id="check_pdh_expand-index">expand-index:</h5>
@@ -5383,13 +5414,20 @@ bash rss=8.594MB ws=8.594MB, bash rss=9.219MB ws=9.219MB, bash rss=4.688MB ws=4.
     <a id="check_process_scan-16bit"></a>
     <a id="check_process_scan-unreadable"></a>
 
+
+
+
+
+
+
+
     | Option                                        | Default Value | Description                                                                                                                                              |
     |-----------------------------------------------|---------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
     | process                                       |               | The service to check, set this to * to check all services                                                                                                |
-    | scan-info                                     |               | If all process metrics should be fetched (otherwise only status is fetched)                                                                              |
-    | scan-16bit                                    |               | If 16bit processes should be included                                                                                                                    |
+    | scan-info                                     | N/A           | If all process metrics should be fetched (otherwise only status is fetched)                                                                              |
+    | scan-16bit                                    | N/A           | If 16bit processes should be included                                                                                                                    |
     | [delta](#check_process_delta)                 | false         | Report CPU usage as a percentage of total CPU instead of cumulative seconds.                                                                             |
-    | scan-unreadable                               |               | If unreadable processes should be included (will not have information)                                                                                   |
+    | scan-unreadable                               | N/A           | If unreadable processes should be included (will not have information)                                                                                   |
     | [total](#check_process_total)                 | false         | Include the total of all matching files                                                                                                                  |
     | [resolve-owner](#check_process_resolve-owner) | false         | Populate the username/uid keywords with the process owner. Off by default: resolving the owner name can block for seconds on domain / Azure-AD accounts. |
 
@@ -5451,10 +5489,14 @@ bash rss=8.594MB ws=8.594MB, bash rss=9.219MB ws=9.219MB, bash rss=4.688MB ws=4.
 
     <a id="check_process_process"></a>
 
+
+
+
+
     | Option                                        | Default Value | Description                                                                                                                                                                                                                                                 |
     |-----------------------------------------------|---------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
     | process                                       |               | The process to check, set this to * to check all processes                                                                                                                                                                                                  |
-    | [delta](#check_process_delta)                 |               | Measure CPU usage as a delta over a one second interval.                                                                                                                                                                                                    |
+    | [delta](#check_process_delta)                 | N/A           | Measure CPU usage as a delta over a one second interval.                                                                                                                                                                                                    |
     | [total](#check_process_total)                 | false         | Include the total of all matching processes                                                                                                                                                                                                                 |
     | [resolve-owner](#check_process_resolve-owner) | false         | Populate the username keyword with the process owner's user name. Off by default: the lookup goes through NSS and can block for seconds when it is backed by a remote directory (LDAP/SSSD). The numeric uid keyword is always populated and needs no flag. |
 
@@ -5824,6 +5866,7 @@ OK: 1 processes in history.
 
 <a id="check_process_history_process"></a>
 
+        
 | Option  | Default Value | Description                                                                                                              |
 |---------|---------------|--------------------------------------------------------------------------------------------------------------------------|
 | process |               | Filter to specific process names. Can be specified multiple times. If not specified, all processes in history are shown. |
@@ -6005,6 +6048,7 @@ OK: No new processes found.
 <a id="check_process_history_new_options"></a>
 #### Command-line Arguments
 
+        
 | Option                                  | Default Value | Description                                                                                                             |
 |-----------------------------------------|---------------|-------------------------------------------------------------------------------------------------------------------------|
 | [time](#check_process_history_new_time) | 5m            | Time window to check for new processes (e.g., 5m, 1h, 30s). Processes first seen within this window are considered new. |
@@ -6216,20 +6260,31 @@ OK: All 1 registry key(s) are ok.
 <a id="check_registry_key_options"></a>
 #### Command-line Arguments
 
-<a id="check_registry_key_key"></a>
 <a id="check_registry_key_exclude"></a>
 <a id="check_registry_key_computer"></a>
 <a id="check_registry_key_max-depth"></a>
 
+        
+        
+        
+        
+        
+        
 | Option                                     | Default Value | Description                                                                 |
 |--------------------------------------------|---------------|-----------------------------------------------------------------------------|
-| key                                        |               | One or more registry key paths to check (e.g. HKLM\Software\MyApp).         |
+| [key](#check_registry_key_key)             |               | One or more registry key paths to check (e.g. HKLM\Software\MyApp).         |
 | exclude                                    |               | Registry key names to exclude from enumeration                              |
 | computer                                   |               | Remote computer to connect to (empty = local)                               |
 | [view](#check_registry_key_view)           | default       | Registry view: 'default', '32' (KEY_WOW64_32KEY), or '64' (KEY_WOW64_64KEY) |
 | [recursive](#check_registry_key_recursive) | false         | Recursively enumerate all sub-keys below each starting key                  |
 | max-depth                                  |               | Maximum recursion depth (requires --recursive; -1 = unlimited)              |
 
+
+
+<h5 id="check_registry_key_key">key:</h5>
+
+One or more registry key paths to check (e.g. HKLM\Software\MyApp).
+Which keys may be named here is governed by 'registry access' in [/settings/system/windows]: by default any key is read, but an operator can restrict this to keys below an allowed entry, or to names predefined in [/settings/system/windows/registry].
 
 
 <h5 id="check_registry_key_view">view:</h5>
@@ -6456,15 +6511,21 @@ OK: HKLM\Software\NSClient\InstallVersion: 0.6.0 (type=REG_SZ)
 <a id="check_registry_value_options"></a>
 #### Command-line Arguments
 
-<a id="check_registry_value_key"></a>
 <a id="check_registry_value_value"></a>
 <a id="check_registry_value_exclude"></a>
 <a id="check_registry_value_computer"></a>
 <a id="check_registry_value_max-depth"></a>
 
+        
+        
+        
+        
+        
+        
+        
 | Option                                       | Default Value | Description                                                                            |
 |----------------------------------------------|---------------|----------------------------------------------------------------------------------------|
-| key                                          |               | One or more registry key paths whose values to check (e.g. HKLM\Software\MyApp)        |
+| [key](#check_registry_value_key)             |               | One or more registry key paths whose values to check (e.g. HKLM\Software\MyApp).       |
 | value                                        |               | Restrict to specific value names (default: all values). Supports '*' to enumerate all. |
 | exclude                                      |               | Value names to exclude from enumeration                                                |
 | computer                                     |               | Remote computer to connect to (empty = local)                                          |
@@ -6472,6 +6533,12 @@ OK: HKLM\Software\NSClient\InstallVersion: 0.6.0 (type=REG_SZ)
 | [recursive](#check_registry_value_recursive) | false         | Recursively enumerate values in all sub-keys                                           |
 | max-depth                                    |               | Maximum recursion depth for --recursive (-1 = unlimited)                               |
 
+
+
+<h5 id="check_registry_value_key">key:</h5>
+
+One or more registry key paths whose values to check (e.g. HKLM\Software\MyApp).
+Which keys may be named here is governed by 'registry access' in [/settings/system/windows]: by default any key is read, but an operator can restrict this to keys below an allowed entry, or to names predefined in [/settings/system/windows/registry].
 
 
 <h5 id="check_registry_value_view">view:</h5>
@@ -6789,6 +6856,18 @@ OK: All 1 service(s) are ok.
     <a id="check_service_service"></a>
     <a id="check_service_exclude"></a>
 
+
+
+
+
+
+
+
+
+
+
+
+
     | Option                                            | Default Value | Description                                                                                                                                                                           |
     |---------------------------------------------------|---------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
     | computer                                          |               | The name of the remote computer to check                                                                                                                                              |
@@ -6897,6 +6976,9 @@ OK: All 1 service(s) are ok.
 
     <a id="check_service_service"></a>
     <a id="check_service_exclude"></a>
+
+
+
 
     | Option                        | Default Value | Description                                                                |
     |-------------------------------|---------------|----------------------------------------------------------------------------|
@@ -7567,6 +7649,7 @@ check_uptime max-unit=d "detail-syntax=uptime: ${uptime}, boot: ${boot} (${tz})"
 <a id="check_uptime_options"></a>
 #### Command-line Arguments
 
+        
 | Option                             | Default Value | Description                                                                                                                              |
 |------------------------------------|---------------|------------------------------------------------------------------------------------------------------------------------------------------|
 | [max-unit](#check_uptime_max-unit) | w             | Largest time unit used to render ${uptime}: s|m|h|d|w (default: w). For a 6-week uptime, w=>'6w 0d 00:00', d=>'42d 00:00', h=>'1008:00'. |
@@ -7865,6 +7948,7 @@ This command also supports the [common filter keywords](../common-options.md#com
 | [/settings/system/windows/real-time/cpu](#realtime-cpu-filters)         | Realtime cpu filters     |
 | [/settings/system/windows/real-time/memory](#realtime-memory-filters)   | Realtime memory filters  |
 | [/settings/system/windows/real-time/process](#realtime-process-filters) | Realtime process filters |
+| [/settings/system/windows/registry](#predefined-registry-keys)          | PREDEFINED REGISTRY KEYS |
 | [/settings/system/windows/service-tags](#service-tags)                  | Service tags             |
 
 
@@ -8462,28 +8546,97 @@ This is a section of objects. This means that you will create objects below this
 
 Section for system checks and system settings
 
-| Key                                           | Default Value | Description               |
-|-----------------------------------------------|---------------|---------------------------|
-| [default buffer length](#default-buffer-time) | 1h            | Default buffer time       |
-| [disable](#disable-automatic-checks)          |               | Disable automatic checks  |
-| [fetch core loads](#fetch-core-load)          | true          | Fetch core load           |
-| [process cpu](#sample-per-process-cpu)        | false         | Sample per-process CPU    |
-| [process history](#track-process-history)     | false         | Track process history     |
-| [subsystem](#pdh-subsystem)                   | default       | PDH subsystem             |
-| [timezone](#timezone)                         | local         | Timezone                  |
-| [use pdh for cpu](#use-pdh-to-fetch-cpu-load) | false         | Use PDH to fetch CPU load |
+| Key                                             | Default Value | Description               |
+|-------------------------------------------------|---------------|---------------------------|
+| [allowed counters](#allowed-counters)           |               | ALLOWED COUNTERS          |
+| [allowed registry keys](#allowed-registry-keys) |               | ALLOWED REGISTRY KEYS     |
+| [counter access](#counter-access-mode)          | any           | COUNTER ACCESS MODE       |
+| [default buffer length](#default-buffer-time)   | 1h            | Default buffer time       |
+| [disable](#disable-automatic-checks)            |               | Disable automatic checks  |
+| [fetch core loads](#fetch-core-load)            | true          | Fetch core load           |
+| [process cpu](#sample-per-process-cpu)          | false         | Sample per-process CPU    |
+| [process history](#track-process-history)       | false         | Track process history     |
+| [registry access](#registry-access-mode)        | any           | REGISTRY ACCESS MODE      |
+| [subsystem](#pdh-subsystem)                     | default       | PDH subsystem             |
+| [timezone](#timezone)                           | local         | Timezone                  |
+| [use pdh for cpu](#use-pdh-to-fetch-cpu-load)   | false         | Use PDH to fetch CPU load |
 
 
 ```ini
 # Section for system checks and system settings
 [/settings/system/windows]
+counter access=any
 default buffer length=1h
 fetch core loads=true
 process cpu=false
 process history=false
+registry access=any
 subsystem=default
 timezone=local
 use pdh for cpu=false
+```
+
+#### ALLOWED COUNTERS <a id="/settings/system/windows/allowed counters"></a>
+
+Comma separated list of counter paths check_pdh may read when 'counter access' is set to allowed. Entries may contain * and ?, for example \\Processor(*)\\*, \\Memory\\*.
+The pattern is matched against the counter path exactly as the caller wrote it, so include both the localized and English spellings if your hosts differ. It has no effect in the default any mode.
+
+
+| Key            | Description                                           |
+|----------------|-------------------------------------------------------|
+| Path:          | [/settings/system/windows](#/settings/system/windows) |
+| Key:           | allowed counters                                      |
+| Default value: | _N/A_                                                 |
+
+
+**Sample:**
+
+```
+[/settings/system/windows]
+# ALLOWED COUNTERS
+allowed counters=
+```
+
+#### ALLOWED REGISTRY KEYS <a id="/settings/system/windows/allowed registry keys"></a>
+
+Comma separated list of registry keys check_registry_key and check_registry_value may read when 'registry access' is set to allowed.
+An entry allows that key and everything below it, for example HKLM\\SOFTWARE\\MyApp. The match is on whole key names, so that entry does not also allow HKLM\\SOFTWARE\\MyAppOther. An entry containing * or ? is matched as a wildcard against the whole key instead. Both hive spellings (HKLM and HKEY_LOCAL_MACHINE) mean the same thing on either side of the comparison.
+
+
+| Key            | Description                                           |
+|----------------|-------------------------------------------------------|
+| Path:          | [/settings/system/windows](#/settings/system/windows) |
+| Key:           | allowed registry keys                                 |
+| Default value: | _N/A_                                                 |
+
+
+**Sample:**
+
+```
+[/settings/system/windows]
+# ALLOWED REGISTRY KEYS
+allowed registry keys=
+```
+
+#### COUNTER ACCESS MODE <a id="/settings/system/windows/counter access"></a>
+
+Which performance counters a caller may ask check_pdh (check_counter) to read: any (the default - any counter path the caller names, which is how every earlier release behaved), allowed (only paths matching 'allowed counters') or predefined (only the counters configured in the [/settings/system/windows/counters] section).
+PDH exposes every performance object on the machine, so on a host where callers may pass arguments (NRPE with 'allow arguments', or the REST API) this decides how much of it a check can read. Counters configured in the counters section are always available by name, whatever the mode. See the 'Restricting what a check may read' section of the documentation.
+
+
+| Key            | Description                                           |
+|----------------|-------------------------------------------------------|
+| Path:          | [/settings/system/windows](#/settings/system/windows) |
+| Key:           | counter access                                        |
+| Default value: | `any`                                                 |
+
+
+**Sample:**
+
+```
+[/settings/system/windows]
+# COUNTER ACCESS MODE
+counter access=any
 ```
 
 #### Default buffer time <a id="/settings/system/windows/default buffer length"></a>
@@ -8588,6 +8741,27 @@ Enable tracking of process history for use with check_process_history and check_
 process history=false
 ```
 
+#### REGISTRY ACCESS MODE <a id="/settings/system/windows/registry access"></a>
+
+Which registry keys a caller may ask check_registry_key and check_registry_value to read: any (the default - any key the caller names, which is how every earlier release behaved), allowed (only keys at or below an entry in 'allowed registry keys') or predefined (only names defined in the [/settings/system/windows/registry] section).
+check_registry_value returns the value data itself, with binary values rendered as hex, and will walk a whole subtree when 'recursive' is set, so on a host where callers may pass arguments (NRPE with 'allow arguments', or the REST API) this decides how much of the registry a check can read. While this is not 'any' the 'computer' argument is also refused, so only the local registry is reachable. See the 'Restricting what a check may read' section of the documentation.
+
+
+| Key            | Description                                           |
+|----------------|-------------------------------------------------------|
+| Path:          | [/settings/system/windows](#/settings/system/windows) |
+| Key:           | registry access                                       |
+| Default value: | `any`                                                 |
+
+
+**Sample:**
+
+```
+[/settings/system/windows]
+# REGISTRY ACCESS MODE
+registry access=any
+```
+
 #### PDH subsystem <a id="/settings/system/windows/subsystem"></a>
 
 Set which pdh subsystem to use.
@@ -8673,11 +8847,13 @@ This is a section of objects. This means that you will create objects below this
 | collection strategy |               | COLLECTION STRATEGY |
 | counter             |               | COUNTER             |
 | flags               |               | FLAGS               |
+| help                |               | COUNTER DESCRIPTION |
 | instances           |               | Interpret instances |
 | is template         | false         | IS TEMPLATE         |
 | parent              | default       | PARENT              |
 | resolution          |               | COUNTER RESOLUTION  |
 | type                |               | COUNTER TYPE        |
+| unit                |               | COUNTER UNIT        |
 
 
 **Sample:**
@@ -8690,11 +8866,13 @@ This is a section of objects. This means that you will create objects below this
 #collection strategy=...
 #counter=...
 #flags=...
+#help=...
 #instances=...
 is template=false
 parent=default
 #resolution=...
 #type=...
+#unit=...
 
 ```
 
@@ -9046,6 +9224,21 @@ silent period=false
 
 
 
+
+### PREDEFINED REGISTRY KEYS <a id="/settings/system/windows/registry"></a>
+
+*Available on Windows only.*
+
+
+Registry keys the registry checks may use by name, as <name> = <key>.
+A name defined here can be used as key=<name> in any access mode, and is the only thing accepted when 'registry access' is set to predefined.
+
+
+
+```ini
+# Registry keys the registry checks may use by name, as <name> = <key>.
+[/settings/system/windows/registry]
+```
 
 ### Service tags <a id="/settings/system/windows/service-tags"></a>
 

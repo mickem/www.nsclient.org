@@ -72,12 +72,51 @@ WEBServer = enabled
 port = 8443
 ```
 
+### Built-in roles
+
+| Role         | Grants                                                                                       | Use for                                                                  |
+|--------------|----------------------------------------------------------------------------------------------|--------------------------------------------------------------------------|
+| `full`       | `*`                                                                                          | Administration: settings, modules, scripts.                              |
+| `client`     | `public,info.get,info.get.version,queries.list,queries.get,queries.execute,aliases.list,login.get,modules.list` | A monitoring client that also browses the agent.       |
+| `monitoring` | `public,queries.execute,aliases.list,login.get,metrics.list,openmetrics.list`                 | A monitoring server running checks with arguments, and scraping metrics. |
+| `restricted` | `public,queries.execute.noargs,aliases.list,login.get`                                       | A monitoring server that may run checks but **not pass arguments**.      |
+| `metrics`    | `public,metrics.list,openmetrics.list,login.get`                                             | A Prometheus scraper: reads metrics, runs nothing.                       |
+| `legacy`     | `legacy,login.get`                                                                           | Old clients only — see the warning below. Not created on a fresh install. |
+
+The `metrics` role covers `/api/v2/metrics` and `/api/v2/openmetrics` and
+nothing else — a scraper never needs to run a check, so it should not hold
+`queries.execute`. See [Prometheus scraping](../scenarios/prometheus.md).
+
+The `restricted` role is the REST equivalent of the NRPE server's
+`allow arguments = false`: it holds `queries.execute.noargs` instead of
+`queries.execute`, so it can run the checks the agent defines but any request
+carrying a query-string parameter is refused with
+`403 Arguments are not allowed for this user`. Neither grant implies the
+other, so the role can never widen into the full privilege — and existing
+`client` / `monitoring` users keep passing arguments exactly as before. Hand a
+restricted caller the checks it needs as
+[aliases](../api/rest/aliases.md), where the arguments live in your
+configuration:
+
+```ini
+[/settings/WEB/server/users/monitor]
+role = restricted
+password = ...
+
+[/settings/check helpers/alias]
+check_root_disk = check_drivesize drive=/ warning=free<10% critical=free<5%
+```
+
+Because every query parameter counts as an argument, a restricted client must
+send its credentials in a header (`Authorization`, `X-Auth-Token` or `TOKEN`)
+rather than as a legacy `?TOKEN=` parameter.
+
 <!-- @formatter:off -->
 !!! danger "The `legacy` role is powerful — only for legacy integrations"
     The `legacy` role (`legacy,login.get`) exists so that old clients which
     predate the versioned REST API can still run checks, through the
-    deprecated `POST /query.pb` and `GET /query/{name}` endpoints. Those
-    endpoints dispatch through the **same command registry** as the modern
+    deprecated `GET /query/{name}` endpoint. That endpoint dispatches
+    through the **same command registry** as the modern
     `GET /api/v2/queries/{name}/commands/execute` API, so a token holding only
     the `legacy` grant can run **any** check or command registered on the
     agent — including any `CheckExternalScripts` command an operator has
@@ -92,8 +131,8 @@ port = 8443
     for running checks.
 
     Do **not** grant `legacy` to a normal user or monitoring server: modern
-    clients should use the `monitoring` or `client` role and the versioned
-    `/api/v2/queries/...` endpoints. Grant `legacy` only for a specific,
+    clients should use the `restricted`, `monitoring` or `client` role and the
+    versioned `/api/v2/queries/...` endpoints. Grant `legacy` only for a specific,
     trusted legacy system that genuinely cannot be upgraded, and pair it with
     the [permission policy](../concepts/permissions.md) to restrict which
     commands it may run. A normal install grants this permission to no role
@@ -194,6 +233,11 @@ Modules can be loaded and unloaded at runtime and they provide various features 
 If we click on `Queries` in the web interface we will see a list of available queries.
 In the list you will find `check_cpu` so lets try it out.
 
+Some entries in this list — and in the `Modules` list — carry an
+**Experimental** chip. That check or module works and is there to be used, but
+it is new enough that its options, filter keywords and output may still change
+in a coming release, so expect to revisit it after an upgrade.
+
 ![select check_cpu](../images/web-select-check_cpu.png)
 
 Then you are met with a screen which looks a bit like this:
@@ -218,6 +262,35 @@ Enter `cores`in the arguments field and click `Execute` again.
 ![check_cpu cores](../images/web-check_cpu-cores.png)
 
 And there you have it the CPU load for each core.
+
+### The arguments field knows the check
+
+The `Arguments` field is the same prompt the interactive console gives you,
+without the console. It reads the check's own options and filter keywords from
+the agent and uses them while you type:
+
+* **Syntax highlighting.** Option names, values, filter expressions and syntax
+  templates are coloured apart, and a keyword the check does *not* offer is
+  shown in red — so `filter=fre < 10%` is visibly wrong before you run a check
+  that would otherwise run happily and quietly match nothing.
+* **Completion.** Start typing an option name and the check's parameters are
+  offered; type inside `filter=`, `warning=` or a `${...}` placeholder and its
+  filter keywords are offered instead. `Ctrl+Space` asks for the list
+  explicitly, arrow keys move through it, `Tab` or `Enter` accepts one.
+* **Help, next to the field.** The panel below lists every option with its
+  default and description and every filter keyword the check offers, and
+  describes whatever the cursor is currently on. Clicking an entry puts it into
+  the argument line. The options and keywords every check shares are folded
+  into their own section, so the handful this check defines itself stay
+  visible.
+
+An expression with spaces in it is several arguments unless you quote it —
+which the highlighting shows you, because only the first of them is coloured as
+a filter. Write `"filter=free < 10%"` (or `filter="free < 10%"`) and the whole
+expression is read as one.
+
+The same information is available over REST as
+[`GET /api/v2/queries/{query}/help`](../api/rest/queries.md#get-query-help).
 
 
 ## Loading modules via Web Interface

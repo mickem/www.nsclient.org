@@ -66,6 +66,7 @@ nav:
       - Concepts:
           - How NSClient++ Works: docs/concepts/index.md
           - Checks In Depth: docs/concepts/checks.md
+          - Restricting What A Check May Read: docs/concepts/check-access.md
           - Settings: docs/concepts/settings.md
           - Test Mode: docs/concepts/test-mode.md
           - File Layout: docs/concepts/file-layout.md
@@ -76,6 +77,7 @@ nav:
           - Upgrading: docs/setup/upgrading.md
           - Securing NSClient++: docs/setup/securing.md
           - Web Interface: docs/setup/web-interface.md
+          - Central management with NSClient Fleet: docs/setup/fleet.md
       - Security:
           - Security notices: docs/security/notices.md
       - Monitoring Scenarios:
@@ -97,6 +99,7 @@ nav:
           - Passive Monitoring (Icinga 2): docs/scenarios/passive-monitoring-icinga.md
           - Passive Monitoring (Graphite): docs/scenarios/passive-monitoring-graphite.md
           - Polled Passive Checks (Nagios Core): docs/scenarios/nagios-result-cache.md
+          - Mod-Gearman (Naemon / Nagios Core): docs/scenarios/mod-gearman.md
           - Checkmk Agent Integration: docs/scenarios/check-mk.md
           - Prometheus Scraping: docs/scenarios/prometheus.md
           - External Scripts: docs/scenarios/external-scripts.md
@@ -130,6 +133,7 @@ nav:
               - NSCPClient: docs/reference/client/NSCPClient.md
               - NRDPClient: docs/reference/client/NRDPClient.md
               - IcingaClient: docs/reference/client/IcingaClient.md
+              - GearmanClient: docs/reference/client/GearmanClient.md
               - SMTPClient: docs/reference/client/SMTPClient.md
               - GraphiteClient: docs/reference/client/GraphiteClient.md
               - SyslogClient: docs/reference/client/SyslogClient.md
@@ -169,6 +173,18 @@ nav:
               - Results: docs/api/rest/results.md
               - Legacy API: docs/api/rest/legacy.md
       - FAQ: docs/faq.md
+    - NSClient Fleet (server):
+        - Overview: docs/fleet/index.md
+        - Install:
+            - Docker: docs/fleet/docker.md
+            - Linux: docs/fleet/linux-install.md
+            - Windows: docs/fleet/windows-install.md
+        - Operating:
+            - Deployment reference: docs/fleet/deployment.md
+            - CA rotation playbook: docs/fleet/ca-rotation-playbook.md
+        - Agent protocol:
+            - Building the agent: docs/fleet/agent-implementation.md
+            - Integration reference: docs/fleet/agent-integration.md
     - check_nsclient (CLI):
         - Overview: docs/check_nsclient/index.md
         - Agent commands: docs/check_nsclient/nsclient.md
