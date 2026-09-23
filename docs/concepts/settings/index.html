@@ -1,0 +1,6136 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://nsclient.org/docs/concepts/settings/">
+      
+      
+        <link rel="prev" href="../check-access/">
+      
+      
+        <link rel="next" href="../test-mode/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Settings - NSClient++</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="../../custom.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#settings" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="NSClient++" class="md-header__button md-logo" aria-label="NSClient++" data-md-component="logo">
+      
+  <img src="../../../assets/nsclient-logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            NSClient++
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Settings
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/mickem/nscp" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M202.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1M496 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2m-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3m-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1"/></svg>
+  </div>
+  <div class="md-source__repository">
+    NSClient++
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../.." class="md-tabs__link">
+          
+  
+  
+    
+  
+  Home
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../news/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  News
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../download/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Download
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Documentation
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://github.com/mickem/nscp/discussions" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Forums
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="NSClient++" class="md-nav__button md-logo" aria-label="NSClient++" data-md-component="logo">
+      
+  <img src="../../../assets/nsclient-logo.png" alt="logo">
+
+    </a>
+    NSClient++
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/mickem/nscp" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M202.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1M496 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2m-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3m-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1"/></svg>
+  </div>
+  <div class="md-source__repository">
+    NSClient++
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../.." class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_1" id="__nav_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Home
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../nsclient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About NSClient++
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../news/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    News
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../download/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Download
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Documentation
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Documentation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSClient++ agent
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    NSClient++ agent
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quick-start/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_2" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_2_2" id="__nav_4_2_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Concepts
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../checks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Checks In Depth
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../check-access/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Restricting What A Check May Read
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Settings
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Settings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#include" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Include
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#settings-stores" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Settings stores
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Settings stores">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ini-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ini settings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#registry-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        registry settings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#https-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        https settings
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="https settings">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#query-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Query parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#host-name-placeholders" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Host name placeholders
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-tls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using TLS
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Using TLS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#upgrading-to-verified-settings-downloads" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Upgrading to verified settings downloads
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-a-proxy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using a proxy
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-settings-stores" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using settings stores
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#overriding-settings-store" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overriding settings store
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#paths" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paths
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Paths">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-a-path-is-resolved" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How a path is resolved
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-tokens" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The tokens
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#special-tokens" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Special tokens
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#relative-paths" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Relative paths
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#external-scripts-resolve-differently" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        External scripts resolve differently
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#overriding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overriding
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../test-mode/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Test Mode
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../file-layout/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    File Layout
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../permissions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Permissions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2_3" id="__nav_4_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Setup
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/supported-platforms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Supported platforms
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/installing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/upgrading/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Upgrading
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/securing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Securing NSClient++
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/web-interface/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Web Interface
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../setup/fleet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Central management with NSClient Fleet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2_4" id="__nav_4_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Security
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../security/notices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security notices
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../scenarios/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Monitoring Scenarios
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_2_5" id="__nav_4_2_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Monitoring Scenarios
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scenarios/windows-server-health/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Windows Server Health
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scenarios/linux-server-health/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux Server Health
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scenarios/disk-space/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Disk Space Alerting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scenarios/service-monitoring/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Service & Process Monitoring
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scenarios/realtime-monitoring/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Real-Time System Monitoring
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scenarios/event-log/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Event Log Monitoring
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scenarios/counters/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Performance Counters (PDH)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scenarios/sql-server/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SQL Server Monitoring
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scenarios/network-checks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Network Checks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scenarios/security-posture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Host Security Posture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scenarios/nrpe/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Active Monitoring with NRPE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scenarios/rest-api-checks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Active Checks over the REST API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scenarios/passive-monitoring-nsca/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Passive Monitoring (NSCA/NRDP)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scenarios/passive-monitoring-nsca-ng/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Passive Monitoring (NSCA-NG)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scenarios/passive-monitoring-icinga/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Passive Monitoring (Icinga 2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scenarios/passive-monitoring-graphite/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Passive Monitoring (Graphite)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scenarios/nagios-result-cache/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Polled Passive Checks (Nagios Core)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scenarios/mod-gearman/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mod-Gearman (Naemon / Nagios Core)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scenarios/check-mk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Checkmk Agent Integration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scenarios/prometheus/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prometheus Scraping
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../scenarios/external-scripts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    External Scripts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../reference/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_2_6" id="__nav_4_2_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/common-options/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Common options
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_6_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2_6_3" id="__nav_4_2_6_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Check commands
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_2_6_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_6_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Check commands
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/check/CheckDisk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckDisk
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/check/CheckDocker/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckDocker
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/check/CheckExternalScripts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckExternalScripts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/windows/CheckEventLog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckEventLog (Windows)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/check/CheckHelpers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckHelpers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/check/CheckLogFile/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckLogFile
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/check/CheckMySQL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckMySQL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/check/CheckNet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckNet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/check/CheckNSCP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckNSCP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/check/CheckSecurity/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckSecurity
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/check/CheckSystem/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckSystem
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/windows/CheckMSSQL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckMSSQL (Windows)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/windows/CheckWindowsApps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckWindowsApps (Windows)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/windows/CheckTaskSched/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckTaskSched (Windows)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/windows/CheckWMI/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckWMI (Windows)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_6_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2_6_4" id="__nav_4_2_6_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Clients & Servers
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_2_6_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_6_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Clients & Servers
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/generic/WEBServer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WEBServer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/client/NRPEServer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NRPEServer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/client/NRPEClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NRPEClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/windows/NSClientServer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSClientServer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/client/NSCAServer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSCAServer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/client/NSCAClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSCAClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/client/NSCANgClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSCANgClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/client/NSCPClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSCPClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/client/NRDPClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NRDPClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/client/IcingaClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IcingaClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/client/GearmanClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GearmanClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/client/SMTPClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SMTPClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/client/GraphiteClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GraphiteClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/client/SyslogClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SyslogClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/client/CollectdClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CollectdClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/client/Op5Client/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Op5Client
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/client/ElasticClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ElasticClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/client/CheckMKClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckMKClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/client/CheckMKServer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckMKServer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_6_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2_6_5" id="__nav_4_2_6_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Helper modules
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_2_6_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_6_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Helper modules
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/generic/Scheduler/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scheduler
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/generic/SimpleFileWriter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SimpleFileWriter
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/generic/CommandClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CommandClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/generic/SimpleCache/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SimpleCache
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/generic/PythonScript/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PythonScript
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/generic/LUAScript/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LUAScript
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/generic/DotnetPlugins/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DotnetPlugins
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../extending/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Extending
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_2_7" id="__nav_4_2_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Extending
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../extending/python/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python Scripts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../extending/dotnet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    .NET Plugins
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../extending/lua/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lua Scripts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../extending/zip-modules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Zip Modules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../extending/plugin-api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plugin API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2_8" id="__nav_4_2_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    API
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_8_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../api/rest/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    REST
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_2_8_1" id="__nav_4_2_8_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_2_8_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_8_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    REST
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/rest/info/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Info
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/rest/login/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Login
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/rest/modules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/rest/queries/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Queries
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/rest/aliases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Aliases
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/rest/scripts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scripts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/rest/settings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Settings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/rest/metadata/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Metadata
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/rest/metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Metrics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/rest/logs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/rest/results/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Results
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/rest/legacy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Legacy API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../fleet/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSClient Fleet (server)
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    NSClient Fleet (server)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3_2" id="__nav_4_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Install
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Install
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../fleet/docker/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Docker
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../fleet/linux-install/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../fleet/windows-install/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Windows
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3_3" id="__nav_4_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operating
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Operating
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../fleet/deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../fleet/ca-rotation-playbook/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CA rotation playbook
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3_4" id="__nav_4_3_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Agent protocol
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Agent protocol
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../fleet/agent-implementation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Building the agent
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../fleet/agent-integration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Integration reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../check_nsclient/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    check_nsclient (CLI)
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    check_nsclient (CLI)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../check_nsclient/nsclient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Agent commands
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../check_nsclient/profile/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Profiles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/mickem/nscp/discussions" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Forums
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="settings">Settings<a class="headerlink" href="#settings" title="Permanent link">&para;</a></h1>
+<p>The NSClient++ settings store is a hierarchical tree structure with key value pairs.
+Traditionally this is stored in a flat ini-style file where the &ldquo;paths&rdquo; are defined as sections.
+But there are other options as well and for instance the registry is another common place to store settings.
+With the new configuration UI in 0.4.3 it is simpler to manipulate the settings if they are store in the registry and
+thus probably a better place to keep them.</p>
+<p>Which keys are available and what they mean are describe by the modules which use the various keys.
+Thus it the place to find the documentation for the various configuration options are in the reference section of the
+documentation.
+Where it is split by module.</p>
+<h2 id="include">Include<a class="headerlink" href="#include" title="Permanent link">&para;</a></h2>
+<p>Another really useful feature of the settings in NSClient++ is the ability to include various other settings.
+This is very flexible and you can include ini file from the registry and vice versa.</p>
+<p>The way to include a file (if you are using ini-files) is to add a key under the /includes section.</p>
+<p>including file:</p>
+<div class="highlight"><pre><span></span><code><span class="k">[/includes]</span>
+<span class="na">foo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">foo.ini</span>
+</code></pre></div>
+<p>You can include any number of files registry or other stores. and they will be instantiated in a tree structure with a
+parent child relationship.
+Important to note here is that the first found key will be used. So parents will override children.</p>
+<p>An included file may be named with a <a href="#host-name-placeholders">host name placeholder</a>, which is how
+one configuration rolled out to many machines pulls in a per-host file:</p>
+<div class="highlight"><pre><span></span><code><span class="k">[/includes]</span>
+<span class="na">client</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">${host}-nsclient.ini</span>
+</code></pre></div>
+<p>And example of this:</p>
+<ul>
+<li>nsclient.ini:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="k">[/includes]</span>
+<span class="na">client</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">client.ini</span>
+
+<span class="k">[/test]</span>
+<span class="na">key1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">This values comes from nsclient.ini</span>
+</code></pre></div>
+<ul>
+<li>client.ini:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="k">[/includes]</span>
+<span class="na">baseline</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">baseline.ini</span>
+
+<span class="k">[/test]</span>
+<span class="na">key1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">This values comes from client.ini</span>
+<span class="na">key2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">This values comes from client.ini</span>
+</code></pre></div>
+<ul>
+<li>baseline.ini:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="k">[/test]</span>
+<span class="na">key1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">This values comes from baseline.ini</span>
+<span class="na">key2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">This values comes from baseline.ini</span>
+<span class="na">key3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">This values comes from baseline.ini</span>
+</code></pre></div>
+<p>in the above example the values of /test keyx will be:</p>
+<ul>
+<li>key1=This values comes from nsclient.ini</li>
+<li>key2=This values comes from client.ini</li>
+<li>key3=This values comes from baseline.ini</li>
+</ul>
+<p>This can be very useful to distribute a baseline configuration for a company or monitoring product.
+Then all &ldquo;machine specific customization&rdquo; would go into the nsclient.ini config where as client.ini would be reserved
+for the clients global config. And finally baseline.ini would be monitoring tool specific configuration.</p>
+<h2 id="settings-stores">Settings stores<a class="headerlink" href="#settings-stores" title="Permanent link">&para;</a></h2>
+<p>Settings are historically stored in an ini file but you can store settings in many other locations as well.
+While the most obvious one to use is the registry there are other options as well.</p>
+<ul>
+<li>ini files</li>
+<li>registry</li>
+<li>dummy</li>
+<li>http (ini files over http)</li>
+</ul>
+<h3 id="ini-settings">Ini settings<a class="headerlink" href="#ini-settings" title="Permanent link">&para;</a></h3>
+<p>Ini file are the simplest form of configuration and also the default though on windows registry is probably a better
+option.
+The files are text-files following the ini file format where you have sections in brackets [] and key key = values.</p>
+<p>sample.ini:</p>
+<div class="highlight"><pre><span></span><code><span class="k">[/section/child/section]</span>
+<span class="na">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">value</span>
+</code></pre></div>
+<p>To use an ini file you prefix the settings url with ini:// then you can use various folder strings or specify a relative
+or absolute path to the file.</p>
+<p>examples:</p>
+<ul>
+<li>Use the relative file foo.ini <code>nscp settings --migrate-to ini://foo.ini</code></li>
+<li>Use the relative file foo.ini in a subfolder called conf <code>nscp settings --migrate-to ini://conf/foo.ini</code></li>
+<li>Use a file stored in the profile folder (on Windows): C:\Documents and Settings\All Users\Application Data\NSClient++
+  <code>nscp settings --migrate-to ini://%(common-appdata)/NSClient++/nsclient.ini</code></li>
+</ul>
+<h3 id="registry-settings">registry settings<a class="headerlink" href="#registry-settings" title="Permanent link">&para;</a></h3>
+<p>Registry is only available on Windows and using them on Windows is recommended as it integrates better with windows and
+windows management tools where you can push configuration changes and similar things.
+As the registry is naturally a tree structure we use folders as section and keys and values for keys and values.</p>
+<p>To use an ini file you prefix the settings url with ini:// then you can use various folder strings or specify a relative
+or absolute path to the file.</p>
+<p>examples:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Use the default registry location</span>
+$<span class="w"> </span>nscp<span class="w"> </span>settings<span class="w"> </span>--migrate-to<span class="w"> </span>registry
+<span class="c1"># Use HKEY_LOCAL_MACHINE/software/NSClient++ to store configuration</span>
+$<span class="w"> </span>nscp<span class="w"> </span>settings<span class="w"> </span>--migrate-to<span class="w"> </span>registry://HKEY_LOCAL_MACHINE/software/NSClient++
+</code></pre></div>
+<h3 id="https-settings">https settings<a class="headerlink" href="#https-settings" title="Permanent link">&para;</a></h3>
+<p>Https is a regular ini file (see above) except that it is loaded remotely and refreshed periodically.
+The refresh period is configurable and if the file has changed NSClient++ will reload and re-read the new configuration.
+If it is not possible to fetch the latest configuration NSClient++ will keep using the last one it received.</p>
+<p>examples:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Use remote configuration.</span>
+nscp<span class="w"> </span>settings<span class="w"> </span>--switch<span class="w"> </span>https://www.myserver.com/nsclient.ini
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Use https, not http</p>
+<p>The remote store is the agent&rsquo;s entire configuration: <code>[/modules]</code>, the external script
+definitions, the credentials the submit clients use. Plain <code>http://</code> does not authenticate
+the server at all, so anyone on the network path - or anyone who can answer for the host
+name through DHCP or DNS - decides what your agents run, as SYSTEM or root. It is re-fetched
+at boot and on every housekeeping pass, so one answered query is enough.</p>
+<p>NSClient++ therefore <strong>refuses</strong> a settings url, an <code>[/includes]</code> entry or an
+<code>[/attachments]</code> source that is not <code>https://</code>, and logs why. If you genuinely need plain
+http - a lab, an air-gapped network - opt in explicitly in <code>boot.ini</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="k">[tls]</span>
+<span class="na">allow plaintext</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
+</code></pre></div>
+<p>The fetch then happens and is logged as <code>INSECURE</code> every time. See also
+<a href="#using-tls"><code>verify mode</code></a> below: an https url whose certificate
+is not verified is no better than plain http.</p>
+</div>
+<p>In the nsclient.ini file you can specify a series of attachments which will be downloaded (for instance scripts).</p>
+<p>Adding a script:</p>
+<div class="highlight"><pre><span></span><code><span class="k">[/attachments]</span>
+<span class="na">${scripts}/myscript.bat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">https://www.myserver.com/myscript.bat</span>
+</code></pre></div>
+<p>The key is where the file is written and the value is where it is fetched from. Both sides take
+the <a href="#host-name-placeholders">host name placeholders</a> below, and the key additionally takes the
+usual path tokens, so one configuration can give every agent in a fleet its own file:</p>
+<div class="highlight"><pre><span></span><code><span class="k">[/attachments]</span>
+<span class="na">${shared-path}/${host}-nsclient.ini</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">https://nsclient.mydom.local/nsclient/hosts/${host}-nsclient.ini</span>
+</code></pre></div>
+<p>Name the target with a path token, or with an absolute path if you want it somewhere specific. A
+bare relative name such as <code>scripts/myscript.bat</code> still works and is taken relative to
+<code>${shared-path}</code> — but say which folder you mean, because the relative form used to be resolved
+against the service&rsquo;s working directory and that is not something you can predict from the
+configuration.</p>
+<h4 id="query-parameters">Query parameters<a class="headerlink" href="#query-parameters" title="Permanent link">&para;</a></h4>
+<p>The url may carry a query string, which is passed on to the server unchanged.
+This lets a script generate the configuration per host instead of serving a static file:</p>
+<div class="highlight"><pre><span></span><code><span class="k">[settings]</span>
+<span class="na">1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">https://nsclient.mydom.local/nsclient/nsclient.php?RootFolder=myhost/&amp;Filename=nsclient.ini</span>
+<span class="na">2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">ini://${shared-path}/nsclient.ini</span>
+</code></pre></div>
+<p>Each distinct query gets its own file in the cache folder, so several urls pointing at the same
+script with different parameters do not overwrite each other&rsquo;s cached configuration. An existing
+cache file written by an older version is moved to the new name on first start, so a host that
+cannot reach its settings server during the upgrade still boots off its cached configuration.</p>
+<p>Characters that are not legal in a url query - a space, most notably - are percent-encoded before
+the request is sent. Anything already written as <code>%XX</code> is left as it is, so a query you encoded
+yourself is not encoded twice.</p>
+<h4 id="host-name-placeholders">Host name placeholders<a class="headerlink" href="#host-name-placeholders" title="Permanent link">&para;</a></h4>
+<p>A settings url may contain the same host name placeholders the submit clients (NRDP, Graphite,
+Syslog and friends) accept, so a single <code>boot.ini</code> can be rolled out to an entire fleet and each
+agent asks for its own configuration:</p>
+<div class="highlight"><pre><span></span><code><span class="k">[settings]</span>
+<span class="na">1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">https://cfgsrv/nsclient.php?host=${hostname}</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Placeholder</th>
+<th>Expands to</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>${hostname}</code></td>
+<td>the system host name as reported, e.g. <code>srv01.example.com</code></td>
+</tr>
+<tr>
+<td><code>${host}</code></td>
+<td>the part before the first <code>.</code>, e.g. <code>srv01</code></td>
+</tr>
+<tr>
+<td><code>${domain}</code></td>
+<td>the part after the first <code>.</code>, e.g. <code>example.com</code></td>
+</tr>
+</tbody>
+</table>
+<p>Each of the three also has a <code>_lc</code> and a <code>_uc</code> variant (<code>${hostname_lc}</code>, <code>${host_uc}</code>, &hellip;) that
+lower- or upper-cases the result.</p>
+<p>Placeholders are expanded before the url is parsed, so they may appear anywhere in it - in the
+query, in the path (<code>https://cfgsrv/hosts/${host}/nsclient.ini</code>) or even in the host name. They are
+expanded before percent-encoding, so a host name containing a character that needs escaping is
+escaped rather than corrupting the request. The cache file name is derived from the expanded url,
+so each host caches its own configuration.</p>
+<p>The same placeholders are resolved in three more places, so a per-host configuration does not stop
+at the settings url:</p>
+<table>
+<thead>
+<tr>
+<th>Where</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A settings url</td>
+<td><code>[settings] 1 = https://cfgsrv/hosts/${host}.ini</code></td>
+</tr>
+<tr>
+<td>An attachment&rsquo;s source url</td>
+<td><code>[/attachments] scripts/local.bat = https://cfgsrv/${host}.bat</code></td>
+</tr>
+<tr>
+<td>An attachment&rsquo;s target path</td>
+<td><code>[/attachments] ${shared-path}/${host}.ini = https://cfgsrv/${host}.ini</code></td>
+</tr>
+<tr>
+<td>An included file</td>
+<td><code>[/includes] client = ${host}-nsclient.ini</code></td>
+</tr>
+</tbody>
+</table>
+<p>An attachment target and an included file are paths, so they take path tokens (<code>${shared-path}</code>,
+<code>${exe-path}</code>, &hellip;) as well. The two kinds of placeholder share a syntax but not a vocabulary: the
+host name placeholders in this table are resolved first, and everything else is left to the path
+tokens. Only the copy being opened is expanded - the placeholder stays in the configuration file,
+which is the point. When the substituted value lands in a local path (an attachment target, an
+included file) it is additionally reduced to the characters a legal host name can contain, so a
+host name outside the operator&rsquo;s control cannot carry a path separator or a <code>..</code> into a path the
+agent reads or writes.</p>
+<blockquote>
+<p><strong>New in 0.17:</strong> <code>${hostname}</code>, <code>${hostname_lc}</code> and <code>${hostname_uc}</code>, and host name placeholders
+in attachment targets and in <code>[/includes]</code> (issue
+<a href="https://github.com/mickem/nscp/issues/458">#458</a>). The other placeholders already existed for the
+submit clients; this makes them available across the settings subsystem too.</p>
+</blockquote>
+<p>An unrecognised path token is an error, and the setting that carried it is reported and skipped
+rather than applied. It did not used to be: an unknown <code>${...}</code> quietly resolved to
+the installation directory, so a mistyped <code>${scripst}/check.bat</code> was not rejected but turned into a
+real path under the install folder — and whatever depended on it went somewhere nobody was looking.
+That is also what made a pre-0.17 <code>${host}</code> in a path fail silently rather than loudly.</p>
+<p>The tokens are not a closed list: anything you define in boot.ini&rsquo;s <code>[paths]</code> section is a valid
+token everywhere a path is read. Only a token that is neither built in nor defined there is an
+error.</p>
+<p>If the query carries a credential (<code>?token=...</code>), note that it is still sent in clear text unless
+the url is <code>https://</code>. NSClient++ keeps query parameters out of its own log and out of the settings
+url it prints (<code>nscp settings --show</code>): both render a settings url as scheme, host and path only.
+Anything else that handles the url - a proxy, the settings server&rsquo;s own access log - is of course
+outside the agent&rsquo;s control.</p>
+<blockquote>
+<p><strong>Changed in 0.16.1:</strong> query parameters used to be silently dropped from the request, so the
+server only ever saw the bare path.</p>
+</blockquote>
+<h4 id="using-tls">Using TLS<a class="headerlink" href="#using-tls" title="Permanent link">&para;</a></h4>
+<p>You likely want to use TLS when using http settings.
+To use TLS you need to configure either If you are using a custom CA or want to use self signed certificates that has to
+be configured in the <code>boot.ini</code> file.
+This is a special file which is used to load configuration before the configuration is loaded.
+For instance, it defines which settings store to use but you can also configure TLS options.</p>
+<blockquote>
+<p><strong>Changed in 0.14:</strong> the settings download now verifies the server certificate by default
+(<code>verify mode = peer</code> against <code>${ca-path}</code>, the platform CA bundle). Earlier versions defaulted to
+<code>verify mode = none</code>, which meant anyone who could answer for the settings host controlled the
+agent&rsquo;s entire configuration - including <code>[/settings/external scripts]</code>, which is command
+execution by design. See <a href="#upgrading-to-verified-settings-downloads">Upgrading to verified settings downloads</a>.</p>
+</blockquote>
+<div class="highlight"><pre><span></span><code><span class="k">[tls]</span>
+<span class="na">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">1.3</span>
+<span class="na">verify mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">peer</span>
+<span class="na">ca</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">c:\program files\NSClient++\security\ca.pem</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Default Value</th>
+<th>Values</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>version</td>
+<td>1.3</td>
+<td>1.0, 1.1, 1.3</td>
+<td>The TLS version to use.</td>
+</tr>
+<tr>
+<td>verify mode</td>
+<td>peer</td>
+<td>none, peer</td>
+<td>The verify mode to use (Set this to none to use self signed certificates).</td>
+</tr>
+<tr>
+<td>ca</td>
+<td><code>${ca-path}</code></td>
+<td>Path to CA file</td>
+<td>The path to the CA certificate to use. Defaults to the platform CA bundle: the auto-exported Windows ROOT store on Windows, the distribution bundle on Linux.</td>
+</tr>
+<tr>
+<td>allow plaintext</td>
+<td>false</td>
+<td>true, false</td>
+<td>Allow a settings url, <code>[/includes]</code> entry or <code>[/attachments]</code> source that is not <code>https://</code>. Off by default: such a fetch is refused and logged. When on, every plaintext fetch is logged as <code>INSECURE</code>.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="upgrading-to-verified-settings-downloads">Upgrading to verified settings downloads<a class="headerlink" href="#upgrading-to-verified-settings-downloads" title="Permanent link">&para;</a></h5>
+<p>If your settings server presents a certificate issued by a public CA, the new defaults work with no
+configuration change.</p>
+<p>If it presents a self-signed certificate, or one issued by a private/internal CA, the download will
+now fail with a certificate verification error where it previously succeeded silently. Either point
+<code>ca</code> at the issuing CA (recommended):</p>
+<div class="highlight"><pre><span></span><code><span class="k">[tls]</span>
+<span class="na">verify mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">peer</span>
+<span class="na">ca</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">c:\program files\NSClient++\security\my-internal-ca.pem</span>
+</code></pre></div>
+<p>or restore the previous behaviour explicitly, accepting that the configuration channel is
+unauthenticated:</p>
+<div class="highlight"><pre><span></span><code><span class="k">[tls]</span>
+<span class="na">verify mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">none</span>
+</code></pre></div>
+<p><code>verify mode = none</code> is still honoured, but it is now logged as a warning naming the risk on every
+fetch - it can only be reached by writing it out, never by omission.</p>
+<p>The Windows installer applies the same defaults when it downloads a settings source given as
+<code>CONFIGURATION_TYPE=https://...</code>, and verifies against a temporary export of the Windows ROOT store
+(<code>${ca-path}</code> belongs to the service and is not written until it first starts). Use the <code>TLS_CA</code> and
+<code>TLS_VERIFY_MODE</code> properties to make the same two choices at install time - see
+<a href="../../setup/installing/#verifying-the-settings-server">Installing</a>.</p>
+<h4 id="using-a-proxy">Using a proxy<a class="headerlink" href="#using-a-proxy" title="Permanent link">&para;</a></h4>
+<p>If NSClient++ has to reach the configuration server through an HTTP proxy you can configure that in <code>boot.ini</code> as well.
+The proxy is applied to the initial download and to every refresh, and is also used by any attachments declared in the
+remote configuration. HTTPS targets are tunnelled through the proxy via an HTTP <code>CONNECT</code> request, so the same setting
+covers both <code>http://</code> and <code>https://</code> settings URLs.</p>
+<div class="highlight"><pre><span></span><code><span class="k">[proxy]</span>
+<span class="na">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">http://proxy.corp.example:3128/</span>
+<span class="na">no_proxy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">localhost,127.0.0.1,.internal</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Default Value</th>
+<th>Values</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>url</td>
+<td></td>
+<td><code>scheme://[user:pass@]host[:port][/]</code></td>
+<td>Proxy URL.  An empty value disables the proxy.  Currently only the <code>http</code> scheme is supported (CONNECT tunnelling for HTTPS targets).</td>
+</tr>
+<tr>
+<td>no_proxy</td>
+<td></td>
+<td>comma-separated list of hostnames or <code>.suffix</code>es</td>
+<td>Hosts that should bypass the proxy.  An entry beginning with <code>.</code> is a suffix match (<code>.internal</code> matches <code>foo.internal</code> and <code>internal</code>).</td>
+</tr>
+</tbody>
+</table>
+<p>If the proxy requires authentication, embed the credentials in the URL — they are sent as a <code>Proxy-Authorization: Basic</code>
+header (HTTPS targets receive them in the <code>CONNECT</code> request, plain HTTP targets receive them in the proxied request).
+The username and password are URL-decoded, so any <code>@</code> or <code>:</code> inside them must be percent-encoded.</p>
+<div class="highlight"><pre><span></span><code><span class="k">[proxy]</span>
+<span class="na">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">http://alice:s%40cret@proxy.corp.example:3128/</span>
+</code></pre></div>
+<blockquote>
+<p>Failed downloads still fall back to the cached copy of the configuration if one is present, so a transient proxy
+outage will not stop NSClient++ from starting — but the very first run on a fresh machine needs the proxy to be
+reachable.</p>
+</blockquote>
+<h2 id="using-settings-stores">Using settings stores<a class="headerlink" href="#using-settings-stores" title="Permanent link">&para;</a></h2>
+<p>NSClient++ has some feature to help work with settings stores.</p>
+<p>All of this is performed via the settings sub command: <code>nscp settings --help</code></p>
+<p>Migrating settings from a ini file to the registry can be done with the migrate-to command:
+<code>nscp settings --migrate-to registry</code></p>
+<p>This will move all data from the settings file and store it in in the registry and then setup NSClient++ to use the
+registry instead of the ini file.</p>
+<p>You can also switch settings store (without migrating data): <code>nscp settings --switch registry</code></p>
+<p>The effect is similar in that NSClient++ will start using the registry but you have to add the keys to the registry
+manually.</p>
+<p>To show the current settings store view can run:</p>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>nscp<span class="w"> </span>settings<span class="w"> </span>--show
+INI<span class="w"> </span>settings:<span class="w"> </span><span class="o">(</span>ini://<span class="si">${</span><span class="nv">shared</span><span class="p">-path</span><span class="si">}</span>/nsclient.ini,<span class="w"> </span>C:<span class="se">\s</span>ource<span class="se">\b</span>uild<span class="se">\x</span><span class="m">64</span><span class="se">\d</span>ev/nsclient.ini<span class="o">)</span>
+</code></pre></div>
+<h2 id="overriding-settings-store">Overriding settings store<a class="headerlink" href="#overriding-settings-store" title="Permanent link">&para;</a></h2>
+<p>The default way for NSClient++ to find your settings files is via the boot.ini file.</p>
+<p>If you want to override this, for instance you want to use multiple NSClient++ from the same folder, you can do this via
+the <code>--settings</code> option: <code>nscp test --settings nsclient2.ini</code></p>
+<p>You can do this for the service as well by editing the service start command.</p>
+<h2 id="paths">Paths<a class="headerlink" href="#paths" title="Permanent link">&para;</a></h2>
+<p>Anywhere the configuration names a file or a folder you can write a <code>${token}</code> instead of a literal
+path, and the agent substitutes it when it reads the setting. That is what lets one configuration
+file work on a Windows install under <code>C:\Program Files</code>, a Linux package under <code>/usr/lib/nsclient</code>,
+and a relocated installation — without any of them spelling out where they are.</p>
+<h3 id="how-a-path-is-resolved">How a path is resolved<a class="headerlink" href="#how-a-path-is-resolved" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Tokens are substituted</strong>, and the result is substituted again, because a token&rsquo;s value may
+   itself contain tokens. <code>${certificate-path}</code> is <code>${shared-path}/security</code>, which on the modern
+   Windows layout is <code>${common-appdata}/NSClient++/security</code>. This is why moving one folder moves
+   everything defined relative to it.</li>
+<li>
+<p><strong>Each token is looked up in this order</strong>, first match wins:</p>
+<table>
+<thead>
+<tr>
+<th>Precedence</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1 (highest)</td>
+<td><code>--path-override &lt;key&gt;=&lt;value&gt;</code> on the command line</td>
+</tr>
+<tr>
+<td>2</td>
+<td>the <code>[paths]</code> section of <code>boot.ini</code></td>
+</tr>
+<tr>
+<td>3 (lowest)</td>
+<td>the compiled-in default from the table below</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p><strong>An unknown token is an error.</strong> The setting that carried it is reported by name and skipped,
+   rather than applied. It previously resolved, silently, to the installation directory,
+   so a mistyped <code>${scripst}/check.bat</code> became a real path under the install folder and whatever
+   depended on it went somewhere nobody was looking. Note that the token set is <em>open</em>: anything you
+   define in <code>[paths]</code> is a valid token everywhere, so this only rejects names that are neither
+   built in nor defined by you.</p>
+</li>
+</ol>
+<p>Two rules apply to the value once the tokens are gone:</p>
+<ul>
+<li><strong><code>none</code> means &ldquo;no file at all&rdquo;</strong> and is never treated as a path. It is accepted by the log file
+  (<code>[/settings/log] file name = none</code> switches file logging off) and by every <code>ca</code> option, where it
+  falls back to the TLS library&rsquo;s own trust store.</li>
+<li><strong>A value that names no location of its own is taken relative to the folder its setting owns</strong>,
+  for the settings that <em>write</em> files — see <a href="#relative-paths">Relative paths</a> below.</li>
+</ul>
+<p>An absolute path is always used exactly as written. Pointing a setting anywhere on the filesystem
+stays your decision; tokens are a convenience, not a restriction.</p>
+<h3 id="the-tokens">The tokens<a class="headerlink" href="#the-tokens" title="Permanent link">&para;</a></h3>
+<p><code>Kind</code> says where the value comes from: <strong>static</strong> is the table below, <strong>runtime</strong> is a lookup the
+binary makes about its own location or the OS, and <strong>probe</strong> means the answer depends on what is
+actually on disk.</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Kind</th>
+<th>Value (Windows)</th>
+<th>Value (Linux)</th>
+<th>Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>exe-path</td>
+<td>runtime</td>
+<td>Folder holding <code>nscp.exe</code></td>
+<td>Folder holding <code>nscp</code></td>
+<td>Where the running binary lives. <code>base-path</code> is a synonym.</td>
+</tr>
+<tr>
+<td>base-path</td>
+<td>runtime</td>
+<td>Folder holding <code>nscp.exe</code></td>
+<td>Folder holding <code>nscp</code></td>
+<td>Synonym for <code>exe-path</code>.</td>
+</tr>
+<tr>
+<td>shared-path</td>
+<td>mixed</td>
+<td><code>${exe-path}</code> (legacy), <code>${common-appdata}/NSClient++</code> (modern)</td>
+<td>/usr/lib/nsclient</td>
+<td>Moves with <code>[layout] mode</code> on Windows. The package directory on Linux: root-owned, not written at runtime.</td>
+</tr>
+<tr>
+<td>data-path</td>
+<td>runtime</td>
+<td>The user&rsquo;s profile folder</td>
+<td>/var/lib/nsclient</td>
+<td>Writable per-machine state on Linux; the same as <code>${appdata}</code> on Windows.</td>
+</tr>
+<tr>
+<td>certificate-path</td>
+<td>static</td>
+<td>${shared-path}/security</td>
+<td>${shared-path}/security</td>
+<td>Shipped and admin-supplied certificates. Read-only at runtime on Linux.</td>
+</tr>
+<tr>
+<td>module-path</td>
+<td>static</td>
+<td>${exe-path}/modules</td>
+<td>${shared-path}/modules</td>
+<td></td>
+</tr>
+<tr>
+<td>web-path</td>
+<td>static</td>
+<td>${shared-path}/web</td>
+<td>${shared-path}/web</td>
+<td>Stays with the program, never in the writable state — see <a href="../file-layout/#the-web-root-stays-with-the-program">File layout</a>.</td>
+</tr>
+<tr>
+<td>scripts</td>
+<td>static</td>
+<td>${exe-path}/scripts</td>
+<td>${shared-path}/scripts</td>
+<td></td>
+</tr>
+<tr>
+<td>cache-folder</td>
+<td>static</td>
+<td>${shared-path}/cache</td>
+<td>${shared-path}/cache</td>
+<td>Where a downloaded configuration is cached.</td>
+</tr>
+<tr>
+<td>crash-folder</td>
+<td>static</td>
+<td>${shared-path}/crash-dumps</td>
+<td>${shared-path}/crash-dumps</td>
+<td></td>
+</tr>
+<tr>
+<td>log-path</td>
+<td>static</td>
+<td>${shared-path}/log</td>
+<td>/var/log/nsclient</td>
+<td>Created and owned by the service account by the package.</td>
+</tr>
+<tr>
+<td>fleet-folder</td>
+<td>static</td>
+<td>${shared-path}/fleet</td>
+<td>${data-path}/fleet</td>
+<td>Everything the fleet sync owns: <code>fleet.ini</code>, staged scripts, bundle cache. Must be writable by the service account.</td>
+</tr>
+<tr>
+<td>ca-path</td>
+<td>static</td>
+<td>${certificate-path}/windows-ca.pem</td>
+<td>the distribution&rsquo;s CA bundle</td>
+<td>Trusted CA bundle used when a check names none of its own. Detected at build time on Linux.</td>
+</tr>
+<tr>
+<td>temp</td>
+<td>runtime</td>
+<td>The OS temporary folder</td>
+<td>/tmp</td>
+<td>Shared with every other account on the machine.</td>
+</tr>
+<tr>
+<td>common-appdata</td>
+<td>runtime</td>
+<td>%ProgramData%</td>
+<td>N/A</td>
+<td>Backs <code>${shared-path}</code> on the modern Windows layout.</td>
+</tr>
+<tr>
+<td>appdata</td>
+<td>runtime</td>
+<td>The user&rsquo;s profile folder</td>
+<td>N/A</td>
+<td>Windows only; same value as <code>${data-path}</code>.</td>
+</tr>
+<tr>
+<td>etc</td>
+<td>static</td>
+<td>N/A</td>
+<td>/etc</td>
+<td>Linux only; tracks the build&rsquo;s <code>--prefix</code>.</td>
+</tr>
+<tr>
+<td>boot-conf</td>
+<td>special</td>
+<td>${exe-path}/boot.ini</td>
+<td>${etc}/nsclient/boot.ini</td>
+<td>See <a href="#special-tokens">Special tokens</a>.</td>
+</tr>
+<tr>
+<td>nrpe-dh</td>
+<td>probe</td>
+<td>whichever candidate holds the files</td>
+<td>same</td>
+<td>See <a href="#special-tokens">Special tokens</a>.</td>
+</tr>
+<tr>
+<td>modern-nrpe-dh</td>
+<td>static</td>
+<td>${certificate-path}</td>
+<td>${certificate-path}</td>
+<td>Candidate behind <code>${nrpe-dh}</code>.</td>
+</tr>
+<tr>
+<td>legacy-nrpe-dh</td>
+<td>static</td>
+<td>${exe-path}/security</td>
+<td>${certificate-path}</td>
+<td>Candidate behind <code>${nrpe-dh}</code>; the two candidates coincide on Linux.</td>
+</tr>
+</tbody>
+</table>
+<p>The Linux values above are for a default <code>--prefix=/usr</code> package build; a build
+with another prefix moves them together (see the packaging variables in
+<code>CMakeLists.txt</code>). For the full picture of what lives where, and which account
+owns it, see <a href="../file-layout/">File layout</a>.</p>
+<p>On Windows, <code>${shared-path}</code> — and therefore everything defined relative to it —
+depends on which layout the installation uses. <code>boot.ini</code>&rsquo;s <code>[layout] mode</code>
+selects it; see <a href="../file-layout/#windows">File layout</a>.</p>
+<h3 id="special-tokens">Special tokens<a class="headerlink" href="#special-tokens" title="Permanent link">&para;</a></h3>
+<p>Two tokens do not behave like the rest.</p>
+<p><strong><code>${nrpe-dh}</code> is a lookup, not a fixed path.</strong> The shipped Diffie-Hellman parameters are package
+content, so on Windows the installer leaves them beside the executable while <code>${certificate-path}</code>
+moves to <code>%ProgramData%</code> under the modern layout — one fixed value cannot name both. So it is
+resolved by looking: it answers <code>${modern-nrpe-dh}</code> when that folder actually contains
+<code>nrpe_dh_*.pem</code>, and <code>${legacy-nrpe-dh}</code> otherwise. The lookup runs on every resolution, by design,
+so the answer follows the files when an upgrade or a layout migration moves them. You can override
+either candidate, or <code>nrpe-dh</code> itself to skip the lookup entirely. See
+<a href="../file-layout/#nrpe-dh">File layout</a>.</p>
+<p><strong><code>${boot-conf}</code> is resolved before <code>[paths]</code> is read.</strong> It names <code>boot.ini</code> itself, and <code>[paths]</code>
+lives <em>inside</em> <code>boot.ini</code> — so a <code>[paths] boot-conf = ...</code> entry cannot take effect, because the
+file would have to be found before it could be read. This is deliberate rather than an oversight.
+Only <code>--path-override boot-conf=...</code> relocates it:</p>
+<div class="highlight"><pre><span></span><code>nscp<span class="w"> </span>--path-override<span class="w"> </span>boot-conf<span class="o">=</span>/etc/nsclient/test-boot.ini<span class="w"> </span>service<span class="w"> </span>--run
+</code></pre></div>
+<h3 id="relative-paths">Relative paths<a class="headerlink" href="#relative-paths" title="Permanent link">&para;</a></h3>
+<p>A value that carries neither a token nor a leading <code>/</code> (or drive letter) only means something
+relative to <em>some</em> folder. Unless the setting names one, that folder is the process working
+directory: <code>C:\Windows\System32</code> for a Windows service, <code>/</code> under a bare init script,
+<code>${shared-path}</code> under the shipped systemd unit (which sets <code>WorkingDirectory</code> to the package
+directory), and the shell&rsquo;s directory for <code>nscp test</code> — four different answers from the same
+configuration file, none of them visible in it.</p>
+<p>Settings that <em>write</em> files do name the folder they own, so a relative value lands there whatever
+the working directory is:</p>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Relative values land in</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>[/attachments]</code> target</td>
+<td><code>${shared-path}</code></td>
+</tr>
+<tr>
+<td><code>[/settings/log] file name</code></td>
+<td><code>${log-path}</code></td>
+</tr>
+<tr>
+<td><code>[/settings/crash] archive folder</code></td>
+<td><code>${crash-folder}</code></td>
+</tr>
+<tr>
+<td><code>[/settings/fleet] managed path</code></td>
+<td><code>${fleet-folder}</code></td>
+</tr>
+<tr>
+<td><code>[/settings/filewriter] file</code></td>
+<td><code>${log-path}</code></td>
+</tr>
+</tbody>
+</table>
+<p>That table is the complete list. Every other relative value — a script name&rsquo;s first search
+candidate, any setting not listed above — is measured against the working directory. Prefer naming
+the folder explicitly: <code>${scripts}/check.bat</code> resolves the same way however the agent was started,
+where <code>scripts/check.bat</code> depends on it.</p>
+<p><code>[/settings/external scripts]</code> commands are the one exception, and only on Windows: a command that
+carries a folder is rooted at the installation directory before it is launched, so
+<code>scripts\check.bat</code> is the file <code>${scripts}</code> names whatever the working directory is. See
+<a href="#external-scripts-resolve-differently">External scripts resolve differently</a> for the exact rule
+and for what Linux does instead.</p>
+<p>A script <em>name</em> is a different thing and is not covered by this. <code>[/settings/python/scripts]</code> and
+<code>[/settings/lua/scripts]</code> entries are resolved by <strong>searching</strong>, so a bare <code>check_foo.py</code> is found
+in the module&rsquo;s script folder and the search either finds it or reports that it could not:</p>
+<table>
+<thead>
+<tr>
+<th>Written as</th>
+<th>Found at</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>check_foo.py</code></td>
+<td><code>${scripts}/python/check_foo.py</code>, or <code>${scripts}/check_foo.py</code></td>
+</tr>
+<tr>
+<td><code>sub/check_foo.py</code></td>
+<td><code>${scripts}/python/sub/check_foo.py</code>, or <code>${scripts}/sub/check_foo.py</code></td>
+</tr>
+</tbody>
+</table>
+<p>Lua is the same with <code>lua</code> in place of <code>python</code>. The search tries the value as-is first, so an
+absolute path is taken as given, and a relative one that exists under the working directory is used
+before the script folder is consulted.</p>
+<p>A script is not confined to the script folder: an absolute path anywhere on the filesystem is
+accepted, and so is a relative one that climbs out of it. Scripts the agent does not ship — a
+plugin package&rsquo;s own <code>libexec</code>, a vendor directory — are named directly:</p>
+<div class="highlight"><pre><span></span><code><span class="k">[/settings/python/scripts]</span>
+<span class="na">vendor_check</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">/usr/lib/nagios/plugins/check_thing.py</span>
+</code></pre></div>
+<h3 id="external-scripts-resolve-differently">External scripts resolve differently<a class="headerlink" href="#external-scripts-resolve-differently" title="Permanent link">&para;</a></h3>
+<p><code>[/settings/external scripts/scripts]</code> works differently. The value is a command line rather than a
+path: it is handed to the operating system to execute, so there is no search and no <code>${...}</code>
+expansion. A <code>${scripts}/check_foo.sh</code> entry reaches the shell with the token still in it.</p>
+<table>
+<thead>
+<tr>
+<th>Written as</th>
+<th>What happens</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>${scripts}/check_foo.sh</code></td>
+<td>not expanded; the token is passed through as written</td>
+</tr>
+<tr>
+<td><code>check_foo.sh</code></td>
+<td>a name with no directory separator is looked up on <code>PATH</code>, not in the current directory</td>
+</tr>
+<tr>
+<td><code>scripts/check_foo.sh</code></td>
+<td>Windows: resolved under the installation directory. Unix: relative to the working directory</td>
+</tr>
+<tr>
+<td><code>/opt/nscp/scripts/check_foo.sh</code></td>
+<td>used as given</td>
+</tr>
+</tbody>
+</table>
+<p>The conventional <code>scripts\check_foo.bat</code> is reliable on Windows: the launcher roots a relative
+command at <code>${base-path}</code> before handing it to <code>CreateProcess</code>, and <code>${scripts}</code> is
+<code>${exe-path}/scripts</code> — the same folder. So the script is found wherever the agent was started
+from, including as a service, whose working directory is <code>C:\Windows\System32</code>. That holds under
+the modern layout too, because <code>${scripts}</code> stays with the program instead of moving to
+<code>%ProgramData%</code> with the writable state.</p>
+<p>Only the folder-bearing form is rooted. A bare <code>cmd.exe</code> or <code>powershell.exe</code> gets the system&rsquo;s own
+executable search instead — the directory the agent loaded from, the working directory, the system
+and Windows directories, then <code>PATH</code> — which is what the shipped wrappings rely on. A command that
+names a location of its own — <code>C:\tools\check_foo.exe</code>, <code>\\server\share\check_foo.exe</code>, and the
+drive-relative <code>C:check.exe</code> or root-relative <code>\tools\check.exe</code> — is used exactly as written.</p>
+<p>On Linux the relative form holds only under the shipped systemd unit, which sets <code>WorkingDirectory</code>
+to <code>${shared-path}</code>, the folder <code>${scripts}</code> lives in. The unix launcher sets no working directory
+for the child and does not root the command: both inherit the agent&rsquo;s. Started any other way (by
+hand, from an init script, as a container entrypoint) a relative command is measured against
+whatever that happened to be, so prefer an absolute path there.</p>
+<p><code>nscp ext-scr add --import &lt;file&gt;</code> writes that value for you, and picks the spelling that works on
+the platform it runs on: <code>scripts\&lt;name&gt;</code> on Windows, and the destination&rsquo;s absolute path
+everywhere else.</p>
+<h3 id="overriding">Overriding<a class="headerlink" href="#overriding" title="Permanent link">&para;</a></h3>
+<p>All paths can also be overridden using the <code>[paths]</code> section in <code>boot.ini</code>.</p>
+<p>Example of overriding a path (web root folder):</p>
+<div class="highlight"><pre><span></span><code><span class="k">[paths]</span>
+<span class="na">web-path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">/tmp/foo</span>
+</code></pre></div>
+<p>Path overrides can also be supplied per-invocation on the command line, which
+takes precedence over anything in <code>boot.ini</code> for the keys it specifies:</p>
+<div class="highlight"><pre><span></span><code>nscp<span class="w"> </span>client<span class="w"> </span>--path-override<span class="w"> </span>module-path<span class="o">=</span>/build/modules<span class="w"> </span>--path-override<span class="w"> </span>log-path<span class="o">=</span>/build/logs<span class="w"> </span>...
+</code></pre></div>
+<p>An override has to name an <strong>absolute</strong> location, whether it comes from
+<code>[paths]</code> or from <code>--path-override</code>. It may be written in terms of other tokens
+(<code>scripts = ${shared-path}/mine</code>) as long as the result is absolute. An override
+that resolves to a relative path, or that names a token which does not exist, is
+reported and ignored, and the built-in default is used instead — a relative one
+would be read and written relative to the service&rsquo;s working directory, which is
+<code>C:\Windows\System32</code> for a Windows service, <code>/</code> under a bare init script and the
+package directory under the shipped systemd unit. Nothing useful can be written
+against a base that changes with how the agent was started.</p>
+<!-- @formatter:off -->
+<div class="admonition note">
+<p class="admonition-title">Moved in 0.12.5</p>
+<p>Before 0.12.5 path overrides lived in the main configuration file under a <code>[/paths]</code> section. They were moved to
+<code>boot.ini</code>&rsquo;s <code>[paths]</code> section so that overrides take effect for <em>all</em> path lookups - including the bootstrap-time
+lookup that decides where the main configuration file itself lives. If you had a <code>[/paths]</code> section in your
+<code>nsclient.ini</code>, copy each <code>key = value</code> to a <code>[paths]</code> section in <code>boot.ini</code> (next to <code>nscp.exe</code>) and delete the old
+section from <code>nsclient.ini</code>; there is no automatic migration.</p>
+</div>
+<!-- @formatter:on -->
+
+<h2 id="security">Security<a class="headerlink" href="#security" title="Permanent link">&para;</a></h2>
+<p>Storing sensitive information in the settings store is not recommended.
+You can solve this in various ways:</p>
+<ul>
+<li>The simplest approach is to move the settings file to a location only readable by the user running NSClient++.</li>
+<li>Use the credential manager to store sensitive information.</li>
+</ul>
+<p>To learn more about the credential manager, see <a href="../../setup/securing/">Securing NSClient++</a>.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+      <div class="md-consent" data-md-component="consent" id="__consent" hidden>
+        <div class="md-consent__overlay"></div>
+        <aside class="md-consent__inner">
+          <form class="md-consent__form md-grid md-typeset" name="consent">
+            
+
+
+  
+
+
+<h4>Cookie consent</h4>
+<p>We use cookies to recognize your repeated visits and preferences, as well as to measure the effectiveness of our documentation and whether users find what they're searching for. With your consent, you're helping us to make our documentation better.</p>
+<input class="md-toggle" type="checkbox" id="__settings" >
+<div class="md-consent__settings">
+  <ul class="task-list">
+    
+    
+      
+    
+    
+      
+        
+  
+  
+    
+    
+  
+  <li class="task-list-item">
+    <label class="task-list-control">
+      <input type="checkbox" name="github" checked>
+      <span class="task-list-indicator"></span>
+      GitHub
+    </label>
+  </li>
+
+      
+    
+    
+  </ul>
+</div>
+<div class="md-consent__controls">
+  
+    
+      <button class="md-button md-button--primary">Accept</button>
+    
+    
+    
+  
+    
+    
+    
+      <label class="md-button" for="__settings">Manage settings</label>
+    
+  
+</div>
+          </form>
+        </aside>
+      </div>
+      <script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout((function(){document.querySelector("[data-md-component=consent]").hidden=!1}),250);var form=document.forms.consent;for(var action of["submit","reset"])form.addEventListener(action,(function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map((function(e){return[e,!0]})))),location.hash="",location.reload()}))</script>
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "toc.follow", "toc.integrate", "navigation.indexes", "search.suggest", "search.highlight", "search.share"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../js/notes.js"></script>
+      
+        <script src="../../../assets/js/latest-release.js"></script>
+      
+    
+  </body>
+</html>
