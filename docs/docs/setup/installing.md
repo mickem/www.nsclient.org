@@ -16,6 +16,20 @@ See [Supported platforms](supported-platforms.md) for the Windows and Linux vers
   - [Rocky / RHEL / Fedora-family](#rocky-rhel-fedora-family)
   - [Installing the web UI bundle](#installing-the-web-ui-bundle)
   - [Offline / air-gapped UI install](#offline-air-gapped-ui-install)
+- [Installing on macOS (.pkg)](#installing-on-macos-pkg)
+  - [What the installer does](#what-the-installer-does-macos)
+  - [Managing the service](#managing-the-service-macos)
+  - [File locations (macOS)](#file-locations-macos)
+  - [Uninstalling](#uninstalling-macos)
+  - [What is not in the macOS build yet](#what-is-not-in-the-macos-build-yet)
+- [Verifying the download](#verifying-the-download)
+  - [Step 1: Check that the file came from this project](#step-1-check-that-the-file-came-from-this-project)
+  - [Step 2: Get the SBOM for that file](#step-2-get-the-sbom-for-that-file)
+  - [Step 3: List the third-party components](#step-3-list-the-third-party-components)
+  - [Step 4: Check a component against its upstream project](#step-4-check-a-component-against-its-upstream-project)
+  - [Step 5 (optional): Read how the build used them](#step-5-optional-read-how-the-build-used-them)
+  - [Checking the files you installed](#checking-the-files-you-installed)
+  - [What this proves, and what it does not](#what-this-proves-and-what-it-does-not)
 - [Automated installation (Windows MSI)](#automated-installation-windows-msi)
   - [Basic command line](#basic-command-line)
   - [MSI Options](#msi-options)
@@ -214,6 +228,388 @@ When a sibling `.zip.sha256` (or `<basename>.sha256`) is present next to the
 zip, the installer verifies it. Without one, it skips verification and prints
 a warning — you opted into trusting a local path.
 
+## Installing on macOS (.pkg)
+
+<!-- @formatter:off -->
+!!! warning "macOS support is experimental"
+    It ships a smaller set of check modules than the Windows and Linux builds -
+    read [What is not in the macOS build
+    yet](#what-is-not-in-the-macos-build-yet) before deploying it - and the
+    packaging may still change between releases. The same sense of
+    "experimental" a young check command carries: it works, but what it looks
+    like is not settled yet.
+<!-- @formatter:on -->
+
+macOS builds are **Apple silicon (arm64) only** and are distributed as a
+standard installer package, `NSCP-<version>-macos-arm64.pkg`, on the
+[releases page](https://github.com/mickem/nscp/releases). The package is
+self-contained: everything it links against is inside it, so the target Mac
+does not need Homebrew or any other prerequisite.
+
+```bash
+sudo installer -pkg NSCP-<version>-macos-arm64.pkg -target /
+```
+
+Install from the command line, not the Finder. The release builds are **not
+signed or notarized** yet, so Gatekeeper refuses a double-click with "cannot be
+opened because Apple cannot check it for malicious software". `installer` does
+not go through that check, which is also why it is what CI installs with.
+
+To go through the Finder anyway, clear the quarantine flag your browser set on
+the download, then open it:
+
+```bash
+xattr -d com.apple.quarantine NSCP-<version>-macos-arm64.pkg
+```
+
+Or attempt the install once and approve it under **System Settings → Privacy &
+Security**, where a blocked package gets an *Open Anyway* button. The older
+right-click → *Open* route has been narrowed on recent macOS and may not offer
+the bypass at all.
+
+<!-- @formatter:off -->
+!!! note
+    An Intel Mac will be refused by the installer rather than silently
+    installing something that cannot run. Rosetta 2 does not help: the package
+    contains arm64 code only.
+<!-- @formatter:on -->
+
+A plain `NSCP-<version>-macos-arm64.tar.gz` of the same install tree is published
+alongside it, for anyone who would rather unpack than install. It is rolled from
+the very tree the `.pkg` installs, so it carries the same bundled libraries and
+needs no Homebrew either:
+
+```bash
+sudo tar -xzf NSCP-<version>-macos-arm64.tar.gz -C /
+```
+
+What it does *not* do is any of the work the installer scripts do: no
+`_nsclient` account is created, nothing is chowned, and the launchd job is laid
+down but never loaded. You would be doing that by hand. Use the `.pkg` unless
+you have a specific reason not to.
+
+### What the installer does {#what-the-installer-does-macos}
+
+1. Stops and unloads any running agent, so the payload does not overwrite a
+   binary that is currently mapped.
+2. Creates a hidden system account and group, `_nsclient`, with a UID in
+   Apple's 200-400 range for third-party daemons. The agent runs as that
+   account, not as root.
+3. Lays down the program files under `/usr/local` and the launchd job
+   description in `/Library/LaunchDaemons`.
+4. Hands the writable directories (state, logs) to `_nsclient`, and locks
+   `nsclient.ini` down to `root:_nsclient` mode `0640` - it holds the web admin
+   password and the NRPE/NSCA credentials in plaintext.
+5. Loads and starts the launchd job, which also makes it start at boot.
+
+As on Linux, the web UI is a separate download; the installer prints a reminder.
+
+```bash
+sudo /usr/local/sbin/nscp web install-ui
+```
+
+### Managing the service {#managing-the-service-macos}
+
+macOS has no `systemctl`. The equivalent commands are:
+
+| What                | Command                                                            |
+|---------------------|--------------------------------------------------------------------|
+| Status              | `sudo launchctl print system/com.nsclient.nscp`                     |
+| Restart             | `sudo launchctl kickstart -k system/com.nsclient.nscp`              |
+| Stop (until reboot) | `sudo launchctl kill SIGTERM system/com.nsclient.nscp`              |
+| Stop and disable    | `sudo launchctl bootout system/com.nsclient.nscp`                   |
+| Start again         | `sudo launchctl bootstrap system /Library/LaunchDaemons/com.nsclient.nscp.plist` |
+
+`launchctl print` reports `state = running` when the agent is up. If the job is
+loaded but keeps restarting, the agent is failing at startup: look at
+`/usr/local/var/log/nsclient/nsclient.log` first, and at
+`/usr/local/var/log/nsclient/launchd.err.log` for anything that happened before
+the logger existed (a module that failed to load, a configuration file it could
+not read).
+
+### File locations (macOS) {#file-locations-macos}
+
+The prefix is `/usr/local`, because macOS mounts the system volume read-only and
+reserves `/usr` for the OS. The layout underneath mirrors the Linux packages:
+
+| What                 | Location                                                |
+|----------------------|---------------------------------------------------------|
+| Daemon               | `/usr/local/sbin/nscp`                                  |
+| Uninstaller          | `/usr/local/sbin/uninstall-nsclient`                    |
+| Check modules        | `/usr/local/lib/nsclient/modules`                       |
+| Private libraries    | `/usr/local/lib/nsclient`                               |
+| Scripts / web        | `/usr/local/lib/nsclient/{scripts,web}`                 |
+| Shipped certificates | `/usr/local/lib/nsclient/security`                      |
+| Configuration        | `/usr/local/etc/nsclient`                               |
+| State / cache        | `/usr/local/var/lib/nsclient`                           |
+| Logs                 | `/usr/local/var/log/nsclient`                           |
+| launchd job          | `/Library/LaunchDaemons/com.nsclient.nscp.plist`        |
+
+### Uninstalling {#uninstalling-macos}
+
+An installer package has no uninstall verb, so one ships in the payload:
+
+```bash
+sudo /usr/local/sbin/uninstall-nsclient            # keep configuration and logs
+sudo /usr/local/sbin/uninstall-nsclient --purge    # remove them, and the account
+```
+
+### What is not in the macOS build yet
+
+Two modules are not built for macOS, because their data sources are Linux
+kernel interfaces rather than portable code:
+
+| Module            | Why                                                                     | Checks affected                                     |
+|-------------------|-------------------------------------------------------------------------|-----------------------------------------------------|
+| `CheckDisk`       | Enumerates mounts through `<mntent.h>` and reads `/proc/diskstats`       | `check_drivesize`, `check_mount`, `check_disk_io`, `check_disk_health`, and the storage facts. `check_files`, `check_single_file` and `check_disk_write` are portable code, but they ship inside the same module |
+| `CheckLogFile`    | Its real-time mode watches files with `inotify`                          | `check_logfile` (itself portable, but in the same module) and the real-time log filters |
+
+`CheckSystem` is built and carries all 21 of its Linux commands, the host,
+network and software facts, the real-time filters and the system metrics. Its
+data comes from sysctl, the Mach host statistics, libproc, IOKit and
+`launchctl` instead of procfs, and a few values have no Darwin counterpart.
+Those are reported as absent - the keyword renders `unknown`, never satisfies
+a threshold and emits no performance data - or the check returns UNKNOWN,
+rather than a zero that was never measured:
+
+| Check                         | On macOS                                                                                                                                                                                                                                  |
+|-------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `check_process`               | For processes owned by another user, `virtual`, `working_set`, `rss`, `page_faults`, `user`, `kernel` and `time` are `unknown` and `command_line` is empty: macOS gives that information only to the owner and root. `peak_virtual` and `peak_working_set` are always `unknown`. |
+| `check_service`               | Checks launchd jobs in the system domain by label (`service=com.apple.logd`). An idle job launchd starts on demand has `start_type` `on-demand` and state `static`; a job counts as failed when it crashed, or when it is meant to be running and exited non-zero. `rss`, `vms`, `cpu` and `tasks` read 0 for a job the agent may not inspect; `has_metrics` says which. |
+| `check_installed_software`    | Lists installer receipts (`manager` `pkgutil`), the applications in `/Applications` (`bundle`) and Homebrew formulae and casks (`homebrew`).                                                                                                |
+| `check_os_updates`            | Reads the list macOS cached at its last background check (`manager` `softwareupdate`); `live=true` asks Apple's server instead, which takes 10 to 60 seconds. `last_checked` is when the cached list was refreshed.                          |
+| `check_cpu_utilization`       | `iowait`, `irq`, `softirq`, `steal` and `guest` are 0: Darwin does not account for them.                                                                                                                                                 |
+| `check_kernel_memory`         | No slab allocator, so the `slab*` keywords are `unknown`; `wired` and `compressed` report the Darwin memory states instead.                                                                                                              |
+| `check_kernel_stats`          | Only the `threads` row. `type=ctxt` and `type=processes` are UNKNOWN: Darwin keeps no unprivileged count of context switches or forks.                                                                                                   |
+| `check_load`                  | `procs_running` is `unknown`; `procs_total` is the thread count.                                                                                                                                                                         |
+| `check_temperature`, `check_cpu_frequency` | Always UNKNOWN. The sensors and per-core clocks are reachable only through private, version-specific interfaces.                                                                                                               |
+| `check_memory`                | `cached` counts file-backed and purgeable pages as free. Swap is created on demand, so its total can be 0.                                                                                                                                 |
+
+The process counters are the one gap an operator can close. The launchd job
+runs the agent as `_nsclient` through the `UserName` and `GroupName` keys in
+`/Library/LaunchDaemons/com.nsclient.nscp.plist`; without them it runs as root
+and `check_process` sees every process. That also runs every check, external
+script and listener as root, and a package upgrade reinstalls the plist, so it
+is a deliberate choice rather than a default.
+
+Two `CheckNet` checks are present but reduced:
+
+* `check_connections` reads `/proc/net` on Linux; on macOS it answers
+  "not implemented on this platform".
+* `check_ping` opens a raw ICMP socket, which macOS only lets root do. The
+  agent runs as `_nsclient`, so the check reports that it cannot open its
+  socket rather than a round-trip time.
+
+Everything else is present: the REST API and web server, NRPE/NSCA/NSCP/check_mk
+listeners and clients, `CheckHelpers`, `CheckExternalScripts`, `CheckNet`,
+`CheckSecurity`, `CheckDocker`, the Lua script engine, the scheduler, and the
+Graphite/Elastic/Syslog/SMTP/collectd forwarders.
+
+Two smaller gaps:
+
+* The bundled `check_nsclient` plugin is not shipped, because
+  [mickem/check_nsclient](https://github.com/mickem/check_nsclient) publishes
+  Linux and Windows binaries only.
+* `PythonScript` and `CheckMySQL` are not built, because the macOS CI job does
+  not install Boost.Python or the MariaDB connector. They build from source if
+  you provide those.
+
+## Verifying the download
+
+A Windows release comes with enough evidence for you to check where it came
+from, and where the third-party code inside it came from, without taking our
+word for it. The checks below answer three questions:
+
+1. Was this file built by this project's release workflow, and from which commit?
+2. Which third-party components does it contain, and exactly which upstream files were they built from?
+3. Do those upstream files match what the upstream projects themselves publish?
+
+You need the [GitHub CLI](https://cli.github.com) (`gh`) for the first two,
+plus `jq`, `git`, and `sha256sum` or PowerShell's `Get-FileHash`. The examples
+use the x64 MSI; replace the file name with the one you downloaded. Releases
+published before the SBOM was introduced have no `.cdx.json` and no
+attestations, so only the Authenticode signature applies to them.
+
+Step 1 works for every release asset, including the Linux and macOS packages.
+Steps 2 to 4 are for the Windows builds, the only ones with an SBOM: the Linux
+packages link the distribution's own libraries, and the macOS package bundles
+libraries from Homebrew, which both verify their packages themselves.
+
+### Step 1: Check that the file came from this project
+
+Every release asset carries a [GitHub artifact attestation](https://docs.github.com/actions/security-for-github-actions/using-artifact-attestations):
+a statement, signed through Sigstore by the release workflow's own identity,
+that names the file's SHA-256 and the commit it was built from.
+
+```
+gh attestation verify NSCP-<version>-x64.msi --repo mickem/nscp \
+   --signer-workflow mickem/nscp/.github/workflows/release.yml
+```
+
+Verification fails for a file this workflow did not produce, and for one that
+was changed after it was produced. To see which commit and which workflow run
+built it:
+
+```
+gh attestation verify NSCP-<version>-x64.msi --repo mickem/nscp --format json \
+   --jq '.[].verificationResult.statement.predicate
+         | .buildDefinition.resolvedDependencies[0].digest.gitCommit, .runDetails.metadata.invocationId'
+```
+
+The MSI and every executable, DLL and Python extension it installs are also
+Authenticode-signed, which Windows shows under *Properties > Digital
+Signatures*, or `Get-AuthenticodeSignature` in PowerShell. A third-party file
+that already carries its publisher's signature, such as the Python runtime,
+keeps that signature. Releases up to 0.23.0 signed only the MSI and the
+executables.
+
+### Step 2: Get the SBOM for that file
+
+Each Windows release publishes a software bill of materials (SBOM) in
+[CycloneDX](https://cyclonedx.org) 1.6 JSON: `NSCP-<version>-<platform>.cdx.json`
+on the release page, and the same file as `sbom.cdx.json` inside the zip. The
+MSI does not install it.
+
+The SBOM is itself attested against the zip and the MSI of its platform, so
+the simplest way to get one you can trust is to take it out of the signed
+attestation for the file you have:
+
+```
+gh attestation verify NSCP-<version>-x64.msi --repo mickem/nscp \
+   --predicate-type https://cyclonedx.org/bom --format json \
+   --jq '.[0].verificationResult.statement.predicate' > sbom.cdx.json
+```
+
+This fails unless the SBOM was published for exactly this file. The same
+command with `NSCP-<version>-x64.zip` gives the same SBOM.
+
+### Step 3: List the third-party components
+
+For every component the build compiled in or bundled, the SBOM records the
+version, the upstream URL the build fetched, and either the SHA-256 of the
+downloaded file or the git commit of a cloned tag. The build checked each of
+these values against the ones recorded in the repository before it used the
+file, and the SBOM is written from those recorded values, not from what the
+download returned.
+
+```
+jq -r '.components[] | select(.purl | startswith("pkg:npm/") | not)
+       | [.name, .version, (.hashes[0].content // ([.properties[] | select(.name == "nscp:git-commit").value][0]) // "-"),
+          .externalReferences[0].url] | join("  ")' sbom.cdx.json
+```
+
+Each component also has an `nscp:verification` property:
+
+| Value           | Meaning                                                                                              |
+|-----------------|------------------------------------------------------------------------------------------------------|
+| `sha256`        | A downloaded file, checked against the recorded SHA-256.                                            |
+| `git-commit`    | A git tag, cloned and checked to resolve to the recorded commit (tags can be moved, commits cannot). |
+| `nuget-restore` | A NuGet package, listed with the SHA-512 NuGet recorded when it restored the package.               |
+| `npm-integrity` | A web UI package, listed with the SHA-512 pinned in `package-lock.json`.                            |
+| `none`          | Not digest-checked by the build. Currently only the embedded Python runtime.                        |
+
+GoogleTest is listed with `"scope": "excluded"`: only the unit tests link it,
+so it is not in anything you install.
+
+check_nsclient publishes an SBOM of its own with each release, and the build
+nests it under the check_nsclient component: the Rust crates it is built from,
+each with its version and SHA-256. The build checks that SBOM against the
+release's `SHA256SUMS` before nesting it. To list them:
+
+```
+jq -r '.components[] | select(.name == "check_nsclient") | .components[]
+       | "\(.name) \(.version) \(.hashes[0].content)"' sbom.cdx.json
+```
+
+### Step 4: Check a component against its upstream project
+
+Download the file the SBOM names and hash it yourself. The value must match
+the SBOM and, where the upstream project publishes one, the upstream
+checksum:
+
+```
+curl -sSfLO https://github.com/openssl/openssl/releases/download/openssl-3.5.8/openssl-3.5.8.tar.gz
+sha256sum openssl-3.5.8.tar.gz
+curl -sSfL https://github.com/openssl/openssl/releases/download/openssl-3.5.8/openssl-3.5.8.tar.gz.sha256
+```
+
+| Component                                          | Where upstream publishes the checksum                                                                                   |
+|----------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|
+| OpenSSL                                            | A `.sha256` file next to the tarball: the URL with `.sha256` appended.                                                  |
+| Boost                                              | The release notes page for the version, e.g. [Boost 1.86.0](https://www.boost.org/users/history/version_1_86_0.html).   |
+| Lua                                                | The checksum column of [lua.org/ftp](https://www.lua.org/ftp/).                                                        |
+| check_nsclient                                     | `SHA256SUMS` on its [release page](https://github.com/mickem/check_nsclient/releases), itself attested (see below).     |
+| Protocol Buffers, Crypto++, miniz                  | Nowhere. The SBOM digest then only shows that the file has not changed since the project recorded it.                   |
+
+check_nsclient attests its releases the same way this project does, so its
+binary can be traced to its own release workflow:
+
+```
+gh attestation verify check_nsclient-<version>-windows-x64.exe --repo mickem/check_nsclient \
+   --signer-workflow mickem/check_nsclient/.github/workflows/release.yml
+```
+
+For a component cloned from git, ask the upstream repository which commit the
+tag points at. The SBOM's `nscp:git-ref` property names the tag, and the
+commit must equal `nscp:git-commit`. For an annotated tag it is the line
+ending in `^{}`:
+
+```
+git ls-remote https://github.com/mariadb-corporation/mariadb-connector-c.git 'refs/tags/v3.4.9*'
+```
+
+For a web UI package, `npm view <name>@<version> dist.integrity` prints the
+same SHA-512 in base64.
+
+### Step 5 (optional): Read how the build used them
+
+The commit from step 1 lets you read the exact build that produced the file.
+At that commit, `.github/dependency-checksums.txt` holds the values the SBOM
+lists, the actions under `.github/actions/` download each dependency and check
+it against that file before building it, and `build/python/sbom.py` writes the
+SBOM from it:
+
+```
+https://github.com/mickem/nscp/blob/<commit>/.github/dependency-checksums.txt
+```
+
+### Checking the files you installed
+
+The zip holds `SHA256SUMS`, the SHA-256 of every file in it. In the folder you
+unpacked the zip into:
+
+```
+sha256sum -c SHA256SUMS
+```
+
+or in PowerShell:
+
+```powershell
+Get-Content SHA256SUMS | ForEach-Object {
+  $hash, $file = $_ -split '  ', 2
+  if ((Get-FileHash $file -Algorithm SHA256).Hash -ne $hash) { "MISMATCH: $file" }
+}
+```
+
+An MSI install carries neither file. The MSI and the zip of a release are
+packaged from the same signed build, so take `SHA256SUMS` from the zip of the
+same version and platform and compare single files against it:
+
+```powershell
+(Get-FileHash "C:\Program Files\NSClient++\libcrypto-3-x64.dll").Hash
+```
+
+### What this proves, and what it does not
+
+These checks show that the file was built by this project's release workflow
+from a named commit, that the SBOM describes that exact file, and that every
+upstream file the SBOM names is the one upstream published. They do not show
+that the shipped binaries were compiled from those upstream files: the build
+is not reproducible, and signing changes the bytes, so compiling the same
+sources yourself gives different hashes. That last link rests on the
+GitHub-hosted runner having run the workflow as it is written at that commit,
+which step 5 lets you read.
+
 ## Automated installation (Windows MSI)
 
 The NSClient++ installer for windows is a standard MSI installer which means it can be installed using pretty much all
@@ -246,8 +642,13 @@ A list of all the MSI options can be found below.
 | CONF_SCHEDULER      | Enable Scheduler (required by NSCA)                                                                                     |
 | CONF_WEB            | Enabled WEB Server                                                                                                      |
 | NRPEMODE            | NRPE Mode (LEGACY, SECURE for using ceretificates)                                                                      |
-| NSCLIENT_PWD        | Password to use for check_nt (and web server)                                                                           |
+| NSCLIENT_PWD        | Password to use for check_nt (and web server). Stored hashed when given here or typed into the dialog; a value already on disk, or one the installer generated itself, is left in clear text |
 | CONF_INCLUDES       | Additional files to include in the config syntax: <alias>;<file> For instance CONF_INCLUDES=op5;op5.ini;local;local.ini |
+| NSCA_SERVER         | Address of the machine running the nsca daemon to submit passive results to. Setting it enables `NSCAClient`             |
+| NSCA_PORT           | Port that daemon listens on (5667 unless it was changed)                                                                |
+| NSCA_PASSWORD       | The NSCA shared key, matching `password` in the daemon's `nsca.cfg`. Stored in clear text - NSCA encrypts with it, so a hash is not a key - and never written to the MSI log |
+| NSCA_ENCRYPTION     | Cipher, matching the daemon's `decryption_method` (e.g. `aes256`)                                                        |
+| NSCA_HOSTNAME       | Host name to submit results as, as Nagios/Icinga knows this host (`auto` uses the computer name)                         |
 | OP5_SERVER          | OP5 Server if you want to automatically submit passive checks via Op5 northbound API.                                   |
 | OP5_USER            | The username to login with on the OP5_SERVER                                                                            |
 | OP5_PASSWORD        | The password to login with on the OP5_SERVER                                                                            |
@@ -271,6 +672,36 @@ A list of all the MSI options can be found below.
 | FLEET_BUNDLE_KEY    | Bundle encryption key(s) for sealed bundles, as shown once by the fleet server; several separated by commas             |
 | FLEET_REQUIRE_ENCRYPTED_BUNDLES | Set to 1 to refuse every bundle that is not sealed with one of the bundle keys                              |
 | LAYOUT              | On-disk layout: `modern` keeps the writable state in `%ProgramData%\NSClient++` restricted to SYSTEM and administrators, `legacy` (default) keeps it in the install folder. Omit it to keep whatever the host already uses. **Experimental** - see below |
+
+### Passive results over NSCA (NSCA_*)
+
+`NSCA_SERVER` and friends configure the *submission* side: this agent sending
+passive results to an nsca daemon. Setting `NSCA_SERVER` enables `NSCAClient`
+and writes `[/settings/NSCA/client/targets/default]`.
+
+```batch
+msiexec /qn /i NSCP-<version>-x64.msi ADDLOCAL=ALL ^
+  NSCA_SERVER=nagios.example.com NSCA_PORT=5667 ^
+  NSCA_PASSWORD=<the key from the daemon's nsca.cfg> NSCA_ENCRYPTION=aes256 ^
+  NSCA_HOSTNAME=<the host name Nagios knows this machine by>
+```
+
+The key must match `password` in the daemon's `nsca.cfg` and the cipher its
+`decryption_method`, or the daemon silently discards every submission. It is
+stored in clear text on purpose: NSCA encrypts the payload with it rather than
+verifying it, so a hash there would be a key nobody has. It is deliberately not
+the shared `NSCLIENT_PWD`, which the inbound protocols verify callers against
+and which is stored hashed.
+
+These properties do not configure the other direction, where this agent
+*accepts* NSCA submissions (`NSCAServer`). That listener has its own key, shared
+with the hosts submitting here rather than with the daemon above, and it reads
+neither this target nor `[/settings/default]` - with encryption on and no key of
+its own it refuses to start. Set it after installing:
+
+```batch
+nscp nsca install --server --password <the key every submitting host uses>
+```
 
 ### On-disk layout (LAYOUT)
 
@@ -404,6 +835,16 @@ server url and the bootstrap token it gives you:
 ```
 msiexec /qn /i NSCP-<version>-x64.msi FLEET_SERVER=https://fleet.example.com FLEET_TOKEN=<bootstrap-token>
 ```
+
+<!-- @formatter:off -->
+!!! warning "Enrolling makes the server an administrator of this host"
+    The configuration a fleet server sends is an ordinary include of the settings store, so
+    it can enable script execution, define the scripts and rewrite the fleet settings
+    themselves: a fleet server can run code as `SYSTEM` on every host enrolled with it. That
+    is the same trust any configuration-management system has, and it is why the enrollment
+    link has to be a verified one. See
+    [What the fleet server can do to a host](fleet.md#what-the-fleet-server-can-do-to-a-host).
+<!-- @formatter:on -->
 
 ### Fleet MSI properties
 

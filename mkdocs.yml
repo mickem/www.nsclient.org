@@ -69,6 +69,7 @@ nav:
           - Restricting What A Check May Read: docs/concepts/check-access.md
           - Settings: docs/concepts/settings.md
           - Test Mode: docs/concepts/test-mode.md
+          - Host Facts: docs/concepts/facts.md
           - File Layout: docs/concepts/file-layout.md
           - Permissions: docs/concepts/permissions.md
       - Setup:
@@ -90,8 +91,10 @@ nav:
           - Event Log Monitoring: docs/scenarios/event-log.md
           - Performance Counters (PDH): docs/scenarios/counters.md
           - SQL Server Monitoring: docs/scenarios/sql-server.md
+          - Kubernetes Cluster Monitoring: docs/scenarios/kubernetes.md
           - Network Checks: docs/scenarios/network-checks.md
           - Host Security Posture: docs/scenarios/security-posture.md
+          - Active Directory & Identity: docs/scenarios/active-directory.md
           - Active Monitoring with NRPE: docs/scenarios/nrpe.md
           - Active Checks over the REST API: docs/scenarios/rest-api-checks.md
           - Passive Monitoring (NSCA/NRDP): docs/scenarios/passive-monitoring-nsca.md
@@ -112,14 +115,17 @@ nav:
               - CheckExternalScripts: docs/reference/check/CheckExternalScripts.md
               - CheckEventLog (Windows): docs/reference/windows/CheckEventLog.md
               - CheckHelpers: docs/reference/check/CheckHelpers.md
+              - CheckKubernetes: docs/reference/check/CheckKubernetes.md
               - CheckLogFile: docs/reference/check/CheckLogFile.md
               - CheckMySQL: docs/reference/check/CheckMySQL.md
               - CheckNet: docs/reference/check/CheckNet.md
               - CheckNSCP: docs/reference/check/CheckNSCP.md
               - CheckSecurity: docs/reference/check/CheckSecurity.md
               - CheckSystem: docs/reference/check/CheckSystem.md
+              - CheckActiveDirectory (Windows): docs/reference/windows/CheckActiveDirectory.md
               - CheckMSSQL (Windows): docs/reference/windows/CheckMSSQL.md
               - CheckWindowsApps (Windows): docs/reference/windows/CheckWindowsApps.md
+              - CheckHyperV (Windows): docs/reference/windows/CheckHyperV.md
               - CheckTaskSched (Windows): docs/reference/windows/CheckTaskSched.md
               - CheckWMI (Windows): docs/reference/windows/CheckWMI.md
           - Clients & Servers:
@@ -170,6 +176,7 @@ nav:
               - Metadata: docs/api/rest/metadata.md
               - Metrics: docs/api/rest/metrics.md
               - Logs: docs/api/rest/logs.md
+              - Facts: docs/api/rest/facts.md
               - Results: docs/api/rest/results.md
               - Legacy API: docs/api/rest/legacy.md
       - FAQ: docs/faq.md

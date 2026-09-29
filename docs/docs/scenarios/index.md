@@ -39,6 +39,7 @@ Each scenario follows the same structure:
 | Scenario                              | Description                                                                     |
 |---------------------------------------|---------------------------------------------------------------------------------|
 | [SQL Server Monitoring](sql-server.md) | Microsoft SQL Server end to end: services, connectivity, database state, data/log disk usage, memory pressure, backups, Agent jobs and workload |
+| [Kubernetes Cluster Monitoring](kubernetes.md) | API server health, node readiness, pod status and workload replicas through the Kubernetes API with a service account token (experimental) |
 
 ### Network
 
@@ -51,6 +52,7 @@ Each scenario follows the same structure:
 | Scenario                                        | Description                                                                     |
 |-------------------------------------------------|---------------------------------------------------------------------------------|
 | [Host Security Posture](security-posture.md)    | Certificate expiry/hygiene and logon sessions (Windows & Linux), plus Windows firewall, antivirus, BitLocker and Secure Boot |
+| [Active Directory & Identity](active-directory.md) | DC replication, machine secure channel, Kerberos KDC probing (experimental), plus NTDS/ADCS/ADFS performance counters |
 
 ### Monitoring Server Integration
 

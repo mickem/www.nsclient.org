@@ -342,7 +342,7 @@ inbox=inbox
 
 #### Password <a id="/settings/NSCA/server/password"></a>
 
-Password used to authenticate against server
+The NSCA encryption key: the same value every host submitting to this agent uses. Required whenever encryption is enabled - the server refuses to start without it, since an empty password is a well-known key. Inherited from nowhere: not /settings/default (the hashed password inbound protocols verify against) and not the NSCAClient target (the key this agent submits to a remote daemon with, which is a different secret).
 
 
 | Key            | Description                                     |
@@ -741,7 +741,7 @@ inbox=inbox
 
 #### Password <a id="/settings/default/password"></a>
 
-Password used to authenticate against server
+Password an inbound caller has to present. Stored hashed (pbkdf2-sha256$...) when written by \`nscp web install\` or \`nscp web password --set\`; a clear-text value written by hand is still accepted, and is hashed in place when re-set. This is a password to verify against, not key material: NSCA encrypts with its shared secret instead of verifying it, so it keeps its own key under /settings/NSCA/server (or the NSCAClient default target) and never reads this one.
 
 
 | Key            | Description                             |
