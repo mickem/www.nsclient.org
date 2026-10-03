@@ -3,7 +3,7 @@ date:
   created: 2026-09-22
 ---
 
-# 0.23.0 Paths that land where you meant them, mutual TLS that is actually mutual, and logins that survive a restart
+# 0.23.0 Paths that land where you meant them, more enforced TLS verification, and logins that survive a restart
 
 0.23.0 is a short release with two themes, and both are about a setting that
 looked right and did something else.
