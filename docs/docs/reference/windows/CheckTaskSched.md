@@ -4,6 +4,27 @@
 
 Check status of your scheduled jobs.
 
+## Scheduled task facts
+
+```ini
+[/settings/task schedule/facts]
+tasks.scheduled = true
+```
+
+If the module is loaded under a custom alias, use
+`[/settings/<alias>/facts]` instead of `[/settings/task schedule/facts]`.
+
+This opt-in inventory includes disabled and hidden local tasks in every folder.
+The agent's account must have permission to enumerate every folder and read each
+returned task (normally the LocalSystem service account). An access-denied error
+fails collection and retains the last successful inventory; inaccessible folders
+are not skipped. Each record has the full task path as its `id`, plus `name`,
+`folder`, `enabled` and `hidden` (omitted on the legacy API). Actions, arguments,
+accounts and run results are excluded. Collection starts on the first scheduled
+facts round or a manual `facts refresh`. See [Host Facts](../../concepts/facts.md#tasksscheduled)
+for limits and failure behavior. Turning the switch off on reload removes the set.
+
+
 ## Enable module
 
 To enable this module and allow using the commands you need to add `CheckTaskSched = enabled` to the `[/modules]` section in nsclient.ini:
@@ -208,3 +229,44 @@ This command also accepts the standard [help options](../common-options.md#stand
 
 This command also supports the [common filter keywords](../common-options.md#common-filter-keywords): count, total, ok_count, warn_count, crit_count, problem_count, list, ok_list, warn_list, crit_list, problem_list, detail_list, sep, status.
 
+## Configuration
+
+| Path / Section                                                  | Description |
+|-----------------------------------------------------------------|-------------|
+| [/settings/task schedule/facts](#/settings/task schedule/facts) |             |
+
+
+### /settings/task schedule/facts <a id="/settings/task schedule/facts"></a>
+
+
+
+| Key                                      | Default Value | Description          |
+|------------------------------------------|---------------|----------------------|
+| [tasks.scheduled](#scheduled-task-facts) | false         | SCHEDULED TASK FACTS |
+
+
+```ini
+# 
+[/settings/task schedule/facts]
+tasks.scheduled=false
+```
+
+#### SCHEDULED TASK FACTS <a id="/settings/task schedule/facts/tasks.scheduled"></a>
+
+Collect tasks.scheduled: every local task, including disabled and hidden tasks in subfolders. Records contain the full path (the check's uri), name, folder, enabled and hidden flags. No actions, arguments, accounts or run results. Collected every facts round except startup; failures retain the previous inventory. Limited to 2500 records with a truncation error.
+
+
+| Key            | Description                                                     |
+|----------------|-----------------------------------------------------------------|
+| Path:          | [/settings/task schedule/facts](#/settings/task schedule/facts) |
+| Key:           | tasks.scheduled                                                 |
+| Default value: | `false`                                                         |
+
+
+**Sample:**
+
+```
+[/settings/task schedule/facts]
+# SCHEDULED TASK FACTS
+tasks.scheduled=false
+```
