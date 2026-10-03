@@ -1,0 +1,6350 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://nsclient.org/docs/reference/windows/CheckHyperV/">
+      
+      
+        <link rel="prev" href="../CheckWindowsApps/">
+      
+      
+        <link rel="next" href="../CheckTaskSched/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>CheckHyperV (Windows) - NSClient++</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="../../../custom.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#checkhyperv" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="NSClient++" class="md-header__button md-logo" aria-label="NSClient++" data-md-component="logo">
+      
+  <img src="../../../../assets/nsclient-logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            NSClient++
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              CheckHyperV (Windows)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/mickem/nscp" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M202.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1M496 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2m-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3m-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1"/></svg>
+  </div>
+  <div class="md-source__repository">
+    NSClient++
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../.." class="md-tabs__link">
+          
+  
+  
+    
+  
+  Home
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../news/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  News
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../download/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Download
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Documentation
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://github.com/mickem/nscp/discussions" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Forums
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="NSClient++" class="md-nav__button md-logo" aria-label="NSClient++" data-md-component="logo">
+      
+  <img src="../../../../assets/nsclient-logo.png" alt="logo">
+
+    </a>
+    NSClient++
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/mickem/nscp" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M202.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1M496 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2m-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3m-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1"/></svg>
+  </div>
+  <div class="md-source__repository">
+    NSClient++
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../.." class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_1" id="__nav_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Home
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../nsclient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About NSClient++
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../news/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    News
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../download/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Download
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Documentation
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Documentation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSClient++ agent
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    NSClient++ agent
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../quick-start/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../concepts/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_2_2" id="__nav_4_2_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Concepts
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../concepts/checks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Checks In Depth
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../concepts/check-access/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Restricting What A Check May Read
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../concepts/settings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Settings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../concepts/test-mode/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Test Mode
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../concepts/facts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Host Facts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../concepts/file-layout/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    File Layout
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../concepts/permissions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Permissions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2_3" id="__nav_4_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Setup
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../setup/supported-platforms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Supported platforms
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../setup/installing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../setup/upgrading/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Upgrading
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../setup/securing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Securing NSClient++
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../setup/web-interface/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Web Interface
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../setup/fleet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Central management with NSClient Fleet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2_4" id="__nav_4_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Security
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../security/notices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security notices
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../scenarios/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Monitoring Scenarios
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_2_5" id="__nav_4_2_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Monitoring Scenarios
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/windows-server-health/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Windows Server Health
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/linux-server-health/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux Server Health
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/disk-space/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Disk Space Alerting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/service-monitoring/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Service & Process Monitoring
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/realtime-monitoring/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Real-Time System Monitoring
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/event-log/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Event Log Monitoring
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/counters/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Performance Counters (PDH)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/sql-server/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SQL Server Monitoring
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/kubernetes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kubernetes Cluster Monitoring
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/network-checks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Network Checks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/security-posture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Host Security Posture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/active-directory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Active Directory & Identity
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/nrpe/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Active Monitoring with NRPE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/rest-api-checks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Active Checks over the REST API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/passive-monitoring-nsca/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Passive Monitoring (NSCA/NRDP)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/passive-monitoring-nsca-ng/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Passive Monitoring (NSCA-NG)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/passive-monitoring-icinga/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Passive Monitoring (Icinga 2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/passive-monitoring-graphite/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Passive Monitoring (Graphite)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/nagios-result-cache/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Polled Passive Checks (Nagios Core)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/mod-gearman/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mod-Gearman (Naemon / Nagios Core)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/check-mk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Checkmk Agent Integration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/prometheus/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prometheus Scraping
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/external-scripts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    External Scripts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_6" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_2_6" id="__nav_4_2_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_2_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../common-options/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Common options
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_6_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4_2_6_3" id="__nav_4_2_6_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Check commands
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_2_6_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_2_6_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Check commands
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../check/CheckDisk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckDisk
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../check/CheckDocker/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckDocker
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../check/CheckExternalScripts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckExternalScripts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CheckEventLog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckEventLog (Windows)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../check/CheckHelpers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckHelpers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../check/CheckKubernetes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckKubernetes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../check/CheckLogFile/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckLogFile
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../check/CheckMySQL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckMySQL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../check/CheckNet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckNet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../check/CheckNSCP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckNSCP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../check/CheckSecurity/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckSecurity
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../check/CheckSystem/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckSystem
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CheckActiveDirectory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckActiveDirectory (Windows)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CheckMSSQL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckMSSQL (Windows)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CheckWindowsApps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckWindowsApps (Windows)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckHyperV (Windows)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckHyperV (Windows)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#enable-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enable module
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#queries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Queries
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Queries">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#check_hyperv_cpu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        check_hyperv_cpu
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="check_hyperv_cpu">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#about-check_hyperv_cpu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        About check_hyperv_cpu
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sample-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#command-line-arguments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Command-line Arguments
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filter-keywords" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Filter keywords
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check_hyperv_host" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        check_hyperv_host
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="check_hyperv_host">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#about-check_hyperv_host" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        About check_hyperv_host
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sample-commands_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#command-line-arguments_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Command-line Arguments
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filter-keywords_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Filter keywords
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check_hyperv_vms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        check_hyperv_vms
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="check_hyperv_vms">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#about-check_hyperv_vms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        About check_hyperv_vms
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sample-commands_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#command-line-arguments_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Command-line Arguments
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filter-keywords_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Filter keywords
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#settingshypervfacts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /settings/hyperv/facts
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="/settings/hyperv/facts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hyper-v-vms-facts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        HYPER-V VMS FACTS
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CheckTaskSched/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckTaskSched (Windows)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CheckWMI/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckWMI (Windows)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_6_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2_6_4" id="__nav_4_2_6_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Clients & Servers
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_2_6_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_6_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Clients & Servers
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../generic/WEBServer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WEBServer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/NRPEServer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NRPEServer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/NRPEClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NRPEClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../NSClientServer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSClientServer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/NSCAServer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSCAServer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/NSCAClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSCAClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/NSCANgClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSCANgClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/NSCPClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSCPClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/NRDPClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NRDPClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/IcingaClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IcingaClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/GearmanClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GearmanClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/SMTPClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SMTPClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/GraphiteClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GraphiteClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/SyslogClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SyslogClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/CollectdClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CollectdClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/Op5Client/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Op5Client
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/ElasticClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ElasticClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/CheckMKClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckMKClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/CheckMKServer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckMKServer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_6_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2_6_5" id="__nav_4_2_6_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Helper modules
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_2_6_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_6_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Helper modules
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../generic/Scheduler/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scheduler
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../generic/SimpleFileWriter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SimpleFileWriter
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../generic/CommandClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CommandClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../generic/SimpleCache/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SimpleCache
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../generic/PythonScript/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PythonScript
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../generic/LUAScript/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LUAScript
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../generic/DotnetPlugins/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DotnetPlugins
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../extending/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Extending
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_2_7" id="__nav_4_2_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Extending
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../extending/python/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python Scripts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../extending/dotnet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    .NET Plugins
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../extending/lua/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lua Scripts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../extending/zip-modules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Zip Modules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../extending/plugin-api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plugin API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2_8" id="__nav_4_2_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    API
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_8_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../api/rest/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    REST
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_2_8_1" id="__nav_4_2_8_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_2_8_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_8_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    REST
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/rest/info/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Info
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/rest/login/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Login
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/rest/modules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/rest/queries/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Queries
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/rest/aliases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Aliases
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/rest/scripts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scripts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/rest/settings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Settings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/rest/metadata/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Metadata
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/rest/metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Metrics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/rest/logs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/rest/facts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Facts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/rest/results/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Results
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/rest/legacy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Legacy API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../fleet/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSClient Fleet (server)
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    NSClient Fleet (server)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3_2" id="__nav_4_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Install
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Install
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../fleet/docker/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Docker
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../fleet/linux-install/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../fleet/windows-install/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Windows
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3_3" id="__nav_4_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operating
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Operating
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../fleet/deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../fleet/ca-rotation-playbook/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CA rotation playbook
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3_4" id="__nav_4_3_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Agent protocol
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Agent protocol
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../fleet/agent-implementation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Building the agent
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../fleet/agent-integration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Integration reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../check_nsclient/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    check_nsclient (CLI)
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    check_nsclient (CLI)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../check_nsclient/nsclient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Agent commands
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../check_nsclient/profile/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Profiles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/mickem/nscp/discussions" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Forums
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="checkhyperv">CheckHyperV<a class="headerlink" href="#checkhyperv" title="Permanent link">&para;</a></h1>
+<p><em>Available on Windows only.</em></p>
+<div class="admonition warning">
+<p class="admonition-title">Experimental</p>
+<p>This module is experimental: it works, but its options, filter keywords
+and output may change in a future release. Please try it and report
+anything that does not behave the way you expect.</p>
+</div>
+<p>Checks for a Hyper-V host: hypervisor health and capacity, logical processor load and the state, heartbeat, memory and snapshots of every virtual machine.</p>
+<h2 id="enable-module">Enable module<a class="headerlink" href="#enable-module" title="Permanent link">&para;</a></h2>
+<p>To enable this module and allow using the commands you need to add <code>CheckHyperV = enabled</code> to the <code>[/modules]</code> section in nsclient.ini:</p>
+<div class="highlight"><pre><span></span><code>[/modules]
+CheckHyperV = enabled
+</code></pre></div>
+<h2 id="queries">Queries<a class="headerlink" href="#queries" title="Permanent link">&para;</a></h2>
+<p>A quick reference for all available queries (check commands) in the CheckHyperV module.</p>
+<p><strong>List of commands:</strong></p>
+<p>A list of all available queries (check commands)</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#check_hyperv_cpu">check_hyperv_cpu</a> <em>(experimental)</em></td>
+<td>Check hypervisor logical processor load (guest, hypervisor and total run time) on the host.</td>
+</tr>
+<tr>
+<td><a href="#check_hyperv_host">check_hyperv_host</a> <em>(experimental)</em></td>
+<td>Check the Hyper-V host: virtual machine health summary and hypervisor capacity (logical/virtual processors, partitions).</td>
+</tr>
+<tr>
+<td><a href="#check_hyperv_vms">check_hyperv_vms</a> <em>(experimental)</em></td>
+<td>Check virtual machines (state, health, heartbeat, uptime, memory, processors, snapshots, replication).</td>
+</tr>
+</tbody>
+</table>
+<h3 id="check_hyperv_cpu">check_hyperv_cpu<a class="headerlink" href="#check_hyperv_cpu" title="Permanent link">&para;</a></h3>
+<p>Check hypervisor logical processor load (guest, hypervisor and total run time) on the host.</p>
+<h4 id="about-check_hyperv_cpu">About <code>check_hyperv_cpu</code><a class="headerlink" href="#about-check_hyperv_cpu" title="Permanent link">&para;</a></h4>
+<p>On a Hyper-V host the ordinary CPU counters (and Task Manager) only see the
+root partition: the time the logical processors spend running guests is
+invisible to them, so a host that is saturated by its VMs can look idle.
+<code>check_hyperv_cpu</code> reads the &ldquo;Hyper-V Hypervisor Logical Processor&rdquo; counters
+instead, which account for every logical processor regardless of which
+partition used it.</p>
+<p>Each logical processor is one record (<code>Hv LP 0</code>, <code>Hv LP 1</code>, &hellip;) and a
+synthetic <code>total</code> record carries the average over all of them (the sum for
+<code>context_switches</code>). The default filter keeps only <code>total</code>; use
+<code>filter=processor != 'total'</code> to alert on individual logical processors, for
+example to catch one VM pinning a single core.</p>
+<p>The run-time counters are rates, so the check samples them twice, one second
+apart. <code>single-sample</code> skips the wait but then every rate reads 0 — only
+useful to prove the counters exist.</p>
+<p>The percentages are rounded to one decimal, in the detail line and in the
+perfdata alike; the perfdata labels are the processor joined to the keyword
+(<code>total_total_run_time</code>, <code>Hv LP 3_guest_run_time</code>).</p>
+<p>Reading <code>total_run_time</code> against <code>guest_run_time</code> and <code>hypervisor_run_time</code>
+tells the two kinds of load apart: a high hypervisor share with modest guest
+time points at scheduling or intercept overhead (many small VMs, nested
+virtualisation, storms of timer interrupts) rather than at busy guests.</p>
+<p><strong>Jump to section:</strong></p>
+<ul>
+<li><a href="#check_hyperv_cpu_samples">Sample Commands</a></li>
+<li><a href="#check_hyperv_cpu_options">Command-line Arguments</a></li>
+<li><a href="#check_hyperv_cpu_filter_keys">Filter keywords</a></li>
+</ul>
+<p><a id="check_hyperv_cpu_samples"></a></p>
+<h4 id="sample-commands">Sample Commands<a class="headerlink" href="#sample-commands" title="Permanent link">&para;</a></h4>
+<p><strong>Check the aggregate logical processor load with the default thresholds (80/90 %):</strong></p>
+<div class="highlight"><pre><span></span><code>check_hyperv_cpu
+OK: total: 23.4% total (21.1% guest, 2.3% hypervisor)|'total_total_run_time'=23.4%;80;90 'total_guest_run_time'=21.1%;0;0 'total_hypervisor_run_time'=2.3%;0;0
+</code></pre></div>
+<p><strong>Alert on individual logical processors instead of the average:</strong></p>
+<div class="highlight"><pre><span></span><code>check_hyperv_cpu "filter=processor != 'total'" "warning=total_run_time &gt; 90" "critical=total_run_time &gt; 98"
+WARNING: Hv LP 5: 94.2% total (93.1% guest, 1.1% hypervisor)|'Hv LP 0_total_run_time'=12.5%;90;98 'Hv LP 0_guest_run_time'=11.9%;0;0 'Hv LP 0_hypervisor_run_time'=0.6%;0;0 'Hv LP 1_total_run_time'=9.3%;90;98 ...
+</code></pre></div>
+<p><strong>Watch the hypervisor&rsquo;s own share of the time:</strong></p>
+<div class="highlight"><pre><span></span><code>check_hyperv_cpu "warning=hypervisor_run_time &gt; 15" "critical=hypervisor_run_time &gt; 30"
+OK: total: 31.0% total (27.2% guest, 3.8% hypervisor)|'total_hypervisor_run_time'=3.8%;15;30 'total_total_run_time'=31%;0;0 'total_guest_run_time'=27.2%;0;0
+</code></pre></div>
+<p><strong>On a host without the role the check reports UNKNOWN with a clear message:</strong></p>
+<div class="highlight"><pre><span></span><code>check_hyperv_cpu
+Hyper-V counters (Hyper-V Hypervisor Logical Processor) not available - is the Hyper-V role installed and the hypervisor running on this host? (...)
+</code></pre></div>
+<p><a id="check_hyperv_cpu_options"></a></p>
+<h4 id="command-line-arguments">Command-line Arguments<a class="headerlink" href="#command-line-arguments" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#check_hyperv_cpu_single-sample">single-sample</a></td>
+<td>false</td>
+<td>Sample the counters once instead of twice one second apart. The run-time counters are rates, so the second sample is what gives them a value; this skips the wait and reports 0 for every rate.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="check_hyperv_cpu_single-sample">single-sample:</h5>
+
+<p>Sample the counters once instead of twice one second apart. The run-time counters are rates, so the second sample is what gives them a value; this skips the wait and reports 0 for every rate.</p>
+<p><em>Default Value:</em> <code>false</code></p>
+<p><strong>Common options:</strong></p>
+<p>These options are shared by all filter based commands and are described on the <a href="../../common-options/#common-options">common options</a> page; the default values below are specific to this command.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Default Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="check_hyperv_cpu_filter"></a><a href="../../common-options/#filter">filter</a></td>
+<td>processor = &lsquo;total&rsquo;</td>
+</tr>
+<tr>
+<td><a id="check_hyperv_cpu_warning"></a><a href="../../common-options/#warning">warning</a></td>
+<td>total_run_time &gt; 80</td>
+</tr>
+<tr>
+<td><a id="check_hyperv_cpu_warn"></a><a href="../../common-options/#warn">warn</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_hyperv_cpu_critical"></a><a href="../../common-options/#critical">critical</a></td>
+<td>total_run_time &gt; 90</td>
+</tr>
+<tr>
+<td><a id="check_hyperv_cpu_crit"></a><a href="../../common-options/#crit">crit</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_hyperv_cpu_ok"></a><a href="../../common-options/#ok">ok</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_hyperv_cpu_debug"></a><a href="../../common-options/#debug">debug</a></td>
+<td>false</td>
+</tr>
+<tr>
+<td><a id="check_hyperv_cpu_show-all"></a><a href="../../common-options/#show-all">show-all</a></td>
+<td>false</td>
+</tr>
+<tr>
+<td><a id="check_hyperv_cpu_empty-state"></a><a href="../../common-options/#empty-state">empty-state</a></td>
+<td>unknown</td>
+</tr>
+<tr>
+<td><a id="check_hyperv_cpu_perf-config"></a><a href="../../common-options/#perf-config">perf-config</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_hyperv_cpu_escape-html"></a><a href="../../common-options/#escape-html">escape-html</a></td>
+<td>false</td>
+</tr>
+<tr>
+<td><a id="check_hyperv_cpu_list-separator"></a><a href="../../common-options/#list-separator">list-separator</a></td>
+<td>,</td>
+</tr>
+<tr>
+<td><a id="check_hyperv_cpu_top-syntax"></a><a href="../../common-options/#top-syntax">top-syntax</a></td>
+<td>${status}: ${list}</td>
+</tr>
+<tr>
+<td><a id="check_hyperv_cpu_ok-syntax"></a><a href="../../common-options/#ok-syntax">ok-syntax</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_hyperv_cpu_empty-syntax"></a><a href="../../common-options/#empty-syntax">empty-syntax</a></td>
+<td>No logical processor counters found</td>
+</tr>
+<tr>
+<td><a id="check_hyperv_cpu_detail-syntax"></a><a href="../../common-options/#detail-syntax">detail-syntax</a></td>
+<td>${processor}: ${total_run_time}% total (${guest_run_time}% guest, ${hypervisor_run_time}% hypervisor)</td>
+</tr>
+<tr>
+<td><a id="check_hyperv_cpu_perf-syntax"></a><a href="../../common-options/#perf-syntax">perf-syntax</a></td>
+<td>${processor}</td>
+</tr>
+<tr>
+<td><a id="check_hyperv_cpu_byte-unit"></a><a href="../../common-options/#byte-unit">byte-unit</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_hyperv_cpu_decimal-separator"></a><a href="../../common-options/#decimal-separator">decimal-separator</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_hyperv_cpu_decimals"></a><a href="../../common-options/#decimals">decimals</a></td>
+<td>-1</td>
+</tr>
+<tr>
+<td><a id="check_hyperv_cpu_thousands-separator"></a><a href="../../common-options/#thousands-separator">thousands-separator</a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>This command also accepts the standard <a href="../../common-options/#standard-options">help options</a>: help, help-pb, show-default, help-short.</p>
+<p><a id="check_hyperv_cpu_filter_keys"></a></p>
+<h4 id="filter-keywords">Filter keywords<a class="headerlink" href="#filter-keywords" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>context_switches</td>
+<td>Virtual processor context switches per second on the logical processor</td>
+</tr>
+<tr>
+<td>guest_run_time</td>
+<td>% of time spent running guest (and root partition) code</td>
+</tr>
+<tr>
+<td>hypervisor_run_time</td>
+<td>% of time spent in the hypervisor itself (scheduling, intercepts)</td>
+</tr>
+<tr>
+<td>idle_time</td>
+<td>% of time the logical processor was idle</td>
+</tr>
+<tr>
+<td>processor</td>
+<td>Logical processor instance (&lsquo;Hv LP 0&rsquo;, &lsquo;Hv LP 1&rsquo;, &hellip;) or &lsquo;total&rsquo; for the average over all of them</td>
+</tr>
+<tr>
+<td>total_run_time</td>
+<td>% of time the logical processor ran guest or hypervisor code (the host&rsquo;s real CPU usage, which Task Manager on the host under-reports)</td>
+</tr>
+</tbody>
+</table>
+<p>This command also supports the <a href="../../common-options/#common-filter-keywords">common filter keywords</a>: count, total, ok_count, warn_count, crit_count, problem_count, list, ok_list, warn_list, crit_list, problem_list, detail_list, sep, status.</p>
+<h3 id="check_hyperv_host">check_hyperv_host<a class="headerlink" href="#check_hyperv_host" title="Permanent link">&para;</a></h3>
+<p>Check the Hyper-V host: virtual machine health summary and hypervisor capacity (logical/virtual processors, partitions).</p>
+<h4 id="about-check_hyperv_host">About <code>check_hyperv_host</code><a class="headerlink" href="#about-check_hyperv_host" title="Permanent link">&para;</a></h4>
+<p><code>check_hyperv_host</code> reads two hypervisor performance counter objects and
+reports the host picture in one record: the &ldquo;Hyper-V Virtual Machine Health
+Summary&rdquo; (how many virtual machines the host considers ok and how many
+critical) and the &ldquo;Hyper-V Hypervisor&rdquo; capacity counters (logical processors,
+virtual processors handed to running partitions, running partitions).</p>
+<p>The counters only exist when the Hyper-V role is installed <strong>and</strong> the
+hypervisor is running; on any other host the check reports UNKNOWN with a
+message saying so. It needs no special privileges beyond reading performance
+counters.</p>
+<p>A VM is <em>critical</em> in the health summary when the host cannot keep it running
+as configured (a missing virtual disk, a lost virtual switch, a failed
+save/restore), which is why <code>critical=health_critical &gt; 0</code> is the default.
+<code>partitions</code> counts the root (host) partition too, so it is the number of
+running VMs plus one. All the capacity values are emitted as perfdata so the
+ratio of virtual to logical processors can be graphed over time. For per-VM
+detail see <code>check_hyperv_vms</code>, for the actual CPU load <code>check_hyperv_cpu</code>.</p>
+<p><strong>Jump to section:</strong></p>
+<ul>
+<li><a href="#check_hyperv_host_samples">Sample Commands</a></li>
+<li><a href="#check_hyperv_host_options">Command-line Arguments</a></li>
+<li><a href="#check_hyperv_host_filter_keys">Filter keywords</a></li>
+</ul>
+<p><a id="check_hyperv_host_samples"></a></p>
+<h4 id="sample-commands_1">Sample Commands<a class="headerlink" href="#sample-commands_1" title="Permanent link">&para;</a></h4>
+<p><strong>Check the host with the default thresholds (critical when any VM is unhealthy):</strong></p>
+<div class="highlight"><pre><span></span><code>check_hyperv_host
+OK: 12 VMs ok, 0 critical, 13 partitions on 32 logical processors (48 virtual)|'vms_health_ok'=12;0;0 'vms_health_critical'=0;0;0 'vms_logical_processors'=32;0;0 'vms_virtual_processors'=48;0;0 'vms_partitions'=13;0;0
+</code></pre></div>
+<p><strong>Warn when the host is over-committed on processors:</strong></p>
+<div class="highlight"><pre><span></span><code>check_hyperv_host "warning=virtual_processors &gt; 64" "critical=health_critical &gt; 0"
+OK: 12 VMs ok, 0 critical, 13 partitions on 32 logical processors (48 virtual)|'vms_virtual_processors'=48;64;0 'vms_health_critical'=0;0;0 'vms_health_ok'=12;0;0 'vms_logical_processors'=32;0;0 'vms_partitions'=13;0;0
+</code></pre></div>
+<p><strong>A VM the host cannot keep running trips the default critical threshold:</strong></p>
+<div class="highlight"><pre><span></span><code>check_hyperv_host
+CRITICAL: 11 VMs ok, 1 critical, 13 partitions on 32 logical processors (48 virtual)|'vms_health_critical'=1;0;0 'vms_health_ok'=11;0;0 'vms_logical_processors'=32;0;0 'vms_virtual_processors'=48;0;0 'vms_partitions'=13;0;0
+</code></pre></div>
+<p><strong>On a host without the role the check reports UNKNOWN with a clear message:</strong></p>
+<div class="highlight"><pre><span></span><code>check_hyperv_host
+Hyper-V counters (Hyper-V Virtual Machine Health Summary, Hyper-V Hypervisor) not available - is the Hyper-V role installed and the hypervisor running on this host? (...)
+</code></pre></div>
+<p><a id="check_hyperv_host_options"></a></p>
+<h4 id="command-line-arguments_1">Command-line Arguments<a class="headerlink" href="#command-line-arguments_1" title="Permanent link">&para;</a></h4>
+<p><strong>Common options:</strong></p>
+<p>These options are shared by all filter based commands and are described on the <a href="../../common-options/#common-options">common options</a> page; the default values below are specific to this command.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Default Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="check_hyperv_host_filter"></a><a href="../../common-options/#filter">filter</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_hyperv_host_warning"></a><a href="../../common-options/#warning">warning</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_hyperv_host_warn"></a><a href="../../common-options/#warn">warn</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_hyperv_host_critical"></a><a href="../../common-options/#critical">critical</a></td>
+<td>health_critical &gt; 0</td>
+</tr>
+<tr>
+<td><a id="check_hyperv_host_crit"></a><a href="../../common-options/#crit">crit</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_hyperv_host_ok"></a><a href="../../common-options/#ok">ok</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_hyperv_host_debug"></a><a href="../../common-options/#debug">debug</a></td>
+<td>false</td>
+</tr>
+<tr>
+<td><a id="check_hyperv_host_show-all"></a><a href="../../common-options/#show-all">show-all</a></td>
+<td>false</td>
+</tr>
+<tr>
+<td><a id="check_hyperv_host_empty-state"></a><a href="../../common-options/#empty-state">empty-state</a></td>
+<td>unknown</td>
+</tr>
+<tr>
+<td><a id="check_hyperv_host_perf-config"></a><a href="../../common-options/#perf-config">perf-config</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_hyperv_host_escape-html"></a><a href="../../common-options/#escape-html">escape-html</a></td>
+<td>false</td>
+</tr>
+<tr>
+<td><a id="check_hyperv_host_list-separator"></a><a href="../../common-options/#list-separator">list-separator</a></td>
+<td>,</td>
+</tr>
+<tr>
+<td><a id="check_hyperv_host_top-syntax"></a><a href="../../common-options/#top-syntax">top-syntax</a></td>
+<td>${status}: ${list}</td>
+</tr>
+<tr>
+<td><a id="check_hyperv_host_ok-syntax"></a><a href="../../common-options/#ok-syntax">ok-syntax</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_hyperv_host_empty-syntax"></a><a href="../../common-options/#empty-syntax">empty-syntax</a></td>
+<td>No Hyper-V counters found</td>
+</tr>
+<tr>
+<td><a id="check_hyperv_host_detail-syntax"></a><a href="../../common-options/#detail-syntax">detail-syntax</a></td>
+<td>${health_ok} VMs ok, ${health_critical} critical, ${partitions} partitions on ${logical_processors} logical processors (${virtual_processors} virtual)</td>
+</tr>
+<tr>
+<td><a id="check_hyperv_host_perf-syntax"></a><a href="../../common-options/#perf-syntax">perf-syntax</a></td>
+<td>vms</td>
+</tr>
+<tr>
+<td><a id="check_hyperv_host_byte-unit"></a><a href="../../common-options/#byte-unit">byte-unit</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_hyperv_host_decimal-separator"></a><a href="../../common-options/#decimal-separator">decimal-separator</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_hyperv_host_decimals"></a><a href="../../common-options/#decimals">decimals</a></td>
+<td>-1</td>
+</tr>
+<tr>
+<td><a id="check_hyperv_host_thousands-separator"></a><a href="../../common-options/#thousands-separator">thousands-separator</a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>This command also accepts the standard <a href="../../common-options/#standard-options">help options</a>: help, help-pb, show-default, help-short.</p>
+<p><a id="check_hyperv_host_filter_keys"></a></p>
+<h4 id="filter-keywords_1">Filter keywords<a class="headerlink" href="#filter-keywords_1" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>health_critical</td>
+<td>Virtual machines whose health is critical (the host could not keep them running as configured)</td>
+</tr>
+<tr>
+<td>health_ok</td>
+<td>Virtual machines whose health is ok</td>
+</tr>
+<tr>
+<td>logical_processors</td>
+<td>Logical processors the hypervisor manages on this host</td>
+</tr>
+<tr>
+<td>partitions</td>
+<td>Running partitions, including the root (host) partition: the number of running virtual machines plus one</td>
+</tr>
+<tr>
+<td>total_pages</td>
+<td>Memory pages the hypervisor has allocated for its own use</td>
+</tr>
+<tr>
+<td>virtual_processors</td>
+<td>Virtual processors currently allocated to running partitions (root and guests)</td>
+</tr>
+</tbody>
+</table>
+<p>This command also supports the <a href="../../common-options/#common-filter-keywords">common filter keywords</a>: count, total, ok_count, warn_count, crit_count, problem_count, list, ok_list, warn_list, crit_list, problem_list, detail_list, sep, status.</p>
+<h3 id="check_hyperv_vms">check_hyperv_vms<a class="headerlink" href="#check_hyperv_vms" title="Permanent link">&para;</a></h3>
+<p>Check virtual machines (state, health, heartbeat, uptime, memory, processors, snapshots, replication).</p>
+<h4 id="about-check_hyperv_vms">About <code>check_hyperv_vms</code><a class="headerlink" href="#about-check_hyperv_vms" title="Permanent link">&para;</a></h4>
+<p><code>check_hyperv_vms</code> lists every virtual machine on the host as one record,
+built from the <code>root\virtualization\v2</code> WMI namespace: the VM itself
+(<code>Msvm_ComputerSystem</code>: power state, health, uptime, replication), its
+heartbeat integration component, the memory and processor settings, the
+memory and virtual processors currently backing it, and its checkpoints.</p>
+<p>The defaults look for the two things that go wrong most: a <strong>running guest
+that stops answering the heartbeat</strong> (<code>warning</code>), which is what a hung or
+blue-screened VM looks like from the outside, and a <strong>VM the host itself
+reports as unhealthy</strong> (<code>critical</code>). A guest that cannot answer is left
+alone: <code>heartbeat = 'disabled'</code> when its heartbeat integration service is
+turned off in the VM settings, <code>heartbeat = 'none'</code> when the VM has no
+heartbeat component for the check to read. A guest without integration
+services at all still has the component and reads <code>no_contact</code>, which does
+warn, so either install them or exclude the VM with a filter.</p>
+<p><code>state</code> covers the transitional states too (<code>starting</code>, <code>saving</code>,
+<code>pausing</code>, &hellip;), and <code>operation</code> names a long-running operation in progress
+(a checkpoint being merged, a live migration, a backup) — useful to explain a
+short heartbeat outage. <code>uptime</code>, <code>memory_assigned</code> and <code>cpu_load</code> are emitted
+as perfdata for every VM; the configured limits (<code>memory_startup</code>,
+<code>memory_minimum</code>, <code>memory_maximum</code>, <code>vcpus</code>) are keywords for thresholds and
+filters.</p>
+<p>Checkpoints are the classic disk eater: <code>snapshots</code> and <code>oldest_snapshot</code>
+(a date, so <code>oldest_snapshot &lt; -7d</code> means older than a week) let you alert
+on forgotten ones. The Hyper-V Replica keywords (<code>replication_mode</code>,
+<code>replication_state</code>, <code>replication_health</code>) come straight from the VM row;
+they read <code>none</code> / <code>disabled</code> / <code>not_applicable</code> on a VM that is not
+replicated.</p>
+<p>Reading the namespace needs local administrator or <em>Hyper-V Administrators</em>
+membership for the account the service runs as (the default LocalSystem
+account has it). Hyper-V does not refuse a caller without it: it silently
+returns only the host&rsquo;s own row, so every VM just seems to be missing. The
+check compares that with the VM count from the health summary counters, which
+anyone can read, and when WMI shows none of the VMs the counters count it
+reports UNKNOWN (<code>... none are visible to this account</code>) instead of &ldquo;No
+virtual machines found&rdquo;. The counters only count running VMs, so when they
+count none (or cannot be read) an empty list is only trusted from an account
+that may see every VM (an elevated administrator, a member of Hyper-V
+Administrators, LocalSystem); anyone else gets UNKNOWN (<code>... cannot tell that
+there are none</code>). The <code>hyperv.vms</code> facts
+and the metrics do the same. This is what you see when you run <code>nscp test</code>
+from a shell that is not elevated.</p>
+<p>Without the Hyper-V role the namespace does not exist and the check reports
+UNKNOWN with a message saying so. With the role installed but the <em>Hyper-V
+Virtual Machine Management</em> service (vmms) stopped, the namespace is there
+but its classes are not, and the message points at the service instead.</p>
+<p><code>snapshots</code> and <code>oldest_snapshot</code> count the checkpoints someone took. The
+recovery points Hyper-V Replica keeps for a replicated VM are not
+checkpoints and are not counted.</p>
+<p><strong>Jump to section:</strong></p>
+<ul>
+<li><a href="#check_hyperv_vms_samples">Sample Commands</a></li>
+<li><a href="#check_hyperv_vms_options">Command-line Arguments</a></li>
+<li><a href="#check_hyperv_vms_filter_keys">Filter keywords</a></li>
+</ul>
+<p><a id="check_hyperv_vms_samples"></a></p>
+<h4 id="sample-commands_2">Sample Commands<a class="headerlink" href="#sample-commands_2" title="Permanent link">&para;</a></h4>
+<p><strong>Check all virtual machines with the default thresholds:</strong></p>
+<div class="highlight"><pre><span></span><code>check_hyperv_vms
+OK: all 3 virtual machine(s) ok|'web-01_uptime'=864000s;0;0 'web-01_memory_assigned'=4294967296B;0;0 'web-01_cpu_load'=12%;0;0 'db-01_uptime'=864012s;0;0 'db-01_memory_assigned'=17179869184B;0;0 'db-01_cpu_load'=41%;0;0 'test-01_uptime'=0s;0;0 'test-01_memory_assigned'=0B;0;0 'test-01_cpu_load'=0%;0;0
+</code></pre></div>
+<p><strong>A running guest that stops answering the heartbeat (a hung VM):</strong></p>
+<div class="highlight"><pre><span></span><code>check_hyperv_vms
+WARNING: web-01: running, heartbeat lost_communication, health ok|'web-01_uptime'=864000s;0;0 'web-01_memory_assigned'=4294967296B;0;0 'web-01_cpu_load'=100%;0;0 ...
+</code></pre></div>
+<p><strong>Only the VMs that are supposed to be running, and alert when one is not:</strong></p>
+<div class="highlight"><pre><span></span><code>check_hyperv_vms "filter=vm like 'prod-'" "critical=state != 'running'"
+CRITICAL: prod-db-02: off, heartbeat disabled, health ok|'prod-db-02_uptime'=0s;0;0 'prod-db-02_memory_assigned'=0B;0;0 'prod-db-02_cpu_load'=0%;0;0 ...
+</code></pre></div>
+<p><strong>Forgotten checkpoints older than a week:</strong></p>
+<div class="highlight"><pre><span></span><code>check_hyperv_vms "warning=oldest_snapshot &lt; -7d" "detail-syntax=${vm}: ${snapshots} checkpoint(s), oldest ${oldest_snapshot}"
+WARNING: db-01: 2 checkpoint(s), oldest 2026-08-30 14:02:11|...
+</code></pre></div>
+<p><strong>Hyper-V Replica health on a primary:</strong></p>
+<div class="highlight"><pre><span></span><code>check_hyperv_vms "filter=replication_mode != 'none'" "warning=replication_health = 'warning'" "critical=replication_health = 'critical'" "detail-syntax=${vm}: ${replication_state} (${replication_health})"
+OK: all 2 virtual machine(s) ok|...
+</code></pre></div>
+<p><strong>On a host without the role the check reports UNKNOWN with a clear message:</strong></p>
+<div class="highlight"><pre><span></span><code>check_hyperv_vms
+Hyper-V virtual machine information not available: the Hyper-V role is not installed on this host (root\virtualization\v2 missing)
+</code></pre></div>
+<p><strong>Run by an account that may not see the virtual machines (here: <code>nscp test</code> in a shell that is not elevated):</strong></p>
+<div class="highlight"><pre><span></span><code>check_hyperv_vms
+Hyper-V reports 1 virtual machine(s) on this host but none are visible to this account: run as an elevated administrator or a member of Hyper-V Administrators
+</code></pre></div>
+<p><a id="check_hyperv_vms_options"></a></p>
+<h4 id="command-line-arguments_2">Command-line Arguments<a class="headerlink" href="#command-line-arguments_2" title="Permanent link">&para;</a></h4>
+<p><strong>Common options:</strong></p>
+<p>These options are shared by all filter based commands and are described on the <a href="../../common-options/#common-options">common options</a> page; the default values below are specific to this command.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Default Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="check_hyperv_vms_filter"></a><a href="../../common-options/#filter">filter</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_hyperv_vms_warning"></a><a href="../../common-options/#warning">warning</a></td>
+<td>state = &lsquo;running&rsquo; and heartbeat != &lsquo;ok&rsquo; and heartbeat != &lsquo;disabled&rsquo; and heartbeat != &lsquo;none&rsquo;</td>
+</tr>
+<tr>
+<td><a id="check_hyperv_vms_warn"></a><a href="../../common-options/#warn">warn</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_hyperv_vms_critical"></a><a href="../../common-options/#critical">critical</a></td>
+<td>health != &lsquo;ok&rsquo;</td>
+</tr>
+<tr>
+<td><a id="check_hyperv_vms_crit"></a><a href="../../common-options/#crit">crit</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_hyperv_vms_ok"></a><a href="../../common-options/#ok">ok</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_hyperv_vms_debug"></a><a href="../../common-options/#debug">debug</a></td>
+<td>false</td>
+</tr>
+<tr>
+<td><a id="check_hyperv_vms_show-all"></a><a href="../../common-options/#show-all">show-all</a></td>
+<td>false</td>
+</tr>
+<tr>
+<td><a id="check_hyperv_vms_empty-state"></a><a href="../../common-options/#empty-state">empty-state</a></td>
+<td>unknown</td>
+</tr>
+<tr>
+<td><a id="check_hyperv_vms_perf-config"></a><a href="../../common-options/#perf-config">perf-config</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_hyperv_vms_escape-html"></a><a href="../../common-options/#escape-html">escape-html</a></td>
+<td>false</td>
+</tr>
+<tr>
+<td><a id="check_hyperv_vms_list-separator"></a><a href="../../common-options/#list-separator">list-separator</a></td>
+<td>,</td>
+</tr>
+<tr>
+<td><a id="check_hyperv_vms_top-syntax"></a><a href="../../common-options/#top-syntax">top-syntax</a></td>
+<td>${status}: ${problem_list}</td>
+</tr>
+<tr>
+<td><a id="check_hyperv_vms_ok-syntax"></a><a href="../../common-options/#ok-syntax">ok-syntax</a></td>
+<td>%(status): all %(count) virtual machine(s) ok</td>
+</tr>
+<tr>
+<td><a id="check_hyperv_vms_empty-syntax"></a><a href="../../common-options/#empty-syntax">empty-syntax</a></td>
+<td>No virtual machines found</td>
+</tr>
+<tr>
+<td><a id="check_hyperv_vms_detail-syntax"></a><a href="../../common-options/#detail-syntax">detail-syntax</a></td>
+<td>${vm}: ${state}, heartbeat ${heartbeat}, health ${health}</td>
+</tr>
+<tr>
+<td><a id="check_hyperv_vms_perf-syntax"></a><a href="../../common-options/#perf-syntax">perf-syntax</a></td>
+<td>${vm}</td>
+</tr>
+<tr>
+<td><a id="check_hyperv_vms_byte-unit"></a><a href="../../common-options/#byte-unit">byte-unit</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_hyperv_vms_decimal-separator"></a><a href="../../common-options/#decimal-separator">decimal-separator</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_hyperv_vms_decimals"></a><a href="../../common-options/#decimals">decimals</a></td>
+<td>-1</td>
+</tr>
+<tr>
+<td><a id="check_hyperv_vms_thousands-separator"></a><a href="../../common-options/#thousands-separator">thousands-separator</a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>This command also accepts the standard <a href="../../common-options/#standard-options">help options</a>: help, help-pb, show-default, help-short.</p>
+<p><a id="check_hyperv_vms_filter_keys"></a></p>
+<h4 id="filter-keywords_2">Filter keywords<a class="headerlink" href="#filter-keywords_2" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>cpu_load</td>
+<td>Average load of the VM&rsquo;s virtual processors in % (0 when it is off)</td>
+</tr>
+<tr>
+<td>dynamic_memory</td>
+<td>True when dynamic memory is enabled for the VM</td>
+</tr>
+<tr>
+<td>generation</td>
+<td>VM generation (1 or 2)</td>
+</tr>
+<tr>
+<td>health</td>
+<td>Health as the host sees it: ok, major_failure or critical_failure</td>
+</tr>
+<tr>
+<td>heartbeat</td>
+<td>What the guest&rsquo;s heartbeat integration service reports: ok, degraded, error, non_recoverable_error, no_contact, lost_communication, dormant; disabled when the service is turned off in the VM settings, none when the VM has no heartbeat component</td>
+</tr>
+<tr>
+<td>id</td>
+<td>GUID of the virtual machine</td>
+</tr>
+<tr>
+<td>last_state_change</td>
+<td>When the VM last changed power state. Comparable to relative times, e.g. last_state_change &gt; -1h.</td>
+</tr>
+<tr>
+<td>memory_assigned</td>
+<td>Memory currently assigned to the VM in bytes (0 when it is off)</td>
+</tr>
+<tr>
+<td>memory_maximum</td>
+<td>Configured maximum memory in bytes (dynamic memory only; 0 with static memory)</td>
+</tr>
+<tr>
+<td>memory_minimum</td>
+<td>Configured minimum memory in bytes (dynamic memory only; 0 with static memory)</td>
+</tr>
+<tr>
+<td>memory_startup</td>
+<td>Configured startup memory in bytes</td>
+</tr>
+<tr>
+<td>oldest_snapshot</td>
+<td>Creation time of the oldest checkpoint (0 / &lsquo;none&rsquo; without checkpoints). Comparable to relative times, e.g. oldest_snapshot &lt; -7d.</td>
+</tr>
+<tr>
+<td>operation</td>
+<td>Long-running operation in progress (creating_snapshot, merging_disks, migrating, backing_up, &hellip;) or none</td>
+</tr>
+<tr>
+<td>operational_status</td>
+<td>Operational status: ok, degraded, predictive_failure, stopped, in_service or dormant</td>
+</tr>
+<tr>
+<td>pid</td>
+<td>Process id of the VM&rsquo;s worker process (0 when it is off)</td>
+</tr>
+<tr>
+<td>replication_health</td>
+<td>Hyper-V Replica health: not_applicable, ok, warning or critical</td>
+</tr>
+<tr>
+<td>replication_mode</td>
+<td>Hyper-V Replica role of the VM: none, primary, replica, test_replica or extended_replica</td>
+</tr>
+<tr>
+<td>replication_state</td>
+<td>Hyper-V Replica state: disabled, replicating, suspended, critical, resynchronizing, failover_in_progress, &hellip;</td>
+</tr>
+<tr>
+<td>snapshots</td>
+<td>Number of checkpoints (snapshots) the VM has</td>
+</tr>
+<tr>
+<td>state</td>
+<td>Power state: running, off, saved, paused, starting, stopping, saving, pausing, resuming, fast_saved, fast_saving or state_<n> for an unknown code</td>
+</tr>
+<tr>
+<td>state_code</td>
+<td>Raw EnabledState value behind <code>state</code></td>
+</tr>
+<tr>
+<td>uptime</td>
+<td>Seconds since the VM was last started (0 when it is off)</td>
+</tr>
+<tr>
+<td>vcpus</td>
+<td>Configured virtual processors</td>
+</tr>
+<tr>
+<td>version</td>
+<td>Configuration version of the VM (e.g. 9.0)</td>
+</tr>
+<tr>
+<td>vm</td>
+<td>Name of the virtual machine</td>
+</tr>
+</tbody>
+</table>
+<p>This command also supports the <a href="../../common-options/#common-filter-keywords">common filter keywords</a>: count, total, ok_count, warn_count, crit_count, problem_count, list, ok_list, warn_list, crit_list, problem_list, detail_list, sep, status.</p>
+<h2 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Path / Section</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#/settings/hyperv/facts">/settings/hyperv/facts</a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="settingshypervfacts">/settings/hyperv/facts <a id="/settings/hyperv/facts"></a><a class="headerlink" href="#settingshypervfacts" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#hyper-v-vms-facts">hyperv.vms</a></td>
+<td>false</td>
+<td>HYPER-V VMS FACTS</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="c1"># </span>
+<span class="k">[/settings/hyperv/facts]</span>
+<span class="na">hyperv.vms</span><span class="o">=</span><span class="s">false</span>
+</code></pre></div>
+<h4 id="hyper-v-vms-facts">HYPER-V VMS FACTS <a id="/settings/hyperv/facts/hyperv.vms"></a><a class="headerlink" href="#hyper-v-vms-facts" title="Permanent link">&para;</a></h4>
+<p>Collect the `hyperv.vms` fact set: one record per virtual machine on this host - its name (the record id, the same value check_hyperv_vms calls `vm`), its GUID, generation and configuration version, the configured processors and memory, whether dynamic memory is on, how many checkpoints it has and its Hyper-V Replica role. Not its state, heartbeat, load or assigned memory: that is monitoring, and it lives in check_hyperv_vms. Re-read every facts round with the same WMI queries the check runs, because VMs are created, reconfigured and removed while the agent runs. Nothing is collected while this is off.</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Path:</td>
+<td><a href="#/settings/hyperv/facts">/settings/hyperv/facts</a></td>
+</tr>
+<tr>
+<td>Key:</td>
+<td>hyperv.vms</td>
+</tr>
+<tr>
+<td>Default value:</td>
+<td><code>false</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Sample:</strong></p>
+<div class="highlight"><pre><span></span><code>[/settings/hyperv/facts]
+# HYPER-V VMS FACTS
+hyperv.vms=false
+</code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+      <div class="md-consent" data-md-component="consent" id="__consent" hidden>
+        <div class="md-consent__overlay"></div>
+        <aside class="md-consent__inner">
+          <form class="md-consent__form md-grid md-typeset" name="consent">
+            
+
+
+  
+
+
+<h4>Cookie consent</h4>
+<p>We use cookies to recognize your repeated visits and preferences, as well as to measure the effectiveness of our documentation and whether users find what they're searching for. With your consent, you're helping us to make our documentation better.</p>
+<input class="md-toggle" type="checkbox" id="__settings" >
+<div class="md-consent__settings">
+  <ul class="task-list">
+    
+    
+      
+    
+    
+      
+        
+  
+  
+    
+    
+  
+  <li class="task-list-item">
+    <label class="task-list-control">
+      <input type="checkbox" name="github" checked>
+      <span class="task-list-indicator"></span>
+      GitHub
+    </label>
+  </li>
+
+      
+    
+    
+  </ul>
+</div>
+<div class="md-consent__controls">
+  
+    
+      <button class="md-button md-button--primary">Accept</button>
+    
+    
+    
+  
+    
+    
+    
+      <label class="md-button" for="__settings">Manage settings</label>
+    
+  
+</div>
+          </form>
+        </aside>
+      </div>
+      <script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout((function(){document.querySelector("[data-md-component=consent]").hidden=!1}),250);var form=document.forms.consent;for(var action of["submit","reset"])form.addEventListener(action,(function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map((function(e){return[e,!0]})))),location.hash="",location.reload()}))</script>
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.tabs", "toc.follow", "toc.integrate", "navigation.indexes", "search.suggest", "search.highlight", "search.share"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../../js/notes.js"></script>
+      
+        <script src="../../../../assets/js/latest-release.js"></script>
+      
+    
+  </body>
+</html>

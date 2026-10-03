@@ -1,0 +1,7243 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://nsclient.org/docs/reference/check/CheckKubernetes/">
+      
+      
+        <link rel="prev" href="../CheckHelpers/">
+      
+      
+        <link rel="next" href="../CheckLogFile/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>CheckKubernetes - NSClient++</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="../../../custom.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#checkkubernetes" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="NSClient++" class="md-header__button md-logo" aria-label="NSClient++" data-md-component="logo">
+      
+  <img src="../../../../assets/nsclient-logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            NSClient++
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              CheckKubernetes
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/mickem/nscp" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M202.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1M496 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2m-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3m-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1"/></svg>
+  </div>
+  <div class="md-source__repository">
+    NSClient++
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../.." class="md-tabs__link">
+          
+  
+  
+    
+  
+  Home
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../news/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  News
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../download/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Download
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Documentation
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://github.com/mickem/nscp/discussions" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Forums
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="NSClient++" class="md-nav__button md-logo" aria-label="NSClient++" data-md-component="logo">
+      
+  <img src="../../../../assets/nsclient-logo.png" alt="logo">
+
+    </a>
+    NSClient++
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/mickem/nscp" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M202.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1M496 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2m-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3m-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1"/></svg>
+  </div>
+  <div class="md-source__repository">
+    NSClient++
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../.." class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_1" id="__nav_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Home
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../nsclient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About NSClient++
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../news/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    News
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../download/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Download
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Documentation
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Documentation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSClient++ agent
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    NSClient++ agent
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../quick-start/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../concepts/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_2_2" id="__nav_4_2_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Concepts
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../concepts/checks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Checks In Depth
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../concepts/check-access/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Restricting What A Check May Read
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../concepts/settings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Settings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../concepts/test-mode/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Test Mode
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../concepts/facts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Host Facts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../concepts/file-layout/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    File Layout
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../concepts/permissions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Permissions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2_3" id="__nav_4_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Setup
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../setup/supported-platforms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Supported platforms
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../setup/installing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../setup/upgrading/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Upgrading
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../setup/securing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Securing NSClient++
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../setup/web-interface/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Web Interface
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../setup/fleet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Central management with NSClient Fleet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2_4" id="__nav_4_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Security
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../security/notices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security notices
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../scenarios/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Monitoring Scenarios
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_2_5" id="__nav_4_2_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Monitoring Scenarios
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/windows-server-health/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Windows Server Health
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/linux-server-health/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux Server Health
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/disk-space/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Disk Space Alerting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/service-monitoring/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Service & Process Monitoring
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/realtime-monitoring/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Real-Time System Monitoring
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/event-log/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Event Log Monitoring
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/counters/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Performance Counters (PDH)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/sql-server/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SQL Server Monitoring
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/kubernetes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kubernetes Cluster Monitoring
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/network-checks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Network Checks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/security-posture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Host Security Posture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/active-directory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Active Directory & Identity
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/nrpe/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Active Monitoring with NRPE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/rest-api-checks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Active Checks over the REST API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/passive-monitoring-nsca/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Passive Monitoring (NSCA/NRDP)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/passive-monitoring-nsca-ng/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Passive Monitoring (NSCA-NG)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/passive-monitoring-icinga/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Passive Monitoring (Icinga 2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/passive-monitoring-graphite/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Passive Monitoring (Graphite)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/nagios-result-cache/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Polled Passive Checks (Nagios Core)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/mod-gearman/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mod-Gearman (Naemon / Nagios Core)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/check-mk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Checkmk Agent Integration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/prometheus/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prometheus Scraping
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../scenarios/external-scripts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    External Scripts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_6" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_2_6" id="__nav_4_2_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_2_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../common-options/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Common options
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_6_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4_2_6_3" id="__nav_4_2_6_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Check commands
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_2_6_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_2_6_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Check commands
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CheckDisk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckDisk
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CheckDocker/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckDocker
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CheckExternalScripts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckExternalScripts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../windows/CheckEventLog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckEventLog (Windows)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CheckHelpers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckHelpers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckKubernetes
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckKubernetes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#enable-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enable module
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#queries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Queries
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Queries">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#check_kubernetes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        check_kubernetes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="check_kubernetes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#about-check_kubernetes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        About check_kubernetes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sample-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#command-line-arguments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Command-line Arguments
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filter-keywords" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Filter keywords
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check_nodes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        check_nodes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="check_nodes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#about-check_nodes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        About check_nodes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sample-commands_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#command-line-arguments_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Command-line Arguments
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filter-keywords_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Filter keywords
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check_pods" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        check_pods
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="check_pods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#about-check_pods" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        About check_pods
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sample-commands_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#command-line-arguments_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Command-line Arguments
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filter-keywords_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Filter keywords
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check_workloads" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        check_workloads
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="check_workloads">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#about-check_workloads" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        About check_workloads
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sample-commands_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sample Commands
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#command-line-arguments_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Command-line Arguments
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filter-keywords_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Filter keywords
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#settingskubernetes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        /settings/kubernetes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="/settings/kubernetes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#api-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        API SERVER
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#certificate-authority" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CERTIFICATE AUTHORITY
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kubeconfig-context" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        KUBECONFIG CONTEXT
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kubeconfig-json" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        KUBECONFIG (JSON)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#max-response-size" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MAX RESPONSE SIZE
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#timeout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TIMEOUT
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tls-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TLS VERSION
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bearer-token" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        BEARER TOKEN
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#token-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TOKEN FILE
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tls-peer-verify-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TLS PEER VERIFY MODE
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CheckLogFile/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckLogFile
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CheckMySQL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckMySQL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CheckNet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckNet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CheckNSCP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckNSCP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CheckSecurity/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckSecurity
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CheckSystem/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckSystem
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../windows/CheckActiveDirectory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckActiveDirectory (Windows)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../windows/CheckMSSQL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckMSSQL (Windows)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../windows/CheckWindowsApps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckWindowsApps (Windows)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../windows/CheckHyperV/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckHyperV (Windows)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../windows/CheckTaskSched/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckTaskSched (Windows)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../windows/CheckWMI/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckWMI (Windows)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_6_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2_6_4" id="__nav_4_2_6_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Clients & Servers
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_2_6_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_6_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Clients & Servers
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../generic/WEBServer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WEBServer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/NRPEServer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NRPEServer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/NRPEClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NRPEClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../windows/NSClientServer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSClientServer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/NSCAServer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSCAServer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/NSCAClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSCAClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/NSCANgClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSCANgClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/NSCPClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSCPClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/NRDPClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NRDPClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/IcingaClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IcingaClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/GearmanClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GearmanClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/SMTPClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SMTPClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/GraphiteClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GraphiteClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/SyslogClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SyslogClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/CollectdClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CollectdClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/Op5Client/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Op5Client
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/ElasticClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ElasticClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/CheckMKClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckMKClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../client/CheckMKServer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CheckMKServer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_6_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2_6_5" id="__nav_4_2_6_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Helper modules
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_2_6_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_6_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Helper modules
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../generic/Scheduler/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scheduler
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../generic/SimpleFileWriter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SimpleFileWriter
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../generic/CommandClient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CommandClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../generic/SimpleCache/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SimpleCache
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../generic/PythonScript/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PythonScript
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../generic/LUAScript/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LUAScript
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../generic/DotnetPlugins/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DotnetPlugins
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../extending/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Extending
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_2_7" id="__nav_4_2_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Extending
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../extending/python/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python Scripts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../extending/dotnet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    .NET Plugins
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../extending/lua/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lua Scripts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../extending/zip-modules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Zip Modules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../extending/plugin-api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plugin API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2_8" id="__nav_4_2_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    API
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_8_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../api/rest/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    REST
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_2_8_1" id="__nav_4_2_8_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_2_8_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_8_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    REST
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/rest/info/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Info
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/rest/login/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Login
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/rest/modules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/rest/queries/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Queries
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/rest/aliases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Aliases
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/rest/scripts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scripts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/rest/settings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Settings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/rest/metadata/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Metadata
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/rest/metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Metrics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/rest/logs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/rest/facts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Facts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/rest/results/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Results
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api/rest/legacy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Legacy API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../fleet/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NSClient Fleet (server)
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    NSClient Fleet (server)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3_2" id="__nav_4_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Install
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Install
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../fleet/docker/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Docker
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../fleet/linux-install/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../fleet/windows-install/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Windows
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3_3" id="__nav_4_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operating
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Operating
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../fleet/deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../fleet/ca-rotation-playbook/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CA rotation playbook
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3_4" id="__nav_4_3_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Agent protocol
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Agent protocol
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../fleet/agent-implementation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Building the agent
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../fleet/agent-integration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Integration reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../check_nsclient/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    check_nsclient (CLI)
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    check_nsclient (CLI)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../check_nsclient/nsclient/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Agent commands
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../check_nsclient/profile/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Profiles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/mickem/nscp/discussions" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Forums
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="checkkubernetes">CheckKubernetes<a class="headerlink" href="#checkkubernetes" title="Permanent link">&para;</a></h1>
+<div class="admonition warning">
+<p class="admonition-title">Experimental</p>
+<p>This module is experimental: it works, but its options, filter keywords
+and output may change in a future release. Please try it and report
+anything that does not behave the way you expect.</p>
+</div>
+<p>Check a Kubernetes cluster through its API server: cluster health, pods, nodes and workloads.</p>
+<h2 id="enable-module">Enable module<a class="headerlink" href="#enable-module" title="Permanent link">&para;</a></h2>
+<p>To enable this module and allow using the commands you need to add <code>CheckKubernetes = enabled</code> to the <code>[/modules]</code> section in nsclient.ini:</p>
+<div class="highlight"><pre><span></span><code>[/modules]
+CheckKubernetes = enabled
+</code></pre></div>
+<h2 id="queries">Queries<a class="headerlink" href="#queries" title="Permanent link">&para;</a></h2>
+<p>A quick reference for all available queries (check commands) in the CheckKubernetes module.</p>
+<p><strong>List of commands:</strong></p>
+<p>A list of all available queries (check commands)</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#check_kubernetes">check_kubernetes</a> <em>(experimental)</em></td>
+<td>Check that the Kubernetes API server is reachable and ready: version, readiness and node counts.</td>
+</tr>
+<tr>
+<td><a href="#check_nodes">check_nodes</a> <em>(experimental)</em></td>
+<td>Check node readiness, pressure conditions, schedulability and capacity.</td>
+</tr>
+<tr>
+<td><a href="#check_pods">check_pods</a> <em>(experimental)</em></td>
+<td>Check the state of pods: phase, the kubectl STATUS column, readiness and restarts.</td>
+</tr>
+<tr>
+<td><a href="#check_workloads">check_workloads</a> <em>(experimental)</em></td>
+<td>Check that deployments, statefulsets and daemonsets have their desired replicas available.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="check_kubernetes">check_kubernetes<a class="headerlink" href="#check_kubernetes" title="Permanent link">&para;</a></h3>
+<p>Check that the Kubernetes API server is reachable and ready: version, readiness and node counts.</p>
+<h4 id="about-check_kubernetes">About <code>check_kubernetes</code><a class="headerlink" href="#about-check_kubernetes" title="Permanent link">&para;</a></h4>
+<p><code>check_kubernetes</code> is the &ldquo;is the cluster there&rdquo; check: it reads <code>/version</code>,
+<code>/readyz</code> and <code>/api/v1/nodes</code> from the API server configured under
+<code>[/settings/kubernetes]</code> and reports the Kubernetes version, whether the API
+server considers itself ready, and how many nodes are Ready.</p>
+<p>Reaching the API is the health signal. The default critical is
+<code>api_ready = 0</code>, which trips when <code>/readyz</code> answers with a failing check (the
+<code>readyz</code> keyword then names it, e.g. <code>failed: etcd</code>); an unreachable server, a
+rejected token or a missing RBAC rule are reported as UNKNOWN with the reason
+(see below). That holds for <code>/readyz</code> too: a service account without the
+<code>nonResourceURLs: ["/readyz"]</code> rule gets an UNKNOWN naming the rule, not a
+CRITICAL about a healthy cluster. Only a readiness report counts as a verdict
+(<code>ok</code>, or the API server&rsquo;s own 5xx listing its checks); a 404 or 502 from an
+ingress that does not forward the path leaves <code>api_ready</code> at 1 and shows
+<code>readyz</code> as <code>unavailable (HTTP 404)</code>, since <code>/version</code> did answer. Node counts carry no default threshold, so add
+<code>warning=nodes_not_ready &gt; 0</code> when a NotReady node should show up here rather
+than in <code>check_nodes</code>.</p>
+<p>The cluster is chosen by the operator, once, in the settings. No command in
+this module takes a <code>url=</code>, <code>host=</code> or <code>token=</code> argument: a caller who can run
+checks over REST (anyone holding <code>queries.execute</code>) must not be able to point
+the agent - and the bearer token it sends - at a server of their choosing. The
+token itself never appears in check output, error text or the log.</p>
+<p>Error messages are meant to be acted on:</p>
+<table>
+<thead>
+<tr>
+<th>Situation</th>
+<th>Result</th>
+<th>Message starts with</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Nothing configured</td>
+<td>UNKNOWN</td>
+<td><code>No Kubernetes API server configured: set</code>api server<code>and</code>token<code>...</code></td>
+</tr>
+<tr>
+<td>TCP/TLS failure</td>
+<td>UNKNOWN</td>
+<td><code>Failed to connect to Kubernetes API server at 'https://...'</code></td>
+</tr>
+<tr>
+<td>HTTP 401</td>
+<td>UNKNOWN</td>
+<td><code>... rejected the credentials (HTTP 401 ...)</code>, naming the credential sent</td>
+</tr>
+<tr>
+<td>HTTP 403</td>
+<td>UNKNOWN</td>
+<td><code>... denied GET /api/v1/... (HTTP 403: &lt;the API server's own message&gt;)</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Jump to section:</strong></p>
+<ul>
+<li><a href="#check_kubernetes_samples">Sample Commands</a></li>
+<li><a href="#check_kubernetes_options">Command-line Arguments</a></li>
+<li><a href="#check_kubernetes_filter_keys">Filter keywords</a></li>
+</ul>
+<p><a id="check_kubernetes_samples"></a></p>
+<h4 id="sample-commands">Sample Commands<a class="headerlink" href="#sample-commands" title="Permanent link">&para;</a></h4>
+<p><strong>Check that the API server is reachable and ready:</strong></p>
+<div class="highlight"><pre><span></span><code>check_kubernetes
+OK: Kubernetes v1.30.4 at https://127.0.0.1:6443: API ready, 3/4 nodes ready
+</code></pre></div>
+<p><strong>Alert on nodes that are not Ready, with perf data:</strong></p>
+<div class="highlight"><pre><span></span><code>check_kubernetes "warning=nodes_not_ready &gt; 0" "critical=nodes_ready &lt; 2"
+WARNING: Kubernetes v1.30.4 at https://127.0.0.1:6443: API ready, 3/4 nodes ready|'https://127.0.0.1:6443 not ready nodes'=1;0;0 'https://127.0.0.1:6443 ready nodes'=3;0;2
+</code></pre></div>
+<p><strong>Use the keywords in the output:</strong></p>
+<div class="highlight"><pre><span></span><code>check_kubernetes "detail-syntax=%(version) on %(platform), source %(source), readyz %(readyz)"
+OK: v1.30.4 on linux/amd64, source settings, readyz ok
+</code></pre></div>
+<p><strong>An API server that is down is clearly reported (UNKNOWN):</strong></p>
+<div class="highlight"><pre><span></span><code>check_kubernetes
+Failed to connect to Kubernetes API server at 'https://127.0.0.1:1' (settings): Failed to connect to 127.0.0.1:1: Connection refused
+</code></pre></div>
+<p><a id="check_kubernetes_options"></a></p>
+<h4 id="command-line-arguments">Command-line Arguments<a class="headerlink" href="#command-line-arguments" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#check_kubernetes_timeout">timeout</a></td>
+<td>30</td>
+<td>Timeout in seconds for each network step of an API server request: the connect, the TLS handshake and each read. It is not a total for the check (a server that keeps trickling data takes longer). A positive number.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="check_kubernetes_timeout">timeout:</h5>
+
+<p>Timeout in seconds for each network step of an API server request: the connect, the TLS handshake and each read. It is not a total for the check (a server that keeps trickling data takes longer). A positive number.</p>
+<p><em>Default Value:</em> <code>30</code></p>
+<p><strong>Common options:</strong></p>
+<p>These options are shared by all filter based commands and are described on the <a href="../../common-options/#common-options">common options</a> page; the default values below are specific to this command.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Default Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="check_kubernetes_filter"></a><a href="../../common-options/#filter">filter</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_kubernetes_warning"></a><a href="../../common-options/#warning">warning</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_kubernetes_warn"></a><a href="../../common-options/#warn">warn</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_kubernetes_critical"></a><a href="../../common-options/#critical">critical</a></td>
+<td>api_ready = 0</td>
+</tr>
+<tr>
+<td><a id="check_kubernetes_crit"></a><a href="../../common-options/#crit">crit</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_kubernetes_ok"></a><a href="../../common-options/#ok">ok</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_kubernetes_debug"></a><a href="../../common-options/#debug">debug</a></td>
+<td>false</td>
+</tr>
+<tr>
+<td><a id="check_kubernetes_show-all"></a><a href="../../common-options/#show-all">show-all</a></td>
+<td>false</td>
+</tr>
+<tr>
+<td><a id="check_kubernetes_empty-state"></a><a href="../../common-options/#empty-state">empty-state</a></td>
+<td>unknown</td>
+</tr>
+<tr>
+<td><a id="check_kubernetes_perf-config"></a><a href="../../common-options/#perf-config">perf-config</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_kubernetes_escape-html"></a><a href="../../common-options/#escape-html">escape-html</a></td>
+<td>false</td>
+</tr>
+<tr>
+<td><a id="check_kubernetes_list-separator"></a><a href="../../common-options/#list-separator">list-separator</a></td>
+<td>,</td>
+</tr>
+<tr>
+<td><a id="check_kubernetes_top-syntax"></a><a href="../../common-options/#top-syntax">top-syntax</a></td>
+<td>${status}: ${list}</td>
+</tr>
+<tr>
+<td><a id="check_kubernetes_ok-syntax"></a><a href="../../common-options/#ok-syntax">ok-syntax</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_kubernetes_empty-syntax"></a><a href="../../common-options/#empty-syntax">empty-syntax</a></td>
+<td>%(status): No cluster information returned</td>
+</tr>
+<tr>
+<td><a id="check_kubernetes_detail-syntax"></a><a href="../../common-options/#detail-syntax">detail-syntax</a></td>
+<td>Kubernetes ${version} at ${server}: API ${api_ready}, ${nodes_ready}/${nodes} nodes ready</td>
+</tr>
+<tr>
+<td><a id="check_kubernetes_perf-syntax"></a><a href="../../common-options/#perf-syntax">perf-syntax</a></td>
+<td>${server}</td>
+</tr>
+<tr>
+<td><a id="check_kubernetes_byte-unit"></a><a href="../../common-options/#byte-unit">byte-unit</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_kubernetes_decimal-separator"></a><a href="../../common-options/#decimal-separator">decimal-separator</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_kubernetes_decimals"></a><a href="../../common-options/#decimals">decimals</a></td>
+<td>-1</td>
+</tr>
+<tr>
+<td><a id="check_kubernetes_thousands-separator"></a><a href="../../common-options/#thousands-separator">thousands-separator</a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>This command also accepts the standard <a href="../../common-options/#standard-options">help options</a>: help, help-pb, show-default, help-short.</p>
+<p><a id="check_kubernetes_filter_keys"></a></p>
+<h4 id="filter-keywords">Filter keywords<a class="headerlink" href="#filter-keywords" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>api_ready</td>
+<td>1 unless /readyz carries a readiness report saying the API server is not ready (renders as ready / not ready); a path that is unavailable (a 404 or 502 from an ingress) leaves it 1 - /version answered</td>
+</tr>
+<tr>
+<td>nodes</td>
+<td>Number of nodes in the cluster</td>
+</tr>
+<tr>
+<td>nodes_not_ready</td>
+<td>Number of nodes whose Ready condition is False or Unknown</td>
+</tr>
+<tr>
+<td>nodes_ready</td>
+<td>Number of nodes whose Ready condition is True</td>
+</tr>
+<tr>
+<td>platform</td>
+<td>Platform the API server runs on (e.g. linux/amd64)</td>
+</tr>
+<tr>
+<td>readyz</td>
+<td>What /readyz answered: ok, the failing checks it listed, or unavailable (HTTP n) when the path did not answer with a readiness report</td>
+</tr>
+<tr>
+<td>server</td>
+<td>The API server address (never the credential)</td>
+</tr>
+<tr>
+<td>source</td>
+<td>Where the cluster configuration came from: settings, kubeconfig <path> or in-cluster</td>
+</tr>
+<tr>
+<td>version</td>
+<td>Kubernetes version reported by /version (e.g. v1.30.2)</td>
+</tr>
+</tbody>
+</table>
+<p>This command also supports the <a href="../../common-options/#common-filter-keywords">common filter keywords</a>: count, total, ok_count, warn_count, crit_count, problem_count, list, ok_list, warn_list, crit_list, problem_list, detail_list, sep, status.</p>
+<h3 id="check_nodes">check_nodes<a class="headerlink" href="#check_nodes" title="Permanent link">&para;</a></h3>
+<p>Check node readiness, pressure conditions, schedulability and capacity.</p>
+<h4 id="about-check_nodes">About <code>check_nodes</code><a class="headerlink" href="#about-check_nodes" title="Permanent link">&para;</a></h4>
+<p><code>check_nodes</code> reads <code>/api/v1/nodes</code> and evaluates each node: the <code>Ready</code>
+condition, the pressure conditions (<code>memory_pressure</code>, <code>disk_pressure</code>,
+<code>pid_pressure</code>, <code>network_unavailable</code>), whether it is cordoned
+(<code>schedulable</code>), and what it offers - <code>cpu_capacity</code> / <code>cpu_allocatable</code> in
+millicores, <code>memory_capacity</code> / <code>memory_allocatable</code> in bytes (thresholds take
+units: <code>memory_allocatable &lt; 4G</code>) and <code>pods_capacity</code>.</p>
+<p><code>node_status</code> is the STATUS column of <code>kubectl get nodes</code>: <code>Ready</code>,
+<code>NotReady</code> or <code>Unknown</code>, with <code>,SchedulingDisabled</code> appended for a cordoned
+node. The defaults go critical on <code>ready != 'True'</code> and warn on any pressure
+condition or a cordon; a drained node during maintenance therefore shows up as
+a warning, which is usually what you want - add <code>filter=schedulable = 1</code> to
+hide it.</p>
+<p><code>node=&lt;name&gt;</code> (repeatable) restricts the check to the named nodes, and a node
+the API server does not return is reported as <code>missing</code>: it left the cluster,
+which is exactly what a per-node check is there to tell you. <code>label-selector=</code>
+and <code>field-selector=</code> are passed to the API server, e.g.
+<code>label-selector=node-role.kubernetes.io/worker=</code>.</p>
+<p><strong>Jump to section:</strong></p>
+<ul>
+<li><a href="#check_nodes_samples">Sample Commands</a></li>
+<li><a href="#check_nodes_options">Command-line Arguments</a></li>
+<li><a href="#check_nodes_filter_keys">Filter keywords</a></li>
+</ul>
+<p><a id="check_nodes_samples"></a></p>
+<h4 id="sample-commands_1">Sample Commands<a class="headerlink" href="#sample-commands_1" title="Permanent link">&para;</a></h4>
+<p><strong>Check every node with the default thresholds (NotReady is critical, pressure or a cordon a warning):</strong></p>
+<div class="highlight"><pre><span></span><code>check_nodes
+CRITICAL: worker-2=NotReady, worker-3=Ready,SchedulingDisabled
+</code></pre></div>
+<p><strong>Only alert on readiness, ignoring cordoned nodes:</strong></p>
+<div class="highlight"><pre><span></span><code>check_nodes warning=none "critical=ready != 'True'"
+CRITICAL: worker-2=NotReady
+</code></pre></div>
+<p><strong>Require that specific nodes are still in the cluster:</strong></p>
+<div class="highlight"><pre><span></span><code>check_nodes node=worker-1 node=worker-9
+CRITICAL: worker-9=missing
+</code></pre></div>
+<p><strong>Show what a node offers, using the node keywords:</strong></p>
+<div class="highlight"><pre><span></span><code>check_nodes node=worker-1 "detail-syntax=%(name): %(node_status), kubelet %(kubelet_version), %(os) %(arch), cpu %(cpu_allocatable)m of %(cpu_capacity)m, memory %(memory_allocatable) of %(memory_capacity) bytes, %(pods_capacity) pods, roles=%(roles) taints=%(taints)" "top-syntax=${list}" ok-syntax=
+worker-1: Ready, kubelet v1.30.4, Ubuntu 22.04.4 LTS amd64, cpu 7900m of 8000m, memory 33285996544 of 34359738368 bytes, 110 pods, roles= taints=
+</code></pre></div>
+<p><strong>List cordoned nodes without alerting:</strong></p>
+<div class="highlight"><pre><span></span><code>check_nodes "filter=schedulable = 0" warning=none critical=none "detail-syntax=%(name)=%(node_status)" "top-syntax=${status}: ${list}" ok-syntax=
+OK: worker-3=Ready,SchedulingDisabled
+</code></pre></div>
+<p><a id="check_nodes_options"></a></p>
+<h4 id="command-line-arguments_1">Command-line Arguments<a class="headerlink" href="#command-line-arguments_1" title="Permanent link">&para;</a></h4>
+<p><a id="check_nodes_label-selector"></a>
+<a id="check_nodes_field-selector"></a>
+<a id="check_nodes_node"></a></p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>label-selector</td>
+<td></td>
+<td>Label selector passed to the API server, e.g. node-role.kubernetes.io/worker= or topology.kubernetes.io/zone=eu-1a.</td>
+</tr>
+<tr>
+<td>field-selector</td>
+<td></td>
+<td>Field selector passed to the API server, e.g. metadata.name=worker-1.</td>
+</tr>
+<tr>
+<td>node</td>
+<td></td>
+<td>Name of a node that must exist (repeatable). Only the named nodes take part in the check; a name the API server does not return gets node_status &lsquo;missing&rsquo;.</td>
+</tr>
+<tr>
+<td><a href="#check_nodes_timeout">timeout</a></td>
+<td>30</td>
+<td>Timeout in seconds for each network step of an API server request: the connect, the TLS handshake and each read. It is not a total for the check (a server that keeps trickling data takes longer). A positive number.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="check_nodes_timeout">timeout:</h5>
+
+<p>Timeout in seconds for each network step of an API server request: the connect, the TLS handshake and each read. It is not a total for the check (a server that keeps trickling data takes longer). A positive number.</p>
+<p><em>Default Value:</em> <code>30</code></p>
+<p><strong>Common options:</strong></p>
+<p>These options are shared by all filter based commands and are described on the <a href="../../common-options/#common-options">common options</a> page; the default values below are specific to this command.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Default Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="check_nodes_filter"></a><a href="../../common-options/#filter">filter</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_nodes_warning"></a><a href="../../common-options/#warning">warning</a></td>
+<td>memory_pressure = 1 or disk_pressure = 1 or pid_pressure = 1 or network_unavailable = 1 or schedulable = 0</td>
+</tr>
+<tr>
+<td><a id="check_nodes_warn"></a><a href="../../common-options/#warn">warn</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_nodes_critical"></a><a href="../../common-options/#critical">critical</a></td>
+<td>ready != &lsquo;True&rsquo;</td>
+</tr>
+<tr>
+<td><a id="check_nodes_crit"></a><a href="../../common-options/#crit">crit</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_nodes_ok"></a><a href="../../common-options/#ok">ok</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_nodes_debug"></a><a href="../../common-options/#debug">debug</a></td>
+<td>false</td>
+</tr>
+<tr>
+<td><a id="check_nodes_show-all"></a><a href="../../common-options/#show-all">show-all</a></td>
+<td>false</td>
+</tr>
+<tr>
+<td><a id="check_nodes_empty-state"></a><a href="../../common-options/#empty-state">empty-state</a></td>
+<td>critical</td>
+</tr>
+<tr>
+<td><a id="check_nodes_perf-config"></a><a href="../../common-options/#perf-config">perf-config</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_nodes_escape-html"></a><a href="../../common-options/#escape-html">escape-html</a></td>
+<td>false</td>
+</tr>
+<tr>
+<td><a id="check_nodes_list-separator"></a><a href="../../common-options/#list-separator">list-separator</a></td>
+<td>,</td>
+</tr>
+<tr>
+<td><a id="check_nodes_top-syntax"></a><a href="../../common-options/#top-syntax">top-syntax</a></td>
+<td>${status}: ${problem_list}</td>
+</tr>
+<tr>
+<td><a id="check_nodes_ok-syntax"></a><a href="../../common-options/#ok-syntax">ok-syntax</a></td>
+<td>%(status): All %(count) nodes are ready</td>
+</tr>
+<tr>
+<td><a id="check_nodes_empty-syntax"></a><a href="../../common-options/#empty-syntax">empty-syntax</a></td>
+<td>%(status): No nodes found</td>
+</tr>
+<tr>
+<td><a id="check_nodes_detail-syntax"></a><a href="../../common-options/#detail-syntax">detail-syntax</a></td>
+<td>${name}=${node_status}</td>
+</tr>
+<tr>
+<td><a id="check_nodes_perf-syntax"></a><a href="../../common-options/#perf-syntax">perf-syntax</a></td>
+<td>${name}</td>
+</tr>
+<tr>
+<td><a id="check_nodes_byte-unit"></a><a href="../../common-options/#byte-unit">byte-unit</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_nodes_decimal-separator"></a><a href="../../common-options/#decimal-separator">decimal-separator</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_nodes_decimals"></a><a href="../../common-options/#decimals">decimals</a></td>
+<td>-1</td>
+</tr>
+<tr>
+<td><a id="check_nodes_thousands-separator"></a><a href="../../common-options/#thousands-separator">thousands-separator</a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>This command also accepts the standard <a href="../../common-options/#standard-options">help options</a>: help, help-pb, show-default, help-short.</p>
+<p><a id="check_nodes_filter_keys"></a></p>
+<h4 id="filter-keywords_1">Filter keywords<a class="headerlink" href="#filter-keywords_1" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>age</td>
+<td>Seconds since the node joined the cluster, -1 when unknown (supports units, e.g. age &lt; 1h)</td>
+</tr>
+<tr>
+<td>arch</td>
+<td>CPU architecture (amd64, arm64, &hellip;)</td>
+</tr>
+<tr>
+<td>cpu_allocatable</td>
+<td>CPU available to pods in millicores (-1 when not reported)</td>
+</tr>
+<tr>
+<td>cpu_capacity</td>
+<td>CPU capacity in millicores (-1 when not reported)</td>
+</tr>
+<tr>
+<td>created</td>
+<td>When the node joined the cluster (date)</td>
+</tr>
+<tr>
+<td>disk_pressure</td>
+<td>1 when the DiskPressure condition is True, else 0</td>
+</tr>
+<tr>
+<td>internal_ip</td>
+<td>The node&rsquo;s InternalIP address</td>
+</tr>
+<tr>
+<td>kubelet_version</td>
+<td>Kubelet version (e.g. v1.30.2)</td>
+</tr>
+<tr>
+<td>memory_allocatable</td>
+<td>Memory available to pods in bytes, -1 when not reported (thresholds take units, e.g. memory_allocatable &lt; 4G)</td>
+</tr>
+<tr>
+<td>memory_capacity</td>
+<td>Memory capacity in bytes, -1 when not reported (thresholds take units, e.g. memory_capacity &lt; 8G)</td>
+</tr>
+<tr>
+<td>memory_pressure</td>
+<td>1 when the MemoryPressure condition is True, else 0</td>
+</tr>
+<tr>
+<td>name</td>
+<td>Node name</td>
+</tr>
+<tr>
+<td>network_unavailable</td>
+<td>1 when the NetworkUnavailable condition is True, else 0</td>
+</tr>
+<tr>
+<td>node_status</td>
+<td>The kubectl STATUS column: Ready, NotReady or Unknown, with ,SchedulingDisabled appended for a cordoned node; missing for a requested node the API server does not know about</td>
+</tr>
+<tr>
+<td>os</td>
+<td>OS image the node runs (e.g. Ubuntu 22.04.4 LTS)</td>
+</tr>
+<tr>
+<td>pid_pressure</td>
+<td>1 when the PIDPressure condition is True, else 0</td>
+</tr>
+<tr>
+<td>pods_capacity</td>
+<td>Maximum number of pods the node accepts (-1 when not reported)</td>
+</tr>
+<tr>
+<td>ready</td>
+<td>The Ready condition: True, False or Unknown (empty for a requested node the API server does not know about)</td>
+</tr>
+<tr>
+<td>roles</td>
+<td>Node roles from the node-role.kubernetes.io/<role> labels, comma separated</td>
+</tr>
+<tr>
+<td>schedulable</td>
+<td>1 unless the node is cordoned (spec.unschedulable), then 0</td>
+</tr>
+<tr>
+<td>taints</td>
+<td>Taints as key=value:effect, comma separated</td>
+</tr>
+</tbody>
+</table>
+<p>This command also supports the <a href="../../common-options/#common-filter-keywords">common filter keywords</a>: count, total, ok_count, warn_count, crit_count, problem_count, list, ok_list, warn_list, crit_list, problem_list, detail_list, sep, status.</p>
+<h3 id="check_pods">check_pods<a class="headerlink" href="#check_pods" title="Permanent link">&para;</a></h3>
+<p>Check the state of pods: phase, the kubectl STATUS column, readiness and restarts.</p>
+<h4 id="about-check_pods">About <code>check_pods</code><a class="headerlink" href="#about-check_pods" title="Permanent link">&para;</a></h4>
+<p><code>check_pods</code> lists pods - across the cluster or in the given <code>namespace=</code>
+(repeatable) - and evaluates each one. The list is fetched page by page
+(<code>limit=500</code>, following <code>metadata.continue</code>), so it works on large clusters;
+<code>label-selector=</code> and <code>field-selector=</code> are handed to the API server, so the
+filtering happens before the payload is built.</p>
+<p><code>pod_status</code> reproduces the STATUS column of <code>kubectl get pods</code> (<code>Running</code>,
+<code>Completed</code>, <code>CrashLoopBackOff</code>, <code>ImagePullBackOff</code>, <code>OOMKilled</code>,
+<code>Terminating</code>, <code>Init:1/2</code>, <code>ExitCode:3</code>, &hellip;) from the container statuses and
+<code>deletionTimestamp</code>. Use it rather than <code>phase</code> for alerting: a crash-looping
+pod has phase <code>Running</code>.</p>
+<p>Three ways to use it:</p>
+<ul>
+<li>No arguments - every pod that has not finished (<code>filter=phase !=
+  'Succeeded'</code>). The defaults warn on <code>Pending</code> pods and more than five
+  restarts, and go critical on <code>Failed</code>, <code>Unknown</code>, any <code>*BackOff</code>,
+  <code>OOMKilled</code> or a <code>missing</code> pod.</li>
+<li><code>pod=&lt;name&gt;</code> or <code>pod=&lt;namespace&gt;/&lt;name&gt;</code> (repeatable) - only the named pods
+  take part, and a pod the API server does not return is reported with
+  <code>pod_status</code> <code>missing</code>, so it trips the default critical instead of silently
+  disappearing from the listing. A bare name is matched in every namespace
+  listed and, when missing, reported as <code>*/&lt;name&gt;</code> (or under the one
+  <code>namespace=</code> the check was scoped to).</li>
+<li>A selector - <code>label-selector=app=web</code> or <code>field-selector=spec.nodeName=worker-1</code>
+  for the pods of one application or one node.</li>
+</ul>
+<p><code>age</code> takes duration units (<code>age &lt; 10m</code>), <code>created</code> is a date, and <code>oom_killed</code>
+is 1 when a container&rsquo;s current or last termination was an out-of-memory kill,
+even if the pod has since restarted and shows <code>Running</code>. Native sidecars (init
+containers with <code>restartPolicy: Always</code>) count as running once started and are
+included in <code>containers</code> / <code>ready_containers</code>, as in kubectl; <code>restarts</code> is
+the kubectl RESTARTS column, which counts the main containers and running
+sidecars once the pod is initialised and the init containers only while it is
+not, and <code>ready_containers</code> counts a container only while it is actually
+running; a finished job
+pod being cleaned up keeps <code>Completed</code> rather than turning into <code>Terminating</code>,
+while <code>terminating</code> still reports the pending deletion.</p>
+<p><strong>Jump to section:</strong></p>
+<ul>
+<li><a href="#check_pods_samples">Sample Commands</a></li>
+<li><a href="#check_pods_options">Command-line Arguments</a></li>
+<li><a href="#check_pods_filter_keys">Filter keywords</a></li>
+</ul>
+<p><a id="check_pods_samples"></a></p>
+<h4 id="sample-commands_2">Sample Commands<a class="headerlink" href="#sample-commands_2" title="Permanent link">&para;</a></h4>
+<p><strong>Check every pod with the default thresholds (finished job pods are ignored):</strong></p>
+<div class="highlight"><pre><span></span><code>check_pods
+CRITICAL: shop/api-5f6c7d8b9-xyz12=CrashLoopBackOff, shop/db-0=Pending|'shop/web-7d4b9c6f8-k2xqz restarts'=0;5;0 'shop/web-7d4b9c6f8-p9lmn restarts'=0;5;0 'shop/api-5f6c7d8b9-xyz12 restarts'=7;5;0 'shop/db-0 restarts'=0;5;0 'kube-system/coredns-76f75df574-abcde restarts'=0;5;0 'kube-system/coredns-76f75df574-fghij restarts'=0;5;0
+</code></pre></div>
+<p><strong>Only one namespace, with your own thresholds:</strong></p>
+<div class="highlight"><pre><span></span><code>check_pods namespace=shop "warning=restarts &gt; 3" "critical=pod_status like 'BackOff'"
+CRITICAL: shop/api-5f6c7d8b9-xyz12=CrashLoopBackOff|'shop/web-7d4b9c6f8-k2xqz restarts'=0;3;0 'shop/web-7d4b9c6f8-p9lmn restarts'=0;3;0 'shop/api-5f6c7d8b9-xyz12 restarts'=7;3;0 'shop/db-0 restarts'=0;3;0
+</code></pre></div>
+<p><strong>Require that specific pods exist (a pod the API server does not know is CRITICAL):</strong></p>
+<div class="highlight"><pre><span></span><code>check_pods pod=shop/web-7d4b9c6f8-k2xqz pod=shop/db-0 pod=shop/search-0
+CRITICAL: shop/db-0=Pending, shop/search-0=missing|'shop/web-7d4b9c6f8-k2xqz restarts'=0;5;0 'shop/db-0 restarts'=0;5;0 'shop/search-0 restarts'=0;5;0
+</code></pre></div>
+<p><strong>Select by label and show the pod keywords:</strong></p>
+<div class="highlight"><pre><span></span><code>check_pods label-selector=app=web "detail-syntax=%(namespace)/%(name) on %(node): %(pod_status) %(ready_containers)/%(containers) ready, %(restarts) restarts" "top-syntax=${status}: ${list}" ok-syntax=
+OK: shop/web-7d4b9c6f8-k2xqz on worker-1: Running 1/1 ready, 0 restarts, shop/web-7d4b9c6f8-p9lmn on worker-3: Running 1/1 ready, 0 restarts|'shop/web-7d4b9c6f8-k2xqz restarts'=0;5;0 'shop/web-7d4b9c6f8-p9lmn restarts'=0;5;0
+</code></pre></div>
+<p><strong>A namespace the service account may not read is reported with the rule to grant (UNKNOWN):</strong></p>
+<div class="highlight"><pre><span></span><code>check_pods namespace=secret
+Kubernetes API server at 'https://127.0.0.1:6443' denied GET /api/v1/namespaces/secret/pods?limit=500 (HTTP 403: pods is forbidden: User "system:serviceaccount:monitoring:nscp" cannot list resource "pods" in API group "" in the namespace "secret"): grant the agent's service account get and list on the resource (see the CheckKubernetes documentation for the ClusterRole)
+</code></pre></div>
+<p><a id="check_pods_options"></a></p>
+<h4 id="command-line-arguments_2">Command-line Arguments<a class="headerlink" href="#command-line-arguments_2" title="Permanent link">&para;</a></h4>
+<p><a id="check_pods_namespace"></a>
+<a id="check_pods_label-selector"></a>
+<a id="check_pods_field-selector"></a>
+<a id="check_pods_pod"></a></p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>namespace</td>
+<td></td>
+<td>Only list pods in this namespace (repeatable). Default: all namespaces.</td>
+</tr>
+<tr>
+<td>label-selector</td>
+<td></td>
+<td>Label selector passed to the API server, e.g. app=web,tier!=cache: filtering happens before the payload is built.</td>
+</tr>
+<tr>
+<td>field-selector</td>
+<td></td>
+<td>Field selector passed to the API server, e.g. spec.nodeName=worker-1 or status.phase!=Succeeded.</td>
+</tr>
+<tr>
+<td>pod</td>
+<td></td>
+<td>Name of a pod that must exist (repeatable). Only the named pods take part in the check; a name the API server does not return gets pod_status &lsquo;missing&rsquo;.</td>
+</tr>
+<tr>
+<td><a href="#check_pods_timeout">timeout</a></td>
+<td>30</td>
+<td>Timeout in seconds for each network step of an API server request: the connect, the TLS handshake and each read. It is not a total for the check (a server that keeps trickling data takes longer). A positive number.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="check_pods_timeout">timeout:</h5>
+
+<p>Timeout in seconds for each network step of an API server request: the connect, the TLS handshake and each read. It is not a total for the check (a server that keeps trickling data takes longer). A positive number.</p>
+<p><em>Default Value:</em> <code>30</code></p>
+<p><strong>Common options:</strong></p>
+<p>These options are shared by all filter based commands and are described on the <a href="../../common-options/#common-options">common options</a> page; the default values below are specific to this command.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Default Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="check_pods_filter"></a><a href="../../common-options/#filter">filter</a></td>
+<td>phase != &lsquo;Succeeded&rsquo;</td>
+</tr>
+<tr>
+<td><a id="check_pods_warning"></a><a href="../../common-options/#warning">warning</a></td>
+<td>phase = &lsquo;Pending&rsquo; or restarts &gt; 5</td>
+</tr>
+<tr>
+<td><a id="check_pods_warn"></a><a href="../../common-options/#warn">warn</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_pods_critical"></a><a href="../../common-options/#critical">critical</a></td>
+<td>phase = &lsquo;Failed&rsquo; or phase = &lsquo;Unknown&rsquo; or pod_status like &lsquo;BackOff&rsquo; or pod_status = &lsquo;OOMKilled&rsquo; or pod_status = &lsquo;missing&rsquo;</td>
+</tr>
+<tr>
+<td><a id="check_pods_crit"></a><a href="../../common-options/#crit">crit</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_pods_ok"></a><a href="../../common-options/#ok">ok</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_pods_debug"></a><a href="../../common-options/#debug">debug</a></td>
+<td>false</td>
+</tr>
+<tr>
+<td><a id="check_pods_show-all"></a><a href="../../common-options/#show-all">show-all</a></td>
+<td>false</td>
+</tr>
+<tr>
+<td><a id="check_pods_empty-state"></a><a href="../../common-options/#empty-state">empty-state</a></td>
+<td>ok</td>
+</tr>
+<tr>
+<td><a id="check_pods_perf-config"></a><a href="../../common-options/#perf-config">perf-config</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_pods_escape-html"></a><a href="../../common-options/#escape-html">escape-html</a></td>
+<td>false</td>
+</tr>
+<tr>
+<td><a id="check_pods_list-separator"></a><a href="../../common-options/#list-separator">list-separator</a></td>
+<td>,</td>
+</tr>
+<tr>
+<td><a id="check_pods_top-syntax"></a><a href="../../common-options/#top-syntax">top-syntax</a></td>
+<td>${status}: ${problem_list}</td>
+</tr>
+<tr>
+<td><a id="check_pods_ok-syntax"></a><a href="../../common-options/#ok-syntax">ok-syntax</a></td>
+<td>%(status): All %(count) pods are fine</td>
+</tr>
+<tr>
+<td><a id="check_pods_empty-syntax"></a><a href="../../common-options/#empty-syntax">empty-syntax</a></td>
+<td>%(status): No pods found</td>
+</tr>
+<tr>
+<td><a id="check_pods_detail-syntax"></a><a href="../../common-options/#detail-syntax">detail-syntax</a></td>
+<td>${namespace}/${name}=${pod_status}</td>
+</tr>
+<tr>
+<td><a id="check_pods_perf-syntax"></a><a href="../../common-options/#perf-syntax">perf-syntax</a></td>
+<td>${namespace}/${name}</td>
+</tr>
+<tr>
+<td><a id="check_pods_byte-unit"></a><a href="../../common-options/#byte-unit">byte-unit</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_pods_decimal-separator"></a><a href="../../common-options/#decimal-separator">decimal-separator</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_pods_decimals"></a><a href="../../common-options/#decimals">decimals</a></td>
+<td>-1</td>
+</tr>
+<tr>
+<td><a id="check_pods_thousands-separator"></a><a href="../../common-options/#thousands-separator">thousands-separator</a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>This command also accepts the standard <a href="../../common-options/#standard-options">help options</a>: help, help-pb, show-default, help-short.</p>
+<p><a id="check_pods_filter_keys"></a></p>
+<h4 id="filter-keywords_2">Filter keywords<a class="headerlink" href="#filter-keywords_2" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>age</td>
+<td>Seconds since the pod was created, -1 when unknown (supports units, e.g. age &lt; 1h)</td>
+</tr>
+<tr>
+<td>containers</td>
+<td>Number of containers in the pod spec</td>
+</tr>
+<tr>
+<td>created</td>
+<td>When the pod was created (date)</td>
+</tr>
+<tr>
+<td>ip</td>
+<td>Pod IP address</td>
+</tr>
+<tr>
+<td>labels</td>
+<td>Pod labels as key=value, comma separated</td>
+</tr>
+<tr>
+<td>name</td>
+<td>Pod name</td>
+</tr>
+<tr>
+<td>namespace</td>
+<td>Namespace the pod lives in</td>
+</tr>
+<tr>
+<td>node</td>
+<td>Node the pod is scheduled on (empty while Pending)</td>
+</tr>
+<tr>
+<td>oom_killed</td>
+<td>1 when a container&rsquo;s current or last termination was an out-of-memory kill, else 0</td>
+</tr>
+<tr>
+<td>owner</td>
+<td>Name of the controller owning the pod</td>
+</tr>
+<tr>
+<td>owner_kind</td>
+<td>Kind of the controller owning the pod: ReplicaSet, StatefulSet, DaemonSet, Job, Node, &hellip;</td>
+</tr>
+<tr>
+<td>phase</td>
+<td>Pod phase: Pending, Running, Succeeded, Failed or Unknown</td>
+</tr>
+<tr>
+<td>pod_status</td>
+<td>The kubectl STATUS column: Running, Completed, CrashLoopBackOff, ImagePullBackOff, OOMKilled, Terminating, Init:1/2, &hellip; or missing for a requested pod the API server does not know about</td>
+</tr>
+<tr>
+<td>qos</td>
+<td>QoS class: Guaranteed, Burstable or BestEffort</td>
+</tr>
+<tr>
+<td>ready</td>
+<td>1 when the pod&rsquo;s Ready condition is True, else 0</td>
+</tr>
+<tr>
+<td>ready_containers</td>
+<td>Number of containers reporting ready</td>
+</tr>
+<tr>
+<td>restarts</td>
+<td>The kubectl RESTARTS column: restarts of the containers and native sidecars once the pod is initialised, of the init containers while it is not</td>
+</tr>
+<tr>
+<td>terminating</td>
+<td>1 when the pod is being deleted (deletionTimestamp is set), else 0</td>
+</tr>
+</tbody>
+</table>
+<p>This command also supports the <a href="../../common-options/#common-filter-keywords">common filter keywords</a>: count, total, ok_count, warn_count, crit_count, problem_count, list, ok_list, warn_list, crit_list, problem_list, detail_list, sep, status.</p>
+<h3 id="check_workloads">check_workloads<a class="headerlink" href="#check_workloads" title="Permanent link">&para;</a></h3>
+<p>Check that deployments, statefulsets and daemonsets have their desired replicas available.</p>
+<h4 id="about-check_workloads">About <code>check_workloads</code><a class="headerlink" href="#about-check_workloads" title="Permanent link">&para;</a></h4>
+<p><code>check_workloads</code> reads the deployments, statefulsets and daemonsets under
+<code>/apis/apps/v1</code> and normalises the three status shapes into one record:
+<code>desired</code>, <code>ready</code>, <code>available</code>, <code>updated</code>, <code>unavailable</code> and <code>missing</code>
+(desired minus available), plus <code>paused</code> for a deployment whose rollout is
+paused. For a daemonset <code>desired</code> is the number of nodes it should run on.</p>
+<p>The defaults go critical when nothing is available of a non-zero <code>desired</code>
+(<code>available = 0 and desired &gt; 0</code>) and warn when replicas are missing or a
+rollout has not finished (<code>missing &gt; 0 or updated &lt; desired</code>). A workload
+scaled to zero wants nothing and is fine.</p>
+<p><code>kind=deployment|statefulset|daemonset</code> (repeatable, singular or plural, any
+case) restricts the check to one type and saves the other list calls;
+<code>namespace=</code>, <code>label-selector=</code> and <code>field-selector=</code> are passed to the API
+server. <code>workload=&lt;name&gt;</code> or <code>workload=&lt;namespace&gt;/&lt;name&gt;</code> (repeatable) names
+workloads that must exist; one the API server does not return is reported
+with <code>0/1</code> available under the kind <code>missing</code>, which trips the default
+critical.</p>
+<p><strong>Jump to section:</strong></p>
+<ul>
+<li><a href="#check_workloads_samples">Sample Commands</a></li>
+<li><a href="#check_workloads_options">Command-line Arguments</a></li>
+<li><a href="#check_workloads_filter_keys">Filter keywords</a></li>
+</ul>
+<p><a id="check_workloads_samples"></a></p>
+<h4 id="sample-commands_3">Sample Commands<a class="headerlink" href="#sample-commands_3" title="Permanent link">&para;</a></h4>
+<p><strong>Check every deployment, statefulset and daemonset with the default thresholds:</strong></p>
+<div class="highlight"><pre><span></span><code>check_workloads
+CRITICAL: Deployment shop/api=1/3, Deployment ops/legacy=0/2, StatefulSet shop/db=2/3, DaemonSet monitoring/node-exporter=3/4|'shop/web available'=2;0;0 'shop/web desired'=2;0;0 'shop/web missing'=0;0;0 'shop/api available'=1;0;0 'shop/api desired'=3;0;0 'shop/api missing'=2;0;0 'ops/legacy available'=0;0;0 'ops/legacy desired'=2;0;0 'ops/legacy missing'=2;0;0 'kube-system/coredns available'=2;0;0 'kube-system/coredns desired'=2;0;0 'kube-system/coredns missing'=0;0;0 'shop/db available'=2;0;0 'shop/db desired'=3;0;0 'shop/db missing'=1;0;0 'monitoring/node-exporter available'=3;0;0 'monitoring/node-exporter desired'=4;0;0 'monitoring/node-exporter missing'=1;0;0
+</code></pre></div>
+<p><strong>One kind in one namespace:</strong></p>
+<div class="highlight"><pre><span></span><code>check_workloads kind=deployment namespace=shop
+WARNING: Deployment shop/api=1/3|'shop/web available'=2;0;0 'shop/web desired'=2;0;0 'shop/web missing'=0;0;0 'shop/api available'=1;0;0 'shop/api desired'=3;0;0 'shop/api missing'=2;0;0
+</code></pre></div>
+<p><strong>Require that specific workloads are fully available:</strong></p>
+<div class="highlight"><pre><span></span><code>check_workloads workload=shop/web workload=kube-system/coredns
+OK: All 2 workloads are available|'shop/web available'=2;0;0 'shop/web desired'=2;0;0 'shop/web missing'=0;0;0 'kube-system/coredns available'=2;0;0 'kube-system/coredns desired'=2;0;0 'kube-system/coredns missing'=0;0;0
+</code></pre></div>
+<p><strong>Use the workload keywords in the output:</strong></p>
+<div class="highlight"><pre><span></span><code>check_workloads kind=daemonset "detail-syntax=%(kind) %(namespace)/%(name): %(available)/%(desired) available, %(updated) updated, %(missing) missing" "top-syntax=${status}: ${list}" ok-syntax=
+WARNING: DaemonSet monitoring/node-exporter: 3/4 available, 4 updated, 1 missing|'monitoring/node-exporter available'=3;0;0 'monitoring/node-exporter desired'=4;0;0 'monitoring/node-exporter missing'=1;0;0
+</code></pre></div>
+<p><a id="check_workloads_options"></a></p>
+<h4 id="command-line-arguments_3">Command-line Arguments<a class="headerlink" href="#command-line-arguments_3" title="Permanent link">&para;</a></h4>
+<p><a id="check_workloads_namespace"></a>
+<a id="check_workloads_kind"></a>
+<a id="check_workloads_label-selector"></a>
+<a id="check_workloads_field-selector"></a>
+<a id="check_workloads_workload"></a></p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>namespace</td>
+<td></td>
+<td>Only list workloads in this namespace (repeatable). Default: all namespaces.</td>
+</tr>
+<tr>
+<td>kind</td>
+<td></td>
+<td>Only check this workload kind: deployment, statefulset or daemonset (repeatable). Default: all three.</td>
+</tr>
+<tr>
+<td>label-selector</td>
+<td></td>
+<td>Label selector passed to the API server, e.g. app.kubernetes.io/part-of=shop.</td>
+</tr>
+<tr>
+<td>field-selector</td>
+<td></td>
+<td>Field selector passed to the API server, e.g. metadata.name=web.</td>
+</tr>
+<tr>
+<td>workload</td>
+<td></td>
+<td>Name of a workload that must exist, as name or namespace/name (repeatable). Only the named workloads take part in the check; one the API server does not return is reported with 0 available of 1 desired.</td>
+</tr>
+<tr>
+<td><a href="#check_workloads_timeout">timeout</a></td>
+<td>30</td>
+<td>Timeout in seconds for each network step of an API server request: the connect, the TLS handshake and each read. It is not a total for the check (a server that keeps trickling data takes longer). A positive number.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="check_workloads_timeout">timeout:</h5>
+
+<p>Timeout in seconds for each network step of an API server request: the connect, the TLS handshake and each read. It is not a total for the check (a server that keeps trickling data takes longer). A positive number.</p>
+<p><em>Default Value:</em> <code>30</code></p>
+<p><strong>Common options:</strong></p>
+<p>These options are shared by all filter based commands and are described on the <a href="../../common-options/#common-options">common options</a> page; the default values below are specific to this command.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Default Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a id="check_workloads_filter"></a><a href="../../common-options/#filter">filter</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_workloads_warning"></a><a href="../../common-options/#warning">warning</a></td>
+<td>missing &gt; 0 or updated &lt; desired</td>
+</tr>
+<tr>
+<td><a id="check_workloads_warn"></a><a href="../../common-options/#warn">warn</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_workloads_critical"></a><a href="../../common-options/#critical">critical</a></td>
+<td>available = 0 and desired &gt; 0</td>
+</tr>
+<tr>
+<td><a id="check_workloads_crit"></a><a href="../../common-options/#crit">crit</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_workloads_ok"></a><a href="../../common-options/#ok">ok</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_workloads_debug"></a><a href="../../common-options/#debug">debug</a></td>
+<td>false</td>
+</tr>
+<tr>
+<td><a id="check_workloads_show-all"></a><a href="../../common-options/#show-all">show-all</a></td>
+<td>false</td>
+</tr>
+<tr>
+<td><a id="check_workloads_empty-state"></a><a href="../../common-options/#empty-state">empty-state</a></td>
+<td>ok</td>
+</tr>
+<tr>
+<td><a id="check_workloads_perf-config"></a><a href="../../common-options/#perf-config">perf-config</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_workloads_escape-html"></a><a href="../../common-options/#escape-html">escape-html</a></td>
+<td>false</td>
+</tr>
+<tr>
+<td><a id="check_workloads_list-separator"></a><a href="../../common-options/#list-separator">list-separator</a></td>
+<td>,</td>
+</tr>
+<tr>
+<td><a id="check_workloads_top-syntax"></a><a href="../../common-options/#top-syntax">top-syntax</a></td>
+<td>${status}: ${problem_list}</td>
+</tr>
+<tr>
+<td><a id="check_workloads_ok-syntax"></a><a href="../../common-options/#ok-syntax">ok-syntax</a></td>
+<td>%(status): All %(count) workloads are available</td>
+</tr>
+<tr>
+<td><a id="check_workloads_empty-syntax"></a><a href="../../common-options/#empty-syntax">empty-syntax</a></td>
+<td>%(status): No workloads found</td>
+</tr>
+<tr>
+<td><a id="check_workloads_detail-syntax"></a><a href="../../common-options/#detail-syntax">detail-syntax</a></td>
+<td>${kind} ${namespace}/${name}=${available}/${desired}</td>
+</tr>
+<tr>
+<td><a id="check_workloads_perf-syntax"></a><a href="../../common-options/#perf-syntax">perf-syntax</a></td>
+<td>${namespace}/${name}</td>
+</tr>
+<tr>
+<td><a id="check_workloads_byte-unit"></a><a href="../../common-options/#byte-unit">byte-unit</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_workloads_decimal-separator"></a><a href="../../common-options/#decimal-separator">decimal-separator</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a id="check_workloads_decimals"></a><a href="../../common-options/#decimals">decimals</a></td>
+<td>-1</td>
+</tr>
+<tr>
+<td><a id="check_workloads_thousands-separator"></a><a href="../../common-options/#thousands-separator">thousands-separator</a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>This command also accepts the standard <a href="../../common-options/#standard-options">help options</a>: help, help-pb, show-default, help-short.</p>
+<p><a id="check_workloads_filter_keys"></a></p>
+<h4 id="filter-keywords_3">Filter keywords<a class="headerlink" href="#filter-keywords_3" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>age</td>
+<td>Seconds since the workload was created, -1 when unknown (supports units, e.g. age &lt; 1h)</td>
+</tr>
+<tr>
+<td>available</td>
+<td>Replicas available (Ready for at least minReadySeconds)</td>
+</tr>
+<tr>
+<td>created</td>
+<td>When the workload was created (date)</td>
+</tr>
+<tr>
+<td>desired</td>
+<td>Replicas wanted (spec.replicas, or the nodes a daemonset should run on)</td>
+</tr>
+<tr>
+<td>kind</td>
+<td>Workload kind: Deployment, StatefulSet or DaemonSet</td>
+</tr>
+<tr>
+<td>labels</td>
+<td>Workload labels as key=value, comma separated</td>
+</tr>
+<tr>
+<td>missing</td>
+<td>desired minus available, never below 0</td>
+</tr>
+<tr>
+<td>name</td>
+<td>Workload name</td>
+</tr>
+<tr>
+<td>namespace</td>
+<td>Namespace the workload lives in</td>
+</tr>
+<tr>
+<td>paused</td>
+<td>1 when a deployment&rsquo;s rollout is paused, else 0</td>
+</tr>
+<tr>
+<td>ready</td>
+<td>Replicas whose pod is Ready</td>
+</tr>
+<tr>
+<td>unavailable</td>
+<td>Replicas the controller reports unavailable</td>
+</tr>
+<tr>
+<td>updated</td>
+<td>Replicas running the current template (less than desired during a rollout)</td>
+</tr>
+</tbody>
+</table>
+<p>This command also supports the <a href="../../common-options/#common-filter-keywords">common filter keywords</a>: count, total, ok_count, warn_count, crit_count, problem_count, list, ok_list, warn_list, crit_list, problem_list, detail_list, sep, status.</p>
+<h2 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Path / Section</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#/settings/kubernetes">/settings/kubernetes</a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="settingskubernetes">/settings/kubernetes <a id="/settings/kubernetes"></a><a class="headerlink" href="#settingskubernetes" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#api-server">api server</a></td>
+<td></td>
+<td>API SERVER</td>
+</tr>
+<tr>
+<td><a href="#certificate-authority">ca</a></td>
+<td>${ca-path}</td>
+<td>CERTIFICATE AUTHORITY</td>
+</tr>
+<tr>
+<td><a href="#kubeconfig-context">context</a></td>
+<td></td>
+<td>KUBECONFIG CONTEXT</td>
+</tr>
+<tr>
+<td><a href="#kubeconfig-json">kubeconfig</a></td>
+<td></td>
+<td>KUBECONFIG (JSON)</td>
+</tr>
+<tr>
+<td><a href="#max-response-size">max response size</a></td>
+<td>64</td>
+<td>MAX RESPONSE SIZE</td>
+</tr>
+<tr>
+<td><a href="#timeout">timeout</a></td>
+<td>30</td>
+<td>TIMEOUT</td>
+</tr>
+<tr>
+<td><a href="#tls-version">tls version</a></td>
+<td>tlsv1.2+</td>
+<td>TLS VERSION</td>
+</tr>
+<tr>
+<td><a href="#bearer-token">token</a></td>
+<td></td>
+<td>BEARER TOKEN</td>
+</tr>
+<tr>
+<td><a href="#token-file">token file</a></td>
+<td></td>
+<td>TOKEN FILE</td>
+</tr>
+<tr>
+<td><a href="#tls-peer-verify-mode">verify mode</a></td>
+<td>peer</td>
+<td>TLS PEER VERIFY MODE</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="c1"># </span>
+<span class="k">[/settings/kubernetes]</span>
+<span class="na">ca</span><span class="o">=</span><span class="s">${ca-path}</span>
+<span class="na">max response size</span><span class="o">=</span><span class="s">64</span>
+<span class="na">timeout</span><span class="o">=</span><span class="s">30</span>
+<span class="na">tls version</span><span class="o">=</span><span class="s">tlsv1.2+</span>
+<span class="na">verify mode</span><span class="o">=</span><span class="s">peer</span>
+</code></pre></div>
+<h4 id="api-server">API SERVER <a id="/settings/kubernetes/api server"></a><a class="headerlink" href="#api-server" title="Permanent link">&para;</a></h4>
+<p>The Kubernetes API server, e.g. https://k8s.example.com:6443. Leave empty to auto-detect when the agent runs inside the cluster (KUBERNETES_SERVICE_HOST plus the mounted service account token and CA). Which cluster the agent talks to is an operator decision: a check request cannot choose another server. Use https: an http:// server receives the bearer token in cleartext, and the agent logs a warning when it connects to one.</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Path:</td>
+<td><a href="#/settings/kubernetes">/settings/kubernetes</a></td>
+</tr>
+<tr>
+<td>Key:</td>
+<td>api server</td>
+</tr>
+<tr>
+<td>Default value:</td>
+<td><em>N/A</em></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Sample:</strong></p>
+<div class="highlight"><pre><span></span><code>[/settings/kubernetes]
+# API SERVER
+api server=
+</code></pre></div>
+<h4 id="certificate-authority">CERTIFICATE AUTHORITY <a id="/settings/kubernetes/ca"></a><a class="headerlink" href="#certificate-authority" title="Permanent link">&para;</a></h4>
+<p>CA bundle (a PEM file or a hashed directory) used to verify the API server certificate. Defaults to the trusted system store (in-cluster: the mounted service account CA, unless this is set); point it at the cluster CA (`kubectl config view &ndash;raw -o jsonpath=&rsquo;{.clusters[0].cluster.certificate-authority-data}&rsquo; | base64 -d`) for a private cluster CA.</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Path:</td>
+<td><a href="#/settings/kubernetes">/settings/kubernetes</a></td>
+</tr>
+<tr>
+<td>Key:</td>
+<td>ca</td>
+</tr>
+<tr>
+<td>Default value:</td>
+<td><code>${ca-path}</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Sample:</strong></p>
+<div class="highlight"><pre><span></span><code>[/settings/kubernetes]
+# CERTIFICATE AUTHORITY
+ca=${ca-path}
+</code></pre></div>
+<h4 id="kubeconfig-context">KUBECONFIG CONTEXT <a id="/settings/kubernetes/context"></a><a class="headerlink" href="#kubeconfig-context" title="Permanent link">&para;</a></h4>
+<p>The kubeconfig context to use; empty means its current-context.</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Path:</td>
+<td><a href="#/settings/kubernetes">/settings/kubernetes</a></td>
+</tr>
+<tr>
+<td>Key:</td>
+<td>context</td>
+</tr>
+<tr>
+<td>Advanced:</td>
+<td>Yes (means it is not commonly used)</td>
+</tr>
+<tr>
+<td>Default value:</td>
+<td><em>N/A</em></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Sample:</strong></p>
+<div class="highlight"><pre><span></span><code>[/settings/kubernetes]
+# KUBECONFIG CONTEXT
+context=
+</code></pre></div>
+<h4 id="kubeconfig-json">KUBECONFIG (JSON) <a id="/settings/kubernetes/kubeconfig"></a><a class="headerlink" href="#kubeconfig-json" title="Permanent link">&para;</a></h4>
+<p>Path to a kubeconfig in JSON form (`kubectl config view &ndash;raw &ndash;minify -o json &gt; nscp-kubeconfig.json`), used when `api server` is empty. YAML kubeconfigs are not read. Supplies the server, CA, token or client certificate of the selected context.</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Path:</td>
+<td><a href="#/settings/kubernetes">/settings/kubernetes</a></td>
+</tr>
+<tr>
+<td>Key:</td>
+<td>kubeconfig</td>
+</tr>
+<tr>
+<td>Advanced:</td>
+<td>Yes (means it is not commonly used)</td>
+</tr>
+<tr>
+<td>Default value:</td>
+<td><em>N/A</em></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Sample:</strong></p>
+<div class="highlight"><pre><span></span><code>[/settings/kubernetes]
+# KUBECONFIG (JSON)
+kubeconfig=
+</code></pre></div>
+<h4 id="max-response-size">MAX RESPONSE SIZE <a id="/settings/kubernetes/max response size"></a><a class="headerlink" href="#max-response-size" title="Permanent link">&para;</a></h4>
+<p>Largest API response the agent will buffer, in megabytes. A pod list in a large cluster runs to tens of megabytes; 0 removes the cap.</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Path:</td>
+<td><a href="#/settings/kubernetes">/settings/kubernetes</a></td>
+</tr>
+<tr>
+<td>Key:</td>
+<td>max response size</td>
+</tr>
+<tr>
+<td>Advanced:</td>
+<td>Yes (means it is not commonly used)</td>
+</tr>
+<tr>
+<td>Default value:</td>
+<td><code>64</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Sample:</strong></p>
+<div class="highlight"><pre><span></span><code>[/settings/kubernetes]
+# MAX RESPONSE SIZE
+max response size=64
+</code></pre></div>
+<h4 id="timeout">TIMEOUT <a id="/settings/kubernetes/timeout"></a><a class="headerlink" href="#timeout" title="Permanent link">&para;</a></h4>
+<p>Timeout in seconds for each network step of an API server request: the connect, the TLS handshake and each read. It bounds a stalled server, not the whole check: a server that keeps trickling data, or a list of many pages, takes longer. Must be positive: the checks refuse 0 or less rather than wait forever.</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Path:</td>
+<td><a href="#/settings/kubernetes">/settings/kubernetes</a></td>
+</tr>
+<tr>
+<td>Key:</td>
+<td>timeout</td>
+</tr>
+<tr>
+<td>Advanced:</td>
+<td>Yes (means it is not commonly used)</td>
+</tr>
+<tr>
+<td>Default value:</td>
+<td><code>30</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Sample:</strong></p>
+<div class="highlight"><pre><span></span><code>[/settings/kubernetes]
+# TIMEOUT
+timeout=30
+</code></pre></div>
+<h4 id="tls-version">TLS VERSION <a id="/settings/kubernetes/tls version"></a><a class="headerlink" href="#tls-version" title="Permanent link">&para;</a></h4>
+<p>Minimum TLS protocol version accepted: tlsv1.0, tlsv1.1, tlsv1.2, tlsv1.2+ (the default: TLS 1.2 and 1.3), tlsv1.3.</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Path:</td>
+<td><a href="#/settings/kubernetes">/settings/kubernetes</a></td>
+</tr>
+<tr>
+<td>Key:</td>
+<td>tls version</td>
+</tr>
+<tr>
+<td>Advanced:</td>
+<td>Yes (means it is not commonly used)</td>
+</tr>
+<tr>
+<td>Default value:</td>
+<td><code>tlsv1.2+</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Sample:</strong></p>
+<div class="highlight"><pre><span></span><code>[/settings/kubernetes]
+# TLS VERSION
+tls version=tlsv1.2+
+</code></pre></div>
+<h4 id="bearer-token">BEARER TOKEN <a id="/settings/kubernetes/token"></a><a class="headerlink" href="#bearer-token" title="Permanent link">&para;</a></h4>
+<p>Service account bearer token used to authenticate against the API server. Prefer `token file` for a token that is rotated.</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Path:</td>
+<td><a href="#/settings/kubernetes">/settings/kubernetes</a></td>
+</tr>
+<tr>
+<td>Key:</td>
+<td>token</td>
+</tr>
+<tr>
+<td>Default value:</td>
+<td><em>N/A</em></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Sample:</strong></p>
+<div class="highlight"><pre><span></span><code>[/settings/kubernetes]
+# BEARER TOKEN
+token=
+</code></pre></div>
+<h4 id="token-file">TOKEN FILE <a id="/settings/kubernetes/token file"></a><a class="headerlink" href="#token-file" title="Permanent link">&para;</a></h4>
+<p>Path to a file holding the bearer token, read at check time so a rotated (projected) token keeps working without a reload. Takes precedence over `token`.</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Path:</td>
+<td><a href="#/settings/kubernetes">/settings/kubernetes</a></td>
+</tr>
+<tr>
+<td>Key:</td>
+<td>token file</td>
+</tr>
+<tr>
+<td>Default value:</td>
+<td><em>N/A</em></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Sample:</strong></p>
+<div class="highlight"><pre><span></span><code>[/settings/kubernetes]
+# TOKEN FILE
+token file=
+</code></pre></div>
+<h4 id="tls-peer-verify-mode">TLS PEER VERIFY MODE <a id="/settings/kubernetes/verify mode"></a><a class="headerlink" href="#tls-peer-verify-mode" title="Permanent link">&para;</a></h4>
+<p>Comma separated list of options: none, peer (or certificate), peer-cert, fail-if-no-cert (or fail-if-no-peer-cert, client-certificate). For a self signed certificate use peer-cert and point `ca` at that certificate; none disables verification entirely and sends the token to an unverified peer.</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Path:</td>
+<td><a href="#/settings/kubernetes">/settings/kubernetes</a></td>
+</tr>
+<tr>
+<td>Key:</td>
+<td>verify mode</td>
+</tr>
+<tr>
+<td>Default value:</td>
+<td><code>peer</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Sample:</strong></p>
+<div class="highlight"><pre><span></span><code>[/settings/kubernetes]
+# TLS PEER VERIFY MODE
+verify mode=peer
+</code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+      <div class="md-consent" data-md-component="consent" id="__consent" hidden>
+        <div class="md-consent__overlay"></div>
+        <aside class="md-consent__inner">
+          <form class="md-consent__form md-grid md-typeset" name="consent">
+            
+
+
+  
+
+
+<h4>Cookie consent</h4>
+<p>We use cookies to recognize your repeated visits and preferences, as well as to measure the effectiveness of our documentation and whether users find what they're searching for. With your consent, you're helping us to make our documentation better.</p>
+<input class="md-toggle" type="checkbox" id="__settings" >
+<div class="md-consent__settings">
+  <ul class="task-list">
+    
+    
+      
+    
+    
+      
+        
+  
+  
+    
+    
+  
+  <li class="task-list-item">
+    <label class="task-list-control">
+      <input type="checkbox" name="github" checked>
+      <span class="task-list-indicator"></span>
+      GitHub
+    </label>
+  </li>
+
+      
+    
+    
+  </ul>
+</div>
+<div class="md-consent__controls">
+  
+    
+      <button class="md-button md-button--primary">Accept</button>
+    
+    
+    
+  
+    
+    
+    
+      <label class="md-button" for="__settings">Manage settings</label>
+    
+  
+</div>
+          </form>
+        </aside>
+      </div>
+      <script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout((function(){document.querySelector("[data-md-component=consent]").hidden=!1}),250);var form=document.forms.consent;for(var action of["submit","reset"])form.addEventListener(action,(function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map((function(e){return[e,!0]})))),location.hash="",location.reload()}))</script>
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.tabs", "toc.follow", "toc.integrate", "navigation.indexes", "search.suggest", "search.highlight", "search.share"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../../js/notes.js"></script>
+      
+        <script src="../../../../assets/js/latest-release.js"></script>
+      
+    
+  </body>
+</html>
