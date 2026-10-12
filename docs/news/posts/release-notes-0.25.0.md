@@ -3,7 +3,7 @@ date:
   created: 2026-10-12
 ---
 
-# 0.25.0 The agent reports configuration it ignores, and a robustness pass over scripting, logging and concurrency
+# 0.25.0 The agent reports configuration it ignores, and a robustness pass over scripting and concurrency
 
 0.25.0 makes misconfiguration visible: a section or key nothing reads is now logged, shown in the web UI and reported by `nscp settings --validate`. Collector-backed checks gain a `warmup-state` option, `kill tree` finally works on Linux, and the rest of the release is the harvest of a stress harness, a concurrency audit and a full test of the Lua and Python APIs: a Lua crash under concurrent calls, socket requests stuck behind unrelated slow checks, duplicated events and client payloads, and a long list of smaller fixes.
 
@@ -14,7 +14,6 @@ date:
 - 🐧 **`kill tree` works on Linux.** The script runs in a session of its own and a timeout signals the whole process group, so backgrounded helpers die with it; unloading CheckExternalScripts now ends running scripts (#1629).
 - 🔒 **Lua and Python scripting hardened.** A Lua check running twice at once could crash the agent; listing scripts over REST ran every check; and a test of every documented API fixed a dozen bindings that did nothing or crashed (#1642, #1636, #1632).
 - 📡 **Socket servers no longer queue behind slow checks.** About one NRPE, NSCA, check_mk or NSClient request in a few hundred waited for an unrelated long-running check, which showed up as an occasional `Socket timeout` (#1642).
-- 📝 **One logger.** The log is written as it happens, so the last lines before a crash reach the file, and log handlers are fed from one background thread that no longer holds up the caller (#1637).
 - 🔒 **OpenSSL 3.5.9** in the Windows builds, from the 29 September 2026 upstream security release (#1666).
 
 ## 🔍 Detailed changes
@@ -66,7 +65,7 @@ The setting was accepted on Linux but did nothing: only the script was signalled
 
 ### 📝 Logging — one logger
 
-The three log backends are replaced by a single logger that writes the console and the log file directly, so a line is on disk before the call that logged it returns. Log-handler modules (the web UI's live log, `check_nscp`, ElasticClient, scripts) are fed from one background thread with a 10 000-line queue; when a handler falls that far behind, the oldest lines are dropped for the handlers only and `nsclient.fatal` records it. `--log-backend file` and `threaded-file` both still work, so installed service units need no change.
+The core now has one logger instead of three backends. This is mostly an internal cleanup, and the log looks the same on a normal install. Two things differ: the service writes each line to the console and the log file on the thread that logs it rather than through a queue, so the last lines before a crash are no longer left behind in that queue; and the queue that feeds log-handler modules (the web UI's live log, `check_nscp`, ElasticClient, scripts) is capped at 10 000 lines, past which the oldest lines are dropped for the handlers only and `nsclient.fatal` records it. `--log-backend file` and `threaded-file` both still work, so installed service units need no change (#1637).
 
 ### 🛡️ Undefined-behaviour sweep and audit follow-ups
 
