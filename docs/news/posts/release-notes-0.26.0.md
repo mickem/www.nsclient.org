@@ -96,7 +96,7 @@ The full list is on the [upgrading page](https://nsclient.org/docs/setup/upgradi
 - **Fleet installs.** Configuration passed to an MSI install alongside `FLEET_SERVER` is now ignored. Move those values to the fleet server, and have it enable the modules it needs. Hosts that are already enrolled keep their `nsclient.ini`.
 - **Hand-rolled Windows deployments** that copy the DLLs next to `nscp.exe` must add `boost_json.dll`.
 - **`check_process` `pagefile` / `peak_pagefile`.** Thresholds written against the swapped values should switch keywords. Graphs of `pf_use` / `ppf_use` flip at the upgrade.
-- **Linux and macOS external scripts** now always start in the folder above the scripts folder. The systemd unit already did this. Agents started by hand or as a container entrypoint may see a different working directory.
+- **Linux and macOS external scripts** now run with the parent of the scripts folder as their working directory, `/usr/share/nsclient` on a default install, so `scripts/check.sh` resolves the same way as on Windows. Under the shipped systemd unit nothing changes, because it already set `WorkingDirectory` to that folder. An agent started by hand or as a container entrypoint used to inherit whatever directory it was launched from. A script that relied on that should use an absolute path.
 - **Log-matching rules.** A missing performance counter now logs `Failed to add counter <name> (<path>): ...` instead of `Exception in Failed to add counter`. A predefined counter read in the first seconds after startup answers `Failed to get value` instead of `0`.
 
 ## Download
