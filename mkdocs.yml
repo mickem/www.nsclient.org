@@ -99,6 +99,7 @@ nav:
           - Active Checks over the REST API: docs/scenarios/rest-api-checks.md
           - Passive Monitoring (NSCA/NRDP): docs/scenarios/passive-monitoring-nsca.md
           - Passive Monitoring (NSCA-NG): docs/scenarios/passive-monitoring-nsca-ng.md
+          - Native Icinga 2 Agent: docs/scenarios/icinga-agent.md
           - Passive Monitoring (Icinga 2): docs/scenarios/passive-monitoring-icinga.md
           - Passive Monitoring (Graphite): docs/scenarios/passive-monitoring-graphite.md
           - Polled Passive Checks (Nagios Core): docs/scenarios/nagios-result-cache.md
@@ -131,6 +132,7 @@ nav:
           - Clients & Servers:
               - WEBServer: docs/reference/generic/WEBServer.md
               - NRPEServer: docs/reference/client/NRPEServer.md
+              - NCPAServer: docs/reference/client/NCPAServer.md
               - NRPEClient: docs/reference/client/NRPEClient.md
               - NSClientServer: docs/reference/windows/NSClientServer.md
               - NSCAServer: docs/reference/client/NSCAServer.md
@@ -138,6 +140,7 @@ nav:
               - NSCANgClient: docs/reference/client/NSCANgClient.md
               - NSCPClient: docs/reference/client/NSCPClient.md
               - NRDPClient: docs/reference/client/NRDPClient.md
+              - IcingaAgent: docs/reference/client/IcingaAgent.md
               - IcingaClient: docs/reference/client/IcingaClient.md
               - GearmanClient: docs/reference/client/GearmanClient.md
               - SMTPClient: docs/reference/client/SMTPClient.md
@@ -178,6 +181,8 @@ nav:
               - Logs: docs/api/rest/logs.md
               - Facts: docs/api/rest/facts.md
               - Results: docs/api/rest/results.md
+              - Failed checks: docs/api/rest/failures.md
+              - Diagnostics: docs/api/rest/diagnostics.md
               - Legacy API: docs/api/rest/legacy.md
       - FAQ: docs/faq.md
     - NSClient Fleet (server):

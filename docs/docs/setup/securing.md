@@ -632,7 +632,7 @@ wider reach.
 `check_process` has no access mode: the `command_line` keyword is there by design, and its default syntax does not
 show it, but any caller who can pass `detail-syntax=${command_line}` gets the argument list of every process the agent
 can see - database passwords, API tokens and connection strings passed on a command line included. `fetch-only` (the
-check_mk `<<<ps>>>` feed) returns the same command lines without being asked. Where callers may pass arguments, close
+check_mk `<<<ps>>>` feed) returns the same command lines, and each process's owner, without being asked. Where callers may pass arguments, close
 it by refusing arguments (below) or by running process checks only as aliases you define.
 
 The modes are `any` (anything the caller names), `allowed` (only what matches the list) and `predefined` (only names you
@@ -720,8 +720,10 @@ In detail, when the monitoring server asks the agent to run `check_this`, the ag
 
 1. There is an entry `check_this = <path> <args>` under `[/settings/external scripts/scripts]` (or `/wrapped scripts`,
    or `/alias`), **and**
-2. The configured script lives under the configured `script root` (default `${scripts}`, i.e. the install's `scripts\`
-   folder), **and**
+2. The command names the script; the agent resolves nothing on the caller's behalf. What *is* confined to a folder
+   is script management - `ext-scr show`/`delete`/`add --import` and the `/api/v2/scripts` routes stay inside the
+   scripts folder: `${scripts}`, or whatever
+   [`script root`](../concepts/settings.md#moving-the-whole-tree-script-root) names - **and**
 3. If the request includes arguments, `allow arguments = true` is also set (default `false`), **and**
 4. If those arguments contain shell metacharacters, `allow nasty characters = true` is also set (default `false`).
 
@@ -738,7 +740,8 @@ same rule holds on both doors.
 [/settings/external scripts]
 allow arguments = false             ; default; clients cannot pass extra args
 allow nasty characters = false      ; default; reject | & < > ` ' " \ [ ] { }
-script root = ${scripts}            ; scripts must live here
+; script root is unset: the built-in layout, scripts in ${scripts} (a bundle
+; that ships scripts sets `script root = fleet` under [/settings/default])
 
 [/settings/external scripts/scripts]
 check_this = scripts\my_script.ps1  ; declared by the admin; required for it to be callable
